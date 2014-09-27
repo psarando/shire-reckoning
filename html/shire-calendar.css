@@ -1,0 +1,26 @@
+#shire-calendar-table {
+    border: .2rem solid black;
+    border-collapse: collapse;
+}
+#shire-calendar-table td {
+    border: .1rem solid black;
+    height: 6rem;
+    width: 9rem;
+    text-align: center;
+}
+
+.highlight      { background-color: yellow; }
+.weekday-header { background-color: gainsboro; }
+.holiday        { background-color: azure; }
+.afteryule      { background-color: lightskyblue; }
+.solmath        { background-color: lightsteelblue; }
+.rethe          { background-color: yellowgreen; }
+.astron         { background-color: limegreen; }
+.thrimidge      { background-color: lightcyan; }
+.forelithe      { background-color: lemonchiffon; }
+.afterlithe     { background-color: forestgreen; }
+.wedmath        { background-color: darkolivegreen; }
+.halimath       { background-color: darkgoldenrod; }
+.winterfilth    { background-color: orange; }
+.blotmath       { background-color: brown; }
+.foreyule       { background-color: cornflowerblue; }

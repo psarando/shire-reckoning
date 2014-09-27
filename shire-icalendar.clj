@@ -1,9 +1,7 @@
 (use '[leiningen.exec :only (deps)]
      '[leiningen.core.project :only (defproject)])
 (deps '[[org.clojure/clojure "1.6.0"]
-        [org.clojure/tools.cli "0.3.1"]
         [joda-time/joda-time "2.4"]])
-(require '[clojure.tools.cli :as cli])
 (import '[org.joda.time LocalDate])
 
 (def weekdays ["Sterday" "Sunday" "Monday" "Trewsday" "Hevensday" "Mersday" "Highday"])
