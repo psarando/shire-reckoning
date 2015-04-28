@@ -110,7 +110,7 @@ $(window).load(function(){
             setNextDay(calendarDate);
 
             week += makeDateCell(getDateColor(monthColors[month], calendarDate, today),
-                monthDescriptions[month],
+                monthDescriptions[month] + "\n" + weekdays[weekDay%7],
                 date + "(" + calendarDate.toDateString() + ")");
 
             if ((weekDay+1) % 7 === 0) {
