@@ -1,12 +1,24 @@
 .shire-calendar {
+    background-color: gainsboro;
     border: .2rem solid black;
     border-collapse: collapse;
 }
 .shire-calendar td {
     border: .1rem solid black;
-    height: 6rem;
-    width: 9rem;
+    height: 5rem;
+    width: 5rem;
     text-align: center;
+    font-size: .8rem;
+}
+.shire-calendar caption {
+    border: .2rem solid black;
+    font-size: 2rem;
+}
+.rivendell-calendar td {
+    height: 4rem;
+}
+.gregorian-display {
+    font-size: .5rem;
 }
 
 .highlight      { background-color: yellow; }
@@ -25,3 +37,10 @@
 .winterfilth    { background-color: orange; }
 .blotmath       { background-color: brown; }
 .foreyule       { background-color: cornflowerblue; }
+
+.spring   { background-color: forestgreen; }
+.summer   { background-color: lemonchiffon; }
+.autumn   { background-color: darkolivegreen; }
+.fading   { background-color: darkgoldenrod; }
+.winter   { background-color: lightskyblue; }
+.stirring { background-color: yellowgreen; }

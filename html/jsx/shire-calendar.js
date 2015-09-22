@@ -102,10 +102,10 @@ $(document).ready(function() {
                 "gregorian": gregorianDate
             }];
 
-            gregorianDate = this.getNextDate(gregorianDate);
+            gregorianDate = getNextDate(gregorianDate);
 
             for (var month = 0, weekDay = 1; month < 12; month++) {
-                for (var day = 1; day <= 30; day++, weekDay++, gregorianDate = this.getNextDate(gregorianDate)) {
+                for (var day = 1; day <= 30; day++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
                     dates.push({
                         "day": day,
                         "month": month,
@@ -122,7 +122,7 @@ $(document).ready(function() {
                         "gregorian": gregorianDate
                     });
 
-                    gregorianDate = this.getNextDate(gregorianDate);
+                    gregorianDate = getNextDate(gregorianDate);
                     dates.push({
                         "day": "Mid-Year's Day",
                         "month": month,
@@ -132,7 +132,7 @@ $(document).ready(function() {
 
                     weekDay++;
                     if (this.isLeapYear(gregorianDate)) {
-                        gregorianDate = this.getNextDate(gregorianDate);
+                        gregorianDate = getNextDate(gregorianDate);
                         dates.push({
                             "day": "OverLithe",
                             "month": month+1,
@@ -141,7 +141,7 @@ $(document).ready(function() {
                         });
                     }
 
-                    gregorianDate = this.getNextDate(gregorianDate);
+                    gregorianDate = getNextDate(gregorianDate);
                     dates.push({
                         "day": "2 Lithe",
                         "month": month+1,
@@ -149,7 +149,7 @@ $(document).ready(function() {
                         "gregorian": gregorianDate
                     });
 
-                    gregorianDate = this.getNextDate(gregorianDate);
+                    gregorianDate = getNextDate(gregorianDate);
                     weekDay++;
                 }
             }
@@ -162,12 +162,6 @@ $(document).ready(function() {
             });
 
             return dates;
-        },
-
-        getNextDate: function(today) {
-            var tomorrow = new Date(today);
-            tomorrow.setDate(today.getDate() + 1);
-            return tomorrow;
         },
 
         isLeapYear: function(date) {
@@ -205,7 +199,7 @@ $(document).ready(function() {
                                 dates={[date, dates[++i]]} />
                         );
 
-                        weeks.push(<tr key={"week-" + (weeks.length + 1)} >{week}</tr>);
+                        weeks.push(<tr key={"shire-week-" + (weeks.length + 1)} >{week}</tr>);
                         week = [];
 
                         break;
@@ -241,7 +235,7 @@ $(document).ready(function() {
                                 dates={[date]} />
                         );
 
-                        weeks.push(<tr key={"week-" + (weeks.length + 1)} >{week}</tr>);
+                        weeks.push(<tr key={"shire-week-" + (weeks.length + 1)} >{week}</tr>);
                         week = [];
 
                         break;
@@ -260,7 +254,7 @@ $(document).ready(function() {
                         );
 
                         if ((date.weekDay + 1) % 7 === 0) {
-                            weeks.push(<tr key={"week-" + (weeks.length + 1)} >{week}</tr>);
+                            weeks.push(<tr key={"shire-week-" + (weeks.length + 1)} >{week}</tr>);
                             week = [];
                         }
 
@@ -268,8 +262,248 @@ $(document).ready(function() {
                 }
             }
 
+            var caption = this.props.caption ? (<caption>{this.props.caption}</caption>) : null;
+
             return (
                 <table className='shire-calendar' >
+                    {caption}
+                    <thead>
+                        <WeekDayHeader weekdays={this.weekdays} />
+                    </thead>
+                    <tbody>
+                        {weeks}
+                    </tbody>
+                </table>
+            );
+        }
+    });
+
+    var RivendellCalendar = React.createClass({
+        weekdays: [
+            {name: 'Elenya',  description: "Stars Day\nSindarin: Orgilion"},
+            {name: 'Anarya',  description: "Sun Day\nSindarin: Oranor"},
+            {name: 'Isilya',  description: "Moon Day\nSindarin: Orithil"},
+            {name: 'Aldúya',  description: "Two Trees of Valinor Day\nSindarin: Orgaladhad"},
+            {name: 'Menelya', description: "Heavens Day\nSindarin: Ormenel"},
+            {name: 'Valanya', description: "Valar Day or Tárion\nSindarin: Orbelain or Rodyn"}
+        ],
+
+        months: [
+            {
+                name: "Tuilë",
+                description: "Spring\nSindarin: Ethuil",
+                className: "spring"
+            },
+            {
+                name: "Lairë",
+                description: "Summer\nSindarin: Laer",
+                className: "summer"
+            },
+            {
+                name: "Yávië",
+                description: "Autumn\nSindarin: Iavas",
+                className: "autumn"
+            },
+            {
+                name: "Quellë",
+                description: "Fading or 'lasse-lanta'\nSindarin: Firith or 'narbeleth'",
+                className: "fading"
+            },
+            {
+                name: "Hrívë",
+                description: "Winter\nSindarin: Rhîw",
+                className: "winter"
+            },
+            {
+                name: "Coirë",
+                description: "Stirring\nSindarin: Echuir",
+                className: "stirring"
+            }
+        ],
+
+        getInitialState: function() {
+            return {date: new Date()};
+        },
+
+        getNewYearDate: function (today) {
+            var startYear = today.getFullYear();
+
+            var newyearMonth = 2;
+            var newyearDay = this.getNewYearDay(startYear);
+
+            var thisMonth = today.getMonth();
+            var thisDay = today.getDate();
+
+            if (thisMonth < newyearMonth || (thisMonth == newyearMonth && thisDay < newyearDay)) {
+                startYear--;
+                newyearDay = this.getNewYearDay(startYear);
+            }
+
+            return new Date(startYear, newyearMonth, newyearDay, 0,0,0);
+        },
+
+        getNewYearDay: function(startYear) {
+            // start with March 25th, then adjust according to leap year cycles.
+            return (
+                25
+                - Math.floor((((startYear-1) % 12) + 1) / 4)
+                + Math.floor(startYear / 100)
+                - Math.floor(startYear / 400)
+                - (Math.floor((startYear-1) / 432) * 3)
+                - (Math.floor((startYear-1) / 4896) * 3)
+            );
+        },
+
+        isLeapYear: function(today) {
+            var year = today.getFullYear();
+            return ((year % 12 == 0) && (year % 432 != 0) && (year % 4896 != 0));
+        },
+
+        makeCalendarDates: function(today) {
+            var gregorianDate = this.getNewYearDate(today);
+
+            var yearsElapsed = gregorianDate.getFullYear() - 1;
+            var weekDay = (
+                yearsElapsed * 365
+                + (Math.floor(yearsElapsed / 12) * 3)
+                - (Math.floor(yearsElapsed / 432) * 3)
+                - (Math.floor(yearsElapsed / 4896) * 3)
+            );
+
+            var dates = [{
+                "day": "Yestarë",
+                "weekDay": weekDay % 6,
+                "gregorian": gregorianDate
+            }];
+            weekDay++;
+
+            gregorianDate = getNextDate(gregorianDate);
+
+            for (var month = 0; month < 6; month++) {
+                var maxdays = 54;
+
+                switch (month) {
+                    case 1:
+                    case 4:
+                        maxdays = 72;
+                        break;
+                    case 3:
+                        var enderiCount = 3;
+                        if (this.isLeapYear(gregorianDate)) {
+                            enderiCount = 6;
+                        }
+                        for (var enderi = 0;
+                             enderi < enderiCount;
+                             enderi++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
+                            dates.push({
+                                "day": "Enderi",
+                                "weekDay": weekDay % 6,
+                                "gregorian": gregorianDate
+                            });
+                        }
+                        break;
+                }
+
+                for (var day = 1;
+                     day <= maxdays;
+                     day++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
+                    dates.push({
+                        "day": day,
+                        "month": month,
+                        "weekDay": weekDay % 6,
+                        "gregorian": gregorianDate
+                    });
+                }
+            }
+
+            dates.push({
+                "day": "Mettarë",
+                "weekDay": weekDay % 6,
+                "gregorian": gregorianDate
+            });
+
+            return dates;
+        },
+
+        render: function () {
+            var today = this.state.date;
+            var dates = this.makeCalendarDates(today);
+            var week = [];
+            var weeks = [];
+            var enderi = 1;
+
+            for (var weekday = 0; weekday < dates[0].weekDay; weekday++) {
+                week.push(<WeekDayHeaderCell key={'0-month-filler-' + weekday} />);
+            }
+
+            for (var i = 0; i < dates.length; i++) {
+                var date = dates[i];
+
+                switch (date.day) {
+                    case "Yestarë":
+                        week.push(
+                            <IntercalaryDay
+                                key="RivendellNewYear"
+                                description="Rivendell New Year's Day!"
+                                currentDate={today}
+                                dates={[date]} />
+                        );
+
+                        break;
+
+                    case "Enderi":
+                        week.push(
+                            <IntercalaryDay
+                                key={"Middleday-" + (enderi++)}
+                                description="Middleday"
+                                currentDate={today}
+                                dates={[date]} />
+                        );
+
+                        break;
+
+                    case "Mettarë":
+                        week.push(
+                            <IntercalaryDay
+                                key="RivendellNewYearsEve"
+                                description="Rivendell New Year's Eve!"
+                                currentDate={today}
+                                dates={[date]} />
+                        );
+
+                        break;
+
+                    default:
+                        var month = this.months[date.month];
+
+                        week.push(
+                            <DateCell key={date.day + month.name}
+                                      date={date}
+                                      currentDate={today}
+                                      month={month.name}
+                                      description={month.description}
+                                      weekday={this.weekdays[date.weekDay].name}
+                                      className={month.className}/>
+                        );
+
+                        break;
+                }
+
+                if ((date.weekDay + 1) % 6 === 0) {
+                    weeks.push(<tr key={"rivendell-week-" + (weeks.length + 1)} >{week}</tr>);
+                    week = [];
+                }
+            }
+
+            if (week.length > 0) {
+                weeks.push(<tr key={"rivendell-week-" + (weeks.length + 1)} >{week}</tr>);
+            }
+
+            var caption = this.props.caption ? (<caption>{this.props.caption}</caption>) : null;
+
+            return (
+                <table className='shire-calendar rivendell-calendar' >
+                    {caption}
                     <thead>
                         <WeekDayHeader weekdays={this.weekdays} />
                     </thead>
@@ -320,7 +554,7 @@ $(document).ready(function() {
                 <td className={dayColor} title={dateTitle + "\n" + this.props.weekday} >
                     {date.day} {(date.day == 1) ? this.props.month : ''}
                     <br />
-                    ({gregorianDate.toDateString()})
+                    {getGregorianDateDisplay(gregorianDate)}
                 </td>
             );
         }
@@ -344,11 +578,11 @@ $(document).ready(function() {
                     <td className={dayColor} title={dateTitle} >
                         {date.day}
                         <br />
-                        ({gregorianDate.toDateString()})
+                        {getGregorianDateDisplay(gregorianDate)}
                         <hr />
                         {date2.day}
                         <br />
-                        ({date2.gregorian.toDateString()})
+                        {getGregorianDateDisplay(date2.gregorian)}
                     </td>
                 );
             }
@@ -357,16 +591,31 @@ $(document).ready(function() {
                 <td className={dayColor} title={dateTitle} >
                     {date.day}
                     <br />
-                    ({gregorianDate.toDateString()})
+                    {getGregorianDateDisplay(gregorianDate)}
                 </td>
             );
         }
     });
 
     React.render(
-        <ShireCalendar />,
+        <table>
+            <tbody>
+                <tr>
+                    <td style={{verticalAlign: 'top'}}>
+                        <ShireCalendar caption="Shire Reckoning" />
+                    </td>
+                    <td style={{verticalAlign: 'top'}}>
+                        <RivendellCalendar caption="Rivendell Reckoning" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>,
         document.getElementById("shire-calendar")
     );
+
+    function getGregorianDateDisplay(gregorianDate) {
+        return (<span className='gregorian-display' >{gregorianDate.toDateString()}</span>);
+    }
 
     function getDateColor(monthColor, date1, date2) {
         if (datesMatch(date1, date2)) {
@@ -380,5 +629,11 @@ $(document).ready(function() {
         return date1.getFullYear() == date2.getFullYear() &&
                date1.getMonth() == date2.getMonth() &&
                date1.getDate() == date2.getDate();
+    }
+
+    function getNextDate(today) {
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        return tomorrow;
     }
 });
