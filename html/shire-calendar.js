@@ -80,7 +80,11 @@ $(document).ready(function() {
         ],
 
         getInitialState: function() {
-            return {date: new Date()};
+            var calendar = this.makeCalendarDates(this.props.date);
+            return {
+                calendar: calendar,
+                monthView: calendar.todayShire.month
+            };
         },
 
         getNewYearDate: function (today) {
@@ -94,6 +98,7 @@ $(document).ready(function() {
 
         makeCalendarDates: function(today) {
             var gregorianDate = this.getNewYearDate(today);
+            var todayShire;
 
             var dates = [{
                 "day": "2 Yule",
@@ -101,6 +106,10 @@ $(document).ready(function() {
                 "weekDay": 0,
                 "gregorian": gregorianDate
             }];
+
+            if (datesMatch(today, gregorianDate)) {
+                todayShire = dates[0];
+            }
 
             gregorianDate = getNextDate(gregorianDate);
 
@@ -112,6 +121,10 @@ $(document).ready(function() {
                         "weekDay": weekDay % 7,
                         "gregorian": gregorianDate
                     });
+
+                    if (datesMatch(today, gregorianDate)) {
+                        todayShire = dates[dates.length-1];
+                    }
                 }
 
                 if (month == 5) {
@@ -122,6 +135,10 @@ $(document).ready(function() {
                         "gregorian": gregorianDate
                     });
 
+                    if (datesMatch(today, gregorianDate)) {
+                        todayShire = dates[dates.length-1];
+                    }
+
                     gregorianDate = getNextDate(gregorianDate);
                     dates.push({
                         "day": "Mid-Year's Day",
@@ -130,8 +147,12 @@ $(document).ready(function() {
                         "gregorian": gregorianDate
                     });
 
+                    if (datesMatch(today, gregorianDate)) {
+                        todayShire = dates[dates.length-1];
+                    }
+
                     weekDay++;
-                    if (this.isLeapYear(gregorianDate)) {
+                    if (isLeapYear(gregorianDate)) {
                         gregorianDate = getNextDate(gregorianDate);
                         dates.push({
                             "day": "OverLithe",
@@ -139,6 +160,10 @@ $(document).ready(function() {
                             "weekDay": weekDay % 7,
                             "gregorian": gregorianDate
                         });
+
+                        if (datesMatch(today, gregorianDate)) {
+                            todayShire = dates[dates.length-1];
+                        }
                     }
 
                     gregorianDate = getNextDate(gregorianDate);
@@ -148,6 +173,10 @@ $(document).ready(function() {
                         "weekDay": weekDay % 7,
                         "gregorian": gregorianDate
                     });
+
+                    if (datesMatch(today, gregorianDate)) {
+                        todayShire = dates[dates.length-1];
+                    }
 
                     gregorianDate = getNextDate(gregorianDate);
                     weekDay++;
@@ -161,23 +190,55 @@ $(document).ready(function() {
                 "gregorian": gregorianDate
             });
 
-            return dates;
+            if (datesMatch(today, gregorianDate)) {
+                todayShire = dates[dates.length-1];
+            }
+
+            return {
+                dates: dates,
+                today: today,
+                todayShire: todayShire
+            };
         },
 
-        isLeapYear: function(date) {
-            var year = date.getFullYear();
-            return !((year % 4) || (!(year % 100) && (year % 400)));
+
+        onMonthViewChange: function(monthView) {
+            this.setState({monthView: monthView});
+        },
+
+        componentWillReceiveProps: function(nextProps) {
+            var today = nextProps.date;
+            var calendar = this.state.calendar;
+
+            if (!datesMatch(today, calendar.today)) {
+                calendar = this.makeCalendarDates(today);
+            }
+            this.setState({
+                calendar: calendar,
+                monthView: this.state.monthView < 0 ? this.state.monthView : calendar.todayShire.month
+            });
         },
 
         render: function () {
-            var today = this.state.date;
-            var dates = this.makeCalendarDates(today);
+            var today = this.props.date;
+            var calendar = this.state.calendar;
+            var dates = calendar.dates;
+            var monthView = this.state.monthView;
+
             var week = [];
             var weeks = [];
 
-            for (var i = 0; i < dates.length; i++) {
-                var date = dates[i];
+            for (var i = 0, date = dates[i];
+                 i < dates.length && date.month < monthView;
+                 i++, date = dates[i]) {
+                // seek ahead to current month view
+            }
 
+            for (var weekday = 0; weekday < dates[i].weekDay; weekday++) {
+                week.push(React.createElement(WeekDayHeaderCell, {key: '0-month-filler-' + weekday}));
+            }
+
+            for (; i < dates.length && (monthView < 0 || monthView == dates[i].month); i++, date = dates[i]) {
                 switch (date.day) {
                     case "2 Yule":
                         week.push(
@@ -262,12 +323,25 @@ $(document).ready(function() {
                 }
             }
 
+            if (week.length > 0) {
+                weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+            }
+
             var caption = this.props.caption ? (React.createElement("caption", null, this.props.caption)) : null;
 
             return (
                 React.createElement("table", {className: "shire-calendar"}, 
                     caption, 
                     React.createElement("thead", null, 
+                        React.createElement("tr", null, 
+                            React.createElement("td", {colSpan: "7"}, 
+                                React.createElement(MonthViewPicker, {
+                                    onMonthViewChange: this.onMonthViewChange, 
+                                    monthView: this.state.monthView, 
+                                    months: this.months}
+                                    )
+                            )
+                        ), 
                         React.createElement(WeekDayHeader, {weekdays: this.weekdays})
                     ), 
                     React.createElement("tbody", null, 
@@ -321,31 +395,46 @@ $(document).ready(function() {
             }
         ],
 
+        TRADITIONAL_FORMAT: "traditional",
+        REFORMED_FORMAT: "reformed",
+
         getInitialState: function() {
-            return {date: new Date()};
+            var startDay = 25;
+            var calendarFormat = this.TRADITIONAL_FORMAT;
+            var calendar = this.makeCalendarDates(this.props.date, calendarFormat, startDay);
+            return {
+                calendar: calendar,
+                monthView: calendar.todayRivendell.month,
+                startDay: startDay,
+                calendarFormat: calendarFormat
+            };
         },
 
-        getNewYearDate: function (today) {
+        getNewYearDate: function (today, calendarFormat, startDay) {
             var startYear = today.getFullYear();
 
             var newyearMonth = 2;
-            var newyearDay = this.getNewYearDay(startYear);
+            var newyearDay = this.getNewYearDay(startYear, calendarFormat, startDay);
 
             var thisMonth = today.getMonth();
             var thisDay = today.getDate();
 
             if (thisMonth < newyearMonth || (thisMonth == newyearMonth && thisDay < newyearDay)) {
                 startYear--;
-                newyearDay = this.getNewYearDay(startYear);
+                newyearDay = this.getNewYearDay(startYear, calendarFormat, startDay);
             }
 
             return new Date(startYear, newyearMonth, newyearDay, 0,0,0);
         },
 
-        getNewYearDay: function(startYear) {
-            // start with March 25th, then adjust according to leap year cycles.
+        getNewYearDay: function(startYear, calendarFormat, startDay) {
+            if (calendarFormat == this.REFORMED_FORMAT) {
+                return startDay;
+            }
+
+            // adjust startDay according to leap year cycles.
             return (
-                25
+                startDay
                 - Math.floor((((startYear-1) % 12) + 1) / 4)
                 + Math.floor(startYear / 100)
                 - Math.floor(startYear / 400)
@@ -359,10 +448,12 @@ $(document).ready(function() {
             return ((year % 12 == 0) && (year % 432 != 0) && (year % 4896 != 0));
         },
 
-        makeCalendarDates: function(today) {
-            var gregorianDate = this.getNewYearDate(today);
+        makeCalendarDates: function(today, calendarFormat, startDay) {
+            var gregorianDate = this.getNewYearDate(today, calendarFormat, startDay);
+            var todayRivendell;
 
-            var yearsElapsed = gregorianDate.getFullYear() - 1;
+            var startYear = gregorianDate.getFullYear();
+            var yearsElapsed = startYear - 1;
             var weekDay = (
                 yearsElapsed * 365
                 + (Math.floor(yearsElapsed / 12) * 3)
@@ -370,12 +461,26 @@ $(document).ready(function() {
                 - (Math.floor(yearsElapsed / 4896) * 3)
             );
 
+            if (calendarFormat == this.REFORMED_FORMAT) {
+                weekDay = (
+                    yearsElapsed * 365
+                    + Math.floor(startYear / 4)
+                    - Math.floor(startYear / 100)
+                    + Math.floor(startYear / 400)
+                );
+            }
+
             var dates = [{
                 "day": "Yestarë",
+                "month": 0,
                 "weekDay": weekDay % 6,
                 "gregorian": gregorianDate
             }];
             weekDay++;
+
+            if (datesMatch(today, gregorianDate)) {
+                todayRivendell = dates[0];
+            }
 
             gregorianDate = getNextDate(gregorianDate);
 
@@ -389,7 +494,8 @@ $(document).ready(function() {
                         break;
                     case 3:
                         var enderiCount = 3;
-                        if (this.isLeapYear(gregorianDate)) {
+                        if (calendarFormat == this.TRADITIONAL_FORMAT
+                            && this.isLeapYear(gregorianDate)) {
                             enderiCount = 6;
                         }
                         for (var enderi = 0;
@@ -397,9 +503,14 @@ $(document).ready(function() {
                              enderi++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
                             dates.push({
                                 "day": "Enderi",
+                                "month": month,
                                 "weekDay": weekDay % 6,
                                 "gregorian": gregorianDate
                             });
+
+                            if (datesMatch(today, gregorianDate)) {
+                                todayRivendell = dates[dates.length - 1];
+                            }
                         }
                         break;
                 }
@@ -413,32 +524,112 @@ $(document).ready(function() {
                         "weekDay": weekDay % 6,
                         "gregorian": gregorianDate
                     });
+
+                    if (datesMatch(today, gregorianDate)) {
+                        todayRivendell = dates[dates.length - 1];
+                    }
                 }
             }
 
             dates.push({
                 "day": "Mettarë",
+                "month": 5,
                 "weekDay": weekDay % 6,
                 "gregorian": gregorianDate
             });
 
-            return dates;
+            if (datesMatch(today, gregorianDate)) {
+                todayRivendell = dates[dates.length - 1];
+            }
+
+            if (calendarFormat == this.REFORMED_FORMAT && isLeapYear(gregorianDate)) {
+                gregorianDate = getNextDate(gregorianDate);
+                weekDay++;
+
+                dates.push({
+                    "day": "Leap Enderi",
+                    "month": 5,
+                    "weekDay": weekDay % 6,
+                    "gregorian": gregorianDate
+                });
+
+                if (datesMatch(today, gregorianDate)) {
+                    todayRivendell = dates[dates.length - 1];
+                }
+            }
+
+            return {
+                dates: dates,
+                today: today,
+                todayRivendell: todayRivendell
+            };
+        },
+
+        onMonthViewChange: function(monthView) {
+            this.setState({monthView: monthView});
+        },
+
+        getUpdatedMonthView: function(month) {
+            if (this.state.monthView < 0) {
+                return this.state.monthView;
+            }
+
+            return month;
+        },
+
+        onCalendarStartChange: function(event) {
+            var startDay = event.target.value;
+            var calendar = this.makeCalendarDates(this.props.date, this.state.calendarFormat, startDay);
+            this.setState({
+                startDay: startDay,
+                calendar: calendar,
+                monthView: this.getUpdatedMonthView(calendar.todayRivendell.month)
+            });
+        },
+
+        onCalendarFormatChange: function(event) {
+            var calendarFormat = event.target.value;
+            var calendar = this.makeCalendarDates(this.props.date, calendarFormat, this.state.startDay);
+            this.setState({
+                calendarFormat: calendarFormat,
+                calendar: calendar,
+                monthView: this.getUpdatedMonthView(calendar.todayRivendell.month)
+            });
+        },
+
+        componentWillReceiveProps: function(nextProps) {
+            var today = nextProps.date;
+            var calendar = this.state.calendar;
+
+            if (!datesMatch(today, calendar.today)) {
+                calendar = this.makeCalendarDates(today, this.state.calendarFormat, this.state.startDay);
+            }
+            this.setState({
+                calendar: calendar,
+                monthView: this.getUpdatedMonthView(calendar.todayRivendell.month)
+            });
         },
 
         render: function () {
-            var today = this.state.date;
-            var dates = this.makeCalendarDates(today);
+            var today = this.props.date;
+            var dates = this.state.calendar.dates;
+            var monthView = this.state.monthView;
+
             var week = [];
             var weeks = [];
             var enderi = 1;
 
-            for (var weekday = 0; weekday < dates[0].weekDay; weekday++) {
+            for (var i = 0, date = dates[i];
+                 i < dates.length && date.month < monthView;
+                 i++, date = dates[i]) {
+                // seek ahead to current month view
+            }
+
+            for (var weekday = 0; weekday < date.weekDay; weekday++) {
                 week.push(React.createElement(WeekDayHeaderCell, {key: '0-month-filler-' + weekday}));
             }
 
-            for (var i = 0; i < dates.length; i++) {
-                var date = dates[i];
-
+            for (; i < dates.length && (monthView < 0 || monthView == date.month); i++, date = dates[i]) {
                 switch (date.day) {
                     case "Yestarë":
                         week.push(
@@ -452,6 +643,7 @@ $(document).ready(function() {
                         break;
 
                     case "Enderi":
+                    case "Leap Enderi":
                         week.push(
                             React.createElement(IntercalaryDay, {
                                 key: "Middleday-" + (enderi++), 
@@ -495,6 +687,24 @@ $(document).ready(function() {
                 }
             }
 
+            if (monthView == 2) {
+                date = dates[i];
+                for (; date.day == "Enderi"; i++, enderi++, date = dates[i]) {
+                    week.push(
+                        React.createElement(IntercalaryDay, {
+                            key: "Middleday-" + (enderi), 
+                            description: "Middleday", 
+                            currentDate: today, 
+                            dates: [date]})
+                    );
+
+                    if ((date.weekDay + 1) % 6 === 0) {
+                        weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+                        week = [];
+                    }
+                }
+            }
+
             if (week.length > 0) {
                 weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
             }
@@ -505,6 +715,35 @@ $(document).ready(function() {
                 React.createElement("table", {className: "shire-calendar rivendell-calendar"}, 
                     caption, 
                     React.createElement("thead", null, 
+                        React.createElement("tr", null, 
+                            React.createElement("td", {colSpan: "3"}, 
+                                React.createElement(MonthViewPicker, {
+                                    onMonthViewChange: this.onMonthViewChange, 
+                                    monthView: this.state.monthView, 
+                                    months: this.months}
+                                    )
+                            ), 
+                            React.createElement("td", null, 
+                                "Align New Year's Day with March", 
+                                React.createElement("select", {
+                                    value: this.state.startDay, 
+                                    onChange: this.onCalendarStartChange
+                                    }, 
+                                    React.createElement("option", {value: "20"}, "20th"), 
+                                    React.createElement("option", {value: "25"}, "25th"), 
+                                    React.createElement("option", {value: "27"}, "27th")
+                                )
+                            ), 
+                            React.createElement("td", {colSpan: "2"}, 
+                                React.createElement("select", {
+                                    value: this.state.calendarFormat, 
+                                    onChange: this.onCalendarFormatChange
+                                    }, 
+                                    React.createElement("option", {value: this.TRADITIONAL_FORMAT}, "Traditional Format"), 
+                                    React.createElement("option", {value: this.REFORMED_FORMAT}, "Reformed Format")
+                                )
+                            )
+                        ), 
                         React.createElement(WeekDayHeader, {weekdays: this.weekdays})
                     ), 
                     React.createElement("tbody", null, 
@@ -597,19 +836,154 @@ $(document).ready(function() {
         }
     });
 
-    React.render(
-        React.createElement("table", null, 
-            React.createElement("tbody", null, 
-                React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(ShireCalendar, {caption: "Shire Reckoning"})
+    var MonthViewPicker = React.createClass({displayName: "MonthViewPicker",
+        onMonthViewChange: function(event) {
+            this.props.onMonthViewChange(event.target.value);
+        },
+
+        prevMonthView: function () {
+            var month = React.findDOMNode(this.refs.monthViewSelect).value;
+            month--;
+            if (month < 0) {
+                month = this.props.months.length - 1;
+            }
+            this.props.onMonthViewChange(month);
+        },
+
+        nextMonthView: function () {
+            var month = React.findDOMNode(this.refs.monthViewSelect).value;
+            month++;
+            if (month >= this.props.months.length) {
+                month = 0;
+            }
+            this.props.onMonthViewChange(month);
+        },
+
+        render: function() {
+            return (
+                React.createElement("span", null, 
+                    React.createElement("input", {
+                        type: "button", 
+                        value: "<<", 
+                        onClick: this.prevMonthView}
+                        ), 
+                    React.createElement("select", {
+                        ref: "monthViewSelect", 
+                        value: this.props.monthView, 
+                        onChange: this.onMonthViewChange
+                        }, 
+                        React.createElement("option", {value: "-1"}, "Year Calendar"), 
+                        this.props.months.map(function (month, i) {
+                            return (
+                                React.createElement("option", {key: 'month-view-opt' + i, value: i}, 
+                                    month.name
+                                )
+                            );
+                        })
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(RivendellCalendar, {caption: "Rivendell Reckoning"})
+                    React.createElement("input", {
+                        type: "button", 
+                        value: ">>", 
+                        onClick: this.nextMonthView}
+                        )
+                )
+            );
+        }
+    });
+
+    var TolkienCalendars = React.createClass({displayName: "TolkienCalendars",
+        getInitialState: function() {
+            return {date: new Date()};
+        },
+
+        resetDate: function() {
+            this.setState({date: new Date()});
+        },
+
+        onDateChanged: function(event) {
+            var year = React.findDOMNode(this.refs.currentYear).value;
+            var month = React.findDOMNode(this.refs.currentMonth).value;
+            var day = React.findDOMNode(this.refs.currentDay).value;
+            var currentDate = new Date(year, month - 1, day);
+
+            if (currentDate.getFullYear() > 100) {
+                this.setState({date: currentDate});
+            }
+        },
+
+        createDateInput: function(ref, value, min) {
+            return (
+                React.createElement("input", {
+                    type: "number", 
+                    className: "date-time-input", 
+                    ref: ref, 
+                    step: "1", 
+                    min: min, 
+                    onChange: this.onDateChanged, 
+                    value: value}
+                    )
+            );
+        },
+
+        render: function() {
+            return (
+                React.createElement("table", {id: "date-controls"}, 
+                    React.createElement("tbody", null, 
+                    React.createElement("tr", null, 
+                        React.createElement("td", {colSpan: "2"}, 
+                            React.createElement("table", {style: {margin: "auto"}}, 
+                                React.createElement("tbody", null, 
+                                React.createElement("tr", null, 
+                                    React.createElement("th", null), 
+                                    React.createElement("th", null, 
+                                        "Year"
+                                    ), 
+                                    React.createElement("th", null, 
+                                        "Month"
+                                    ), 
+                                    React.createElement("th", null, 
+                                        "Day"
+                                    )
+                                ), 
+                                React.createElement("tr", null, 
+                                    React.createElement("th", null, "Gregorian Date:"), 
+                                    React.createElement("th", null, 
+                                        this.createDateInput('currentYear', this.state.date.getFullYear(), 101)
+                                    ), 
+                                    React.createElement("th", null, 
+                                        this.createDateInput('currentMonth', this.state.date.getMonth() + 1, 0)
+                                    ), 
+                                    React.createElement("th", null, 
+                                        this.createDateInput('currentDay', this.state.date.getDate(), 0)
+                                    ), 
+                                    React.createElement("th", null, 
+                                        React.createElement("input", {
+                                            type: "button", 
+                                            value: "Today", 
+                                            onClick: this.resetDate}
+                                            )
+                                    )
+                                )
+                                )
+                            )
+                        )
+                    ), 
+                    React.createElement("tr", null, 
+                        React.createElement("td", {style: {verticalAlign: 'top'}}, 
+                            React.createElement(ShireCalendar, {caption: "Shire Reckoning", date: this.state.date})
+                        ), 
+                        React.createElement("td", {style: {verticalAlign: 'top'}}, 
+                            React.createElement(RivendellCalendar, {caption: "Rivendell Reckoning", date: this.state.date})
+                        )
+                    )
                     )
                 )
-            )
-        ),
+            );
+        }
+    });
+
+    React.render(
+        React.createElement(TolkienCalendars, null),
         document.getElementById("shire-calendar")
     );
 
@@ -635,5 +1009,10 @@ $(document).ready(function() {
         var tomorrow = new Date(today);
         tomorrow.setDate(today.getDate() + 1);
         return tomorrow;
+    }
+
+    function isLeapYear(date) {
+        var year = date.getFullYear();
+        return !((year % 4) || (!(year % 100) && (year % 400)));
     }
 });

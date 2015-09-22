@@ -20,6 +20,10 @@
 .gregorian-display {
     font-size: .5rem;
 }
+#date-controls th td, .date-time-input {
+    width: 3rem;
+    text-align: center;
+}
 
 .highlight      { background-color: yellow; }
 .weekday-header { background-color: gainsboro; }

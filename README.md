@@ -15,17 +15,22 @@ The calendars include each day's corresponding Gregorian date of the current yea
 ### Rivendell Reckoning Notes
 
 I chose the original starting date of this calendar as March 25th.
-In the Lord of the Rings Appendix D, Tolkien mentions that the first day of the Rivendell Calendar
+In the Lord of the Rings Appendix D, Tolkien mentions that the first day of the Rivendell Reckoning
+Calendar (also known as the Calendar of Imladris)
 "corresponded more or less with Shire April 6",
 [which corresponds to our March 27th](http://shire-reckoning.com/calendar.html),
 but he also guessed that the start of our calendar corresponds "more or less to the Shire January 9".
 Since this is [2 days off from when our calendar should start in Shire Reckoning](http://shire-reckoning.com/calendar.html),
-It could be that the March 27th start is also 2 days off and the Rivendell Calendar was intended to start on our March 25th as well.
+it could be that the March 27th start is also 2 days off and the Calendar of Imladris was originally
+intended to start on our March 25th as well.
 
 I've also read elsewhere that the calendar is supposed to start on the [Spring Equinox](http://en.wikipedia.org/wiki/Equinox),
-but that would put the middle of Lairë (Summer) around June 19th and the 3 Enderi (Middledays) from Sept. 17th - 19th.
+but that would put the middle of Lairë (Summer) around June 19th (a couple of days before the Summer Solstice)
+and the 3 Enderi (Middledays) from Sept. 17th - 19th (3 to 5 days before the Autumnal Equionx).
+To see this for yourself, I've added a control that lets you choose the starting day of this
+Calendar of Imladris to be closer to the Spring Equinox, March 20th.
 [At one time in prehistory](http://www.sym454.org/seasons/), Autumn was the longest of the seasons,
-so these dates would have roughly matched during this time (and will again about 4000 years from now),
+so these dates would have matched the seasons better during this time (and will again about 4000 years from now),
 but these days Summer is the longest season and the Spring Equinox comes relatively earlier than it did back then.
 So now the [Autumnal Equionx](http://en.wikipedia.org/wiki/Equinox) usually falls on Sept. 22nd,
 and I think the 3 Enderi were intended to occur around this Equionx.
@@ -36,16 +41,25 @@ since [March 25th](https://en.wikipedia.org/wiki/March_25#Holidays_and_observanc
 and [December 24th](https://en.wikipedia.org/wiki/Christmas_Eve) (the middle of Hrívë)
 are important national and religious holidays and feast days in that region.
 
-Note that the Rivendell Calendar starts on March 26th in 2015, but its New Year's Day drifts
-back a day with respect to our Gregorian calendar every 4 years until it's leap year adds 3 days every 12 years.
-So this Rivendell Calendar does start on March 27th for 4 years, every 12 years, for next few hundred years.
+For these reasons, I've included a control that lets you choose a "Reformed" Rivendell Reckoning format.
+This format always starts the Calendar of Imladris on the same day (March 25th by default), and it
+follows the leap year and leap day rules of our Gregorian Calendar.
+In this "Reformed" Rivendell Reckoning format, the are not 3 extra Enderi every 12 years,
+but instead a singe "Leap Enderi" between the first and last day of Calendar of Imladris.
+This "reformed reckoning" keeps the calendar closer in sync with our Gregorian Calendar so that most
+of the days always fall on the same Gregorian date.
 
-I also noticed that this Rivendell Calendar still advances by a day every 1700 years or so,
+Note that the "traditional" Calendar of Imladris starts on March 26th in 2015, but its New Year's Day drifts
+back a day with respect to our Gregorian calendar every 4 years until it's leap year adds 3 days every 12 years.
+So this "traditional" Rivendell Reckoning does start on March 27th for 4 years, every 12 years, for next few hundred years.
+
+I also noticed that this "traditional" Calendar of Imladris still advances by a day every 1700 years or so,
 even with the rule stated by Tolkien in Appendix D that the extra 3 "leap" Enderi are omitted every 432 years.
 Then I noticed that if another extra 3 Enderi are omitted every 4896 years,
 then this could account for the 1 day drift about every 1700 years,
-so I've included this rule in this calendar just to keep it in sync with the Gregorian Calendar for
-the next few thousand years. The Rivendell Calendar should probably make other adjustments to stay
+so I've included this rule in the "traditional" Rivendell Reckoning just to keep it in sync with the
+Gregorian Calendar for the next few thousand years.
+The "traditional" Calendar of Imladris should probably make other adjustments to stay
 in sync with the actual seasons instead, but that kind of calculation is currently beyond me.
 
 
