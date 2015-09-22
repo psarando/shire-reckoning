@@ -1,8 +1,8 @@
-#shire-calendar-table {
+.shire-calendar {
     border: .2rem solid black;
     border-collapse: collapse;
 }
-#shire-calendar-table td {
+.shire-calendar td {
     border: .1rem solid black;
     height: 6rem;
     width: 9rem;
@@ -12,13 +12,14 @@
 .highlight      { background-color: yellow; }
 .weekday-header { background-color: gainsboro; }
 .holiday        { background-color: azure; }
+
 .afteryule      { background-color: lightskyblue; }
 .solmath        { background-color: lightsteelblue; }
 .rethe          { background-color: yellowgreen; }
-.astron         { background-color: limegreen; }
+.astron         { background-color: forestgreen; }
 .thrimidge      { background-color: lightcyan; }
 .forelithe      { background-color: lemonchiffon; }
-.afterlithe     { background-color: forestgreen; }
+.afterlithe     { background-color: green; }
 .wedmath        { background-color: darkolivegreen; }
 .halimath       { background-color: darkgoldenrod; }
 .winterfilth    { background-color: orange; }

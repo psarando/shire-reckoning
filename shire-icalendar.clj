@@ -29,18 +29,18 @@
              "Foreyule"])
 
 (def month-descriptions
- ["Afteryule:\\nThe month after the winter solstice (Midwinter) feast of Gēola or Giúl=Yule."
-  "Solmath:\\nSol Month. The return of the sol=sun.\\nMuddy Month."
+ ["Afteryule:\\nThe month after the winter solstice (Midwinter) feast of Gēola or Giúl (Yule)."
+  "Solmath:\\nSol Month. The return of the sun (sol), or perhaps from the Old English word for mud.\\nMuddy Month."
   "Rethe:\\nMonth of the Goddess Hrēþ or Hretha.\\nMonth of Wildness."
   "Astron:\\nSpring month.\\nNamed after the Goddess Ēostre."
-  "Thrimidge:\\nThe month of plenty\\, when cows were given thri+milching=three milkings daily."
-  "Forelithe:\\nThe month before the summer solstice (Midsummer)\\, when Litha=gentle weather encouraged voyages.\\nCalm or Navigable Month."
+  "Thrimidge:\\nThe month of plenty\\, when cows were given three milkings (thri+milching) daily."
+  "Forelithe:\\nThe month before the summer solstice (Midsummer)\\, when gentle (Litha) weather encouraged voyages.\\nCalm or Navigable Month."
   "Afterlithe:\\nThe month after the summer solstice (Midsummer).\\nMeadow Month."
-  "Wedmath:\\nWhen fields were beset by weod=weeds.\\nPlant Month."
-  "Halimath:\\nThe haleg=holy month of sacred rites.\\nHarvest Month."
-  "Winterfilth:\\nThe fylleth=filling of winter's first full moon\\, according to Bede\\; Tolkien instead suggests the \"fall\" or arrival of winter\\, or the \"fall\" of the leaves.\\nWine Month."
-  "Blotmath:\\nThe month of blod=blood.\\nMonth of Sacrifice or Slaughter."
-  "Foreyule:\\nThe month before the solstice (Midwinter) feast of Gēola or Giúl=Yule."])
+  "Wedmath:\\nWhen fields were beset by weeds (weod).\\nPlant Month."
+  "Halimath:\\nThe holy (haleg) month of sacred rites.\\nHarvest Month."
+  "Winterfilth:\\nThe filling (fylleth) of winter's first full moon\\, according to Bede\\; Tolkien instead suggests the \"filling\" or completion of the year before Winter\\, after the harvest.\\nWine Month."
+  "Blotmath:\\nThe month of blood (blod).\\nMonth of Sacrifice or Slaughter."
+  "Foreyule:\\nThe month before the solstice (Midwinter) feast of Gēola or Giúl (Yule)."])
 
 (defn format-date
  [date]
@@ -48,7 +48,10 @@
 
 (defn format-shire-date
  [month day weekday]
- (str month " " day (if weekday (str "\\, " weekday) "")))
+ (str
+   (if day (str day " ") "")
+   month
+   (if weekday (str "\\, " weekday) "")))
 
 (defn format-event-summary
  [month weekday]
@@ -80,15 +83,15 @@
   centennial years which are not leap-years."))
 
 (defn print-cal-event
- [date summary description rule-extra]
+ [date sequence summary description rule-extra]
  (println "BEGIN:VEVENT")
  (println (str "DTSTART;VALUE=DATE:" (format-date date)))
  (println (str "DTEND;VALUE=DATE:" (format-date (.plusDays date 1))))
  (println (str "RRULE:FREQ=YEARLY" rule-extra))
  (println "DTSTAMP:20120922T115737Z")
  (println (str "DESCRIPTION:" description))
- (println "LOCATION:")
- (println "SEQUENCE:0")
+ (println (str "UID:20120922T115737Z-" sequence "@psarando.github.io"))
+ (println (str "SEQUENCE:" sequence))
  (println "STATUS:CONFIRMED")
  (println (str "SUMMARY:" summary))
  (println "TRANSP:OPAQUE")
@@ -107,6 +110,7 @@
         weekday start-weekday]
   (when (<= day-of-year end-year-day)
    (print-cal-event next-day
+                    (+ day-of-year 11)
                     (format-shire-date (get months month) day (get weekdays (mod weekday 7)))
                     (format-event-summary month weekday)
                     (if rule-extra (str rule-extra day-of-year) ""))
@@ -120,29 +124,35 @@
  []
  (print-cal-header)
  (print-cal-event (LocalDate. 1931 12 21)
+                  1
                   (format-shire-date "Yule" 2 "Sterday")
                   "Midwinter: Shire New Year!"
                   "")
  (print-cal-dates (LocalDate. 1931 12 22) -9 59 0 1 1 nil)
  (print-cal-dates (LocalDate. 1932 2 29) 60 170 2 10 0 ";INTERVAL=1;BYYEARDAY=")
  (print-cal-event (LocalDate. 1932 6 19)
+                  (+ 171 11)
                   (format-shire-date "Lithe" 1 "Highday")
                   "Midsummer's Eve!"
                   ";INTERVAL=1;BYYEARDAY=171")
  (print-cal-event (LocalDate. 1932 6 20)
-                  (format-shire-date "Mid-Year's" "Day" nil)
+                  (+ 172 11)
+                  (format-shire-date "Mid-Year's Day" nil nil)
                   "Midsummer's Day!"
                   ";INTERVAL=1;BYYEARDAY=172")
  (print-cal-event (LocalDate. 1932 6 21)
-                  (format-shire-date "Overlithe" "" nil)
+                  (+ 173 11)
+                  (format-shire-date "Overlithe" nil nil)
                   "Shire Leap Day."
                   ";INTERVAL=4;BYYEARDAY=173")
  (print-cal-event (LocalDate. 1932 6 22)
+                  (+ 174 11)
                   (format-shire-date "Lithe" 2 "Sterday")
                   "Day after Midsummer."
                   "")
  (print-cal-dates (LocalDate. 1932 6 23) 175 354 6 1 1 nil)
  (print-cal-event (LocalDate. 1932 12 20)
+                  366
                   (format-shire-date "Yule" 1 "Highday")
                   "Shire New Year's Eve!"
                   "")

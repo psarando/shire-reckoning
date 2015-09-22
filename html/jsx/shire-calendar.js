@@ -5,7 +5,7 @@
  */
 
 $(document).ready(function() {
-    var ShireCalendar = React.createClass({displayName: "ShireCalendar",
+    var ShireCalendar = React.createClass({
         weekdays: [
             {name: 'Sterday',   description: "Stars of Varda Day (sterrendei)."},
             {name: 'Sunday',    description: "Sun Day (sunnendei)."},
@@ -187,61 +187,61 @@ $(document).ready(function() {
                 switch (date.day) {
                     case "2 Yule":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "2-Yule", 
-                                description: "Midwinter: Shire New Year!", 
-                                currentDate: today, 
-                                dates: [date]})
+                            <IntercalaryDay
+                                key="2-Yule"
+                                description="Midwinter: Shire New Year!"
+                                currentDate={today}
+                                dates={[date]} />
                         );
 
                         break;
 
                     case "1 Lithe":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "Midsummer", 
-                                description: "Midsummer's Eve and Midsummer's Day!", 
-                                currentDate: today, 
-                                dates: [date, dates[++i]]})
+                            <IntercalaryDay
+                                key="Midsummer"
+                                description="Midsummer's Eve and Midsummer's Day!"
+                                currentDate={today}
+                                dates={[date, dates[++i]]} />
                         );
 
-                        weeks.push(React.createElement("tr", {key: "week-" + (weeks.length + 1)}, week));
+                        weeks.push(<tr key={"week-" + (weeks.length + 1)} >{week}</tr>);
                         week = [];
 
                         break;
 
                     case "OverLithe":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "OverLithe", 
-                                description: "Shire Leap Day and Day after Midsummer.", 
-                                currentDate: today, 
-                                dates: [date, dates[++i]]})
+                            <IntercalaryDay
+                                key="OverLithe"
+                                description="Shire Leap Day and Day after Midsummer."
+                                currentDate={today}
+                                dates={[date, dates[++i]]} />
                         );
 
                         break;
 
                     case "2 Lithe":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "2-Lithe", 
-                                description: "Day after Midsummer.", 
-                                currentDate: today, 
-                                dates: [date]})
+                            <IntercalaryDay
+                                key="2-Lithe"
+                                description="Day after Midsummer."
+                                currentDate={today}
+                                dates={[date]} />
                         );
 
                         break;
 
                     case "1 Yule":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "1-Yule", 
-                                description: "Shire New Year's Eve!", 
-                                currentDate: today, 
-                                dates: [date]})
+                            <IntercalaryDay
+                                key="1-Yule"
+                                description="Shire New Year's Eve!"
+                                currentDate={today}
+                                dates={[date]} />
                         );
 
-                        weeks.push(React.createElement("tr", {key: "week-" + (weeks.length + 1)}, week));
+                        weeks.push(<tr key={"week-" + (weeks.length + 1)} >{week}</tr>);
                         week = [];
 
                         break;
@@ -250,17 +250,17 @@ $(document).ready(function() {
                         var month = this.months[date.month];
 
                         week.push(
-                            React.createElement(DateCell, {key: date.day + month.name, 
-                                      date: date, 
-                                      currentDate: today, 
-                                      month: month.name, 
-                                      description: month.description, 
-                                      weekday: this.weekdays[date.weekDay].name, 
-                                      className: month.className})
+                            <DateCell key={date.day + month.name}
+                                      date={date}
+                                      currentDate={today}
+                                      month={month.name}
+                                      description={month.description}
+                                      weekday={this.weekdays[date.weekDay].name}
+                                      className={month.className}/>
                         );
 
                         if ((date.weekDay + 1) % 7 === 0) {
-                            weeks.push(React.createElement("tr", {key: "week-" + (weeks.length + 1)}, week));
+                            weeks.push(<tr key={"week-" + (weeks.length + 1)} >{week}</tr>);
                             week = [];
                         }
 
@@ -269,45 +269,45 @@ $(document).ready(function() {
             }
 
             return (
-                React.createElement("table", {className: "shire-calendar"}, 
-                    React.createElement("thead", null, 
-                        React.createElement(WeekDayHeader, {weekdays: this.weekdays})
-                    ), 
-                    React.createElement("tbody", null, 
-                        weeks
-                    )
-                )
+                <table className='shire-calendar' >
+                    <thead>
+                        <WeekDayHeader weekdays={this.weekdays} />
+                    </thead>
+                    <tbody>
+                        {weeks}
+                    </tbody>
+                </table>
             );
         }
     });
 
-    var WeekDayHeaderCell = React.createClass({displayName: "WeekDayHeaderCell",
+    var WeekDayHeaderCell = React.createClass({
         render: function() {
             return (
-                React.createElement("td", {className: "weekday-header", title: this.props.description}, 
-                    this.props.name
-                )
+                <td className='weekday-header' title={this.props.description} >
+                    {this.props.name}
+                </td>
             );
         }
     });
 
-    var WeekDayHeader = React.createClass({displayName: "WeekDayHeader",
+    var WeekDayHeader = React.createClass({
         render: function() {
             var weekDayNodes = this.props.weekdays.map(function (weekday) {
                 return (
-                    React.createElement(WeekDayHeaderCell, {key: weekday.name, 
-                                       name: weekday.name, 
-                                       description: weekday.description})
+                    <WeekDayHeaderCell key={weekday.name}
+                                       name={weekday.name}
+                                       description={weekday.description} />
                 );
             });
 
             return (
-                React.createElement("tr", null, weekDayNodes)
+                <tr>{weekDayNodes}</tr>
             );
         }
     });
 
-    var DateCell = React.createClass({displayName: "DateCell",
+    var DateCell = React.createClass({
         render: function() {
             var date = this.props.date;
             var dateTitle = this.props.description;
@@ -317,16 +317,16 @@ $(document).ready(function() {
             var dayColor = getDateColor(className, gregorianDate, currentDate);
 
             return (
-                React.createElement("td", {className: dayColor, title: dateTitle + "\n" + this.props.weekday}, 
-                    date.day, " ", (date.day == 1) ? this.props.month : '', 
-                    React.createElement("br", null), 
-                    "(", gregorianDate.toDateString(), ")"
-                )
+                <td className={dayColor} title={dateTitle + "\n" + this.props.weekday} >
+                    {date.day} {(date.day == 1) ? this.props.month : ''}
+                    <br />
+                    ({gregorianDate.toDateString()})
+                </td>
             );
         }
     });
 
-    var IntercalaryDay = React.createClass({displayName: "IntercalaryDay",
+    var IntercalaryDay = React.createClass({
         render: function() {
             var dateTitle = this.props.description;
             var currentDate = this.props.currentDate;
@@ -341,30 +341,30 @@ $(document).ready(function() {
                 dayColor = getDateColor(dayColor, date2.gregorian, currentDate);
 
                 return (
-                    React.createElement("td", {className: dayColor, title: dateTitle}, 
-                        date.day, 
-                        React.createElement("br", null), 
-                        "(", gregorianDate.toDateString(), ")", 
-                        React.createElement("hr", null), 
-                        date2.day, 
-                        React.createElement("br", null), 
-                        "(", date2.gregorian.toDateString(), ")"
-                    )
+                    <td className={dayColor} title={dateTitle} >
+                        {date.day}
+                        <br />
+                        ({gregorianDate.toDateString()})
+                        <hr />
+                        {date2.day}
+                        <br />
+                        ({date2.gregorian.toDateString()})
+                    </td>
                 );
             }
 
             return (
-                React.createElement("td", {className: dayColor, title: dateTitle}, 
-                    date.day, 
-                    React.createElement("br", null), 
-                    "(", gregorianDate.toDateString(), ")"
-                )
+                <td className={dayColor} title={dateTitle} >
+                    {date.day}
+                    <br />
+                    ({gregorianDate.toDateString()})
+                </td>
             );
         }
     });
 
     React.render(
-        React.createElement(ShireCalendar, null),
+        <ShireCalendar />,
         document.getElementById("shire-calendar")
     );
 

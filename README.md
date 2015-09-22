@@ -1,7 +1,11 @@
 Shire Reckoning
 ===============
 
-This repo contains a couple of scripts that generate calendars showing the current date in J.R.R. Tolkien's 'Shire Reckoning'. One calendar is our Gregorian calendar with the corresponding Shire Reckoning date (pre-generated in [shire-reckoning.ics](shire-reckoning.ics)), and the other is a [Shire Reckoning Calendar](http://psarando.github.io/shire-reckoning) showing the corresponding Gregorian date.
+This repo contains a couple of scripts that generate calendars showing the current date in J.R.R. Tolkien's 'Shire Reckoning'. One calendar is a [Shire Reckoning Calendar](http://psarando.github.io/shire-reckoning) showing each day's corresponding Gregorian date, and the other is our Gregorian calendar with the corresponding Shire Reckoning date (pre-generated in [shire-reckoning.ics](shire-reckoning.ics)).
+
+## [shire-calendar](http://psarando.github.io/shire-reckoning): html + css + javascript
+
+The [html](html) directory contains files that will print a Shire Reckoning Calendar [(preview)](http://psarando.github.io/shire-reckoning) in a browser as a simple HTML table. The calendar includes each day's corresponding Gregorian date of the current year and highlights the current day on the calendar.
 
 ## `shire-icalendar.clj` -> [shire-reckoning.ics](shire-reckoning.ics)
 
@@ -18,13 +22,9 @@ Hint for Google Calendar users: you probably want to create a new, empty calenda
 
 ##### Use [Leiningen](http://leiningen.org) and the [lein-exec plugin](https://github.com/kumarshantanu/lein-exec) to run `shire-icalendar.clj` from the command-line.
 
-## [shire-calendar](http://psarando.github.io/shire-reckoning): html + css + javascript
-
-The [html](html) directory contains files that will print a [Shire Reckoning Calendar (preview)](http://psarando.github.io/shire-reckoning) in a browser as a simple HTML table using a little jQuery. The calendar includes each day's corresponding Gregorian date of the current year and highlights the current day on the calendar. Apologies if the color scheme used for each month offends the senses.
-
 ## License
 
-Copyright (C) 2014 Paul Sarando
+Copyright (C) 2015 Paul Sarando
 
 Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html).
 
