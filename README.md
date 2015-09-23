@@ -2,13 +2,15 @@ Shire Reckoning
 ===============
 
 This repo contains a couple of scripts that generate calendars showing the current date in J.R.R. Tolkien's 'Shire Reckoning'.
-One calendar is a [Shire Reckoning Calendar](http://psarando.github.io/shire-reckoning) showing each day's corresponding Gregorian date,
+One calendar is a [Shire Reckoning calendar](http://psarando.github.io/shire-reckoning)
+(along with a Rivendell Reckoning calendar -- also known as the Calendar of Imladris)
+showing each day's corresponding Gregorian date,
 and the other is our Gregorian calendar with the corresponding Shire Reckoning date (pre-generated in [shire-reckoning.ics](shire-reckoning.ics)).
 
 ## [shire-calendar](http://psarando.github.io/shire-reckoning): html + css + javascript
 
 The [html](html) directory contains files that will print a
-[Shire Reckoning Calendar and a Rivendell Reckoning Calendar](http://psarando.github.io/shire-reckoning)
+[Shire Reckoning calendar and a Rivendell Reckoning calendar](http://psarando.github.io/shire-reckoning)
 in a browser as a simple HTML table.
 The calendars include each day's corresponding Gregorian date of the current year and today's date will be highlighted on each calendar.
 
@@ -16,7 +18,7 @@ The calendars include each day's corresponding Gregorian date of the current yea
 
 I chose the original starting date of this calendar as March 25th.
 In the Lord of the Rings Appendix D, Tolkien mentions that the first day of the Rivendell Reckoning
-Calendar (also known as the Calendar of Imladris)
+calendar (also known as the Calendar of Imladris)
 "corresponded more or less with Shire April 6",
 [which corresponds to our March 27th](http://shire-reckoning.com/calendar.html),
 but he also guessed that the start of our calendar corresponds "more or less to the Shire January 9".
@@ -41,12 +43,13 @@ since [March 25th](https://en.wikipedia.org/wiki/March_25#Holidays_and_observanc
 and [December 24th](https://en.wikipedia.org/wiki/Christmas_Eve) (the middle of Hrívë)
 are important national and religious holidays and feast days in that region.
 
-For these reasons, I've included a control that lets you choose a "Reformed" Rivendell Reckoning format.
-This format always starts the Calendar of Imladris on the same day (March 25th by default), and it
-follows the leap year and leap day rules of our Gregorian Calendar.
-In this "Reformed" Rivendell Reckoning format, the are not 3 extra Enderi every 12 years,
-but instead a singe "Leap Enderi" between the first and last day of Calendar of Imladris.
-This "reformed reckoning" keeps the calendar closer in sync with our Gregorian Calendar so that most
+For these reasons, I've included a control that lets you choose "Reformed" Rivendell Reckoning rules.
+These rules always start the Calendar of Imladris on the same day (March 25th by default), and make
+the calendar follow the leap year and leap day rules of our Gregorian calendar.
+With these "Reformed" Rivendell Reckoning rules, there are not 3 extra Enderi every 12 years,
+but instead a single "Leap Enderë" between the first and last day of Calendar of Imladris in every
+leap year of the Gregorian calendar.
+This "reformed reckoning" keeps the calendar closer in sync with our Gregorian calendar so that most
 of the days always fall on the same Gregorian date.
 
 Note that the "traditional" Calendar of Imladris starts on March 26th in 2015, but its New Year's Day drifts
@@ -58,7 +61,7 @@ even with the rule stated by Tolkien in Appendix D that the extra 3 "leap" Ender
 Then I noticed that if another extra 3 Enderi are omitted every 4896 years,
 then this could account for the 1 day drift about every 1700 years,
 so I've included this rule in the "traditional" Rivendell Reckoning just to keep it in sync with the
-Gregorian Calendar for the next few thousand years.
+Gregorian calendar for the next few thousand years.
 The "traditional" Calendar of Imladris should probably make other adjustments to stay
 in sync with the actual seasons instead, but that kind of calculation is currently beyond me.
 

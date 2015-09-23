@@ -395,40 +395,40 @@ $(document).ready(function() {
             }
         ],
 
-        TRADITIONAL_FORMAT: "traditional",
-        REFORMED_FORMAT: "reformed",
+        TRADITIONAL_RULES: "traditional",
+        REFORMED_RULES: "reformed",
 
         getInitialState: function() {
             var startDay = 25;
-            var calendarFormat = this.TRADITIONAL_FORMAT;
-            var calendar = this.makeCalendarDates(this.props.date, calendarFormat, startDay);
+            var calendarRules = this.TRADITIONAL_RULES;
+            var calendar = this.makeCalendarDates(this.props.date, calendarRules, startDay);
             return {
                 calendar: calendar,
                 monthView: calendar.todayRivendell.month,
                 startDay: startDay,
-                calendarFormat: calendarFormat
+                calendarRules: calendarRules
             };
         },
 
-        getNewYearDate: function (today, calendarFormat, startDay) {
+        getNewYearDate: function (today, calendarRules, startDay) {
             var startYear = today.getFullYear();
 
             var newyearMonth = 2;
-            var newyearDay = this.getNewYearDay(startYear, calendarFormat, startDay);
+            var newyearDay = this.getNewYearDay(startYear, calendarRules, startDay);
 
             var thisMonth = today.getMonth();
             var thisDay = today.getDate();
 
             if (thisMonth < newyearMonth || (thisMonth == newyearMonth && thisDay < newyearDay)) {
                 startYear--;
-                newyearDay = this.getNewYearDay(startYear, calendarFormat, startDay);
+                newyearDay = this.getNewYearDay(startYear, calendarRules, startDay);
             }
 
             return new Date(startYear, newyearMonth, newyearDay, 0,0,0);
         },
 
-        getNewYearDay: function(startYear, calendarFormat, startDay) {
-            if (calendarFormat == this.REFORMED_FORMAT) {
+        getNewYearDay: function(startYear, calendarRules, startDay) {
+            if (calendarRules == this.REFORMED_RULES) {
                 return startDay;
             }
 
@@ -448,8 +448,8 @@ $(document).ready(function() {
             return ((year % 12 == 0) && (year % 432 != 0) && (year % 4896 != 0));
         },
 
-        makeCalendarDates: function(today, calendarFormat, startDay) {
-            var gregorianDate = this.getNewYearDate(today, calendarFormat, startDay);
+        makeCalendarDates: function(today, calendarRules, startDay) {
+            var gregorianDate = this.getNewYearDate(today, calendarRules, startDay);
             var todayRivendell;
 
             var startYear = gregorianDate.getFullYear();
@@ -461,7 +461,7 @@ $(document).ready(function() {
                 - (Math.floor(yearsElapsed / 4896) * 3)
             );
 
-            if (calendarFormat == this.REFORMED_FORMAT) {
+            if (calendarRules == this.REFORMED_RULES) {
                 weekDay = (
                     yearsElapsed * 365
                     + Math.floor(startYear / 4)
@@ -494,7 +494,7 @@ $(document).ready(function() {
                         break;
                     case 3:
                         var enderiCount = 3;
-                        if (calendarFormat == this.TRADITIONAL_FORMAT
+                        if (calendarRules == this.TRADITIONAL_RULES
                             && this.isLeapYear(gregorianDate)) {
                             enderiCount = 6;
                         }
@@ -502,7 +502,7 @@ $(document).ready(function() {
                              enderi < enderiCount;
                              enderi++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
                             dates.push({
-                                "day": "Enderi",
+                                "day": "Enderë",
                                 "month": month,
                                 "weekDay": weekDay % 6,
                                 "gregorian": gregorianDate
@@ -542,12 +542,12 @@ $(document).ready(function() {
                 todayRivendell = dates[dates.length - 1];
             }
 
-            if (calendarFormat == this.REFORMED_FORMAT && isLeapYear(gregorianDate)) {
+            if (calendarRules == this.REFORMED_RULES && isLeapYear(gregorianDate)) {
                 gregorianDate = getNextDate(gregorianDate);
                 weekDay++;
 
                 dates.push({
-                    "day": "Leap Enderi",
+                    "day": "Leap Enderë",
                     "month": 5,
                     "weekDay": weekDay % 6,
                     "gregorian": gregorianDate
@@ -579,7 +579,7 @@ $(document).ready(function() {
 
         onCalendarStartChange: function(event) {
             var startDay = event.target.value;
-            var calendar = this.makeCalendarDates(this.props.date, this.state.calendarFormat, startDay);
+            var calendar = this.makeCalendarDates(this.props.date, this.state.calendarRules, startDay);
             this.setState({
                 startDay: startDay,
                 calendar: calendar,
@@ -587,11 +587,11 @@ $(document).ready(function() {
             });
         },
 
-        onCalendarFormatChange: function(event) {
-            var calendarFormat = event.target.value;
-            var calendar = this.makeCalendarDates(this.props.date, calendarFormat, this.state.startDay);
+        onCalendarRulesChange: function(event) {
+            var calendarRules = event.target.value;
+            var calendar = this.makeCalendarDates(this.props.date, calendarRules, this.state.startDay);
             this.setState({
-                calendarFormat: calendarFormat,
+                calendarRules: calendarRules,
                 calendar: calendar,
                 monthView: this.getUpdatedMonthView(calendar.todayRivendell.month)
             });
@@ -602,7 +602,7 @@ $(document).ready(function() {
             var calendar = this.state.calendar;
 
             if (!datesMatch(today, calendar.today)) {
-                calendar = this.makeCalendarDates(today, this.state.calendarFormat, this.state.startDay);
+                calendar = this.makeCalendarDates(today, this.state.calendarRules, this.state.startDay);
             }
             this.setState({
                 calendar: calendar,
@@ -642,8 +642,8 @@ $(document).ready(function() {
 
                         break;
 
-                    case "Enderi":
-                    case "Leap Enderi":
+                    case "Enderë":
+                    case "Leap Enderë":
                         week.push(
                             React.createElement(IntercalaryDay, {
                                 key: "Middleday-" + (enderi++), 
@@ -689,7 +689,7 @@ $(document).ready(function() {
 
             if (monthView == 2) {
                 date = dates[i];
-                for (; date.day == "Enderi"; i++, enderi++, date = dates[i]) {
+                for (; date.day == "Enderë"; i++, enderi++, date = dates[i]) {
                     week.push(
                         React.createElement(IntercalaryDay, {
                             key: "Middleday-" + (enderi), 
@@ -736,11 +736,11 @@ $(document).ready(function() {
                             ), 
                             React.createElement("td", {colSpan: "2"}, 
                                 React.createElement("select", {
-                                    value: this.state.calendarFormat, 
-                                    onChange: this.onCalendarFormatChange
+                                    value: this.state.calendarRules, 
+                                    onChange: this.onCalendarRulesChange
                                     }, 
-                                    React.createElement("option", {value: this.TRADITIONAL_FORMAT}, "Traditional Format"), 
-                                    React.createElement("option", {value: this.REFORMED_FORMAT}, "Reformed Format")
+                                    React.createElement("option", {value: this.TRADITIONAL_RULES}, "Traditional Rules"), 
+                                    React.createElement("option", {value: this.REFORMED_RULES}, "Reformed Rules")
                                 )
                             )
                         ), 
