@@ -354,43 +354,85 @@ $(document).ready(function() {
 
     var RivendellCalendar = React.createClass({displayName: "RivendellCalendar",
         weekdays: [
-            {name: 'Elenya',  description: "Stars Day\nSindarin: Orgilion"},
-            {name: 'Anarya',  description: "Sun Day\nSindarin: Oranor"},
-            {name: 'Isilya',  description: "Moon Day\nSindarin: Orithil"},
-            {name: 'Aldúya',  description: "Two Trees of Valinor Day\nSindarin: Orgaladhad"},
-            {name: 'Menelya', description: "Heavens Day\nSindarin: Ormenel"},
-            {name: 'Valanya', description: "Valar Day or Tárion\nSindarin: Orbelain or Rodyn"}
+            {
+                english: "Stars Day",
+                quenya: "Elenya",
+                sindarin: "Orgilion",
+                description: "English: Stars Day\nQuenya: Elenya\nSindarin: Orgilion"
+            },
+            {
+                english: "Sun Day",
+                quenya: "Anarya",
+                sindarin: "Oranor",
+                description: "English: Sun Day\nQuenya: Anarya\nSindarin: Oranor"
+            },
+            {
+                english: "Moon Day",
+                quenya: "Isilya",
+                sindarin: "Orithil",
+                description: "English: Moon Day\nQuenya: Isilya\nSindarin: Orithil"
+            },
+            {
+                english: "Two Trees Day",
+                quenya: "Aldúya",
+                sindarin: "Orgaladhad",
+                description: "English: Two Trees of Valinor Day\nQuenya: Aldúya\nSindarin: Orgaladhad"
+            },
+            {
+                english: "Heavens Day",
+                quenya: "Menelya",
+                sindarin: "Ormenel",
+                description: "English: Heavens Day\nQuenya: Menelya\nSindarin: Ormenel"
+            },
+            {
+                english: "Valar Day",
+                quenya: "Valanya or Tárion",
+                sindarin: "Orbelain or Rodyn",
+                description: "English: Valar Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn"
+            }
         ],
 
         months: [
             {
-                name: "Tuilë",
-                description: "Spring\nSindarin: Ethuil",
+                english: "Spring",
+                quenya: "Tuilë",
+                sindarin: "Ethuil",
+                description: "English: Spring\nQuenya: Tuilë\nSindarin: Ethuil",
                 className: "spring"
             },
             {
-                name: "Lairë",
-                description: "Summer\nSindarin: Laer",
+                english: "Summer",
+                quenya: "Lairë",
+                sindarin: "Laer",
+                description: "English: Summer\nQuenya: Lairë\nSindarin: Laer",
                 className: "summer"
             },
             {
-                name: "Yávië",
-                description: "Autumn\nSindarin: Iavas",
+                english: "Autumn",
+                quenya: "Yávië",
+                sindarin: "Iavas",
+                description: "English: Autumn\nQuenya: Yávië\nSindarin: Iavas",
                 className: "autumn"
             },
             {
-                name: "Quellë",
-                description: "Fading or 'lasse-lanta'\nSindarin: Firith or 'narbeleth'",
+                english: "Fading",
+                quenya: "Quellë",
+                sindarin: "Firith",
+                description: "English: Fading\nQuenya: Quellë or 'lasse-lanta'\nSindarin: Firith or 'narbeleth'",
                 className: "fading"
             },
             {
-                name: "Hrívë",
-                description: "Winter\nSindarin: Rhîw",
+                english: "Winter",
+                quenya: "Hrívë",
+                sindarin: "Rhîw",
+                description: "English: Winter\nQuenya: Hrívë\nSindarin: Rhîw",
                 className: "winter"
             },
             {
-                name: "Coirë",
-                description: "Stirring\nSindarin: Echuir",
+                english: "Stirring",
+                quenya: "Coirë",
+                sindarin: "Echuir",
+                description: "English: Stirring\nQuenya: Coirë\nSindarin: Echuir",
                 className: "stirring"
             }
         ],
@@ -399,15 +441,29 @@ $(document).ready(function() {
         REFORMED_RULES: "reformed",
 
         getInitialState: function() {
+            var language = "quenya";
             var startDay = 25;
             var calendarRules = this.TRADITIONAL_RULES;
             var calendar = this.makeCalendarDates(this.props.date, calendarRules, startDay);
+
+            this.setLanguage(language);
+
             return {
                 calendar: calendar,
                 monthView: calendar.todayRivendell.month,
                 startDay: startDay,
-                calendarRules: calendarRules
+                calendarRules: calendarRules,
+                language: language
             };
+        },
+
+        setLanguage: function(language) {
+            for (var i = 0; i < this.months.length; i++) {
+                this.months[i]["name"] = this.months[i][language];
+            }
+            for (i = 0; i < this.weekdays.length; i++) {
+                this.weekdays[i]["name"] = this.weekdays[i][language];
+            }
         },
 
         getNewYearDate: function (today, calendarRules, startDay) {
@@ -471,7 +527,7 @@ $(document).ready(function() {
             }
 
             var dates = [{
-                "day": "Yestarë",
+                "date": "Yestarë",
                 "month": 0,
                 "weekDay": weekDay % 6,
                 "gregorian": gregorianDate
@@ -502,7 +558,7 @@ $(document).ready(function() {
                              enderi < enderiCount;
                              enderi++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
                             dates.push({
-                                "day": "Enderë",
+                                "date": "Enderë",
                                 "month": month,
                                 "weekDay": weekDay % 6,
                                 "gregorian": gregorianDate
@@ -532,7 +588,7 @@ $(document).ready(function() {
             }
 
             dates.push({
-                "day": "Mettarë",
+                "date": "Mettarë",
                 "month": 5,
                 "weekDay": weekDay % 6,
                 "gregorian": gregorianDate
@@ -547,7 +603,7 @@ $(document).ready(function() {
                 weekDay++;
 
                 dates.push({
-                    "day": "Leap Enderë",
+                    "date": "Leap Enderë",
                     "month": 5,
                     "weekDay": weekDay % 6,
                     "gregorian": gregorianDate
@@ -597,6 +653,12 @@ $(document).ready(function() {
             });
         },
 
+        onLanguageChange: function (event) {
+            var language = event.target.value;
+            this.setLanguage(language);
+            this.setState({language: language});
+        },
+
         componentWillReceiveProps: function(nextProps) {
             var today = nextProps.date;
             var calendar = this.state.calendar;
@@ -614,6 +676,7 @@ $(document).ready(function() {
             var today = this.props.date;
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
+            var language = this.state.language;
 
             var week = [];
             var weeks = [];
@@ -630,8 +693,9 @@ $(document).ready(function() {
             }
 
             for (; i < dates.length && (monthView < 0 || monthView == date.month); i++, date = dates[i]) {
-                switch (date.day) {
+                switch (date.date) {
                     case "Yestarë":
+                        date.day = language == "english" ? "First Day" : "Yestarë";
                         week.push(
                             React.createElement(IntercalaryDay, {
                                 key: "RivendellNewYear", 
@@ -643,7 +707,19 @@ $(document).ready(function() {
                         break;
 
                     case "Enderë":
+                        date.day = language == "english" ? "Middleday" : "Enderë";
+                        week.push(
+                            React.createElement(IntercalaryDay, {
+                                key: "Middleday-" + (enderi++), 
+                                description: "Middleday", 
+                                currentDate: today, 
+                                dates: [date]})
+                        );
+
+                        break;
+
                     case "Leap Enderë":
+                        date.day = language == "english" ? "Leap Middleday" : "Leap Enderë";
                         week.push(
                             React.createElement(IntercalaryDay, {
                                 key: "Middleday-" + (enderi++), 
@@ -655,6 +731,7 @@ $(document).ready(function() {
                         break;
 
                     case "Mettarë":
+                        date.day = language == "english" ? "Last Day" : "Mettarë";
                         week.push(
                             React.createElement(IntercalaryDay, {
                                 key: "RivendellNewYearsEve", 
@@ -689,7 +766,8 @@ $(document).ready(function() {
 
             if (monthView == 2) {
                 date = dates[i];
-                for (; date.day == "Enderë"; i++, enderi++, date = dates[i]) {
+                for (; date.date == "Enderë"; i++, enderi++, date = dates[i]) {
+                    date.day = language == "english" ? "Middleday" : "Enderë";
                     week.push(
                         React.createElement(IntercalaryDay, {
                             key: "Middleday-" + (enderi), 
@@ -716,6 +794,17 @@ $(document).ready(function() {
                     caption, 
                     React.createElement("thead", null, 
                         React.createElement("tr", null, 
+                            React.createElement("td", null, 
+                                "Language:", 
+                                React.createElement("select", {
+                                    value: this.state.language, 
+                                    onChange: this.onLanguageChange
+                                    }, 
+                                    React.createElement("option", {value: "english"}, "English"), 
+                                    React.createElement("option", {value: "quenya"}, "Quenya"), 
+                                    React.createElement("option", {value: "sindarin"}, "Sindarin")
+                                )
+                            ), 
                             React.createElement("td", {colSpan: "3"}, 
                                 React.createElement(MonthViewPicker, {
                                     onMonthViewChange: this.onMonthViewChange, 
@@ -723,7 +812,7 @@ $(document).ready(function() {
                                     months: this.months}
                                     )
                             ), 
-                            React.createElement("td", null, 
+                            React.createElement("td", {colSpan: "2"}, 
                                 "Align New Year's Day with March", 
                                 React.createElement("select", {
                                     value: this.state.startDay, 
@@ -732,9 +821,7 @@ $(document).ready(function() {
                                     React.createElement("option", {value: "20"}, "20th"), 
                                     React.createElement("option", {value: "25"}, "25th"), 
                                     React.createElement("option", {value: "27"}, "27th")
-                                )
-                            ), 
-                            React.createElement("td", {colSpan: "2"}, 
+                                ), 
                                 React.createElement("select", {
                                     value: this.state.calendarRules, 
                                     onChange: this.onCalendarRulesChange
@@ -790,7 +877,7 @@ $(document).ready(function() {
             var dayColor = getDateColor(className, gregorianDate, currentDate);
 
             return (
-                React.createElement("td", {className: dayColor, title: dateTitle + "\n" + this.props.weekday}, 
+                React.createElement("td", {className: dayColor, title: dateTitle + "\nWeekday: " + this.props.weekday}, 
                     date.day, " ", (date.day == 1) ? this.props.month : '', 
                     React.createElement("br", null), 
                     getGregorianDateDisplay(gregorianDate)
