@@ -242,22 +242,20 @@ $(document).ready(function() {
                 switch (date.day) {
                     case "2 Yule":
                         week.push(
-                            <IntercalaryDay
-                                key="2-Yule"
-                                description="Midwinter: Shire New Year!"
-                                currentDate={today}
-                                dates={[date]} />
+                            <IntercalaryDay key="2-Yule"
+                                            description="Midwinter: Shire New Year!"
+                                            currentDate={today}
+                                            dates={[date]} />
                         );
 
                         break;
 
                     case "1 Lithe":
                         week.push(
-                            <IntercalaryDay
-                                key="Midsummer"
-                                description="Midsummer's Eve and Midsummer's Day!"
-                                currentDate={today}
-                                dates={[date, dates[++i]]} />
+                            <IntercalaryDay key="Midsummer"
+                                            description="Midsummer's Eve and Midsummer's Day!"
+                                            currentDate={today}
+                                            dates={[date, dates[++i]]} />
                         );
 
                         weeks.push(<tr key={"shire-week-" + (weeks.length + 1)} >{week}</tr>);
@@ -267,33 +265,30 @@ $(document).ready(function() {
 
                     case "OverLithe":
                         week.push(
-                            <IntercalaryDay
-                                key="OverLithe"
-                                description="Shire Leap Day and Day after Midsummer."
-                                currentDate={today}
-                                dates={[date, dates[++i]]} />
+                            <IntercalaryDay key="OverLithe"
+                                            description="Shire Leap Day and Day after Midsummer."
+                                            currentDate={today}
+                                            dates={[date, dates[++i]]} />
                         );
 
                         break;
 
                     case "2 Lithe":
                         week.push(
-                            <IntercalaryDay
-                                key="2-Lithe"
-                                description="Day after Midsummer."
-                                currentDate={today}
-                                dates={[date]} />
+                            <IntercalaryDay key="2-Lithe"
+                                            description="Day after Midsummer."
+                                            currentDate={today}
+                                            dates={[date]} />
                         );
 
                         break;
 
                     case "1 Yule":
                         week.push(
-                            <IntercalaryDay
-                                key="1-Yule"
-                                description="Shire New Year's Eve!"
-                                currentDate={today}
-                                dates={[date]} />
+                            <IntercalaryDay key="1-Yule"
+                                            description="Shire New Year's Eve!"
+                                            currentDate={today}
+                                            dates={[date]} />
                         );
 
                         weeks.push(<tr key={"shire-week-" + (weeks.length + 1)} >{week}</tr>);
@@ -335,11 +330,9 @@ $(document).ready(function() {
                     <thead>
                         <tr>
                             <td colSpan='7'>
-                                <MonthViewPicker
-                                    onMonthViewChange={this.onMonthViewChange}
-                                    monthView={this.state.monthView}
-                                    months={this.months}
-                                    />
+                                <MonthViewPicker onMonthViewChange={this.onMonthViewChange}
+                                                 monthView={this.state.monthView}
+                                                 months={this.months} />
                             </td>
                         </tr>
                         <WeekDayHeader weekdays={this.weekdays} />
@@ -697,11 +690,10 @@ $(document).ready(function() {
                     case "Yestarë":
                         date.day = language == "english" ? "First Day" : "Yestarë";
                         week.push(
-                            <IntercalaryDay
-                                key="RivendellNewYear"
-                                description="Rivendell New Year's Day!"
-                                currentDate={today}
-                                dates={[date]} />
+                            <IntercalaryDay key="RivendellNewYear"
+                                            description="Rivendell New Year's Day!"
+                                            currentDate={today}
+                                            dates={[date]} />
                         );
 
                         break;
@@ -709,11 +701,10 @@ $(document).ready(function() {
                     case "Enderë":
                         date.day = language == "english" ? "Middleday" : "Enderë";
                         week.push(
-                            <IntercalaryDay
-                                key={"Middleday-" + (enderi++)}
-                                description="Middleday"
-                                currentDate={today}
-                                dates={[date]} />
+                            <IntercalaryDay key={"Middleday-" + (enderi++)}
+                                            description="Middleday"
+                                            currentDate={today}
+                                            dates={[date]} />
                         );
 
                         break;
@@ -721,11 +712,10 @@ $(document).ready(function() {
                     case "Leap Enderë":
                         date.day = language == "english" ? "Leap Middleday" : "Leap Enderë";
                         week.push(
-                            <IntercalaryDay
-                                key={"Middleday-" + (enderi++)}
-                                description="Middleday"
-                                currentDate={today}
-                                dates={[date]} />
+                            <IntercalaryDay key={"Middleday-" + (enderi++)}
+                                            description="Middleday"
+                                            currentDate={today}
+                                            dates={[date]} />
                         );
 
                         break;
@@ -733,11 +723,10 @@ $(document).ready(function() {
                     case "Mettarë":
                         date.day = language == "english" ? "Last Day" : "Mettarë";
                         week.push(
-                            <IntercalaryDay
-                                key="RivendellNewYearsEve"
-                                description="Rivendell New Year's Eve!"
-                                currentDate={today}
-                                dates={[date]} />
+                            <IntercalaryDay key="RivendellNewYearsEve"
+                                            description="Rivendell New Year's Eve!"
+                                            currentDate={today}
+                                            dates={[date]} />
                         );
 
                         break;
@@ -769,11 +758,10 @@ $(document).ready(function() {
                 for (; date.date == "Enderë"; i++, enderi++, date = dates[i]) {
                     date.day = language == "english" ? "Middleday" : "Enderë";
                     week.push(
-                        <IntercalaryDay
-                            key={"Middleday-" + (enderi)}
-                            description="Middleday"
-                            currentDate={today}
-                            dates={[date]} />
+                        <IntercalaryDay key={"Middleday-" + (enderi)}
+                                        description="Middleday"
+                                        currentDate={today}
+                                        dates={[date]} />
                     );
 
                     if ((date.weekDay + 1) % 6 === 0) {
@@ -796,36 +784,28 @@ $(document).ready(function() {
                         <tr>
                             <td>
                                 Language:
-                                <select
-                                    value={this.state.language}
-                                    onChange={this.onLanguageChange}
-                                    >
+                                <select value={this.state.language}
+                                        onChange={this.onLanguageChange} >
                                     <option value='english'>English</option>
                                     <option value='quenya'>Quenya</option>
                                     <option value='sindarin'>Sindarin</option>
                                 </select>
                             </td>
                             <td colSpan='3'>
-                                <MonthViewPicker
-                                    onMonthViewChange={this.onMonthViewChange}
-                                    monthView={this.state.monthView}
-                                    months={this.months}
-                                    />
+                                <MonthViewPicker onMonthViewChange={this.onMonthViewChange}
+                                                 monthView={this.state.monthView}
+                                                 months={this.months} />
                             </td>
                             <td colSpan='2'>
                                 Align New Year's Day with March
-                                <select
-                                    value={this.state.startDay}
-                                    onChange={this.onCalendarStartChange}
-                                    >
+                                <select value={this.state.startDay}
+                                        onChange={this.onCalendarStartChange} >
                                     <option value='20'>20th</option>
                                     <option value='25'>25th</option>
                                     <option value='27'>27th</option>
                                 </select>
-                                <select
-                                    value={this.state.calendarRules}
-                                    onChange={this.onCalendarRulesChange}
-                                    >
+                                <select value={this.state.calendarRules}
+                                        onChange={this.onCalendarRulesChange} >
                                     <option value={this.TRADITIONAL_RULES}>Traditional Rules</option>
                                     <option value={this.REFORMED_RULES}>Reformed Rules</option>
                                 </select>
@@ -949,16 +929,12 @@ $(document).ready(function() {
         render: function() {
             return (
                 <span>
-                    <input
-                        type="button"
-                        value="<<"
-                        onClick={this.prevMonthView}
-                        />
-                    <select
-                        ref='monthViewSelect'
-                        value={this.props.monthView}
-                        onChange={this.onMonthViewChange}
-                        >
+                    <input type="button"
+                           value="<<"
+                           onClick={this.prevMonthView} />
+                    <select ref='monthViewSelect'
+                            value={this.props.monthView}
+                            onChange={this.onMonthViewChange} >
                         <option value="-1">Year Calendar</option>
                         {this.props.months.map(function (month, i) {
                             return (
@@ -968,11 +944,9 @@ $(document).ready(function() {
                             );
                         })}
                     </select>
-                    <input
-                        type="button"
-                        value=">>"
-                        onClick={this.nextMonthView}
-                        />
+                    <input type="button"
+                           value=">>"
+                           onClick={this.nextMonthView} />
                 </span>
             );
         }
@@ -1000,15 +974,13 @@ $(document).ready(function() {
 
         createDateInput: function(ref, value, min) {
             return (
-                <input
-                    type="number"
-                    className="date-time-input"
-                    ref={ref}
-                    step='1'
-                    min={min}
-                    onChange={this.onDateChanged}
-                    value={value}
-                    />
+                <input type="number"
+                       className="date-time-input"
+                       ref={ref}
+                       step='1'
+                       min={min}
+                       onChange={this.onDateChanged}
+                       value={value} />
             );
         },
 
@@ -1044,11 +1016,9 @@ $(document).ready(function() {
                                         {this.createDateInput('currentDay', this.state.date.getDate(), 0)}
                                     </th>
                                     <th>
-                                        <input
-                                            type="button"
-                                            value="Today"
-                                            onClick={this.resetDate}
-                                            />
+                                        <input type="button"
+                                               value="Today"
+                                               onClick={this.resetDate} />
                                     </th>
                                 </tr>
                                 </tbody>

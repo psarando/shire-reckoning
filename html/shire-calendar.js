@@ -242,22 +242,20 @@ $(document).ready(function() {
                 switch (date.day) {
                     case "2 Yule":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "2-Yule", 
-                                description: "Midwinter: Shire New Year!", 
-                                currentDate: today, 
-                                dates: [date]})
+                            React.createElement(IntercalaryDay, {key: "2-Yule", 
+                                            description: "Midwinter: Shire New Year!", 
+                                            currentDate: today, 
+                                            dates: [date]})
                         );
 
                         break;
 
                     case "1 Lithe":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "Midsummer", 
-                                description: "Midsummer's Eve and Midsummer's Day!", 
-                                currentDate: today, 
-                                dates: [date, dates[++i]]})
+                            React.createElement(IntercalaryDay, {key: "Midsummer", 
+                                            description: "Midsummer's Eve and Midsummer's Day!", 
+                                            currentDate: today, 
+                                            dates: [date, dates[++i]]})
                         );
 
                         weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
@@ -267,33 +265,30 @@ $(document).ready(function() {
 
                     case "OverLithe":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "OverLithe", 
-                                description: "Shire Leap Day and Day after Midsummer.", 
-                                currentDate: today, 
-                                dates: [date, dates[++i]]})
+                            React.createElement(IntercalaryDay, {key: "OverLithe", 
+                                            description: "Shire Leap Day and Day after Midsummer.", 
+                                            currentDate: today, 
+                                            dates: [date, dates[++i]]})
                         );
 
                         break;
 
                     case "2 Lithe":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "2-Lithe", 
-                                description: "Day after Midsummer.", 
-                                currentDate: today, 
-                                dates: [date]})
+                            React.createElement(IntercalaryDay, {key: "2-Lithe", 
+                                            description: "Day after Midsummer.", 
+                                            currentDate: today, 
+                                            dates: [date]})
                         );
 
                         break;
 
                     case "1 Yule":
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "1-Yule", 
-                                description: "Shire New Year's Eve!", 
-                                currentDate: today, 
-                                dates: [date]})
+                            React.createElement(IntercalaryDay, {key: "1-Yule", 
+                                            description: "Shire New Year's Eve!", 
+                                            currentDate: today, 
+                                            dates: [date]})
                         );
 
                         weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
@@ -335,11 +330,9 @@ $(document).ready(function() {
                     React.createElement("thead", null, 
                         React.createElement("tr", null, 
                             React.createElement("td", {colSpan: "7"}, 
-                                React.createElement(MonthViewPicker, {
-                                    onMonthViewChange: this.onMonthViewChange, 
-                                    monthView: this.state.monthView, 
-                                    months: this.months}
-                                    )
+                                React.createElement(MonthViewPicker, {onMonthViewChange: this.onMonthViewChange, 
+                                                 monthView: this.state.monthView, 
+                                                 months: this.months})
                             )
                         ), 
                         React.createElement(WeekDayHeader, {weekdays: this.weekdays})
@@ -697,11 +690,10 @@ $(document).ready(function() {
                     case "Yestarë":
                         date.day = language == "english" ? "First Day" : "Yestarë";
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "RivendellNewYear", 
-                                description: "Rivendell New Year's Day!", 
-                                currentDate: today, 
-                                dates: [date]})
+                            React.createElement(IntercalaryDay, {key: "RivendellNewYear", 
+                                            description: "Rivendell New Year's Day!", 
+                                            currentDate: today, 
+                                            dates: [date]})
                         );
 
                         break;
@@ -709,11 +701,10 @@ $(document).ready(function() {
                     case "Enderë":
                         date.day = language == "english" ? "Middleday" : "Enderë";
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "Middleday-" + (enderi++), 
-                                description: "Middleday", 
-                                currentDate: today, 
-                                dates: [date]})
+                            React.createElement(IntercalaryDay, {key: "Middleday-" + (enderi++), 
+                                            description: "Middleday", 
+                                            currentDate: today, 
+                                            dates: [date]})
                         );
 
                         break;
@@ -721,11 +712,10 @@ $(document).ready(function() {
                     case "Leap Enderë":
                         date.day = language == "english" ? "Leap Middleday" : "Leap Enderë";
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "Middleday-" + (enderi++), 
-                                description: "Middleday", 
-                                currentDate: today, 
-                                dates: [date]})
+                            React.createElement(IntercalaryDay, {key: "Middleday-" + (enderi++), 
+                                            description: "Middleday", 
+                                            currentDate: today, 
+                                            dates: [date]})
                         );
 
                         break;
@@ -733,11 +723,10 @@ $(document).ready(function() {
                     case "Mettarë":
                         date.day = language == "english" ? "Last Day" : "Mettarë";
                         week.push(
-                            React.createElement(IntercalaryDay, {
-                                key: "RivendellNewYearsEve", 
-                                description: "Rivendell New Year's Eve!", 
-                                currentDate: today, 
-                                dates: [date]})
+                            React.createElement(IntercalaryDay, {key: "RivendellNewYearsEve", 
+                                            description: "Rivendell New Year's Eve!", 
+                                            currentDate: today, 
+                                            dates: [date]})
                         );
 
                         break;
@@ -769,11 +758,10 @@ $(document).ready(function() {
                 for (; date.date == "Enderë"; i++, enderi++, date = dates[i]) {
                     date.day = language == "english" ? "Middleday" : "Enderë";
                     week.push(
-                        React.createElement(IntercalaryDay, {
-                            key: "Middleday-" + (enderi), 
-                            description: "Middleday", 
-                            currentDate: today, 
-                            dates: [date]})
+                        React.createElement(IntercalaryDay, {key: "Middleday-" + (enderi), 
+                                        description: "Middleday", 
+                                        currentDate: today, 
+                                        dates: [date]})
                     );
 
                     if ((date.weekDay + 1) % 6 === 0) {
@@ -796,36 +784,28 @@ $(document).ready(function() {
                         React.createElement("tr", null, 
                             React.createElement("td", null, 
                                 "Language:", 
-                                React.createElement("select", {
-                                    value: this.state.language, 
-                                    onChange: this.onLanguageChange
-                                    }, 
+                                React.createElement("select", {value: this.state.language, 
+                                        onChange: this.onLanguageChange}, 
                                     React.createElement("option", {value: "english"}, "English"), 
                                     React.createElement("option", {value: "quenya"}, "Quenya"), 
                                     React.createElement("option", {value: "sindarin"}, "Sindarin")
                                 )
                             ), 
                             React.createElement("td", {colSpan: "3"}, 
-                                React.createElement(MonthViewPicker, {
-                                    onMonthViewChange: this.onMonthViewChange, 
-                                    monthView: this.state.monthView, 
-                                    months: this.months}
-                                    )
+                                React.createElement(MonthViewPicker, {onMonthViewChange: this.onMonthViewChange, 
+                                                 monthView: this.state.monthView, 
+                                                 months: this.months})
                             ), 
                             React.createElement("td", {colSpan: "2"}, 
                                 "Align New Year's Day with March", 
-                                React.createElement("select", {
-                                    value: this.state.startDay, 
-                                    onChange: this.onCalendarStartChange
-                                    }, 
+                                React.createElement("select", {value: this.state.startDay, 
+                                        onChange: this.onCalendarStartChange}, 
                                     React.createElement("option", {value: "20"}, "20th"), 
                                     React.createElement("option", {value: "25"}, "25th"), 
                                     React.createElement("option", {value: "27"}, "27th")
                                 ), 
-                                React.createElement("select", {
-                                    value: this.state.calendarRules, 
-                                    onChange: this.onCalendarRulesChange
-                                    }, 
+                                React.createElement("select", {value: this.state.calendarRules, 
+                                        onChange: this.onCalendarRulesChange}, 
                                     React.createElement("option", {value: this.TRADITIONAL_RULES}, "Traditional Rules"), 
                                     React.createElement("option", {value: this.REFORMED_RULES}, "Reformed Rules")
                                 )
@@ -949,16 +929,12 @@ $(document).ready(function() {
         render: function() {
             return (
                 React.createElement("span", null, 
-                    React.createElement("input", {
-                        type: "button", 
-                        value: "<<", 
-                        onClick: this.prevMonthView}
-                        ), 
-                    React.createElement("select", {
-                        ref: "monthViewSelect", 
-                        value: this.props.monthView, 
-                        onChange: this.onMonthViewChange
-                        }, 
+                    React.createElement("input", {type: "button", 
+                           value: "<<", 
+                           onClick: this.prevMonthView}), 
+                    React.createElement("select", {ref: "monthViewSelect", 
+                            value: this.props.monthView, 
+                            onChange: this.onMonthViewChange}, 
                         React.createElement("option", {value: "-1"}, "Year Calendar"), 
                         this.props.months.map(function (month, i) {
                             return (
@@ -968,11 +944,9 @@ $(document).ready(function() {
                             );
                         })
                     ), 
-                    React.createElement("input", {
-                        type: "button", 
-                        value: ">>", 
-                        onClick: this.nextMonthView}
-                        )
+                    React.createElement("input", {type: "button", 
+                           value: ">>", 
+                           onClick: this.nextMonthView})
                 )
             );
         }
@@ -1000,15 +974,13 @@ $(document).ready(function() {
 
         createDateInput: function(ref, value, min) {
             return (
-                React.createElement("input", {
-                    type: "number", 
-                    className: "date-time-input", 
-                    ref: ref, 
-                    step: "1", 
-                    min: min, 
-                    onChange: this.onDateChanged, 
-                    value: value}
-                    )
+                React.createElement("input", {type: "number", 
+                       className: "date-time-input", 
+                       ref: ref, 
+                       step: "1", 
+                       min: min, 
+                       onChange: this.onDateChanged, 
+                       value: value})
             );
         },
 
@@ -1044,11 +1016,9 @@ $(document).ready(function() {
                                         this.createDateInput('currentDay', this.state.date.getDate(), 0)
                                     ), 
                                     React.createElement("th", null, 
-                                        React.createElement("input", {
-                                            type: "button", 
-                                            value: "Today", 
-                                            onClick: this.resetDate}
-                                            )
+                                        React.createElement("input", {type: "button", 
+                                               value: "Today", 
+                                               onClick: this.resetDate})
                                     )
                                 )
                                 )
