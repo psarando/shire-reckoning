@@ -12,7 +12,7 @@ and the other is our Gregorian calendar with the corresponding Shire Reckoning d
 The [html](html) directory contains files that will print a
 [Shire Reckoning calendar and a Rivendell Reckoning calendar](http://psarando.github.io/shire-reckoning)
 in a browser as a simple HTML table.
-The calendars include each day's corresponding Gregorian date of the current year and today's date will be highlighted on each calendar.
+The calendars include each day's corresponding Gregorian date of the current year with today's date highlighted on each calendar.
 
 ### Rivendell Reckoning Notes
 

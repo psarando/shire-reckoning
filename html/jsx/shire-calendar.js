@@ -208,6 +208,7 @@ $(document).ready(function() {
 
         componentWillReceiveProps: function(nextProps) {
             var today = nextProps.date;
+            var align = nextProps.align;
             var calendar = this.state.calendar;
 
             if (!datesMatch(today, calendar.today)) {
@@ -215,7 +216,7 @@ $(document).ready(function() {
             }
             this.setState({
                 calendar: calendar,
-                monthView: this.state.monthView < 0 ? this.state.monthView : calendar.todayShire.month
+                monthView: this.state.monthView < 0 || nextProps.aligning ? -1 : calendar.todayShire.month
             });
         },
 
@@ -323,9 +324,13 @@ $(document).ready(function() {
             }
 
             var caption = this.props.caption ? (<caption>{this.props.caption}</caption>) : null;
+            var className = "shire-calendar";
+            if (this.props.align) {
+                className += " align-shire-calendar";
+            }
 
             return (
-                <table className='shire-calendar' >
+                <table className={className} >
                     {caption}
                     <thead>
                         <tr>
@@ -661,7 +666,7 @@ $(document).ready(function() {
             }
             this.setState({
                 calendar: calendar,
-                monthView: this.getUpdatedMonthView(calendar.todayRivendell.month)
+                monthView: nextProps.aligning ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
             });
         },
 
@@ -776,9 +781,13 @@ $(document).ready(function() {
             }
 
             var caption = this.props.caption ? (<caption>{this.props.caption}</caption>) : null;
+            var className = "shire-calendar rivendell-calendar";
+            if (this.props.align) {
+                className += " align-rivendell-calendar";
+            }
 
             return (
-                <table className='shire-calendar rivendell-calendar' >
+                <table className={className} >
                     {caption}
                     <thead>
                         <tr>
@@ -954,7 +963,11 @@ $(document).ready(function() {
 
     var TolkienCalendars = React.createClass({
         getInitialState: function() {
-            return {date: new Date()};
+            return ({
+                date: new Date(),
+                shireAlign: false,
+                rivendellAlign: false
+            });
         },
 
         resetDate: function() {
@@ -965,7 +978,7 @@ $(document).ready(function() {
             var year = React.findDOMNode(this.refs.currentYear).value;
             var month = React.findDOMNode(this.refs.currentMonth).value;
             var day = React.findDOMNode(this.refs.currentDay).value;
-            var currentDate = new Date(year, month - 1, day);
+            var currentDate = new Date(year, month, day);
 
             if (currentDate.getFullYear() > 100) {
                 this.setState({date: currentDate});
@@ -984,36 +997,53 @@ $(document).ready(function() {
             );
         },
 
+        alignChanged: function (event) {
+            var checked = event.target.checked;
+            var shireAlign = event.target.value == "shire" ? checked : false;
+            var rivendellAlign = event.target.value == "rivendell" ? checked : false;
+            this.setState({
+                shireAlign: shireAlign,
+                rivendellAlign: rivendellAlign
+            });
+        },
+
         render: function() {
+            var currentDate = this.state.date;
+            var shireAlign = this.state.shireAlign;
+            var rivendellAlign = this.state.rivendellAlign;
             return (
-                <table id='date-controls'>
+                <table>
                     <tbody>
                     <tr>
                         <td colSpan='2'>
                             <table style={{margin: "auto"}}>
                                 <tbody>
                                 <tr>
-                                    <th></th>
-                                    <th>
-                                        Year
-                                    </th>
-                                    <th>
-                                        Month
-                                    </th>
-                                    <th>
-                                        Day
-                                    </th>
-                                </tr>
-                                <tr>
                                     <th>Gregorian Date:</th>
                                     <th>
-                                        {this.createDateInput('currentYear', this.state.date.getFullYear(), 101)}
+                                        <select className="date-time-input"
+                                                ref='currentMonth'
+                                                value={currentDate.getMonth()}
+                                                onChange={this.onDateChanged} >
+                                            <option value='0'>Jan</option>
+                                            <option value='1'>Feb</option>
+                                            <option value='2'>Mar</option>
+                                            <option value='3'>Apr</option>
+                                            <option value='4'>May</option>
+                                            <option value='5'>Jun</option>
+                                            <option value='6'>Jul</option>
+                                            <option value='7'>Aug</option>
+                                            <option value='8'>Sep</option>
+                                            <option value='9'>Oct</option>
+                                            <option value='10'>Nov</option>
+                                            <option value='11'>Dec</option>
+                                        </select>
                                     </th>
                                     <th>
-                                        {this.createDateInput('currentMonth', this.state.date.getMonth() + 1, 0)}
+                                        {this.createDateInput('currentDay', currentDate.getDate(), 0)}
                                     </th>
                                     <th>
-                                        {this.createDateInput('currentDay', this.state.date.getDate(), 0)}
+                                        {this.createDateInput('currentYear', currentDate.getFullYear(), 101)}
                                     </th>
                                     <th>
                                         <input type="button"
@@ -1026,11 +1056,33 @@ $(document).ready(function() {
                         </td>
                     </tr>
                     <tr>
+                        <th>
+                            <input type="checkbox"
+                                   value="shire"
+                                   checked={shireAlign}
+                                   onChange={this.alignChanged} />
+                            Try to align Shire Year with Rivendell Year?
+                        </th>
+                        <th>
+                            <input type="checkbox"
+                                   value="rivendell"
+                                   checked={rivendellAlign}
+                                   onChange={this.alignChanged} />
+                            Try to align Rivendell Year with Shire Year?
+                        </th>
+                    </tr>
+                    <tr>
                         <td style={{verticalAlign: 'top'}}>
-                            <ShireCalendar caption="Shire Reckoning" date={this.state.date} />
+                            <ShireCalendar caption="Shire Reckoning"
+                                           date={currentDate}
+                                           align={shireAlign}
+                                           aligning={shireAlign || rivendellAlign} />
                         </td>
                         <td style={{verticalAlign: 'top'}}>
-                            <RivendellCalendar caption="Rivendell Reckoning" date={this.state.date} />
+                            <RivendellCalendar caption="Rivendell Reckoning"
+                                               date={currentDate}
+                                               align={rivendellAlign}
+                                               aligning={shireAlign || rivendellAlign} />
                         </td>
                     </tr>
                     </tbody>

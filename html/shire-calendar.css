@@ -17,11 +17,17 @@
 .rivendell-calendar td {
     height: 4rem;
 }
+.align-shire-calendar {
+    margin-top: 194rem;
+}
+.align-rivendell-calendar {
+    margin-top: 70rem;
+}
 .gregorian-display {
     font-size: .5rem;
 }
-#date-controls th td, .date-time-input {
-    width: 3rem;
+.date-time-input {
+    width: 3.5rem;
     text-align: center;
 }
 
