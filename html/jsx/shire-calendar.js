@@ -208,7 +208,6 @@ $(document).ready(function() {
 
         componentWillReceiveProps: function(nextProps) {
             var today = nextProps.date;
-            var align = nextProps.align;
             var calendar = this.state.calendar;
 
             if (!datesMatch(today, calendar.today)) {
@@ -216,7 +215,7 @@ $(document).ready(function() {
             }
             this.setState({
                 calendar: calendar,
-                monthView: this.state.monthView < 0 || nextProps.aligning ? -1 : calendar.todayShire.month
+                monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayShire.month
             });
         },
 
@@ -324,17 +323,13 @@ $(document).ready(function() {
             }
 
             var caption = this.props.caption ? (<caption>{this.props.caption}</caption>) : null;
-            var className = "shire-calendar";
-            if (this.props.align) {
-                className += " align-shire-calendar";
-            }
 
             return (
-                <table className={className} >
+                <table className={this.props.className} >
                     {caption}
                     <thead>
                         <tr>
-                            <td colSpan='7'>
+                            <td colSpan='7' className='month-picker-container' >
                                 <MonthViewPicker onMonthViewChange={this.onMonthViewChange}
                                                  monthView={this.state.monthView}
                                                  months={this.months} />
@@ -666,7 +661,7 @@ $(document).ready(function() {
             }
             this.setState({
                 calendar: calendar,
-                monthView: nextProps.aligning ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
+                monthView: nextProps.yearView ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
             });
         },
 
@@ -781,18 +776,15 @@ $(document).ready(function() {
             }
 
             var caption = this.props.caption ? (<caption>{this.props.caption}</caption>) : null;
-            var className = "shire-calendar rivendell-calendar";
-            if (this.props.align) {
-                className += " align-rivendell-calendar";
-            }
 
             return (
-                <table className={className} >
+                <table className={this.props.className} >
                     {caption}
                     <thead>
                         <tr>
                             <td>
                                 Language:
+                                <br />
                                 <select value={this.state.language}
                                         onChange={this.onLanguageChange} >
                                     <option value='english'>English</option>
@@ -937,26 +929,36 @@ $(document).ready(function() {
 
         render: function() {
             return (
-                <span>
-                    <input type="button"
-                           value="<<"
-                           onClick={this.prevMonthView} />
-                    <select ref='monthViewSelect'
-                            value={this.props.monthView}
-                            onChange={this.onMonthViewChange} >
-                        <option value="-1">Year Calendar</option>
-                        {this.props.months.map(function (month, i) {
-                            return (
-                                <option key={'month-view-opt' + i} value={i}>
-                                    {month.name}
-                                </option>
-                            );
-                        })}
-                    </select>
-                    <input type="button"
-                           value=">>"
-                           onClick={this.nextMonthView} />
-                </span>
+                <table className="month-picker" >
+                    <tbody>
+                    <tr>
+                        <td style={{textAlign: "right"}}>
+                            <input type="button"
+                                   value="<<"
+                                   onClick={this.prevMonthView} />
+                        </td>
+                        <td>
+                            <select ref='monthViewSelect'
+                                    value={this.props.monthView}
+                                    onChange={this.onMonthViewChange} >
+                                <option value="-1">Year Calendar</option>
+                                {this.props.months.map(function (month, i) {
+                                    return (
+                                        <option key={'month-view-opt' + i} value={i}>
+                                            {month.name}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </td>
+                        <td style={{textAlign: "left"}}>
+                            <input type="button"
+                                   value=">>"
+                                   onClick={this.nextMonthView} />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             );
         }
     });
@@ -1011,6 +1013,16 @@ $(document).ready(function() {
             var currentDate = this.state.date;
             var shireAlign = this.state.shireAlign;
             var rivendellAlign = this.state.rivendellAlign;
+
+            var shireClassName = "shire-calendar";
+            if (shireAlign) {
+                shireClassName += " align-shire-calendar";
+            }
+            var rivendellClassName = "shire-calendar rivendell-calendar";
+            if (rivendellAlign) {
+                rivendellClassName += " align-rivendell-calendar";
+            }
+
             return (
                 <table>
                     <tbody>
@@ -1075,14 +1087,14 @@ $(document).ready(function() {
                         <td style={{verticalAlign: 'top'}}>
                             <ShireCalendar caption="Shire Reckoning"
                                            date={currentDate}
-                                           align={shireAlign}
-                                           aligning={shireAlign || rivendellAlign} />
+                                           className={shireClassName}
+                                           yearView={shireAlign || rivendellAlign} />
                         </td>
                         <td style={{verticalAlign: 'top'}}>
                             <RivendellCalendar caption="Rivendell Reckoning"
                                                date={currentDate}
-                                               align={rivendellAlign}
-                                               aligning={shireAlign || rivendellAlign} />
+                                               className={rivendellClassName}
+                                               yearView={shireAlign || rivendellAlign} />
                         </td>
                     </tr>
                     </tbody>

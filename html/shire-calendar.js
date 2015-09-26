@@ -208,7 +208,6 @@ $(document).ready(function() {
 
         componentWillReceiveProps: function(nextProps) {
             var today = nextProps.date;
-            var align = nextProps.align;
             var calendar = this.state.calendar;
 
             if (!datesMatch(today, calendar.today)) {
@@ -216,7 +215,7 @@ $(document).ready(function() {
             }
             this.setState({
                 calendar: calendar,
-                monthView: this.state.monthView < 0 || nextProps.aligning ? -1 : calendar.todayShire.month
+                monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayShire.month
             });
         },
 
@@ -324,17 +323,13 @@ $(document).ready(function() {
             }
 
             var caption = this.props.caption ? (React.createElement("caption", null, this.props.caption)) : null;
-            var className = "shire-calendar";
-            if (this.props.align) {
-                className += " align-shire-calendar";
-            }
 
             return (
-                React.createElement("table", {className: className}, 
+                React.createElement("table", {className: this.props.className}, 
                     caption, 
                     React.createElement("thead", null, 
                         React.createElement("tr", null, 
-                            React.createElement("td", {colSpan: "7"}, 
+                            React.createElement("td", {colSpan: "7", className: "month-picker-container"}, 
                                 React.createElement(MonthViewPicker, {onMonthViewChange: this.onMonthViewChange, 
                                                  monthView: this.state.monthView, 
                                                  months: this.months})
@@ -666,7 +661,7 @@ $(document).ready(function() {
             }
             this.setState({
                 calendar: calendar,
-                monthView: nextProps.aligning ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
+                monthView: nextProps.yearView ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
             });
         },
 
@@ -781,18 +776,15 @@ $(document).ready(function() {
             }
 
             var caption = this.props.caption ? (React.createElement("caption", null, this.props.caption)) : null;
-            var className = "shire-calendar rivendell-calendar";
-            if (this.props.align) {
-                className += " align-rivendell-calendar";
-            }
 
             return (
-                React.createElement("table", {className: className}, 
+                React.createElement("table", {className: this.props.className}, 
                     caption, 
                     React.createElement("thead", null, 
                         React.createElement("tr", null, 
                             React.createElement("td", null, 
                                 "Language:", 
+                                React.createElement("br", null), 
                                 React.createElement("select", {value: this.state.language, 
                                         onChange: this.onLanguageChange}, 
                                     React.createElement("option", {value: "english"}, "English"), 
@@ -937,25 +929,35 @@ $(document).ready(function() {
 
         render: function() {
             return (
-                React.createElement("span", null, 
-                    React.createElement("input", {type: "button", 
-                           value: "<<", 
-                           onClick: this.prevMonthView}), 
-                    React.createElement("select", {ref: "monthViewSelect", 
-                            value: this.props.monthView, 
-                            onChange: this.onMonthViewChange}, 
-                        React.createElement("option", {value: "-1"}, "Year Calendar"), 
-                        this.props.months.map(function (month, i) {
-                            return (
-                                React.createElement("option", {key: 'month-view-opt' + i, value: i}, 
-                                    month.name
-                                )
-                            );
-                        })
-                    ), 
-                    React.createElement("input", {type: "button", 
-                           value: ">>", 
-                           onClick: this.nextMonthView})
+                React.createElement("table", {className: "month-picker"}, 
+                    React.createElement("tbody", null, 
+                    React.createElement("tr", null, 
+                        React.createElement("td", {style: {textAlign: "right"}}, 
+                            React.createElement("input", {type: "button", 
+                                   value: "<<", 
+                                   onClick: this.prevMonthView})
+                        ), 
+                        React.createElement("td", null, 
+                            React.createElement("select", {ref: "monthViewSelect", 
+                                    value: this.props.monthView, 
+                                    onChange: this.onMonthViewChange}, 
+                                React.createElement("option", {value: "-1"}, "Year Calendar"), 
+                                this.props.months.map(function (month, i) {
+                                    return (
+                                        React.createElement("option", {key: 'month-view-opt' + i, value: i}, 
+                                            month.name
+                                        )
+                                    );
+                                })
+                            )
+                        ), 
+                        React.createElement("td", {style: {textAlign: "left"}}, 
+                            React.createElement("input", {type: "button", 
+                                   value: ">>", 
+                                   onClick: this.nextMonthView})
+                        )
+                    )
+                    )
                 )
             );
         }
@@ -1011,6 +1013,16 @@ $(document).ready(function() {
             var currentDate = this.state.date;
             var shireAlign = this.state.shireAlign;
             var rivendellAlign = this.state.rivendellAlign;
+
+            var shireClassName = "shire-calendar";
+            if (shireAlign) {
+                shireClassName += " align-shire-calendar";
+            }
+            var rivendellClassName = "shire-calendar rivendell-calendar";
+            if (rivendellAlign) {
+                rivendellClassName += " align-rivendell-calendar";
+            }
+
             return (
                 React.createElement("table", null, 
                     React.createElement("tbody", null, 
@@ -1075,14 +1087,14 @@ $(document).ready(function() {
                         React.createElement("td", {style: {verticalAlign: 'top'}}, 
                             React.createElement(ShireCalendar, {caption: "Shire Reckoning", 
                                            date: currentDate, 
-                                           align: shireAlign, 
-                                           aligning: shireAlign || rivendellAlign})
+                                           className: shireClassName, 
+                                           yearView: shireAlign || rivendellAlign})
                         ), 
                         React.createElement("td", {style: {verticalAlign: 'top'}}, 
                             React.createElement(RivendellCalendar, {caption: "Rivendell Reckoning", 
                                                date: currentDate, 
-                                               align: rivendellAlign, 
-                                               aligning: shireAlign || rivendellAlign})
+                                               className: rivendellClassName, 
+                                               yearView: shireAlign || rivendellAlign})
                         )
                     )
                     )

@@ -1,11 +1,11 @@
 Shire Reckoning
 ===============
 
-This repo contains a couple of scripts that generate calendars showing the current date in J.R.R. Tolkien's 'Shire Reckoning'.
+This repository contains a couple of scripts that generate calendars showing the current date in J.R.R. Tolkien's 'Shire Reckoning'.
 One calendar is a [Shire Reckoning calendar](http://psarando.github.io/shire-reckoning)
 (along with a Rivendell Reckoning calendar -- also known as the Calendar of Imladris)
-showing each day's corresponding Gregorian date,
-and the other is our Gregorian calendar with the corresponding Shire Reckoning date (pre-generated in [shire-reckoning.ics](shire-reckoning.ics)).
+showing each day's corresponding Gregorian date.
+The other is our Gregorian calendar with the corresponding Shire Reckoning date (pre-generated in [shire-reckoning.ics](shire-reckoning.ics)).
 
 ## [shire-calendar](http://psarando.github.io/shire-reckoning): html + css + javascript
 
@@ -27,13 +27,13 @@ it could be that the March 27th start is also 2 days off and the Calendar of Iml
 intended to start on our March 25th as well.
 
 I've also read elsewhere that the calendar is supposed to start on the [Spring Equinox](http://en.wikipedia.org/wiki/Equinox),
-but that would put the middle of Lairë (Summer) around June 19th (a couple of days before the Summer Solstice)
+but that would put the middle of Lairë (summer) around June 19th (a couple of days before the Summer Solstice)
 and the 3 Enderi (Middledays) from Sept. 17th - 19th (3 to 5 days before the Autumnal Equionx).
 To see this for yourself, I've added a control that lets you choose the starting day of this
 Calendar of Imladris to be closer to the Spring Equinox, March 20th.
-[At one time in prehistory](http://www.sym454.org/seasons/), Autumn was the longest of the seasons,
+[At one time in prehistory](http://www.sym454.org/seasons/), autumn was the longest of the seasons,
 so these dates would have matched the seasons better during this time (and will again about 4000 years from now),
-but these days Summer is the longest season and the Spring Equinox comes relatively earlier than it did back then.
+but these days summer is the longest season and the Spring Equinox comes relatively earlier than it did back then.
 So now the [Autumnal Equionx](http://en.wikipedia.org/wiki/Equinox) usually falls on Sept. 22nd,
 and I think the 3 Enderi were intended to occur around this Equionx.
 
@@ -84,8 +84,14 @@ This way you can easily hide all these events, or delete this new calendar to re
 
 ## License
 
-Copyright (C) 2015 Paul Sarando
+Original concept and terminology created by J.R.R. Tolkien for The Lord of Rings, Appendix D.
+
+This source code is Copyright (C) 2015 Paul Sarando.
 
 Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html).
 
 With thanks to http://shire-reckoning.com/calendar.html for all the helpful info.
+
+Feel free to use any portion of these calendars on your site.
+Spruce it up with your own CSS and images!
+Just link credit back to this repository. I'd love to see what anyone else can do with these!

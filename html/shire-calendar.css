@@ -23,6 +23,13 @@
 .align-rivendell-calendar {
     margin-top: 70rem;
 }
+.month-picker {
+    margin: auto;
+}
+.month-picker td, .month-picker-container {
+    border: none;
+    height: 4rem !important;
+}
 .gregorian-display {
     font-size: .5rem;
 }
