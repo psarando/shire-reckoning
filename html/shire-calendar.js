@@ -79,12 +79,38 @@ $(document).ready(function() {
             }
         ],
 
+        MONTH_LAYOUT_VERTICAL: "vertical",
+        MONTH_LAYOUT_HORIZONTAL: "horizontal",
+
         getInitialState: function() {
-            var calendar = this.makeCalendarDates(this.props.date);
+            var calendarControls = this.props.calendarControls !== false;
+            var today = this.props.date ? this.props.date : new Date();
+            var monthViewLayout = this.props.monthViewLayout ?
+                                  this.props.monthViewLayout
+                                  : this.MONTH_LAYOUT_VERTICAL;
+
+            var calendar = this.makeCalendarDates(today);
+            var monthView = this.props.yearView ? -1 : calendar.todayShire.month;
+
             return {
+                calendarControls: calendarControls,
                 calendar: calendar,
-                monthView: calendar.todayShire.month
+                monthView: monthView,
+                monthViewLayout: monthViewLayout
             };
+        },
+
+        componentWillReceiveProps: function(nextProps) {
+            var today = nextProps.date;
+            var calendar = this.state.calendar;
+
+            if (!datesMatch(today, calendar.today)) {
+                calendar = this.makeCalendarDates(today);
+            }
+            this.setState({
+                calendar: calendar,
+                monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayShire.month
+            });
         },
 
         getNewYearDate: function (today) {
@@ -206,23 +232,71 @@ $(document).ready(function() {
             this.setState({monthView: monthView});
         },
 
-        componentWillReceiveProps: function(nextProps) {
-            var today = nextProps.date;
-            var calendar = this.state.calendar;
-
-            if (!datesMatch(today, calendar.today)) {
-                calendar = this.makeCalendarDates(today);
-            }
-            this.setState({
-                calendar: calendar,
-                monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayShire.month
-            });
+        onMonthViewLayoutChange: function (event) {
+            this.setState({monthViewLayout: event.target.value});
         },
 
-        render: function () {
-            var today = this.props.date;
-            var calendar = this.state.calendar;
-            var dates = calendar.dates;
+        renderDay: function(dates, today) {
+            var date = dates[0];
+            switch (date.day) {
+                case "1 Yule":
+                    return (
+                        React.createElement(IntercalaryDay, {key: "1-Yule", 
+                                        description: "Shire New Year's Eve!", 
+                                        currentDate: today, 
+                                        dates: [date]})
+                    );
+
+                case "2 Yule":
+                    return (
+                        React.createElement(IntercalaryDay, {key: "2-Yule", 
+                                        description: "Midwinter: Shire New Year!", 
+                                        currentDate: today, 
+                                        dates: [date]})
+                    );
+
+                case "1 Lithe":
+                    return (
+                        React.createElement(IntercalaryDay, {key: "Midsummer", 
+                                        description: "Midsummer's Eve and Midsummer's Day!", 
+                                        currentDate: today, 
+                                        dates: dates})
+                    );
+
+                case "OverLithe":
+                    return (
+                        React.createElement(IntercalaryDay, {key: "OverLithe", 
+                                        description: "Shire Leap Day and Day after Midsummer.", 
+                                        currentDate: today, 
+                                        dates: dates})
+                    );
+
+                case "2 Lithe":
+                    return (
+                        React.createElement(IntercalaryDay, {key: "2-Lithe", 
+                                        description: "Day after Midsummer.", 
+                                        currentDate: today, 
+                                        dates: [date]})
+                    );
+
+                default:
+                    var month = this.months[date.month];
+
+                    return (
+                        React.createElement(DateCell, {key: date.day + month.name, 
+                                  date: date, 
+                                  currentDate: today, 
+                                  month: month.name, 
+                                  description: month.description, 
+                                  weekday: this.weekdays[date.weekDay].name, 
+                                  className: month.className})
+                    );
+            }
+        },
+
+        renderMonth: function() {
+            var today = this.state.calendar.today;
+            var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
 
             var week = [];
@@ -235,79 +309,25 @@ $(document).ready(function() {
             }
 
             for (var weekday = 0; weekday < dates[i].weekDay; weekday++) {
-                week.push(React.createElement(WeekDayHeaderCell, {key: '0-month-filler-' + weekday}));
+                week.push(React.createElement(WeekDayHeaderCell, {key: 'shire-month-filler-' + weekday}));
             }
 
             for (; i < dates.length && (monthView < 0 || monthView == dates[i].month); i++, date = dates[i]) {
                 switch (date.day) {
-                    case "2 Yule":
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "2-Yule", 
-                                            description: "Midwinter: Shire New Year!", 
-                                            currentDate: today, 
-                                            dates: [date]})
-                        );
-
-                        break;
-
                     case "1 Lithe":
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "Midsummer", 
-                                            description: "Midsummer's Eve and Midsummer's Day!", 
-                                            currentDate: today, 
-                                            dates: [date, dates[++i]]})
-                        );
-
+                        week.push(this.renderDay([date, dates[++i]], today));
                         weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
                         week = [];
 
                         break;
 
                     case "OverLithe":
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "OverLithe", 
-                                            description: "Shire Leap Day and Day after Midsummer.", 
-                                            currentDate: today, 
-                                            dates: [date, dates[++i]]})
-                        );
-
-                        break;
-
-                    case "2 Lithe":
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "2-Lithe", 
-                                            description: "Day after Midsummer.", 
-                                            currentDate: today, 
-                                            dates: [date]})
-                        );
-
-                        break;
-
-                    case "1 Yule":
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "1-Yule", 
-                                            description: "Shire New Year's Eve!", 
-                                            currentDate: today, 
-                                            dates: [date]})
-                        );
-
-                        weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
-                        week = [];
+                        week.push(this.renderDay([date, dates[++i]], today));
 
                         break;
 
                     default:
-                        var month = this.months[date.month];
-
-                        week.push(
-                            React.createElement(DateCell, {key: date.day + month.name, 
-                                      date: date, 
-                                      currentDate: today, 
-                                      month: month.name, 
-                                      description: month.description, 
-                                      weekday: this.weekdays[date.weekDay].name, 
-                                      className: month.className})
-                        );
+                        week.push(this.renderDay([date], today));
 
                         if ((date.weekDay + 1) % 7 === 0) {
                             weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
@@ -319,23 +339,157 @@ $(document).ready(function() {
             }
 
             if (week.length > 0) {
-                weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+                weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
             }
 
-            var caption = this.props.caption ? (React.createElement("caption", null, this.props.caption)) : null;
+            return weeks;
+        },
+
+        renderMonthVertical: function() {
+            var today = this.state.calendar.today;
+            var dates = this.state.calendar.dates;
+            var monthView = this.state.monthView;
+
+            var weeks = this.weekdays.map(function (weekday) {
+                return [(
+                    React.createElement(WeekDayHeaderCell, {key: weekday.name, 
+                                       name: weekday.name, 
+                                       description: weekday.description, 
+                                       colSpan: "2"})
+                )];
+            });
+
+            for (var i = 0, date = dates[i];
+                 i < dates.length && date.month < monthView;
+                 i++, date = dates[i]) {
+                // seek ahead to current month view
+            }
+
+            for (var weekday = 0; weekday < dates[i].weekDay; weekday++) {
+                weeks[weekday].push(React.createElement(WeekDayHeaderCell, {key: 'shire-month-filler-' + weekday}));
+            }
+
+            for (; i < dates.length && (monthView < 0 || monthView == dates[i].month); i++, date = dates[i]) {
+                switch (date.day) {
+                    case "1 Lithe":
+                        weeks[date.weekDay].push(this.renderDay([date, dates[++i]], today));
+
+                        break;
+
+                    case "OverLithe":
+                        weeks[date.weekDay].push(this.renderDay([date, dates[++i]], today));
+
+                        break;
+
+                    default:
+                        weeks[date.weekDay].push(this.renderDay([date], today));
+
+                        break;
+                }
+            }
+
+            return weeks.map(function (week, i) {
+                return (React.createElement("tr", {key: "shire-week-" + (i + 1)}, week));
+            });
+        },
+
+        renderYear: function() {
+            var today = this.state.calendar.today;
+            var dates = this.state.calendar.dates;
+
+            var week = [];
+            var weeks = [];
+
+            for (var i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
+                switch (date.day) {
+                    case "1 Lithe":
+                        week.push(this.renderDay([date, dates[++i]], today));
+                        weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+                        week = [];
+
+                        break;
+
+                    case "OverLithe":
+                        week.push(this.renderDay([date, dates[++i]], today));
+
+                        break;
+
+                    default:
+                        week.push(this.renderDay([date], today));
+
+                        if ((date.weekDay + 1) % 7 === 0) {
+                            weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+                            week = [];
+                        }
+
+                        break;
+                }
+            }
+
+            if (week.length > 0) {
+                weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+            }
+
+            return weeks;
+        },
+
+        renderMonthVerticalHeader: function () {
+            var weekdays = this.weekdays.map(function (weekday, i) {
+                return (
+                    React.createElement("td", {key: 'shire-weekday-header-filler-' + i, 
+                        className: "shire-vertical-header-filler"}
+                    )
+                );
+            });
+
+            return (React.createElement("tr", {className: "shire-vertical-header-filler"}, weekdays));
+        },
+
+        renderCalendarControls: function () {
+            return (
+                React.createElement("tr", null, 
+                    React.createElement("td", {colSpan: "5", className: "shire-calendar-controls month-picker-container"}, 
+                        React.createElement(MonthViewPicker, {onMonthViewChange: this.onMonthViewChange, 
+                                         monthView: this.state.monthView, 
+                                         months: this.months})
+                    ), 
+                    React.createElement("td", {colSpan: "2", className: "shire-calendar-controls"}, 
+                        "Month View Layout:", 
+                        React.createElement("br", null), 
+                        React.createElement("select", {value: this.state.monthViewLayout, 
+                                onChange: this.onMonthViewLayoutChange}, 
+                            React.createElement("option", {value: this.MONTH_LAYOUT_VERTICAL}, "Vertical"), 
+                            React.createElement("option", {value: this.MONTH_LAYOUT_HORIZONTAL}, "Horizontal")
+                        )
+                    )
+                )
+            );
+        },
+
+        render: function () {
+            var weekDayHeader = (React.createElement(WeekDayHeader, {weekdays: this.weekdays}));
+
+            var weeks;
+            if (this.state.monthView < 0) {
+                weeks = this.renderYear();
+            } else if (this.state.monthViewLayout == this.MONTH_LAYOUT_VERTICAL) {
+                weeks = this.renderMonthVertical();
+                weekDayHeader = this.renderMonthVerticalHeader();
+            } else {
+                weeks = this.renderMonth();
+            }
+
+            var controls = this.state.calendarControls ? this.renderCalendarControls() : null;
+            var caption = this.props.caption ?
+                (React.createElement("caption", {className: "shire-caption"}, this.props.caption))
+                : null;
 
             return (
                 React.createElement("table", {className: this.props.className}, 
                     caption, 
                     React.createElement("thead", null, 
-                        React.createElement("tr", null, 
-                            React.createElement("td", {colSpan: "7", className: "month-picker-container"}, 
-                                React.createElement(MonthViewPicker, {onMonthViewChange: this.onMonthViewChange, 
-                                                 monthView: this.state.monthView, 
-                                                 months: this.months})
-                            )
-                        ), 
-                        React.createElement(WeekDayHeader, {weekdays: this.weekdays})
+                        controls, 
+                        weekDayHeader
                     ), 
                     React.createElement("tbody", null, 
                         weeks
@@ -434,20 +588,38 @@ $(document).ready(function() {
         REFORMED_RULES: "reformed",
 
         getInitialState: function() {
-            var language = "quenya";
-            var startDay = 25;
-            var calendarRules = this.TRADITIONAL_RULES;
-            var calendar = this.makeCalendarDates(this.props.date, calendarRules, startDay);
+            var calendarControls = this.props.calendarControls !== false;
+            var language = this.props.language ? this.props.language : "quenya";
+            var startDay = this.props.startDay ? this.props.startDay : 25;
+            var calendarRules = this.props.calendarRules ? this.props.calendarRules : this.TRADITIONAL_RULES;
+            var today = this.props.date ? this.props.date : new Date();
+
+            var calendar = this.makeCalendarDates(today, calendarRules, startDay);
+            var monthView = this.props.yearView ? -1 : calendar.todayRivendell.month;
 
             this.setLanguage(language);
 
             return {
+                calendarControls: calendarControls,
                 calendar: calendar,
-                monthView: calendar.todayRivendell.month,
+                monthView: monthView,
                 startDay: startDay,
                 calendarRules: calendarRules,
                 language: language
             };
+        },
+
+        componentWillReceiveProps: function(nextProps) {
+            var today = nextProps.date;
+            var calendar = this.state.calendar;
+
+            if (!datesMatch(today, calendar.today)) {
+                calendar = this.makeCalendarDates(today, this.state.calendarRules, this.state.startDay);
+            }
+            this.setState({
+                calendar: calendar,
+                monthView: nextProps.yearView ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
+            });
         },
 
         setLanguage: function(language) {
@@ -628,7 +800,7 @@ $(document).ready(function() {
 
         onCalendarStartChange: function(event) {
             var startDay = event.target.value;
-            var calendar = this.makeCalendarDates(this.props.date, this.state.calendarRules, startDay);
+            var calendar = this.makeCalendarDates(this.state.calendar.today, this.state.calendarRules, startDay);
             this.setState({
                 startDay: startDay,
                 calendar: calendar,
@@ -638,7 +810,7 @@ $(document).ready(function() {
 
         onCalendarRulesChange: function(event) {
             var calendarRules = event.target.value;
-            var calendar = this.makeCalendarDates(this.props.date, calendarRules, this.state.startDay);
+            var calendar = this.makeCalendarDates(this.state.calendar.today, calendarRules, this.state.startDay);
             this.setState({
                 calendarRules: calendarRules,
                 calendar: calendar,
@@ -652,28 +824,68 @@ $(document).ready(function() {
             this.setState({language: language});
         },
 
-        componentWillReceiveProps: function(nextProps) {
-            var today = nextProps.date;
-            var calendar = this.state.calendar;
+        renderDay: function(date, today) {
+            var language = this.state.language;
 
-            if (!datesMatch(today, calendar.today)) {
-                calendar = this.makeCalendarDates(today, this.state.calendarRules, this.state.startDay);
+            switch (date.date) {
+                case "Yestarë":
+                    date.day = language == "english" ? "First Day" : "Yestarë";
+                    return (
+                        React.createElement(IntercalaryDay, {key: "RivendellNewYear", 
+                                        description: "Rivendell New Year's Day!", 
+                                        currentDate: today, 
+                                        dates: [date]})
+                    );
+
+                case "Enderë":
+                    date.day = language == "english" ? "Middleday" : "Enderë";
+                    return (
+                        React.createElement(IntercalaryDay, {key: "Middleday-" + date.weekDay, 
+                                        description: "Middleday", 
+                                        currentDate: today, 
+                                        dates: [date]})
+                    );
+
+                case "Leap Enderë":
+                    date.day = language == "english" ? "Leap Middleday" : "Leap Enderë";
+                    return (
+                        React.createElement(IntercalaryDay, {key: "Middleday-" + date.weekDay, 
+                                        description: "Middleday", 
+                                        currentDate: today, 
+                                        dates: [date]})
+                    );
+
+                case "Mettarë":
+                    date.day = language == "english" ? "Last Day" : "Mettarë";
+                    return (
+                        React.createElement(IntercalaryDay, {key: "RivendellNewYearsEve", 
+                                        description: "Rivendell New Year's Eve!", 
+                                        currentDate: today, 
+                                        dates: [date]})
+                    );
+
+                default:
+                    var month = this.months[date.month];
+
+                    return (
+                        React.createElement(DateCell, {key: date.day + month.name, 
+                                  date: date, 
+                                  currentDate: today, 
+                                  month: month.name, 
+                                  description: month.description, 
+                                  weekday: this.weekdays[date.weekDay].name, 
+                                  className: month.className})
+                    );
             }
-            this.setState({
-                calendar: calendar,
-                monthView: nextProps.yearView ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
-            });
         },
 
-        render: function () {
-            var today = this.props.date;
+        renderMonth: function() {
+            var today = this.state.calendar.today;
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
-            var language = this.state.language;
 
             var week = [];
             var weeks = [];
-            var enderi = 1;
 
             for (var i = 0, date = dates[i];
                  i < dates.length && date.month < monthView;
@@ -682,70 +894,11 @@ $(document).ready(function() {
             }
 
             for (var weekday = 0; weekday < date.weekDay; weekday++) {
-                week.push(React.createElement(WeekDayHeaderCell, {key: '0-month-filler-' + weekday}));
+                week.push(React.createElement(WeekDayHeaderCell, {key: 'rivendell-month-filler-' + weekday}));
             }
 
             for (; i < dates.length && (monthView < 0 || monthView == date.month); i++, date = dates[i]) {
-                switch (date.date) {
-                    case "Yestarë":
-                        date.day = language == "english" ? "First Day" : "Yestarë";
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "RivendellNewYear", 
-                                            description: "Rivendell New Year's Day!", 
-                                            currentDate: today, 
-                                            dates: [date]})
-                        );
-
-                        break;
-
-                    case "Enderë":
-                        date.day = language == "english" ? "Middleday" : "Enderë";
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "Middleday-" + (enderi++), 
-                                            description: "Middleday", 
-                                            currentDate: today, 
-                                            dates: [date]})
-                        );
-
-                        break;
-
-                    case "Leap Enderë":
-                        date.day = language == "english" ? "Leap Middleday" : "Leap Enderë";
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "Middleday-" + (enderi++), 
-                                            description: "Middleday", 
-                                            currentDate: today, 
-                                            dates: [date]})
-                        );
-
-                        break;
-
-                    case "Mettarë":
-                        date.day = language == "english" ? "Last Day" : "Mettarë";
-                        week.push(
-                            React.createElement(IntercalaryDay, {key: "RivendellNewYearsEve", 
-                                            description: "Rivendell New Year's Eve!", 
-                                            currentDate: today, 
-                                            dates: [date]})
-                        );
-
-                        break;
-
-                    default:
-                        var month = this.months[date.month];
-
-                        week.push(
-                            React.createElement(DateCell, {key: date.day + month.name, 
-                                      date: date, 
-                                      currentDate: today, 
-                                      month: month.name, 
-                                      description: month.description, 
-                                      weekday: this.weekdays[date.weekDay].name, 
-                                      className: month.className})
-                        );
-
-                        break;
-                }
+                week.push(this.renderDay(date, today));
 
                 if ((date.weekDay + 1) % 6 === 0) {
                     weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
@@ -755,14 +908,8 @@ $(document).ready(function() {
 
             if (monthView == 2) {
                 date = dates[i];
-                for (; date.date == "Enderë"; i++, enderi++, date = dates[i]) {
-                    date.day = language == "english" ? "Middleday" : "Enderë";
-                    week.push(
-                        React.createElement(IntercalaryDay, {key: "Middleday-" + (enderi), 
-                                        description: "Middleday", 
-                                        currentDate: today, 
-                                        dates: [date]})
-                    );
+                for (; date.date == "Enderë"; i++, date = dates[i]) {
+                    week.push(this.renderDay(date, today));
 
                     if ((date.weekDay + 1) % 6 === 0) {
                         weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
@@ -775,43 +922,85 @@ $(document).ready(function() {
                 weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
             }
 
-            var caption = this.props.caption ? (React.createElement("caption", null, this.props.caption)) : null;
+            return weeks;
+        },
+
+        renderYear: function() {
+            var today = this.state.calendar.today;
+            var dates = this.state.calendar.dates;
+
+            var week = [];
+            var weeks = [];
+
+            for (var weekday = 0; weekday < dates[0].weekDay; weekday++) {
+                week.push(React.createElement(WeekDayHeaderCell, {key: 'rivendell-month-filler-' + weekday}));
+            }
+
+            for (var i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
+                week.push(this.renderDay(date, today));
+
+                if ((date.weekDay + 1) % 6 === 0) {
+                    weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+                    week = [];
+                }
+            }
+
+            if (week.length > 0) {
+                weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+            }
+
+            return weeks;
+        },
+
+        renderCalendarControls: function () {
+            return (
+                React.createElement("tr", null, 
+                    React.createElement("td", {className: "rivendell-calendar-controls"}, 
+                        "Language:", 
+                        React.createElement("br", null), 
+                        React.createElement("select", {value: this.state.language, 
+                                onChange: this.onLanguageChange}, 
+                            React.createElement("option", {value: "english"}, "English"), 
+                            React.createElement("option", {value: "quenya"}, "Quenya"), 
+                            React.createElement("option", {value: "sindarin"}, "Sindarin")
+                        )
+                    ), 
+                    React.createElement("td", {className: "rivendell-calendar-controls month-picker-container", colSpan: "3"}, 
+                        React.createElement(MonthViewPicker, {onMonthViewChange: this.onMonthViewChange, 
+                                         monthView: this.state.monthView, 
+                                         months: this.months})
+                    ), 
+                    React.createElement("td", {className: "rivendell-calendar-controls", colSpan: "2"}, 
+                        "Align New Year's Day with March", 
+                        React.createElement("select", {value: this.state.startDay, 
+                                onChange: this.onCalendarStartChange}, 
+                            React.createElement("option", {value: "20"}, "20th"), 
+                            React.createElement("option", {value: "25"}, "25th"), 
+                            React.createElement("option", {value: "27"}, "27th")
+                        ), 
+                        React.createElement("select", {value: this.state.calendarRules, 
+                                onChange: this.onCalendarRulesChange}, 
+                            React.createElement("option", {value: this.TRADITIONAL_RULES}, "Traditional Rules"), 
+                            React.createElement("option", {value: this.REFORMED_RULES}, "Reformed Rules")
+                        )
+                    )
+                )
+            );
+        },
+
+        render: function () {
+            var weeks = this.state.monthView < 0 ? this.renderYear() : this.renderMonth();
+
+            var controls = this.state.calendarControls ? this.renderCalendarControls() : null;
+            var caption = this.props.caption ?
+                (React.createElement("caption", {className: "rivendell-caption"}, this.props.caption))
+                : null;
 
             return (
                 React.createElement("table", {className: this.props.className}, 
                     caption, 
                     React.createElement("thead", null, 
-                        React.createElement("tr", null, 
-                            React.createElement("td", null, 
-                                "Language:", 
-                                React.createElement("br", null), 
-                                React.createElement("select", {value: this.state.language, 
-                                        onChange: this.onLanguageChange}, 
-                                    React.createElement("option", {value: "english"}, "English"), 
-                                    React.createElement("option", {value: "quenya"}, "Quenya"), 
-                                    React.createElement("option", {value: "sindarin"}, "Sindarin")
-                                )
-                            ), 
-                            React.createElement("td", {colSpan: "3"}, 
-                                React.createElement(MonthViewPicker, {onMonthViewChange: this.onMonthViewChange, 
-                                                 monthView: this.state.monthView, 
-                                                 months: this.months})
-                            ), 
-                            React.createElement("td", {colSpan: "2"}, 
-                                "Align New Year's Day with March", 
-                                React.createElement("select", {value: this.state.startDay, 
-                                        onChange: this.onCalendarStartChange}, 
-                                    React.createElement("option", {value: "20"}, "20th"), 
-                                    React.createElement("option", {value: "25"}, "25th"), 
-                                    React.createElement("option", {value: "27"}, "27th")
-                                ), 
-                                React.createElement("select", {value: this.state.calendarRules, 
-                                        onChange: this.onCalendarRulesChange}, 
-                                    React.createElement("option", {value: this.TRADITIONAL_RULES}, "Traditional Rules"), 
-                                    React.createElement("option", {value: this.REFORMED_RULES}, "Reformed Rules")
-                                )
-                            )
-                        ), 
+                        controls, 
                         React.createElement(WeekDayHeader, {weekdays: this.weekdays})
                     ), 
                     React.createElement("tbody", null, 
@@ -825,7 +1014,9 @@ $(document).ready(function() {
     var WeekDayHeaderCell = React.createClass({displayName: "WeekDayHeaderCell",
         render: function() {
             return (
-                React.createElement("td", {className: "weekday-header", title: this.props.description}, 
+                React.createElement("td", {className: "weekday-header", 
+                    colSpan: this.props.colSpan, 
+                    title: this.props.description}, 
                     this.props.name
                 )
             );

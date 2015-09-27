@@ -23,6 +23,16 @@
 .align-rivendell-calendar {
     margin-top: 70rem;
 }
+.shire-caption, .rivendell-caption {
+    background-color: azure;
+}
+.shire-calendar-controls {
+    border-bottom: none !important;
+    height: 4rem !important;
+}
+.rivendell-calendar-controls {
+    height: 4rem !important;
+}
 .month-picker {
     margin: auto;
 }
@@ -36,6 +46,10 @@
 .date-time-input {
     width: 3.5rem;
     text-align: center;
+}
+.shire-vertical-header-filler {
+    height: 0 !important;
+    visibility: collapse;
 }
 
 .highlight      { background-color: yellow; }
