@@ -19,7 +19,7 @@ This allows it to stay in sync with the Gregorian calendar so that most Shire Re
 will always fall on the same Gregorian date.
 Additionally, these calendars make no attempt to correlate Gregorian years with Ages of Middle-earth.
 
-## [shire-calendar](http://psarando.github.io/shire-reckoning): html + css + javascript
+## [tolkien-calendars](http://psarando.github.io/shire-reckoning): html + css + javascript
 
 The [html](html) directory contains files that can generate a visualization of
 the calendars, described in The Lord of the Rings, Appendix D, in a web browser as simple HTML tables

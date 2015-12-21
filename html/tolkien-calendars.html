@@ -10,23 +10,23 @@
             The Lord of the Rings, Appendix D by J.R.R. Tolkien
         </title>
 
-        <link href="shire-calendar.css" media="all" rel="stylesheet" type="text/css" />
+        <link href="tolkien-calendars.css" media="all" rel="stylesheet" type="text/css" />
         <link href="examples/align-year-views.css" media="all" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="react-0.13.3/react.min.js" ></script>
-        <script type="text/javascript" src="shire-calendar.js" ></script>
+        <script type="text/javascript" src="tolkien-calendars.js" ></script>
         <script type="text/javascript" src="examples/tolkien-calendar-examples.js" ></script>
 
         <script type="text/javascript">
             window.onload = function() {
                 React.render(
                     React.createElement(TolkienCalendars.Example, null),
-                    document.getElementById("shire-calendar")
+                    document.getElementById("tolkien-calendars")
                 );
             };
         </script>
     </head>
     <body>
-        <div id='shire-calendar' ></div>
+        <div id='tolkien-calendars' ></div>
     </body>
 </html>
 
