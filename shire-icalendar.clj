@@ -137,8 +137,8 @@
                   ";INTERVAL=1;BYYEARDAY=171")
  (print-cal-event (LocalDate. 1932 6 20)
                   (+ 172 11)
-                  (format-shire-date "Mid-Year's Day" nil nil)
-                  "Midsummer's Day!"
+                  (format-shire-date "Midyear's Day" nil nil)
+                  "Midsummer Day!"
                   ";INTERVAL=1;BYYEARDAY=172")
  (print-cal-event (LocalDate. 1932 6 21)
                   (+ 173 11)

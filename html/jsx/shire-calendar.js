@@ -7,74 +7,86 @@
 $(document).ready(function() {
     var ShireCalendar = React.createClass({
         weekdays: [
-            {name: 'Sterday',   description: "Stars of Varda Day (sterrendei)."},
-            {name: 'Sunday',    description: "Sun Day (sunnendei)."},
-            {name: 'Monday',    description: "Moon Day (monendei)."},
-            {name: 'Trewsday',  description: "Two Trees of Valinor Day (trewesdei)."},
-            {name: 'Hevensday', description: "Heavens Day (hevensdei)."},
-            {name: 'Mersday',   description: "Sea Day (meresdei)."},
-            {name: 'Highday',   description: "Valar Day (hihdei)."}
+            {name: 'Sterday',   description: "Stars of Varda Day. From the archaic Sterrendei."},
+            {name: 'Sunday',    description: "Sun Day. From the archaic Sunnendei."},
+            {name: 'Monday',    description: "Moon Day. From the archaic Monendei."},
+            {name: 'Trewsday',  description: "Two Trees of Valinor Day. From the archaic Trewesdei."},
+            {name: 'Hevensday', description: "Heavens Day. From the archaic Hevensdei."},
+            {name: 'Mersday',   description: "Sea Day. From the archaic Meresdei."},
+            {name: 'Highday',   description: "Valar Day. From the archaic Hihdei."}
         ],
 
         months: [
             {
-                name: 'Afteryule',
-                description: "Afteryule:\nThe month after the winter solstice (Midwinter) feast of Gēola or Giúl (Yule).",
+                shire: 'Afteryule',
+                bree: 'Frery',
+                description: "The month after the winter solstice (Midwinter) feast of Gēola or Giúl (Yule).",
                 className: "afteryule"
             },
             {
-                name: 'Solmath',
-                description: "Solmath:\nSol Month. The return of the sun (sol), or perhaps from the Old English word for mud.\nMuddy Month.",
+                shire: 'Solmath',
+                bree: 'Solmath',
+                description: "Sol Month. The return of the sun (sol), or perhaps from the Old English word for mud.\nMuddy Month.",
                 className: "solmath"
             },
             {
-                name: 'Rethe',
-                description: "Rethe:\nMonth of the Goddess Hrēþ or Hretha.\nMonth of Wildness.",
+                shire: 'Rethe',
+                bree: 'Rethe',
+                description: "Month of the Goddess Hrēþ or Hretha.\nMonth of Wildness.",
                 className: "rethe"
             },
             {
-                name: 'Astron',
-                description: "Astron:\nSpring month.\nNamed after the Goddess Ēostre.",
+                shire: 'Astron',
+                bree: 'Chithing',
+                description: "Spring month.\nNamed after the Goddess Ēostre.",
                 className: "astron"
             },
             {
-                name: 'Thrimidge',
-                description: "Thrimidge:\nThe month of plenty, when cows were given three milkings (thri+milching) daily.",
+                shire: 'Thrimidge',
+                bree: 'Thrimidge',
+                description: "The month of plenty, when cows were given three milkings (thri+milching) daily.",
                 className: "thrimidge"
             },
             {
-                name: 'Forelithe',
-                description: "Forelithe:\nThe month before the summer solstice (Midsummer), when gentle (Litha) weather encouraged voyages.\nCalm or Navigable Month.",
+                shire: 'Forelithe',
+                bree: 'Lithe',
+                description: "The month before the summer solstice (Midsummer), when gentle (Litha) weather encouraged voyages.\nCalm or Navigable Month.",
                 className: "forelithe"
             },
             {
-                name: 'Afterlithe',
-                description: "Afterlithe:\nThe month after the summer solstice (Midsummer).\nMeadow Month.",
+                shire: 'Afterlithe',
+                bree: 'Mede',
+                description: "The month after the summer solstice (Midsummer).\nMeadow Month.",
                 className: "afterlithe"
             },
             {
-                name: 'Wedmath',
-                description: "Wedmath:\nWhen fields were beset by weeds (weod).\nPlant Month.",
+                shire: 'Wedmath',
+                bree: 'Wedmath',
+                description: "When fields were beset by weeds (weod).\nPlant Month.",
                 className: "wedmath"
             },
             {
-                name: 'Halimath',
-                description: "Halimath:\nThe holy (haleg) month of sacred rites.\nHarvest Month.",
+                shire: 'Halimath',
+                bree: 'Harvestmath',
+                description: "The holy (haleg) month of sacred rites.\nHarvest Month.",
                 className: "halimath"
             },
             {
-                name: 'Winterfilth',
-                description: "Winterfilth:\nThe filling (fylleth) of winter's first full moon, according to Bede; Tolkien instead suggests the \"filling\" or completion of the year before Winter, after the harvest.\nWine Month.",
+                shire: 'Winterfilth',
+                bree: 'Wintring',
+                description: "The filling (fylleth) of winter's first full moon, according to Bede; Tolkien instead suggests the \"filling\" or completion of the year before Winter, after the harvest.\nWine Month.",
                 className: "winterfilth"
             },
             {
-                name: 'Blotmath',
-                description: "Blotmath:\nThe month of blood (blod).\nMonth of Sacrifice or Slaughter.",
+                shire: 'Blotmath',
+                bree: 'Blooting',
+                description: "The month of blood (blod).\nMonth of Sacrifice or Slaughter.",
                 className: "blotmath"
             },
             {
-                name: 'Foreyule',
-                description: "Foreyule:\nThe month before the solstice (Midwinter) feast of Gēola or Giúl (Yule).",
+                shire: 'Foreyule',
+                bree: 'Yulemath',
+                description: "The month before the solstice (Midwinter) feast of Gēola or Giúl (Yule).",
                 className: "foreyule"
             }
         ],
@@ -84,10 +96,9 @@ $(document).ready(function() {
 
         getInitialState: function() {
             var calendarControls = this.props.calendarControls !== false;
-            var today = this.props.date ? this.props.date : new Date();
-            var monthViewLayout = this.props.monthViewLayout ?
-                                  this.props.monthViewLayout
-                                  : this.MONTH_LAYOUT_VERTICAL;
+            var today = this.props.date || new Date();
+            var monthViewLayout = this.props.monthViewLayout || this.MONTH_LAYOUT_VERTICAL;
+            var region = this.props.region || "shire";
 
             var calendar = this.makeCalendarDates(today);
             var monthView = this.props.yearView ? -1 : calendar.todayShire.month;
@@ -96,7 +107,8 @@ $(document).ready(function() {
                 calendarControls: calendarControls,
                 calendar: calendar,
                 monthView: monthView,
-                monthViewLayout: monthViewLayout
+                monthViewLayout: monthViewLayout,
+                region: region
             };
         },
 
@@ -104,7 +116,7 @@ $(document).ready(function() {
             var today = nextProps.date;
             var calendar = this.state.calendar;
 
-            if (!datesMatch(today, calendar.today)) {
+            if (today && !datesMatch(today, calendar.today)) {
                 calendar = this.makeCalendarDates(today);
             }
             this.setState({
@@ -156,6 +168,10 @@ $(document).ready(function() {
                 if (month == 5) {
                     dates.push({
                         "day": "1 Lithe",
+                        "region": {
+                            "shire": "1 Lithe",
+                            "bree": "1 Summerday"
+                        },
                         "month": month,
                         "weekDay": weekDay % 7,
                         "gregorian": gregorianDate
@@ -167,7 +183,7 @@ $(document).ready(function() {
 
                     gregorianDate = getNextDate(gregorianDate);
                     dates.push({
-                        "day": "Mid-Year's Day",
+                        "day": "Midyear's Day",
                         "month": month,
                         "weekDay": weekDay % 7,
                         "gregorian": gregorianDate
@@ -178,10 +194,15 @@ $(document).ready(function() {
                     }
 
                     weekDay++;
-                    if (isLeapYear(gregorianDate)) {
+                    var leapYear = isLeapYear(gregorianDate);
+                    if (leapYear) {
                         gregorianDate = getNextDate(gregorianDate);
                         dates.push({
                             "day": "OverLithe",
+                            "region": {
+                                "shire": "OverLithe",
+                                "bree": "3 Summerday"
+                            },
                             "month": month+1,
                             "weekDay": weekDay % 7,
                             "gregorian": gregorianDate
@@ -195,6 +216,10 @@ $(document).ready(function() {
                     gregorianDate = getNextDate(gregorianDate);
                     dates.push({
                         "day": "2 Lithe",
+                        "region": {
+                            "shire": "2 Lithe",
+                            "bree": leapYear ? "4 Summerday" : "3 Summerday"
+                        },
                         "month": month+1,
                         "weekDay": weekDay % 7,
                         "gregorian": gregorianDate
@@ -227,7 +252,6 @@ $(document).ready(function() {
             };
         },
 
-
         onMonthViewChange: function(monthView) {
             this.setState({monthView: monthView});
         },
@@ -236,59 +260,74 @@ $(document).ready(function() {
             this.setState({monthViewLayout: event.target.value});
         },
 
+        onRegionChange: function (event) {
+            this.setState({region: event.target.value});
+        },
+
         renderDay: function(dates, today) {
             var date = dates[0];
+            var region = this.state.region;
             switch (date.day) {
                 case "1 Yule":
                     return (
                         <IntercalaryDay key="1-Yule"
+                                        name={date.day}
                                         description="Shire New Year's Eve!"
                                         currentDate={today}
-                                        dates={[date]} />
+                                        gregorian={date.gregorian} />
                     );
 
                 case "2 Yule":
                     return (
                         <IntercalaryDay key="2-Yule"
+                                        name={date.day}
                                         description="Midwinter: Shire New Year!"
                                         currentDate={today}
-                                        dates={[date]} />
+                                        gregorian={date.gregorian} />
                     );
 
                 case "1 Lithe":
                     return (
                         <IntercalaryDay key="Midsummer"
-                                        description="Midsummer's Eve and Midsummer's Day!"
+                                        name={date.region[region]}
+                                        description="Midsummer's Eve and Midsummer Day!"
                                         currentDate={today}
-                                        dates={dates} />
+                                        gregorian={date.gregorian}
+                                        dayExtra={dates[1].day}
+                                        gregorianExtra={dates[1].gregorian} />
                     );
 
                 case "OverLithe":
                     return (
                         <IntercalaryDay key="OverLithe"
+                                        name={date.region[region]}
                                         description="Shire Leap Day and Day after Midsummer."
                                         currentDate={today}
-                                        dates={dates} />
+                                        gregorian={date.gregorian}
+                                        dayExtra={dates[1].region[region]}
+                                        gregorianExtra={dates[1].gregorian} />
                     );
 
                 case "2 Lithe":
                     return (
                         <IntercalaryDay key="2-Lithe"
+                                        name={date.region[region]}
                                         description="Day after Midsummer."
                                         currentDate={today}
-                                        dates={[date]} />
+                                        gregorian={date.gregorian} />
                     );
 
                 default:
                     var month = this.months[date.month];
+                    var weekday = this.weekdays[date.weekDay];
 
                     return (
-                        <DateCell key={date.day + month.name}
+                        <DateCell key={date.day + month[region]}
                                   date={date}
                                   currentDate={today}
-                                  month={month.name}
+                                  month={month[region]}
                                   description={month.description}
-                                  weekday={this.weekdays[date.weekDay].name}
+                                  weekday={weekday.name}
                                   className={month.className}/>
                     );
             }
@@ -446,12 +485,23 @@ $(document).ready(function() {
         },
 
         renderCalendarControls: function () {
+            var region = this.state.region;
+            var monthNames = this.months.map(function(month) {
+                return month[region];
+            });
             return (
                 <tr>
-                    <td colSpan='5' className='shire-calendar-controls month-picker-container' >
+                    <td colSpan='2' className='shire-calendar-controls' >
+                        <select value={region}
+                                onChange={this.onRegionChange} >
+                            <option value='shire'>Shire Names</option>
+                            <option value='bree'>Bree Names</option>
+                        </select>
+                    </td>
+                    <td colSpan='3' className='shire-calendar-controls month-picker-container' >
                         <MonthViewPicker onMonthViewChange={this.onMonthViewChange}
                                          monthView={this.state.monthView}
-                                         months={this.months} />
+                                         months={monthNames} />
                     </td>
                     <td colSpan='2' className='shire-calendar-controls' >
                         Month View Layout:
@@ -467,7 +517,17 @@ $(document).ready(function() {
         },
 
         render: function () {
-            var weekDayHeader = (<WeekDayHeader weekdays={this.weekdays} />);
+            var weekDayHeader = (
+                <tr>
+                    {this.weekdays.map(function (weekday) {
+                        return (
+                            <WeekDayHeaderCell key={weekday.name}
+                                               name={weekday.name}
+                                               description={weekday.description} />
+                        );
+                    })}
+                </tr>
+            );
 
             var weeks;
             if (this.state.monthView < 0) {
@@ -589,15 +649,13 @@ $(document).ready(function() {
 
         getInitialState: function() {
             var calendarControls = this.props.calendarControls !== false;
-            var language = this.props.language ? this.props.language : "quenya";
-            var startDay = this.props.startDay ? this.props.startDay : 25;
-            var calendarRules = this.props.calendarRules ? this.props.calendarRules : this.TRADITIONAL_RULES;
-            var today = this.props.date ? this.props.date : new Date();
+            var language = this.props.language || "quenya";
+            var startDay = this.props.startDay || 25;
+            var calendarRules = this.props.calendarRules || this.TRADITIONAL_RULES;
+            var today = this.props.date || new Date();
 
             var calendar = this.makeCalendarDates(today, calendarRules, startDay);
             var monthView = this.props.yearView ? -1 : calendar.todayRivendell.month;
-
-            this.setLanguage(language);
 
             return {
                 calendarControls: calendarControls,
@@ -613,22 +671,13 @@ $(document).ready(function() {
             var today = nextProps.date;
             var calendar = this.state.calendar;
 
-            if (!datesMatch(today, calendar.today)) {
+            if (today && !datesMatch(today, calendar.today)) {
                 calendar = this.makeCalendarDates(today, this.state.calendarRules, this.state.startDay);
             }
             this.setState({
                 calendar: calendar,
                 monthView: nextProps.yearView ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
             });
-        },
-
-        setLanguage: function(language) {
-            for (var i = 0; i < this.months.length; i++) {
-                this.months[i]["name"] = this.months[i][language];
-            }
-            for (i = 0; i < this.weekdays.length; i++) {
-                this.weekdays[i]["name"] = this.weekdays[i][language];
-            }
         },
 
         getNewYearDate: function (today, calendarRules, startDay) {
@@ -819,9 +868,7 @@ $(document).ready(function() {
         },
 
         onLanguageChange: function (event) {
-            var language = event.target.value;
-            this.setLanguage(language);
-            this.setState({language: language});
+            this.setState({language: event.target.value});
         },
 
         renderDay: function(date, today) {
@@ -829,51 +876,52 @@ $(document).ready(function() {
 
             switch (date.date) {
                 case "Yestarë":
-                    date.day = language == "english" ? "First Day" : "Yestarë";
                     return (
                         <IntercalaryDay key="RivendellNewYear"
+                                        name={language == "english" ? "First Day" : "Yestarë"}
                                         description="Rivendell New Year's Day!"
                                         currentDate={today}
-                                        dates={[date]} />
+                                        gregorian={date.gregorian} />
                     );
 
                 case "Enderë":
-                    date.day = language == "english" ? "Middleday" : "Enderë";
                     return (
                         <IntercalaryDay key={"Middleday-" + date.weekDay}
+                                        name={language == "english" ? "Middleday" : "Enderë"}
                                         description="Middleday"
                                         currentDate={today}
-                                        dates={[date]} />
+                                        gregorian={date.gregorian} />
                     );
 
                 case "Leap Enderë":
-                    date.day = language == "english" ? "Leap Middleday" : "Leap Enderë";
                     return (
                         <IntercalaryDay key={"Middleday-" + date.weekDay}
+                                        name={language == "english" ? "Leap Middleday" : "Leap Enderë"}
                                         description="Middleday"
                                         currentDate={today}
-                                        dates={[date]} />
+                                        gregorian={date.gregorian} />
                     );
 
                 case "Mettarë":
-                    date.day = language == "english" ? "Last Day" : "Mettarë";
                     return (
                         <IntercalaryDay key="RivendellNewYearsEve"
+                                        name={language == "english" ? "Last Day" : "Mettarë"}
                                         description="Rivendell New Year's Eve!"
                                         currentDate={today}
-                                        dates={[date]} />
+                                        gregorian={date.gregorian} />
                     );
 
                 default:
                     var month = this.months[date.month];
+                    var weekday = this.weekdays[date.weekDay];
 
                     return (
-                        <DateCell key={date.day + month.name}
+                        <DateCell key={date.day + month[language]}
                                   date={date}
                                   currentDate={today}
-                                  month={month.name}
+                                  month={month[language]}
                                   description={month.description}
-                                  weekday={this.weekdays[date.weekDay].name}
+                                  weekday={weekday[language]}
                                   className={month.className}/>
                     );
             }
@@ -953,12 +1001,17 @@ $(document).ready(function() {
         },
 
         renderCalendarControls: function () {
+            var language = this.state.language;
+            var monthNames = this.months.map(function(month) {
+                return month[language];
+            });
+
             return (
                 <tr>
                     <td className='rivendell-calendar-controls' >
                         Language:
                         <br />
-                        <select value={this.state.language}
+                        <select value={language}
                                 onChange={this.onLanguageChange} >
                             <option value='english'>English</option>
                             <option value='quenya'>Quenya</option>
@@ -968,7 +1021,7 @@ $(document).ready(function() {
                     <td className='rivendell-calendar-controls month-picker-container' colSpan='3'>
                         <MonthViewPicker onMonthViewChange={this.onMonthViewChange}
                                          monthView={this.state.monthView}
-                                         months={this.months} />
+                                         months={monthNames} />
                     </td>
                     <td className='rivendell-calendar-controls' colSpan='2'>
                         Align New Year's Day with March
@@ -989,6 +1042,20 @@ $(document).ready(function() {
         },
 
         render: function () {
+            var language = this.state.language;
+            var weekDayHeader = (
+                <tr>
+                    {this.weekdays.map(function (weekday) {
+                        var weekdayName = weekday[language];
+                        return (
+                            <WeekDayHeaderCell key={weekdayName}
+                                               name={weekdayName}
+                                               description={weekday.description} />
+                        );
+                    })}
+                </tr>
+            );
+
             var weeks = this.state.monthView < 0 ? this.renderYear() : this.renderMonth();
 
             var controls = this.state.calendarControls ? this.renderCalendarControls() : null;
@@ -1001,7 +1068,7 @@ $(document).ready(function() {
                     {caption}
                     <thead>
                         {controls}
-                        <WeekDayHeader weekdays={this.weekdays} />
+                        {weekDayHeader}
                     </thead>
                     <tbody>
                         {weeks}
@@ -1019,22 +1086,6 @@ $(document).ready(function() {
                     title={this.props.description} >
                     {this.props.name}
                 </td>
-            );
-        }
-    });
-
-    var WeekDayHeader = React.createClass({
-        render: function() {
-            var weekDayNodes = this.props.weekdays.map(function (weekday) {
-                return (
-                    <WeekDayHeaderCell key={weekday.name}
-                                       name={weekday.name}
-                                       description={weekday.description} />
-                );
-            });
-
-            return (
-                <tr>{weekDayNodes}</tr>
             );
         }
     });
@@ -1063,31 +1114,29 @@ $(document).ready(function() {
             var dateTitle = this.props.description;
             var currentDate = this.props.currentDate;
 
-            var dates = this.props.dates;
-            var date = dates[0];
-            var gregorianDate = date.gregorian;
+            var gregorianDate = this.props.gregorian;
             var dayColor = getDateColor('holiday', gregorianDate, currentDate);
 
-            if (dates.length > 1) {
-                var date2 = dates[1];
-                dayColor = getDateColor(dayColor, date2.gregorian, currentDate);
+            if (this.props.dayExtra) {
+                var gregorianExtra = this.props.gregorianExtra;
+                dayColor = getDateColor(dayColor, gregorianExtra, currentDate);
 
                 return (
                     <td className={dayColor} title={dateTitle} >
-                        {date.day}
+                        {this.props.name}
                         <br />
                         {getGregorianDateDisplay(gregorianDate)}
                         <hr />
-                        {date2.day}
+                        {this.props.dayExtra}
                         <br />
-                        {getGregorianDateDisplay(date2.gregorian)}
+                        {getGregorianDateDisplay(gregorianExtra)}
                     </td>
                 );
             }
 
             return (
                 <td className={dayColor} title={dateTitle} >
-                    {date.day}
+                    {this.props.name}
                     <br />
                     {getGregorianDateDisplay(gregorianDate)}
                 </td>
@@ -1136,7 +1185,7 @@ $(document).ready(function() {
                                 {this.props.months.map(function (month, i) {
                                     return (
                                         <option key={'month-view-opt' + i} value={i}>
-                                            {month.name}
+                                            {month}
                                         </option>
                                     );
                                 })}
