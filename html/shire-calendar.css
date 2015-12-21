@@ -23,14 +23,14 @@
 .align-rivendell-calendar {
     margin-top: 70rem;
 }
-.shire-caption, .rivendell-caption {
+.shire-caption, .rivendell-caption, .numenor-caption {
     background-color: azure;
 }
 .shire-calendar-controls {
     border-bottom: none !important;
     height: 4rem !important;
 }
-.rivendell-calendar-controls {
+.rivendell-calendar-controls, .numenor-calendar-controls {
     height: 4rem !important;
 }
 .month-picker {
@@ -47,7 +47,7 @@
     width: 3.5rem;
     text-align: center;
 }
-.shire-vertical-header-filler {
+.shire-vertical-header-filler, .numenor-vertical-header-filler {
     height: 0 !important;
     visibility: collapse;
 }
