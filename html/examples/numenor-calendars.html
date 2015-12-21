@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Shire Reckoning: Examples of Numenor Calendar settings.
+        </title>
+
+        <link href="../shire-calendar.css" media="all" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../react-0.13.3/react.min.js" ></script>
+        <script type="text/javascript" src="../shire-calendar.js" ></script>
+        <script type="text/javascript" src="tolkien-calendar-examples.js" ></script>
+
+        <script type="text/javascript">
+            window.onload = function() {
+                React.render(
+                    React.createElement(TolkienCalendars.NumenorCalendar, null),
+                    document.getElementById("numenor-calendar-default")
+                );
+                React.render(
+                    React.createElement(TolkienCalendars.NumenorCalendarExample, null),
+                    document.getElementById("numenor-calendars")
+                );
+            };
+        </script>
+    </head>
+    <body>
+        Númenor Calendar with only default options:
+        Kings' Reckoning, Quenya language,
+        today's date, vertical month view, controls displayed, no caption title,
+        and no CSS class to style the table.
+        <div id='numenor-calendar-default' ></div>
+        <div id='numenor-calendars' ></div>
+    </body>
+</html>
+

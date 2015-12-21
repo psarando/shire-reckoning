@@ -28,6 +28,12 @@ and with today's date highlighted on each calendar.
 These calendars are the [Shire Reckoning, Rivendell Reckoning, and calendars of Gondor:
 Kings' Reckoning, Stewards' Reckoning, and the New Reckoning](http://psarando.github.io/shire-reckoning).
 
+More examples of each calendar can be found in the [examples directory](html/examples):
+
+* [Shire Calendar examples](http://psarando.github.io/shire-reckoning/examples/shire-calendars.html)
+* [Rivendell Calendar examples](http://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
+* [Númenor Calendar examples](http://psarando.github.io/shire-reckoning/examples/numenor-calendars.html)
+
 ### Notes on the visualizations of the calendars of Gondor
 
 Since the Shire Calendar originated from the Kings' Reckoning,

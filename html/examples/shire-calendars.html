@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Shire Reckoning: Examples of Shire Calendar settings.
+        </title>
+
+        <link href="../shire-calendar.css" media="all" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="../react-0.13.3/react.min.js" ></script>
+        <script type="text/javascript" src="../shire-calendar.js" ></script>
+        <script type="text/javascript" src="tolkien-calendar-examples.js" ></script>
+
+        <script type="text/javascript">
+            window.onload = function() {
+                React.render(
+                    React.createElement(TolkienCalendars.ShireCalendar, null),
+                    document.getElementById("shire-calendar-default")
+                );
+                React.render(
+                    React.createElement(TolkienCalendars.ShireCalendarExample, null),
+                    document.getElementById("shire-calendars")
+                );
+            };
+        </script>
+    </head>
+    <body>
+        Shire Reckoning with only default options:
+        Shire names of months and days,
+        today's date, vertical month view, controls displayed, no caption title,
+        and no CSS class to style the table.
+        <div id='shire-calendar-default' ></div>
+        <div id='shire-calendars' ></div>
+    </body>
+</html>
+

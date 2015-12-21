@@ -3,7 +3,9 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 
-$(document).ready(function() {
+(function () { 'use strict';
+    var TolkienCalendars = {};
+
     var CalendarCommon = React.createMixin({
         getGregorianDateDisplay: function(gregorianDate) {
             return (React.createElement("span", {className: "gregorian-display"}, gregorianDate.toDateString()));
@@ -102,7 +104,7 @@ $(document).ready(function() {
         }
     });
 
-    var MonthViewLayout = React.createMixin({
+    TolkienCalendars.MonthViewLayout = React.createMixin({
         VERTICAL: "vertical",
         HORIZONTAL: "horizontal",
 
@@ -129,16 +131,16 @@ $(document).ready(function() {
                     React.createElement("br", null), 
                     React.createElement("select", {value: this.state.monthViewLayout, 
                             onChange: this.onMonthViewLayoutChange}, 
-                        React.createElement("option", {value: MonthViewLayout.VERTICAL}, "Vertical"), 
-                        React.createElement("option", {value: MonthViewLayout.HORIZONTAL}, "Horizontal")
+                        React.createElement("option", {value: TolkienCalendars.MonthViewLayout.VERTICAL}, "Vertical"), 
+                        React.createElement("option", {value: TolkienCalendars.MonthViewLayout.HORIZONTAL}, "Horizontal")
                     )
                 )
             );
         }
     });
 
-    var ShireCalendar = React.createClass({displayName: "ShireCalendar",
-        mixins: [CalendarCommon, MonthViewPicker, MonthViewLayout],
+    TolkienCalendars.ShireCalendar = React.createClass({displayName: "ShireCalendar",
+        mixins: [CalendarCommon, MonthViewPicker, TolkienCalendars.MonthViewLayout],
 
         statics: {
             REGION_NAMES_SHIRE: "shire",
@@ -231,17 +233,17 @@ $(document).ready(function() {
         },
 
         getWeekdays: function () {
-            return ShireCalendar.weekdays;
+            return TolkienCalendars.ShireCalendar.weekdays;
         },
         getMonths: function () {
-            return ShireCalendar.months;
+            return TolkienCalendars.ShireCalendar.months;
         },
 
         getInitialState: function() {
             var calendarControls = this.props.calendarControls !== false;
             var today = this.props.date || new Date();
-            var monthViewLayout = this.props.monthViewLayout || MonthViewLayout.VERTICAL;
-            var region = this.props.region || ShireCalendar.REGION_NAMES_SHIRE;
+            var monthViewLayout = this.props.monthViewLayout || TolkienCalendars.MonthViewLayout.VERTICAL;
+            var region = this.props.region || TolkienCalendars.ShireCalendar.REGION_NAMES_SHIRE;
 
             var calendar = this.makeCalendarDates(today);
             var monthView = this.props.yearView ? -1 : calendar.todayShire.month;
@@ -453,8 +455,8 @@ $(document).ready(function() {
                     );
 
                 default:
-                    var month = ShireCalendar.months[date.month];
-                    var weekday = ShireCalendar.weekdays[date.weekDay];
+                    var month = TolkienCalendars.ShireCalendar.months[date.month];
+                    var weekday = TolkienCalendars.ShireCalendar.weekdays[date.weekDay];
 
                     return (
                         React.createElement(DateCell, {key: date.day + month[region], 
@@ -524,7 +526,7 @@ $(document).ready(function() {
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
 
-            var weeks = ShireCalendar.weekdays.map(function (weekday) {
+            var weeks = TolkienCalendars.ShireCalendar.weekdays.map(function (weekday) {
                 return [(
                     React.createElement(WeekDayHeaderCell, {key: weekday.name, 
                                        name: weekday.name, 
@@ -609,7 +611,7 @@ $(document).ready(function() {
 
         renderCalendarControls: function () {
             var region = this.state.region;
-            var monthNames = ShireCalendar.months.map(function(month) {
+            var monthNames = TolkienCalendars.ShireCalendar.months.map(function(month) {
                 return month[region];
             });
             return (
@@ -617,8 +619,8 @@ $(document).ready(function() {
                     React.createElement("td", {colSpan: "2", className: "shire-calendar-controls"}, 
                         React.createElement("select", {value: region, 
                                 onChange: this.onRegionChange}, 
-                            React.createElement("option", {value: ShireCalendar.REGION_NAMES_SHIRE}, "Shire Names"), 
-                            React.createElement("option", {value: ShireCalendar.REGION_NAMES_BREE}, "Bree Names")
+                            React.createElement("option", {value: TolkienCalendars.ShireCalendar.REGION_NAMES_SHIRE}, "Shire Names"), 
+                            React.createElement("option", {value: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE}, "Bree Names")
                         )
                     ), 
                     React.createElement("td", {colSpan: "3", className: "shire-calendar-controls month-picker-container"}, 
@@ -634,7 +636,7 @@ $(document).ready(function() {
         render: function () {
             var weekDayHeader = (
                 React.createElement("tr", null, 
-                    ShireCalendar.weekdays.map(function (weekday) {
+                    TolkienCalendars.ShireCalendar.weekdays.map(function (weekday) {
                         return (
                             React.createElement(WeekDayHeaderCell, {key: weekday.name, 
                                                name: weekday.name, 
@@ -647,7 +649,7 @@ $(document).ready(function() {
             var weeks;
             if (this.state.monthView < 0) {
                 weeks = this.renderYear();
-            } else if (this.state.monthViewLayout == MonthViewLayout.VERTICAL) {
+            } else if (this.state.monthViewLayout == TolkienCalendars.MonthViewLayout.VERTICAL) {
                 weeks = this.renderMonthVertical();
                 weekDayHeader = this.renderMonthVerticalHeader('shire-vertical-header-filler');
             } else {
@@ -674,7 +676,7 @@ $(document).ready(function() {
         }
     });
 
-    var LanguagePicker = React.createMixin({
+    TolkienCalendars.LanguagePicker = React.createMixin({
         ENGLISH: 'english',
         QUENYA: 'quenya',
         SINDARIN: 'sindarin',
@@ -690,17 +692,17 @@ $(document).ready(function() {
                     React.createElement("br", null), 
                     React.createElement("select", {value: this.state.language, 
                             onChange: this.onLanguageChange}, 
-                        React.createElement("option", {value: LanguagePicker.ENGLISH}, "English"), 
-                        React.createElement("option", {value: LanguagePicker.QUENYA}, "Quenya"), 
-                        React.createElement("option", {value: LanguagePicker.SINDARIN}, "Sindarin")
+                        React.createElement("option", {value: TolkienCalendars.LanguagePicker.ENGLISH}, "English"), 
+                        React.createElement("option", {value: TolkienCalendars.LanguagePicker.QUENYA}, "Quenya"), 
+                        React.createElement("option", {value: TolkienCalendars.LanguagePicker.SINDARIN}, "Sindarin")
                     )
                 )
             );
         }
     });
 
-    var RivendellCalendar = React.createClass({displayName: "RivendellCalendar",
-        mixins: [CalendarCommon, MonthViewPicker, LanguagePicker],
+    TolkienCalendars.RivendellCalendar = React.createClass({displayName: "RivendellCalendar",
+        mixins: [CalendarCommon, MonthViewPicker, TolkienCalendars.LanguagePicker],
 
         statics: {
             TRADITIONAL_RULES: "traditional",
@@ -792,16 +794,16 @@ $(document).ready(function() {
         },
 
         getWeekdays: function () {
-            return RivendellCalendar.weekdays;
+            return TolkienCalendars.RivendellCalendar.weekdays;
         },
         getMonths: function () {
-            return RivendellCalendar.months;
+            return TolkienCalendars.RivendellCalendar.months;
         },
 
         getInitialState: function() {
             var calendarControls = this.props.calendarControls !== false;
-            var language = this.props.language || LanguagePicker.QUENYA;
-            var calendarRules = this.props.calendarRules || RivendellCalendar.TRADITIONAL_RULES;
+            var language = this.props.language || TolkienCalendars.LanguagePicker.QUENYA;
+            var calendarRules = this.props.calendarRules || TolkienCalendars.RivendellCalendar.TRADITIONAL_RULES;
             var startDay = this.props.startDay || 21;
             var today = this.props.date || new Date();
 
@@ -849,7 +851,7 @@ $(document).ready(function() {
         },
 
         getNewYearDay: function(startYear, calendarRules, startDay) {
-            if (calendarRules == RivendellCalendar.REFORMED_RULES) {
+            if (calendarRules == TolkienCalendars.RivendellCalendar.REFORMED_RULES) {
                 return startDay;
             }
 
@@ -880,7 +882,7 @@ $(document).ready(function() {
                 - (Math.floor(yearsElapsed / 432) * 3)
             );
 
-            if (calendarRules == RivendellCalendar.REFORMED_RULES) {
+            if (calendarRules == TolkienCalendars.RivendellCalendar.REFORMED_RULES) {
                 weekDay = (
                     yearsElapsed * 365
                     + Math.floor(startYear / 4)
@@ -913,7 +915,7 @@ $(document).ready(function() {
                         break;
                     case 3:
                         var enderiCount = 3;
-                        if (calendarRules == RivendellCalendar.TRADITIONAL_RULES
+                        if (calendarRules == TolkienCalendars.RivendellCalendar.TRADITIONAL_RULES
                             && this.isRivendellLeapYear(gregorianDate)) {
                             enderiCount = 6;
                         }
@@ -961,7 +963,7 @@ $(document).ready(function() {
                 todayRivendell = dates[dates.length - 1];
             }
 
-            if (calendarRules == RivendellCalendar.REFORMED_RULES && this.isLeapYear(gregorianDate)) {
+            if (calendarRules == TolkienCalendars.RivendellCalendar.REFORMED_RULES && this.isLeapYear(gregorianDate)) {
                 gregorianDate = this.getNextDate(gregorianDate);
                 weekDay++;
 
@@ -996,7 +998,7 @@ $(document).ready(function() {
 
         onCalendarRulesChange: function(event) {
             var calendarRules = event.target.value;
-            var startDay = calendarRules == RivendellCalendar.REFORMED_RULES ? 25 : this.state.startDay;
+            var startDay = calendarRules == TolkienCalendars.RivendellCalendar.REFORMED_RULES ? 25 : this.state.startDay;
             var calendar = this.makeCalendarDates(this.state.calendar.today, calendarRules, startDay);
             this.setState({
                 calendarRules: calendarRules,
@@ -1013,7 +1015,7 @@ $(document).ready(function() {
                 case "Yestarë":
                     return (
                         React.createElement(IntercalaryDay, {key: "RivendellNewYear", 
-                                        name: language == LanguagePicker.ENGLISH ? "First Day" : "Yestarë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "First Day" : "Yestarë", 
                                         description: "Rivendell New Year's Day!", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1022,7 +1024,7 @@ $(document).ready(function() {
                 case "Enderë":
                     return (
                         React.createElement(IntercalaryDay, {key: "Middleday-" + date.weekDay, 
-                                        name: language == LanguagePicker.ENGLISH ? "Middleday" : "Enderë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Middleday" : "Enderë", 
                                         description: "Middleday", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1031,7 +1033,7 @@ $(document).ready(function() {
                 case "Leap Enderë":
                     return (
                         React.createElement(IntercalaryDay, {key: "Middleday-" + date.weekDay, 
-                                        name: language == LanguagePicker.ENGLISH ? "Leap Middleday" : "Leap Enderë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Leap Middleday" : "Leap Enderë", 
                                         description: "Middleday", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1040,15 +1042,15 @@ $(document).ready(function() {
                 case "Mettarë":
                     return (
                         React.createElement(IntercalaryDay, {key: "RivendellNewYearsEve", 
-                                        name: language == LanguagePicker.ENGLISH ? "Last Day" : "Mettarë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Last Day" : "Mettarë", 
                                         description: "Rivendell New Year's Eve!", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
                     );
 
                 default:
-                    var month = RivendellCalendar.months[date.month];
-                    var weekday = RivendellCalendar.weekdays[date.weekDay];
+                    var month = TolkienCalendars.RivendellCalendar.months[date.month];
+                    var weekday = TolkienCalendars.RivendellCalendar.weekdays[date.weekDay];
 
                     return (
                         React.createElement(DateCell, {key: date.day + month[language], 
@@ -1137,7 +1139,7 @@ $(document).ready(function() {
 
         renderCalendarControls: function () {
             var language = this.state.language;
-            var monthNames = RivendellCalendar.months.map(function(month) {
+            var monthNames = TolkienCalendars.RivendellCalendar.months.map(function(month) {
                 return month[language];
             });
 
@@ -1168,8 +1170,8 @@ $(document).ready(function() {
                         ), 
                         React.createElement("select", {value: this.state.calendarRules, 
                                 onChange: this.onCalendarRulesChange}, 
-                            React.createElement("option", {value: RivendellCalendar.TRADITIONAL_RULES}, "Traditional Rules"), 
-                            React.createElement("option", {value: RivendellCalendar.REFORMED_RULES}, "Reformed Rules")
+                            React.createElement("option", {value: TolkienCalendars.RivendellCalendar.TRADITIONAL_RULES}, "Traditional Rules"), 
+                            React.createElement("option", {value: TolkienCalendars.RivendellCalendar.REFORMED_RULES}, "Reformed Rules")
                         )
                     )
                 )
@@ -1180,7 +1182,7 @@ $(document).ready(function() {
             var language = this.state.language;
             var weekDayHeader = (
                 React.createElement("tr", null, 
-                    RivendellCalendar.weekdays.map(function (weekday) {
+                    TolkienCalendars.RivendellCalendar.weekdays.map(function (weekday) {
                         var weekdayName = weekday[language];
                         return (
                             React.createElement(WeekDayHeaderCell, {key: weekdayName, 
@@ -1213,8 +1215,8 @@ $(document).ready(function() {
         }
     });
 
-    var NumenorCalendar = React.createClass({displayName: "NumenorCalendar",
-        mixins: [CalendarCommon, MonthViewPicker, MonthViewLayout, LanguagePicker],
+    TolkienCalendars.NumenorCalendar = React.createClass({displayName: "NumenorCalendar",
+        mixins: [CalendarCommon, MonthViewPicker, TolkienCalendars.MonthViewLayout, TolkienCalendars.LanguagePicker],
 
         statics: {
             RECKONING_KINGS: "kings",
@@ -1368,18 +1370,18 @@ $(document).ready(function() {
         },
 
         getWeekdays: function () {
-            return NumenorCalendar.weekdays;
+            return TolkienCalendars.NumenorCalendar.weekdays;
         },
         getMonths: function () {
-            return NumenorCalendar.months;
+            return TolkienCalendars.NumenorCalendar.months;
         },
 
         getInitialState: function() {
             var calendarControls = this.props.calendarControls !== false;
-            var language = this.props.language || LanguagePicker.QUENYA;
+            var language = this.props.language || TolkienCalendars.LanguagePicker.QUENYA;
             var today = this.props.date || new Date();
-            var monthViewLayout = this.props.monthViewLayout || MonthViewLayout.VERTICAL;
-            var reckoning = this.props.reckoning || NumenorCalendar.RECKONING_KINGS;
+            var monthViewLayout = this.props.monthViewLayout || TolkienCalendars.MonthViewLayout.VERTICAL;
+            var reckoning = this.props.reckoning || TolkienCalendars.NumenorCalendar.RECKONING_KINGS;
 
             var calendar = this.makeCalendarDates(today, reckoning);
             var monthView = this.props.yearView ? -1 : calendar.todayNumenor.month;
@@ -1442,13 +1444,13 @@ $(document).ready(function() {
         },
 
         makeCalendarDates: function(today, reckoning) {
-            var kingsReckoning = reckoning == NumenorCalendar.RECKONING_KINGS;
-            var stewardsReckoning = reckoning == NumenorCalendar.RECKONING_STEWARDS;
-            var newReckoning = reckoning == NumenorCalendar.RECKONING_NEW;
+            var kingsReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_KINGS;
+            var stewardsReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS;
+            var newReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_NEW;
             var gregorianDate =
                 newReckoning ?
                     this.getNewReckoningNewYearDate(today) :
-                    NumenorCalendar.getNewYearDate(today);
+                    TolkienCalendars.NumenorCalendar.getNewYearDate(today);
             var todayNumenor;
 
             var dates = [];
@@ -1461,7 +1463,7 @@ $(document).ready(function() {
                         dates.push({
                             "date": "Yestarë",
                             "month": 0,
-                            "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                            "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                             "gregorian": gregorianDate
                         });
 
@@ -1484,7 +1486,7 @@ $(document).ready(function() {
                     dates.push({
                         "day": day,
                         "month": month,
-                        "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                        "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
@@ -1499,7 +1501,7 @@ $(document).ready(function() {
                             dates.push({
                                 "date": "Tuilérë",
                                 "month": month + 1,
-                                "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                                "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                                 "gregorian": gregorianDate
                             });
 
@@ -1518,7 +1520,7 @@ $(document).ready(function() {
                             dates.push({
                                 "date": "Cormarë",
                                 "month": month,
-                                "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                                "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                                 "gregorian": gregorianDate
                             });
 
@@ -1532,7 +1534,7 @@ $(document).ready(function() {
                             dates.push({
                                 "date": "Enderë",
                                 "month": month + 1,
-                                "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                                "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                                 "gregorian": gregorianDate
                             });
 
@@ -1546,7 +1548,7 @@ $(document).ready(function() {
                             dates.push({
                                 "date": "Loëndë",
                                 "month": month + 1,
-                                "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                                "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                                 "gregorian": gregorianDate
                             });
 
@@ -1560,7 +1562,7 @@ $(document).ready(function() {
                             dates.push({
                                 "date": "Enderë",
                                 "month": month + 1,
-                                "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                                "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                                 "gregorian": gregorianDate
                             });
 
@@ -1577,7 +1579,7 @@ $(document).ready(function() {
                             dates.push({
                                 "date": "Yáviérë",
                                 "month": month + 1,
-                                "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                                "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                                 "gregorian": gregorianDate
                             });
 
@@ -1593,7 +1595,7 @@ $(document).ready(function() {
                         dates.push({
                             "date": "Mettarë",
                             "month": 11,
-                            "weekDay": NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
+                            "weekDay": TolkienCalendars.NumenorCalendar.convertGregorianWeekday(gregorianDate.getDay()),
                             "gregorian": gregorianDate
                         });
 
@@ -1617,9 +1619,9 @@ $(document).ready(function() {
             var language = this.state.language;
             var reckoning = this.state.reckoning;
             var reckoningDesc =
-                reckoning == NumenorCalendar.RECKONING_NEW ?
+                reckoning == TolkienCalendars.NumenorCalendar.RECKONING_NEW ?
                     "New Reckoning" :
-                    reckoning == NumenorCalendar.RECKONING_KINGS ?
+                    reckoning == TolkienCalendars.NumenorCalendar.RECKONING_KINGS ?
                         "Kings' Reckoning" :
                         "Stewards' Reckoning";
 
@@ -1627,7 +1629,7 @@ $(document).ready(function() {
                 case "Yestarë":
                     return (
                         React.createElement(IntercalaryDay, {key: "NumenorianNewYear", 
-                                        name: language == LanguagePicker.ENGLISH ? "First Day" : "Yestarë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "First Day" : "Yestarë", 
                                         description: reckoningDesc + " New Year's Day!", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1636,7 +1638,7 @@ $(document).ready(function() {
                 case "Tuilérë":
                     return (
                         React.createElement(IntercalaryDay, {key: "Stewards-Midspring", 
-                                        name: language == LanguagePicker.ENGLISH ? "Midspring Day" : "Tuilérë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Midspring Day" : "Tuilérë", 
                                         description: "Stewards' Midspring Day", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1645,7 +1647,7 @@ $(document).ready(function() {
                 case "Cormarë":
                     return (
                         React.createElement(IntercalaryDay, {key: "Numenorian-Leapday" + date.weekDay, 
-                                        name: language == LanguagePicker.ENGLISH ? "Ring Bearer's Day" : "Cormarë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Ring Bearer's Day" : "Cormarë", 
                                         description: "Ring Bearer's Day", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1654,7 +1656,7 @@ $(document).ready(function() {
                 case "Loëndë":
                     return (
                         React.createElement(IntercalaryDay, {key: "Numenorian-Midyear" + date.weekDay, 
-                                        name: language == LanguagePicker.ENGLISH ? "Midyear's Day" : "Loëndë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Midyear's Day" : "Loëndë", 
                                         description: "Midyear's Day", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1663,7 +1665,7 @@ $(document).ready(function() {
                 case "Enderë":
                     return (
                         React.createElement(IntercalaryDay, {key: "NumenorianMiddleday-" + date.weekDay, 
-                                        name: language == LanguagePicker.ENGLISH ? "Middleday" : "Enderë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Middleday" : "Enderë", 
                                         description: "Middleday", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1672,7 +1674,7 @@ $(document).ready(function() {
                 case "Yáviérë":
                     return (
                         React.createElement(IntercalaryDay, {key: "Stewards-Midautumn", 
-                                        name: language == LanguagePicker.ENGLISH ? "Midautumn Day" : "Yáviérë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Midautumn Day" : "Yáviérë", 
                                         description: "Stewards' Midautumn Day", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
@@ -1681,16 +1683,16 @@ $(document).ready(function() {
                 case "Mettarë":
                     return (
                         React.createElement(IntercalaryDay, {key: "NumenorianNewYearsEve", 
-                                        name: language == LanguagePicker.ENGLISH ? "Last Day" : "Mettarë", 
+                                        name: language == TolkienCalendars.LanguagePicker.ENGLISH ? "Last Day" : "Mettarë", 
                                         description: reckoningDesc + " New Year's Eve!", 
                                         currentDate: today, 
                                         gregorian: date.gregorian})
                     );
 
                 default:
-                    var startMonth = reckoning == NumenorCalendar.RECKONING_NEW ? 3 : 0;
-                    var month = NumenorCalendar.months[(date.month+startMonth)%12];
-                    var weekday = NumenorCalendar.weekdays[date.weekDay];
+                    var startMonth = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_NEW ? 3 : 0;
+                    var month = TolkienCalendars.NumenorCalendar.months[(date.month+startMonth)%12];
+                    var weekday = TolkienCalendars.NumenorCalendar.weekdays[date.weekDay];
 
                     return (
                         React.createElement(DateCell, {key: date.day + month[language], 
@@ -1775,7 +1777,7 @@ $(document).ready(function() {
             var monthView = this.state.monthView;
             var language = this.state.language;
 
-            var weeks = NumenorCalendar.weekdays.map(function (weekday) {
+            var weeks = TolkienCalendars.NumenorCalendar.weekdays.map(function (weekday) {
                 var weekdayName = weekday[language];
                 return [(
                     React.createElement(WeekDayHeaderCell, {key: weekdayName, 
@@ -1825,7 +1827,7 @@ $(document).ready(function() {
             }
 
             if (weeks[0].length > 6) {
-                weeks = NumenorCalendar.weekdays.map(function (weekday, i) {
+                weeks = TolkienCalendars.NumenorCalendar.weekdays.map(function (weekday, i) {
                     var week = weeks[i];
                     var weekdayName = weekday[language];
 
@@ -1874,11 +1876,11 @@ $(document).ready(function() {
 
         renderCalendarControls: function () {
             var reckoning = this.state.reckoning;
-            var startMonth = reckoning == NumenorCalendar.RECKONING_NEW ? 3 : 0;
+            var startMonth = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_NEW ? 3 : 0;
             var language = this.state.language;
             var monthNames = [];
-            for (var i = startMonth; i < (NumenorCalendar.months.length + startMonth); i++) {
-                monthNames.push(NumenorCalendar.months[i%12][language]);
+            for (var i = startMonth; i < (TolkienCalendars.NumenorCalendar.months.length + startMonth); i++) {
+                monthNames.push(TolkienCalendars.NumenorCalendar.months[i%12][language]);
             }
 
             return (
@@ -1886,9 +1888,9 @@ $(document).ready(function() {
                     React.createElement("td", {colSpan: "2", className: "numenor-calendar-controls"}, 
                         React.createElement("select", {value: reckoning, 
                                 onChange: this.onStartMonthChange}, 
-                            React.createElement("option", {value: NumenorCalendar.RECKONING_KINGS}, "Kings' Reckoning"), 
-                            React.createElement("option", {value: NumenorCalendar.RECKONING_STEWARDS}, "Stewards' Reckoning"), 
-                            React.createElement("option", {value: NumenorCalendar.RECKONING_NEW}, "New Reckoning")
+                            React.createElement("option", {value: TolkienCalendars.NumenorCalendar.RECKONING_KINGS}, "Kings' Reckoning"), 
+                            React.createElement("option", {value: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}, "Stewards' Reckoning"), 
+                            React.createElement("option", {value: TolkienCalendars.NumenorCalendar.RECKONING_NEW}, "New Reckoning")
                         )
                     ), 
                     React.createElement("td", {className: "numenor-calendar-controls"}, 
@@ -1908,7 +1910,7 @@ $(document).ready(function() {
             var language = this.state.language;
             var weekDayHeader = (
                 React.createElement("tr", null, 
-                    NumenorCalendar.weekdays.map(function (weekday) {
+                    TolkienCalendars.NumenorCalendar.weekdays.map(function (weekday) {
                         var weekdayName = weekday[language];
                         return (
                             React.createElement(WeekDayHeaderCell, {key: weekdayName, 
@@ -1922,7 +1924,7 @@ $(document).ready(function() {
             var weeks;
             if (this.state.monthView < 0) {
                 weeks = this.renderYear();
-            } else if (this.state.monthViewLayout == MonthViewLayout.VERTICAL) {
+            } else if (this.state.monthViewLayout == TolkienCalendars.MonthViewLayout.VERTICAL) {
                 weeks = this.renderMonthVertical();
                 weekDayHeader = this.renderMonthVerticalHeader('numenor-vertical-header-filler');
             } else {
@@ -2019,161 +2021,9 @@ $(document).ready(function() {
         }
     });
 
-    var TolkienCalendars = React.createClass({displayName: "TolkienCalendars",
-        getInitialState: function() {
-            return ({
-                date: new Date(),
-                shireAlign: false,
-                rivendellAlign: false
-            });
-        },
+    // export as AMD module / Node module / browser variable
+    if (typeof define === 'function' && define.amd) define(TolkienCalendars);
+    else if (typeof module !== 'undefined') module.exports = TolkienCalendars;
+    else window.TolkienCalendars = TolkienCalendars;
 
-        resetDate: function() {
-            this.setState({date: new Date()});
-        },
-
-        onDateChanged: function(event) {
-            var year = React.findDOMNode(this.refs.currentYear).value;
-            var month = React.findDOMNode(this.refs.currentMonth).value;
-            var day = React.findDOMNode(this.refs.currentDay).value;
-            var currentDate = new Date(year, month, day);
-
-            if (currentDate.getFullYear() > 100) {
-                this.setState({date: currentDate});
-            }
-        },
-
-        createDateInput: function(ref, value, min) {
-            return (
-                React.createElement("input", {type: "number", 
-                       className: "date-time-input", 
-                       ref: ref, 
-                       step: "1", 
-                       min: min, 
-                       onChange: this.onDateChanged, 
-                       value: value})
-            );
-        },
-
-        alignChanged: function (event) {
-            var checked = event.target.checked;
-            var shireAlign = event.target.value == "shire" ? checked : false;
-            var rivendellAlign = event.target.value == "rivendell" ? checked : false;
-            this.setState({
-                shireAlign: shireAlign,
-                rivendellAlign: rivendellAlign
-            });
-        },
-
-        render: function() {
-            var currentDate = this.state.date;
-            var shireAlign = this.state.shireAlign;
-            var rivendellAlign = this.state.rivendellAlign;
-
-            var shireClassName = "shire-calendar";
-            if (shireAlign) {
-                shireClassName += " align-shire-calendar";
-            }
-            var rivendellClassName = "shire-calendar rivendell-calendar";
-            if (rivendellAlign) {
-                rivendellClassName += " align-rivendell-calendar";
-            }
-
-            return (
-                React.createElement("table", null, 
-                    React.createElement("tbody", null, 
-                    React.createElement("tr", null, 
-                        React.createElement("td", {colSpan: "2"}, 
-                            React.createElement("table", {style: {margin: "auto"}}, 
-                                React.createElement("tbody", null, 
-                                React.createElement("tr", null, 
-                                    React.createElement("th", null, "Gregorian Date:"), 
-                                    React.createElement("th", null, 
-                                        React.createElement("select", {className: "date-time-input", 
-                                                ref: "currentMonth", 
-                                                value: currentDate.getMonth(), 
-                                                onChange: this.onDateChanged}, 
-                                            React.createElement("option", {value: "0"}, "Jan"), 
-                                            React.createElement("option", {value: "1"}, "Feb"), 
-                                            React.createElement("option", {value: "2"}, "Mar"), 
-                                            React.createElement("option", {value: "3"}, "Apr"), 
-                                            React.createElement("option", {value: "4"}, "May"), 
-                                            React.createElement("option", {value: "5"}, "Jun"), 
-                                            React.createElement("option", {value: "6"}, "Jul"), 
-                                            React.createElement("option", {value: "7"}, "Aug"), 
-                                            React.createElement("option", {value: "8"}, "Sep"), 
-                                            React.createElement("option", {value: "9"}, "Oct"), 
-                                            React.createElement("option", {value: "10"}, "Nov"), 
-                                            React.createElement("option", {value: "11"}, "Dec")
-                                        )
-                                    ), 
-                                    React.createElement("th", null, 
-                                        this.createDateInput('currentDay', currentDate.getDate(), 0)
-                                    ), 
-                                    React.createElement("th", null, 
-                                        this.createDateInput('currentYear', currentDate.getFullYear(), 101)
-                                    ), 
-                                    React.createElement("th", null, 
-                                        React.createElement("input", {type: "button", 
-                                               value: "Today", 
-                                               onClick: this.resetDate})
-                                    )
-                                )
-                                )
-                            )
-                        )
-                    ), 
-                    React.createElement("tr", null, 
-                        React.createElement("th", null, 
-                            React.createElement("input", {type: "checkbox", 
-                                   value: "shire", 
-                                   checked: shireAlign, 
-                                   onChange: this.alignChanged}), 
-                            "Try to align Shire Year with Rivendell Year?"
-                        ), 
-                        React.createElement("th", null, 
-                            React.createElement("input", {type: "checkbox", 
-                                   value: "rivendell", 
-                                   checked: rivendellAlign, 
-                                   onChange: this.alignChanged}), 
-                            "Try to align Rivendell Year with Shire Year?"
-                        )
-                    ), 
-                    React.createElement("tr", null, 
-                        React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                            React.createElement(ShireCalendar, {caption: "Shire Reckoning", 
-                                           date: currentDate, 
-                                           className: shireClassName, 
-                                           yearView: shireAlign || rivendellAlign})
-                        ), 
-                        React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                            React.createElement(RivendellCalendar, {caption: "Rivendell Reckoning", 
-                                               date: currentDate, 
-                                               className: rivendellClassName, 
-                                               yearView: shireAlign || rivendellAlign})
-                        )
-                    ), 
-                    React.createElement("tr", null, 
-                        React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                            React.createElement(NumenorCalendar, {caption: "Kings' Reckoning", 
-                                             date: currentDate, 
-                                             className: "shire-calendar"})
-                        ), 
-                        React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                            React.createElement(NumenorCalendar, {caption: "Stewards' Reckoning", 
-                                             reckoning: NumenorCalendar.RECKONING_STEWARDS, 
-                                             date: currentDate, 
-                                             className: "shire-calendar"})
-                        )
-                    )
-                    )
-                )
-            );
-        }
-    });
-
-    React.render(
-        React.createElement(TolkienCalendars, null),
-        document.getElementById("shire-calendar")
-    );
-});
+}());
