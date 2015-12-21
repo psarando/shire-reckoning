@@ -709,13 +709,12 @@ $(document).ready(function() {
                 + Math.floor(startYear / 100)
                 - Math.floor(startYear / 400)
                 - (Math.floor((startYear-1) / 432) * 3)
-                - (Math.floor((startYear-1) / 4896) * 3)
             );
         },
 
         isLeapYear: function(today) {
             var year = today.getFullYear();
-            return ((year % 12 == 0) && (year % 432 != 0) && (year % 4896 != 0));
+            return ((year % 12 == 0) && (year % 432 != 0));
         },
 
         makeCalendarDates: function(today, calendarRules, startDay) {
@@ -728,7 +727,6 @@ $(document).ready(function() {
                 yearsElapsed * 365
                 + (Math.floor(yearsElapsed / 12) * 3)
                 - (Math.floor(yearsElapsed / 432) * 3)
-                - (Math.floor(yearsElapsed / 4896) * 3)
             );
 
             if (calendarRules == this.REFORMED_RULES) {

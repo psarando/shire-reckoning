@@ -56,12 +56,6 @@ Note that the "traditional" Calendar of Imladris starts on March 26th in 2015, b
 back a day with respect to our Gregorian calendar every 4 years until it's leap year adds 3 days every 12 years.
 So this "traditional" Rivendell Reckoning does start on March 27th for 4 years, every 12 years, for next few hundred years.
 
-I also noticed that this "traditional" Calendar of Imladris still advances by a day every 1700 years or so,
-even with the rule stated by Tolkien in Appendix D that the extra 3 "leap" Enderi are omitted every 432 years.
-Then I noticed that if another extra 3 Enderi are omitted every 4896 years,
-then this could account for the 1 day drift about every 1700 years,
-so I've included this rule in the "traditional" Rivendell Reckoning just to keep it in sync with the
-Gregorian calendar for the next few thousand years.
 The "traditional" Calendar of Imladris should probably make other adjustments to stay
 in sync with the actual seasons instead, but that kind of calculation is currently beyond me.
 
