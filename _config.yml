@@ -1,0 +1,4 @@
+baseurl: "/shire-reckoning"
+kramdown:
+    input: GFM
+    hard_wrap: false
