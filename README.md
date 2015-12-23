@@ -177,6 +177,23 @@ Rivendell new year's day falls on Gregorian March 25 in 7050,
 and the Rivendell leap-year just before that in 7044 (or after in 7056)
 will "re-sync" Rivendell new year's day in 7045 (or 7057) with Gregorian March 26.
 
+* Note that even if the Shire Calendar ignored Kings' and Stewards' Reckoning adjustments,
+  it's still likely to have started reckoning with its Mid-year's Day oriented on the Gregorian June 23
+  summer solstice in T.A. 1600 when the Shire was founded.
+  Then it would still have drifted back 3 days relative to a Gregorian calendar over the next 1422 years
+  by the start of the Fourth Age (1200 / 400 = 3 extra leap-days),
+  so Astron 6 would still have correspond to Gregorian March 26 by then.
+  Although, if the proleptic Gregorian leap-days are calculated from the start of the Second Age,
+  then the Shire Calendar would be 4 days behind this Gregorian calendar by the start of the Fourth Age
+  (S.A. 5200 + S.A. 5600 + S.A. 6000 + S.A. 6400 = 4 extra leap-days),
+  which means Astron 6 would have correspond to Gregorian March 25 instead,
+  but that happens to be Rivendell new year's day in T.A. 3019
+  if the Calendar of Imladris started reckoning from a proleptic Gregorian March 21, 7050 years earlier.
+  In either case, this would imply that the Shire Calendar started reckoning 5 days after the Kings' Reckoning
+  new year's day in T.A. 1600, so that after the Kings' and Stewards' Reckoning adjustments in
+  T.A. 2000 (S.A. 5441), T.A. 2059 (S.A. 5500), and T.A. 2360 (S.A. 5801) the calendars would be in
+  sync by the start of the Fourth Age.
+
 ##### Remaining Problems
 
 Claiming the Calendar of Imladris should start from a proleptic Gregorian March 21
