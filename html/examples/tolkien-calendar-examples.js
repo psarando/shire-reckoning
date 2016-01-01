@@ -1,4 +1,19 @@
+/**
+ * Copyright (C) 2016 Paul Sarando
+ * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
+ */
+
 TolkienCalendars.ExampleCommon = React.createMixin({
+    calendarCellStyle: {verticalAlign: 'top'},
+
+    captionCellStyle: {
+        verticalAlign: 'top',
+        padding: 4,
+        borderTopStyle: 'solid',
+        borderLeftStyle: 'solid',
+        borderRightStyle: 'solid'
+    },
+
     resetDate: function() {
         this.setState({date: new Date()});
     },
@@ -26,9 +41,10 @@ TolkienCalendars.ExampleCommon = React.createMixin({
         );
     },
 
-    renderDatePicker: function (currentDate) {
+    renderDatePicker: function (currentDate, styles) {
+        var style = styles || {margin: "auto"};
         return (
-            React.createElement("table", {style: {margin: "auto"}}, 
+            React.createElement("table", {style: style}, 
                 React.createElement("tbody", null, 
                 React.createElement("tr", null, 
                     React.createElement("th", null, "Gregorian Date:"), 
@@ -129,13 +145,13 @@ TolkienCalendars.Example = React.createClass({displayName: "Example",
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
                         React.createElement(TolkienCalendars.ShireCalendar, {caption: "Shire Reckoning", 
                                                         date: currentDate, 
                                                         className: shireClassName, 
                                                         yearView: shireAlign || rivendellAlign})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
                         React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning", 
                                                             date: currentDate, 
                                                             className: rivendellClassName, 
@@ -143,14 +159,16 @@ TolkienCalendars.Example = React.createClass({displayName: "Example",
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Kings' Reckoning", 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Stewards' Reckoning", 
+                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS, 
+                                                          language: TolkienCalendars.LanguagePicker.ENGLISH, 
                                                           date: currentDate, 
                                                           className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Stewards' Reckoning", 
-                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "New Reckoning", 
+                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_NEW, 
                                                           date: currentDate, 
                                                           className: "shire-calendar"})
                     )
@@ -170,22 +188,58 @@ TolkienCalendars.ShireCalendarExample = React.createClass({displayName: "ShireCa
 
     render: function() {
         var currentDate = this.state.date;
+        var dateString =
+            "new Date("
+            + [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()].join(",")
+            + ")";
 
         return (
             React.createElement("table", null, 
                 React.createElement("tbody", null, 
                 React.createElement("tr", null, 
-                    React.createElement("td", {colSpan: "2"}, 
+                    React.createElement("td", {colSpan: "2", style: this.captionCellStyle}, 
                         this.renderDatePicker(currentDate)
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {caption: "Shire Reckoning with CSS styling",
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {caption: "Shire Reckoning with Bree month and day names",
+     date: ${dateString},
+     calendarControls: false,
+     region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
                         React.createElement(TolkienCalendars.ShireCalendar, {caption: "Shire Reckoning with CSS styling", 
                                                         date: currentDate, 
                                                         className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
                         React.createElement(TolkienCalendars.ShireCalendar, {caption: "Shire Reckoning with Bree month and day names", 
                                                         date: currentDate, 
                                                         calendarControls: false, 
@@ -194,14 +248,48 @@ TolkienCalendars.ShireCalendarExample = React.createClass({displayName: "ShireCa
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {caption: "Shire Reckoning: Year view",
+     date: ${dateString},
+     calendarControls: false,
+     className: "shire-calendar",
+     yearView: true}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {caption: "Shire Reckoning: Horizontal Month View",
+     date: ${dateString},
+     calendarControls: false,
+     monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
                         React.createElement(TolkienCalendars.ShireCalendar, {caption: "Shire Reckoning: Year view", 
                                                         date: currentDate, 
                                                         calendarControls: false, 
                                                         className: "shire-calendar", 
                                                         yearView: true})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
                         React.createElement(TolkienCalendars.ShireCalendar, {caption: "Shire Reckoning: Horizontal Month View", 
                                                         date: currentDate, 
                                                         calendarControls: false, 
@@ -224,92 +312,261 @@ TolkienCalendars.RivendellCalendarExample = React.createClass({displayName: "Riv
 
     render: function() {
         var currentDate = this.state.date;
+        var dateString =
+            "new Date("
+            + [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()].join(",")
+            + ")";
+
+        var sa1697 = new Date(590+1697, 8,22);
+        var ta2941 = new Date(590+3441+2941, 8,22);
+        var ta3018 = new Date(590+3441+3018, 8,22);
+
+        var sa1697String = "new Date( 590+1697, 8,22 )";
+        var ta2941String = "new Date( 590+3441+2941, 8,22 )";
+        var ta3018String = "new Date( 590+3441+3018, 8,22 )";
 
         return (
             React.createElement("table", null, 
                 React.createElement("tbody", null, 
                 React.createElement("tr", null, 
-                    React.createElement("td", {colSpan: "3"}, 
-                        this.renderDatePicker(currentDate)
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Potential calendar (in Quenya) of the Second Age 1697:" + ' ' +
+                        "the year Rivendell was founded.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(TolkienCalendars.RivendellCalendar,
+                    {yearView: true,
+                     date: ${sa1697String},
+                     calendarControls: false,
+                     className: "shire-calendar"})`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Potential calendar (in English) of the Third Age 2941:" + ' ' +
+                        "the year Bilbo finds the One Ring, of the death of Smaug," + ' ' +
+                        "and of The Battle of Five Armies.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {language: TolkienCalendars.LanguagePicker.ENGLISH,
+     yearView: true,
+     date: ${ta2941String},
+     calendarControls: false,
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Potential calendar (in Sindarin) of the Third Age 3018~3019:" + ' ' +
+                        "\"The Great Years\" of the War of the Ring and the downfall of Barad-dûr.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {language: TolkienCalendars.LanguagePicker.SINDARIN,
+     yearView: true,
+     date: ${ta3018String},
+     calendarControls: false,
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning Year View with defaults: Quenya, Traditional Rules starting from March 21st", 
-                                                            yearView: true, 
-                                                            date: currentDate, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {yearView: true, 
+                                                            date: sa1697, 
                                                             calendarControls: false, 
                                                             className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning Year View in English, Reformed Rules starting from March 25th", 
-                                                            calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {language: TolkienCalendars.LanguagePicker.ENGLISH, 
+                                                            yearView: true, 
+                                                            date: ta2941, 
+                                                            calendarControls: false, 
+                                                            className: "shire-calendar"})
+                    ), 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {language: TolkienCalendars.LanguagePicker.SINDARIN, 
+                                                            yearView: true, 
+                                                            date: ta3018, 
+                                                            calendarControls: false, 
+                                                            className: "shire-calendar"})
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {colSpan: "3", style: this.captionCellStyle}, 
+                        this.renderDatePicker(currentDate, {margin: "auto", paddingTop: 12})
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Rivendell Reckoning Year View with defaults:" + ' ' +
+                        "Quenya, Traditional Rules starting from March 21st.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(TolkienCalendars.RivendellCalendar,
+                    {yearView: true,
+                     calendarControls: false,
+                     date: ${dateString},
+                     className: "shire-calendar"})`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Rivendell Reckoning Year View in English," + ' ' +
+                        "Reformed Rules starting from March 25th.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {calendarRules:
+        TolkienCalendars.RivendellCalendar.REFORMED_RULES,
+     startDay: 25,
+     language: TolkienCalendars.LanguagePicker.ENGLISH,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Rivendell Reckoning Year View in Sindarin," + ' ' +
+                        "Reformed Rules starting from March 29th.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {calendarRules:
+        TolkienCalendars.RivendellCalendar.REFORMED_RULES,
+     startDay: 29,
+     language: TolkienCalendars.LanguagePicker.SINDARIN,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {yearView: true, 
+                                                            calendarControls: false, 
+                                                            date: currentDate, 
+                                                            className: "shire-calendar"})
+                    ), 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES, 
                                                             startDay: 25, 
-                                                            yearView: true, 
                                                             language: TolkienCalendars.LanguagePicker.ENGLISH, 
+                                                            yearView: true, 
                                                             calendarControls: false, 
                                                             date: currentDate, 
                                                             className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning Year View in Sindarin, Reformed Rules starting from March 29th", 
-                                                            calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES, 
                                                             startDay: 29, 
-                                                            yearView: true, 
                                                             language: TolkienCalendars.LanguagePicker.SINDARIN, 
+                                                            yearView: true, 
                                                             calendarControls: false, 
                                                             date: currentDate, 
                                                             className: "shire-calendar"})
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning Month View with default rules and language (Quenya)", 
-                                                            calendarControls: false, 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Rivendell Reckoning Month View with default rules and language (Quenya).", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(TolkienCalendars.RivendellCalendar,
+                    {calendarControls: false,
+                     date: ${dateString},
+                     className: "shire-calendar"})`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Rivendell Reckoning in English, Reformed Rules starting from March 25th.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {calendarRules:
+        TolkienCalendars.RivendellCalendar.REFORMED_RULES,
+     startDay: 25,
+     language: TolkienCalendars.LanguagePicker.ENGLISH,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Rivendell Reckoning in Sindarin, Reformed Rules starting from March 20th.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {calendarRules:
+        TolkienCalendars.RivendellCalendar.REFORMED_RULES,
+     startDay: 20,
+     language: TolkienCalendars.LanguagePicker.SINDARIN,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {calendarControls: false, 
                                                             date: currentDate, 
                                                             className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning in English, Reformed Rules starting from March 25th", 
-                                                            language: TolkienCalendars.LanguagePicker.ENGLISH, 
-                                                            calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES, 
                                                             startDay: 25, 
+                                                            language: TolkienCalendars.LanguagePicker.ENGLISH, 
                                                             calendarControls: false, 
                                                             date: currentDate, 
                                                             className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning in Sindarin, Reformed Rules starting from March 20th", 
-                                                            language: TolkienCalendars.LanguagePicker.SINDARIN, 
-                                                            calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.RivendellCalendar, {calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES, 
                                                             startDay: 20, 
-                                                            calendarControls: false, 
-                                                            date: currentDate, 
-                                                            className: "shire-calendar"})
-                    )
-                ), 
-                React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning in Quenya, Traditional Rules starting from March 25th", 
-                                                            startDay: 25, 
-                                                            date: currentDate, 
-                                                            calendarControls: false, 
-                                                            className: "shire-calendar"})
-                    ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning in English, Traditional Rules starting from March 27th", 
-                                                            language: TolkienCalendars.LanguagePicker.ENGLISH, 
-                                                            startDay: 27, 
-                                                            date: currentDate, 
-                                                            calendarControls: false, 
-                                                            className: "shire-calendar"})
-                    ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.RivendellCalendar, {caption: "Rivendell Reckoning in Sindarin, Traditional Rules starting from March 29th", 
                                                             language: TolkienCalendars.LanguagePicker.SINDARIN, 
-                                                            startDay: 29, 
-                                                            date: currentDate, 
                                                             calendarControls: false, 
+                                                            date: currentDate, 
                                                             className: "shire-calendar"})
                     )
                 )
@@ -328,36 +585,93 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({displayName: "Numen
 
     render: function() {
         var currentDate = this.state.date;
+        var dateString =
+            "new Date("
+            + [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()].join(",")
+            + ")";
 
         return (
             React.createElement("table", null, 
                 React.createElement("tbody", null, 
                 React.createElement("tr", null, 
-                    React.createElement("td", {colSpan: "3"}, 
+                    React.createElement("td", {colSpan: "3", style: this.captionCellStyle}, 
                         this.renderDatePicker(currentDate)
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Kings' Reckoning: Year View in Sindarin", 
-                                                          language: TolkienCalendars.LanguagePicker.SINDARIN, 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Kings' Reckoning: Year View in Sindarin.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {language: TolkienCalendars.LanguagePicker.SINDARIN,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Stewards' Reckoning: Year View in English.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS,
+     language: TolkienCalendars.LanguagePicker.ENGLISH,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "New Reckoning: Year View in Quenya.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_NEW,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {language: TolkienCalendars.LanguagePicker.SINDARIN, 
                                                           yearView: true, 
-                                                          date: currentDate, 
                                                           calendarControls: false, 
+                                                          date: currentDate, 
                                                           className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Stewards' Reckoning: Year View in English", 
-                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {reckoning: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS, 
                                                           language: TolkienCalendars.LanguagePicker.ENGLISH, 
                                                           yearView: true, 
                                                           calendarControls: false, 
                                                           date: currentDate, 
                                                           className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "New Reckoning: Year View in Quenya", 
-                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_NEW, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {reckoning: TolkienCalendars.NumenorCalendar.RECKONING_NEW, 
                                                           yearView: true, 
                                                           calendarControls: false, 
                                                           date: currentDate, 
@@ -365,23 +679,73 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({displayName: "Numen
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Kings' Reckoning in English", 
-                                                          language: TolkienCalendars.LanguagePicker.ENGLISH, 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Kings' Reckoning in English.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {language: TolkienCalendars.LanguagePicker.ENGLISH,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Stewards' Reckoning in Quenya.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "New Reckoning in Sindarin.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_NEW,
+     language: TolkienCalendars.LanguagePicker.SINDARIN,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {language: TolkienCalendars.LanguagePicker.ENGLISH, 
                                                           calendarControls: false, 
                                                           date: currentDate, 
                                                           className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Stewards' Reckoning in Quenya", 
-                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {reckoning: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS, 
                                                           calendarControls: false, 
                                                           date: currentDate, 
                                                           className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "New Reckoning in Sindarin", 
-                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_NEW, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {reckoning: TolkienCalendars.NumenorCalendar.RECKONING_NEW, 
                                                           language: TolkienCalendars.LanguagePicker.SINDARIN, 
                                                           calendarControls: false, 
                                                           date: currentDate, 
@@ -389,25 +753,81 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({displayName: "Numen
                     )
                 ), 
                 React.createElement("tr", null, 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Kings' Reckoning: Horizontal Month View in Quenya", 
-                                                          monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL, 
-                                                          date: currentDate, 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Kings' Reckoning: Horizontal Month View in Quenya.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {monthViewLayout:
+        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "Stewards' Reckoning: Horizontal Month View in Sindarin.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS,
+     monthViewLayout:
+        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     language: TolkienCalendars.LanguagePicker.SINDARIN,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    ), 
+                    React.createElement("td", {style: this.captionCellStyle}, 
+                        "New Reckoning: Horizontal Month View in English.", 
+                        React.createElement("pre", null, 
+                            React.createElement("code", null, 
+                                
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_NEW,
+     monthViewLayout:
+        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     language: TolkienCalendars.LanguagePicker.ENGLISH,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                
+                            )
+                        )
+                    )
+                ), 
+                React.createElement("tr", null, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL, 
                                                           calendarControls: false, 
+                                                          date: currentDate, 
                                                           className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "Stewards' Reckoning: Horizontal Month View in Sindarin", 
-                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {reckoning: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS, 
                                                           monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL, 
                                                           language: TolkienCalendars.LanguagePicker.SINDARIN, 
                                                           calendarControls: false, 
                                                           date: currentDate, 
                                                           className: "shire-calendar"})
                     ), 
-                    React.createElement("td", {style: {verticalAlign: 'top'}}, 
-                        React.createElement(TolkienCalendars.NumenorCalendar, {caption: "New Reckoning: Horizontal Month View in English", 
-                                                          reckoning: TolkienCalendars.NumenorCalendar.RECKONING_NEW, 
+                    React.createElement("td", {style: this.calendarCellStyle}, 
+                        React.createElement(TolkienCalendars.NumenorCalendar, {reckoning: TolkienCalendars.NumenorCalendar.RECKONING_NEW, 
                                                           monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL, 
                                                           language: TolkienCalendars.LanguagePicker.ENGLISH, 
                                                           calendarControls: false, 

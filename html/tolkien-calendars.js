@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Paul Sarando
+ * Copyright (C) 2016 Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 
@@ -740,10 +740,10 @@
                     description: "English: Heavens Day\nQuenya: Menelya\nSindarin: Ormenel"
                 },
                 {
-                    english: "Valar Day",
+                    english: "Valar or Powers Day",
                     quenya: "Valanya or Tárion",
                     sindarin: "Orbelain or Rodyn",
-                    description: "English: Valar Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn"
+                    description: "English: Valar or Powers Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn"
                 }
             ],
 
@@ -1261,10 +1261,10 @@
                     description: "English: Sea Day\nQuenya: Eärenya\nSindarin: Oraearon"
                 },
                 {
-                    english: "Valar Day",
+                    english: "Valar or Powers Day",
                     quenya: "Valanya or Tárion",
                     sindarin: "Orbelain or Rodyn",
-                    description: "English: Valar Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn"
+                    description: "English: Valar or Powers Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn"
                 }
             ],
 

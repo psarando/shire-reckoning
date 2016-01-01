@@ -1,4 +1,19 @@
+/**
+ * Copyright (C) 2016 Paul Sarando
+ * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
+ */
+
 TolkienCalendars.ExampleCommon = React.createMixin({
+    calendarCellStyle: {verticalAlign: 'top'},
+
+    captionCellStyle: {
+        verticalAlign: 'top',
+        padding: 4,
+        borderTopStyle: 'solid',
+        borderLeftStyle: 'solid',
+        borderRightStyle: 'solid'
+    },
+
     resetDate: function() {
         this.setState({date: new Date()});
     },
@@ -26,9 +41,10 @@ TolkienCalendars.ExampleCommon = React.createMixin({
         );
     },
 
-    renderDatePicker: function (currentDate) {
+    renderDatePicker: function (currentDate, styles) {
+        var style = styles || {margin: "auto"};
         return (
-            <table style={{margin: "auto"}}>
+            <table style={style}>
                 <tbody>
                 <tr>
                     <th>Gregorian Date:</th>
@@ -129,13 +145,13 @@ TolkienCalendars.Example = React.createClass({
                     </th>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
+                    <td style={this.calendarCellStyle}>
                         <TolkienCalendars.ShireCalendar caption="Shire Reckoning"
                                                         date={currentDate}
                                                         className={shireClassName}
                                                         yearView={shireAlign || rivendellAlign} />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
+                    <td style={this.calendarCellStyle}>
                         <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning"
                                                             date={currentDate}
                                                             className={rivendellClassName}
@@ -143,14 +159,16 @@ TolkienCalendars.Example = React.createClass({
                     </td>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="Kings' Reckoning"
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar caption="Stewards' Reckoning"
+                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}
+                                                          language={TolkienCalendars.LanguagePicker.ENGLISH}
                                                           date={currentDate}
                                                           className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="Stewards' Reckoning"
-                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar caption="New Reckoning"
+                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_NEW}
                                                           date={currentDate}
                                                           className="shire-calendar" />
                     </td>
@@ -170,22 +188,58 @@ TolkienCalendars.ShireCalendarExample = React.createClass({
 
     render: function() {
         var currentDate = this.state.date;
+        var dateString =
+            "new Date("
+            + [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()].join(",")
+            + ")";
 
         return (
             <table>
                 <tbody>
                 <tr>
-                    <td colSpan='2'>
+                    <td colSpan='2' style={this.captionCellStyle}>
                         {this.renderDatePicker(currentDate)}
                     </td>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
+                    <td style={this.captionCellStyle}>
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {caption: "Shire Reckoning with CSS styling",
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {caption: "Shire Reckoning with Bree month and day names",
+     date: ${dateString},
+     calendarControls: false,
+     region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.calendarCellStyle}>
                         <TolkienCalendars.ShireCalendar caption="Shire Reckoning with CSS styling"
                                                         date={currentDate}
                                                         className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
+                    <td style={this.calendarCellStyle}>
                         <TolkienCalendars.ShireCalendar caption="Shire Reckoning with Bree month and day names"
                                                         date={currentDate}
                                                         calendarControls={false}
@@ -194,14 +248,48 @@ TolkienCalendars.ShireCalendarExample = React.createClass({
                     </td>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
+                    <td style={this.captionCellStyle}>
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {caption: "Shire Reckoning: Year view",
+     date: ${dateString},
+     calendarControls: false,
+     className: "shire-calendar",
+     yearView: true}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {caption: "Shire Reckoning: Horizontal Month View",
+     date: ${dateString},
+     calendarControls: false,
+     monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.calendarCellStyle}>
                         <TolkienCalendars.ShireCalendar caption="Shire Reckoning: Year view"
                                                         date={currentDate}
                                                         calendarControls={false}
                                                         className="shire-calendar"
                                                         yearView={true} />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
+                    <td style={this.calendarCellStyle}>
                         <TolkienCalendars.ShireCalendar caption="Shire Reckoning: Horizontal Month View"
                                                         date={currentDate}
                                                         calendarControls={false}
@@ -224,92 +312,261 @@ TolkienCalendars.RivendellCalendarExample = React.createClass({
 
     render: function() {
         var currentDate = this.state.date;
+        var dateString =
+            "new Date("
+            + [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()].join(",")
+            + ")";
+
+        var sa1697 = new Date(590+1697, 8,22);
+        var ta2941 = new Date(590+3441+2941, 8,22);
+        var ta3018 = new Date(590+3441+3018, 8,22);
+
+        var sa1697String = "new Date( 590+1697, 8,22 )";
+        var ta2941String = "new Date( 590+3441+2941, 8,22 )";
+        var ta3018String = "new Date( 590+3441+3018, 8,22 )";
 
         return (
             <table>
                 <tbody>
                 <tr>
-                    <td colSpan='3'>
-                        {this.renderDatePicker(currentDate)}
+                    <td style={this.captionCellStyle}>
+                        Potential calendar (in Quenya) of the Second Age 1697:
+                        the year Rivendell was founded.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(TolkienCalendars.RivendellCalendar,
+                    {yearView: true,
+                     date: ${sa1697String},
+                     calendarControls: false,
+                     className: "shire-calendar"})`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Potential calendar (in English) of the Third Age 2941:
+                        the year Bilbo finds the One Ring, of the death of Smaug,
+                        and of The Battle of Five Armies.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {language: TolkienCalendars.LanguagePicker.ENGLISH,
+     yearView: true,
+     date: ${ta2941String},
+     calendarControls: false,
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Potential calendar (in Sindarin) of the Third Age 3018~3019:
+                        "The Great Years" of the War of the Ring and the downfall of Barad-dûr.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {language: TolkienCalendars.LanguagePicker.SINDARIN,
+     yearView: true,
+     date: ${ta3018String},
+     calendarControls: false,
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
                     </td>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning Year View with defaults: Quenya, Traditional Rules starting from March 21st"
-                                                            yearView={true}
-                                                            date={currentDate}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar yearView={true}
+                                                            date={sa1697}
                                                             calendarControls={false}
                                                             className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning Year View in English, Reformed Rules starting from March 25th"
-                                                            calendarRules={TolkienCalendars.RivendellCalendar.REFORMED_RULES}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar language={TolkienCalendars.LanguagePicker.ENGLISH}
+                                                            yearView={true}
+                                                            date={ta2941}
+                                                            calendarControls={false}
+                                                            className="shire-calendar" />
+                    </td>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar language={TolkienCalendars.LanguagePicker.SINDARIN}
+                                                            yearView={true}
+                                                            date={ta3018}
+                                                            calendarControls={false}
+                                                            className="shire-calendar" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan='3' style={this.captionCellStyle}>
+                        {this.renderDatePicker(currentDate, {margin: "auto", paddingTop: 12})}
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.captionCellStyle}>
+                        Rivendell Reckoning Year View with defaults:
+                        Quenya, Traditional Rules starting from March 21st.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(TolkienCalendars.RivendellCalendar,
+                    {yearView: true,
+                     calendarControls: false,
+                     date: ${dateString},
+                     className: "shire-calendar"})`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Rivendell Reckoning Year View in English,
+                        Reformed Rules starting from March 25th.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {calendarRules:
+        TolkienCalendars.RivendellCalendar.REFORMED_RULES,
+     startDay: 25,
+     language: TolkienCalendars.LanguagePicker.ENGLISH,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Rivendell Reckoning Year View in Sindarin,
+                        Reformed Rules starting from March 29th.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {calendarRules:
+        TolkienCalendars.RivendellCalendar.REFORMED_RULES,
+     startDay: 29,
+     language: TolkienCalendars.LanguagePicker.SINDARIN,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar yearView={true}
+                                                            calendarControls={false}
+                                                            date={currentDate}
+                                                            className="shire-calendar" />
+                    </td>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar calendarRules={TolkienCalendars.RivendellCalendar.REFORMED_RULES}
                                                             startDay={25}
-                                                            yearView={true}
                                                             language={TolkienCalendars.LanguagePicker.ENGLISH}
+                                                            yearView={true}
                                                             calendarControls={false}
                                                             date={currentDate}
                                                             className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning Year View in Sindarin, Reformed Rules starting from March 29th"
-                                                            calendarRules={TolkienCalendars.RivendellCalendar.REFORMED_RULES}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar calendarRules={TolkienCalendars.RivendellCalendar.REFORMED_RULES}
                                                             startDay={29}
-                                                            yearView={true}
                                                             language={TolkienCalendars.LanguagePicker.SINDARIN}
+                                                            yearView={true}
                                                             calendarControls={false}
                                                             date={currentDate}
                                                             className="shire-calendar" />
                     </td>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning Month View with default rules and language (Quenya)"
-                                                            calendarControls={false}
+                    <td style={this.captionCellStyle}>
+                        Rivendell Reckoning Month View with default rules and language (Quenya).
+                        <pre>
+                            <code>
+                                {
+`React.createElement(TolkienCalendars.RivendellCalendar,
+                    {calendarControls: false,
+                     date: ${dateString},
+                     className: "shire-calendar"})`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Rivendell Reckoning in English, Reformed Rules starting from March 25th.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {calendarRules:
+        TolkienCalendars.RivendellCalendar.REFORMED_RULES,
+     startDay: 25,
+     language: TolkienCalendars.LanguagePicker.ENGLISH,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Rivendell Reckoning in Sindarin, Reformed Rules starting from March 20th.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.RivendellCalendar,
+    {calendarRules:
+        TolkienCalendars.RivendellCalendar.REFORMED_RULES,
+     startDay: 20,
+     language: TolkienCalendars.LanguagePicker.SINDARIN,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar calendarControls={false}
                                                             date={currentDate}
                                                             className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning in English, Reformed Rules starting from March 25th"
-                                                            language={TolkienCalendars.LanguagePicker.ENGLISH}
-                                                            calendarRules={TolkienCalendars.RivendellCalendar.REFORMED_RULES}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar calendarRules={TolkienCalendars.RivendellCalendar.REFORMED_RULES}
                                                             startDay={25}
+                                                            language={TolkienCalendars.LanguagePicker.ENGLISH}
                                                             calendarControls={false}
                                                             date={currentDate}
                                                             className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning in Sindarin, Reformed Rules starting from March 20th"
-                                                            language={TolkienCalendars.LanguagePicker.SINDARIN}
-                                                            calendarRules={TolkienCalendars.RivendellCalendar.REFORMED_RULES}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.RivendellCalendar calendarRules={TolkienCalendars.RivendellCalendar.REFORMED_RULES}
                                                             startDay={20}
-                                                            calendarControls={false}
-                                                            date={currentDate}
-                                                            className="shire-calendar" />
-                    </td>
-                </tr>
-                <tr>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning in Quenya, Traditional Rules starting from March 25th"
-                                                            startDay={25}
-                                                            date={currentDate}
-                                                            calendarControls={false}
-                                                            className="shire-calendar" />
-                    </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning in English, Traditional Rules starting from March 27th"
-                                                            language={TolkienCalendars.LanguagePicker.ENGLISH}
-                                                            startDay={27}
-                                                            date={currentDate}
-                                                            calendarControls={false}
-                                                            className="shire-calendar" />
-                    </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.RivendellCalendar caption="Rivendell Reckoning in Sindarin, Traditional Rules starting from March 29th"
                                                             language={TolkienCalendars.LanguagePicker.SINDARIN}
-                                                            startDay={29}
-                                                            date={currentDate}
                                                             calendarControls={false}
+                                                            date={currentDate}
                                                             className="shire-calendar" />
                     </td>
                 </tr>
@@ -328,36 +585,93 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({
 
     render: function() {
         var currentDate = this.state.date;
+        var dateString =
+            "new Date("
+            + [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()].join(",")
+            + ")";
 
         return (
             <table>
                 <tbody>
                 <tr>
-                    <td colSpan='3'>
+                    <td colSpan='3' style={this.captionCellStyle}>
                         {this.renderDatePicker(currentDate)}
                     </td>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="Kings' Reckoning: Year View in Sindarin"
-                                                          language={TolkienCalendars.LanguagePicker.SINDARIN}
+                    <td style={this.captionCellStyle}>
+                        Kings' Reckoning: Year View in Sindarin.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {language: TolkienCalendars.LanguagePicker.SINDARIN,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Stewards' Reckoning: Year View in English.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS,
+     language: TolkienCalendars.LanguagePicker.ENGLISH,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        New Reckoning: Year View in Quenya.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_NEW,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar language={TolkienCalendars.LanguagePicker.SINDARIN}
                                                           yearView={true}
-                                                          date={currentDate}
                                                           calendarControls={false}
+                                                          date={currentDate}
                                                           className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="Stewards' Reckoning: Year View in English"
-                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar reckoning={TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}
                                                           language={TolkienCalendars.LanguagePicker.ENGLISH}
                                                           yearView={true}
                                                           calendarControls={false}
                                                           date={currentDate}
                                                           className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="New Reckoning: Year View in Quenya"
-                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_NEW}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar reckoning={TolkienCalendars.NumenorCalendar.RECKONING_NEW}
                                                           yearView={true}
                                                           calendarControls={false}
                                                           date={currentDate}
@@ -365,23 +679,73 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({
                     </td>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="Kings' Reckoning in English"
-                                                          language={TolkienCalendars.LanguagePicker.ENGLISH}
+                    <td style={this.captionCellStyle}>
+                        Kings' Reckoning in English.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {language: TolkienCalendars.LanguagePicker.ENGLISH,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Stewards' Reckoning in Quenya.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        New Reckoning in Sindarin.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_NEW,
+     language: TolkienCalendars.LanguagePicker.SINDARIN,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar language={TolkienCalendars.LanguagePicker.ENGLISH}
                                                           calendarControls={false}
                                                           date={currentDate}
                                                           className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="Stewards' Reckoning in Quenya"
-                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar reckoning={TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}
                                                           calendarControls={false}
                                                           date={currentDate}
                                                           className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="New Reckoning in Sindarin"
-                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_NEW}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar reckoning={TolkienCalendars.NumenorCalendar.RECKONING_NEW}
                                                           language={TolkienCalendars.LanguagePicker.SINDARIN}
                                                           calendarControls={false}
                                                           date={currentDate}
@@ -389,25 +753,81 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({
                     </td>
                 </tr>
                 <tr>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="Kings' Reckoning: Horizontal Month View in Quenya"
-                                                          monthViewLayout={TolkienCalendars.MonthViewLayout.HORIZONTAL}
-                                                          date={currentDate}
+                    <td style={this.captionCellStyle}>
+                        Kings' Reckoning: Horizontal Month View in Quenya.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {monthViewLayout:
+        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Stewards' Reckoning: Horizontal Month View in Sindarin.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS,
+     monthViewLayout:
+        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     language: TolkienCalendars.LanguagePicker.SINDARIN,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        New Reckoning: Horizontal Month View in English.
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.NumenorCalendar,
+    {reckoning:
+        TolkienCalendars.NumenorCalendar.RECKONING_NEW,
+     monthViewLayout:
+        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     language: TolkienCalendars.LanguagePicker.ENGLISH,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar monthViewLayout={TolkienCalendars.MonthViewLayout.HORIZONTAL}
                                                           calendarControls={false}
+                                                          date={currentDate}
                                                           className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="Stewards' Reckoning: Horizontal Month View in Sindarin"
-                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar reckoning={TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}
                                                           monthViewLayout={TolkienCalendars.MonthViewLayout.HORIZONTAL}
                                                           language={TolkienCalendars.LanguagePicker.SINDARIN}
                                                           calendarControls={false}
                                                           date={currentDate}
                                                           className="shire-calendar" />
                     </td>
-                    <td style={{verticalAlign: 'top'}}>
-                        <TolkienCalendars.NumenorCalendar caption="New Reckoning: Horizontal Month View in English"
-                                                          reckoning={TolkienCalendars.NumenorCalendar.RECKONING_NEW}
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.NumenorCalendar reckoning={TolkienCalendars.NumenorCalendar.RECKONING_NEW}
                                                           monthViewLayout={TolkienCalendars.MonthViewLayout.HORIZONTAL}
                                                           language={TolkienCalendars.LanguagePicker.ENGLISH}
                                                           calendarControls={false}

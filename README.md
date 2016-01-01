@@ -22,7 +22,7 @@ Additionally, these calendars make no attempt to correlate Gregorian years with 
 ## [tolkien-calendars](http://psarando.github.io/shire-reckoning): html + css + javascript
 
 The [html](html) directory contains files that can generate a visualization of
-the calendars, described in The Lord of the Rings, Appendix D, in a web browser as simple HTML tables
+the calendars described in The Lord of the Rings, Appendix D, in a web browser as simple HTML tables,
 labeled with each day's corresponding Gregorian date of the current year,
 and with today's date highlighted on each calendar.
 These calendars are the [Shire Reckoning, Rivendell Reckoning, and calendars of Gondor:
@@ -33,6 +33,8 @@ More examples of each calendar can be found in the [examples directory](html/exa
 * [Shire Calendar examples](http://psarando.github.io/shire-reckoning/examples/shire-calendars.html)
 * [Rivendell Calendar examples](http://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
 * [Númenor Calendar examples](http://psarando.github.io/shire-reckoning/examples/numenor-calendars.html)
+
+These javascript calendars require the [React javascript library](http://facebook.github.io/react/).
 
 ### Notes on the visualizations of the calendars of Gondor
 
@@ -76,11 +78,11 @@ The following points made by Tolkien in The Lord of the Rings, Appendix D, and h
 seem to support a March 21st start of the reckoning of the Calendar of Imladris:
 
 1. Tolkien's letter #211 estimated the events of The Lord of the Rings occurred around 6000 years ago.
-2. Rivendell new year's day "corresponded more or less with Shire April 6" (Astron 6).
+2. Rivendell New Year's Day "corresponded more or less with Shire April 6" (Astron 6).
 3. Gregorian January 1 corresponded "more or less to the Shire January 9" (Afteryule 9).
 4. The correlations of the Kings' and New Reckoning dates with Shire Reckoning dates imply these
    calendars were in sync by the Fourth Age:
-    * Rethe 25 = Kings'/Stewards' Reckoning Súlimë 25 = New Reckoning new year's day
+    * Rethe 25 = Kings'/Stewards' Reckoning Súlimë 25 = New Reckoning New Year's Day
     * Halimath 22 = New Reckoning Yavannië 30
 5. The details of the Kings' Reckoning leap-day rules make it possible to calculate that this
    calendar drifted 3 days behind a proleptic Gregorian calendar over the 6462 year period
@@ -92,8 +94,8 @@ calendar "corresponded more or less with Shire April 6" (Astron 6),
 but that currently corresponds to Gregorian March 27
 [if we align the Shire Mid-year's Day](http://shire-reckoning.com/calendar.html)
 with the contemporary [summer solstice](https://en.wikipedia.org/wiki/Solstice) of Gregorian June 21.
-This puts the Calendar of Imladris new year's day very close to the [spring equinox](http://en.wikipedia.org/wiki/Equinox)
-and the 3 Middledays (Enderi) very close to the [autumnal equionx](http://en.wikipedia.org/wiki/Equinox),
+This puts the Calendar of Imladris New Year's Day very close to the [spring equinox](http://en.wikipedia.org/wiki/Equinox)
+and the 3 Middle-days (Enderi) very close to the [autumnal equionx](http://en.wikipedia.org/wiki/Equinox),
 which suggests these days were intended to correlate as closely as possible with these equinoxes.
 
 In Tolkien's letter #211, he estimated the events of
@@ -105,8 +107,8 @@ these calendars do not stay in sync with each other over long periods of time.
 Approximately every 1700 years the 432-year cycle of the Calendar of Imladris
 will drift a day ahead of the Gregorian calendar.
 If the Calendar of Imladris started reckoning on a proleptic Gregorian March 21,
-then after enough millennia Rivendell's new year's day will have drifted to correspond with
-March 27th. Also note that when Rivendell's new year's day falls on March 25th,
+then after enough millennia Rivendell's New Year's Day will have drifted to correspond with
+March 27th. Also note that when Rivendell's New Year's Day falls on March 25th,
 the 3 Enderi start on September 22nd, which is the most common date of the
 [autumnal equionx](http://en.wikipedia.org/wiki/Equinox) in our time.
 
@@ -128,7 +130,7 @@ Now consider Tolkien's other statements about the Shire Calendar in Appendix D:
 1. Shire Reckoning was based on the Kings' Reckoning calendar of Númenor (and later of Gondor),
 which later became the Stewards' Reckoning calendar of Gondor.
 When the New Reckoning was introduced at the start of the Fourth Age,
-Tolkien states that the new year's day in the New Reckoning calendar corresponded with
+Tolkien states that the New Year's Day in the New Reckoning calendar corresponded with
 "March 25" of the Shire, Kings', and Stewards' Reckoning calendars (Rethe 25 and Súlimë 25).
 Tolkien also stated that the New Reckoning's Yavannië 30 became a holiday
 in honor of Bilbo's birthday, which was Halimath 22.
@@ -171,13 +173,15 @@ If the Calendar of Imladris started reckoning from a proleptic Gregorian March 2
 in the first Years of the Sun in the First Age (590 years before the start of the Second Age),
 then the 7050 years from then to the end of the War of the Ring
 (590 Years of the Sun + S.A. 3441 + T.A. 3019 = 7050)
-would have been enough time for Rivendell's new year's day to drift to Gregorian March 26 as well.
+would have been enough time for Rivendell's New Year's Day to drift to Gregorian March 26 as well.
 To see this for yourself, [set the year in this calendar to 7050 (with the default settings)](http://psarando.github.io/shire-reckoning/#tolkien-calendars).
-Rivendell new year's day falls on Gregorian March 25 in 7050,
+Rivendell New Year's Day falls on Gregorian March 25 in 7050,
 and the Rivendell leap-year just before that in 7044 (or after in 7056)
-will "re-sync" Rivendell new year's day in 7045 (or 7057) with Gregorian March 26.
+will "re-sync" Rivendell New Year's Day in 7045 (or 7057) with Gregorian March 26.
 
-* Note that even if the Shire Calendar ignored Kings' and Stewards' Reckoning adjustments,
+###### Side Notes
+
+* Even if the Shire Calendar ignored Kings' and Stewards' Reckoning adjustments,
   it's still likely to have started reckoning with its Mid-year's Day oriented on the Gregorian June 23
   summer solstice in T.A. 1600 when the Shire was founded.
   Then it would still have drifted back 3 days relative to a Gregorian calendar over the next 1422 years
@@ -187,12 +191,23 @@ will "re-sync" Rivendell new year's day in 7045 (or 7057) with Gregorian March 2
   then the Shire Calendar would be 4 days behind this Gregorian calendar by the start of the Fourth Age
   (S.A. 5200 + S.A. 5600 + S.A. 6000 + S.A. 6400 = 4 extra leap-days),
   which means Astron 6 would have correspond to Gregorian March 25 instead,
-  but that happens to be Rivendell new year's day in T.A. 3019
+  but that happens to be Rivendell New Year's Day in T.A. 3019
   if the Calendar of Imladris started reckoning from a proleptic Gregorian March 21, 7050 years earlier.
   In either case, this would imply that the Shire Calendar started reckoning 5 days after the Kings' Reckoning
-  new year's day in T.A. 1600, so that after the Kings' and Stewards' Reckoning adjustments in
+  New Year's Day in T.A. 1600, so that after the Kings' and Stewards' Reckoning adjustments in
   T.A. 2000 (S.A. 5441), T.A. 2059 (S.A. 5500), and T.A. 2360 (S.A. 5801) the calendars would be in
   sync by the start of the Fourth Age.
+
+
+* This script works by taking a Gregorian date and calculating a corresponding
+  Rivendell calendar year for that date, and as mentioned before,
+  its years are synced with the Gregorian calendar years to keep the leap-year calculations simple.
+  The next proleptic Gregorian year before 1 A.D. that starts both a 400-year Gregorian leap cycle
+  and a 432-year Rivendell Calendar leap cycle would be 10800 B.C.
+  (if the year 0 is included) since it's evenly divisible by both 400 and 432.
+  So these calculations could easily be adapted to start reckoning the Calendar of Imladris from this
+  year, and the 7052 years from then to the Fourth Age would be 3748 B.C.
+  which is fairly close to Tolkien's 6000-year gap to our time.
 
 ##### Remaining Problems
 
@@ -202,7 +217,7 @@ requires the following claims in order for the arguments above to tie together:
 * The first day of the Calendar of Imladris should be on a March 21st because the spring equinox
   occurred on a proleptic Gregorian March 21 around the time these stories might have taken place.
 * The first Kings' Reckoning Mid-year's Day (Loëndë) should correspond with June 23rd,
-  which implies a December 23rd new year's day (Yestarë),
+  which implies a December 23rd New Year's Day (Yestarë),
   because the summer solstice occurred on a proleptic Gregorian June 23 around the time of the setting of
   The Lord of the Rings.
 * The Calendar of Imladris should start reckoning 590 years before the start of the Second Age
@@ -219,9 +234,9 @@ the first 2 claims present the biggest problems:
 2. I focused on the first Kings' Reckoning Mid-year's Day (Loëndë) corresponding with June 23rd
    because Loëndë should coincide with the Shire Mid-year's Day,
    and Tolkien made a correlation with the Shire Mid-year's Day and the summer solstice
-   and a correlation with the Shire Calendar and the Gregorian calendar new year's day.
+   and a correlation with the Shire Calendar and the Gregorian calendar New Year's Day.
    The problem with assuming the first Loëndë corresponded with June 23rd
-   is that Tolkien stated in Appendix D that Kings' Reckoning new year's day originated on the
+   is that Tolkien stated in Appendix D that Kings' Reckoning New Year's Day originated on the
    [winter solstice](https://en.wikipedia.org/wiki/Solstice), and even though starting this calendar
    on the December 21st winter solstice in our time allows Loëndë to fall on the June 21st summer solstice,
    this was not the case 6000 years ago (let alone 12000 years ago)
@@ -329,7 +344,7 @@ to run `shire-icalendar.clj` from the command-line.
 
 Original concept and terminology created by J.R.R. Tolkien for The Lord of Rings, Appendix D.
 
-This source code is Copyright (C) 2015 Paul Sarando.
+This source code is Copyright (C) 2016 Paul Sarando.
 
 Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html).
 
