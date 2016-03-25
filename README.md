@@ -17,7 +17,10 @@ where Shire Mid-year's Day is aligned as much as possible with the contemporary
 and it follows the same leap-day rules of the Gregorian calendar.
 This allows it to stay in sync with the Gregorian calendar so that most Shire Reckoning dates
 will always fall on the same Gregorian date.
-Additionally, these calendars make no attempt to correlate Gregorian years with Ages of Middle-earth.
+Additionally, these calendars make no attempt to correlate Gregorian years with Ages of Middle-earth,
+and always reckon their dates from midnight to midnight, as the Gregorian (and Shire) calendar reckons dates.
+Note that Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
+and the Elves reckoned their dates from sunset to sunset.
 
 ## [tolkien-calendars](http://psarando.github.io/shire-reckoning): html + css + javascript
 
@@ -60,9 +63,16 @@ In other words, Eärenya corresponds with Gregorian Saturday and Valanya with Gr
 
 ### Rivendell Reckoning Notes
 
+* For a general reference for converting a date in the Gregorian calendar, in any year, to a
+  date in the Rivendell Reckoning calendar, I recommend using the
+  [Reformed Rivendell Reckoning rules](#reformed-rivendell-reckoning)
+  (and choosing a non-leap year for dates between February 28 and Rivendell's New Year's Day).
+
 Since the Rivendell Reckoning calendar (also known as the Calendar of Imladris)
-described by Tolkien had very different leap-day rules than the Gregorian calendar,
-this Calendar of Imladris will follow those "traditional" rules where every year has 365 days,
+described by Tolkien had very different leap-day rules than the Gregorian calendar, then by default,
+this Calendar of Imladris will follow those
+["traditional" rules](https://en.wikipedia.org/wiki/Middle-earth_calendar#Calendar_of_Imladris)
+where every year has 365 days,
 except every 12th year which is a leap-year that adds 3 extra days in the middle of the year,
 except every 432nd year is not a leap-year.
 
@@ -74,32 +84,37 @@ on March 21st, 1 A.D. of the [proleptic Gregorian calendar](https://en.wikipedia
 
 #### Why March 21st?
 
-The following points made by Tolkien in The Lord of the Rings, Appendix D, and his letter #211,
-seem to support a March 21st start of the reckoning of the Calendar of Imladris:
+The following details given by Tolkien in The Lord of the Rings, Appendix D, and his letter #211,
+imply that Rivendell New Year's Day was on a proleptic Gregorian March 25 in the Third Age 3019
+(the year the One Ring was destroyed and of the downfall of Barad-dûr),
+which seems to support a March 21st start of the reckoning of the Calendar of Imladris 7050 years before that
+(590 Years of the Sun in the First Age + 3441 years in the Second Age + 3019 years in the Third Age):
 
-1. Tolkien's letter #211 estimated the events of The Lord of the Rings occurred around 6000 years ago.
+1. Tolkien's letter #211 estimated the events of The Lord of the Rings could have occurred around 6000 years ago.
 2. Rivendell New Year's Day "corresponded more or less with Shire April 6" (Astron 6).
+    * The timeline given in The Lord of the Rings, Appendix B,
+      lists the Elves' New Year's Day precisely on Astron 6 in the Third Age 3019.
 3. Gregorian January 1 corresponded "more or less to the Shire January 9" (Afteryule 9).
-4. The correlations of the Kings' and New Reckoning dates with Shire Reckoning dates imply these
-   calendars were in sync by the Fourth Age:
-    * Rethe 25 = Kings'/Stewards' Reckoning Súlimë 25 = New Reckoning New Year's Day
-    * Halimath 22 = New Reckoning Yavannië 30
+4. The correlations of the New Reckoning dates with the Kings' and Shire Reckoning dates imply these
+   calendars were in sync by the Third Age 3019:
+    * Rethe 25 = New Reckoning New Year's Day = Kings'/Stewards' Reckoning Súlimë 25
 5. The details of the Kings' Reckoning leap-day rules make it possible to calculate that this
-   calendar drifted 3 days behind a proleptic Gregorian calendar over the 6462 year period
-   from the start of the Second Age to the start of the Fourth Age,
-   which implies the Shire Calendar was also 3 days behind.
+   calendar drifted 3 days behind a proleptic Gregorian calendar over the 6460 year period
+   from the start of the Second Age to the start of the Third Age 3019,
+   which implies the Shire Calendar was also 3 days behind at the start of the Third Age 3019.
 
 In The Lord of the Rings, Appendix D, Tolkien states that the first day of the Rivendell Reckoning
-calendar "corresponded more or less with Shire April 6" (Astron 6),
-but that currently corresponds to Gregorian March 27
+calendar "corresponded more or less with Shire April 6" (Astron 6).
+This corresponds to Gregorian March 27 (in non-leap years)
 [if we align the Shire Mid-year's Day](http://shire-reckoning.com/calendar.html)
-with the contemporary [summer solstice](https://en.wikipedia.org/wiki/Solstice) of Gregorian June 21.
+with the contemporary [summer solstice](https://en.wikipedia.org/wiki/Solstice) of Gregorian June 21,
+by always aligning Shire New Year's Day with December 21.
 This puts the Calendar of Imladris New Year's Day very close to the [spring equinox](http://en.wikipedia.org/wiki/Equinox)
 and the 3 Middle-days (Enderi) very close to the [autumnal equionx](http://en.wikipedia.org/wiki/Equinox),
 which suggests these days were intended to correlate as closely as possible with these equinoxes.
 
 In Tolkien's letter #211, he estimated the events of
-The Lord of the Rings would have occurred approximately 6000 years ago,
+The Lord of the Rings could have occurred approximately 6000 years ago,
 and around that time (and throughout much of antiquity)
 [the spring equinox did generally occur on proleptic Gregorian March 21](http://www.thetropicalevents.com/pngCharts/eVE_Gregorian1.png).
 Due to the difference in leap-day rules between the Calendar of Imladris and the Gregorian calendar,
@@ -109,33 +124,31 @@ will drift a day ahead of the Gregorian calendar.
 If the Calendar of Imladris started reckoning on a proleptic Gregorian March 21,
 then after enough millennia Rivendell's New Year's Day will have drifted to correspond with
 March 27th. Also note that when Rivendell's New Year's Day falls on March 25th,
-the 3 Enderi start on September 22nd, which is the most common date of the
+the 3 Enderi start on September 22nd, which is the usual date of the
 [autumnal equionx](http://en.wikipedia.org/wiki/Equinox) in our time.
 
 However, Tolkien also stated in Appendix D
-that the start of the Gregorian calendar would have corresponded
+that January 1 of the Gregorian calendar would have corresponded
 "more or less to the Shire January 9" (Afteryule 9).
 If Gregorian January 1 corresponded to Afteryule 9,
-then that would put the Shire Mid-year's Day on Gregorian June 23.
-Since Tolkien also stated that Mid-year's Day should correspond to the summer solstice,
+then that would put the Shire Mid-year's Day on Gregorian June 23
+(or June 22 in leap-years; to see this for yourself,
+[set the Shire Calendar to start reckoning from December 23](http://psarando.github.io/shire-reckoning/#tolkien-calendars)).
+Since Tolkien also stated that Mid-year's Day should correspond as closely as possible to the summer solstice,
 this would seem to put Shire Mid-year's Day 2 days after our usual summer solstices,
 but note that the summer solstice did generally occur on
-[proleptic Gregorian June 23 around 6000 years ago](http://www.thetropicalevents.com/pngCharts/eSS_Gregorian1.png).
+[proleptic Gregorian June 23 around 6000 years ago, and throughout much of antiquity](http://www.thetropicalevents.com/pngCharts/eSS_Gregorian1.png).
 
 ##### Why not March 29th?
 
 If Shire Mid-year's Day corresponded with June 23rd, then wouldn't Astron 6 correspond with March 29th?
 Now consider Tolkien's other statements about the Shire Calendar in Appendix D:
 
-1. Shire Reckoning was based on the Kings' Reckoning calendar of Númenor (and later of Gondor),
-which later became the Stewards' Reckoning calendar of Gondor.
-When the New Reckoning was introduced at the start of the Fourth Age,
-Tolkien states that the New Year's Day in the New Reckoning calendar corresponded with
-"March 25" of the Shire, Kings', and Stewards' Reckoning calendars (Rethe 25 and Súlimë 25).
-Tolkien also stated that the New Reckoning's Yavannië 30 became a holiday
-in honor of Bilbo's birthday, which was Halimath 22.
-This implies that the Shire Calendar must have been aligned with
-the Kings' and Stewards' Reckoning calendars by the start of the Fourth Age.
+1. Shire Reckoning was based on the calendar of Númenor (and later of Gondor)
+called the Kings' Reckoning, which later became the Stewards' Reckoning calendar of Gondor.
+These calendars must have stayed aligned by the Third Age 3019,
+since Tolkien states in Appendix D that the New Year's Day of the New Reckoning calendar corresponded
+with "March 25" of the Shire, Kings', and Stewards' Reckoning calendars (Rethe 25 and Súlimë 25).
 
     > The months and days, therefore, throughout The Lord of the Rings refer to the Shire Calendar.
     > ... March 25, the date of the downfall of Barad-dûr
@@ -146,58 +159,58 @@ the Kings' and Stewards' Reckoning calendars by the start of the Fourth Age.
 2. The Kings' Reckoning was founded in the first year of the Second Age (S.A.).
 Both the Kings' and Shire Reckoning followed leap-year rules similar to the Gregorian calendar,
 where every 4th year is a leap-year except the last in a century,
-but the Gregorian calendar also adds an extra leap-day every 4th century
-whereas Kings' Reckoning [adds 2 extra leap-days every millenium](http://rinsanity.weebly.com/tolkien.html)
-up to the Third Age (T.A.) 2000 (S.A. 5441).
+but the Gregorian calendar also adds an extra leap-day (i.e. does not omit the leap-day) every 4th century
+whereas Kings' Reckoning [adds 2 extra leap-days every millenium](http://rinsanity.weebly.com/tolkien.html).
+    * The 2 millennial leap-days were added throughout the Second Age (which ended in S.A. 3441),
+      and again up to the Third Age (T.A.) 2000 (S.A. 5441).
     * Then 2 more extra leap-days were added in S.A. 5500
       (T.A. 2059, when Stewards' Reckoning was introduced).
     * Then one more extra leap-day was added in S.A. 5801 (T.A. 2360).
     * Tolkien states that no more extra leap-days are added between then
       and the War of the Ring, or the start of the Fourth Age after that (S.A. 6462 or T.A. 3021).
-    * So by the time of the Fourth Age, the calendar of Gondor had 3 less leap-days
+    * So by T.A. 3019, the calendar of Gondor had 3 less leap-days
       (2*5+2+1 = 13 extra leap-days)
-      than the Gregorian calendar would have had over the same period of 6462 years
+      than the Gregorian calendar would have had over the same period of 6460 years
       (6400 / 400 = 16 extra leap-days).
+    * Mathematically we can see how a Gregorian calendar,
+      starting at the beginning of the Second Age,
+      would have had 3 more leap-days by December 6459
+      than the Gondor calendar by the start of the Third Age 3019:
+        * Gregorian: `6456/4 - 6400/100 + 6400/400 = 1566 leap-days`
+        * Gondor: `(3440/4 - 3400/100 + 2*3000/1000) + (3016/4 - 3000/100 + 2*2000/1000 + 2 + 1) = 1563 leap-days`
 
 Taking these concepts together with the point made earlier that Gregorian January 1 corresponded
 "more or less to the Shire January 9" (Afteryule 9),
-then if Mid-year's Day in the original Kings' Reckoning (Loëndë) corresponded
+then if Mid-year's Day in the original Kings' Reckoning corresponded
 with Gregorian June 23 at the start of the Second Age,
-this calendar would have drifted back 3 days relative to the Gregorian calendar
-by the War of the Ring and the start of the Fourth Age.
-Since Rethe 25 corresponded to Súlimë 25 in Kings' and Stewards' Reckoning by the start of the Fourth Age,
-then the Shire Calendar was also 3 days behind where the Gregorian calendar would have been,
-so Astron 6 would instead have correspond to the Gregorian March 26.
+meaning its New Year's Day corresponded with Gregorian December 23,
+then when it drifted back 3 days relative to the Gregorian calendar by the War of the Ring,
+the New Year's Day of both the Gondor and Shire Calendar would have corresponded with December 20 in T.A. 3019.
+
+Now note that the year 6460 in a Gregorian calendar is also a leap year,
+so in T.A. 3019 -- Shire Reckoning (S.R.) 1419 --
+Astron 6 would instead have correspond to the Gregorian March 25
+(to see this for yourself,
+[set the Shire Calendar to start reckoning from December 20 and the year to 6460](http://psarando.github.io/shire-reckoning/#tolkien-calendars)).
+This also means the Shire Reckoning New Year's Day was another day behind in T.A. 3020 (S.R. 1420),
+which means Astron 6 correspond to Gregorian March 25 again,
+until the Overlithe that year re-synced Shire New Year's Day with December 20 in T.A. 3021 (S.R. 1421).
 
 If the Calendar of Imladris started reckoning from a proleptic Gregorian March 21
 in the first Years of the Sun in the First Age (590 years before the start of the Second Age),
 then the 7050 years from then to the end of the War of the Ring
 (590 Years of the Sun + S.A. 3441 + T.A. 3019 = 7050)
-would have been enough time for Rivendell's New Year's Day to drift to Gregorian March 26 as well.
+would have been enough time for Rivendell's New Year's Day to drift to Gregorian March 25 as well.
 To see this for yourself, [set the year in this calendar to 7050 (with the default settings)](http://psarando.github.io/shire-reckoning/#tolkien-calendars).
-Rivendell New Year's Day falls on Gregorian March 25 in 7050,
-and the Rivendell leap-year just before that in 7044 (or after in 7056)
-will "re-sync" Rivendell New Year's Day in 7045 (or 7057) with Gregorian March 26.
 
 ###### Side Notes
 
-* Even if the Shire Calendar ignored Kings' and Stewards' Reckoning adjustments,
-  it's still likely to have started reckoning with its Mid-year's Day oriented on the Gregorian June 23
-  summer solstice in T.A. 1600 when the Shire was founded.
-  Then it would still have drifted back 3 days relative to a Gregorian calendar over the next 1422 years
-  by the start of the Fourth Age (1200 / 400 = 3 extra leap-days),
-  so Astron 6 would still have correspond to Gregorian March 26 by then.
-  Although, if the proleptic Gregorian leap-days are calculated from the start of the Second Age,
-  then the Shire Calendar would be 4 days behind this Gregorian calendar by the start of the Fourth Age
-  (S.A. 5200 + S.A. 5600 + S.A. 6000 + S.A. 6400 = 4 extra leap-days),
-  which means Astron 6 would have correspond to Gregorian March 25 instead,
-  but that happens to be Rivendell New Year's Day in T.A. 3019
-  if the Calendar of Imladris started reckoning from a proleptic Gregorian March 21, 7050 years earlier.
-  In either case, this would imply that the Shire Calendar started reckoning 5 days after the Kings' Reckoning
-  New Year's Day in T.A. 1600, so that after the Kings' and Stewards' Reckoning adjustments in
-  T.A. 2000 (S.A. 5441), T.A. 2059 (S.A. 5500), and T.A. 2360 (S.A. 5801) the calendars would be in
-  sync by the start of the Fourth Age.
-
+* Coincidentally, March 25 of the Julian calendar
+  [was the start of the legal year in England](https://en.wikipedia.org/wiki/Gregorian_calendar#Beginning_of_the_year)
+  before the adoption of the Gregorian calendar in 1752,
+  which converted to Gregorian April 5 at that time.
+  Then the Julian March 25 corresponded to Gregorian April 6 in the year 1800, and
+  [April 6 is still the start of the United Kingdom's tax year to this day](https://en.wikipedia.org/wiki/Quarter_days#In_England).
 
 * This script works by taking a Gregorian date and calculating a corresponding
   Rivendell calendar year for that date, and as mentioned before,
@@ -206,56 +219,75 @@ will "re-sync" Rivendell New Year's Day in 7045 (or 7057) with Gregorian March 2
   and a 432-year Rivendell Calendar leap cycle would be 10800 B.C.
   (if the year 0 is included) since it's evenly divisible by both 400 and 432.
   So these calculations could easily be adapted to start reckoning the Calendar of Imladris from this
-  year, and the 7052 years from then to the Fourth Age would be 3748 B.C.
+  year, and the 7050 years from then to T.A. 3019 would be 3750 B.C.,
   which is fairly close to Tolkien's 6000-year gap to our time.
 
 ##### Remaining Problems
 
-Claiming the Calendar of Imladris should start from a proleptic Gregorian March 21
+Claiming the Calendar of Imladris should start from a proleptic Gregorian March 21,
+because its New Year's Day fell on a proleptic Gregorian March 25 in the Third Age (T.A.) 3019,
 requires the following claims in order for the arguments above to tie together:
 
-* The first day of the Calendar of Imladris should be on a March 21st because the spring equinox
-  occurred on a proleptic Gregorian March 21 around the time these stories might have taken place.
-* The first Kings' Reckoning Mid-year's Day (Loëndë) should correspond with June 23rd,
-  which implies a December 23rd New Year's Day (Yestarë),
-  because the summer solstice occurred on a proleptic Gregorian June 23 around the time of the setting of
-  The Lord of the Rings.
-* The Calendar of Imladris should start reckoning 590 years before the start of the Second Age
-  (in the first Years of the Sun of the First Age).
+1. The Calendar of Imladris should start reckoning 590 years before the start of the Second Age
+   (in the first Years of the Sun of the First Age).
+2. The first day of the Calendar of Imladris should be on a March 21st because the spring equinox
+   occurred on a proleptic Gregorian March 21 around the time these stories might have taken place.
+3. The first Kings' Reckoning Mid-year's Day (Loëndë) should correspond with June 23rd,
+   which implies a December 23rd New Year's Day (Yestarë),
+   because the summer solstice occurred on a proleptic Gregorian June 23 around the time of the setting of
+   The Lord of the Rings.
 
-The last point is the most plausible of these claims,
-but as astute readers and astronomers have realized by now,
-the first 2 claims present the biggest problems:
+The first two points are the most plausible of these claims.
 
-1. Even if Tolkien was aware that 6000 years ago the spring equinox and summer solstice
-   generally occurred on March 21st and June 23rd, which is a day or 2 different than the dates they
-   occur in our time, should he have started his calendars from those dates 12~13 thousand years ago
-   without any adjustment?
-2. I focused on the first Kings' Reckoning Mid-year's Day (Loëndë) corresponding with June 23rd
-   because Loëndë should coincide with the Shire Mid-year's Day,
-   and Tolkien made a correlation with the Shire Mid-year's Day and the summer solstice
-   and a correlation with the Shire Calendar and the Gregorian calendar New Year's Day.
-   The problem with assuming the first Loëndë corresponded with June 23rd
-   is that Tolkien stated in Appendix D that Kings' Reckoning New Year's Day originated on the
-   [winter solstice](https://en.wikipedia.org/wiki/Solstice), and even though starting this calendar
-   on the December 21st winter solstice in our time allows Loëndë to fall on the June 21st summer solstice,
-   this was not the case 6000 years ago (let alone 12000 years ago)
-   [when the winter solstice would have generally occurred on proleptic Gregorian December 18](http://www.thetropicalevents.com/pngCharts/eWS_Gregorian1.png).
+1. Another logical start of the reckoning of the Calendar of Imladris,
+   which also allows its New Year's Day to fall on a March 25 in T.A. 3019,
+   could be on a March 20th at the start of the Second Age.
+   This start date is less likely since Tolkien wrote in Appendix D about a note on the
+   Calendars of the Red Book that states that the omission of the 3 extra Enderi at the end of a
+   432-year cycle 'has not happened in our time'.
+   If this calendar did start at the beginning of the Second Age, then it would have started a
+   new cycle just 20 years after the War of the Ring in Shire Reckoning (S.R.) 1439 (T.A. 3039).
+   Starting with the Years of the Sun in the First Age means this calendar started a new 432-year
+   cycle in S.R. 1281 (T.A. 2881; 9 years before the birth of Bilbo Baggins)
+   and its next wasn't due until S.R. 1713 (more than 100 years after the Red Book was copied in Gondor).
 
-It's still possible that Tolkien became aware of the March 21st spring equinox
-and June 23rd summer solstice of 6000 years ago and just made the mistake of assuming that
-these dates still corresponded 6~7 thousand years earlier, and that the relative days between
-the winter solstice and summer solstice were the same back then as they are now
-([he did assume the lengths of the years were the same then as they are now](http://rinsanity.weebly.com/tolkien.html)).
-His "long summer" calendars of the Shire and Númenor seem to fit these possibilities.
-Or perhaps he just didn't concern himself with any other dates of the solar events beyond the
-spring equinox and summer solstice during the hypothetical time-frame of the "Great Years" of the War of the Ring.
+2. March 20th is the usual date of the spring equinox these days
+   (and during the second half of the 19th century), however
+   March 21st was the more common date of the spring equinox in the first half of the 20th century.
+   In fact, the [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
+   was designed so that the spring equinox should always fall between March 19th and March 21st.
+
+3. The last claim presents the biggest problem:
+
+    * Even if Tolkien was aware that 6000 years ago the summer solstice generally occurred on June 23rd,
+      which is a day or 2 different than when it occurs in our time,
+      should he have started his calendar of Númenor from that date approximately
+      12 thousand years ago without any adjustment?
+    * I focused on the first Kings' Reckoning Mid-year's Day (Loëndë) corresponding with June 23rd
+      because Loëndë should coincide with the Shire Mid-year's Day,
+      and Tolkien made a correlation with the Shire Mid-year's Day and the summer solstice,
+      and a correlation with the Shire Calendar and the Gregorian calendar New Year's Day.
+      The problem with assuming the first Loëndë corresponded with June 23rd
+      is that Tolkien stated in Appendix D that the Kings' Reckoning New Year's Day originated on the
+      [winter solstice](https://en.wikipedia.org/wiki/Solstice), and even though starting this calendar
+      on the December 21st winter solstice in our time allows Loëndë to fall on the June 21st summer solstice,
+      this was not the case 6000 years ago (let alone 12000 years ago)
+      [when the winter solstice would have generally occurred on proleptic Gregorian December 18](http://www.thetropicalevents.com/pngCharts/eWS_Gregorian1.png).
+
+    It's possible that Tolkien was aware of the June 23rd summer solstice of 6000 years ago
+    and just made the mistake of assuming that this date still corresponded 6000 years earlier,
+    and that the relative days between the winter solstice and summer solstice
+    were the same back then as they are now
+    ([he did assume the lengths of the years were the same then as they are now](http://rinsanity.weebly.com/tolkien.html)).
+    His "long summer" calendars of the Shire and Númenor seem to fit these possibilities.
+    Or perhaps he just didn't concern himself with any other dates of the solar events beyond the
+    spring equinox and summer solstice during the hypothetical time-frame
+    of the "Great Years" of the War of the Ring.
 
 These calendars are not historically perfect,
 and generally fit the solar events and seasons of our time better than in ancient times,
 but starting the Calendar of Imladris from a proleptic Gregorian March 21
-in the first Years of the Sun of the First Age still works out nicely with the other details given
-by Tolkien in The Lord of the Rings, Appendix D.
+is the most logical choice given the other details by Tolkien in The Lord of the Rings, Appendix D.
 
 #### Reformed Rivendell Reckoning
 
@@ -278,8 +310,8 @@ which is 3 to 5 days before the contemporary [autumnal equionx](http://en.wikipe
 At one time in prehistory, [autumn was the longest of the seasons](http://www.sym454.org/seasons/),
 so these dates might have matched the seasons better during this time (and may again about 4000 years from now),
 but these days summer is the longest season and the spring equinox comes relatively earlier than it did back then.
-So now the [autumnal equionx](http://en.wikipedia.org/wiki/Equinox) usually falls on September 22nd,
-and as I mentioned earlier, the 3 Enderi were probably intended to occur around this equinox.
+So now the [autumnal equionx](http://en.wikipedia.org/wiki/Equinox) usually falls on September 22nd
+(or early on the 23rd), and as mentioned earlier, the 3 Enderi were probably intended to occur around this equinox.
 
 Starting this calendar on Gregorian March 25 with "reformed" rules
 allows the Enderi to always start on Gregorian September 22,
@@ -287,7 +319,11 @@ and also lets the other seasons of this calendar align with traditional seasonal
 since [March 25th](https://en.wikipedia.org/wiki/March_25#Holidays_and_observances),
 [June 24th](https://en.wikipedia.org/wiki/Midsummer#United_Kingdom) (the middle of Lairë),
 and [December 24th](https://en.wikipedia.org/wiki/Christmas_Eve) (the middle of Hrívë)
-are important national and religious holidays and feast days in that region.
+are national and religious holidays and feast days in that region.
+
+Finally, Gregorian March 25 also corresponds to the Elves' New Year's Day in the Third Age 3019,
+following the destruction of the One Ring and the downfall of Barad-dûr,
+[as demonstrated above](#why-march-21st).
 
 #### References
 

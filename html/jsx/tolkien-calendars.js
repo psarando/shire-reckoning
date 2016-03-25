@@ -37,9 +37,29 @@
         }
     });
 
+    var StartDatePicker = React.createMixin({
+        renderStartDatePicker: function (month, startRange, endRange) {
+            var opts = [];
+            for (var day = startRange; day <= endRange; day++) {
+                opts.push(<option value={day}>{day}</option>);
+            }
+            return (
+                <div>
+                    Start reckoning from
+                    <br />
+                    {month}
+                    <select value={this.state.startDay}
+                            onChange={this.onCalendarStartChange} >
+                        {opts}
+                    </select>
+                </div>
+            );
+        }
+    });
+
     var MonthViewPicker = React.createMixin({
         onMonthViewChange: function(event) {
-            this.setState({monthView: event.target.value});
+            this.setState({monthView: parseInt(event.target.value)});
         },
 
         getUpdatedMonthView: function(month) {
@@ -127,7 +147,7 @@
         renderMonthViewLayoutControls: function () {
             return (
                 <div>
-                    Month View Layout:
+                    Month View:
                     <br />
                     <select value={this.state.monthViewLayout}
                             onChange={this.onMonthViewLayoutChange} >
@@ -140,7 +160,10 @@
     });
 
     TolkienCalendars.ShireCalendar = React.createClass({
-        mixins: [CalendarCommon, MonthViewPicker, TolkienCalendars.MonthViewLayout],
+        mixins: [CalendarCommon,
+                 StartDatePicker,
+                 MonthViewPicker,
+                 TolkienCalendars.MonthViewLayout],
 
         statics: {
             REGION_NAMES_SHIRE: "shire",
@@ -245,11 +268,13 @@
             var monthViewLayout = this.props.monthViewLayout || TolkienCalendars.MonthViewLayout.VERTICAL;
             var region = this.props.region || TolkienCalendars.ShireCalendar.REGION_NAMES_SHIRE;
 
-            var calendar = this.makeCalendarDates(today);
+            var startDay = this.props.startDay || 21;
+            var calendar = this.makeCalendarDates(today, startDay);
             var monthView = this.props.yearView ? -1 : calendar.todayShire.month;
 
             return {
                 calendarControls: calendarControls,
+                startDay: startDay,
                 calendar: calendar,
                 monthView: monthView,
                 monthViewLayout: monthViewLayout,
@@ -262,7 +287,7 @@
             var calendar = this.state.calendar;
 
             if (today && !this.datesMatch(today, calendar.today)) {
-                calendar = this.makeCalendarDates(today);
+                calendar = this.makeCalendarDates(today, this.state.startDay);
             }
             this.setState({
                 calendar: calendar,
@@ -270,17 +295,27 @@
             });
         },
 
-        getNewYearDate: function (today) {
+        onCalendarStartChange: function(event) {
+            var startDay = event.target.value;
+            var calendar = this.makeCalendarDates(this.state.calendar.today, startDay);
+            this.setState({
+                startDay: startDay,
+                calendar: calendar,
+                monthView: this.state.monthView < 0 ? -1 : calendar.todayShire.month
+            });
+        },
+
+        getNewYearDate: function (today, startDay) {
             var startYear = today.getFullYear();
-            if (today.getMonth() < 11 || today.getDate() < 21) {
+            if (today.getMonth() < 11 || today.getDate() < startDay) {
                 startYear--;
             }
 
-            return new Date(startYear,11,21, 0,0,0);
+            return new Date(startYear,11,startDay, 0,0,0);
         },
 
-        makeCalendarDates: function(today) {
-            var gregorianDate = this.getNewYearDate(today);
+        makeCalendarDates: function(today, startDay) {
+            var gregorianDate = this.getNewYearDate(today, startDay);
             var todayShire;
 
             var dates = [{
@@ -617,6 +652,7 @@
             return (
                 <tr>
                     <td colSpan='2' className='shire-calendar-controls' >
+                        {this.renderStartDatePicker("December", 19, 25)}
                         <select value={region}
                                 onChange={this.onRegionChange} >
                             <option value={TolkienCalendars.ShireCalendar.REGION_NAMES_SHIRE}>Shire Names</option>
@@ -702,7 +738,10 @@
     });
 
     TolkienCalendars.RivendellCalendar = React.createClass({
-        mixins: [CalendarCommon, MonthViewPicker, TolkienCalendars.LanguagePicker],
+        mixins: [CalendarCommon,
+                 StartDatePicker,
+                 MonthViewPicker,
+                 TolkienCalendars.LanguagePicker],
 
         statics: {
             TRADITIONAL_RULES: "traditional",
@@ -1145,34 +1184,19 @@
 
             return (
                 <tr>
-                    <td className='rivendell-calendar-controls' >
-                        {this.renderLanguagePicker()}
-                    </td>
-                    <td className='rivendell-calendar-controls month-picker-container' colSpan='3'>
-                        {this.renderMonthViewPicker(monthNames)}
-                    </td>
                     <td className='rivendell-calendar-controls' colSpan='2'>
-                        Start reckoning from
-                        <br />
-                        March
-                        <select value={this.state.startDay}
-                                onChange={this.onCalendarStartChange} >
-                            <option value='20'>20th</option>
-                            <option value='21'>21st</option>
-                            <option value='22'>22nd</option>
-                            <option value='23'>23rd</option>
-                            <option value='24'>24th</option>
-                            <option value='25'>25th</option>
-                            <option value='26'>26th</option>
-                            <option value='27'>27th</option>
-                            <option value='28'>28th</option>
-                            <option value='29'>29th</option>
-                        </select>
+                        {this.renderStartDatePicker("March", 20, 29)}
                         <select value={this.state.calendarRules}
                                 onChange={this.onCalendarRulesChange} >
                             <option value={TolkienCalendars.RivendellCalendar.TRADITIONAL_RULES}>Traditional Rules</option>
                             <option value={TolkienCalendars.RivendellCalendar.REFORMED_RULES}>Reformed Rules</option>
                         </select>
+                    </td>
+                    <td className='rivendell-calendar-controls month-picker-container' colSpan='3'>
+                        {this.renderMonthViewPicker(monthNames)}
+                    </td>
+                    <td className='rivendell-calendar-controls' >
+                        {this.renderLanguagePicker()}
                     </td>
                 </tr>
             );
@@ -1216,7 +1240,11 @@
     });
 
     TolkienCalendars.NumenorCalendar = React.createClass({
-        mixins: [CalendarCommon, MonthViewPicker, TolkienCalendars.MonthViewLayout, TolkienCalendars.LanguagePicker],
+        mixins: [CalendarCommon,
+                 MonthViewPicker,
+                 StartDatePicker,
+                 TolkienCalendars.MonthViewLayout,
+                 TolkienCalendars.LanguagePicker],
 
         statics: {
             RECKONING_KINGS: "kings",
@@ -1355,13 +1383,13 @@
                 }
             ],
 
-            getNewYearDate: function (today) {
+            getNewYearDate: function (today, startDay) {
                 var startYear = today.getFullYear();
-                if (today.getMonth() < 11 || today.getDate() < 21) {
+                if (today.getMonth() < 11 || today.getDate() < startDay) {
                     startYear--;
                 }
 
-                return new Date(startYear, 11, 21, 0, 0, 0);
+                return new Date(startYear, 11, startDay, 0, 0, 0);
             },
 
             convertGregorianWeekday: function (weekday) {
@@ -1383,11 +1411,13 @@
             var monthViewLayout = this.props.monthViewLayout || TolkienCalendars.MonthViewLayout.VERTICAL;
             var reckoning = this.props.reckoning || TolkienCalendars.NumenorCalendar.RECKONING_KINGS;
 
-            var calendar = this.makeCalendarDates(today, reckoning);
+            var startDay = this.props.startDay || 21;
+            var calendar = this.makeCalendarDates(today, reckoning, startDay);
             var monthView = this.props.yearView ? -1 : calendar.todayNumenor.month;
 
             return {
                 calendarControls: calendarControls,
+                startDay: startDay,
                 calendar: calendar,
                 monthView: monthView,
                 monthViewLayout: monthViewLayout,
@@ -1401,7 +1431,7 @@
             var calendar = this.state.calendar;
 
             if (today && !this.datesMatch(today, calendar.today)) {
-                calendar = this.makeCalendarDates(today, this.state.reckoning);
+                calendar = this.makeCalendarDates(today, this.state.reckoning, this.state.startDay);
             }
             this.setState({
                 calendar: calendar,
@@ -1411,9 +1441,19 @@
             });
         },
 
+        onCalendarStartChange: function(event) {
+            var startDay = event.target.value;
+            var calendar = this.makeCalendarDates(this.state.calendar.today, this.state.reckoning, startDay);
+            this.setState({
+                startDay: startDay,
+                calendar: calendar,
+                monthView: this.getUpdatedMonthView(calendar.todayNumenor.month)
+            });
+        },
+
         onStartMonthChange: function (event) {
             var reckoning = event.target.value;
-            var calendar = this.makeCalendarDates(this.state.calendar.today, reckoning);
+            var calendar = this.makeCalendarDates(this.state.calendar.today, reckoning, this.state.startDay);
 
             this.setState({
                 calendar: calendar,
@@ -1422,35 +1462,36 @@
             });
         },
 
-        getNewReckoningNewYearDate: function (today) {
+        getNewReckoningNewYearDate: function (today, startDay) {
             var startYear = today.getFullYear();
             var thisMonth = today.getMonth();
             var thisDate = today.getDate();
+            var dayOffset = startDay - 21;
 
             if (thisMonth < 2) {
                 startYear--;
             } else if (thisMonth == 2) {
-                if (thisDate < 15 || (!this.isLeapYear(today) && thisDate < 16)) {
+                if (thisDate < 15+dayOffset || (!this.isLeapYear(today) && thisDate < 16+dayOffset)) {
                     startYear--;
                 }
             }
 
-            var newYearDate = new Date(startYear, 2, 16, 0, 0, 0);
+            var newYearDate = new Date(startYear, 2, 16+dayOffset, 0, 0, 0);
             if (this.isLeapYear(newYearDate)) {
-                newYearDate.setDate(15);
+                newYearDate.setDate(15+dayOffset);
             }
 
             return newYearDate;
         },
 
-        makeCalendarDates: function(today, reckoning) {
+        makeCalendarDates: function(today, reckoning, startDay) {
             var kingsReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_KINGS;
             var stewardsReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS;
             var newReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_NEW;
             var gregorianDate =
                 newReckoning ?
-                    this.getNewReckoningNewYearDate(today) :
-                    TolkienCalendars.NumenorCalendar.getNewYearDate(today);
+                    this.getNewReckoningNewYearDate(today, startDay) :
+                    TolkienCalendars.NumenorCalendar.getNewYearDate(today, startDay);
             var todayNumenor;
 
             var dates = [];
@@ -1886,6 +1927,7 @@
             return (
                 <tr>
                     <td colSpan='2' className='numenor-calendar-controls' >
+                        {this.renderStartDatePicker("December", 18, 25)}
                         <select value={reckoning}
                                 onChange={this.onStartMonthChange} >
                             <option value={TolkienCalendars.NumenorCalendar.RECKONING_KINGS}>Kings' Reckoning</option>
@@ -1893,11 +1935,11 @@
                             <option value={TolkienCalendars.NumenorCalendar.RECKONING_NEW}>New Reckoning</option>
                         </select>
                     </td>
-                    <td className='numenor-calendar-controls' >
-                        {this.renderLanguagePicker()}
-                    </td>
                     <td colSpan='3' className='numenor-calendar-controls month-picker-container' >
                         {this.renderMonthViewPicker(monthNames)}
+                    </td>
+                    <td className='numenor-calendar-controls' >
+                        {this.renderLanguagePicker()}
                     </td>
                     <td className='numenor-calendar-controls' >
                         {this.renderMonthViewLayoutControls()}
