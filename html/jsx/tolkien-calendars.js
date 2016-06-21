@@ -378,9 +378,9 @@
                     if (leapYear) {
                         gregorianDate = this.getNextDate(gregorianDate);
                         dates.push({
-                            "day": "OverLithe",
+                            "day": "Overlithe",
                             "region": {
-                                "shire": "OverLithe",
+                                "shire": "Overlithe",
                                 "bree": "3 Summerday"
                             },
                             "month": month+1,
@@ -469,9 +469,9 @@
                                         gregorianExtra={dates[1].gregorian} />
                     );
 
-                case "OverLithe":
+                case "Overlithe":
                     return (
-                        <IntercalaryDay key="OverLithe"
+                        <IntercalaryDay key="Overlithe"
                                         name={date.region[region]}
                                         description="Shire Leap Day and Day after Midsummer."
                                         currentDate={today}
@@ -532,7 +532,7 @@
 
                         break;
 
-                    case "OverLithe":
+                    case "Overlithe":
                         week.push(this.renderDay([date, dates[++i]], today));
 
                         break;
@@ -587,7 +587,7 @@
 
                         break;
 
-                    case "OverLithe":
+                    case "Overlithe":
                         weeks[date.weekDay].push(this.renderDay([date, dates[++i]], today));
 
                         break;
@@ -620,7 +620,7 @@
 
                         break;
 
-                    case "OverLithe":
+                    case "Overlithe":
                         week.push(this.renderDay([date, dates[++i]], today));
 
                         break;
@@ -1007,7 +1007,7 @@
                 weekDay++;
 
                 dates.push({
-                    "date": "Leap Enderë",
+                    "date": "Reformed Enderë",
                     "month": 5,
                     "weekDay": weekDay % 6,
                     "gregorian": gregorianDate
@@ -1069,10 +1069,10 @@
                                         gregorian={date.gregorian} />
                     );
 
-                case "Leap Enderë":
+                case "Reformed Enderë":
                     return (
                         <IntercalaryDay key={"Middleday-" + date.weekDay}
-                                        name={language == TolkienCalendars.LanguagePicker.ENGLISH ? "Leap Middleday" : "Leap Enderë"}
+                                        name={language == TolkienCalendars.LanguagePicker.ENGLISH ? "Leap Middleday" : "Reformed Enderë"}
                                         description="Middleday"
                                         currentDate={today}
                                         gregorian={date.gregorian} />
