@@ -197,18 +197,21 @@ TolkienCalendars.ShireCalendarExample = React.createClass({
             <table>
                 <tbody>
                 <tr>
-                    <td colSpan='2' style={this.captionCellStyle}>
+                    <td colSpan='3' style={this.captionCellStyle}>
                         {this.renderDatePicker(currentDate)}
                     </td>
                 </tr>
                 <tr>
                     <td style={this.captionCellStyle}>
+                        Shire Reckoning year view with Tolkien month and weekday names
                         <pre>
                             <code>
                                 {
 `React.createElement(
     TolkienCalendars.ShireCalendar,
-    {caption: "Shire Reckoning with CSS styling",
+    {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
+     yearView: true,
+     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )`
@@ -217,15 +220,32 @@ TolkienCalendars.ShireCalendarExample = React.createClass({
                         </pre>
                     </td>
                     <td style={this.captionCellStyle}>
+                        Shire Reckoning year view with Shire month and weekday names
                         <pre>
                             <code>
                                 {
 `React.createElement(
     TolkienCalendars.ShireCalendar,
-    {caption: "Shire Reckoning with Bree month and day names",
-     date: ${dateString},
+    {yearView: true,
      calendarControls: false,
-     region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Shire Reckoning year view with Bree month and weekday names
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
      className: "shire-calendar"}
 )`
                                 }
@@ -235,45 +255,139 @@ TolkienCalendars.ShireCalendarExample = React.createClass({
                 </tr>
                 <tr>
                     <td style={this.calendarCellStyle}>
-                        <TolkienCalendars.ShireCalendar caption="Shire Reckoning with CSS styling"
-                                                        date={currentDate}
-                                                        className="shire-calendar" />
-                    </td>
-                    <td style={this.calendarCellStyle}>
-                        <TolkienCalendars.ShireCalendar caption="Shire Reckoning with Bree month and day names"
-                                                        date={currentDate}
+                        <TolkienCalendars.ShireCalendar region={TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN}
+                                                        yearView={true}
                                                         calendarControls={false}
-                                                        region={TolkienCalendars.ShireCalendar.REGION_NAMES_BREE}
+                                                        date={currentDate}
+                                                        className="shire-calendar" />
+                    </td>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.ShireCalendar yearView={true}
+                                                        calendarControls={false}
+                                                        date={currentDate}
+                                                        className="shire-calendar" />
+                    </td>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.ShireCalendar region={TolkienCalendars.ShireCalendar.REGION_NAMES_BREE}
+                                                        yearView={true}
+                                                        calendarControls={false}
+                                                        date={currentDate}
                                                         className="shire-calendar" />
                     </td>
                 </tr>
                 <tr>
                     <td style={this.captionCellStyle}>
+                        Shire Reckoning with Tolkien month and weekday names
                         <pre>
                             <code>
                                 {
 `React.createElement(
     TolkienCalendars.ShireCalendar,
-    {caption: "Shire Reckoning: Year view",
-     date: ${dateString},
+    {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
      calendarControls: false,
-     className: "shire-calendar",
-     yearView: true}
+     date: ${dateString},
+     className: "shire-calendar"}
 )`
                                 }
                             </code>
                         </pre>
                     </td>
                     <td style={this.captionCellStyle}>
+                        Shire Reckoning with Shire month and weekday names
                         <pre>
                             <code>
                                 {
 `React.createElement(
     TolkienCalendars.ShireCalendar,
-    {caption: "Shire Reckoning: Horizontal Month View",
+    {calendarControls: false,
      date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Shire Reckoning with Bree month and weekday names
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
      calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.ShireCalendar region={TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN}
+                                                        calendarControls={false}
+                                                        date={currentDate}
+                                                        className="shire-calendar" />
+                    </td>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.ShireCalendar calendarControls={false}
+                                                        date={currentDate}
+                                                        className="shire-calendar" />
+                    </td>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.ShireCalendar region={TolkienCalendars.ShireCalendar.REGION_NAMES_BREE}
+                                                        calendarControls={false}
+                                                        date={currentDate}
+                                                        className="shire-calendar" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style={this.captionCellStyle}>
+                        Shire Reckoning horizontal view with Tolkien month and weekday names
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
      monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Shire Reckoning horizontal view with Shire month and weekday names
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     calendarControls: false,
+     date: ${dateString},
+     className: "shire-calendar"}
+)`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={this.captionCellStyle}>
+                        Shire Reckoning horizontal view with Bree month and weekday names
+                        <pre>
+                            <code>
+                                {
+`React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
+     monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     calendarControls: false,
+     date: ${dateString},
      className: "shire-calendar"}
 )`
                                 }
@@ -283,17 +397,23 @@ TolkienCalendars.ShireCalendarExample = React.createClass({
                 </tr>
                 <tr>
                     <td style={this.calendarCellStyle}>
-                        <TolkienCalendars.ShireCalendar caption="Shire Reckoning: Year view"
-                                                        date={currentDate}
+                        <TolkienCalendars.ShireCalendar region={TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN}
+                                                        monthViewLayout={TolkienCalendars.MonthViewLayout.HORIZONTAL}
                                                         calendarControls={false}
-                                                        className="shire-calendar"
-                                                        yearView={true} />
+                                                        date={currentDate}
+                                                        className="shire-calendar" />
                     </td>
                     <td style={this.calendarCellStyle}>
-                        <TolkienCalendars.ShireCalendar caption="Shire Reckoning: Horizontal Month View"
-                                                        date={currentDate}
+                        <TolkienCalendars.ShireCalendar monthViewLayout={TolkienCalendars.MonthViewLayout.HORIZONTAL}
                                                         calendarControls={false}
+                                                        date={currentDate}
+                                                        className="shire-calendar" />
+                    </td>
+                    <td style={this.calendarCellStyle}>
+                        <TolkienCalendars.ShireCalendar region={TolkienCalendars.ShireCalendar.REGION_NAMES_BREE}
                                                         monthViewLayout={TolkienCalendars.MonthViewLayout.HORIZONTAL}
+                                                        calendarControls={false}
+                                                        date={currentDate}
                                                         className="shire-calendar" />
                     </td>
                 </tr>
@@ -760,8 +880,7 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({
                                 {
 `React.createElement(
     TolkienCalendars.NumenorCalendar,
-    {monthViewLayout:
-        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+    {monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL,
      calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
@@ -779,8 +898,7 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({
     TolkienCalendars.NumenorCalendar,
     {reckoning:
         TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS,
-     monthViewLayout:
-        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL,
      language: TolkienCalendars.LanguagePicker.SINDARIN,
      calendarControls: false,
      date: ${dateString},
@@ -799,8 +917,7 @@ TolkienCalendars.NumenorCalendarExample = React.createClass({
     TolkienCalendars.NumenorCalendar,
     {reckoning:
         TolkienCalendars.NumenorCalendar.RECKONING_NEW,
-     monthViewLayout:
-        TolkienCalendars.MonthViewLayout.HORIZONTAL,
+     monthViewLayout: TolkienCalendars.MonthViewLayout.HORIZONTAL,
      language: TolkienCalendars.LanguagePicker.ENGLISH,
      calendarControls: false,
      date: ${dateString},

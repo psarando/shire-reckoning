@@ -7,13 +7,13 @@
 (def weekdays ["Sterday" "Sunday" "Monday" "Trewsday" "Hevensday" "Mersday" "Highday"])
 
 (def weekday-descriptions
- ["Sterday: Stars of Varda Day (sterrendei)."
-  "Sunday: Sun Day (sunnendei)."
-  "Monday: Moon Day (monendei)."
-  "Trewsday: Two Trees of Valinor Day (trewesdei)."
-  "Hevensday: Heavens Day (hevensdei)."
-  "Mersday: Sea Day (meresdei)."
-  "Highday: Valar Day (hihdei)."])
+ ["Sterday: Star Day. From the archaic Sterrendei (from Old English steorra dæg)."
+  "Sunday: Sun Day. From the archaic Sunnendei (from Old English sunne dæg)."
+  "Monday: Moon Day. From the archaic Monendei (from Old English mōna dæg)."
+  "Trewsday: Trees Day. From the archaic Trewesdei (from Old English trēow dæg)."
+  "Hevensday: Heavens Day. From the archaic Hevensdei (from Old English heofen dæg)."
+  "Mersday: Sea Day. From the archaic Meresdei (from Old English mere dæg)."
+  "Highday: High Day. From the archaic Hihdei (from Old English hēah dæg)."])
 
 (def months ["Afteryule"
              "Solmath"
@@ -29,18 +29,18 @@
              "Foreyule"])
 
 (def month-descriptions
- ["Afteryule:\\nThe month after the winter solstice (Midwinter) feast of Gēola or Giúl (Yule)."
-  "Solmath:\\nSol Month. The return of the sun (sol), or perhaps from the Old English word for mud.\\nMuddy Month."
-  "Rethe:\\nMonth of the Goddess Hrēþ or Hretha.\\nMonth of Wildness."
-  "Astron:\\nSpring month.\\nNamed after the Goddess Ēostre."
-  "Thrimidge:\\nThe month of plenty\\, when cows were given three milkings (thri+milching) daily."
-  "Forelithe:\\nThe month before the summer solstice (Midsummer)\\, when gentle (Litha) weather encouraged voyages.\\nCalm or Navigable Month."
-  "Afterlithe:\\nThe month after the summer solstice (Midsummer).\\nMeadow Month."
-  "Wedmath:\\nWhen fields were beset by weeds (weod).\\nPlant Month."
-  "Halimath:\\nThe holy (haleg) month of sacred rites.\\nHarvest Month."
-  "Winterfilth:\\nThe filling (fylleth) of winter's first full moon\\, according to Bede\\; Tolkien instead suggests the \"filling\" or completion of the year before Winter\\, after the harvest.\\nWine Month."
-  "Blotmath:\\nThe month of blood (blod).\\nMonth of Sacrifice or Slaughter."
-  "Foreyule:\\nThe month before the solstice (Midwinter) feast of Gēola or Giúl (Yule)."])
+ ["Afteryule:\\nThe month after the winter solstice (Midwinter)\\, from æfter Gēola 'after Winter Solstice'."
+  "Solmath:\\nFrom Solmōnað\\, perhaps from the Old English word for mud\\, 'sol'.\\nMuddy Month."
+  "Rethe:\\nFrom Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha\\, according to the Venerable Bede.\\nMonth of Wildness or Roaring Winds."
+  "Astron:\\nFrom Ēastermōnað 'Easter-month'\\, named after the Goddess Ēostre.\\nSpring month."
+  "Thrimidge:\\nThe month of plenty\\, when cows were given three milkings (þri-milce) daily."
+  "Forelithe:\\nThe month before the summer solstice (Midsummer)\\, when litha (gentle\\, mild) weather encouraged voyages.\\nFrom ǣrra Līða 'before Litha'.\\nCalm or Navigable Month."
+  "Afterlithe:\\nThe month after the summer solstice (Midsummer)\\, from æfter Līða.\\nMeadow Month."
+  "Wedmath:\\nWhen fields were beset by weeds\\, from Wēodmōnað 'weed-month'.\\nPlant Month."
+  "Halimath:\\nThe holy month of offerings\\, from Hāligmōnað 'holy-month'.\\nHarvest Month."
+  "Winterfilth:\\nThe filling of winter's first full moon\\, according to the Venerable Bede.\\nTolkien instead suggests the \"filling\" or completion of the year before Winter\\, after the harvest.\\nFrom Winterfylleð 'winter fullness'.\\nWine Month."
+  "Blotmath:\\nThe Month of Sacrifice\\, from Blōtmōnað 'sacrifice-month'."
+  "Foreyule:\\nThe month before the winter solstice (Midwinter)\\, from ǣrra Gēola 'before Winter Solstice'."])
 
 (defn format-date
  [date]
@@ -77,8 +77,8 @@
  I chose to start this calendar on the 21st of December 1931\\, which places the
   majority of the Shire Reckoning dates in 1932\\, the year 'The Hobbit' was first
   completed\\, and also happens to be a leap-year\\, a good starting point for marking
-  Overlithe leap-days. Additional month descriptions taken from
-  http://en.wikipedia.org/wiki/Germanic_calendar.\\n\\n
+  Overlithe leap-days. Month and weekday descriptions are based on
+  The Lord of the Rings: A Reader's Companion.\\n\\n
  Note: This calendar will erroneously mark June 22 as Overlithe days on
   centennial years which are not leap-years."))
 

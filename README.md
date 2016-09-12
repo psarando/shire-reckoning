@@ -25,9 +25,9 @@ and it follows the same leap-day rules of the Gregorian calendar.
 This allows it to stay in sync with the Gregorian calendar so that most Shire Reckoning dates
 will always fall on the same Gregorian date.
 
-These calendars make no attempt to correlate Gregorian years with Ages of Middle-earth.
+These calendars make no attempt to correlate Gregorian years with Shire-reckoning years or the Ages of Middle-earth.
 Additionally, these calendars always reckon their dates from midnight to midnight,
-just as our modern Gregorian calendar and the Shire calendar reckon dates.
+just as our modern Gregorian calendar and the Shire Calendar reckon dates.
 Note that Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
 and the Elves reckoned their dates from sunset to sunset.
 
@@ -46,7 +46,61 @@ More examples of each calendar can be found in the [examples directory](html/exa
 * [Rivendell Calendar examples](http://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
 * [Númenor Calendar examples](http://psarando.github.io/shire-reckoning/examples/numenor-calendars.html)
 
-These javascript calendars require the [React javascript library](http://facebook.github.io/react/).
+These javascript calendars use the [React javascript library](http://facebook.github.io/react/).
+
+### Shire Reckoning Notes
+
+> In the above notes [of Appendix D], as in the narrative,
+> I have used our modern names for both months and weekdays,
+> though of course neither the Eldar nor the Dúnedain nor the Hobbits actually did so...
+>
+> All the days, months, and dates are in the Red Book translated into Shire terms, or equated with them in notes.
+> The months and days, therefore, throughout The Lord of the Rings refer to the Shire Calendar.
+>
+> -- J.R.R. Tolkien, The Lord of the Rings, Appendix D
+
+In other words,
+as Tolkien "translated" the [Red Book of Westmarch](https://en.wikipedia.org/wiki/Red_Book_of_Westmarch)
+into English as [The Lord of the Rings](#references),
+he "translated" (or rather substituted) the Shire names of the months and weekdays with
+[Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar) names,
+so that Mersday becomes Thursday and Rethe becomes March in the narrative.
+
+These scripts use the original Shire names by default,
+but a control is available in this visualization to display the Shire Calendar with the Gregorian names
+Tolkien used as substitutions, and there's also the option to display the calendar
+with the alternate month names used in Bree.
+
+The descriptions of the month and weekday names in this visualization were taken from
+[The Lord of the Rings: A Reader's Companion](#references),
+[Shire-Reckoning.com](http://shire-reckoning.com/calendar.html),
+and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar).
+To see these descriptions, hover your cursor over any day in a month or over a weekday header cell,
+and a tooltip will display the description of that month or weekday name.
+
+This visualization starts reckoning the start of the Shire Calendar year from Gregorian December 21 by default,
+in order to align Shire Mid-year's Day as much as possible with the contemporary
+[summer solstice](https://en.wikipedia.org/wiki/Solstice)
+(see [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html)).
+A control is included that allows the Shire Calendar year to start reckoning from days up to Gregorian December 25,
+since it is demonstrated in [The Lord of the Rings: A Reader's Companion](#references)
+that Tolkien used the actual moon phases of 1941-1942 as a reference for the moon phases described in
+[The Lord of the Rings](#references),
+but these moon phases only align with the dates in the narrative if those Shire Calendar dates start reckoning their year
+from December 25 in 1941 and 1942.
+Note this annotation from [The Lord of the Rings: A Reader's Companion](#references),
+referring to its chart demonstrating this alignment:
+
+> N.B. the chart in 'Chronologies, Calendars, and Moon' earlier in the present volume is concerned
+> only with Tolkien's method of adjusting the lunar calendar for 1941-2 to his changing ideas within the narrative.
+> It has no relation to the correspondences discussed in Appendix D.
+
+* Since moon phases [approximately repeat dates every 19 years](https://en.wikipedia.org/wiki/Metonic_cycle),
+  then these 1941-2 moon phases will repeat on most of these same "adjusted" dates
+  (reckoning the start of the Shire Calendar year from Gregorian December 25) in 2017-18.
+* If reckoning the start of the Shire Calendar year from Gregorian December 21,
+  then the moon phases of 2020-21 will match the Shire Reckoning dates of the narrative instead
+  (and a bit better).
 
 ### Notes on the visualizations of the calendars of Gondor
 
@@ -169,7 +223,8 @@ with "March 25" of the Shire, Kings', and Stewards' Reckoning calendars (Rethe 2
 Both the Kings' and Shire Reckoning followed leap-year rules similar to the Gregorian calendar,
 where every 4th year is a leap-year except the last in a century,
 but the Gregorian calendar also adds an extra leap-day (i.e. does not omit the leap-day) every 4th century
-whereas Kings' Reckoning [adds 2 extra leap-days every millenium](http://rinsanity.weebly.com/tolkien.html).
+whereas Kings' Reckoning [adds 2 extra leap-days every millenium](http://rinsanity.weebly.com/tolkien.html)
+(as explained in [The Lord of the Rings: A Reader's Companion](#references)).
     * The 2 millennial leap-days were added throughout the Second Age (which ended in S.A. 3441),
       and again up to the Third Age (T.A.) 2000 (S.A. 5441).
     * Then 2 more extra leap-days were added in S.A. 5500
@@ -316,11 +371,17 @@ I invented these "reformed reckoning" rules to keep the Calendar of Imladris mor
 Gregorian calendar so that most of its dates always fall on the same Gregorian date.
 These rules always start the Calendar of Imladris on the same Gregorian day (March 25th by default),
 and make the calendar follow the leap-year and leap-day rules of the Gregorian calendar.
-With these "Reformed" Rivendell Reckoning rules, there are not 3 extra Enderi every 12 years,
-but instead a single "Reformed Enderë" (or a "Leap Middleday" if you will)
-between the first and last day of the Calendar of Imladris in every leap-year of the Gregorian calendar.
+With these "Reformed" Rivendell Reckoning rules, a single "Reformed Enderë" (or a "Leap Middleday" if you will)
+falls between the first and last day of the Calendar of Imladris in every leap-year of the Gregorian calendar,
+rather than adding 3 extra Enderi to the middle of the year every 12 years.
 
 ##### Why March 25th?
+
+[As explained above](#why-march-21st),
+Gregorian March 25 corresponds to the Elves' New Year's Day in the Third Age 3019,
+the year of the destruction of the One Ring and of the downfall of Barad-dûr and Sauron,
+but starting this calendar's year from March 25 also aligns it with the seasons
+and the Gregorian calendar in the following ways:
 
 Starting the elvish Calendar of Imladris on the vernal equinox in our time
 would mean starting on the usual date of March 20th,
@@ -342,13 +403,14 @@ and [December 24th](https://en.wikipedia.org/wiki/Christmas_Eve) (the middle of 
 which fall on (or very close to) the
 [traditional quarter days of England](https://en.wikipedia.org/wiki/Quarter_days#In_England).
 
-Finally, Gregorian March 25 also corresponds to the Elves' New Year's Day in the Third Age 3019,
-the year of the destruction of the One Ring and of the downfall of Barad-dûr and Sauron,
-[as explained above](#why-march-21st).
+* Note that starting this calendar from March 22 with "traditional" rules
+  has the nice property of allowing September 22 to always fall on an Enderë
+  and allows Yestarë to always fall between March 22 - 25 from around 1900 until around 2100.
 
 #### References
 
-* Tolkien, J. R. R. (1955), The Return of the King, The Lord of the Rings, Boston: Houghton Mifflin Co. (published 1965), Appendix D, ISBN 0-395-08256-0
+* Tolkien, J. R. R. (1965). The Return of the King: being the third part of The Lord of the Rings. Boston: Houghton Mifflin Co. Appendix D. ISBN 0-395-08256-0
+* Hammond, W. G.; Scull, C. (2005). The Lord of the Rings: A Reader's Companion. Boston: Houghton Mifflin Co. pp. 725-732. ISBN-13 978-0-618-64267-0.
 * [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html)
 * [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html)
 * [TheTropicalEvents.com](http://www.thetropicalevents.com/):
@@ -359,7 +421,8 @@ the year of the destruction of the One Ring and of the downfall of Barad-dûr an
 * [Wikipedia article on Middle-earth calendars](https://en.wikipedia.org/wiki/Middle-earth_calendar)
 * [Wikipedia article on the Ages of Middle-earth](https://en.wikipedia.org/wiki/Timeline_of_Arda)
 * [Wikipedia solstice article](https://en.wikipedia.org/wiki/Solstice)
-* [Wikipedia equinox article](http://en.wikipedia.org/wiki/Equinox)
+* [Wikipedia equinox article](https://en.wikipedia.org/wiki/Equinox)
+* [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar)
 
 ## `shire-icalendar.clj` -> [shire-reckoning.ics](shire-reckoning.ics)
 
@@ -390,8 +453,8 @@ The Shire Reckoning iCalendar description is provided below:
 > which places the majority of the Shire Reckoning dates in 1932,
 > the year 'The Hobbit' was first completed, and also happens to be a leap-year,
 > a good starting point for marking Overlithe leap-days.
-> Additional month descriptions taken from http://en.wikipedia.org/wiki/Germanic_calendar.
-
+> Month and weekday descriptions are based on The Lord of the Rings: A Reader's Companion.
+>
 > Note: This calendar will erroneously mark June 22 as Overlithe days on centennial years which are not leap-years.
 
 Use [Leiningen](http://leiningen.org) and the [lein-exec plugin](https://github.com/kumarshantanu/lein-exec)

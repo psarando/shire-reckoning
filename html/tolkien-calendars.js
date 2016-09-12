@@ -166,90 +166,222 @@
                  TolkienCalendars.MonthViewLayout],
 
         statics: {
+            REGION_NAMES_TOLKIEN: "tolkien",
             REGION_NAMES_SHIRE: "shire",
             REGION_NAMES_BREE: "bree",
 
             weekdays: [
-                {name: 'Sterday',   description: "Stars of Varda Day. From the archaic Sterrendei."},
-                {name: 'Sunday',    description: "Sun Day. From the archaic Sunnendei."},
-                {name: 'Monday',    description: "Moon Day. From the archaic Monendei."},
-                {name: 'Trewsday',  description: "Two Trees of Valinor Day. From the archaic Trewesdei."},
-                {name: 'Hevensday', description: "Heavens Day. From the archaic Hevensdei."},
-                {name: 'Mersday',   description: "Sea Day. From the archaic Meresdei."},
-                {name: 'Highday',   description: "Valar Day. From the archaic Hihdei."}
+                {
+                    tolkien: 'Saturday',
+                    shire: 'Sterday',
+                    bree: 'Sterday',
+                    description:
+`Tolkien: Saturday
+Shire: Sterday
+Star Day. From the archaic Sterrendei (from Old English steorra dæg).`
+                },
+                {
+                    tolkien: 'Sunday',
+                    shire: 'Sunday',
+                    bree: 'Sunday',
+                    description:
+`Tolkien: Sunday
+Shire: Sunday
+Sun Day. From the archaic Sunnendei (from Old English sunne dæg).`
+                },
+                {
+                    tolkien: 'Monday',
+                    shire: 'Monday',
+                    bree: 'Monday',
+                    description:
+`Tolkien: Monday
+Shire: Monday
+Moon Day. From the archaic Monendei (from Old English mōna dæg).`
+                },
+                {
+                    tolkien: 'Tuesday',
+                    shire: 'Trewsday',
+                    bree: 'Trewsday',
+                    description:
+`Tolkien: Tuesday
+Shire: Trewsday
+Trees Day. From the archaic Trewesdei (from Old English trēow dæg).`
+                },
+                {
+                    tolkien: 'Wednesday',
+                    shire: 'Hevensday',
+                    bree: 'Hevensday',
+                    description:
+`Tolkien: Wednesday
+Shire: Hevensday
+Heavens Day. From the archaic Hevensdei (from Old English heofen dæg).`
+                },
+                {
+                    tolkien: 'Thursday',
+                    shire: 'Mersday',
+                    bree: 'Mersday',
+                    description:
+`Tolkien: Thursday
+Shire: Mersday
+Sea Day. From the archaic Meresdei (from Old English mere dæg).`
+                },
+                {
+                    tolkien: 'Friday',
+                    shire: 'Highday',
+                    bree: 'Highday',
+                    description:
+`Tolkien: Friday
+Shire: Highday
+High Day. From the archaic Hihdei (from Old English hēah dæg).`
+                }
             ],
 
             months: [
                 {
+                    tolkien: 'January',
                     shire: 'Afteryule',
                     bree: 'Frery',
-                    description: "The month after the winter solstice (Midwinter) feast of Gēola or Giúl (Yule).",
+                    description:
+`Tolkien: January
+Shire: Afteryule
+Bree: Frery
+The month after the winter solstice (Midwinter),
+from æfter Gēola 'after Winter Solstice',
+and from frēorig 'freezing, frigid'.`,
                     className: "afteryule"
                 },
                 {
+                    tolkien: 'February',
                     shire: 'Solmath',
                     bree: 'Solmath',
-                    description: "Sol Month. The return of the sun (sol), or perhaps from the Old English word for mud.\nMuddy Month.",
+                    description:
+`Tolkien: February
+Shire: Solmath
+Bree: Solmath
+From Solmōnað, perhaps from the Old English word for mud, 'sol'.
+Muddy Month.`,
                     className: "solmath"
                 },
                 {
+                    tolkien: 'March',
                     shire: 'Rethe',
                     bree: 'Rethe',
-                    description: "Month of the Goddess Hrēþ or Hretha.\nMonth of Wildness.",
+                    description:
+`Tolkien: March
+Shire: Rethe
+Bree: Rethe
+From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede.
+Month of Wildness or Roaring Winds.`,
                     className: "rethe"
                 },
                 {
+                    tolkien: 'April',
                     shire: 'Astron',
                     bree: 'Chithing',
-                    description: "Spring month.\nNamed after the Goddess Ēostre.",
+                    description:
+`Tolkien: April
+Shire: Astron
+Bree: Chithing
+From Ēastermōnað 'Easter-month', named after the Goddess Ēostre,
+and from cīþing 'growing thing' (cīþ 'young shoot, sprout').
+Spring Month.`,
                     className: "astron"
                 },
                 {
+                    tolkien: 'May',
                     shire: 'Thrimidge',
                     bree: 'Thrimidge',
-                    description: "The month of plenty, when cows were given three milkings (thri+milching) daily.",
+                    description:
+`Tolkien: May
+Shire: Thrimidge
+Bree: Thrimidge
+The month of plenty, when cows were given three milkings (þri-milce) daily.`,
                     className: "thrimidge"
                 },
                 {
+                    tolkien: 'June',
                     shire: 'Forelithe',
                     bree: 'Lithe',
-                    description: "The month before the summer solstice (Midsummer), when gentle (Litha) weather encouraged voyages.\nCalm or Navigable Month.",
+                    description:
+`Tolkien: June
+Shire: Forelithe
+Bree: Lithe
+The month before the summer solstice (Midsummer), when litha (gentle, mild) weather encouraged voyages.
+From ǣrra Līða 'before Litha'.
+Calm or Navigable Month.`,
                     className: "forelithe"
                 },
                 {
+                    tolkien: 'July',
                     shire: 'Afterlithe',
                     bree: 'Mede',
-                    description: "The month after the summer solstice (Midsummer).\nMeadow Month.",
+                    description:
+`Tolkien: July
+Shire: Afterlithe
+Bree: Mede
+The month after the summer solstice (Midsummer), from æfter Līða, and from mǣd 'mead, meadow'.
+Meadow Month.`,
                     className: "afterlithe"
                 },
                 {
+                    tolkien: 'August',
                     shire: 'Wedmath',
                     bree: 'Wedmath',
-                    description: "When fields were beset by weeds (weod).\nPlant Month.",
+                    description:
+`Tolkien: August
+Shire: Wedmath
+Bree: Wedmath
+When fields were beset by weeds, from Wēodmōnað 'weed-month'.
+Plant Month.`,
                     className: "wedmath"
                 },
                 {
+                    tolkien: 'September',
                     shire: 'Halimath',
                     bree: 'Harvestmath',
-                    description: "The holy (haleg) month of sacred rites.\nHarvest Month.",
+                    description:
+`Tolkien: September
+Shire: Halimath
+Bree: Harvestmath
+The holy month of offerings, from Hāligmōnað 'holy-month', and from Hærfestmōnað 'harvest-month'.
+Harvest Month.`,
                     className: "halimath"
                 },
                 {
+                    tolkien: 'October',
                     shire: 'Winterfilth',
                     bree: 'Wintring',
-                    description: "The filling (fylleth) of winter's first full moon, according to Bede; Tolkien instead suggests the \"filling\" or completion of the year before Winter, after the harvest.\nWine Month.",
+                    description:
+`Tolkien: October
+Shire: Winterfilth
+Bree: Wintring
+The filling of winter's first full moon, according to the Venerable Bede.
+Tolkien instead suggests the "filling" or completion of the year before Winter, after the harvest.
+From Winterfylleð 'winter fullness', and wintrig 'wintry, winter'.
+Wine Month.`,
                     className: "winterfilth"
                 },
                 {
+                    tolkien: 'November',
                     shire: 'Blotmath',
                     bree: 'Blooting',
-                    description: "The month of blood (blod).\nMonth of Sacrifice or Slaughter.",
+                    description:
+`Tolkien: November
+Shire: Blotmath
+Bree: Blooting
+The Month of Sacrifice, from Blōtmōnað 'sacrifice-month'.`,
                     className: "blotmath"
                 },
                 {
+                    tolkien: 'December',
                     shire: 'Foreyule',
                     bree: 'Yulemath',
-                    description: "The month before the solstice (Midwinter) feast of Gēola or Giúl (Yule).",
+                    description:
+`Tolkien: December
+Shire: Foreyule
+Bree: Yulemath
+The month before the winter solstice (Midwinter),
+from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.`,
                     className: "foreyule"
                 }
             ]
@@ -349,6 +481,7 @@
                     dates.push({
                         "day": "1 Lithe",
                         "region": {
+                            "tolkien": "1 Lithe",
                             "shire": "1 Lithe",
                             "bree": "1 Summerday"
                         },
@@ -380,6 +513,7 @@
                         dates.push({
                             "day": "Overlithe",
                             "region": {
+                                "tolkien": "Overlithe",
                                 "shire": "Overlithe",
                                 "bree": "3 Summerday"
                             },
@@ -397,6 +531,7 @@
                     dates.push({
                         "day": "2 Lithe",
                         "region": {
+                            "tolkien": "2 Lithe",
                             "shire": "2 Lithe",
                             "bree": leapYear ? "4 Summerday" : "3 Summerday"
                         },
@@ -499,7 +634,7 @@
                                   currentDate: today, 
                                   month: month[region], 
                                   description: month.description, 
-                                  weekday: weekday.name, 
+                                  weekday: weekday[region], 
                                   className: month.className})
                     );
             }
@@ -560,11 +695,13 @@
             var today = this.state.calendar.today;
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
+            var region = this.state.region;
 
             var weeks = TolkienCalendars.ShireCalendar.weekdays.map(function (weekday) {
+                var weekdayName = weekday[region];
                 return [(
-                    React.createElement(WeekDayHeaderCell, {key: weekday.name, 
-                                       name: weekday.name, 
+                    React.createElement(WeekDayHeaderCell, {key: weekdayName, 
+                                       name: weekdayName, 
                                        description: weekday.description, 
                                        colSpan: "2"})
                 )];
@@ -655,6 +792,7 @@
                         this.renderStartDatePicker("December", 19, 25), 
                         React.createElement("select", {value: region, 
                                 onChange: this.onRegionChange}, 
+                            React.createElement("option", {value: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN}, "Tolkien Names"), 
                             React.createElement("option", {value: TolkienCalendars.ShireCalendar.REGION_NAMES_SHIRE}, "Shire Names"), 
                             React.createElement("option", {value: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE}, "Bree Names")
                         )
@@ -670,12 +808,14 @@
         },
 
         render: function () {
+            var region = this.state.region;
             var weekDayHeader = (
                 React.createElement("tr", null, 
                     TolkienCalendars.ShireCalendar.weekdays.map(function (weekday) {
+                        var weekdayName = weekday[region];
                         return (
-                            React.createElement(WeekDayHeaderCell, {key: weekday.name, 
-                                               name: weekday.name, 
+                            React.createElement(WeekDayHeaderCell, {key: weekdayName, 
+                                               name: weekdayName, 
                                                description: weekday.description})
                         );
                     })
