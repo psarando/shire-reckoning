@@ -24,18 +24,20 @@ TolkienCalendars.ExampleCommon = React.createMixin({
         var day = React.findDOMNode(this.refs.currentDay).value;
         var currentDate = new Date(year, month, day);
 
-        if (currentDate.getFullYear() > 100) {
-            this.setState({date: currentDate});
-        }
+        // reset full year, month, and day for years 0-99
+        currentDate.setFullYear(year);
+        currentDate.setMonth(month);
+        currentDate.setDate(day);
+
+        this.setState({date: currentDate});
     },
 
-    createDateInput: function(ref, value, min) {
+    createDateInput: function(ref, value) {
         return (
             React.createElement("input", {type: "number", 
                    className: "date-time-input", 
                    ref: ref, 
                    step: "1", 
-                   min: min, 
                    onChange: this.onDateChanged, 
                    value: value})
         );
@@ -68,10 +70,10 @@ TolkienCalendars.ExampleCommon = React.createMixin({
                         )
                     ), 
                     React.createElement("th", null, 
-                        this.createDateInput('currentDay', currentDate.getDate(), 0)
+                        this.createDateInput('currentDay', currentDate.getDate())
                     ), 
                     React.createElement("th", null, 
-                        this.createDateInput('currentYear', currentDate.getFullYear(), 101)
+                        this.createDateInput('currentYear', currentDate.getFullYear())
                     ), 
                     React.createElement("th", null, 
                         React.createElement("input", {type: "button", 

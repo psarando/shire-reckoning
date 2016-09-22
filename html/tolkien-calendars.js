@@ -443,7 +443,11 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 startYear--;
             }
 
-            return new Date(startYear,11,startDay, 0,0,0);
+            var newYearDate = new Date(startYear,11,startDay, 0,0,0);
+            // reset full year for years 0-99
+            newYearDate.setFullYear(startYear);
+
+            return newYearDate;
         },
 
         makeCalendarDates: function(today, startDay) {
@@ -1026,7 +1030,11 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 newyearDay = this.getNewYearDay(startYear, calendarRules, startDay);
             }
 
-            return new Date(startYear, newyearMonth, newyearDay, 0,0,0);
+            var newYearDate = new Date(startYear, newyearMonth, newyearDay, 0,0,0);
+            // reset full year for years 0-99
+            newYearDate.setFullYear(startYear);
+
+            return newYearDate;
         },
 
         getNewYearDay: function(startYear, calendarRules, startDay) {
@@ -1037,7 +1045,8 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             // adjust startDay according to leap year cycles.
             return (
                 startDay
-                - Math.floor((((startYear-1) % 12) + 1) / 4)
+                - Math.floor(startYear / 4)
+                + (Math.floor((startYear-1) / 12) * 3)
                 + Math.floor(startYear / 100)
                 - Math.floor(startYear / 400)
                 - (Math.floor((startYear-1) / 432) * 3)
@@ -1068,6 +1077,10 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                     - Math.floor(startYear / 100)
                     + Math.floor(startYear / 400)
                 );
+            }
+
+            if (weekDay < 0) {
+                weekDay = 6 + (weekDay % 6);
             }
 
             var dates = [{
@@ -1529,7 +1542,11 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                     startYear--;
                 }
 
-                return new Date(startYear, 11, startDay, 0, 0, 0);
+                var newYearDate = new Date(startYear, 11, startDay, 0, 0, 0);
+                // reset full year for years 0-99
+                newYearDate.setFullYear(startYear);
+
+                return newYearDate;
             },
 
             convertGregorianWeekday: function (weekday) {
@@ -1617,6 +1634,9 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             }
 
             var newYearDate = new Date(startYear, 2, 16+dayOffset, 0, 0, 0);
+            // reset full year for years 0-99
+            newYearDate.setFullYear(startYear);
+
             if (this.isLeapYear(newYearDate)) {
                 newYearDate.setDate(15+dayOffset);
             }
