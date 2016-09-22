@@ -48,7 +48,8 @@
                     "Start reckoning from", 
                     React.createElement("br", null), 
                     month, 
-                    React.createElement("select", {value: this.state.startDay, 
+                    React.createElement("select", {className: "first-day-select", 
+                            value: this.state.startDay, 
                             onChange: this.onCalendarStartChange}, 
                         opts
                     )
@@ -62,44 +63,108 @@
             this.setState({monthView: parseInt(event.target.value)});
         },
 
-        getUpdatedMonthView: function(month) {
-            if (this.state.monthView < 0) {
-                return this.state.monthView;
+        onViewThisYear: function(event) {
+            var today = this.state.today;
+            var calendar = this.state.calendar;
+            if (!this.datesMatch(today, calendar.today)) {
+                calendar = this.makeCalendarDates(today, this.state.startDay);
             }
 
-            return month;
+            this.setState({
+                calendar: calendar,
+                monthView: -1
+            });
+        },
+
+        onViewThisMonth: function(event) {
+            var today = this.state.today;
+            var calendar = this.state.calendar;
+            if (!this.datesMatch(today, calendar.today)) {
+                calendar = this.makeCalendarDates(today, this.state.startDay);
+            }
+
+            this.onViewCalendarMonth(calendar);
         },
 
         prevMonthView: function () {
-            var month = React.findDOMNode(this.refs.monthViewSelect).value;
-            month--;
-            if (month < 0) {
-                month = this.getMonths().length - 1;
+            var month = this.state.monthView;
+            var yearView = (month == -1);
+            var calendar = this.state.calendar;
+
+            if (!yearView) {
+                month--;
             }
-            this.setState({monthView: month});
+
+            if (month < 0) {
+                month = yearView ? month : this.getMonths().length - 1;
+
+                // View the calendar for the previous year
+                var viewDate = calendar.dates[0].gregorian;
+                // add a buffer to the view date so the month doesn't change when startDay changes
+                viewDate.setDate(viewDate.getDate() - 15);
+
+                calendar = this.makeCalendarDates(viewDate, this.state.startDay);
+            }
+
+            this.setState({
+                calendar: calendar,
+                monthView: month
+            });
         },
 
         nextMonthView: function () {
-            var month = React.findDOMNode(this.refs.monthViewSelect).value;
-            month++;
-            if (month >= this.getMonths().length) {
-                month = 0;
+            var month = this.state.monthView;
+            var yearView = (month == -1);
+            var calendar = this.state.calendar;
+
+            if (!yearView) {
+                month++;
             }
-            this.setState({monthView: month});
+
+            if (yearView || month >= this.getMonths().length) {
+                month = yearView ? month : 0;
+
+                // View the calendar for the next year
+                var viewDate = calendar.dates[calendar.dates.length - 1].gregorian;
+                // add a buffer to the view date so the month doesn't change when startDay changes
+                viewDate.setDate(viewDate.getDate() + 15);
+
+                calendar = this.makeCalendarDates(viewDate, this.state.startDay);
+            }
+
+            this.setState({
+                calendar: calendar,
+                monthView: month
+            });
         },
 
-        renderMonthViewPicker: function(monthNames) {
+        renderMonthViewPicker: function(monthNames, monthLabel) {
+            monthLabel = (monthLabel || "Month");
+
             return (
                 React.createElement("table", {className: "month-picker"}, 
                     React.createElement("tbody", null, 
                     React.createElement("tr", null, 
+                        React.createElement("td", null), 
+                        React.createElement("td", null, 
+                            React.createElement("button", {className: "this-year-button", 
+                                    value: "", 
+                                    onClick: this.onViewThisYear}, 
+                                React.createElement("span", {className: "this-year-button-txt"}, "This Year")
+                            )
+                        ), 
+                        React.createElement("td", null)
+                    ), 
+                    React.createElement("tr", null, 
                         React.createElement("td", {style: {textAlign: "right"}}, 
-                            React.createElement("input", {type: "button", 
-                                   value: "<<", 
-                                   onClick: this.prevMonthView})
+                            React.createElement("button", {className: "prev-month-button", 
+                                    onClick: this.prevMonthView}, 
+                                React.createElement("span", {className: "prev-month-button-txt"},  "<<" )
+                            )
                         ), 
                         React.createElement("td", null, 
                             React.createElement("select", {ref: "monthViewSelect", 
+                                    className: "month-view-select", 
                                     value: this.state.monthView, 
                                     onChange: this.onMonthViewChange}, 
                                 React.createElement("option", {value: "-1"}, "Year Calendar"), 
@@ -113,10 +178,21 @@
                             )
                         ), 
                         React.createElement("td", {style: {textAlign: "left"}}, 
-                            React.createElement("input", {type: "button", 
-                                   value: ">>", 
-                                   onClick: this.nextMonthView})
+                            React.createElement("button", {className: "next-month-button", 
+                                    onClick: this.nextMonthView}, 
+                                React.createElement("span", {className: "next-month-button-txt"},  ">>" )
+                            )
                         )
+                    ), 
+                    React.createElement("tr", null, 
+                        React.createElement("td", null), 
+                        React.createElement("td", null, 
+                            React.createElement("button", {className: "this-month-button", 
+                                    onClick: this.onViewThisMonth}, 
+                                React.createElement("span", {className: "this-month-button-txt"},  "This " + monthLabel)
+                            )
+                        ), 
+                        React.createElement("td", null)
                     )
                     )
                 )
@@ -149,7 +225,8 @@
                 React.createElement("div", null, 
                     "Month View:", 
                     React.createElement("br", null), 
-                    React.createElement("select", {value: this.state.monthViewLayout, 
+                    React.createElement("select", {className: "month-layout-select", 
+                            value: this.state.monthViewLayout, 
                             onChange: this.onMonthViewLayoutChange}, 
                         React.createElement("option", {value: TolkienCalendars.MonthViewLayout.VERTICAL}, "Vertical"), 
                         React.createElement("option", {value: TolkienCalendars.MonthViewLayout.HORIZONTAL}, "Horizontal")
@@ -407,6 +484,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             return {
                 calendarControls: calendarControls,
                 startDay: startDay,
+                today: today,
                 calendar: calendar,
                 monthView: monthView,
                 monthViewLayout: monthViewLayout,
@@ -418,22 +496,36 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             var today = nextProps.date;
             var calendar = this.state.calendar;
 
-            if (today && !this.datesMatch(today, calendar.today)) {
+            if (!today) {
+                today = this.state.today;
+            }
+
+            if (!this.datesMatch(today, this.state.today) ||
+                !this.datesMatch(today, this.state.calendar.today)) {
                 calendar = this.makeCalendarDates(today, this.state.startDay);
             }
+
             this.setState({
+                today: today,
                 calendar: calendar,
                 monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayShire.month
+            });
+        },
+
+        onViewCalendarMonth: function(calendar) {
+            this.setState({
+                calendar: calendar,
+                monthView: calendar.todayShire.month
             });
         },
 
         onCalendarStartChange: function(event) {
             var startDay = event.target.value;
             var calendar = this.makeCalendarDates(this.state.calendar.today, startDay);
+
             this.setState({
                 startDay: startDay,
-                calendar: calendar,
-                monthView: this.state.monthView < 0 ? -1 : calendar.todayShire.month
+                calendar: calendar
             });
         },
 
@@ -645,7 +737,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
         },
 
         renderMonth: function() {
-            var today = this.state.calendar.today;
+            var today = this.state.today;
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
 
@@ -696,7 +788,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
         },
 
         renderMonthVertical: function() {
-            var today = this.state.calendar.today;
+            var today = this.state.today;
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
             var region = this.state.region;
@@ -746,7 +838,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
         },
 
         renderYear: function() {
-            var today = this.state.calendar.today;
+            var today = this.state.today;
             var dates = this.state.calendar.dates;
 
             var week = [];
@@ -794,7 +886,8 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 React.createElement("tr", null, 
                     React.createElement("td", {colSpan: "2", className: "shire-calendar-controls"}, 
                         this.renderStartDatePicker("December", 19, 25), 
-                        React.createElement("select", {value: region, 
+                        React.createElement("select", {className: "shire-region-select", 
+                                value: region, 
                                 onChange: this.onRegionChange}, 
                             React.createElement("option", {value: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN}, "Tolkien Names"), 
                             React.createElement("option", {value: TolkienCalendars.ShireCalendar.REGION_NAMES_SHIRE}, "Shire Names"), 
@@ -870,7 +963,8 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 React.createElement("div", null, 
                     "Language:", 
                     React.createElement("br", null), 
-                    React.createElement("select", {value: this.state.language, 
+                    React.createElement("select", {className: "language-select", 
+                            value: this.state.language, 
                             onChange: this.onLanguageChange}, 
                         React.createElement("option", {value: TolkienCalendars.LanguagePicker.ENGLISH}, "English"), 
                         React.createElement("option", {value: TolkienCalendars.LanguagePicker.QUENYA}, "Quenya"), 
@@ -990,12 +1084,13 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             var startDay = this.props.startDay || 21;
             var today = this.props.date || new Date();
 
-            var calendar = this.makeCalendarDates(today, calendarRules, startDay);
+            var calendar = this.makeRivendellCalendarDates(today, startDay, calendarRules);
             var monthView = this.props.yearView ? -1 : calendar.todayRivendell.month;
 
             return {
                 calendarControls: calendarControls,
                 calendar: calendar,
+                today: today,
                 monthView: monthView,
                 calendarRules: calendarRules,
                 startDay: startDay,
@@ -1007,27 +1102,36 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             var today = nextProps.date;
             var calendar = this.state.calendar;
 
-            if (today && !this.datesMatch(today, calendar.today)) {
-                calendar = this.makeCalendarDates(today, this.state.calendarRules, this.state.startDay);
+            if (!today) {
+                today = this.state.today;
             }
+
+            if (!this.datesMatch(today, this.state.today) ||
+                !this.datesMatch(today, calendar.today)) {
+                calendar = this.makeRivendellCalendarDates(today,
+                                                           this.state.startDay,
+                                                           this.state.calendarRules);
+            }
+
             this.setState({
+                today: today,
                 calendar: calendar,
-                monthView: nextProps.yearView ? -1 : this.getUpdatedMonthView(calendar.todayRivendell.month)
+                monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayRivendell.month
             });
         },
 
-        getNewYearDate: function (today, calendarRules, startDay) {
+        getNewYearDate: function (today, startDay, calendarRules) {
             var startYear = today.getFullYear();
 
             var newyearMonth = 2;
-            var newyearDay = this.getNewYearDay(startYear, calendarRules, startDay);
+            var newyearDay = this.getNewYearDay(startYear, startDay, calendarRules);
 
             var thisMonth = today.getMonth();
             var thisDay = today.getDate();
 
             if (thisMonth < newyearMonth || (thisMonth == newyearMonth && thisDay < newyearDay)) {
                 startYear--;
-                newyearDay = this.getNewYearDay(startYear, calendarRules, startDay);
+                newyearDay = this.getNewYearDay(startYear, startDay, calendarRules);
             }
 
             var newYearDate = new Date(startYear, newyearMonth, newyearDay, 0,0,0);
@@ -1037,7 +1141,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             return newYearDate;
         },
 
-        getNewYearDay: function(startYear, calendarRules, startDay) {
+        getNewYearDay: function(startYear, startDay, calendarRules) {
             if (calendarRules == TolkienCalendars.RivendellCalendar.REFORMED_RULES) {
                 return startDay;
             }
@@ -1058,8 +1162,12 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             return ((year % 12 == 0) && (year % 432 != 0));
         },
 
-        makeCalendarDates: function(today, calendarRules, startDay) {
-            var gregorianDate = this.getNewYearDate(today, calendarRules, startDay);
+        makeCalendarDates: function(today, startDay) {
+            return this.makeRivendellCalendarDates(today, startDay, this.state.calendarRules);
+        },
+
+        makeRivendellCalendarDates: function(today, startDay, calendarRules) {
+            var gregorianDate = this.getNewYearDate(today, startDay, calendarRules);
             var todayRivendell;
 
             var startYear = gregorianDate.getFullYear();
@@ -1178,25 +1286,34 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             };
         },
 
+        onViewCalendarMonth: function(calendar) {
+            this.setState({
+                calendar: calendar,
+                monthView: calendar.todayRivendell.month
+            });
+        },
+
         onCalendarStartChange: function(event) {
             var startDay = event.target.value;
-            var calendar = this.makeCalendarDates(this.state.calendar.today, this.state.calendarRules, startDay);
+            var calendar = this.makeRivendellCalendarDates(this.state.calendar.today,
+                                                           startDay,
+                                                           this.state.calendarRules);
+
             this.setState({
                 startDay: startDay,
-                calendar: calendar,
-                monthView: this.getUpdatedMonthView(calendar.todayRivendell.month)
+                calendar: calendar
             });
         },
 
         onCalendarRulesChange: function(event) {
             var calendarRules = event.target.value;
             var startDay = calendarRules == TolkienCalendars.RivendellCalendar.REFORMED_RULES ? 25 : this.state.startDay;
-            var calendar = this.makeCalendarDates(this.state.calendar.today, calendarRules, startDay);
+            var calendar = this.makeRivendellCalendarDates(this.state.calendar.today, startDay, calendarRules);
+
             this.setState({
                 calendarRules: calendarRules,
                 startDay: startDay,
-                calendar: calendar,
-                monthView: this.getUpdatedMonthView(calendar.todayRivendell.month)
+                calendar: calendar
             });
         },
 
@@ -1257,7 +1374,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
         },
 
         renderMonth: function() {
-            var today = this.state.calendar.today;
+            var today = this.state.today;
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
 
@@ -1303,7 +1420,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
         },
 
         renderYear: function() {
-            var today = this.state.calendar.today;
+            var today = this.state.today;
             var dates = this.state.calendar.dates;
 
             var week = [];
@@ -1339,14 +1456,15 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 React.createElement("tr", null, 
                     React.createElement("td", {className: "rivendell-calendar-controls", colSpan: "2"}, 
                         this.renderStartDatePicker("March", 20, 29), 
-                        React.createElement("select", {value: this.state.calendarRules, 
+                        React.createElement("select", {className: "rivendell-rules-select", 
+                                value: this.state.calendarRules, 
                                 onChange: this.onCalendarRulesChange}, 
                             React.createElement("option", {value: TolkienCalendars.RivendellCalendar.TRADITIONAL_RULES}, "Traditional Rules"), 
                             React.createElement("option", {value: TolkienCalendars.RivendellCalendar.REFORMED_RULES}, "Reformed Rules")
                         )
                     ), 
                     React.createElement("td", {className: "rivendell-calendar-controls month-picker-container", colSpan: "3"}, 
-                        this.renderMonthViewPicker(monthNames)
+                        this.renderMonthViewPicker(monthNames, "Season")
                     ), 
                     React.createElement("td", {className: "rivendell-calendar-controls"}, 
                         this.renderLanguagePicker()
@@ -1549,6 +1667,19 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 return newYearDate;
             },
 
+            convertMonthIndex: function (fromReckoning, toReckoning, monthIndex) {
+                var fromNewReckoning = fromReckoning == TolkienCalendars.NumenorCalendar.RECKONING_NEW;
+                var toNewReckoning = toReckoning == TolkienCalendars.NumenorCalendar.RECKONING_NEW;
+                if (fromNewReckoning != toNewReckoning) {
+                    fromNewReckoning ? monthIndex += 3 : monthIndex -= 3;
+
+                    // handle values less than 0 or greater than 12
+                    monthIndex = (monthIndex+12)%12;
+                }
+
+                return monthIndex;
+            },
+
             convertGregorianWeekday: function (weekday) {
                 return (weekday+6)%7;
             }
@@ -1569,13 +1700,14 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             var reckoning = this.props.reckoning || TolkienCalendars.NumenorCalendar.RECKONING_KINGS;
 
             var startDay = this.props.startDay || 21;
-            var calendar = this.makeCalendarDates(today, reckoning, startDay);
+            var calendar = this.makeNumenorCalendarDates(today, startDay, reckoning);
             var monthView = this.props.yearView ? -1 : calendar.todayNumenor.month;
 
             return {
                 calendarControls: calendarControls,
                 startDay: startDay,
                 calendar: calendar,
+                today: today,
                 monthView: monthView,
                 monthViewLayout: monthViewLayout,
                 reckoning: reckoning,
@@ -1587,34 +1719,55 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             var today = nextProps.date;
             var calendar = this.state.calendar;
 
-            if (today && !this.datesMatch(today, calendar.today)) {
-                calendar = this.makeCalendarDates(today, this.state.reckoning, this.state.startDay);
+            if (!today) {
+                today = this.state.today;
             }
+
+            if (!this.datesMatch(today, this.state.today) ||
+                !this.datesMatch(today, calendar.today)) {
+                calendar = this.makeNumenorCalendarDates(today,
+                                                         this.state.startDay,
+                                                         this.state.reckoning);
+            }
+
+            this.setState({
+                today: today,
+                calendar: calendar,
+                monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayNumenor.month
+            });
+        },
+
+        onViewCalendarMonth: function(calendar) {
             this.setState({
                 calendar: calendar,
-                monthView: nextProps.yearView ?
-                    -1 :
-                    this.getUpdatedMonthView(calendar.todayNumenor.month)
+                monthView: calendar.todayNumenor.month
             });
         },
 
         onCalendarStartChange: function(event) {
             var startDay = event.target.value;
-            var calendar = this.makeCalendarDates(this.state.calendar.today, this.state.reckoning, startDay);
+            var calendar = this.makeNumenorCalendarDates(this.state.calendar.today,
+                                                         startDay,
+                                                         this.state.reckoning);
+
             this.setState({
                 startDay: startDay,
-                calendar: calendar,
-                monthView: this.getUpdatedMonthView(calendar.todayNumenor.month)
+                calendar: calendar
             });
         },
 
         onStartMonthChange: function (event) {
             var reckoning = event.target.value;
-            var calendar = this.makeCalendarDates(this.state.calendar.today, reckoning, this.state.startDay);
+            var calendar = this.makeNumenorCalendarDates(this.state.calendar.today,
+                                                         this.state.startDay,
+                                                         reckoning);
+            var monthView = TolkienCalendars.NumenorCalendar.convertMonthIndex(this.state.reckoning,
+                                                                               reckoning,
+                                                                               this.state.monthView);
 
             this.setState({
                 calendar: calendar,
-                monthView: this.getUpdatedMonthView(calendar.todayNumenor.month),
+                monthView: monthView,
                 reckoning: reckoning
             });
         },
@@ -1644,7 +1797,11 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             return newYearDate;
         },
 
-        makeCalendarDates: function(today, reckoning, startDay) {
+        makeCalendarDates: function(today, startDay) {
+            return this.makeNumenorCalendarDates(today, startDay, this.state.reckoning);
+        },
+
+        makeNumenorCalendarDates: function(today, startDay, reckoning) {
             var kingsReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_KINGS;
             var stewardsReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS;
             var newReckoning = reckoning == TolkienCalendars.NumenorCalendar.RECKONING_NEW;
@@ -1908,7 +2065,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
         },
 
         renderMonth: function() {
-            var today = this.state.calendar.today;
+            var today = this.state.today;
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
 
@@ -1973,7 +2130,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
         },
 
         renderMonthVertical: function() {
-            var today = this.state.calendar.today;
+            var today = this.state.today;
             var dates = this.state.calendar.dates;
             var monthView = this.state.monthView;
             var language = this.state.language;
@@ -2049,7 +2206,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
         },
 
         renderYear: function() {
-            var today = this.state.calendar.today;
+            var today = this.state.today;
             var dates = this.state.calendar.dates;
 
             var week = [];
@@ -2088,7 +2245,8 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 React.createElement("tr", null, 
                     React.createElement("td", {colSpan: "2", className: "numenor-calendar-controls"}, 
                         this.renderStartDatePicker("December", 18, 25), 
-                        React.createElement("select", {value: reckoning, 
+                        React.createElement("select", {className: "numenor-rules-select", 
+                                value: reckoning, 
                                 onChange: this.onStartMonthChange}, 
                             React.createElement("option", {value: TolkienCalendars.NumenorCalendar.RECKONING_KINGS}, "Kings' Reckoning"), 
                             React.createElement("option", {value: TolkienCalendars.NumenorCalendar.RECKONING_STEWARDS}, "Stewards' Reckoning"), 

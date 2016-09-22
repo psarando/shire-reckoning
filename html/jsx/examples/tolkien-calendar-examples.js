@@ -76,9 +76,10 @@ TolkienCalendars.ExampleCommon = React.createMixin({
                         {this.createDateInput('currentYear', currentDate.getFullYear())}
                     </th>
                     <th>
-                        <input type="button"
-                               value="Today"
-                               onClick={this.resetDate} />
+                        <button className="today-button"
+                                onClick={this.resetDate} >
+                            <span className="today-button-txt">Today</span>
+                        </button>
                     </th>
                 </tr>
                 </tbody>

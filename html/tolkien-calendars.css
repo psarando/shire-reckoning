@@ -30,9 +30,9 @@
 .month-picker {
     margin: auto;
 }
-.month-picker td, .month-picker-container {
+.month-picker td {
     border: none;
-    height: 4rem !important;
+    height: 1rem;
 }
 .gregorian-display {
     font-size: .5rem;
