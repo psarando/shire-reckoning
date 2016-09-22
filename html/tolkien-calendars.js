@@ -41,7 +41,7 @@
         renderStartDatePicker: function (month, startRange, endRange) {
             var opts = [];
             for (var day = startRange; day <= endRange; day++) {
-                opts.push(React.createElement("option", {value: day}, day));
+                opts.push(React.createElement("option", {key: day, value: day}, day));
             }
             return (
                 React.createElement("div", null, 
@@ -170,7 +170,7 @@
                                 React.createElement("option", {value: "-1"}, "Year Calendar"), 
                                 monthNames.map(function (month, i) {
                                     return (
-                                        React.createElement("option", {key: 'month-view-opt' + i, value: i}, 
+                                        React.createElement("option", {key: i, value: i}, 
                                             month
                                         )
                                     );
@@ -208,16 +208,14 @@
             this.setState({monthViewLayout: event.target.value});
         },
 
-        renderMonthVerticalHeader: function (className) {
+        renderVerticalLayoutFiller: function () {
             var weekdays = this.getWeekdays().map(function (weekday, i) {
                 return (
-                    React.createElement("td", {key: className + i, 
-                        className: className}
-                    )
+                    React.createElement("td", {key: i, className: "vertical-layout-filler"})
                 );
             });
 
-            return (React.createElement("tr", {className: className}, weekdays));
+            return (React.createElement("tr", {className: "vertical-layout-filler"}, weekdays));
         },
 
         renderMonthViewLayoutControls: function () {
@@ -750,15 +748,13 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 // seek ahead to current month view
             }
 
-            for (var weekday = 0; weekday < dates[i].weekDay; weekday++) {
-                week.push(React.createElement(WeekDayHeaderCell, {key: 'shire-month-filler-' + weekday}));
-            }
+            WeekDayHeaderCell.addMonthFiller(week, dates[i].weekDay);
 
             for (; i < dates.length && (monthView < 0 || monthView == dates[i].month); i++, date = dates[i]) {
                 switch (date.day) {
                     case "1 Lithe":
                         week.push(this.renderDay([date, dates[++i]], today));
-                        weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+                        weeks.push(React.createElement("tr", {key: weeks.length}, week));
                         week = [];
 
                         break;
@@ -772,7 +768,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                         week.push(this.renderDay([date], today));
 
                         if ((date.weekDay + 1) % 7 === 0) {
-                            weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+                            weeks.push(React.createElement("tr", {key: weeks.length}, week));
                             week = [];
                         }
 
@@ -781,7 +777,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             }
 
             if (week.length > 0) {
-                weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+                weeks.push(React.createElement("tr", {key: weeks.length}, week));
             }
 
             return weeks;
@@ -809,9 +805,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 // seek ahead to current month view
             }
 
-            for (var weekday = 0; weekday < dates[i].weekDay; weekday++) {
-                weeks[weekday].push(React.createElement(WeekDayHeaderCell, {key: 'shire-month-filler-' + weekday}));
-            }
+            WeekDayHeaderCell.addVerticalMonthFiller(weeks, dates[i].weekDay);
 
             for (; i < dates.length && (monthView < 0 || monthView == dates[i].month); i++, date = dates[i]) {
                 switch (date.day) {
@@ -833,7 +827,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             }
 
             return weeks.map(function (week, i) {
-                return (React.createElement("tr", {key: "shire-week-" + (i + 1)}, week));
+                return (React.createElement("tr", {key: i}, week));
             });
         },
 
@@ -848,7 +842,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 switch (date.day) {
                     case "1 Lithe":
                         week.push(this.renderDay([date, dates[++i]], today));
-                        weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+                        weeks.push(React.createElement("tr", {key: weeks.length}, week));
                         week = [];
 
                         break;
@@ -862,7 +856,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                         week.push(this.renderDay([date], today));
 
                         if ((date.weekDay + 1) % 7 === 0) {
-                            weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+                            weeks.push(React.createElement("tr", {key: weeks.length}, week));
                             week = [];
                         }
 
@@ -871,7 +865,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             }
 
             if (week.length > 0) {
-                weeks.push(React.createElement("tr", {key: "shire-week-" + (weeks.length + 1)}, week));
+                weeks.push(React.createElement("tr", {key: weeks.length}, week));
             }
 
             return weeks;
@@ -924,7 +918,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 weeks = this.renderYear();
             } else if (this.state.monthViewLayout == TolkienCalendars.MonthViewLayout.VERTICAL) {
                 weeks = this.renderMonthVertical();
-                weekDayHeader = this.renderMonthVerticalHeader('shire-vertical-header-filler');
+                weekDayHeader = this.renderVerticalLayoutFiller();
             } else {
                 weeks = this.renderMonth();
             }
@@ -1387,15 +1381,13 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 // seek ahead to current month view
             }
 
-            for (var weekday = 0; weekday < date.weekDay; weekday++) {
-                week.push(React.createElement(WeekDayHeaderCell, {key: 'rivendell-month-filler-' + weekday}));
-            }
+            WeekDayHeaderCell.addMonthFiller(week, date.weekDay);
 
             for (; i < dates.length && (monthView < 0 || monthView == date.month); i++, date = dates[i]) {
                 week.push(this.renderDay(date, today));
 
                 if ((date.weekDay + 1) % 6 === 0) {
-                    weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+                    weeks.push(React.createElement("tr", {key: weeks.length}, week));
                     week = [];
                 }
             }
@@ -1406,14 +1398,14 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                     week.push(this.renderDay(date, today));
 
                     if ((date.weekDay + 1) % 6 === 0) {
-                        weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+                        weeks.push(React.createElement("tr", {key: weeks.length}, week));
                         week = [];
                     }
                 }
             }
 
             if (week.length > 0) {
-                weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+                weeks.push(React.createElement("tr", {key: weeks.length}, week));
             }
 
             return weeks;
@@ -1426,21 +1418,19 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             var week = [];
             var weeks = [];
 
-            for (var weekday = 0; weekday < dates[0].weekDay; weekday++) {
-                week.push(React.createElement(WeekDayHeaderCell, {key: 'rivendell-month-filler-' + weekday}));
-            }
+            WeekDayHeaderCell.addMonthFiller(week, dates[0].weekDay);
 
             for (var i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
                 week.push(this.renderDay(date, today));
 
                 if ((date.weekDay + 1) % 6 === 0) {
-                    weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+                    weeks.push(React.createElement("tr", {key: weeks.length}, week));
                     week = [];
                 }
             }
 
             if (week.length > 0) {
-                weeks.push(React.createElement("tr", {key: "rivendell-week-" + (weeks.length + 1)}, week));
+                weeks.push(React.createElement("tr", {key: weeks.length}, week));
             }
 
             return weeks;
@@ -2078,9 +2068,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 // seek ahead to current month view
             }
 
-            for (var weekday = 0; weekday < dates[i].weekDay; weekday++) {
-                week.push(React.createElement(WeekDayHeaderCell, {key: 'numenor-month-filler-' + weekday}));
-            }
+            WeekDayHeaderCell.addMonthFiller(week, dates[i].weekDay);
 
             for (;
                  i < dates.length && (monthView < 0 || monthView == dates[i].month);
@@ -2088,7 +2076,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 week.push(this.renderDay(date, today));
 
                 if ((date.weekDay + 1) % 7 === 0) {
-                    weeks.push(React.createElement("tr", {key: "numenor-week-" + (weeks.length + 1)}, week));
+                    weeks.push(React.createElement("tr", {key: weeks.length}, week));
                     week = [];
                 }
             }
@@ -2107,7 +2095,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                         week.push(this.renderDay(date, today));
 
                         if ((date.weekDay + 1) % 7 === 0) {
-                            weeks.push(React.createElement("tr", {key: "numenor-week-" + (weeks.length + 1)}, week));
+                            weeks.push(React.createElement("tr", {key: weeks.length}, week));
                             week = [];
                         }
                     }
@@ -2123,7 +2111,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             }
 
             if (week.length > 0) {
-                weeks.push(React.createElement("tr", {key: "numenor-week-" + (weeks.length + 1)}, week));
+                weeks.push(React.createElement("tr", {key: weeks.length}, week));
             }
 
             return weeks;
@@ -2151,9 +2139,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 // seek ahead to current month view
             }
 
-            for (var weekday = 0; weekday < dates[i].weekDay; weekday++) {
-                weeks[weekday].push(React.createElement(WeekDayHeaderCell, {key: 'numenor-month-filler-' + weekday}));
-            }
+            WeekDayHeaderCell.addVerticalMonthFiller(weeks, dates[i].weekDay);
 
             for (;
                  i < dates.length && (monthView < 0 || monthView == dates[i].month);
@@ -2201,7 +2187,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             }
 
             return weeks.map(function (week, i) {
-                return (React.createElement("tr", {key: "numenor-week-" + (i + 1)}, week));
+                return (React.createElement("tr", {key: i}, week));
             });
         },
 
@@ -2212,21 +2198,19 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
             var week = [];
             var weeks = [];
 
-            for (var weekday = 0; weekday < dates[0].weekDay; weekday++) {
-                week.push(React.createElement(WeekDayHeaderCell, {key: 'numenor-month-filler-' + weekday}));
-            }
+            WeekDayHeaderCell.addMonthFiller(week, dates[0].weekDay);
 
             for (var i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
                 week.push(this.renderDay(date, today));
 
                 if ((date.weekDay + 1) % 7 === 0) {
-                    weeks.push(React.createElement("tr", {key: "numenor-week-" + (weeks.length + 1)}, week));
+                    weeks.push(React.createElement("tr", {key: weeks.length}, week));
                     week = [];
                 }
             }
 
             if (week.length > 0) {
-                weeks.push(React.createElement("tr", {key: "numenor-week-" + (weeks.length + 1)}, week));
+                weeks.push(React.createElement("tr", {key: weeks.length}, week));
             }
 
             return weeks;
@@ -2286,7 +2270,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
                 weeks = this.renderYear();
             } else if (this.state.monthViewLayout == TolkienCalendars.MonthViewLayout.VERTICAL) {
                 weeks = this.renderMonthVertical();
-                weekDayHeader = this.renderMonthVerticalHeader('numenor-vertical-header-filler');
+                weekDayHeader = this.renderVerticalLayoutFiller();
             } else {
                 weeks = this.renderMonth();
             }
@@ -2312,6 +2296,20 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
     });
 
     var WeekDayHeaderCell = React.createClass({displayName: "WeekDayHeaderCell",
+        statics: {
+            addMonthFiller: function (week, upToWeekDay) {
+                for (var weekday = 0; weekday < upToWeekDay; weekday++) {
+                    week.push(React.createElement(WeekDayHeaderCell, {key: 'month-filler-' + weekday}));
+                }
+            },
+
+            addVerticalMonthFiller: function (weeks, upToWeekDay) {
+                for (var weekday = 0; weekday < upToWeekDay; weekday++) {
+                    weeks[weekday].push(React.createElement(WeekDayHeaderCell, {key: 'month-filler-' + weekday}));
+                }
+            }
+        },
+
         render: function() {
             return (
                 React.createElement("td", {className: "weekday-header", 
