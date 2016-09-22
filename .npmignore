@@ -4,11 +4,19 @@ node_modules
 # testing
 coverage
 
+# source
+config
+public
+scripts
+src/examples
+src/index.js
+src/*.test.js
+shire-icalendar.clj
+
 # production
 build
 
 # dist
-lib
 shire-reckoning-*.tgz
 
 # misc

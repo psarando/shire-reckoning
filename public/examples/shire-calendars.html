@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Shire Reckoning: Examples of Shire Calendar settings.
+        </title>
+
+    </head>
+    <body>
+        <a href="https://www.npmjs.org/package/shire-reckoning">
+            <img src="https://img.shields.io/npm/v/shire-reckoning.svg" alt="NPM version"></a>
+        These javascript calendars require the
+        <a href="http://facebook.github.io/react/">React javascript library</a>.
+        See the <a href="index.html">main examples page</a> for installation and usage instructions.
+
+        <br /><br />
+        The following examples will only show the <code>JavaScript React.createElement</code>
+        or <code>JSX</code> element tag that renders the calendar shown.
+        <br />
+        For example,
+        the following code will render the default Shire Calendar shown below,
+        when substituted in the <code>React.createElement(...)</code> line of the <a href="index.html">main examples page</a>:
+        <pre>
+            <code>
+    React.createElement(TolkienCalendars.ShireCalendar, null)
+            </code>
+        </pre>
+
+        The following JSX element tag will render the default Shire Calendar (shown below) in a React app:
+        <pre>
+            <code>
+    &lt;ShireCalendar /&gt;
+            </code>
+        </pre>
+
+        Shire Reckoning with only default options:
+        Shire names of months and days,
+        today's date, vertical month view, controls displayed, no caption title,
+        and no CSS class to style the table.
+        <div id='shire-calendar-default' ></div>
+        <div id='shire-calendars' ></div>
+        <script type="text/javascript">
+            TolkienCalendars.renderShireCalendar('shire-calendar-default');
+            TolkienCalendars.renderShireCalendarExample('shire-calendars');
+        </script>
+    </body>
+</html>
+

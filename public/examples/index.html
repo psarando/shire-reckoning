@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description"
+              content="A visualization of the calendars described in J.R.R. Tolkien's The Lord of the Rings Appendix D,
+                       labeled with each day's corresponding Gregorian date of the current year,
+                       and with today's date highlighted on each calendar.
+                       These calendars are the Shire Reckoning,
+                       Rivendell Reckoning (also known as the Calendar of Imladris),
+                       and calendars of Gondor: Kings' Reckoning, Stewards' Reckoning, and the New Reckoning.">
+
+        <title>
+            Shire Reckoning: A visualization of the calendars described in
+            J.R.R. Tolkien's The Lord of the Rings Appendix D
+        </title>
+    </head>
+    <body>
+        <a href="https://www.npmjs.org/package/shire-reckoning">
+            <img src="https://img.shields.io/npm/v/shire-reckoning.svg" alt="NPM version"></a>
+        These javascript calendars require the
+        <a href="http://facebook.github.io/react/">React javascript library</a>.
+
+        <br /><br />
+        The following example shows how a default Shire Calendar, with the default styles, may be added to an HTML page.
+        Note that React, ReactDOM, and this library's modules are linked from
+        <a href="https://unpkg.com">https://unpkg.com</a>.
+        <pre style="border: 1px solid; margin: auto;">
+            <code>
+&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+
+        &lt;script type="text/javascript" src="https://unpkg.com/react@15/dist/react.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="https://unpkg.com/react-dom@15/dist/react-dom.js"&gt;&lt;/script&gt;
+
+        &lt;link href="https://unpkg.com/shire-reckoning/lib/TolkienCalendars.css" rel="stylesheet"&gt;
+        &lt;script type="text/javascript" src="https://unpkg.com/shire-reckoning/lib/TolkienCalendars.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;div id='shire-calendar' &gt;&lt;/div&gt;
+    &lt;script type="text/javascript"&gt;
+        ReactDOM.render(
+            React.createElement(TolkienCalendars.ShireCalendar, {className: "shire-calendar"}),
+            document.getElementById("shire-calendar")
+        );
+    &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+            </code>
+        </pre>
+
+        <br /><br />
+        To use this library as an ES6 module, for example in an app created by
+        <a href="https://facebook.github.io/react/docs/installation.html#creating-a-single-page-application">create-react-app</a>,
+        first install this library as a dependency by adding <code>shire-reckoning</code> to your app's
+        <a href="https://docs.npmjs.com/files/package.json#dependencies">package.json</a>,
+        then run <code>npm install</code>.
+        Then update the default <code>App.js</code> file with the following code,
+        which will render the default Shire, Rivendell, and Numenor Calendars with the included styles:
+        <pre style="border: 1px solid; margin: auto;">
+            <code>
+    import React, { Component } from 'react';
+
+    import { ShireCalendar, RivendellCalendar, NumenorCalendar } from 'shire-reckoning';
+    import 'shire-reckoning/lib/TolkienCalendars.css';
+
+    import './App.css';
+
+    class App extends Component {
+        render() {
+            return (
+                &lt;div className="App"&gt;
+                    &lt;ShireCalendar className="shire-calendar" /&gt;
+                    &lt;RivendellCalendar className="shire-calendar" /&gt;
+                    &lt;NumenorCalendar className="shire-calendar" /&gt;
+                &lt;/div&gt;
+            );
+        }
+    }
+
+    export default App;
+            </code>
+        </pre>
+
+        <ul>
+            <li><a href="%PUBLIC_URL%/examples/shire-calendars.html">Shire Calendar examples</a></li>
+            <li><a href="%PUBLIC_URL%/examples/rivendell-calendars.html">Rivendell Calendar examples</a></li>
+            <li><a href="%PUBLIC_URL%/examples/numenor-calendars.html">Númenor Calendar examples</a></li>
+        </ul>
+
+        <div id="tolkien-calendars"></div>
+        <script type="text/javascript">
+            TolkienCalendars.renderTolkienCalendarsExample('tolkien-calendars');
+        </script>
+    </body>
+</html>

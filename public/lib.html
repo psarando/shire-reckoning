@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description"
+              content="A visualization of the calendars described in J.R.R. Tolkien's The Lord of the Rings Appendix D,
+                       labeled with each day's corresponding Gregorian date of the current year,
+                       and with today's date highlighted on each calendar.
+                       These calendars are the Shire Reckoning,
+                       Rivendell Reckoning (also known as the Calendar of Imladris),
+                       and calendars of Gondor: Kings' Reckoning, Stewards' Reckoning, and the New Reckoning.">
+
+        <title>
+            Shire Reckoning: A visualization of the calendars described in
+            J.R.R. Tolkien's The Lord of the Rings Appendix D
+        </title>
+
+        <script type="text/javascript" src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    </head>
+    <body>
+    <div id='shire-calendar' ></div>
+    <script type="text/javascript">
+        ReactDOM.render(
+            React.createElement(
+                TolkienCalendars.ShireCalendar,
+                {
+                    "caption": "Shire Calendar",
+                    "className": "shire-calendar"
+                }
+            ),
+            document.getElementById("shire-calendar")
+        );
+    </script>
+
+    <hr />
+
+    <div id='rivendell-calendar' ></div>
+    <script type="text/javascript">
+        ReactDOM.render(
+            React.createElement(
+                TolkienCalendars.RivendellCalendar,
+                {
+                    "caption": "Calendar of Imladris",
+                    "className": "shire-calendar"
+                }
+            ),
+            document.getElementById("rivendell-calendar")
+        );
+    </script>
+
+    <hr />
+
+    <div id='gondor-calendar' ></div>
+    <script type="text/javascript">
+        ReactDOM.render(
+            React.createElement(
+                TolkienCalendars.NumenorCalendar,
+                {
+                    "caption": "Calendars of Gondor",
+                    "className": "shire-calendar"
+                }
+            ),
+            document.getElementById("gondor-calendar")
+        );
+    </script>
+    </body>
+</html>
+

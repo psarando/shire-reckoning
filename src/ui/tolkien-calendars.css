@@ -37,10 +37,6 @@
 .gregorian-display {
     font-size: .5rem;
 }
-.date-time-input {
-    width: 4rem;
-    text-align: center;
-}
 .vertical-layout-filler {
     height: 0 !important;
     visibility: collapse;

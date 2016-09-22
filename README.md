@@ -33,19 +33,21 @@ and the Elves reckoned their dates from sunset to sunset.
 
 ## [tolkien-calendars](http://psarando.github.io/shire-reckoning): html + css + javascript
 
-The [html](html) directory contains files that can generate a visualization of
+The main library module of this project can generate a visualization of
 the calendars described in The Lord of the Rings, Appendix D, in a web browser as simple HTML tables,
 labeled with each day's corresponding Gregorian date of the current year,
 and with today's date highlighted on each calendar.
 These calendars are the [Shire Reckoning, Rivendell Reckoning, and calendars of Gondor:
 Kings' Reckoning, Stewards' Reckoning, and the New Reckoning](http://psarando.github.io/shire-reckoning).
 
-More examples of each calendar can be found in the [examples directory](html/examples):
+More examples of each calendar, as well as installation and usage, can be found in the
+[examples directory](http://psarando.github.io/shire-reckoning/examples/):
 
 * [Shire Calendar examples](http://psarando.github.io/shire-reckoning/examples/shire-calendars.html)
 * [Rivendell Calendar examples](http://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
 * [Númenor Calendar examples](http://psarando.github.io/shire-reckoning/examples/numenor-calendars.html)
 
+[![NPM version](https://img.shields.io/npm/v/shire-reckoning.svg)](https://www.npmjs.org/package/shire-reckoning)
 These javascript calendars use the [React javascript library](http://facebook.github.io/react/).
 
 ### Shire Reckoning Notes
