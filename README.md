@@ -354,7 +354,18 @@ The first two points are the most plausible of these claims.
     were the same back then as they are now
     ([he did assume the lengths of the years were the same then as they are now](http://rinsanity.weebly.com/tolkien.html)).
     His "long summer" calendars of the Shire and Númenor seem to fit these possibilities.
-    Or perhaps he just didn't concern himself with any other dates of the solar events beyond the
+    In fact, the first publication of The Lord of the Rings stated:
+
+    > ... Mid-year's Day and Year's End were originally intended to correspond as nearly as possible
+    > to the summer and winter solstices, and still do so.
+    > In that case the Shire dates were actually in advance of ours by some nine days...
+    >
+    > -- J.R.R. Tolkien, as quoted in The Lord of the Rings: A Reader's Companion, Appendix D
+
+    So it's possible Tolkien became aware of the fact that
+    the winter solstices generally occurred earlier 6000 years ago,
+    and when emending Appendix D for the second edition,
+    perhaps he just didn't concern himself with any other dates of the solar events beyond the
     spring equinox and summer solstice during the hypothetical time-frame
     of the "Great Years" of the War of the Ring.
 
@@ -412,17 +423,19 @@ which fall on (or very close to) the
 * Tolkien, J. R. R. (1965). The Return of the King: being the third part of The Lord of the Rings. Boston: Houghton Mifflin Co. Appendix D. ISBN 0-395-08256-0
 * Hammond, W. G.; Scull, C. (2005). The Lord of the Rings: A Reader's Companion. Boston: Houghton Mifflin Co. pp. 725-732. ISBN-13 978-0-618-64267-0.
 * [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html)
+* [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar)
+* [Wikipedia article on the Coligny calendar](https://en.wikipedia.org/wiki/Coligny_calendar):
+  A possible inspiration behind the design of Tolkien's calendars in Appendix D.
+* [Wikipedia article on Middle-earth calendars](https://en.wikipedia.org/wiki/Middle-earth_calendar)
+* [Wikipedia article on the Ages of Middle-earth](https://en.wikipedia.org/wiki/Timeline_of_Arda)
+* [Wikipedia solstice article](https://en.wikipedia.org/wiki/Solstice)
+* [Wikipedia equinox article](https://en.wikipedia.org/wiki/Equinox)
 * [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html)
 * [TheTropicalEvents.com](http://www.thetropicalevents.com/):
   Search this page for "Gregorian calendar" for charts showing how the dates of the
   solstices and equinoxes change through ancient history and into the future.
 * [sym454.org/seasons](http://www.sym454.org/seasons/):
   Provides an in-depth graphical analysis of how the lengths of the seasons change over time.
-* [Wikipedia article on Middle-earth calendars](https://en.wikipedia.org/wiki/Middle-earth_calendar)
-* [Wikipedia article on the Ages of Middle-earth](https://en.wikipedia.org/wiki/Timeline_of_Arda)
-* [Wikipedia solstice article](https://en.wikipedia.org/wiki/Solstice)
-* [Wikipedia equinox article](https://en.wikipedia.org/wiki/Equinox)
-* [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar)
 
 ## `shire-icalendar.clj` -> [shire-reckoning.ics](shire-reckoning.ics)
 
