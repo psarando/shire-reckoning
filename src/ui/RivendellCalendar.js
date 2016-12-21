@@ -36,7 +36,7 @@ class RivendellCalendar extends Component {
         let calendarControls = props.calendarControls !== false;
         let language = props.language || LanguagePicker.QUENYA;
         let calendarRules = props.calendarRules || TRADITIONAL_RULES;
-        let startDay = props.startDay || 21;
+        let startDay = props.startDay || 22;
         let today = props.date || new Date();
 
         let calendar = makeRivendellCalendarDates(today, startDay, calendarRules);
@@ -114,7 +114,7 @@ class RivendellCalendar extends Component {
 
     onCalendarRulesChange(event) {
         let calendarRules = event.target.value;
-        let startDay = calendarRules === REFORMED_RULES ? 25 : this.state.startDay;
+        let startDay = calendarRules === REFORMED_RULES ? 25 : 22;
         let calendar = makeRivendellCalendarDates(this.state.calendar.today,
                                                   startDay,
                                                   calendarRules);
@@ -266,7 +266,7 @@ class RivendellCalendar extends Component {
             <tr>
                 <td className='rivendell-calendar-controls' colSpan='2'>
                     <StartDatePicker month="March"
-                                     startRange={20}
+                                     startRange={19}
                                      endRange={29}
                                      startDay={this.state.startDay}
                                      onCalendarStartChange={this.onCalendarStartChange} />

@@ -51,12 +51,14 @@ class RivendellCalendarExample extends Component {
 React.createElement(TolkienCalendars.RivendellCalendar,
                     {yearView: true,
                      date: ${sa1697String},
+                     startDay: 21,
                      calendarControls: false,
                      className: "shire-calendar"})
 
 JSX:
 <RivendellCalendar yearView={true}
                    date={${sa1697String}}
+                   startDay={21}
                    calendarControls={false}
                    className="shire-calendar" />`
                                 }
@@ -77,6 +79,7 @@ React.createElement(
         TolkienCalendars.RivendellCalendar.LANGUAGE_ENGLISH,
      yearView: true,
      date: ${ta2941String},
+     startDay: 21,
      calendarControls: false,
      className: "shire-calendar"}
 )
@@ -87,6 +90,7 @@ JSX:
                    }
                    yearView={true}
                    date={${ta2941String}}
+                   startDay={21}
                    calendarControls={false}
                    className="shire-calendar" />`
                                 }
@@ -106,6 +110,7 @@ React.createElement(
         TolkienCalendars.RivendellCalendar.LANGUAGE_SINDARIN,
      yearView: true,
      date: ${ta3018String},
+     startDay: 21,
      calendarControls: false,
      className: "shire-calendar"}
 )
@@ -116,6 +121,7 @@ JSX:
                    }
                    yearView={true}
                    date={${ta3018String}}
+                   startDay={21}
                    calendarControls={false}
                    className="shire-calendar" />`
                                 }
@@ -127,6 +133,7 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar yearView={true}
                                            date={sa1697}
+                                           startDay={21}
                                            calendarControls={false}
                                            className="shire-calendar" />
                     </td>
@@ -134,6 +141,7 @@ JSX:
                         <RivendellCalendar language={RivendellCalendar.LANGUAGE_ENGLISH}
                                            yearView={true}
                                            date={ta2941}
+                                           startDay={21}
                                            calendarControls={false}
                                            className="shire-calendar" />
                     </td>
@@ -141,6 +149,7 @@ JSX:
                         <RivendellCalendar language={RivendellCalendar.LANGUAGE_SINDARIN}
                                            yearView={true}
                                            date={ta3018}
+                                           startDay={21}
                                            calendarControls={false}
                                            className="shire-calendar" />
                     </td>
@@ -155,7 +164,7 @@ JSX:
                 <tr>
                     <td style={CaptionCellStyle}>
                         Rivendell Reckoning Year View with defaults:
-                        Quenya, Traditional Rules starting from March 21st.
+                        Quenya, Traditional Rules starting from March 22nd.
                         <pre>
                             <code>
                                 {

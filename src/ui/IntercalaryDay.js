@@ -22,7 +22,7 @@ class IntercalaryDay extends Component {
                     {this.props.name}
                     <br />
                     <GregorianDateDisplay date={gregorianDate} />
-                    <hr />
+                    <hr className="intercalary-day-separator" />
                     {this.props.dayExtra}
                     <br />
                     <GregorianDateDisplay date={gregorianExtra} />
