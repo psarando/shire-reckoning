@@ -297,6 +297,16 @@ but Tolkien detailed additional (leap-day) adjustments to the Gondorian calendar
         * Gregorian: `6456/4 - 6400/100 + 6400/400 = 1566 leap-days`
         * Gondor: `(3440/4 - 3400/100 + 2*3000/1000) + (3016/4 - 3000/100 + 2*2000/1000 + 2 + 1) = 1563 leap-days`
 
+3. Tolkien implied in the first publication of The Lord of the Rings
+that the Shire Calendar had incorporated these millennial adjustments as well,
+further suggesting that the Shire Calendar was in sync with the Kings' and Stewards' Reckoning calendars
+by the end of the Third Age:
+
+    > These alterations seem to have become recognized eventually throughout the west-lands;
+    > but there were no further corrections during the Third Age.
+    >
+    > -- J.R.R. Tolkien, as quoted in The Lord of the Rings: A Reader's Companion Appendix D
+
 So if the calendar of Gondor would have added 3 less leap-days than this proleptic Gregorian calendar by T.A. 3019,
 this means its New Year's Day would have drifted back 3 days relative to this Gregorian calendar
 (the Stewards' Reckoning was only a slight modification of the Kings' Reckoning calendar
@@ -314,7 +324,8 @@ so Astron 6 in T.A. 3019 would have correspond to the Gregorian March 25
 (to see this for yourself,
 [set the Shire Calendar to start reckoning from December 20 and the Gregorian Date to March 25, 6460](http://psarando.github.io/shire-reckoning/#tolkien-calendars)).
 This also means the Shire Reckoning New Year's Day was another day behind in T.A. 3020,
-which means Astron 6 correspond to Gregorian March 25 again,
+which means Astron 6 correspond to Gregorian March 25 again
+(the date the mallorn tree first flowered in the Party Field),
 until the Overlithe in that "Great Year of Plenty"
 re-synced Shire New Year's Day with December 20 in T.A. 3021.
 
@@ -490,7 +501,8 @@ which fall on (or very close to) the
 * [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html)
 * [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar)
 * [Wikipedia article on the Coligny calendar](https://en.wikipedia.org/wiki/Coligny_calendar):
-  A possible inspiration behind the design of Tolkien's calendars in Appendix D.
+  A possible inspiration behind the design of Tolkien's calendars in Appendix D,
+  particularly the similarity of the Enderi to the *trinoxtion Samonii*.
 * [Wikipedia article on Middle-earth calendars](https://en.wikipedia.org/wiki/Middle-earth_calendar)
 * [Wikipedia article on the Ages of Middle-earth](https://en.wikipedia.org/wiki/Timeline_of_Arda)
 * [Wikipedia solstice article](https://en.wikipedia.org/wiki/Solstice)

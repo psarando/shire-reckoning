@@ -10,7 +10,7 @@ import {
     RECKONING_NEW,
     NumenorWeekdays,
     NumenorMonths,
-    convertMonthIndex,
+    convertGondorianMonthIndex,
     makeNumenorCalendarDates
 } from '../NumenorReckoning';
 import { datesMatch } from '../Utils';
@@ -127,9 +127,9 @@ class NumenorCalendar extends Component {
         let calendar = makeNumenorCalendarDates(this.state.calendar.today,
                                                 this.state.startDay,
                                                 reckoning);
-        let monthView = convertMonthIndex(this.state.reckoning,
-                                          reckoning,
-                                          this.state.monthView);
+        let monthView = convertGondorianMonthIndex(this.state.reckoning,
+                                                   reckoning,
+                                                   this.state.monthView);
 
         this.setState({
             calendar: calendar,

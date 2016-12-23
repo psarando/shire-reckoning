@@ -153,7 +153,7 @@ const getNumenorNewYearDate = (today, startDay) => {
     return newYearDate;
 };
 
-const convertMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
+const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
     let fromNewReckoning = fromReckoning === RECKONING_NEW;
     let toNewReckoning = toReckoning === RECKONING_NEW;
     if (fromNewReckoning !== toNewReckoning) {
@@ -166,7 +166,7 @@ const convertMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
     return monthIndex;
 };
 
-const convertGregorianWeekday = (weekday) => {
+const convertGregorianToGondorianWeekday = (weekday) => {
     return (weekday+6)%7;
 };
 
@@ -217,7 +217,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                 dates.push({
                     "date": "Yestarë",
                     "month": 0,
-                    "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                    "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                     "gregorian": gregorianDate
                 });
 
@@ -240,7 +240,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
             dates.push({
                 "day": day,
                 "month": month,
-                "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                 "gregorian": gregorianDate
             });
 
@@ -257,7 +257,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                     dates.push({
                         "date": "Tuilérë",
                         "month": month + 1,
-                        "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
@@ -276,7 +276,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                     dates.push({
                         "date": "Cormarë",
                         "month": month,
-                        "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
@@ -290,7 +290,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                     dates.push({
                         "date": "Enderë",
                         "month": month + 1,
-                        "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
@@ -304,7 +304,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                     dates.push({
                         "date": "Loëndë",
                         "month": month + 1,
-                        "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
@@ -318,7 +318,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                     dates.push({
                         "date": "Enderë",
                         "month": month + 1,
-                        "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
@@ -335,7 +335,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                     dates.push({
                         "date": "Yáviérë",
                         "month": month + 1,
-                        "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
@@ -351,7 +351,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                 dates.push({
                     "date": "Mettarë",
                     "month": 11,
-                    "weekDay": convertGregorianWeekday(gregorianDate.getDay()),
+                    "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                     "gregorian": gregorianDate
                 });
 
@@ -371,6 +371,30 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
     };
 };
 
+/**
+ * @deprecated Use convertGondorianMonthIndex instead.
+ */
+const convertMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
+    console.warn(
+`convertMonthIndex is deprecated and will be removed in a future release.
+Use convertGondorianMonthIndex instead.`
+    );
+
+    return convertGondorianMonthIndex(fromReckoning, toReckoning, monthIndex);
+};
+
+/**
+ * @deprecated Use convertGregorianToGondorianWeekday instead.
+ */
+const convertGregorianWeekday = (weekday) => {
+    console.warn(
+`convertGregorianWeekday is deprecated and will be removed in a future release.
+Use convertGregorianToGondorianWeekday instead.`
+    );
+
+    return convertGregorianToGondorianWeekday(weekday);
+};
+
 export {
     RECKONING_KINGS,
     RECKONING_STEWARDS,
@@ -379,6 +403,8 @@ export {
     NumenorMonths,
     getNumenorNewYearDate,
     getNewReckoningNewYearDate,
+    convertGondorianMonthIndex,
+    convertGregorianToGondorianWeekday,
     convertMonthIndex,
     convertGregorianWeekday,
     makeNumenorCalendarDates

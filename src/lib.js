@@ -22,6 +22,8 @@ import {
     NumenorMonths,
     getNumenorNewYearDate,
     getNewReckoningNewYearDate,
+    convertGondorianMonthIndex,
+    convertGregorianToGondorianWeekday,
     convertMonthIndex,
     convertGregorianWeekday,
     makeNumenorCalendarDates
@@ -52,6 +54,8 @@ export {
     RECKONING_NEW,
     NumenorWeekdays,
     NumenorMonths,
+    convertGondorianMonthIndex,
+    convertGregorianToGondorianWeekday,
     convertMonthIndex,
     convertGregorianWeekday,
     getNumenorNewYearDate,

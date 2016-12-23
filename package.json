@@ -1,9 +1,19 @@
 {
   "name": "shire-reckoning",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "http://psarando.github.io/shire-reckoning",
   "main": "lib/TolkienCalendars.js",
   "module": "src/lib.js",
+  "keywords": [
+    "calendar",
+    "Tolkien",
+    "Shire",
+    "Rivendell",
+    "Gondor",
+    "Numenor",
+    "lord-of-the-rings",
+    "middle-earth"
+  ],
   "license" : "EPL-1.0",
   "devDependencies": {
     "autoprefixer": "6.5.1",
