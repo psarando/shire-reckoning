@@ -91,6 +91,8 @@ module.exports = {
   libIndexJs: resolveModule(resolveApp, 'src/lib'),
   libBuild: resolveApp('lib'),
   libHtml: resolveApp('public/lib.html'),
+  ghpHeaderHtml: resolveApp('public/_includes/header.ejs'),
+  ghpHeaderOutput: '../_includes/header.html',
 };
 
 module.exports.moduleFileExtensions = moduleFileExtensions;

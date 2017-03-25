@@ -1,3 +1,8 @@
+---
+layout: page
+title: "Shire Reckoning: A Simulation of J.R.R. Tolkien's Calendars throughout Middle-earth's History"
+---
+
 A Simulation of J.R.R. Tolkien's Calendars throughout Middle-earth's History
 ============================================================================
 
@@ -53,7 +58,13 @@ should support this.
 Various ways of synchronizing Gregorian years with Shire-reckoning years and the Ages of Middle-earth are also provided
 by the live demonstration below.
 
-[Follow this link for a live demonstration of this simulation](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
+<div id="tolkien-calendars"></div>
+<script type="text/javascript">
+    ReactDOM.render(
+        React.createElement(TolkienCalendars.SimulatedTolkienCalendars, null),
+        document.getElementById("tolkien-calendars")
+    );
+</script>
 
 # How to Use these Calendar Simulations
 

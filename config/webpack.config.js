@@ -394,7 +394,7 @@ function commonConfig(webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+              exclude: [/\.(ejs|js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
@@ -483,6 +483,23 @@ function appConfig(webpackEnv) {
         minifyURLs: true,
       },
     }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: paths.ghpHeaderHtml,
+      filename: paths.ghpHeaderOutput,
+      minify: {
+        removeComments: false,
+        collapseWhitespace: false,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: false,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: false,
+      },
+    }),
     // Inlines the webpack runtime script. This script is too small to warrant
     // a network request.
     shouldInlineRuntimeChunk
@@ -513,7 +530,7 @@ function appConfig(webpackEnv) {
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
     new ManifestPlugin({
-      fileName: 'asset-manifest.json',
+      fileName: '../asset-manifest.json',
       publicPath: publicPath,
       generate: (seed, files) => {
         const manifestFiles = files.reduce(function(manifest, file) {
