@@ -12,6 +12,7 @@ Shire Reckoning
 
 * [Introduction](#introduction)
 * [Tolkien's Calendars](#tolkiens-calendars)
+* [Middle-earth Simulation](#middle-earth-simulation)
 * [Shire Reckoning Notes](#shire-reckoning-notes)
 * [Notes on the visualizations of the calendars of Gondor](#notes-on-the-visualizations-of-the-calendars-of-gondor)
 * [Rivendell Reckoning Notes](#rivendell-reckoning-notes)
@@ -44,7 +45,11 @@ Additionally, these calendars always reckon their dates from midnight to midnigh
 just as our modern Gregorian calendar and the Shire Calendar reckon dates.
 Note that Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
 and the Elves reckoned their dates from sunset to sunset.
-These calendars also make no attempt to correlate Gregorian years with Shire-reckoning years or the Ages of Middle-earth.
+
+By default, these calendars make no attempt to correlate Gregorian years with Shire-reckoning years or the Ages of Middle-earth.
+Although I've created a separate set of example calendars that can
+[simulate Shire-reckoning years and the Ages of Middle-earth](http://psarando.github.io/shire-reckoning/#middle-earth-simulation)
+with various possible Gregorian year correlations.
 
 ## Tolkien's Calendars
 
@@ -64,6 +69,19 @@ More examples of each calendar, as well as installation and usage, can be found 
 
 [![NPM version](https://img.shields.io/npm/v/shire-reckoning.svg)](https://www.npmjs.org/package/shire-reckoning)
 These javascript calendars use the [React javascript library](http://facebook.github.io/react/).
+
+### Middle-earth Simulation
+
+As pointed out in the [Rivendell Reckoning notes](http://psarando.github.io/shire-reckoning/#rivendell-reckoning-notes),
+the calendars of Gondor and the Shire described in Appendix D had similar
+yet different leap-year and leap-day rules compared to our Gregorian calendar.
+So this project also includes a way to reckon Shire and Gondor dates according to
+the "traditional" leap-day and leap-year rules as described in Appendix D.
+This allows me to implement a simulation that can display these calendars according to
+Shire-reckoning years and the Ages of Middle-earth.
+Various ways of synchronizing Gregorian years with Shire-reckoning years and the Ages of Middle-earth are also provided.
+
+[Follow this link for a live demonstration of this simulation](http://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
 
 ### Shire Reckoning Notes
 

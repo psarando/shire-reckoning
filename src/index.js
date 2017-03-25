@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import TolkienCalendarsExample from './examples/TolkienCalendars';
+import SimulatedTolkienCalendars from './examples/simulation/TolkienCalendars';
 import ShireCalendar from './ui/ShireCalendar';
 import ShireCalendarExample from './examples/ShireCalendars';
 import RivendellCalendar from './ui/RivendellCalendar';
@@ -12,6 +13,13 @@ import GondorCalendarExample from './examples/GondorCalendars';
 const renderTolkienCalendarsExample = (elementID) => {
     ReactDOM.render(
         <TolkienCalendarsExample />,
+        document.getElementById(elementID)
+    );
+};
+
+const renderSimulatedTolkienCalendars = (elementID) => {
+    ReactDOM.render(
+        <SimulatedTolkienCalendars />,
         document.getElementById(elementID)
     );
 };
@@ -60,6 +68,7 @@ const renderGondorCalendarExample = (elementID) => {
 
 export {
     renderTolkienCalendarsExample,
+    renderSimulatedTolkienCalendars,
     renderShireCalendar,
     renderShireCalendarExample,
     renderRivendellCalendar,

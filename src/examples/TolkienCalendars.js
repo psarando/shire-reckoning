@@ -99,13 +99,13 @@ class TolkienCalendarsExample extends Component {
                         <GondorCalendar caption={true}
                                         language={LanguagePicker.ENGLISH}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar gondor-calendar stewards-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar caption={true}
                                         reckoning={GondorCalendar.RECKONING_NEW}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar gondor-calendar new-reckoning-calendar" />
                     </td>
                 </tr>
                 </tbody>

@@ -42,6 +42,8 @@ module.exports = {
   rivendellOutput: 'examples/rivendell-calendars.html',
   gondorHtml: resolveApp('public/examples/gondor-calendars.html'),
   gondorOutput: 'examples/gondor-calendars.html',
+  simulatedHtml: resolveApp('public/examples/simulated.html'),
+  simulatedOutput: 'examples/simulated.html',
   appIndexJs: resolveApp('src/index.js'),
   libIndexJs: resolveApp('src/lib.js'),
   appPackageJson: resolveApp('package.json'),

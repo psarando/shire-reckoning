@@ -8,3 +8,12 @@
     width: 4rem;
     text-align: center;
 }
+.simulated-calendar {
+    width: 106rem;
+}
+.simulated-calendar caption {
+    font-size: 1.5rem;
+}
+.simulated-date-controls {
+    text-align: left;
+}

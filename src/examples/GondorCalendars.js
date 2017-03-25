@@ -32,6 +32,14 @@ class GondorCalendarExample extends Component {
             + ")";
 
         let newYearSyncDate = fullYearDate(1,0,1);
+        let secondAgeStartDate = fullYearDate(0,11,23);
+
+        let sa32 = fullYearDate(32, 5,22);
+        let ta2060 = fullYearDate(3441+2060, 5,22);
+        let ta3019 = fullYearDate(3441+3019, 2,14);
+
+        let ta2060String = "new Date( 3441+2060, 5,22 )";
+        let ta3019String = "new Date( 3441+3019, 2,14 )";
 
         return (
             <table>
@@ -371,11 +379,14 @@ JSX:
                 </tr>
                 <tr>
                     <td style={CaptionCellStyle}>
-                        Seasonal Sync Kings' Reckoning: Year View in Sindarin.
+                        New Year's Day Sync: Kings' Reckoning Year View in Sindarin.
                         <pre>
                             <code>
                                 {
 `JavaScript:
+let gregorianStartDate = new Date(1,0,1, 0,0,0);
+gregorianStartDate.setFullYear(1,0,1);
+
 React.createElement(
     TolkienCalendars.GondorCalendar,
     {reckoning:
@@ -384,7 +395,7 @@ React.createElement(
      yearView: true,
      calendarControls: false,
      date: ${dateString},
-     startDate: new Date(1,0,1, 0,0,0),
+     startDate: gregorianStartDate,
      className: "shire-calendar"}
 )
 
@@ -394,18 +405,21 @@ JSX:
                 yearView={true}
                 calendarControls={false}
                 date={${dateString}}
-                startDate={new Date(1,0,1, 0,0,0)}
+                startDate={gregorianStartDate}
                 className="shire-calendar" />`
                                 }
                             </code>
                         </pre>
                     </td>
                     <td style={CaptionCellStyle}>
-                        Seasonal Sync Stewards' Reckoning: Year View in English.
+                        New Year's Day Sync: Stewards' Reckoning Year View in English.
                         <pre>
                             <code>
                                 {
-                                    `JavaScript:
+`JavaScript:
+let gregorianStartDate = new Date(1,0,1, 0,0,0);
+gregorianStartDate.setFullYear(1,0,1);
+
 React.createElement(
     TolkienCalendars.GondorCalendar,
     {reckoning:
@@ -414,7 +428,7 @@ React.createElement(
      yearView: true,
      calendarControls: false,
      date: ${dateString},
-     startDate: new Date(1,0,1, 0,0,0),
+     startDate: gregorianStartDate,
      className: "shire-calendar"}
 )
 
@@ -424,18 +438,21 @@ JSX:
                 yearView={true}
                 calendarControls={false}
                 date={${dateString}}
-                startDate={new Date(1,0,1, 0,0,0)}
+                startDate={gregorianStartDate}
                 className="shire-calendar" />`
                                 }
                             </code>
                         </pre>
                     </td>
                     <td style={CaptionCellStyle}>
-                        Seasonal Sync New Reckoning: Year View in Quenya.
+                        New Year's Day Sync: New Reckoning Year View in Quenya.
                         <pre>
                             <code>
                                 {
-                                    `JavaScript:
+`JavaScript:
+let gregorianStartDate = new Date(1,0,1, 0,0,0);
+gregorianStartDate.setFullYear(1,0,1);
+
 React.createElement(
     TolkienCalendars.GondorCalendar,
     {reckoning:
@@ -443,7 +460,7 @@ React.createElement(
      yearView: true,
      calendarControls: false,
      date: ${dateString},
-     startDate: new Date(1,0,1, 0,0,0),
+     startDate: gregorianStartDate,
      className: "shire-calendar"}
 )
 
@@ -452,7 +469,7 @@ JSX:
                 yearView={true}
                 calendarControls={false}
                 date={${dateString}}
-                startDate={new Date(1,0,1, 0,0,0)}
+                startDate={gregorianStartDate}
                 className="shire-calendar" />`
                                 }
                             </code>
@@ -484,6 +501,165 @@ JSX:
                                         calendarControls={false}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
+                                        className="shire-calendar" />
+                    </td>
+                </tr>
+                <tr>
+                    <th colSpan="3" style={CaptionCellStyle}>
+                        In Appendix D, Tolkien described leap-day and leap-year rules for the calendars of Gondor
+                        the that were similar yet different compared to our Gregorian calendar.
+                        So these calendars also include a "traditional" rules setting that allows the Gondor calendars to
+                        reckon dates according to the "traditional" leap-day and leap-year rules as described in Appendix D,
+                        from any start date, which will be considered the start of the Second Age in these reckonings.
+                    </th>
+                </tr>
+                <tr>
+                    <td style={CaptionCellStyle}>
+                        Traditional Kings' Reckoning for S.A. 32 (First King of Númenor crowned).
+                        Year View in Sindarin.
+                        <pre>
+                            <code>
+                                {
+`JavaScript:
+let secondAgeStartDate = new Date(0,11,23, 0,0,0);
+secondAgeStartDate.setFullYear(0,11,23);
+let secondAge32 = new Date(32, 5, 22, 0,0,0);
+secondAge32.setFullYear(32, 5, 22);
+
+React.createElement(
+    TolkienCalendars.GondorCalendar,
+    {calendarRules:
+        TolkienCalendars.GondorCalendar.RECKONING_RULES_TRADITIONAL,
+     reckoning:
+        TolkienCalendars.GondorCalendar.RECKONING_KINGS,
+     language: TolkienCalendars.GondorCalendar.LANGUAGE_SINDARIN,
+     yearView: true,
+     calendarControls: false,
+     date: secondAge32,
+     startDate: secondAgeStartDate,
+     className: "shire-calendar"}
+)
+
+JSX:
+<GondorCalendar calendarRules={
+                    GondorCalendar.RECKONING_RULES_TRADITIONAL
+                }
+                reckoning={GondorCalendar.RECKONING_KINGS}
+                language={GondorCalendar.LANGUAGE_SINDARIN}
+                yearView={true}
+                calendarControls={false}
+                date={secondAge32}
+                startDate={secondAgeStartDate}
+                className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={CaptionCellStyle}>
+                        Traditional Stewards' Reckoning for T.A. 2060 (First year of Stewards' Reckoning).
+                        Year View in English.
+                        <pre>
+                            <code>
+                                {
+`JavaScript:
+let secondAgeStartDate = new Date(0,11,23, 0,0,0);
+secondAgeStartDate.setFullYear(0,11,23);
+
+React.createElement(
+    TolkienCalendars.GondorCalendar,
+    {calendarRules:
+        TolkienCalendars.GondorCalendar.RECKONING_RULES_TRADITIONAL,
+     reckoning:
+        TolkienCalendars.GondorCalendar.RECKONING_STEWARDS,
+     language: TolkienCalendars.GondorCalendar.LANGUAGE_ENGLISH,
+     yearView: true,
+     calendarControls: false,
+     date: ${ta2060String},
+     startDate: secondAgeStartDate,
+     className: "shire-calendar"}
+)
+
+JSX:
+<GondorCalendar calendarRules={
+                    GondorCalendar.RECKONING_RULES_TRADITIONAL
+                }
+                reckoning={GondorCalendar.RECKONING_STEWARDS}
+                language={GondorCalendar.LANGUAGE_ENGLISH}
+                yearView={true}
+                calendarControls={false}
+                date={${ta2060String}}
+                startDate={secondAgeStartDate}
+                className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={CaptionCellStyle}>
+                        Traditional New Reckoning for T.A. 3019 (date of the destruction of the One Ring).
+                        Year View in Quenya.
+                        <pre>
+                            <code>
+                                {
+`JavaScript:
+let secondAgeStartDate = new Date(0,11,23, 0,0,0);
+secondAgeStartDate.setFullYear(0,11,23);
+
+React.createElement(
+    TolkienCalendars.GondorCalendar,
+    {calendarRules:
+        TolkienCalendars.GondorCalendar.RECKONING_RULES_TRADITIONAL,
+     reckoning:
+        TolkienCalendars.GondorCalendar.RECKONING_NEW,
+     yearView: true,
+     calendarControls: false,
+     date: ${ta3019String},
+     startDate: secondAgeStartDate,
+     className: "shire-calendar"}
+)
+
+JSX:
+<GondorCalendar calendarRules={
+                    GondorCalendar.RECKONING_RULES_TRADITIONAL
+                }
+                reckoning={GondorCalendar.RECKONING_NEW}
+                yearView={true}
+                calendarControls={false}
+                date={${ta3019String}}
+                startDate={secondAgeStartDate}
+                className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={CalendarCellStyle}>
+                        <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
+                                        reckoning={GondorCalendar.RECKONING_KINGS}
+                                        language={GondorCalendar.LANGUAGE_SINDARIN}
+                                        yearView={true}
+                                        calendarControls={false}
+                                        date={sa32}
+                                        startDate={secondAgeStartDate}
+                                        className="shire-calendar" />
+                    </td>
+                    <td style={CalendarCellStyle}>
+                        <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
+                                        reckoning={GondorCalendar.RECKONING_STEWARDS}
+                                        language={GondorCalendar.LANGUAGE_ENGLISH}
+                                        yearView={true}
+                                        calendarControls={false}
+                                        date={ta2060}
+                                        startDate={secondAgeStartDate}
+                                        className="shire-calendar" />
+                    </td>
+                    <td style={CalendarCellStyle}>
+                        <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
+                                        reckoning={GondorCalendar.RECKONING_NEW}
+                                        yearView={true}
+                                        calendarControls={false}
+                                        date={ta3019}
+                                        startDate={secondAgeStartDate}
                                         className="shire-calendar" />
                     </td>
                 </tr>

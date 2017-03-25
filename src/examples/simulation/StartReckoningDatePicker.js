@@ -1,34 +1,16 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from 'react';
 
-import { fullYearDate } from '../Utils';
-import './examples.css';
+import { fullYearDate } from '../../Utils';
 
-const CalendarCellStyle = {
-    verticalAlign: 'top'
-};
-
-const CaptionCellStyle = {
-    verticalAlign: 'top',
-    padding: '1rem',
-    borderTopStyle: 'solid',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid'
-};
-
-class DatePicker extends Component {
+class StartReckoningDatePicker extends Component {
     constructor(props) {
         super(props);
 
-        this.resetDate = this.resetDate.bind(this);
         this.onDateChanged = this.onDateChanged.bind(this);
-    }
-
-    resetDate() {
-        this.props.onDateChanged(new Date());
     }
 
     onDateChanged(event) {
@@ -36,7 +18,7 @@ class DatePicker extends Component {
         let month = this.refs.currentMonth.value;
         let day = this.refs.currentDay.value;
 
-        this.props.onDateChanged(fullYearDate(year, month, day));
+        this.props.onCalendarStartChange(fullYearDate(year, month, day));
     }
 
     createDateInput(ref, value) {
@@ -51,14 +33,22 @@ class DatePicker extends Component {
     }
 
     render() {
-        let currentDate = this.props.date;
+        let currentDate = this.props.startDate;
         let style = this.props.styles || {margin: "auto"};
 
         return (
             <table style={style}>
                 <tbody>
                 <tr>
-                    <th>Gregorian Date:</th>
+                    <th colSpan="2">Start reckoning from</th>
+                </tr>
+                <tr>
+                    <th>Year:</th>
+                    <th>
+                        {this.createDateInput('currentYear', currentDate.getFullYear())}
+                    </th>
+                </tr>
+                <tr>
                     <th>
                         <select className="date-time-input"
                                 ref='currentMonth'
@@ -81,15 +71,6 @@ class DatePicker extends Component {
                     <th>
                         {this.createDateInput('currentDay', currentDate.getDate())}
                     </th>
-                    <th>
-                        {this.createDateInput('currentYear', currentDate.getFullYear())}
-                    </th>
-                    <th>
-                        <button className="today-button"
-                                onClick={this.resetDate} >
-                            <span className="today-button-txt">Today</span>
-                        </button>
-                    </th>
                 </tr>
                 </tbody>
             </table>
@@ -97,4 +78,4 @@ class DatePicker extends Component {
     }
 }
 
-export { CalendarCellStyle, CaptionCellStyle, DatePicker };
+export default StartReckoningDatePicker;

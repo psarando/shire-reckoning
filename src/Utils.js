@@ -268,6 +268,15 @@ const getNextDate = (today) => {
 };
 
 export {
+    GREGORIAN_DAYS_PER_4_YEARS,
+    GREGORIAN_DAYS_PER_100_YEARS,
+    GREGORIAN_DAYS_PER_400_YEARS,
+    GONDOR_DAYS_PER_4_YEARS,
+    GONDOR_DAYS_PER_100_YEARS,
+    GONDOR_DAYS_PER_1000_YEARS,
+    SECOND_AGE_TOTAL_DAYS,
+    THIRD_AGE_2059_TOTAL_DAYS,
+    THIRD_AGE_2360_TOTAL_DAYS,
     toDaysElapsed,
     daysElapsedToGregorianYear,
     daysElapsedToSecondAgeYear,
