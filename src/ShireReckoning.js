@@ -5,12 +5,20 @@
 import {
     toDaysElapsed,
     daysElapsedToGregorianYear,
+    daysElapsedToSecondAgeYear,
     getNewYearDate,
-    isLeapYear,
+    getWeekDay,
     datesMatch,
     fullYearDate,
     getNextDate
 } from './Utils';
+
+import {
+    RECKONING_RULES_GREGORIAN,
+    RECKONING_RULES_TRADITIONAL,
+    isMillennialLeapYear,
+    isGondorLeapYear
+} from './GondorReckoning';
 
 /**
  * @typedef {Object} ShireWeekday
@@ -278,14 +286,20 @@ function getStartDate(startDate) {
 /**
  * @param {Date} today
  * @param {FirstShireNewYearDate} [startDate]
+ * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
  *
  * @return {Date} The Gregorian Date corresponding to the Shire New Year Date
  *                for the year of the given `today`.
  */
-const getShireNewYearDate = (today, startDate) => {
+const getShireNewYearDate = (today, startDate, rules = RECKONING_RULES_GREGORIAN) => {
     startDate = getStartDate(startDate);
 
-    let daysSinceNewYearsDay = daysElapsedToGregorianYear(toDaysElapsed(startDate, today)).daysRemainder;
+    let getYearWithRemainder =
+            rules === RECKONING_RULES_TRADITIONAL ?
+                daysElapsedToSecondAgeYear :
+                daysElapsedToGregorianYear;
+
+    let daysSinceNewYearsDay = getYearWithRemainder(toDaysElapsed(startDate, today)).daysRemainder;
 
     return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
@@ -311,23 +325,42 @@ const getShireNewYearDate = (today, startDate) => {
  *
  * @param {Date} today
  * @param {FirstShireNewYearDate} [startDate]
+ * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
  *
  * @return {ShireCalendarYear} The calendar year for the given `today`.
  */
-const makeShireCalendarDates = (today, startDate) => {
+const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGORIAN) => {
     startDate = getStartDate(startDate);
 
-    let yearWithRemainder = daysElapsedToGregorianYear(toDaysElapsed(startDate, today));
+    let reckonTraditional = (rules === RECKONING_RULES_TRADITIONAL);
+
+    let getYearWithRemainder = reckonTraditional ? daysElapsedToSecondAgeYear : daysElapsedToGregorianYear;
+
+    let daysElapsed = toDaysElapsed(startDate, today);
+    let yearWithRemainder = getYearWithRemainder(daysElapsed);
 
     let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
 
     let todayShire;
+    let weekDay = 0;
+    let shireReform = true;
     let year = yearWithRemainder.year;
+
+    if (reckonTraditional) {
+        // Shire Reform was enacted during the time of Isengrim II, sometime between T.A. 2683 - 2722.
+        // So probably starting with one of these years (if Kings' weekdays were reckoned continuously from S.A. 1):
+        // 2685 2691 2703 2714 2720
+        shireReform = (year >= 2685+3441);
+
+        if (!shireReform) {
+            weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 7);
+        }
+    }
 
     let dates = [{
         "day": "2 Yule",
         "month": 0,
-        "weekDay": 0,
+        "weekDay": (weekDay++ % 7),
         "gregorian": gregorianDate
     }];
 
@@ -337,7 +370,7 @@ const makeShireCalendarDates = (today, startDate) => {
 
     gregorianDate = getNextDate(gregorianDate);
 
-    for (let month = 0, weekDay = 1; month < 12; month++) {
+    for (let month = 0; month < 12; month++) {
         for (let day = 1; day <= 30; day++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
             dates.push({
                 "day": day,
@@ -352,6 +385,8 @@ const makeShireCalendarDates = (today, startDate) => {
         }
 
         if (month === 5) {
+            let millennialLeapYear = (reckonTraditional && isMillennialLeapYear(year));
+
             dates.push({
                 "day": "1 Lithe",
                 "region": {
@@ -359,7 +394,7 @@ const makeShireCalendarDates = (today, startDate) => {
                     "shire": "1 Lithe",
                     "bree": "1 Summerday"
                 },
-                "month": month,
+                "month": shireReform ? month : month + 1,
                 "weekDay": weekDay % 7,
                 "gregorian": gregorianDate
             });
@@ -368,30 +403,21 @@ const makeShireCalendarDates = (today, startDate) => {
                 todayShire = dates[dates.length-1];
             }
 
-            gregorianDate = getNextDate(gregorianDate);
-            dates.push({
-                "day": "Midyear's Day",
-                "month": month,
-                "weekDay": weekDay % 7,
-                "gregorian": gregorianDate
-            });
+            let summerday = 2;
+            if (millennialLeapYear) {
+                if (!shireReform) {
+                    weekDay++;
+                }
 
-            if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length-1];
-            }
-
-            weekDay++;
-            let leapYear = isLeapYear(year);
-            if (leapYear) {
                 gregorianDate = getNextDate(gregorianDate);
                 dates.push({
                     "day": "Overlithe",
                     "region": {
                         "tolkien": "Overlithe",
                         "shire": "Overlithe",
-                        "bree": "3 Summerday"
+                        "bree": `${summerday++} Summerday`
                     },
-                    "month": month+1,
+                    "month": shireReform ? month : month + 1,
                     "weekDay": weekDay % 7,
                     "gregorian": gregorianDate
                 });
@@ -401,13 +427,55 @@ const makeShireCalendarDates = (today, startDate) => {
                 }
             }
 
+            if (!shireReform) {
+                weekDay++;
+            }
+
+            gregorianDate = getNextDate(gregorianDate);
+            dates.push({
+                "day": "Midyear's Day",
+                "month": (shireReform && !millennialLeapYear) ? month : month + 1,
+                "weekDay": weekDay % 7,
+                "gregorian": gregorianDate
+            });
+
+            if (datesMatch(today, gregorianDate)) {
+                todayShire = dates[dates.length-1];
+            }
+
+            summerday++;
+            weekDay++;
+            let leapYear = isGondorLeapYear(year, rules);
+            if (leapYear) {
+                gregorianDate = getNextDate(gregorianDate);
+                dates.push({
+                    "day": "Overlithe",
+                    "region": {
+                        "tolkien": "Overlithe",
+                        "shire": "Overlithe",
+                        "bree": `${summerday++} Summerday`
+                    },
+                    "month": month+1,
+                    "weekDay": weekDay % 7,
+                    "gregorian": gregorianDate
+                });
+
+                if (datesMatch(today, gregorianDate)) {
+                    todayShire = dates[dates.length-1];
+                }
+
+                if (!shireReform) {
+                    weekDay++;
+                }
+            }
+
             gregorianDate = getNextDate(gregorianDate);
             dates.push({
                 "day": "2 Lithe",
                 "region": {
                     "tolkien": "2 Lithe",
                     "shire": "2 Lithe",
-                    "bree": leapYear ? "4 Summerday" : "3 Summerday"
+                    "bree": `${summerday++} Summerday`
                 },
                 "month": month+1,
                 "weekDay": weekDay % 7,
@@ -426,7 +494,7 @@ const makeShireCalendarDates = (today, startDate) => {
     dates.push({
         "day": "1 Yule",
         "month": 11,
-        "weekDay": 6,
+        "weekDay": weekDay % 7,
         "gregorian": gregorianDate
     });
 
