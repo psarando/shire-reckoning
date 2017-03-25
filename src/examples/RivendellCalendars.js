@@ -156,9 +156,7 @@ JSX:
                 </tr>
                 <tr>
                     <td colSpan='3' style={CaptionCellStyle}>
-                        <DatePicker date={currentDate}
-                                    onDateChanged={this.onDateChanged}
-                                    styles={{margin: "auto", paddingTop: 12}} />
+                        <DatePicker date={currentDate} onDateChanged={this.onDateChanged}/>
                     </td>
                 </tr>
                 <tr>

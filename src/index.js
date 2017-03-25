@@ -17,9 +17,9 @@ const renderTolkienCalendarsExample = (elementID) => {
     );
 };
 
-const renderSimulatedTolkienCalendars = (elementID) => {
+const renderSimulatedTolkienCalendars = (elementID, calendarRules, selectedEvent) => {
     ReactDOM.render(
-        <SimulatedTolkienCalendars />,
+        <SimulatedTolkienCalendars calendarRules={calendarRules} selectedEvent={selectedEvent} />,
         document.getElementById(elementID)
     );
 };

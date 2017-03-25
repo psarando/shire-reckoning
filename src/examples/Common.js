@@ -52,10 +52,10 @@ class DatePicker extends Component {
 
     render() {
         let currentDate = this.props.date;
-        let style = this.props.styles || {margin: "auto"};
+        let className = this.props.className || "gregorian-date-picker";
 
         return (
-            <table style={style}>
+            <table className={className} >
                 <tbody>
                 <tr>
                     <th>Gregorian Date:</th>

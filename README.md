@@ -355,7 +355,8 @@ until the Overlithe in that "Great Year of Plenty"
 re-synced Shire New Year's Day with December 20 in T.A. 3021.
 
 Since *The Tale of Years* (Appendix B) lists the Elves' New Year's Day on Astron 6 in T.A. 3019,
-then Rivendell New Year's Day (Yestarë) was also Gregorian March 25 in T.A. 3019.
+then Rivendell New Year's Day (Yestarë) was also Gregorian March 25 in T.A. 3019
+([see it in action on the Middle-earth simulation page](http://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)).
 
 ###### Side Notes
 
@@ -414,7 +415,7 @@ which makes it very unlikely that the Elves would use something like the Calenda
 to reckon time before then.
 
 In a previous revision of these notes, I had naively
-[set the Gregorian year in this calendar to 7050](http://psarando.github.io/shire-reckoning/#tolkien-calendars)
+[set the Gregorian year in this calendar to 7050](http://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
 and observed that if the Calendar of Imladris started reckoning from a proleptic Gregorian March 21,
 then its Yestarë fell on Gregorian March 25 in the year 7050.
 [Recall in the notes above](#why-not-march-29th) that we compared the Shire Calendar's Astron 6
@@ -423,14 +424,14 @@ Since a Gregorian calendar in its 6460th year is at a different point in a 400-y
 than a Gregorian calendar in its 7050th year, it's not correct to compare the Calendar of Imladris
 with the Shire Calendar in this way.
 It would be more accurate to compare the Calendar of Imladris with the same Gregorian calendar in its 6460th year,
-which means the Calendar of Imladris would have to start reckoning in this Gregorian calendar's year 589 B.C.
-(590 years before year 1, if the year 0 is included).
+which means the Calendar of Imladris would have to start reckoning in this Gregorian calendar's year 590 B.C.E.
 This would also mean that the leap-years of this Calendar of Imladris
 would not be in sync with the leap-years of this Gregorian calendar,
 so it makes the comparison more complicated;
-but if I have done my calculations correctly, then the first few years of this Calendar of Imladris
+but the first few years of this Calendar of Imladris
 would correspond with this Gregorian calendar's March 22
-in order for its Yestarë to fall on March 25 in this Gregorian calendar's year 6460.
+in order for its Yestarë to fall on March 25 in this Gregorian calendar's year 6460
+([see it in action on the Middle-earth simulation page](http://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)).
 
 ###### First Day of the Kings' Reckoning
 

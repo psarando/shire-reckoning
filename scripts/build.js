@@ -29,6 +29,7 @@ var requiredFiles = [
   paths.shireHtml,
   paths.rivendellHtml,
   paths.gondorHtml,
+  paths.simulatedHtml,
   paths.libIndexJs,
   paths.appIndexJs
 ];

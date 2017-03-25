@@ -101,6 +101,12 @@ and though this is mainly a reference to the calculation of leap-days, it may al
   See my [Shire Reckoning notes](http://psarando.github.io/shire-reckoning/#reckoning-start-dates)
   for an explanation of how Tolkien used the moon phases of 1941-42 as the model for the moon phases in *The Lord of the Rings*.
   Also see [Moon Phases in The Lord of the Rings](http://shire-reckoning.com/moon.html) for more details.
+    * Although the moon phases of 2017-18 are [(mostly) a repeat](https://en.wikipedia.org/wiki/Metonic_cycle) of the 1941-2 moon phases,
+      the 2017-18 moon phase scheme has been adjusted by 1 more day in order for the full moon of March 2018
+      to fall on the correct Shire date of Rethe 7 (evening, pre-dawn Rethe 8).
+      This will make it harder to see some of the young crescent moons described in the story
+      (e.g. the moon the night of Rethe 24 will only be 2 nights old instead of 4 nights old as described in the story),
+      but I think that the full moon of Rethe 7/8 is more crucial to the story than any other moon phase described.
 * [Venerable Bede's Reckoning](https://en.wikipedia.org/wiki/Bede#Works_on_historical_and_astronomical_chronology):
   This synchronization scheme is based on Venerable Bede's calculation of 3952 B.C. as the date of the "creation of the world",
   and aligns the first year of the Fourth Age with this year.

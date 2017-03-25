@@ -45,9 +45,9 @@ const SyncAges = [
     {
         label:      "2017-18 Moon phases with Third Age 3018-19",
         startDates: {
-            rivendell: fullYearDate(-5031,  2, 27),
-            gondor:    fullYearDate(-4442, 11, 29),
-            shire:     fullYearDate(-4442, 11, 29)
+            rivendell: fullYearDate(-5031,  2, 26),
+            gondor:    fullYearDate(-4442, 11, 28),
+            shire:     fullYearDate(-4442, 11, 28)
         }
     },
     {
@@ -846,9 +846,9 @@ class SimulatedTolkienCalendars extends Component {
     constructor(props) {
         super(props);
 
-        let calendarRules = 1; // Sync Gregorian years with Second Age years
-        let selectedEvent = 14; // III 3019 Astron 6 | Elves' New Year
-        let currentDate = new Date();
+        let calendarRules = props.calendarRules || 1; // Sync Gregorian years with Second Age years
+        let selectedEvent = props.selectedEvent >= 0 ? props.selectedEvent : 14; // III 3019 Astron 6 | Elves' New Year
+        let currentDate = props.date || new Date();
         let startDates = SyncAges[calendarRules].startDates;
 
         currentDate = adjustForSelectedEvent(currentDate, selectedEvent, startDates.shire, startDates.rivendell);
@@ -987,13 +987,11 @@ class SimulatedTolkienCalendars extends Component {
         let rivendellStartDate = this.state.rivendellStartDate;
         let selectedEvent      = this.state.selectedEvent;
 
-        let eventOpts = DatesOfInterest.map(function (sync, i) {
-            return (
-                <option key={i} value={i}>
-                    {sync.label}
-                </option>
-            );
-        });
+        let eventOpts = DatesOfInterest.map((event, i) => (
+            <option key={i} value={i} >
+                {event.label}
+            </option>
+        ));
 
         if (selectedEvent < 1) {
             let previousEvent = DatesOfInterest.findIndex((event) => {
@@ -1043,7 +1041,7 @@ class SimulatedTolkienCalendars extends Component {
                 </tr>
                 <tr>
                     <th colSpan='3' className="simulated-date-controls" >
-                        <DatePicker date={currentDate} onDateChanged={this.onDateChanged} styles={{margin: "0px"}} />
+                        <DatePicker date={currentDate} onDateChanged={this.onDateChanged} className="simulated-gregorian-date-picker" />
                     </th>
                 </tr>
                 <tr>
