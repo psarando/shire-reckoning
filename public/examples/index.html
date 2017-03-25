@@ -43,7 +43,7 @@
     &lt;div id='shire-calendar' &gt;&lt;/div&gt;
     &lt;script type="text/javascript"&gt;
         ReactDOM.render(
-            React.createElement(TolkienCalendars.ShireCalendar, {className: "shire-calendar"}),
+            React.createElement(TolkienCalendars.ShireCalendar, {className: "shire-calendar", caption: true}),
             document.getElementById("shire-calendar")
         );
     &lt;/script&gt;
@@ -73,9 +73,9 @@
         render() {
             return (
                 &lt;div className="App"&gt;
-                    &lt;ShireCalendar className="shire-calendar" /&gt;
-                    &lt;RivendellCalendar className="shire-calendar" /&gt;
-                    &lt;GondorCalendar className="shire-calendar" /&gt;
+                    &lt;ShireCalendar className="shire-calendar" caption={true} /&gt;
+                    &lt;RivendellCalendar className="shire-calendar" caption={true} /&gt;
+                    &lt;GondorCalendar className="shire-calendar" caption={true} /&gt;
                 &lt;/div&gt;
             );
         }

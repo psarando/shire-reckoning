@@ -479,9 +479,31 @@ class GondorCalendar extends Component {
         }
 
         let controls = this.state.calendarControls ? this.renderCalendarControls() : null;
-        let caption = this.props.caption ?
-            (<caption className='gondor-caption'>{this.props.caption}</caption>)
-            : null;
+
+        let caption = null;
+        if (this.props.caption) {
+            let captionDisplay = this.props.caption;
+            if (this.props.caption === true) {
+                switch (this.state.reckoning) {
+                    case RECKONING_KINGS:
+                        captionDisplay = "Kings' Reckoning";
+                        break;
+                    case RECKONING_STEWARDS:
+                        captionDisplay = "Stewards' Reckoning";
+                        break;
+                    case RECKONING_NEW:
+                        captionDisplay = "New Reckoning";
+                        break;
+                    default:
+                        captionDisplay = "Gondor Reckoning";
+                        break;
+                }
+            }
+
+            caption = (
+                <caption className='gondor-caption'>{captionDisplay}</caption>
+            );
+        }
 
         return (
             <table className={this.props.className} >

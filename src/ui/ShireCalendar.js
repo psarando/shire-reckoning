@@ -383,9 +383,14 @@ class ShireCalendar extends Component {
         }
 
         let controls = this.state.calendarControls ? this.renderCalendarControls() : null;
-        let caption = this.props.caption ?
-            (<caption className='shire-caption'>{this.props.caption}</caption>)
-            : null;
+        let caption = null;
+        if (this.props.caption) {
+            caption = (
+                <caption className='shire-caption'>{
+                    this.props.caption === true ? "Shire Reckoning" : this.props.caption
+                }</caption>
+            );
+        }
 
         return (
             <table className={this.props.className} >

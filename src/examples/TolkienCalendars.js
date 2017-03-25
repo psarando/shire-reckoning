@@ -82,13 +82,13 @@ class TolkienCalendarsExample extends Component {
                 </tr>
                 <tr>
                     <td style={CalendarCellStyle}>
-                        <ShireCalendar caption="Shire Reckoning"
+                        <ShireCalendar caption={true}
                                        date={currentDate}
                                        className={shireClassName}
                                        yearView={shireAlign || rivendellAlign} />
                     </td>
                     <td style={CalendarCellStyle}>
-                        <RivendellCalendar caption="Rivendell Reckoning"
+                        <RivendellCalendar caption={true}
                                            date={currentDate}
                                            className={rivendellClassName}
                                            yearView={shireAlign || rivendellAlign} />
@@ -96,13 +96,13 @@ class TolkienCalendarsExample extends Component {
                 </tr>
                 <tr>
                     <td style={CalendarCellStyle}>
-                        <GondorCalendar caption="Stewards' Reckoning"
+                        <GondorCalendar caption={true}
                                         language={LanguagePicker.ENGLISH}
                                         date={currentDate}
                                         className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
-                        <GondorCalendar caption="New Reckoning"
+                        <GondorCalendar caption={true}
                                         reckoning={GondorCalendar.RECKONING_NEW}
                                         date={currentDate}
                                         className="shire-calendar" />

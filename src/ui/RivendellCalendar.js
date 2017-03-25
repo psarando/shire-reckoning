@@ -317,9 +317,14 @@ class RivendellCalendar extends Component {
         let weeks = this.state.monthView < 0 ? this.renderYear() : this.renderMonth();
 
         let controls = this.state.calendarControls ? this.renderCalendarControls() : null;
-        let caption = this.props.caption ?
-            (<caption className='rivendell-caption'>{this.props.caption}</caption>)
-            : null;
+        let caption = null;
+        if (this.props.caption) {
+            caption = (
+                <caption className='rivendell-caption'>{
+                    this.props.caption === true ? "Rivendell Reckoning" : this.props.caption
+                }</caption>
+            );
+        }
 
         return (
             <table className={this.props.className} >
