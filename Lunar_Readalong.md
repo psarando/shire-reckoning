@@ -1,3 +1,8 @@
+---
+layout: page
+title: "Shire Reckoning: The Lord of the Rings Lunar Readalong"
+---
+
 The Lord of the Rings Lunar Readalong
 =====================================
 

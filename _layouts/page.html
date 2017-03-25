@@ -3,21 +3,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            Shire Reckoning: A visualization of the calendars described in
-            J.R.R. Tolkien's The Lord of the Rings Appendix D
-        </title>
+        <title>{{ page.title }}</title>
         {% include header.html %}
     </head>
 
     <body>
         <section class="page-header">
-            <h1 class="project-name">{{ site.github.project_title }}</h1>
+            <h1 class="project-name">Shire Reckoning</h1>
             <h2 class="project-tagline">{{ site.github.project_tagline }}</h2>
-
-            <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-            <a href="{{ site.github.repository_url }}/zipball/master" class="btn">Download .zip</a>
-            <a href="{{ site.github.repository_url }}/tarball/master" class="btn">Download .tar.gz</a>
         </section>
 
         <section class="main-content">
@@ -26,6 +19,11 @@
             <footer>
                 {% include footer.html %}
             </footer>
+        </section>
+        <section class="page-header">
+            <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+            <a href="{{ site.github.repository_url }}/zipball/master" class="btn">Download .zip</a>
+            <a href="{{ site.github.repository_url }}/tarball/master" class="btn">Download .tar.gz</a>
         </section>
     </body>
 </html>

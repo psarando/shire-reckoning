@@ -93,8 +93,6 @@ a {
 
 .main-content {
   word-wrap: break-word; }
-  .main-content :first-child {
-    margin-top: 0; }
   @media screen and (min-width: 64em) {
     .main-content {
       max-width: 64rem;
@@ -189,17 +187,17 @@ a {
       margin-top: 0; }
     .main-content blockquote > :last-child {
       margin-bottom: 0; }
-  .main-content table {
+  .main-content > table {
     display: block;
     width: 100%;
     overflow: auto;
     word-break: normal;
     word-break: keep-all;
     -webkit-overflow-scrolling: touch; }
-    .main-content table th {
+    .main-content > table th {
       font-weight: bold; }
-    .main-content table th,
-    .main-content table td {
+    .main-content > table th,
+    .main-content > table td {
       padding: 0.5rem 1rem;
       border: 1px solid #e9ebec; }
   .main-content dl {
@@ -212,7 +210,7 @@ a {
     .main-content dl dd {
       padding: 0;
       margin-bottom: 1rem; }
-  .main-content hr {
+  .main-content > hr {
     height: 2px;
     padding: 0;
     margin: 1rem 0;
