@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 
 import ShireCalendar from '../ui/ShireCalendar';
 import RivendellCalendar from '../ui/RivendellCalendar';
-import NumenorCalendar from '../ui/NumenorCalendar';
+import GondorCalendar from '../ui/GondorCalendar';
 import '../ui/tolkien-calendars.css';
 
 import LanguagePicker from '../ui/controls/LanguagePicker';
@@ -96,17 +96,16 @@ class TolkienCalendarsExample extends Component {
                 </tr>
                 <tr>
                     <td style={CalendarCellStyle}>
-                        <NumenorCalendar caption="Stewards' Reckoning"
-                                         reckoning={NumenorCalendar.RECKONING_STEWARDS}
-                                         language={LanguagePicker.ENGLISH}
-                                         date={currentDate}
-                                         className="shire-calendar" />
+                        <GondorCalendar caption="Stewards' Reckoning"
+                                        language={LanguagePicker.ENGLISH}
+                                        date={currentDate}
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
-                        <NumenorCalendar caption="New Reckoning"
-                                         reckoning={NumenorCalendar.RECKONING_NEW}
-                                         date={currentDate}
-                                         className="shire-calendar" />
+                        <GondorCalendar caption="New Reckoning"
+                                        reckoning={GondorCalendar.RECKONING_NEW}
+                                        date={currentDate}
+                                        className="shire-calendar" />
                     </td>
                 </tr>
                 </tbody>

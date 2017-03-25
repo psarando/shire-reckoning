@@ -36,9 +36,7 @@ class DatePicker extends Component {
         let currentDate = new Date(year, month, day);
 
         // reset full year, month, and day for years 0-99
-        currentDate.setFullYear(year);
-        currentDate.setMonth(month);
-        currentDate.setDate(day);
+        currentDate.setFullYear(year, month, day);
 
         this.props.onDateChanged(currentDate);
     }

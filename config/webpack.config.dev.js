@@ -197,8 +197,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: 'head',
-      template: paths.numenorHtml,
-      filename: paths.numenorOutput
+      template: paths.gondorHtml,
+      filename: paths.gondorOutput
     }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.

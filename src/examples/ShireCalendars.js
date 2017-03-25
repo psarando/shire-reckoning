@@ -232,7 +232,8 @@ JSX:
 React.createElement(
     TolkienCalendars.ShireCalendar,
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
-     monthViewLayout: TolkienCalendars.ShireCalendar.MONTH_VIEW_VERTICAL,
+     monthViewLayout:
+         TolkienCalendars.ShireCalendar.MONTH_VIEW_HORIZONTAL,
      calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
@@ -240,7 +241,7 @@ React.createElement(
 
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
-               monthViewLayout={ShireCalendar.MONTH_VIEW_VERTICAL}
+               monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
@@ -256,14 +257,15 @@ JSX:
 `JavaScript:
 React.createElement(
     TolkienCalendars.ShireCalendar,
-    {monthViewLayout: TolkienCalendars.ShireCalendar.MONTH_VIEW_VERTICAL,
+    {monthViewLayout:
+        TolkienCalendars.ShireCalendar.MONTH_VIEW_HORIZONTAL,
      calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
 
 JSX:
-<ShireCalendar monthViewLayout={ShireCalendar.MONTH_VIEW_VERTICAL}
+<ShireCalendar monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
@@ -280,7 +282,8 @@ JSX:
 React.createElement(
     TolkienCalendars.ShireCalendar,
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
-     monthViewLayout: TolkienCalendars.ShireCalendar.MONTH_VIEW_VERTICAL,
+     monthViewLayout:
+         TolkienCalendars.ShireCalendar.MONTH_VIEW_HORIZONTAL,
      calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
@@ -288,7 +291,7 @@ React.createElement(
 
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
-               monthViewLayout={ShireCalendar.MONTH_VIEW_VERTICAL}
+               monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
@@ -300,20 +303,20 @@ JSX:
                 <tr>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
-                                       monthViewLayout={ShireCalendar.MONTH_VIEW_VERTICAL}
+                                       monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                        calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
-                        <ShireCalendar monthViewLayout={ShireCalendar.MONTH_VIEW_VERTICAL}
+                        <ShireCalendar monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                        calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
-                                       monthViewLayout={ShireCalendar.MONTH_VIEW_VERTICAL}
+                                       monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                        calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar" />

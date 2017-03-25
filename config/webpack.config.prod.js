@@ -253,8 +253,8 @@ function appConfig() {
     }),
     new HtmlWebpackPlugin({
       inject: 'head',
-      filename: paths.numenorOutput,
-      template: paths.numenorHtml,
+      filename: paths.gondorOutput,
+      template: paths.gondorHtml,
       minify: {
         removeComments: true,
         removeRedundantAttributes: true,

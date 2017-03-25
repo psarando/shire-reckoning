@@ -4,6 +4,19 @@
  */
 import { datesMatch, getNextDate, isLeapYear } from './Utils';
 
+/**
+ * @typedef {Object} ShireWeekday
+ * @property {string} tolkien - The Gregorian substitution Tolkien used for this weekday name.
+ * @property {string} shire - The Shire name for this weekday.
+ * @property {string} bree - The Bree name for this weekday.
+ * @property {string} description
+ */
+
+/**
+ * Weekday names and descriptions
+ * @constant
+ * @type {ShireWeekday[]}
+ */
 const ShireWeekdays = [
     {
         tolkien: 'Saturday',
@@ -70,6 +83,20 @@ High Day. From the archaic Hihdei (from Old English hēah dæg).`
     }
 ];
 
+/**
+ * @typedef {Object} ShireMonth
+ * @property {string} tolkien - The Gregorian substitution Tolkien used for this month name.
+ * @property {string} shire - The Shire name for this month.
+ * @property {string} bree - The Bree name for this month.
+ * @property {string} description
+ * @property {string} className - UI-hint for styling this month.
+ */
+
+/**
+ * Month names and descriptions.
+ * @constant
+ * @type {ShireMonth[]}
+ */
 const ShireMonths = [
     {
         tolkien: 'January',
@@ -220,19 +247,49 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
     }
 ];
 
+/**
+ * @param {Date} today
+ * @param {number} startDay
+ *
+ * @return {Date} The Gregorian Date corresponding to the Shire New Year Date
+ *                for the year of the given `today` and `startDay` in December.
+ */
 const getShireNewYearDate = (today, startDay) => {
     let startYear = today.getFullYear();
     if (today.getMonth() < 11 || today.getDate() < startDay) {
         startYear--;
     }
 
-    let newYearDate = new Date(startYear,11,startDay, 0,0,0);
+    let newYearDate = new Date(startYear, 11, startDay, 0,0,0);
     // reset full year for years 0-99
-    newYearDate.setFullYear(startYear);
+    newYearDate.setFullYear(startYear, 11, startDay);
 
     return newYearDate;
 };
 
+/**
+ * @typedef {Object} ShireDate
+ * @property {(number|string)} day - The number of the day of the month, if this date is not intercalary; otherwise, the name of the intercalary date.
+ * @property {number} month - The month index of {@link ShireMonths}.
+ * @property {number} weekDay - The weekday index of {@link ShireWeekdays}.
+ * @property {Date} gregorian - The corresponding Gregorian date.
+ */
+
+/**
+ * @typedef {Object} ShireCalendarYear
+ * @property {ShireDate[]} dates - The dates of this Shire calendar year.
+ * @property {Date} today - The given Gregorian Date this calendar year was generated from.
+ * @property {ShireDate} todayShire - The current Shire date corresponding to the given [today]{@link ShireCalendarYear#today}.
+ */
+
+/**
+ * Generates a calendar year for the given Date `today`, according to the given `startDay` in December.
+ *
+ * @param {Date} today
+ * @param {number} startDay
+ *
+ * @return {ShireCalendarYear} The calendar year for the given `today`.
+ */
 const makeShireCalendarDates = (today, startDay) => {
     let gregorianDate = getShireNewYearDate(today, startDay);
     let todayShire;
@@ -294,7 +351,7 @@ const makeShireCalendarDates = (today, startDay) => {
             }
 
             weekDay++;
-            let leapYear = isLeapYear(gregorianDate);
+            let leapYear = isLeapYear(gregorianDate.getFullYear());
             if (leapYear) {
                 gregorianDate = getNextDate(gregorianDate);
                 dates.push({

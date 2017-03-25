@@ -9,6 +9,7 @@
     width: 5rem;
     text-align: center;
     font-size: .8rem;
+    font-weight: bold;
 }
 .shire-calendar caption {
     border: .2rem solid black;
@@ -17,14 +18,14 @@
 .rivendell-calendar td {
     height: 4rem;
 }
-.shire-caption, .rivendell-caption, .numenor-caption {
+.shire-caption, .rivendell-caption, .gondor-caption {
     background-color: azure;
 }
 .shire-calendar-controls {
     border-bottom: none !important;
     height: 4rem !important;
 }
-.rivendell-calendar-controls, .numenor-calendar-controls {
+.rivendell-calendar-controls, .gondor-calendar-controls {
     height: 4rem !important;
 }
 .month-picker {
@@ -36,6 +37,7 @@
 }
 .gregorian-display {
     font-size: .5rem;
+    font-weight: normal;
 }
 .intercalary-day-separator {
     transform: rotate(-10deg);

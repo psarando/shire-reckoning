@@ -60,7 +60,7 @@ More examples of each calendar, as well as installation and usage, can be found 
 
 * [Shire Calendar examples](http://psarando.github.io/shire-reckoning/examples/shire-calendars.html)
 * [Rivendell Calendar examples](http://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
-* [Númenor Calendar examples](http://psarando.github.io/shire-reckoning/examples/numenor-calendars.html)
+* [Gondor Calendar examples](http://psarando.github.io/shire-reckoning/examples/gondor-calendars.html)
 
 [![NPM version](https://img.shields.io/npm/v/shire-reckoning.svg)](https://www.npmjs.org/package/shire-reckoning)
 These javascript calendars use the [React javascript library](http://facebook.github.io/react/).
@@ -96,13 +96,17 @@ These descriptions were compiled from
 [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html),
 and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar).
 
+#### Layout of days and weeks
+
 The default layout of the individual month views in the Shire Calendar might look odd at first,
 with the dates starting at the top of the left column and advancing vertically down the column,
 then continuing the next week in the next column (again counting dates from top to bottom),
 but this is the "vertical" layout Tolkien used in his example Shire Calendar at the beginning of Appendix D.
 A control is available to switch the month views from this default "vertical" layout
 to the more familiar "horizontal" layout, where the dates advance within in each row from left to right,
-and the weeks advance row by row.
+and the weeks advance from top to bottom.
+
+#### Reckoning start dates
 
 This visualization starts reckoning the start of the Shire Calendar year from Gregorian December 21 by default,
 in order to align Shire Mid-year's Day as much as possible with the contemporary
@@ -126,7 +130,8 @@ Note this annotation from [The Lord of the Rings: A Reader's Companion](#referen
   (reckoning the start of the Shire Calendar year from Gregorian December 25) in 2017-18.
 * If reckoning the start of the Shire Calendar year from Gregorian December 21,
   then the moon phases of 2020-21 will match the Shire Reckoning dates of the narrative instead
-  (and a bit better; e.g. the full moons of Afteryule and Rethe will fall on the correct days).
+  (and a bit better; e.g.
+  [the full moons of Afteryule and Rethe will fall on the correct days](https://www.reddit.com/r/tolkienfans/comments/53i3qa/the_moon_phases_used_for_lotr_are_about_to_mostly/)).
 
 ### Notes on the visualizations of the calendars of Gondor
 
@@ -138,6 +143,8 @@ so that they will always stay in sync with this project's Shire Reckoning calend
 
 These calendars actually had very similar, but slightly different leap-day rules compared to the
 Gregorian calendar's leap-day rules, [as described below in the Rivendell Reckoning notes](#why-not-march-29th).
+
+#### Gondor's weekdays
 
 Also note Tolkien's statements in Appendix D about the Shire's weekdays.
 
@@ -257,7 +264,7 @@ with March 29th if it "corresponded more or less with Shire April 6" (Astron 6)?
 
 Now consider Tolkien's other statements about the Shire Calendar in Appendix D:
 
-1. Shire Reckoning was based on the calendar of Númenor called the Kings' Reckoning,
+1. Shire Reckoning was based on the calendar of Gondor called the Kings' Reckoning,
 which later became the Stewards' Reckoning calendar of Gondor.
 These calendars must have stayed aligned by the Third Age 3019,
 since Tolkien states in Appendix D that the New Year's Day of the New Reckoning calendar corresponded
@@ -269,7 +276,7 @@ with "March 25" of the Shire, Kings', and Stewards' Reckoning calendars (Rethe 2
     >
     > -- J.R.R. Tolkien, The Lord of the Rings Appendix D
 
-2. The Kings' Reckoning was founded in the first year of the Second Age (S.A.).
+2. The Kings' Reckoning was founded in Númenor, and started reckoning from the first year of the Second Age (S.A.).
 Both the Kings' and Shire Reckoning followed leap-year rules similar to the Gregorian calendar,
 where every 4th year is a leap-year except the last in a century,
 but the Gregorian calendar also adds an extra leap-day (i.e. does not omit the leap-day) every 4th century
@@ -320,11 +327,11 @@ meaning its New Year's Day corresponded with Gregorian December 23,
 then the New Year's Day of both the Gondor and Shire calendars would have corresponded with December 20 in T.A. 3019.
 
 Now note that the year 6460 in a Gregorian calendar is also a leap year,
-so Astron 6 in T.A. 3019 would have correspond to the Gregorian March 25
+so Astron 6 in T.A. 3019 would have corresponded to the Gregorian March 25
 (to see this for yourself,
 [set the Shire Calendar to start reckoning from December 20 and the Gregorian Date to March 25, 6460](http://psarando.github.io/shire-reckoning/#tolkien-calendars)).
 This also means the Shire Reckoning New Year's Day was another day behind in T.A. 3020,
-which means Astron 6 correspond to Gregorian March 25 again
+which means Astron 6 corresponded to Gregorian March 25 again
 (the date the mallorn tree first flowered in the Party Field),
 until the Overlithe in that "Great Year of Plenty"
 re-synced Shire New Year's Day with December 20 in T.A. 3021.
@@ -437,7 +444,7 @@ and just made the mistake of assuming that this date still corresponded 6000 yea
 and that the relative days between the winter solstice and summer solstice
 were the same back then as they are now
 ([he did assume the lengths of the years were the same then as they are now](http://rinsanity.weebly.com/tolkien.html)).
-His "long summer" calendars of the Shire and Númenor seem to fit these possibilities.
+His "long summer" calendars of the Shire and Gondor seem to fit these possibilities.
 In fact, the first publication of *The Lord of the Rings* stated:
 
 > ... Mid-year's Day and Year's End were originally intended to correspond as nearly as possible
@@ -452,6 +459,14 @@ and when emending Appendix D for the second edition,
 perhaps he just didn't concern himself with any other dates of the solar events beyond the
 spring equinox and summer solstice during the hypothetical time-frame
 of the "Great Years" of the War of the Ring.
+
+This may be perfectly reasonable in the context of the mythology of Middle-earth,
+since the world of Middle-earth was a flat world only about 3000 years before the War of the Ring,
+when the epic cataclysm of the Downfall of Númenor made it into the round world we know today.
+If we allow for the possibility that this mythological flat world
+(and the first 3000 years of the round world)
+had more stable lengths of years and seasons,
+then these calendars could be more applicable to that mythological past than our actual planet's physical history.
 
 #### Reformed Rivendell Reckoning
 
@@ -507,6 +522,9 @@ which fall on (or very close to) the
 * [Wikipedia article on the Ages of Middle-earth](https://en.wikipedia.org/wiki/Timeline_of_Arda)
 * [Wikipedia solstice article](https://en.wikipedia.org/wiki/Solstice)
 * [Wikipedia equinox article](https://en.wikipedia.org/wiki/Equinox)
+* [A Tolkien Calendar: Part 1 | Miruvor](https://taruithornmiruvor.wordpress.com/2015/05/24/a-tolkien-calendar-part-1/#attachment_143):
+  Joe Bartram's article on the history of Middle-earth calendars,
+  including an excellent chart of the "evolution and divergence of calendar systems in Middle Earth".
 * [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html)
 * [TheTropicalEvents.com](http://www.thetropicalevents.com/):
   Search this page for "Gregorian calendar" for charts showing how the dates of the

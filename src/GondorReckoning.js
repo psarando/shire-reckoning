@@ -4,11 +4,42 @@
  */
 import { datesMatch, getNextDate, isLeapYear } from './Utils';
 
+/**
+ * Kings' Reckoning leap-year rules enum
+ * @constant
+ */
 const RECKONING_KINGS = "kings";
+
+/**
+ * Stewards' Reckoning leap-year rules enum
+ * @constant
+ */
 const RECKONING_STEWARDS = "stewards";
+
+/**
+ * New Reckoning leap-year rules enum
+ * @constant
+ */
 const RECKONING_NEW = "new";
 
-const NumenorWeekdays = [
+/**
+ * @typedef {(RECKONING_KINGS|RECKONING_STEWARDS|RECKONING_NEW)} GondorReckoningEnum
+ */
+
+/**
+ * @typedef {Object} GondorWeekday
+ * @property {string} english - The English translation of this weekday name.
+ * @property {string} quenya - The Quenya name for this weekday.
+ * @property {string} sindarin - The Sindarin name for this weekday.
+ * @property {string} description
+ */
+
+/**
+ * Weekday names and descriptions
+ * @constant
+ * @type {GondorWeekday[]}
+ */
+const GondorWeekdays = [
     {
         english: "Stars Day",
         quenya: "Elenya",
@@ -53,7 +84,21 @@ const NumenorWeekdays = [
     }
 ];
 
-const NumenorMonths = [
+/**
+ * @typedef {Object} GondorMonth
+ * @property {string} english - The English translation of this month name.
+ * @property {string} quenya - The Quenya name for this month.
+ * @property {string} sindarin - The Sindarin name for this month.
+ * @property {string} description
+ * @property {string} className - UI-hint for styling this month.
+ */
+
+/**
+ * Month names and descriptions.
+ * @constant
+ * @type {GondorMonth[]}
+ */
+const GondorMonths = [
     {
         english: "New Sun",
         quenya: "Narvinyë",
@@ -140,7 +185,14 @@ const NumenorMonths = [
     }
 ];
 
-const getNumenorNewYearDate = (today, startDay) => {
+/**
+ * @param {Date} today
+ * @param {number} startDay
+ *
+ * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
+ *                for the year of the given `today` and `startDay` in December.
+ */
+const getGondorNewYearDate = (today, startDay) => {
     let startYear = today.getFullYear();
     if (today.getMonth() < 11 || today.getDate() < startDay) {
         startYear--;
@@ -148,11 +200,19 @@ const getNumenorNewYearDate = (today, startDay) => {
 
     let newYearDate = new Date(startYear, 11, startDay, 0, 0, 0);
     // reset full year for years 0-99
-    newYearDate.setFullYear(startYear);
+    newYearDate.setFullYear(startYear, 11, startDay);
 
     return newYearDate;
 };
 
+/**
+ * @param {GondorReckoningEnum} fromReckoning
+ * @param {GondorReckoningEnum} toReckoning
+ * @param {number} monthIndex The current {@link GondorMonths} index for the given `fromReckoning`.
+ *
+ * @return {number} The index to use with {@link GondorMonths} for the given `toReckoning`
+ *                  that most closely matches the given `monthIndex`.
+ */
 const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
     let fromNewReckoning = fromReckoning === RECKONING_NEW;
     let toNewReckoning = toReckoning === RECKONING_NEW;
@@ -166,10 +226,22 @@ const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
     return monthIndex;
 };
 
+/**
+ * @param {number} weekday - The current Gregorian weekday index (Sunday = 0).
+ * @return {number} The Gondorian weekday index, for use with {@link GondorWeekdays},
+ *                  that is the cultural equivalent for the given Gregorian weekday index.
+ */
 const convertGregorianToGondorianWeekday = (weekday) => {
     return (weekday+6)%7;
 };
 
+/**
+ * @param {Date} today
+ * @param {number} startDay
+ *
+ * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
+ *                in the New Reckoning calendar for the year of the given `today` and old-style `startDay` in December.
+ */
 const getNewReckoningNewYearDate = (today, startDay) => {
     let startYear = today.getFullYear();
     let thisMonth = today.getMonth();
@@ -179,31 +251,56 @@ const getNewReckoningNewYearDate = (today, startDay) => {
     if (thisMonth < 2) {
         startYear--;
     } else if (thisMonth === 2) {
-        if (thisDate < 15+dayOffset || (!isLeapYear(today) && thisDate < 16+dayOffset)) {
+        if (thisDate < 15+dayOffset || (!isLeapYear(startYear) && thisDate < 16+dayOffset)) {
             startYear--;
         }
     }
 
     let newYearDate = new Date(startYear, 2, 16+dayOffset, 0, 0, 0);
     // reset full year for years 0-99
-    newYearDate.setFullYear(startYear);
+    newYearDate.setFullYear(startYear, 2, 16+dayOffset);
 
-    if (isLeapYear(newYearDate)) {
+    if (isLeapYear(newYearDate.getFullYear())) {
         newYearDate.setDate(15+dayOffset);
     }
 
     return newYearDate;
 };
 
-const makeNumenorCalendarDates = (today, startDay, reckoning) => {
+/**
+ * @typedef {Object} GondorDate
+ * @property {(number|string)} day - The number of the day of the month, if this date is not intercalary; otherwise, the name of the intercalary date.
+ * @property {number} month - The month index of {@link GondorMonths}.
+ * @property {number} weekDay - The weekday index of {@link GondorWeekdays}.
+ * @property {Date} gregorian - The corresponding Gregorian date.
+ */
+
+/**
+ * @typedef {Object} GondorCalendarYear
+ * @property {GondorDate[]} dates - The dates of this Gondor calendar year.
+ * @property {Date} today - The given Gregorian Date this calendar year was generated from.
+ * @property {GondorDate} todayGondor - The current Gondor date corresponding to the given [today]{@link GondorCalendarYear#today}.
+ */
+
+/**
+ * Generates a calendar year for the given Date `today`,
+ * according to the given old-style `startDay` in December and `reckoning` rules.
+ *
+ * @param {Date} today
+ * @param {number} startDay
+ * @param {GondorReckoningEnum} reckoning
+ *
+ * @return {GondorCalendarYear} The calendar year for the given `today`.
+ */
+const makeGondorCalendarDates = (today, startDay, reckoning) => {
     let kingsReckoning = reckoning === RECKONING_KINGS;
     let stewardsReckoning = reckoning === RECKONING_STEWARDS;
     let newReckoning = reckoning === RECKONING_NEW;
     let gregorianDate =
         newReckoning ?
             getNewReckoningNewYearDate(today, startDay) :
-            getNumenorNewYearDate(today, startDay);
-    let todayNumenor;
+            getGondorNewYearDate(today, startDay);
+    let todayGondor;
 
     let dates = [];
 
@@ -215,14 +312,14 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
             // no default case required
             case 0:
                 dates.push({
-                    "date": "Yestarë",
+                    "day": "Yestarë",
                     "month": 0,
                     "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                     "gregorian": gregorianDate
                 });
 
                 if (datesMatch(today, gregorianDate)) {
-                    todayNumenor = dates[0];
+                    todayGondor = dates[0];
                 }
                 gregorianDate = getNextDate(gregorianDate);
 
@@ -245,7 +342,7 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
             });
 
             if (datesMatch(today, gregorianDate)) {
-                todayNumenor = dates[dates.length-1];
+                todayGondor = dates[dates.length-1];
             }
         }
 
@@ -255,14 +352,14 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
             case 2:
                 if (stewardsReckoning) {
                     dates.push({
-                        "date": "Tuilérë",
+                        "day": "Tuilérë",
                         "month": month + 1,
                         "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayNumenor = dates[dates.length-1];
+                        todayGondor = dates[dates.length-1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -270,60 +367,60 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
                 break;
 
             case 5:
-                let leapYear = isLeapYear(gregorianDate);
+                let leapYear = isLeapYear(gregorianDate.getFullYear());
 
                 if (leapYear && newReckoning) {
                     dates.push({
-                        "date": "Cormarë",
+                        "day": "Cormarë",
                         "month": month,
                         "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayNumenor = dates[dates.length-1];
+                        todayGondor = dates[dates.length-1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (leapYear || newReckoning) {
                     dates.push({
-                        "date": "Enderë",
+                        "day": "Enderë",
                         "month": month + 1,
                         "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayNumenor = dates[dates.length-1];
+                        todayGondor = dates[dates.length-1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (!leapYear || newReckoning) {
                     dates.push({
-                        "date": "Loëndë",
+                        "day": "Loëndë",
                         "month": month + 1,
                         "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayNumenor = dates[dates.length-1];
+                        todayGondor = dates[dates.length-1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (leapYear || newReckoning) {
                     dates.push({
-                        "date": "Enderë",
+                        "day": "Enderë",
                         "month": month + 1,
                         "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayNumenor = dates[dates.length-1];
+                        todayGondor = dates[dates.length-1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -333,14 +430,14 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
             case 8:
                 if (stewardsReckoning) {
                     dates.push({
-                        "date": "Yáviérë",
+                        "day": "Yáviérë",
                         "month": month + 1,
                         "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                         "gregorian": gregorianDate
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayNumenor = dates[dates.length-1];
+                        todayGondor = dates[dates.length-1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -349,14 +446,14 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
 
             case 11:
                 dates.push({
-                    "date": "Mettarë",
+                    "day": "Mettarë",
                     "month": 11,
                     "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
                     "gregorian": gregorianDate
                 });
 
                 if (datesMatch(today, gregorianDate)) {
-                    todayNumenor = dates[dates.length-1];
+                    todayGondor = dates[dates.length-1];
                 }
                 gregorianDate = getNextDate(gregorianDate);
 
@@ -367,45 +464,19 @@ const makeNumenorCalendarDates = (today, startDay, reckoning) => {
     return {
         dates: dates,
         today: today,
-        todayNumenor: todayNumenor
+        todayGondor: todayGondor
     };
-};
-
-/**
- * @deprecated Use convertGondorianMonthIndex instead.
- */
-const convertMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
-    console.warn(
-`convertMonthIndex is deprecated and will be removed in a future release.
-Use convertGondorianMonthIndex instead.`
-    );
-
-    return convertGondorianMonthIndex(fromReckoning, toReckoning, monthIndex);
-};
-
-/**
- * @deprecated Use convertGregorianToGondorianWeekday instead.
- */
-const convertGregorianWeekday = (weekday) => {
-    console.warn(
-`convertGregorianWeekday is deprecated and will be removed in a future release.
-Use convertGregorianToGondorianWeekday instead.`
-    );
-
-    return convertGregorianToGondorianWeekday(weekday);
 };
 
 export {
     RECKONING_KINGS,
     RECKONING_STEWARDS,
     RECKONING_NEW,
-    NumenorWeekdays,
-    NumenorMonths,
-    getNumenorNewYearDate,
+    GondorWeekdays,
+    GondorMonths,
+    getGondorNewYearDate,
     getNewReckoningNewYearDate,
     convertGondorianMonthIndex,
     convertGregorianToGondorianWeekday,
-    convertMonthIndex,
-    convertGregorianWeekday,
-    makeNumenorCalendarDates
+    makeGondorCalendarDates
 };

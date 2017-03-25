@@ -6,8 +6,8 @@ import ShireCalendar from './ui/ShireCalendar';
 import ShireCalendarExample from './examples/ShireCalendars';
 import RivendellCalendar from './ui/RivendellCalendar';
 import RivendellCalendarExample from './examples/RivendellCalendars';
-import NumenorCalendar from './ui/NumenorCalendar';
-import NumenorCalendarExample from './examples/NumenorCalendars';
+import GondorCalendar from './ui/GondorCalendar';
+import GondorCalendarExample from './examples/GondorCalendars';
 
 const renderTolkienCalendarsExample = (elementID) => {
     ReactDOM.render(
@@ -44,16 +44,16 @@ const renderRivendellCalendarExample = (elementID) => {
     );
 };
 
-const renderNumenorCalendar = (elementID, className) => {
+const renderGondorCalendar = (elementID, className) => {
     ReactDOM.render(
-        <NumenorCalendar className={className} />,
+        <GondorCalendar className={className} />,
         document.getElementById(elementID)
     );
 };
 
-const renderNumenorCalendarExample = (elementID) => {
+const renderGondorCalendarExample = (elementID) => {
     ReactDOM.render(
-        <NumenorCalendarExample />,
+        <GondorCalendarExample />,
         document.getElementById(elementID)
     );
 };
@@ -64,6 +64,6 @@ export {
     renderShireCalendarExample,
     renderRivendellCalendar,
     renderRivendellCalendarExample,
-    renderNumenorCalendar,
-    renderNumenorCalendarExample
+    renderGondorCalendar,
+    renderGondorCalendarExample
 };

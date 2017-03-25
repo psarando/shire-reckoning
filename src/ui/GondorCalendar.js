@@ -8,11 +8,11 @@ import {
     RECKONING_KINGS,
     RECKONING_STEWARDS,
     RECKONING_NEW,
-    NumenorWeekdays,
-    NumenorMonths,
+    GondorWeekdays,
+    GondorMonths,
     convertGondorianMonthIndex,
-    makeNumenorCalendarDates
-} from '../NumenorReckoning';
+    makeGondorCalendarDates
+} from '../GondorReckoning';
 import { datesMatch } from '../Utils';
 
 import DateCell from './DateCell';
@@ -25,7 +25,7 @@ import MonthViewLayout, { VerticalLayoutFiller } from './controls/MonthViewLayou
 import MonthViewPicker from './controls/MonthViewPicker';
 import StartDatePicker from './controls/StartDatePicker';
 
-class NumenorCalendar extends Component {
+class GondorCalendar extends Component {
     static get RECKONING_KINGS() { return RECKONING_KINGS;}
     static get RECKONING_STEWARDS() { return RECKONING_STEWARDS;}
     static get RECKONING_NEW() { return RECKONING_NEW;}
@@ -44,11 +44,11 @@ class NumenorCalendar extends Component {
         let language = props.language || LanguagePicker.QUENYA;
         let today = props.date || new Date();
         let monthViewLayout = props.monthViewLayout || MonthViewLayout.VERTICAL;
-        let reckoning = props.reckoning || RECKONING_KINGS;
+        let reckoning = props.reckoning || RECKONING_STEWARDS;
 
         let startDay = props.startDay || 21;
-        let calendar = makeNumenorCalendarDates(today, startDay, reckoning);
-        let monthView = props.yearView ? -1 : calendar.todayNumenor.month;
+        let calendar = makeGondorCalendarDates(today, startDay, reckoning);
+        let monthView = props.yearView ? -1 : calendar.todayGondor.month;
 
         this.state = {
             calendarControls: calendarControls,
@@ -80,20 +80,20 @@ class NumenorCalendar extends Component {
 
         if (!datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
-            calendar = makeNumenorCalendarDates(today,
-                                                this.state.startDay,
-                                                this.state.reckoning);
+            calendar = makeGondorCalendarDates(today,
+                                               this.state.startDay,
+                                               this.state.reckoning);
         }
 
         this.setState({
             today: today,
             calendar: calendar,
-            monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayNumenor.month
+            monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayGondor.month
         });
     }
 
     makeCalendarDates(today, startDay) {
-        return makeNumenorCalendarDates(today, startDay, this.state.reckoning);
+        return makeGondorCalendarDates(today, startDay, this.state.reckoning);
     }
 
     onMonthViewChange(calendar, monthView) {
@@ -106,15 +106,15 @@ class NumenorCalendar extends Component {
     onViewCalendarMonth(calendar) {
         this.setState({
             calendar: calendar,
-            monthView: calendar.todayNumenor.month
+            monthView: calendar.todayGondor.month
         });
     }
 
     onCalendarStartChange(event) {
         let startDay = event.target.value;
-        let calendar = makeNumenorCalendarDates(this.state.calendar.today,
-                                                startDay,
-                                                this.state.reckoning);
+        let calendar = makeGondorCalendarDates(this.state.calendar.today,
+                                               startDay,
+                                               this.state.reckoning);
 
         this.setState({
             startDay: startDay,
@@ -124,9 +124,9 @@ class NumenorCalendar extends Component {
 
     onStartMonthChange(event) {
         let reckoning = event.target.value;
-        let calendar = makeNumenorCalendarDates(this.state.calendar.today,
-                                                this.state.startDay,
-                                                reckoning);
+        let calendar = makeGondorCalendarDates(this.state.calendar.today,
+                                               this.state.startDay,
+                                               reckoning);
         let monthView = convertGondorianMonthIndex(this.state.reckoning,
                                                    reckoning,
                                                    this.state.monthView);
@@ -156,10 +156,10 @@ class NumenorCalendar extends Component {
                     "Kings' Reckoning" :
                     "Stewards' Reckoning";
 
-        switch (date.date) {
+        switch (date.day) {
             case "Yestarë":
                 return (
-                    <IntercalaryDay key="NumenorianNewYear"
+                    <IntercalaryDay key="GondorianNewYear"
                                     name={language === LanguagePicker.ENGLISH ? "First Day" : "Yestarë"}
                                     description={reckoningDesc + " New Year's Day!"}
                                     currentDate={today}
@@ -177,7 +177,7 @@ class NumenorCalendar extends Component {
 
             case "Cormarë":
                 return (
-                    <IntercalaryDay key={"Numenorian-Leapday" + date.weekDay}
+                    <IntercalaryDay key={"Gondorian-Leapday" + date.weekDay}
                                     name={language === LanguagePicker.ENGLISH ? "Ring Bearer's Day" : "Cormarë"}
                                     description="Ring Bearer's Day"
                                     currentDate={today}
@@ -186,7 +186,7 @@ class NumenorCalendar extends Component {
 
             case "Loëndë":
                 return (
-                    <IntercalaryDay key={"Numenorian-Midyear" + date.weekDay}
+                    <IntercalaryDay key={"Gondorian-Midyear" + date.weekDay}
                                     name={language === LanguagePicker.ENGLISH ? "Midyear's Day" : "Loëndë"}
                                     description="Midyear's Day"
                                     currentDate={today}
@@ -195,7 +195,7 @@ class NumenorCalendar extends Component {
 
             case "Enderë":
                 return (
-                    <IntercalaryDay key={"NumenorianMiddleday-" + date.weekDay}
+                    <IntercalaryDay key={"GondorianMiddleday-" + date.weekDay}
                                     name={language === LanguagePicker.ENGLISH ? "Middleday" : "Enderë"}
                                     description="Middleday"
                                     currentDate={today}
@@ -213,7 +213,7 @@ class NumenorCalendar extends Component {
 
             case "Mettarë":
                 return (
-                    <IntercalaryDay key="NumenorianNewYearsEve"
+                    <IntercalaryDay key="GondorianNewYearsEve"
                                     name={language === LanguagePicker.ENGLISH ? "Last Day" : "Mettarë"}
                                     description={reckoningDesc + " New Year's Eve!"}
                                     currentDate={today}
@@ -222,8 +222,8 @@ class NumenorCalendar extends Component {
 
             default:
                 let startMonth = reckoning === RECKONING_NEW ? 3 : 0;
-                let month = NumenorMonths[(date.month+startMonth)%12];
-                let weekday = NumenorWeekdays[date.weekDay];
+                let month = GondorMonths[(date.month+startMonth)%12];
+                let weekday = GondorWeekdays[date.weekDay];
 
                 return (
                     <DateCell key={date.day + month[language]}
@@ -269,7 +269,7 @@ class NumenorCalendar extends Component {
         switch (monthView) {
             // no default case required
             case 2:
-                if (date.date === "Tuilérë") {
+                if (date.day === "Tuilérë") {
                     week.push(this.renderDay(date, today));
                 }
 
@@ -277,7 +277,7 @@ class NumenorCalendar extends Component {
 
             case 5:
                 date = dates[i];
-                for (; date.date === "Enderë" || date.date === "Loëndë"; i++, date = dates[i]) {
+                for (; date.day === "Enderë" || date.day === "Loëndë"; i++, date = dates[i]) {
                     week.push(this.renderDay(date, today));
 
                     if ((date.weekDay + 1) % 7 === 0) {
@@ -289,7 +289,7 @@ class NumenorCalendar extends Component {
                 break;
 
             case 8:
-                if (date.date === "Yáviérë") {
+                if (date.day === "Yáviérë") {
                     week.push(this.renderDay(date, today));
                 }
 
@@ -309,7 +309,7 @@ class NumenorCalendar extends Component {
         let monthView = this.state.monthView;
         let language = this.state.language;
 
-        let weeks = NumenorWeekdays.map(function (weekday) {
+        let weeks = GondorWeekdays.map(function (weekday) {
             let weekdayName = weekday[language];
             return [(
                 <WeekDayHeaderCell key={weekdayName}
@@ -338,7 +338,7 @@ class NumenorCalendar extends Component {
         switch (monthView) {
             // no default case required
             case 2:
-                if (date.date === "Tuilérë") {
+                if (date.day === "Tuilérë") {
                     weeks[date.weekDay].push(this.renderDay(date, today));
                 }
 
@@ -346,13 +346,13 @@ class NumenorCalendar extends Component {
 
             case 5:
                 date = dates[i];
-                for (; date.date === "Enderë" || date.date === "Loëndë"; i++, date = dates[i]) {
+                for (; date.day === "Enderë" || date.day === "Loëndë"; i++, date = dates[i]) {
                     weeks[date.weekDay].push(this.renderDay(date, today));
                 }
 
                 break;
             case 8:
-                if (date.date === "Yáviérë") {
+                if (date.day === "Yáviérë") {
                     weeks[date.weekDay].push(this.renderDay(date, today));
                 }
 
@@ -360,7 +360,7 @@ class NumenorCalendar extends Component {
         }
 
         if (weeks[0].length > 6) {
-            weeks = NumenorWeekdays.map(function (weekday, i) {
+            weeks = GondorWeekdays.map(function (weekday, i) {
                 let week = weeks[i];
                 let weekdayName = weekday[language];
 
@@ -410,19 +410,19 @@ class NumenorCalendar extends Component {
         let startMonth = reckoning === RECKONING_NEW ? 3 : 0;
         let language = this.state.language;
         let monthNames = [];
-        for (let i = startMonth; i < (NumenorMonths.length + startMonth); i++) {
-            monthNames.push(NumenorMonths[i%12][language]);
+        for (let i = startMonth; i < (GondorMonths.length + startMonth); i++) {
+            monthNames.push(GondorMonths[i%12][language]);
         }
 
         return (
             <tr>
-                <td colSpan='2' className='numenor-calendar-controls' >
+                <td colSpan='2' className='gondor-calendar-controls' >
                     <StartDatePicker month="December"
                                      startRange={18}
                                      endRange={25}
                                      startDay={this.state.startDay}
                                      onCalendarStartChange={this.onCalendarStartChange} />
-                    <select className="numenor-rules-select"
+                    <select className="gondor-rules-select"
                             value={reckoning}
                             onChange={this.onStartMonthChange} >
                         <option value={RECKONING_KINGS}>Kings' Reckoning</option>
@@ -430,7 +430,7 @@ class NumenorCalendar extends Component {
                         <option value={RECKONING_NEW}>New Reckoning</option>
                     </select>
                 </td>
-                <td colSpan='3' className='numenor-calendar-controls month-picker-container' >
+                <td colSpan='3' className='gondor-calendar-controls month-picker-container' >
                     <MonthViewPicker monthNames={monthNames}
                                      today={this.state.today}
                                      calendar={this.state.calendar}
@@ -440,11 +440,11 @@ class NumenorCalendar extends Component {
                                      onMonthViewChange={this.onMonthViewChange}
                                      onViewCalendarMonth={this.onViewCalendarMonth} />
                 </td>
-                <td className='numenor-calendar-controls' >
+                <td className='gondor-calendar-controls' >
                     <LanguagePicker language={this.state.language}
                                     onLanguageChange={this.onLanguageChange} />
                 </td>
-                <td className='numenor-calendar-controls' >
+                <td className='gondor-calendar-controls' >
                     <MonthViewLayout layout={this.state.monthViewLayout}
                                      onMonthViewLayoutChange={this.onMonthViewLayoutChange} />
                 </td>
@@ -456,7 +456,7 @@ class NumenorCalendar extends Component {
         let language = this.state.language;
         let weekDayHeader = (
             <tr>
-                {NumenorWeekdays.map(function (weekday) {
+                {GondorWeekdays.map(function (weekday) {
                     let weekdayName = weekday[language];
                     return (
                         <WeekDayHeaderCell key={weekdayName}
@@ -472,14 +472,14 @@ class NumenorCalendar extends Component {
             weeks = this.renderYear();
         } else if (this.state.monthViewLayout === MonthViewLayout.VERTICAL) {
             weeks = this.renderMonthVertical();
-            weekDayHeader = <VerticalLayoutFiller weekdays={NumenorWeekdays} />;
+            weekDayHeader = <VerticalLayoutFiller weekdays={GondorWeekdays} />;
         } else {
             weeks = this.renderMonth();
         }
 
         let controls = this.state.calendarControls ? this.renderCalendarControls() : null;
         let caption = this.props.caption ?
-            (<caption className='numenor-caption'>{this.props.caption}</caption>)
+            (<caption className='gondor-caption'>{this.props.caption}</caption>)
             : null;
 
         return (
@@ -497,4 +497,4 @@ class NumenorCalendar extends Component {
     }
 }
 
-export default NumenorCalendar;
+export default GondorCalendar;

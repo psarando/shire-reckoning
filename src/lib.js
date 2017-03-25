@@ -1,38 +1,28 @@
-import {
-    ShireWeekdays,
-    ShireMonths,
-    getShireNewYearDate,
-    makeShireCalendarDates
-} from './ShireReckoning';
-import {
-    TRADITIONAL_RULES,
-    REFORMED_RULES,
-    RivendellWeekdays,
-    RivendellMonths,
-    isRivendellLeapYear,
-    getRivendellNewYearDay,
-    getRivendellNewYearDate,
-    makeRivendellCalendarDates
-} from './RivendellReckoning';
-import {
-    RECKONING_KINGS,
-    RECKONING_STEWARDS,
-    RECKONING_NEW,
-    NumenorWeekdays,
-    NumenorMonths,
-    getNumenorNewYearDate,
-    getNewReckoningNewYearDate,
-    convertGondorianMonthIndex,
-    convertGregorianToGondorianWeekday,
-    convertMonthIndex,
-    convertGregorianWeekday,
-    makeNumenorCalendarDates
-} from './NumenorReckoning';
+/**
+ * Copyright (C) Paul Sarando
+ * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
+ */
+import * as ShireReckoning from './ShireReckoning';
+import * as RivendellReckoning from './RivendellReckoning';
+import * as GondorReckoning from './GondorReckoning';
 
 import ShireCalendar from './ui/ShireCalendar';
 import RivendellCalendar from './ui/RivendellCalendar';
-import NumenorCalendar from './ui/NumenorCalendar';
+import GondorCalendar from './ui/GondorCalendar';
 
+export {
+    ShireReckoning,
+    RivendellReckoning,
+    GondorReckoning,
+
+    ShireCalendar,
+    RivendellCalendar,
+    GondorCalendar
+};
+
+/**
+ * Deprecated exports
+ */
 export {
     makeShireCalendarDates,
     ShireWeekdays,
@@ -61,7 +51,5 @@ export {
     getNumenorNewYearDate,
     getNewReckoningNewYearDate,
 
-    ShireCalendar,
-    RivendellCalendar,
     NumenorCalendar
-};
+} from './deprecated';

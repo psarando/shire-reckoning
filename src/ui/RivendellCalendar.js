@@ -133,7 +133,7 @@ class RivendellCalendar extends Component {
     renderDay(date, today) {
         let language = this.state.language;
 
-        switch (date.date) {
+        switch (date.day) {
             case "Yestarë":
                 return (
                     <IntercalaryDay key="RivendellNewYear"
@@ -214,7 +214,7 @@ class RivendellCalendar extends Component {
 
         if (monthView === 2) {
             date = dates[i];
-            for (; date.date === "Enderë"; i++, date = dates[i]) {
+            for (; date.day === "Enderë"; i++, date = dates[i]) {
                 week.push(this.renderDay(date, today));
 
                 if ((date.weekDay + 1) % 6 === 0) {

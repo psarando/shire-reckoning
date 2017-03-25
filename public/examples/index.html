@@ -59,12 +59,12 @@
         <a href="https://docs.npmjs.com/files/package.json#dependencies">package.json</a>,
         then run <code>npm install</code>.
         Then update the default <code>App.js</code> file with the following code,
-        which will render the default Shire, Rivendell, and Numenor Calendars with the included styles:
+        which will render the default Shire, Rivendell, and Gondor Calendars with the included styles:
         <pre style="border: 1px solid; margin: auto;">
             <code>
     import React, { Component } from 'react';
 
-    import { ShireCalendar, RivendellCalendar, NumenorCalendar } from 'shire-reckoning';
+    import { ShireCalendar, RivendellCalendar, GondorCalendar } from 'shire-reckoning';
     import 'shire-reckoning/lib/TolkienCalendars.css';
 
     import './App.css';
@@ -75,7 +75,7 @@
                 &lt;div className="App"&gt;
                     &lt;ShireCalendar className="shire-calendar" /&gt;
                     &lt;RivendellCalendar className="shire-calendar" /&gt;
-                    &lt;NumenorCalendar className="shire-calendar" /&gt;
+                    &lt;GondorCalendar className="shire-calendar" /&gt;
                 &lt;/div&gt;
             );
         }
@@ -88,7 +88,7 @@
         <ul>
             <li><a href="%PUBLIC_URL%/examples/shire-calendars.html">Shire Calendar examples</a></li>
             <li><a href="%PUBLIC_URL%/examples/rivendell-calendars.html">Rivendell Calendar examples</a></li>
-            <li><a href="%PUBLIC_URL%/examples/numenor-calendars.html">Númenor Calendar examples</a></li>
+            <li><a href="%PUBLIC_URL%/examples/gondor-calendars.html">Gondor Calendar examples</a></li>
         </ul>
 
         <div id="tolkien-calendars"></div>
