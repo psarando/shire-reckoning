@@ -4,6 +4,8 @@
  */
 import React, { Component } from 'react';
 
+import { fullYearDate } from '../Utils';
+
 import GondorCalendar from '../ui/GondorCalendar';
 import '../ui/tolkien-calendars.css';
 
@@ -28,6 +30,8 @@ class GondorCalendarExample extends Component {
             "new Date("
             + [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()].join(",")
             + ")";
+
+        let newYearSyncDate = fullYearDate(1,0,1);
 
         return (
             <table>
@@ -355,6 +359,131 @@ JSX:
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         calendarControls={false}
                                         date={currentDate}
+                                        className="shire-calendar" />
+                    </td>
+                </tr>
+                <tr>
+                    <th colSpan="3" style={CaptionCellStyle}>
+                        In Appendix D, Tolkien made a brief comparison of our calendar with the Shire calendar
+                        "if our years began at the same seasonal point".
+                        Presented below is a similar hypothetical alignment of our calendar with the calendars of Gondor.
+                    </th>
+                </tr>
+                <tr>
+                    <td style={CaptionCellStyle}>
+                        Seasonal Sync Kings' Reckoning: Year View in Sindarin.
+                        <pre>
+                            <code>
+                                {
+`JavaScript:
+React.createElement(
+    TolkienCalendars.GondorCalendar,
+    {reckoning:
+        TolkienCalendars.GondorCalendar.RECKONING_KINGS,
+     language: TolkienCalendars.GondorCalendar.LANGUAGE_SINDARIN,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     startDate: new Date(1,0,1, 0,0,0),
+     className: "shire-calendar"}
+)
+
+JSX:
+<GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
+                language={GondorCalendar.LANGUAGE_SINDARIN}
+                yearView={true}
+                calendarControls={false}
+                date={${dateString}}
+                startDate={new Date(1,0,1, 0,0,0)}
+                className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={CaptionCellStyle}>
+                        Seasonal Sync Stewards' Reckoning: Year View in English.
+                        <pre>
+                            <code>
+                                {
+                                    `JavaScript:
+React.createElement(
+    TolkienCalendars.GondorCalendar,
+    {reckoning:
+        TolkienCalendars.GondorCalendar.RECKONING_STEWARDS,
+     language: TolkienCalendars.GondorCalendar.LANGUAGE_ENGLISH,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     startDate: new Date(1,0,1, 0,0,0),
+     className: "shire-calendar"}
+)
+
+JSX:
+<GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
+                language={GondorCalendar.LANGUAGE_ENGLISH}
+                yearView={true}
+                calendarControls={false}
+                date={${dateString}}
+                startDate={new Date(1,0,1, 0,0,0)}
+                className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={CaptionCellStyle}>
+                        Seasonal Sync New Reckoning: Year View in Quenya.
+                        <pre>
+                            <code>
+                                {
+                                    `JavaScript:
+React.createElement(
+    TolkienCalendars.GondorCalendar,
+    {reckoning:
+        TolkienCalendars.GondorCalendar.RECKONING_NEW,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     startDate: new Date(1,0,1, 0,0,0),
+     className: "shire-calendar"}
+)
+
+JSX:
+<GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
+                yearView={true}
+                calendarControls={false}
+                date={${dateString}}
+                startDate={new Date(1,0,1, 0,0,0)}
+                className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={CalendarCellStyle}>
+                        <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
+                                        language={GondorCalendar.LANGUAGE_SINDARIN}
+                                        yearView={true}
+                                        calendarControls={false}
+                                        date={currentDate}
+                                        startDate={newYearSyncDate}
+                                        className="shire-calendar" />
+                    </td>
+                    <td style={CalendarCellStyle}>
+                        <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
+                                        language={GondorCalendar.LANGUAGE_ENGLISH}
+                                        yearView={true}
+                                        calendarControls={false}
+                                        date={currentDate}
+                                        startDate={newYearSyncDate}
+                                        className="shire-calendar" />
+                    </td>
+                    <td style={CalendarCellStyle}>
+                        <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
+                                        yearView={true}
+                                        calendarControls={false}
+                                        date={currentDate}
+                                        startDate={newYearSyncDate}
                                         className="shire-calendar" />
                     </td>
                 </tr>

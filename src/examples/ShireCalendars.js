@@ -4,6 +4,8 @@
  */
 import React, { Component } from 'react';
 
+import { fullYearDate } from '../Utils';
+
 import ShireCalendar from '../ui/ShireCalendar';
 import '../ui/tolkien-calendars.css';
 
@@ -28,6 +30,8 @@ class ShireCalendarExample extends Component {
             "new Date("
             + [currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()].join(",")
             + ")";
+
+        let newYearSyncDate = fullYearDate(1,0,1);
 
         return (
             <table>
@@ -319,6 +323,119 @@ JSX:
                                        monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                        calendarControls={false}
                                        date={currentDate}
+                                       className="shire-calendar" />
+                    </td>
+                </tr>
+                <tr>
+                    <th colSpan="3" style={CaptionCellStyle}>
+                        In Appendix D, Tolkien made a brief comparison of our calendar with the Shire calendar
+                        "if our years began at the same seasonal point".
+                        Presented below is an example of this hypothetical alignment.
+                    </th>
+                </tr>
+                <tr>
+                    <td style={CaptionCellStyle}>
+                        Seasonal Sync Shire Reckoning year view with Tolkien month and weekday names
+                        <pre>
+                            <code>
+                                {
+`JavaScript:
+React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     startDate: new Date(1,0,1, 0,0,0),
+     className: "shire-calendar"}
+)
+
+JSX:
+<ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
+               yearView={true}
+               calendarControls={false}
+               date={${dateString}}
+               startDate={new Date(1,0,1, 0,0,0)}
+               className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={CaptionCellStyle}>
+                        Seasonal Sync Shire Reckoning year view with Shire month and weekday names
+                        <pre>
+                            <code>
+                                {
+`JavaScript:
+React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     startDate: new Date(1,0,1, 0,0,0),
+     className: "shire-calendar"}
+)
+
+JSX:
+<ShireCalendar yearView={true}
+               calendarControls={false}
+               date={${dateString}}
+               startDate={new Date(1,0,1, 0,0,0)}
+               className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                    <td style={CaptionCellStyle}>
+                        Seasonal Sync Shire Reckoning year view with Bree month and weekday names
+                        <pre>
+                            <code>
+                                {
+                                    `JavaScript:
+React.createElement(
+    TolkienCalendars.ShireCalendar,
+    {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
+     yearView: true,
+     calendarControls: false,
+     date: ${dateString},
+     startDate: new Date(1,0,1, 0,0,0),
+     className: "shire-calendar"}
+)
+
+JSX:
+<ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
+               yearView={true}
+               calendarControls={false}
+               date={${dateString}}
+               startDate={new Date(1,0,1, 0,0,0)}
+               className="shire-calendar" />`
+                                }
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td style={CalendarCellStyle}>
+                        <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
+                                       yearView={true}
+                                       calendarControls={false}
+                                       date={currentDate}
+                                       startDate={newYearSyncDate}
+                                       className="shire-calendar" />
+                    </td>
+                    <td style={CalendarCellStyle}>
+                        <ShireCalendar yearView={true}
+                                       calendarControls={false}
+                                       date={currentDate}
+                                       startDate={newYearSyncDate}
+                                       className="shire-calendar" />
+                    </td>
+                    <td style={CalendarCellStyle}>
+                        <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
+                                       yearView={true}
+                                       calendarControls={false}
+                                       date={currentDate}
+                                       startDate={newYearSyncDate}
                                        className="shire-calendar" />
                     </td>
                 </tr>

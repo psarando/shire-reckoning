@@ -3,6 +3,9 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import {
+    toDaysElapsed,
+    daysElapsedToGregorianYear,
+    getNewYearDate,
     isLeapYear,
     datesMatch,
     fullYearDate,
@@ -195,7 +198,7 @@ const GondorMonths = [
  * @default new Date(0, 11, 21, 0,0,0)
  *
  * The Gregorian Date corresponding to the first Númenor New Year Date.
- * The year is currently ignored, in order to keep Gondor leap-years in sync with Gregorian leap-years.
+ * The default year is 0 in order to keep Gondor leap-years in sync with Gregorian leap-years.
  */
 
 /**
@@ -220,22 +223,9 @@ const getStartDate = (startDate) => {
 const getGondorNewYearDate = (today, startDate) => {
     startDate = getStartDate(startDate);
 
-    let startYear = today.getFullYear();
-    let thisMonth = today.getMonth();
-    let thisDay = today.getDate();
+    let daysSinceNewYearsDay = daysElapsedToGregorianYear(toDaysElapsed(startDate, today)).daysRemainder;
 
-    let newyearMonth = startDate.getMonth();
-    let newyearDay = startDate.getDate();
-
-    if (thisMonth < newyearMonth || (thisMonth === newyearMonth && thisDay < newyearDay)) {
-        startYear--;
-    }
-
-    let newYearDate = new Date(startYear, newyearMonth, newyearDay, 0,0,0);
-    // reset full year for years 0-99
-    newYearDate.setFullYear(startYear, newyearMonth, newyearDay);
-
-    return newYearDate;
+    return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
 
 /**
@@ -298,6 +288,7 @@ const convertGregorianToGondorianWeekday = (weekday) => {
 
 /**
  * @typedef {Object} GondorCalendarYear
+ * @property {number} year - The current Gondor year.
  * @property {GondorDate[]} dates - The dates of this Gondor calendar year.
  * @property {Date} today - The given Gregorian Date this calendar year was generated from.
  * @property {GondorDate} todayGondor - The current Gondor date corresponding to the given [today]{@link GondorCalendarYear#today}.
@@ -319,11 +310,24 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
     let kingsReckoning = reckoning === RECKONING_KINGS;
     let stewardsReckoning = reckoning === RECKONING_STEWARDS;
     let newReckoning = reckoning === RECKONING_NEW;
-    let gregorianDate =
-        newReckoning ?
-            getNewReckoningNewYearDate(today, startDate) :
-            getGondorNewYearDate(today, startDate);
+
+    let yearWithRemainder = daysElapsedToGregorianYear(toDaysElapsed(startDate, today));
+
+    if (newReckoning) {
+        // New Reckoning always starts 85 days after old style New Year's Day.
+        if (yearWithRemainder.daysRemainder < 85) {
+            yearWithRemainder = getYearWithRemainder(daysElapsed - 365);
+            yearWithRemainder.daysRemainder += 365;
+        }
+
+        yearWithRemainder.daysRemainder -= 85;
+    }
+
+    let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
+
     let todayGondor;
+    let weekDay = convertGregorianToGondorianWeekday(gregorianDate.getDay());
+    let year = yearWithRemainder.year;
 
     let dates = [];
 
@@ -390,7 +394,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                 break;
 
             case 5:
-                let leapYear = isLeapYear(gregorianDate.getFullYear());
+                let leapYear = isLeapYear(year);
 
                 if (leapYear && newReckoning) {
                     dates.push({
@@ -485,6 +489,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
     }
 
     return {
+        year: year,
         dates: dates,
         today: today,
         todayGondor: todayGondor

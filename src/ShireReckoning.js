@@ -3,6 +3,9 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import {
+    toDaysElapsed,
+    daysElapsedToGregorianYear,
+    getNewYearDate,
     isLeapYear,
     datesMatch,
     fullYearDate,
@@ -257,7 +260,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
  * @default new Date(0, 11, 21, 0,0,0)
  *
  * The Gregorian Date corresponding to the first Shire New Year Date.
- * The year is currently ignored, in order to keep Shire leap-years in sync with Gregorian leap-years.
+ * The default year is 0 in order to keep Shire leap-years in sync with Gregorian leap-years.
  */
 
 /**
@@ -282,22 +285,9 @@ function getStartDate(startDate) {
 const getShireNewYearDate = (today, startDate) => {
     startDate = getStartDate(startDate);
 
-    let startYear = today.getFullYear();
-    let thisMonth = today.getMonth();
-    let thisDay = today.getDate();
+    let daysSinceNewYearsDay = daysElapsedToGregorianYear(toDaysElapsed(startDate, today)).daysRemainder;
 
-    let newyearMonth = startDate.getMonth();
-    let newyearDay = startDate.getDate();
-
-    if (thisMonth < newyearMonth || (thisMonth === newyearMonth && thisDay < newyearDay)) {
-        startYear--;
-    }
-
-    let newYearDate = new Date(startYear, newyearMonth, newyearDay, 0,0,0);
-    // reset full year for years 0-99
-    newYearDate.setFullYear(startYear, newyearMonth, newyearDay);
-
-    return newYearDate;
+    return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
 
 /**
@@ -310,6 +300,7 @@ const getShireNewYearDate = (today, startDate) => {
 
 /**
  * @typedef {Object} ShireCalendarYear
+ * @property {number} year - The current Shire year.
  * @property {ShireDate[]} dates - The dates of this Shire calendar year.
  * @property {Date} today - The given Gregorian Date this calendar year was generated from.
  * @property {ShireDate} todayShire - The current Shire date corresponding to the given [today]{@link ShireCalendarYear#today}.
@@ -325,8 +316,13 @@ const getShireNewYearDate = (today, startDate) => {
  */
 const makeShireCalendarDates = (today, startDate) => {
     startDate = getStartDate(startDate);
-    let gregorianDate = getShireNewYearDate(today, startDate);
+
+    let yearWithRemainder = daysElapsedToGregorianYear(toDaysElapsed(startDate, today));
+
+    let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
+
     let todayShire;
+    let year = yearWithRemainder.year;
 
     let dates = [{
         "day": "2 Yule",
@@ -385,7 +381,7 @@ const makeShireCalendarDates = (today, startDate) => {
             }
 
             weekDay++;
-            let leapYear = isLeapYear(gregorianDate.getFullYear());
+            let leapYear = isLeapYear(year);
             if (leapYear) {
                 gregorianDate = getNextDate(gregorianDate);
                 dates.push({
@@ -439,6 +435,7 @@ const makeShireCalendarDates = (today, startDate) => {
     }
 
     return {
+        year: year,
         dates: dates,
         today: today,
         todayShire: todayShire

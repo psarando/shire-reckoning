@@ -3,11 +3,17 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import {
+    toDaysElapsed,
+    daysElapsedToGregorianYear,
+    getNewYearDate,
     isLeapYear,
     datesMatch,
     fullYearDate,
     getNextDate
 } from './Utils';
+
+const RIVENDELL_DAYS_PER_12_YEARS = (365 * 12 + 3);
+const RIVENDELL_DAYS_PER_432_YEARS = (RIVENDELL_DAYS_PER_12_YEARS * 12 * 3 - 3);
 
 /**
  * Traditional Rivendell Reckoning rules enum
@@ -150,7 +156,7 @@ const isRivendellLeapYear = (year) => {
  * @default new Date(1, 2, 22, 0,0,0)
  *
  * The Gregorian Date corresponding to the first Rivendell New Year Date.
- * The year is currently ignored, in order to keep Rivendell leap-years in sync with Gregorian leap-years.
+ * The default year is 1 in order to keep Rivendell leap-years in sync with Gregorian leap-years.
  */
 
 /**
@@ -165,35 +171,41 @@ let getStartDate = (startDate) => {
     return startDate;
 };
 
-let warnedNewYearDayDeprecation = false;
 /**
- * @deprecated Will be removed in a future release.
- * @param {number} year - The current year.
- * @param {number} startDay - Day of the month of the first Rivendell New Year Date.
- * @param {RivendellRulesEnum} calendarRules
- * @return {number} The day of the month of Rivendell's New Year Day for the given `year` and `calendarRules`.
+ * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
+ * @return {YearWithRemainder} The current Rivendell year (including 0) for the given `daysElapsed`.
  */
-const getRivendellNewYearDay = (year, startDay, calendarRules, warnDeprecated = true) => {
-    if (!warnedNewYearDayDeprecation && warnDeprecated) {
-        console.warn(
-`Deprecation Warning: getRivendellNewYearDay will be removed in a future release.
-${new Error().stack.split("\n")[2]}`);
-        warnedNewYearDayDeprecation = true;
+const daysElapsedToRivendellYear = (daysElapsed) => {
+    let negativeOffset = 0;
+
+    let year = Math.floor(daysElapsed / RIVENDELL_DAYS_PER_432_YEARS) * 432;
+    daysElapsed %= RIVENDELL_DAYS_PER_432_YEARS;
+
+    if (year < 0) {
+        negativeOffset = year;
+        year = 0;
+        if (daysElapsed < 0) {
+            daysElapsed += RIVENDELL_DAYS_PER_432_YEARS;
+        }
     }
 
-    if (calendarRules === REFORMED_RULES) {
-        return startDay;
+    year += Math.floor(daysElapsed / RIVENDELL_DAYS_PER_12_YEARS) * 12;
+    daysElapsed %= RIVENDELL_DAYS_PER_12_YEARS;
+
+    if (daysElapsed > 365 * 11) {
+        year += 11;
+        daysElapsed %= 365 * 11;
+    } else {
+        year += Math.floor(daysElapsed / 365);
+        daysElapsed %= 365;
     }
 
-    // adjust startDay according to leap year cycles.
-    return (
-        startDay
-        - Math.floor(year / 4)
-        + (Math.floor((year-1) / 12) * 3)
-        + Math.floor(year / 100)
-        - Math.floor(year / 400)
-        - (Math.floor((year-1) / 432) * 3)
-    );
+    year += negativeOffset + 1;
+
+    return {
+        year: year,
+        daysRemainder: daysElapsed
+    };
 };
 
 /**
@@ -205,24 +217,15 @@ ${new Error().stack.split("\n")[2]}`);
  */
 const getRivendellNewYearDate = (today, startDate, calendarRules = TRADITIONAL_RULES) => {
     startDate = getStartDate(startDate);
-    let startYear = today.getFullYear();
 
-    let newyearMonth = startDate.getMonth();
-    let newyearDay = getRivendellNewYearDay(startYear, startDate.getDate(), calendarRules, false);
+    let getYearWithRemainder =
+            calendarRules === TRADITIONAL_RULES ?
+                daysElapsedToRivendellYear :
+                daysElapsedToGregorianYear;
 
-    let thisMonth = today.getMonth();
-    let thisDay = today.getDate();
+    let daysSinceNewYearsDay = getYearWithRemainder(toDaysElapsed(startDate, today)).daysRemainder;
 
-    if (thisMonth < newyearMonth || (thisMonth === newyearMonth && thisDay < newyearDay)) {
-        startYear--;
-        newyearDay = getRivendellNewYearDay(startYear, startDate.getDate(), calendarRules, false);
-    }
-
-    let newYearDate = new Date(startYear, newyearMonth, newyearDay, 0,0,0);
-    // reset full year for years 0-99
-    newYearDate.setFullYear(startYear, newyearMonth, newyearDay);
-
-    return newYearDate;
+    return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
 
 /**
@@ -235,6 +238,7 @@ const getRivendellNewYearDate = (today, startDate, calendarRules = TRADITIONAL_R
 
 /**
  * @typedef {Object} RivendellCalendarYear
+ * @property {number} year - The current Rivendell year.
  * @property {RivendellDate[]} dates - The dates of this Rivendell calendar year.
  * @property {Date} today - The given Gregorian Date this calendar year was generated from.
  * @property {RivendellDate} todayRivendell - The current Rivendell date corresponding to the given [today]{@link RivendellCalendarYear#today}.
@@ -253,36 +257,46 @@ const getRivendellNewYearDate = (today, startDate, calendarRules = TRADITIONAL_R
 const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONAL_RULES) => {
     startDate = getStartDate(startDate);
 
-    let gregorianDate = getRivendellNewYearDate(today, startDate, calendarRules);
     let todayRivendell;
+    let getYearWithRemainder =
+            calendarRules === TRADITIONAL_RULES ?
+                daysElapsedToRivendellYear :
+                daysElapsedToGregorianYear;
 
-    let startYear = gregorianDate.getFullYear();
-    let yearsElapsed = startYear - 1;
-    let weekDay = (
-        yearsElapsed * 365
-        + (Math.floor(yearsElapsed / 12) * 3)
-        - (Math.floor(yearsElapsed / 432) * 3)
-    );
+    let daysElapsed = toDaysElapsed(startDate, today);
+    let yearWithRemainder = getYearWithRemainder(daysElapsed);
 
-    if (calendarRules === REFORMED_RULES) {
-        weekDay = (
-            yearsElapsed * 365
-            + Math.floor(startYear / 4)
-            - Math.floor(startYear / 100)
-            + Math.floor(startYear / 400)
-        );
-    }
+    let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
+
+    let rivendellYear = yearWithRemainder.year;
+    let weekDay = daysElapsed - yearWithRemainder.daysRemainder;
 
     if (weekDay < 0) {
         weekDay = 6 + (weekDay % 6);
     }
 
-    let dates = [{
+    let dates = [];
+    if (calendarRules === REFORMED_RULES && isLeapYear(rivendellYear)) {
+        dates.push({
+            "day": "Reformed Enderë",
+            "month": 0,
+            "weekDay": weekDay % 6,
+            "gregorian": gregorianDate
+        });
+
+        if (datesMatch(today, gregorianDate)) {
+            todayRivendell = dates[dates.length - 1];
+        }
+        gregorianDate = getNextDate(gregorianDate);
+        weekDay++;
+    }
+
+    dates.push({
         "day": "Yestarë",
         "month": 0,
         "weekDay": weekDay % 6,
         "gregorian": gregorianDate
-    }];
+    });
     weekDay++;
 
     if (datesMatch(today, gregorianDate)) {
@@ -304,7 +318,7 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
             case 3:
                 let enderiCount = 3;
                 if (calendarRules === TRADITIONAL_RULES
-                    && isRivendellLeapYear(gregorianDate.getFullYear())) {
+                    && isRivendellLeapYear(rivendellYear)) {
                     enderiCount = 6;
                 }
                 for (let enderi = 0;
@@ -351,23 +365,8 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
         todayRivendell = dates[dates.length - 1];
     }
 
-    if (calendarRules === REFORMED_RULES && isLeapYear(gregorianDate.getFullYear())) {
-        gregorianDate = getNextDate(gregorianDate);
-        weekDay++;
-
-        dates.push({
-            "day": "Reformed Enderë",
-            "month": 5,
-            "weekDay": weekDay % 6,
-            "gregorian": gregorianDate
-        });
-
-        if (datesMatch(today, gregorianDate)) {
-            todayRivendell = dates[dates.length - 1];
-        }
-    }
-
     return {
+        year: rivendellYear,
         dates: dates,
         today: today,
         todayRivendell: todayRivendell
@@ -380,7 +379,6 @@ export {
     RivendellWeekdays,
     RivendellMonths,
     isRivendellLeapYear,
-    getRivendellNewYearDay,
     getRivendellNewYearDate,
     makeRivendellCalendarDates
 };
