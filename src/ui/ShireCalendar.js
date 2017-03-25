@@ -60,21 +60,28 @@ class ShireCalendar extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date;
+        let today = nextProps.date || this.state.today;
+        let startDate = nextProps.startDate || this.state.startDate;
+        let region = nextProps.region || this.state.region;
+        let monthViewLayout = nextProps.monthViewLayout || this.state.monthViewLayout;
         let calendar = this.state.calendar;
 
-        if (!today) {
-            today = this.state.today;
+        if (nextProps.startDay && !nextProps.startDate) {
+            startDate.setDate(nextProps.startDay);
         }
 
-        if (!datesMatch(today, this.state.today) ||
-            !datesMatch(today, this.state.calendar.today)) {
-            calendar = makeShireCalendarDates(today, this.state.startDate);
+        if (!datesMatch(startDate, this.state.startDate) ||
+            !datesMatch(today, this.state.today) ||
+            !datesMatch(today, calendar.today)) {
+            calendar = makeShireCalendarDates(today, startDate);
         }
 
         this.setState({
             today: today,
             calendar: calendar,
+            startDate: startDate,
+            region: region,
+            monthViewLayout: monthViewLayout,
             monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayShire.month
         });
     }

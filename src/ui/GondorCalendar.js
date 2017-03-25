@@ -73,23 +73,30 @@ class GondorCalendar extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date;
+        let today = nextProps.date || this.state.today;
+        let startDate = nextProps.startDate || this.state.startDate;
+        let language = nextProps.language || this.state.language;
+        let reckoning = nextProps.reckoning || this.state.reckoning;
+        let monthViewLayout = nextProps.monthViewLayout || this.state.monthViewLayout;
         let calendar = this.state.calendar;
 
-        if (!today) {
-            today = this.state.today;
+        if (nextProps.startDay && !nextProps.startDate) {
+            startDate.setDate(nextProps.startDay);
         }
 
-        if (!datesMatch(today, this.state.today) ||
+        if (!datesMatch(startDate, this.state.startDate) ||
+            !datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
-            calendar = makeGondorCalendarDates(today,
-                                               this.state.startDate,
-                                               this.state.reckoning);
+            calendar = makeGondorCalendarDates(today, startDate, reckoning);
         }
 
         this.setState({
             today: today,
             calendar: calendar,
+            language: language,
+            reckoning: reckoning,
+            startDate: startDate,
+            monthViewLayout: monthViewLayout,
             monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayGondor.month
         });
     }
@@ -134,7 +141,7 @@ class GondorCalendar extends Component {
 
         this.setState({
             calendar: calendar,
-            monthView: monthView,
+            monthView: this.state.monthView < 0 ? -1 : monthView,
             reckoning: reckoning
         });
     }

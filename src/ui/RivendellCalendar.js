@@ -63,23 +63,28 @@ class RivendellCalendar extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date;
+        let today = nextProps.date || this.state.today;
+        let startDate = nextProps.startDate || this.state.startDate;
+        let language = nextProps.language || this.state.language;
+        let calendarRules = nextProps.calendarRules || this.state.calendarRules;
         let calendar = this.state.calendar;
 
-        if (!today) {
-            today = this.state.today;
+        if (nextProps.startDay && !nextProps.startDate) {
+            startDate.setDate(nextProps.startDay);
         }
 
-        if (!datesMatch(today, this.state.today) ||
+        if (!datesMatch(startDate, this.state.startDate) ||
+            !datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
-            calendar = makeRivendellCalendarDates(today,
-                                                  this.state.startDate,
-                                                  this.state.calendarRules);
+            calendar = makeRivendellCalendarDates(today, startDate, calendarRules);
         }
 
         this.setState({
             today: today,
             calendar: calendar,
+            calendarRules: calendarRules,
+            startDate: startDate,
+            language: language,
             monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayRivendell.month
         });
     }
@@ -103,9 +108,7 @@ class RivendellCalendar extends Component {
     }
 
     onCalendarStartChange(startDate) {
-        let calendar = makeRivendellCalendarDates(this.state.calendar.today,
-                                                  startDate,
-                                                  this.state.calendarRules);
+        let calendar = makeRivendellCalendarDates(this.state.calendar.today, startDate, this.state.calendarRules);
 
         this.setState({
             startDate: startDate,
@@ -118,9 +121,7 @@ class RivendellCalendar extends Component {
         let startDay = calendarRules === REFORMED_RULES ? 25 : 22;
         let startDate = this.state.startDate;
         startDate.setDate(startDay);
-        let calendar = makeRivendellCalendarDates(this.state.calendar.today,
-                                                  startDate,
-                                                  calendarRules);
+        let calendar = makeRivendellCalendarDates(this.state.calendar.today, startDate, calendarRules);
 
         this.setState({
             calendarRules: calendarRules,
