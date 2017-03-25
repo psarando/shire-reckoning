@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 
 import { ShireWeekdays, ShireMonths, makeShireCalendarDates } from '../ShireReckoning';
-import { datesMatch } from '../Utils';
+import { fullYearDate, datesMatch } from '../Utils';
 
 import DateCell from './DateCell';
 import IntercalaryDay from './IntercalaryDay';
@@ -38,12 +38,13 @@ class ShireCalendar extends Component {
         let region = props.region || REGION_NAMES_SHIRE;
 
         let startDay = props.startDay || 21;
-        let calendar = makeShireCalendarDates(today, startDay);
+        let startDate = props.startDate || fullYearDate(0, 11, startDay);
+        let calendar = makeShireCalendarDates(today, startDate);
         let monthView = props.yearView ? -1 : calendar.todayShire.month;
 
         this.state = {
             calendarControls: calendarControls,
-            startDay: startDay,
+            startDate: startDate,
             today: today,
             calendar: calendar,
             monthView: monthView,
@@ -68,7 +69,7 @@ class ShireCalendar extends Component {
 
         if (!datesMatch(today, this.state.today) ||
             !datesMatch(today, this.state.calendar.today)) {
-            calendar = makeShireCalendarDates(today, this.state.startDay);
+            calendar = makeShireCalendarDates(today, this.state.startDate);
         }
 
         this.setState({
@@ -92,12 +93,11 @@ class ShireCalendar extends Component {
         });
     }
 
-    onCalendarStartChange(event) {
-        let startDay = event.target.value;
-        let calendar = makeShireCalendarDates(this.state.calendar.today, startDay);
+    onCalendarStartChange(startDate) {
+        let calendar = makeShireCalendarDates(this.state.calendar.today, startDate);
 
         this.setState({
-            startDay: startDay,
+            startDate: startDate,
             calendar: calendar
         });
     }
@@ -238,11 +238,11 @@ class ShireCalendar extends Component {
         let weeks = ShireWeekdays.map(function (weekday) {
             let weekdayName = weekday[region];
             return [(
-                        <WeekDayHeaderCell key={weekdayName}
-                                           name={weekdayName}
-                                           description={weekday.description}
-                                           colSpan='2' />
-                    )];
+                <WeekDayHeaderCell key={weekdayName}
+                                   name={weekdayName}
+                                   description={weekday.description}
+                                   colSpan='2' />
+            )];
         });
 
         let i = 0, date = dates[i];
@@ -329,7 +329,7 @@ class ShireCalendar extends Component {
                     <StartDatePicker month="December"
                                      startRange={19}
                                      endRange={25}
-                                     startDay={this.state.startDay}
+                                     startDate={this.state.startDate}
                                      onCalendarStartChange={this.onCalendarStartChange} />
                     <select className="shire-region-select"
                             value={region}
@@ -343,7 +343,7 @@ class ShireCalendar extends Component {
                     <MonthViewPicker monthNames={monthNames}
                                      today={this.state.today}
                                      calendar={this.state.calendar}
-                                     startDay={this.state.startDay}
+                                     startDate={this.state.startDate}
                                      monthView={this.state.monthView}
                                      makeCalendarDates={makeShireCalendarDates}
                                      onMonthViewChange={this.onMonthViewChange}

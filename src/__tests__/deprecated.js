@@ -9,14 +9,16 @@ import * as TolkienCalendars from '../lib';
 
 describe('ShireReckoning deprecated logs', () => {
     let today = new Date();
+    let startDate = new Date(0,11,21, 0,0,0);
+    startDate.setFullYear(0,11,21);
 
     it('warns makeShireCalendarDates deprecated', () => {
         console.log("TolkienCalendars.ShireReckoning.makeShireCalendarDates");
-        let calendar = TolkienCalendars.ShireReckoning.makeShireCalendarDates(today, 21);
+        let calendar = TolkienCalendars.ShireReckoning.makeShireCalendarDates(today, startDate);
         console.log("TolkienCalendars.makeShireCalendarDates");
         let calendarDeprecated = TolkienCalendars.makeShireCalendarDates(today, 21);
         calendarDeprecated = TolkienCalendars.makeShireCalendarDates(today, 21);
-        calendarDeprecated = TolkienCalendars.makeShireCalendarDates(today, 21);
+        calendarDeprecated = TolkienCalendars.makeShireCalendarDates(today, startDate);
     });
 
     it('warns ShireWeekdays deprecated', () => {
@@ -39,25 +41,27 @@ describe('ShireReckoning deprecated logs', () => {
 
     it('warns getShireNewYearDate deprecated', () => {
         console.log("TolkienCalendars.ShireReckoning.getShireNewYearDate");
-        let newYearDay = TolkienCalendars.ShireReckoning.getShireNewYearDate(today, 21);
+        let newYearDay = TolkienCalendars.ShireReckoning.getShireNewYearDate(today, startDate);
         console.log("TolkienCalendars.getShireNewYearDate");
         let newYearDayDeprecated = TolkienCalendars.getShireNewYearDate(today, 21);
         newYearDayDeprecated = TolkienCalendars.getShireNewYearDate(today, 21);
-        newYearDayDeprecated = TolkienCalendars.getShireNewYearDate(today, 21);
+        newYearDayDeprecated = TolkienCalendars.getShireNewYearDate(today, startDate);
     });
 });
 
 describe('RivendellReckoning deprecated logs', () => {
     let today = new Date();
+    let startDate = new Date(1,2,22, 0,0,0);
+    startDate.setFullYear(1,2,22);
 
     it('warns makeRivendellCalendarDates deprecated', () => {
         console.log("TolkienCalendars.RivendellReckoning.makeRivendellCalendarDates");
-        let rivendellCalendar = TolkienCalendars.RivendellReckoning.makeRivendellCalendarDates(today, 22, TolkienCalendars.RivendellReckoning.TRADITIONAL_RULES);
-        rivendellCalendar = TolkienCalendars.RivendellReckoning.makeRivendellCalendarDates(today, 22, TolkienCalendars.RivendellReckoning.REFORMED_RULES);
+        let rivendellCalendar = TolkienCalendars.RivendellReckoning.makeRivendellCalendarDates(today, startDate, TolkienCalendars.RivendellReckoning.TRADITIONAL_RULES);
+        rivendellCalendar = TolkienCalendars.RivendellReckoning.makeRivendellCalendarDates(today, startDate, TolkienCalendars.RivendellReckoning.REFORMED_RULES);
         console.log("TolkienCalendars.makeRivendellCalendarDates");
         let rivendellCalendarDeprecated = TolkienCalendars.makeRivendellCalendarDates(today, 22, TolkienCalendars.TRADITIONAL_RULES);
         rivendellCalendarDeprecated = TolkienCalendars.makeRivendellCalendarDates(today, 22, TolkienCalendars.REFORMED_RULES);
-        rivendellCalendarDeprecated = TolkienCalendars.makeRivendellCalendarDates(today, 22, TolkienCalendars.TRADITIONAL_RULES);
+        rivendellCalendarDeprecated = TolkienCalendars.makeRivendellCalendarDates(today, startDate, TolkienCalendars.TRADITIONAL_RULES);
         console.log("makeRivendellCalendarDates.dates[0].day");
         let date = rivendellCalendarDeprecated.dates[0].day;
         console.log("makeRivendellCalendarDates.dates[0].date");
@@ -84,7 +88,18 @@ describe('RivendellReckoning deprecated logs', () => {
         RivendellMonthsDeprecated = TolkienCalendars.RivendellMonths;
     });
 
-    it('warns getRivendellNewYearDay deprecated', () => {
+    it('warns getRivendellNewYearDate deprecated', () => {
+        console.log("TolkienCalendars.RivendellReckoning.getRivendellNewYearDate");
+        let rivendellNewYearDate = TolkienCalendars.RivendellReckoning.getRivendellNewYearDate(today, startDate, TolkienCalendars.RivendellReckoning.TRADITIONAL_RULES);
+        rivendellNewYearDate = TolkienCalendars.RivendellReckoning.getRivendellNewYearDate(today, startDate, TolkienCalendars.RivendellReckoning.REFORMED_RULES);
+        console.log("TolkienCalendars.getRivendellNewYearDate");
+        let rivendellNewYearDateDeprecated = TolkienCalendars.getRivendellNewYearDate(today, 22, TolkienCalendars.TRADITIONAL_RULES);
+        rivendellNewYearDateDeprecated = TolkienCalendars.getRivendellNewYearDate(today, 22, TolkienCalendars.REFORMED_RULES);
+        rivendellNewYearDateDeprecated = TolkienCalendars.getRivendellNewYearDate(today, startDate, TolkienCalendars.TRADITIONAL_RULES);
+        rivendellNewYearDateDeprecated = TolkienCalendars.getRivendellNewYearDate(today, startDate, TolkienCalendars.REFORMED_RULES);
+    });
+
+    it('warns RivendellReckoning.getRivendellNewYearDay deprecated', () => {
         console.log("TolkienCalendars.RivendellReckoning.getRivendellNewYearDay");
         let rivendellNewYearDayDeprecated = TolkienCalendars.RivendellReckoning.getRivendellNewYearDay(today.getFullYear(), 22, TolkienCalendars.RivendellReckoning.TRADITIONAL_RULES);
         rivendellNewYearDayDeprecated = TolkienCalendars.RivendellReckoning.getRivendellNewYearDay(today.getFullYear(), 22, TolkienCalendars.RivendellReckoning.REFORMED_RULES);
@@ -93,20 +108,9 @@ describe('RivendellReckoning deprecated logs', () => {
         rivendellNewYearDayDeprecated = TolkienCalendars.getRivendellNewYearDay(today.getFullYear(), 22, TolkienCalendars.REFORMED_RULES);
     });
 
-    it('warns getRivendellNewYearDate deprecated', () => {
-        console.log("TolkienCalendars.RivendellReckoning.getRivendellNewYearDate");
-        let rivendellNewYearDate = TolkienCalendars.RivendellReckoning.getRivendellNewYearDate(today, 22, TolkienCalendars.RivendellReckoning.TRADITIONAL_RULES);
-        rivendellNewYearDate = TolkienCalendars.RivendellReckoning.getRivendellNewYearDate(today, 22, TolkienCalendars.RivendellReckoning.REFORMED_RULES);
-        console.log("TolkienCalendars.getRivendellNewYearDate");
-        let rivendellNewYearDateDeprecated = TolkienCalendars.getRivendellNewYearDate(today, 22, TolkienCalendars.TRADITIONAL_RULES);
-        rivendellNewYearDateDeprecated = TolkienCalendars.getRivendellNewYearDate(today, 22, TolkienCalendars.REFORMED_RULES);
-        rivendellNewYearDateDeprecated = TolkienCalendars.getRivendellNewYearDate(today, 22, TolkienCalendars.TRADITIONAL_RULES);
-        rivendellNewYearDateDeprecated = TolkienCalendars.getRivendellNewYearDate(today, 22, TolkienCalendars.REFORMED_RULES);
-    });
-
     it('warns isRivendellLeapYear deprecated', () => {
         console.log("TolkienCalendars.RivendellReckoning.isRivendellLeapYear");
-        let isRivendellLeapYear = TolkienCalendars.RivendellReckoning.isRivendellLeapYear(today);
+        let isRivendellLeapYear = TolkienCalendars.RivendellReckoning.isRivendellLeapYear(today.getFullYear());
         console.log("TolkienCalendars.isRivendellLeapYear");
         let isRivendellLeapYearDeprecated = TolkienCalendars.isRivendellLeapYear(today);
         isRivendellLeapYearDeprecated = TolkienCalendars.isRivendellLeapYear(today);
@@ -116,12 +120,14 @@ describe('RivendellReckoning deprecated logs', () => {
 
 describe('GondorReckoning deprecated logs', () => {
     let today = new Date();
+    let startDate = new Date(0,11,21, 0,0,0);
+    startDate.setFullYear(0,11,21);
 
     it('warns makeGondorCalendarDates deprecated', () => {
         console.log("TolkienCalendars.GondorReckoning.makeGondorCalendarDates");
-        let gondorCalendar = TolkienCalendars.GondorReckoning.makeGondorCalendarDates(today, 21, TolkienCalendars.GondorReckoning.RECKONING_KINGS);
-        gondorCalendar = TolkienCalendars.GondorReckoning.makeGondorCalendarDates(today, 21, TolkienCalendars.GondorReckoning.RECKONING_STEWARDS);
-        gondorCalendar = TolkienCalendars.GondorReckoning.makeGondorCalendarDates(today, 21, TolkienCalendars.GondorReckoning.RECKONING_NEW);
+        let gondorCalendar = TolkienCalendars.GondorReckoning.makeGondorCalendarDates(today, startDate, TolkienCalendars.GondorReckoning.RECKONING_KINGS);
+        gondorCalendar = TolkienCalendars.GondorReckoning.makeGondorCalendarDates(today, startDate, TolkienCalendars.GondorReckoning.RECKONING_STEWARDS);
+        gondorCalendar = TolkienCalendars.GondorReckoning.makeGondorCalendarDates(today, startDate, TolkienCalendars.GondorReckoning.RECKONING_NEW);
         console.log("makeGondorCalendarDates.todayGondor");
         let todayGondor = gondorCalendar.todayGondor;
         todayGondor = gondorCalendar.todayGondor;
@@ -129,7 +135,7 @@ describe('GondorReckoning deprecated logs', () => {
         console.log("TolkienCalendars.makeNumenorCalendarDates");
         let numenorCalendarDeprecated = TolkienCalendars.makeNumenorCalendarDates(today, 21, TolkienCalendars.RECKONING_KINGS);
         numenorCalendarDeprecated = TolkienCalendars.makeNumenorCalendarDates(today, 21, TolkienCalendars.RECKONING_STEWARDS);
-        numenorCalendarDeprecated = TolkienCalendars.makeNumenorCalendarDates(today, 21, TolkienCalendars.RECKONING_NEW);
+        numenorCalendarDeprecated = TolkienCalendars.makeNumenorCalendarDates(today, startDate, TolkienCalendars.RECKONING_NEW);
         console.log("makeNumenorCalendarDates.todayNumenor");
         let todayNumenor = numenorCalendarDeprecated.todayNumenor;
         todayNumenor = numenorCalendarDeprecated.todayNumenor;
@@ -192,22 +198,22 @@ describe('GondorReckoning deprecated logs', () => {
 
     it('warns getGondorNewYearDate deprecated', () => {
         console.log("TolkienCalendars.GondorReckoning.getGondorNewYearDate");
-        let gondorNewYearDate = TolkienCalendars.GondorReckoning.getGondorNewYearDate(today, 21);
-        gondorNewYearDate = TolkienCalendars.GondorReckoning.getGondorNewYearDate(today, 21);
+        let gondorNewYearDate = TolkienCalendars.GondorReckoning.getGondorNewYearDate(today, startDate);
+        gondorNewYearDate = TolkienCalendars.GondorReckoning.getGondorNewYearDate(today, startDate);
         console.log("TolkienCalendars.getNumenorNewYearDate");
         let numenorNewYearDateDeprecated = TolkienCalendars.getNumenorNewYearDate(today, 21);
         numenorNewYearDateDeprecated = TolkienCalendars.getNumenorNewYearDate(today, 21);
-        numenorNewYearDateDeprecated = TolkienCalendars.getNumenorNewYearDate(today, 21);
+        numenorNewYearDateDeprecated = TolkienCalendars.getNumenorNewYearDate(today, startDate);
     });
 
     it('warns getNewReckoningNewYearDate deprecated', () => {
         console.log("TolkienCalendars.GondorReckoning.getNewReckoningNewYearDate");
-        let gondorNewReckoningNewYearDate = TolkienCalendars.GondorReckoning.getNewReckoningNewYearDate(today, 21);
-        gondorNewReckoningNewYearDate = TolkienCalendars.GondorReckoning.getNewReckoningNewYearDate(today, 21);
+        let gondorNewReckoningNewYearDate = TolkienCalendars.GondorReckoning.getNewReckoningNewYearDate(today, startDate);
+        gondorNewReckoningNewYearDate = TolkienCalendars.GondorReckoning.getNewReckoningNewYearDate(today, startDate);
         console.log("TolkienCalendars.getNewReckoningNewYearDate");
         let numenorNewReckoningNewYearDateDeprecated = TolkienCalendars.getNewReckoningNewYearDate(today, 21);
         numenorNewReckoningNewYearDateDeprecated = TolkienCalendars.getNewReckoningNewYearDate(today, 21);
-        numenorNewReckoningNewYearDateDeprecated = TolkienCalendars.getNewReckoningNewYearDate(today, 21);
+        numenorNewReckoningNewYearDateDeprecated = TolkienCalendars.getNewReckoningNewYearDate(today, startDate);
     });
 });
 

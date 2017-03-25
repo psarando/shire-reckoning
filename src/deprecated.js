@@ -54,24 +54,55 @@ deprecatedGetter(exports, GondorReckoning.RECKONING_NEW, "RECKONING_NEW", "Gondo
 deprecatedGetter(exports, GondorReckoning.GondorWeekdays, "NumenorWeekdays", "GondorReckoning.GondorWeekdays");
 deprecatedGetter(exports, GondorReckoning.GondorMonths, "NumenorMonths", "GondorReckoning.GondorMonths");
 
+const getStartDate = (startYear, startMonth, functionName) => {
+    let warned = false;
+
+    return function(startDate) {
+        if (startDate instanceof Date) {
+            return startDate;
+        }
+
+        if (!warned) {
+            console.warn(
+`${functionName} should be passed a Date object for startDate.
+Passing an integer startDay is deprecated and will no longer be supported in a future release.
+${new Error().stack.split("\n")[4]}`
+            );
+            warned = true;
+        }
+
+        let gregorianStartDate = new Date(startYear, startMonth, startDate, 0,0,0);
+        gregorianStartDate.setFullYear(startYear, startMonth, startDate);
+
+        return gregorianStartDate;
+    }
+};
+
+const getShireCalendarStartDate = getStartDate(0, 11, "makeShireCalendarDates(today, startDate)");
+const getShireNewYearStartDate = getStartDate(0, 11, "getShireNewYearDate(today, startDate)");
+
 /**
  * @deprecated Use ShireReckoning.makeShireCalendarDates instead.
  */
 const makeShireCalendarDates = deprecate((today, startDay) => {
-    return ShireReckoning.makeShireCalendarDates(today, startDay);
+    return ShireReckoning.makeShireCalendarDates(today, getShireCalendarStartDate(startDay));
 }, msgDeprecatedUseInstead("makeShireCalendarDates", "ShireReckoning.makeShireCalendarDates"));
 /**
  * @deprecated Use ShireReckoning.getShireNewYearDate instead.
  */
 const getShireNewYearDate = deprecate((today, startDay) => {
-    return ShireReckoning.getShireNewYearDate(today, startDay);
+    return ShireReckoning.getShireNewYearDate(today, getShireNewYearStartDate(startDay));
 }, msgDeprecatedUseInstead("getShireNewYearDate", "ShireReckoning.getShireNewYearDate"));
+
+const getRivendellCalendarStartDate = getStartDate(1, 2, "makeRivendellCalendarDates(today, startDate, calendarRules)");
+const getRivendellNewYearDateStartDate = getStartDate(1, 2, "getRivendellNewYearDate(today, startDate, calendarRules)");
 
 /**
  * @deprecated Use RivendellReckoning.makeRivendellCalendarDates instead.
  */
 const makeRivendellCalendarDates = deprecate((today, startDay, calendarRules) => {
-    let calendarDates = RivendellReckoning.makeRivendellCalendarDates(today, startDay, calendarRules);
+    let startDate = getRivendellCalendarStartDate(startDay);
+    let calendarDates = RivendellReckoning.makeRivendellCalendarDates(today, startDate, calendarRules);
 
     calendarDates.dates = calendarDates.dates.map((date) => {
         deprecatedGetter(date, date.day, "date", "day", 2);
@@ -81,29 +112,45 @@ const makeRivendellCalendarDates = deprecate((today, startDay, calendarRules) =>
     return calendarDates;
 }, msgDeprecatedUseInstead("makeRivendellCalendarDates", "RivendellReckoning.makeRivendellCalendarDates"));
 /**
- * @deprecated Use RivendellReckoning.getRivendellNewYearDay instead.
+ * @deprecated Will be removed in a future release.
  */
-const getRivendellNewYearDay = deprecate((year, startDay, calendarRules) => {
-    return RivendellReckoning.getRivendellNewYearDay(year, startDay, calendarRules);
-}, msgDeprecatedUseInstead("getRivendellNewYearDay", "RivendellReckoning.getRivendellNewYearDay"));
+const getRivendellNewYearDay = RivendellReckoning.getRivendellNewYearDay;
 /**
  * @deprecated Use RivendellReckoning.getRivendellNewYearDate instead.
  */
 const getRivendellNewYearDate = deprecate((today, startDay, calendarRules) => {
-    return RivendellReckoning.getRivendellNewYearDate(today, startDay, calendarRules);
+    let startDate = getRivendellNewYearDateStartDate(startDay);
+    return RivendellReckoning.getRivendellNewYearDate(today, startDate, calendarRules);
 }, msgDeprecatedUseInstead("getRivendellNewYearDate", "RivendellReckoning.getRivendellNewYearDate"));
+
+let warnedRivendellLeapYearDateDeprecation = false;
 /**
  * @deprecated Use RivendellReckoning.isRivendellLeapYear instead.
  */
-const isRivendellLeapYear = deprecate((today) => {
-    return RivendellReckoning.isRivendellLeapYear(today);
+const isRivendellLeapYear = deprecate((year) => {
+    if (year instanceof Date){
+        year = year.getFullYear();
+
+        if (!warnedRivendellLeapYearDateDeprecation) {
+            console.warn(
+`Deprecation Warning: isRivendellLeapYear should be passed an integer year.
+Passing a Date object is deprecated and will no longer be supported in a future release.
+${new Error().stack.split("\n")[3]}`);
+            warnedRivendellLeapYearDateDeprecation = true;
+        }
+    }
+
+    return RivendellReckoning.isRivendellLeapYear(year);
 }, msgDeprecatedUseInstead("isRivendellLeapYear", "RivendellReckoning.isRivendellLeapYear"));
+
+const getGondorCalendarStartDate = getStartDate(0, 11, "makeGondorCalendarDates(today, startDate, reckoning)");
 
 /**
  * @deprecated Use GondorReckoning.makeGondorCalendarDates instead.
  */
 const makeNumenorCalendarDates = deprecate((today, startDay, reckoning) => {
-    let calendarDates = GondorReckoning.makeGondorCalendarDates(today, startDay, reckoning);
+    let startDate = getGondorCalendarStartDate(startDay);
+    let calendarDates = GondorReckoning.makeGondorCalendarDates(today, startDate, reckoning);
 
     deprecatedGetter(calendarDates, calendarDates.todayGondor, "todayNumenor", "todayGondor", 2);
 
@@ -139,17 +186,22 @@ const convertGregorianToGondorianWeekday = deprecate((weekday) => {
     return GondorReckoning.convertGregorianToGondorianWeekday(weekday);
 }, msgDeprecatedUseInstead("convertGregorianToGondorianWeekday", "GondorReckoning.convertGregorianToGondorianWeekday"));
 
+const getGondorNewYearStartDate = getStartDate(0, 11, "getGondorNewYearDate(today, startDate)");
+const getNewReckoningNewYearStartDate = getStartDate(0, 11, "getNewReckoningNewYearDate(today, startDate)");
+
 /**
  * @deprecated Use GondorReckoning.getGondorNewYearDate instead.
  */
 const getNumenorNewYearDate = deprecate((today, startDay) => {
-    return GondorReckoning.getGondorNewYearDate(today, startDay);
+    let startDate = getGondorNewYearStartDate(startDay);
+    return GondorReckoning.getGondorNewYearDate(today, startDate);
 }, msgDeprecatedUseInstead("getNumenorNewYearDate", "GondorReckoning.getGondorNewYearDate"));
 /**
  * @deprecated Use GondorReckoning.getNewReckoningNewYearDate instead.
  */
 const getNewReckoningNewYearDate = deprecate((today, startDay) => {
-    return GondorReckoning.getNewReckoningNewYearDate(today, startDay);
+    let startDate = getNewReckoningNewYearStartDate(startDay);
+    return GondorReckoning.getNewReckoningNewYearDate(today, startDate);
 }, msgDeprecatedUseInstead("getNewReckoningNewYearDate", "GondorReckoning.getNewReckoningNewYearDate"));
 
 const NumenorCalendarDeprecated = () => {

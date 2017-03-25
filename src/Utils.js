@@ -23,6 +23,21 @@ const datesMatch = (date1, date2) => {
 };
 
 /**
+ * @param {number} fullYear
+ * @param {number} month
+ * @param {number} day
+ * @return {Date} - A Date at midnight for the given year/month/day.
+ */
+const fullYearDate = (fullYear, month, day) => {
+    let date = new Date(fullYear, month, day, 0,0,0);
+
+    // reset full year, month, and day for years 0-99
+    date.setFullYear(fullYear, month, day);
+
+    return date;
+};
+
+/**
  * @param {Date} today
  * @return {Date} tomorrow - A new Date instance that is 1 day after the given `today`.
  */
@@ -33,4 +48,9 @@ const getNextDate = (today) => {
     return tomorrow;
 };
 
-export { isLeapYear, datesMatch, getNextDate };
+export {
+    isLeapYear,
+    datesMatch,
+    fullYearDate,
+    getNextDate
+};

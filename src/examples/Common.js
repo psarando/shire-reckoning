@@ -3,6 +3,8 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from 'react';
+
+import { fullYearDate } from '../Utils';
 import './examples.css';
 
 const CalendarCellStyle = {
@@ -33,12 +35,8 @@ class DatePicker extends Component {
         let year = this.refs.currentYear.value;
         let month = this.refs.currentMonth.value;
         let day = this.refs.currentDay.value;
-        let currentDate = new Date(year, month, day);
 
-        // reset full year, month, and day for years 0-99
-        currentDate.setFullYear(year, month, day);
-
-        this.props.onDateChanged(currentDate);
+        this.props.onDateChanged(fullYearDate(year, month, day));
     }
 
     createDateInput(ref, value) {

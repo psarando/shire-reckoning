@@ -2,7 +2,12 @@
  * Copyright (C) 2016 Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import { datesMatch, getNextDate, isLeapYear } from './Utils';
+import {
+    isLeapYear,
+    datesMatch,
+    fullYearDate,
+    getNextDate
+} from './Utils';
 
 /**
  * Traditional Rivendell Reckoning rules enum
@@ -133,21 +138,49 @@ const RivendellMonths = [
 ];
 
 /**
- * @param {Date} today
- * @return {boolean} True if the Rivendell year for the given `today` is a Rivendell leap-year.
+ * @param {number} year - The Rivendell year to check.
+ * @return {boolean} True if the given `year` is a Rivendell leap-year.
  */
-const isRivendellLeapYear = (today) => {
-    let year = today.getFullYear();
+const isRivendellLeapYear = (year) => {
     return ((year % 12 === 0) && (year % 432 !== 0));
 };
 
 /**
+ * @typedef {Date} FirstRivendellNewYearDate
+ * @default new Date(1, 2, 22, 0,0,0)
+ *
+ * The Gregorian Date corresponding to the first Rivendell New Year Date.
+ * The year is currently ignored, in order to keep Rivendell leap-years in sync with Gregorian leap-years.
+ */
+
+/**
+ * @param {FirstRivendellNewYearDate} [startDate]
+ * @return {FirstRivendellNewYearDate} startDate if not null, otherwise the default first New Year Date.
+ */
+let getStartDate = (startDate) => {
+    if (!startDate) {
+        startDate = fullYearDate(1, 2, 22);
+    }
+
+    return startDate;
+};
+
+let warnedNewYearDayDeprecation = false;
+/**
+ * @deprecated Will be removed in a future release.
  * @param {number} year - The current year.
  * @param {number} startDay - Day of the month of the first Rivendell New Year Date.
  * @param {RivendellRulesEnum} calendarRules
  * @return {number} The day of the month of Rivendell's New Year Day for the given `year` and `calendarRules`.
  */
-const getRivendellNewYearDay = (year, startDay, calendarRules) => {
+const getRivendellNewYearDay = (year, startDay, calendarRules, warnDeprecated = true) => {
+    if (!warnedNewYearDayDeprecation && warnDeprecated) {
+        console.warn(
+`Deprecation Warning: getRivendellNewYearDay will be removed in a future release.
+${new Error().stack.split("\n")[2]}`);
+        warnedNewYearDayDeprecation = true;
+    }
+
     if (calendarRules === REFORMED_RULES) {
         return startDay;
     }
@@ -165,24 +198,24 @@ const getRivendellNewYearDay = (year, startDay, calendarRules) => {
 
 /**
  * @param {Date} today
- * @param {number} startDay
- * @param {RivendellRulesEnum} calendarRules
+ * @param {FirstRivendellNewYearDate} [startDate]
+ * @param {RivendellRulesEnum} [calendarRules=TRADITIONAL_RULES]
  *
- * @return {Date} The Gregorian Date corresponding to the Rivendell New Year's Day for the year of the given `today`
- *                and `startDay` in March.
+ * @return {Date} The Gregorian Date corresponding to the Rivendell New Year's Day for the year of the given `today`.
  */
-const getRivendellNewYearDate = (today, startDay, calendarRules) => {
+const getRivendellNewYearDate = (today, startDate, calendarRules = TRADITIONAL_RULES) => {
+    startDate = getStartDate(startDate);
     let startYear = today.getFullYear();
 
-    let newyearMonth = 2;
-    let newyearDay = getRivendellNewYearDay(startYear, startDay, calendarRules);
+    let newyearMonth = startDate.getMonth();
+    let newyearDay = getRivendellNewYearDay(startYear, startDate.getDate(), calendarRules, false);
 
     let thisMonth = today.getMonth();
     let thisDay = today.getDate();
 
     if (thisMonth < newyearMonth || (thisMonth === newyearMonth && thisDay < newyearDay)) {
         startYear--;
-        newyearDay = getRivendellNewYearDay(startYear, startDay, calendarRules);
+        newyearDay = getRivendellNewYearDay(startYear, startDate.getDate(), calendarRules, false);
     }
 
     let newYearDate = new Date(startYear, newyearMonth, newyearDay, 0,0,0);
@@ -209,16 +242,18 @@ const getRivendellNewYearDate = (today, startDay, calendarRules) => {
 
 /**
  * Generates a calendar year for the given Date `today`,
- * according to the given `startDay` in March and `calendarRules`.
+ * according to the given `startDate` and `calendarRules`.
  *
  * @param {Date} today
- * @param {number} startDay
- * @param {RivendellRulesEnum} calendarRules
+ * @param {FirstRivendellNewYearDate} [startDate]
+ * @param {RivendellRulesEnum} [calendarRules=TRADITIONAL_RULES]
  *
  * @return {RivendellCalendarYear} The calendar year for the given `today`.
  */
-const makeRivendellCalendarDates = (today, startDay, calendarRules) => {
-    let gregorianDate = getRivendellNewYearDate(today, startDay, calendarRules);
+const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONAL_RULES) => {
+    startDate = getStartDate(startDate);
+
+    let gregorianDate = getRivendellNewYearDate(today, startDate, calendarRules);
     let todayRivendell;
 
     let startYear = gregorianDate.getFullYear();
@@ -269,7 +304,7 @@ const makeRivendellCalendarDates = (today, startDay, calendarRules) => {
             case 3:
                 let enderiCount = 3;
                 if (calendarRules === TRADITIONAL_RULES
-                    && isRivendellLeapYear(gregorianDate)) {
+                    && isRivendellLeapYear(gregorianDate.getFullYear())) {
                     enderiCount = 6;
                 }
                 for (let enderi = 0;

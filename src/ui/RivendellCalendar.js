@@ -11,7 +11,8 @@ import {
     RivendellMonths,
     makeRivendellCalendarDates
 } from '../RivendellReckoning';
-import { datesMatch } from '../Utils';
+
+import { fullYearDate, datesMatch } from '../Utils';
 
 import DateCell from './DateCell';
 import IntercalaryDay from './IntercalaryDay';
@@ -37,9 +38,10 @@ class RivendellCalendar extends Component {
         let language = props.language || LanguagePicker.QUENYA;
         let calendarRules = props.calendarRules || TRADITIONAL_RULES;
         let startDay = props.startDay || 22;
+        let startDate = props.startDate || fullYearDate(1, 2, startDay);
         let today = props.date || new Date();
 
-        let calendar = makeRivendellCalendarDates(today, startDay, calendarRules);
+        let calendar = makeRivendellCalendarDates(today, startDate, calendarRules);
         let monthView = props.yearView ? -1 : calendar.todayRivendell.month;
 
         this.state = {
@@ -48,7 +50,7 @@ class RivendellCalendar extends Component {
             today: today,
             monthView: monthView,
             calendarRules: calendarRules,
-            startDay: startDay,
+            startDate: startDate,
             language: language
         };
 
@@ -71,7 +73,7 @@ class RivendellCalendar extends Component {
         if (!datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
             calendar = makeRivendellCalendarDates(today,
-                                                  this.state.startDay,
+                                                  this.state.startDate,
                                                   this.state.calendarRules);
         }
 
@@ -82,8 +84,8 @@ class RivendellCalendar extends Component {
         });
     }
 
-    makeCalendarDates(today, startDay) {
-        return makeRivendellCalendarDates(today, startDay, this.state.calendarRules);
+    makeCalendarDates(today, startDate) {
+        return makeRivendellCalendarDates(today, startDate, this.state.calendarRules);
     }
 
     onMonthViewChange(calendar, monthView) {
@@ -100,14 +102,13 @@ class RivendellCalendar extends Component {
         });
     }
 
-    onCalendarStartChange(event) {
-        let startDay = event.target.value;
+    onCalendarStartChange(startDate) {
         let calendar = makeRivendellCalendarDates(this.state.calendar.today,
-                                                  startDay,
+                                                  startDate,
                                                   this.state.calendarRules);
 
         this.setState({
-            startDay: startDay,
+            startDate: startDate,
             calendar: calendar
         });
     }
@@ -115,13 +116,15 @@ class RivendellCalendar extends Component {
     onCalendarRulesChange(event) {
         let calendarRules = event.target.value;
         let startDay = calendarRules === REFORMED_RULES ? 25 : 22;
+        let startDate = this.state.startDate;
+        startDate.setDate(startDay);
         let calendar = makeRivendellCalendarDates(this.state.calendar.today,
-                                                  startDay,
+                                                  startDate,
                                                   calendarRules);
 
         this.setState({
             calendarRules: calendarRules,
-            startDay: startDay,
+            startDate: startDate,
             calendar: calendar
         });
     }
@@ -268,7 +271,7 @@ class RivendellCalendar extends Component {
                     <StartDatePicker month="March"
                                      startRange={19}
                                      endRange={29}
-                                     startDay={this.state.startDay}
+                                     startDate={this.state.startDate}
                                      onCalendarStartChange={this.onCalendarStartChange} />
                     <select className="rivendell-rules-select"
                             value={this.state.calendarRules}
@@ -282,7 +285,7 @@ class RivendellCalendar extends Component {
                                      monthLabel="Season"
                                      today={this.state.today}
                                      calendar={this.state.calendar}
-                                     startDay={this.state.startDay}
+                                     startDate={this.state.startDate}
                                      monthView={this.state.monthView}
                                      makeCalendarDates={this.makeCalendarDates}
                                      onMonthViewChange={this.onMonthViewChange}

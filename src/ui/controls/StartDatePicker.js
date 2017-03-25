@@ -5,6 +5,21 @@
 import React, { Component } from 'react';
 
 class StartDatePicker extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onDateChanged = this.onDateChanged.bind(this);
+    }
+
+    onDateChanged(event) {
+        let startDay = event.target.value;
+
+        let changedDate = new Date(this.props.startDate);
+        changedDate.setDate(startDay);
+
+        this.props.onCalendarStartChange(changedDate);
+    }
+
     render() {
         let opts = [];
         for (let day = this.props.startRange; day <= this.props.endRange; day++) {
@@ -17,8 +32,8 @@ class StartDatePicker extends Component {
                 <br />
                 {this.props.month}
                 <select className="first-day-select"
-                        value={this.props.startDay}
-                        onChange={this.props.onCalendarStartChange} >
+                        value={this.props.startDate.getDate()}
+                        onChange={this.onDateChanged} >
                     {opts}
                 </select>
             </div>

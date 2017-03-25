@@ -5,7 +5,7 @@
 import { makeShireCalendarDates } from '../ShireReckoning';
 import { makeRivendellCalendarDates, TRADITIONAL_RULES, REFORMED_RULES} from '../RivendellReckoning';
 import { makeGondorCalendarDates, RECKONING_KINGS, RECKONING_STEWARDS, RECKONING_NEW } from '../GondorReckoning';
-import { getNextDate } from '../Utils';
+import { fullYearDate, getNextDate } from '../Utils';
 
 const getFirstDay = (calendar) => (calendar.dates[0].gregorian);
 const getLastDay = (calendar) => (calendar.dates[calendar.dates.length - 1].gregorian);
@@ -22,42 +22,47 @@ let reckonTests = (nextFirstDay, reckonCalendar, reckonFrom, reckonTo) => {
 
 describe('ShireReckoning', () => {
     it('makes correct Calendar Dates', () => {
-        let nextFirstDay = new Date(-3000,11,21, 0,0,0);
-        let reckonCalendar = (nextFirstDay) => (makeShireCalendarDates(nextFirstDay, 21));
+        let startDate = fullYearDate(0,11,21);
+        let nextFirstDay = fullYearDate(-3000,11,21);
+        let reckonCalendar = (nextFirstDay) => (makeShireCalendarDates(nextFirstDay, startDate));
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
 });
 
 describe('RivendellReckoning', () => {
+    let startDate = fullYearDate(1,2,22);
+
     it('makes correct Traditional Calendar Dates', () => {
-        let nextFirstDay = new Date(-10800,2,23, 0,0,0);
-        let reckonCalendar = (nextFirstDay) => (makeRivendellCalendarDates(nextFirstDay, 22, TRADITIONAL_RULES));
+        let nextFirstDay = fullYearDate(-10800,2,23);
+        let reckonCalendar = (nextFirstDay) => (makeRivendellCalendarDates(nextFirstDay, startDate, TRADITIONAL_RULES));
         reckonTests(nextFirstDay, reckonCalendar, -10800, 10800);
     });
 
     it('makes correct Reformed Calendar Dates', () => {
-        let nextFirstDay = new Date(-3000,2,25, 0,0,0);
-        let reckonCalendar = (nextFirstDay) => (makeRivendellCalendarDates(nextFirstDay, 22, REFORMED_RULES));
+        let nextFirstDay = fullYearDate(-3000,2,25);
+        let reckonCalendar = (nextFirstDay) => (makeRivendellCalendarDates(nextFirstDay, startDate, REFORMED_RULES));
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
 });
 
 describe('GondorReckoning', () => {
+    let startDate = fullYearDate(0,11,21);
+
     it('makes correct Kings Calendar Dates', () => {
-        let nextFirstDay = new Date(-3000,11,21, 0,0,0);
-        let reckonCalendar = (nextFirstDay) => (makeGondorCalendarDates(nextFirstDay, 21, RECKONING_KINGS));
+        let nextFirstDay = fullYearDate(-3000,11,21);
+        let reckonCalendar = (nextFirstDay) => (makeGondorCalendarDates(nextFirstDay, startDate, RECKONING_KINGS));
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
 
     it('makes correct Stewards Calendar Dates', () => {
-        let nextFirstDay = new Date(-3000,11,21, 0,0,0);
-        let reckonCalendar = (nextFirstDay) => (makeGondorCalendarDates(nextFirstDay, 21, RECKONING_STEWARDS));
+        let nextFirstDay = fullYearDate(-3000,11,21);
+        let reckonCalendar = (nextFirstDay) => (makeGondorCalendarDates(nextFirstDay, startDate, RECKONING_STEWARDS));
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
 
     it('makes correct New Reckoning Calendar Dates', () => {
-        let nextFirstDay = new Date(-3000,2,16, 0,0,0);
-        let reckonCalendar = (nextFirstDay) => (makeGondorCalendarDates(nextFirstDay, 21, RECKONING_NEW));
+        let nextFirstDay = fullYearDate(-3000,2,16);
+        let reckonCalendar = (nextFirstDay) => (makeGondorCalendarDates(nextFirstDay, startDate, RECKONING_NEW));
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
 });

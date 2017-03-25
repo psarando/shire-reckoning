@@ -13,7 +13,8 @@ import {
     convertGondorianMonthIndex,
     makeGondorCalendarDates
 } from '../GondorReckoning';
-import { datesMatch } from '../Utils';
+
+import { fullYearDate, datesMatch } from '../Utils';
 
 import DateCell from './DateCell';
 import IntercalaryDay from './IntercalaryDay';
@@ -47,12 +48,13 @@ class GondorCalendar extends Component {
         let reckoning = props.reckoning || RECKONING_STEWARDS;
 
         let startDay = props.startDay || 21;
-        let calendar = makeGondorCalendarDates(today, startDay, reckoning);
+        let startDate = props.startDate || fullYearDate(0, 11, startDay);
+        let calendar = makeGondorCalendarDates(today, startDate, reckoning);
         let monthView = props.yearView ? -1 : calendar.todayGondor.month;
 
         this.state = {
             calendarControls: calendarControls,
-            startDay: startDay,
+            startDate: startDate,
             calendar: calendar,
             today: today,
             monthView: monthView,
@@ -81,7 +83,7 @@ class GondorCalendar extends Component {
         if (!datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
             calendar = makeGondorCalendarDates(today,
-                                               this.state.startDay,
+                                               this.state.startDate,
                                                this.state.reckoning);
         }
 
@@ -92,8 +94,8 @@ class GondorCalendar extends Component {
         });
     }
 
-    makeCalendarDates(today, startDay) {
-        return makeGondorCalendarDates(today, startDay, this.state.reckoning);
+    makeCalendarDates(today, startDate) {
+        return makeGondorCalendarDates(today, startDate, this.state.reckoning);
     }
 
     onMonthViewChange(calendar, monthView) {
@@ -110,14 +112,13 @@ class GondorCalendar extends Component {
         });
     }
 
-    onCalendarStartChange(event) {
-        let startDay = event.target.value;
+    onCalendarStartChange(startDate) {
         let calendar = makeGondorCalendarDates(this.state.calendar.today,
-                                               startDay,
+                                               startDate,
                                                this.state.reckoning);
 
         this.setState({
-            startDay: startDay,
+            startDate: startDate,
             calendar: calendar
         });
     }
@@ -125,7 +126,7 @@ class GondorCalendar extends Component {
     onStartMonthChange(event) {
         let reckoning = event.target.value;
         let calendar = makeGondorCalendarDates(this.state.calendar.today,
-                                               this.state.startDay,
+                                               this.state.startDate,
                                                reckoning);
         let monthView = convertGondorianMonthIndex(this.state.reckoning,
                                                    reckoning,
@@ -420,7 +421,7 @@ class GondorCalendar extends Component {
                     <StartDatePicker month="December"
                                      startRange={18}
                                      endRange={25}
-                                     startDay={this.state.startDay}
+                                     startDate={this.state.startDate}
                                      onCalendarStartChange={this.onCalendarStartChange} />
                     <select className="gondor-rules-select"
                             value={reckoning}
@@ -434,7 +435,7 @@ class GondorCalendar extends Component {
                     <MonthViewPicker monthNames={monthNames}
                                      today={this.state.today}
                                      calendar={this.state.calendar}
-                                     startDay={this.state.startDay}
+                                     startDate={this.state.startDate}
                                      monthView={this.state.monthView}
                                      makeCalendarDates={this.makeCalendarDates}
                                      onMonthViewChange={this.onMonthViewChange}

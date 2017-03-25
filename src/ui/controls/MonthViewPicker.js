@@ -25,7 +25,7 @@ class MonthViewPicker extends Component {
         var today = this.props.today;
         var calendar = this.props.calendar;
         if (!datesMatch(today, calendar.today)) {
-            calendar = this.props.makeCalendarDates(today, this.props.startDay);
+            calendar = this.props.makeCalendarDates(today, this.props.startDate);
         }
 
         this.props.onMonthViewChange(calendar, -1);
@@ -35,7 +35,7 @@ class MonthViewPicker extends Component {
         var today = this.props.today;
         var calendar = this.props.calendar;
         if (!datesMatch(today, calendar.today)) {
-            calendar = this.props.makeCalendarDates(today, this.props.startDay);
+            calendar = this.props.makeCalendarDates(today, this.props.startDate);
         }
 
         this.props.onViewCalendarMonth(calendar);
@@ -55,10 +55,10 @@ class MonthViewPicker extends Component {
 
             // View the calendar for the previous year
             var viewDate = calendar.dates[0].gregorian;
-            // add a buffer to the view date so the month doesn't change when startDay changes
+            // add a buffer to the view date so the month doesn't change when startDate changes
             viewDate.setDate(viewDate.getDate() - 15);
 
-            calendar = this.props.makeCalendarDates(viewDate, this.props.startDay);
+            calendar = this.props.makeCalendarDates(viewDate, this.props.startDate);
         }
 
         this.props.onMonthViewChange(calendar, month);
@@ -78,10 +78,10 @@ class MonthViewPicker extends Component {
 
             // View the calendar for the next year
             var viewDate = calendar.dates[calendar.dates.length - 1].gregorian;
-            // add a buffer to the view date so the month doesn't change when startDay changes
+            // add a buffer to the view date so the month doesn't change when startDate changes
             viewDate.setDate(viewDate.getDate() + 15);
 
-            calendar = this.props.makeCalendarDates(viewDate, this.props.startDay);
+            calendar = this.props.makeCalendarDates(viewDate, this.props.startDate);
         }
 
         this.props.onMonthViewChange(calendar, month);

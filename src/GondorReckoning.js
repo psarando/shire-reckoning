@@ -2,7 +2,12 @@
  * Copyright (C) 2016 Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import { datesMatch, getNextDate, isLeapYear } from './Utils';
+import {
+    isLeapYear,
+    datesMatch,
+    fullYearDate,
+    getNextDate
+} from './Utils';
 
 /**
  * Kings' Reckoning leap-year rules enum
@@ -186,23 +191,71 @@ const GondorMonths = [
 ];
 
 /**
+ * @typedef {Date} FirstNumenorNewYearDate
+ * @default new Date(0, 11, 21, 0,0,0)
+ *
+ * The Gregorian Date corresponding to the first Númenor New Year Date.
+ * The year is currently ignored, in order to keep Gondor leap-years in sync with Gregorian leap-years.
+ */
+
+/**
+ * @param {FirstNumenorNewYearDate} [startDate]
+ * @return {FirstNumenorNewYearDate} startDate if not null, otherwise the default first New Year Date.
+ */
+const getStartDate = (startDate) => {
+    if (!startDate) {
+        startDate = fullYearDate(0, 11, 21);
+    }
+
+    return startDate;
+};
+
+/**
  * @param {Date} today
- * @param {number} startDay
+ * @param {FirstNumenorNewYearDate} [startDate]
  *
  * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
- *                for the year of the given `today` and `startDay` in December.
+ *                for the year of the given `today`.
  */
-const getGondorNewYearDate = (today, startDay) => {
+const getGondorNewYearDate = (today, startDate) => {
+    startDate = getStartDate(startDate);
+
     let startYear = today.getFullYear();
-    if (today.getMonth() < 11 || today.getDate() < startDay) {
+    let thisMonth = today.getMonth();
+    let thisDay = today.getDate();
+
+    let newyearMonth = startDate.getMonth();
+    let newyearDay = startDate.getDate();
+
+    if (thisMonth < newyearMonth || (thisMonth === newyearMonth && thisDay < newyearDay)) {
         startYear--;
     }
 
-    let newYearDate = new Date(startYear, 11, startDay, 0, 0, 0);
+    let newYearDate = new Date(startYear, newyearMonth, newyearDay, 0,0,0);
     // reset full year for years 0-99
-    newYearDate.setFullYear(startYear, 11, startDay);
+    newYearDate.setFullYear(startYear, newyearMonth, newyearDay);
 
     return newYearDate;
+};
+
+/**
+ * @param {Date} today
+ * @param {FirstNumenorNewYearDate} [startDate]
+ *
+ * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
+ *                in the New Reckoning calendar for the year of the given `today`.
+ */
+const getNewReckoningNewYearDate = (today, startDate) => {
+    let newReckoningNewYear = getGondorNewYearDate(today, startDate);
+    newReckoningNewYear.setDate(newReckoningNewYear.getDate() + 85);
+
+    if (newReckoningNewYear > today) {
+        newReckoningNewYear.setDate(newReckoningNewYear.getDate() - 365);
+        newReckoningNewYear = getGondorNewYearDate(newReckoningNewYear, startDate);
+        newReckoningNewYear.setDate(newReckoningNewYear.getDate() + 85);
+    }
+
+    return newReckoningNewYear;
 };
 
 /**
@@ -236,38 +289,6 @@ const convertGregorianToGondorianWeekday = (weekday) => {
 };
 
 /**
- * @param {Date} today
- * @param {number} startDay
- *
- * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
- *                in the New Reckoning calendar for the year of the given `today` and old-style `startDay` in December.
- */
-const getNewReckoningNewYearDate = (today, startDay) => {
-    let startYear = today.getFullYear();
-    let thisMonth = today.getMonth();
-    let thisDate = today.getDate();
-    let dayOffset = startDay - 21;
-
-    if (thisMonth < 2) {
-        startYear--;
-    } else if (thisMonth === 2) {
-        if (thisDate < 15+dayOffset || (!isLeapYear(startYear) && thisDate < 16+dayOffset)) {
-            startYear--;
-        }
-    }
-
-    let newYearDate = new Date(startYear, 2, 16+dayOffset, 0, 0, 0);
-    // reset full year for years 0-99
-    newYearDate.setFullYear(startYear, 2, 16+dayOffset);
-
-    if (isLeapYear(newYearDate.getFullYear())) {
-        newYearDate.setDate(15+dayOffset);
-    }
-
-    return newYearDate;
-};
-
-/**
  * @typedef {Object} GondorDate
  * @property {(number|string)} day - The number of the day of the month, if this date is not intercalary; otherwise, the name of the intercalary date.
  * @property {number} month - The month index of {@link GondorMonths}.
@@ -284,22 +305,24 @@ const getNewReckoningNewYearDate = (today, startDay) => {
 
 /**
  * Generates a calendar year for the given Date `today`,
- * according to the given old-style `startDay` in December and `reckoning` rules.
+ * according to the given `startDate` and `reckoning` rules.
  *
  * @param {Date} today
- * @param {number} startDay
- * @param {GondorReckoningEnum} reckoning
+ * @param {FirstNumenorNewYearDate} [startDate]
+ * @param {GondorReckoningEnum} [reckoning=RECKONING_STEWARDS]
  *
  * @return {GondorCalendarYear} The calendar year for the given `today`.
  */
-const makeGondorCalendarDates = (today, startDay, reckoning) => {
+const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARDS) => {
+    startDate = getStartDate(startDate);
+
     let kingsReckoning = reckoning === RECKONING_KINGS;
     let stewardsReckoning = reckoning === RECKONING_STEWARDS;
     let newReckoning = reckoning === RECKONING_NEW;
     let gregorianDate =
         newReckoning ?
-            getNewReckoningNewYearDate(today, startDay) :
-            getGondorNewYearDate(today, startDay);
+            getNewReckoningNewYearDate(today, startDate) :
+            getGondorNewYearDate(today, startDate);
     let todayGondor;
 
     let dates = [];

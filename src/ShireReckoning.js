@@ -2,7 +2,12 @@
  * Copyright (C) 2016 Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import { datesMatch, getNextDate, isLeapYear } from './Utils';
+import {
+    isLeapYear,
+    datesMatch,
+    fullYearDate,
+    getNextDate
+} from './Utils';
 
 /**
  * @typedef {Object} ShireWeekday
@@ -248,21 +253,49 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
 ];
 
 /**
+ * @typedef {Date} FirstShireNewYearDate
+ * @default new Date(0, 11, 21, 0,0,0)
+ *
+ * The Gregorian Date corresponding to the first Shire New Year Date.
+ * The year is currently ignored, in order to keep Shire leap-years in sync with Gregorian leap-years.
+ */
+
+/**
+ * @param {FirstShireNewYearDate} [startDate]
+ * @return {FirstShireNewYearDate} startDate if not null, otherwise the default first New Year Date.
+ */
+function getStartDate(startDate) {
+    if (!startDate) {
+        startDate = fullYearDate(0, 11, 21);
+    }
+
+    return startDate;
+}
+
+/**
  * @param {Date} today
- * @param {number} startDay
+ * @param {FirstShireNewYearDate} [startDate]
  *
  * @return {Date} The Gregorian Date corresponding to the Shire New Year Date
- *                for the year of the given `today` and `startDay` in December.
+ *                for the year of the given `today`.
  */
-const getShireNewYearDate = (today, startDay) => {
+const getShireNewYearDate = (today, startDate) => {
+    startDate = getStartDate(startDate);
+
     let startYear = today.getFullYear();
-    if (today.getMonth() < 11 || today.getDate() < startDay) {
+    let thisMonth = today.getMonth();
+    let thisDay = today.getDate();
+
+    let newyearMonth = startDate.getMonth();
+    let newyearDay = startDate.getDate();
+
+    if (thisMonth < newyearMonth || (thisMonth === newyearMonth && thisDay < newyearDay)) {
         startYear--;
     }
 
-    let newYearDate = new Date(startYear, 11, startDay, 0,0,0);
+    let newYearDate = new Date(startYear, newyearMonth, newyearDay, 0,0,0);
     // reset full year for years 0-99
-    newYearDate.setFullYear(startYear, 11, startDay);
+    newYearDate.setFullYear(startYear, newyearMonth, newyearDay);
 
     return newYearDate;
 };
@@ -283,15 +316,16 @@ const getShireNewYearDate = (today, startDay) => {
  */
 
 /**
- * Generates a calendar year for the given Date `today`, according to the given `startDay` in December.
+ * Generates a calendar year for the given Date `today`, according to the given `startDate`.
  *
  * @param {Date} today
- * @param {number} startDay
+ * @param {FirstShireNewYearDate} [startDate]
  *
  * @return {ShireCalendarYear} The calendar year for the given `today`.
  */
-const makeShireCalendarDates = (today, startDay) => {
-    let gregorianDate = getShireNewYearDate(today, startDay);
+const makeShireCalendarDates = (today, startDate) => {
+    startDate = getStartDate(startDate);
+    let gregorianDate = getShireNewYearDate(today, startDate);
     let todayShire;
 
     let dates = [{
