@@ -841,6 +841,22 @@ const adjustForSelectedEvent = (currentDate, selectedEvent, shireStartDate, rive
     return eventOfInterestToDate(DatesOfInterest[selectedEvent], shireStartDate, rivendellStartDate);
 };
 
+var findEventIndex = (currentDate, shireStartDate, rivendellStartDate) => {
+    const currentSAYear = daysElapsedToSecondAgeYear(toDaysElapsed(shireStartDate, currentDate)).year;
+
+    const eventIndex = DatesOfInterest.findIndex((event) => {
+        if (event.allYear) {
+            return (event.year === currentSAYear);
+        }
+
+        return (
+            event.year && datesMatch(currentDate, eventOfInterestToDate(event, shireStartDate, rivendellStartDate))
+        );
+    });
+
+    return eventIndex > 0 ? eventIndex : 0;
+};
+
 class SimulatedTolkienCalendars extends Component {
 
     constructor(props) {
@@ -851,7 +867,11 @@ class SimulatedTolkienCalendars extends Component {
         let currentDate = props.date || new Date();
         let startDates = SyncAges[calendarRules].startDates;
 
-        currentDate = adjustForSelectedEvent(currentDate, selectedEvent, startDates.shire, startDates.rivendell);
+        if (selectedEvent) {
+            currentDate = adjustForSelectedEvent(currentDate, selectedEvent, startDates.shire, startDates.rivendell);
+        } else {
+            selectedEvent = findEventIndex(currentDate, startDates.shire, startDates.rivendell);
+        }
 
         this.state = {
             date:               currentDate,
@@ -916,21 +936,11 @@ class SimulatedTolkienCalendars extends Component {
         let shireStartDate     = this.state.shireStartDate;
         let rivendellStartDate = this.state.rivendellStartDate;
 
-        let selectedEvent = DatesOfInterest.findIndex((event) => {
-            if (event.allYear) {
-                return (
-                    event.year === daysElapsedToSecondAgeYear(toDaysElapsed(shireStartDate, currentDate)).year
-                );
-            }
-
-            return (
-                event.year && datesMatch(currentDate, eventOfInterestToDate(event, shireStartDate, rivendellStartDate))
-            );
-        });
+        let selectedEvent = findEventIndex(currentDate, shireStartDate, rivendellStartDate);
 
         this.setState({
             date: currentDate,
-            selectedEvent: selectedEvent > 0 ? selectedEvent : 0
+            selectedEvent: selectedEvent
         });
     }
 
