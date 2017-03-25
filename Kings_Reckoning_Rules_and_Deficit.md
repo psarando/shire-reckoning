@@ -1,3 +1,8 @@
+---
+layout: page
+title: "Shire Reckoning: The Kings' Reckoning Rules and the Deficit"
+---
+
 The Kings' Reckoning Rules and the *Deficit*
 ============================================
 
