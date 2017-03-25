@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" href="{{ site.github.url }}/favicon.ico" sizes="any">
+<link rel="icon" href="{{ site.github.url }}/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ site.github.url }}/apple-touch-icon.png">
+<link rel="manifest" href="{{ site.github.url }}/site.webmanifest">
+
+<link rel="stylesheet" type="text/css" href="{{ site.github.url }}/stylesheets/normalize.css" media="screen">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{{ site.github.url }}/stylesheets/stylesheet.css" media="screen">
+<link rel="stylesheet" type="text/css" href="{{ site.github.url }}/stylesheets/github-light.css" media="screen">
+
+<% for (var css in htmlWebpackPlugin.files.css) { %>
+<link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+<% } %>
+
+<% for (var chunk in htmlWebpackPlugin.files.js) { %>
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[chunk] %>"></script>
+<% } %>
