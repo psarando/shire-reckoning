@@ -6,6 +6,7 @@ import {
     toDaysElapsed,
     daysElapsedToGregorianYear,
     getNewYearDate,
+    getWeekDay,
     isLeapYear,
     datesMatch,
     fullYearDate,
@@ -269,11 +270,7 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
     let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
 
     let rivendellYear = yearWithRemainder.year;
-    let weekDay = daysElapsed - yearWithRemainder.daysRemainder;
-
-    if (weekDay < 0) {
-        weekDay = 6 + (weekDay % 6);
-    }
+    let weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 6);
 
     let dates = [];
     if (calendarRules === REFORMED_RULES && isLeapYear(rivendellYear)) {

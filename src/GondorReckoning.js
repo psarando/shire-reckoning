@@ -5,7 +5,10 @@
 import {
     toDaysElapsed,
     daysElapsedToGregorianYear,
+    daysElapsedToSecondAgeYear,
+    daysElapsedToNewReckoningYear,
     getNewYearDate,
+    getWeekDay,
     isLeapYear,
     datesMatch,
     fullYearDate,
@@ -32,6 +35,13 @@ const RECKONING_NEW = "new";
 
 /**
  * @typedef {(RECKONING_KINGS|RECKONING_STEWARDS|RECKONING_NEW)} GondorReckoningEnum
+ */
+
+const RECKONING_RULES_TRADITIONAL = "traditional";
+const RECKONING_RULES_GREGORIAN = "reformed";
+
+/**
+ * @typedef {(RECKONING_RULES_TRADITIONAL|RECKONING_RULES_GREGORIAN)} GondorLeapYearRuleEnum
  */
 
 /**
@@ -214,16 +224,61 @@ const getStartDate = (startDate) => {
 };
 
 /**
+ * @param {number} gondorYear
+ * @return {boolean} True if the given `gondorYear` is a millennial year that requires an additional leap-day adjustment.
+ */
+const isMillennialLeapYear = (gondorYear) => {
+    if (gondorYear > 3441) {
+        gondorYear -= 3441;
+
+        if (2000 < gondorYear && gondorYear < 4000) {
+            return (
+                (gondorYear === 2059) ||
+                (gondorYear === 2360)
+            );
+        }
+    }
+
+    return !(gondorYear % 1000);
+};
+
+/**
+ * @param {number} gondorYear
+ * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
+ *
+ * @return {boolean} True if the given `gondorYear` is a leap-year (standard or millennial).
+ */
+const isGondorLeapYear = (gondorYear, rules = RECKONING_RULES_GREGORIAN) => {
+    if (rules === RECKONING_RULES_GREGORIAN) {
+        return isLeapYear(gondorYear);
+    }
+
+    let millennialLeapYear = isMillennialLeapYear(gondorYear);
+
+    if (gondorYear > 3441) {
+        gondorYear -= 3441;
+    }
+
+    return ((((gondorYear % 4) === 0) && ((gondorYear % 100) !== 0)) || millennialLeapYear);
+};
+
+/**
  * @param {Date} today
  * @param {FirstNumenorNewYearDate} [startDate]
+ * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
  *
  * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
  *                for the year of the given `today`.
  */
-const getGondorNewYearDate = (today, startDate) => {
+const getGondorNewYearDate = (today, startDate, rules = RECKONING_RULES_GREGORIAN) => {
     startDate = getStartDate(startDate);
 
-    let daysSinceNewYearsDay = daysElapsedToGregorianYear(toDaysElapsed(startDate, today)).daysRemainder;
+    let getYearWithRemainder =
+            rules === RECKONING_RULES_TRADITIONAL ?
+                daysElapsedToSecondAgeYear :
+                daysElapsedToGregorianYear;
+
+    let daysSinceNewYearsDay = getYearWithRemainder(toDaysElapsed(startDate, today)).daysRemainder;
 
     return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
@@ -231,21 +286,23 @@ const getGondorNewYearDate = (today, startDate) => {
 /**
  * @param {Date} today
  * @param {FirstNumenorNewYearDate} [startDate]
+ * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
  *
  * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
  *                in the New Reckoning calendar for the year of the given `today`.
  */
-const getNewReckoningNewYearDate = (today, startDate) => {
-    let newReckoningNewYear = getGondorNewYearDate(today, startDate);
-    newReckoningNewYear.setDate(newReckoningNewYear.getDate() + 85);
+const getNewReckoningNewYearDate = (today, startDate, rules) => {
+    startDate = getStartDate(startDate);
 
-    if (newReckoningNewYear > today) {
-        newReckoningNewYear.setDate(newReckoningNewYear.getDate() - 365);
-        newReckoningNewYear = getGondorNewYearDate(newReckoningNewYear, startDate);
-        newReckoningNewYear.setDate(newReckoningNewYear.getDate() + 85);
-    }
+    let getYearWithRemainder =
+            rules === RECKONING_RULES_TRADITIONAL ?
+                daysElapsedToSecondAgeYear :
+                daysElapsedToGregorianYear;
 
-    return newReckoningNewYear;
+    let daysElapsed = toDaysElapsed(startDate, today);
+    let daysSinceNewYearsDay = daysElapsedToNewReckoningYear(getYearWithRemainder, daysElapsed).daysRemainder;
+
+    return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
 
 /**
@@ -301,26 +358,29 @@ const convertGregorianToGondorianWeekday = (weekday) => {
  * @param {Date} today
  * @param {FirstNumenorNewYearDate} [startDate]
  * @param {GondorReckoningEnum} [reckoning=RECKONING_STEWARDS]
+ * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
  *
  * @return {GondorCalendarYear} The calendar year for the given `today`.
  */
-const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARDS) => {
+const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARDS, rules = RECKONING_RULES_GREGORIAN) => {
     startDate = getStartDate(startDate);
 
     let kingsReckoning = reckoning === RECKONING_KINGS;
     let stewardsReckoning = reckoning === RECKONING_STEWARDS;
     let newReckoning = reckoning === RECKONING_NEW;
 
-    let yearWithRemainder = daysElapsedToGregorianYear(toDaysElapsed(startDate, today));
+    let getYearWithRemainder =
+            rules === RECKONING_RULES_TRADITIONAL ?
+                daysElapsedToSecondAgeYear :
+                daysElapsedToGregorianYear;
 
+    let daysElapsed = toDaysElapsed(startDate, today);
+
+    let yearWithRemainder;
     if (newReckoning) {
-        // New Reckoning always starts 85 days after old style New Year's Day.
-        if (yearWithRemainder.daysRemainder < 85) {
-            yearWithRemainder = getYearWithRemainder(daysElapsed - 365);
-            yearWithRemainder.daysRemainder += 365;
-        }
-
-        yearWithRemainder.daysRemainder -= 85;
+        yearWithRemainder = daysElapsedToNewReckoningYear(getYearWithRemainder, daysElapsed);
+    } else {
+        yearWithRemainder = getYearWithRemainder(daysElapsed);
     }
 
     let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
@@ -328,6 +388,10 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
     let todayGondor;
     let weekDay = convertGregorianToGondorianWeekday(gregorianDate.getDay());
     let year = yearWithRemainder.year;
+
+    if (rules === RECKONING_RULES_TRADITIONAL) {
+        weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 7);
+    }
 
     let dates = [];
 
@@ -341,7 +405,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                 dates.push({
                     "day": "Yestarë",
                     "month": 0,
-                    "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                    "weekDay": (weekDay++ % 7),
                     "gregorian": gregorianDate
                 });
 
@@ -364,7 +428,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
             dates.push({
                 "day": day,
                 "month": month,
-                "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                "weekDay": (weekDay++ % 7),
                 "gregorian": gregorianDate
             });
 
@@ -381,7 +445,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                     dates.push({
                         "day": "Tuilérë",
                         "month": month + 1,
-                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                        "weekDay": (weekDay++ % 7),
                         "gregorian": gregorianDate
                     });
 
@@ -394,13 +458,27 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                 break;
 
             case 5:
-                let leapYear = isLeapYear(year);
+                let leapYear = isGondorLeapYear(year, rules);
 
                 if (leapYear && newReckoning) {
                     dates.push({
                         "day": "Cormarë",
                         "month": month,
-                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                        "weekDay": (weekDay++ % 7),
+                        "gregorian": gregorianDate
+                    });
+
+                    if (datesMatch(today, gregorianDate)) {
+                        todayGondor = dates[dates.length-1];
+                    }
+                    gregorianDate = getNextDate(gregorianDate);
+                }
+
+                if (rules === RECKONING_RULES_TRADITIONAL && isMillennialLeapYear(year)) {
+                    dates.push({
+                        "day": newReckoning ? "Cormarë" : "Enderë",
+                        "month": newReckoning ? month : month + 1,
+                        "weekDay": (weekDay++ % 7),
                         "gregorian": gregorianDate
                     });
 
@@ -414,7 +492,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                     dates.push({
                         "day": "Enderë",
                         "month": month + 1,
-                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                        "weekDay": (weekDay++ % 7),
                         "gregorian": gregorianDate
                     });
 
@@ -428,7 +506,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                     dates.push({
                         "day": "Loëndë",
                         "month": month + 1,
-                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                        "weekDay": (weekDay++ % 7),
                         "gregorian": gregorianDate
                     });
 
@@ -442,7 +520,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                     dates.push({
                         "day": "Enderë",
                         "month": month + 1,
-                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                        "weekDay": (weekDay++ % 7),
                         "gregorian": gregorianDate
                     });
 
@@ -459,7 +537,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                     dates.push({
                         "day": "Yáviérë",
                         "month": month + 1,
-                        "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                        "weekDay": (weekDay++ % 7),
                         "gregorian": gregorianDate
                     });
 
@@ -475,7 +553,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                 dates.push({
                     "day": "Mettarë",
                     "month": 11,
-                    "weekDay": convertGregorianToGondorianWeekday(gregorianDate.getDay()),
+                    "weekDay": (weekDay++ % 7),
                     "gregorian": gregorianDate
                 });
 
@@ -500,10 +578,14 @@ export {
     RECKONING_KINGS,
     RECKONING_STEWARDS,
     RECKONING_NEW,
+    RECKONING_RULES_TRADITIONAL,
+    RECKONING_RULES_GREGORIAN,
     GondorWeekdays,
     GondorMonths,
     getGondorNewYearDate,
     getNewReckoningNewYearDate,
+    isGondorLeapYear,
+    isMillennialLeapYear,
     convertGondorianMonthIndex,
     convertGregorianToGondorianWeekday,
     makeGondorCalendarDates

@@ -7,6 +7,31 @@ const GREGORIAN_DAYS_PER_4_YEARS = (365 * 4 + 1);
 const GREGORIAN_DAYS_PER_100_YEARS = (GREGORIAN_DAYS_PER_4_YEARS * 25 - 1);
 const GREGORIAN_DAYS_PER_400_YEARS = (GREGORIAN_DAYS_PER_100_YEARS * 4 + 1);
 
+const GONDOR_DAYS_PER_4_YEARS = GREGORIAN_DAYS_PER_4_YEARS;
+const GONDOR_DAYS_PER_100_YEARS = GREGORIAN_DAYS_PER_100_YEARS;
+const GONDOR_DAYS_PER_1000_YEARS = (GONDOR_DAYS_PER_100_YEARS * 10 + 2);
+
+const SECOND_AGE_TOTAL_DAYS = (
+    GONDOR_DAYS_PER_1000_YEARS * 3
+    + GONDOR_DAYS_PER_100_YEARS * 4
+    + GONDOR_DAYS_PER_4_YEARS * 10
+    + 365
+);
+const THIRD_AGE_2059_TOTAL_DAYS = (
+    SECOND_AGE_TOTAL_DAYS
+    + GONDOR_DAYS_PER_1000_YEARS * 2
+    + GONDOR_DAYS_PER_4_YEARS * 14
+    + 365 * 3
+    + 2
+);
+const THIRD_AGE_2360_TOTAL_DAYS = (
+    SECOND_AGE_TOTAL_DAYS
+    + GONDOR_DAYS_PER_1000_YEARS * 2
+    + GONDOR_DAYS_PER_100_YEARS * 3
+    + GONDOR_DAYS_PER_4_YEARS * 15
+    + 3
+);
+
 /**
  * @param {number} year
  * @return {boolean} True if the given year is a Gregorian leap-year.
@@ -85,6 +110,125 @@ const getNewYearDate = (startDate, today, daysSinceNewYearsDay) => {
 };
 
 /**
+ * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
+ * @param {number} daysSinceNewYearsDay - The number of whole days elapsed since the current New Year's Day.
+ * @param {number} daysPerWeek - The number of days in a week.
+ * @return {number} The current day of the week.
+ */
+const getWeekDay = (daysElapsed, daysSinceNewYearsDay, daysPerWeek) => {
+    let weekDay = (daysElapsed - daysSinceNewYearsDay) % daysPerWeek;
+
+    if (weekDay < 0) {
+        weekDay += daysPerWeek;
+    }
+
+    return weekDay;
+};
+
+const offsetThirdAgeDaysElapsed = (daysElapsed) => {
+    if (daysElapsed >= THIRD_AGE_2059_TOTAL_DAYS) {
+        if (daysElapsed >= THIRD_AGE_2360_TOTAL_DAYS) {
+            daysElapsed--;
+        }
+        // 2 days were added to T.A.2059, but 2 were not added in T.A.3000
+        if (daysElapsed < 3 * GONDOR_DAYS_PER_1000_YEARS + SECOND_AGE_TOTAL_DAYS) {
+            daysElapsed -= 2;
+        }
+    }
+
+    daysElapsed -= SECOND_AGE_TOTAL_DAYS;
+
+    return daysElapsed;
+};
+
+/**
+ * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
+ * @return {YearWithRemainder} The current Gondor (S.A.) year for the given `daysElapsed`.
+ */
+const daysElapsedToSecondAgeYear = (daysElapsed) => {
+    let year = 0;
+
+    if (THIRD_AGE_2059_TOTAL_DAYS - 367 <= daysElapsed && daysElapsed < THIRD_AGE_2059_TOTAL_DAYS) {
+        // The last couple of days of T.A.2059 need to be handled as a special case
+        year = 2059+3441;
+        daysElapsed %= THIRD_AGE_2059_TOTAL_DAYS - 367;
+    } else if (THIRD_AGE_2360_TOTAL_DAYS - 367 <= daysElapsed && daysElapsed < THIRD_AGE_2360_TOTAL_DAYS) {
+        // The last day of T.A.2360 needs to be handled as a special case
+        year = 2360+3441;
+        daysElapsed %= THIRD_AGE_2360_TOTAL_DAYS - 367;
+    } else {
+        let negativeOffset = 0;
+
+        if (daysElapsed > SECOND_AGE_TOTAL_DAYS) {
+            year = 3441;
+            daysElapsed = offsetThirdAgeDaysElapsed(daysElapsed);
+        }
+
+        year += Math.floor(daysElapsed / GONDOR_DAYS_PER_1000_YEARS) * 1000;
+        daysElapsed %= GONDOR_DAYS_PER_1000_YEARS;
+
+        if (year < 0) {
+            negativeOffset = year;
+            year = 0;
+            if (daysElapsed < 0) {
+                daysElapsed += GONDOR_DAYS_PER_1000_YEARS;
+            }
+        }
+
+        if (daysElapsed > GONDOR_DAYS_PER_100_YEARS * 9) {
+            year += 900;
+            daysElapsed %= GONDOR_DAYS_PER_100_YEARS * 9;
+        } else {
+            year += Math.floor(daysElapsed / GONDOR_DAYS_PER_100_YEARS) * 100;
+            daysElapsed %= GONDOR_DAYS_PER_100_YEARS;
+        }
+
+        if (daysElapsed > GONDOR_DAYS_PER_4_YEARS * 24) {
+            year += 96;
+            daysElapsed %= GONDOR_DAYS_PER_4_YEARS * 24;
+        } else {
+            year += Math.floor(daysElapsed / GONDOR_DAYS_PER_4_YEARS) * 4;
+            daysElapsed %= GONDOR_DAYS_PER_4_YEARS;
+        }
+
+        if (daysElapsed > 365 * 3) {
+            year += 3;
+            daysElapsed %= 365 * 3;
+        } else {
+            year += Math.floor(daysElapsed / 365);
+            daysElapsed %= 365;
+        }
+
+        year += negativeOffset + 1;
+    }
+
+    return {
+        year: year,
+        daysRemainder: daysElapsed
+    };
+};
+
+/**
+ * @param {(daysElapsedToGregorianYear|daysElapsedToSecondAgeYear)} getYearWithRemainder
+ * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
+ * @return {YearWithRemainder} The current Gondor (S.A.) year, with daysRemainder since the current New Reckoning
+ *                             New Year's Day.
+ */
+const daysElapsedToNewReckoningYear = (getYearWithRemainder, daysElapsed) => {
+    let yearWithRemainder = getYearWithRemainder(daysElapsed);
+
+    // New Reckoning always starts 85 days after old style New Year's Day.
+    if (yearWithRemainder.daysRemainder < 85) {
+        yearWithRemainder = getYearWithRemainder(daysElapsed - 365);
+        yearWithRemainder.daysRemainder += 365;
+    }
+
+    yearWithRemainder.daysRemainder -= 85;
+
+    return yearWithRemainder;
+};
+
+/**
  * @param {Date} date1
  * @param {Date} date2
  * @return {boolean} True if the given dates have the same year, month, and date.
@@ -126,7 +270,10 @@ const getNextDate = (today) => {
 export {
     toDaysElapsed,
     daysElapsedToGregorianYear,
+    daysElapsedToSecondAgeYear,
+    daysElapsedToNewReckoningYear,
     getNewYearDate,
+    getWeekDay,
     isLeapYear,
     datesMatch,
     fullYearDate,

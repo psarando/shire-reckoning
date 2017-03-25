@@ -8,6 +8,8 @@ import {
     RECKONING_KINGS,
     RECKONING_STEWARDS,
     RECKONING_NEW,
+    RECKONING_RULES_TRADITIONAL,
+    RECKONING_RULES_GREGORIAN,
     GondorWeekdays,
     GondorMonths,
     convertGondorianMonthIndex,
@@ -31,6 +33,9 @@ class GondorCalendar extends Component {
     static get RECKONING_STEWARDS() { return RECKONING_STEWARDS;}
     static get RECKONING_NEW() { return RECKONING_NEW;}
 
+    static get RECKONING_RULES_TRADITIONAL() { return RECKONING_RULES_TRADITIONAL; }
+    static get RECKONING_RULES_GREGORIAN() { return RECKONING_RULES_GREGORIAN; }
+
     static get MONTH_VIEW_VERTICAL() { return MonthViewLayout.VERTICAL; }
     static get MONTH_VIEW_HORIZONTAL() { return MonthViewLayout.HORIZONTAL; }
 
@@ -43,13 +48,14 @@ class GondorCalendar extends Component {
 
         let calendarControls = props.calendarControls !== false;
         let language = props.language || LanguagePicker.QUENYA;
+        let calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
         let today = props.date || new Date();
         let monthViewLayout = props.monthViewLayout || MonthViewLayout.VERTICAL;
         let reckoning = props.reckoning || RECKONING_STEWARDS;
 
         let startDay = props.startDay || 21;
         let startDate = props.startDate || fullYearDate(0, 11, startDay);
-        let calendar = makeGondorCalendarDates(today, startDate, reckoning);
+        let calendar = makeGondorCalendarDates(today, startDate, reckoning, calendarRules);
         let monthView = props.yearView ? -1 : calendar.todayGondor.month;
 
         this.state = {
@@ -60,6 +66,7 @@ class GondorCalendar extends Component {
             monthView: monthView,
             monthViewLayout: monthViewLayout,
             reckoning: reckoning,
+            calendarRules: calendarRules,
             language: language
         };
 
@@ -78,6 +85,7 @@ class GondorCalendar extends Component {
         let language = nextProps.language || this.state.language;
         let reckoning = nextProps.reckoning || this.state.reckoning;
         let monthViewLayout = nextProps.monthViewLayout || this.state.monthViewLayout;
+        let calendarRules = nextProps.calendarRules || this.state.calendarRules;
         let calendar = this.state.calendar;
 
         if (nextProps.startDay && !nextProps.startDate) {
@@ -87,13 +95,14 @@ class GondorCalendar extends Component {
         if (!datesMatch(startDate, this.state.startDate) ||
             !datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
-            calendar = makeGondorCalendarDates(today, startDate, reckoning);
+            calendar = makeGondorCalendarDates(today, startDate, reckoning, calendarRules);
         }
 
         this.setState({
             today: today,
             calendar: calendar,
             language: language,
+            calendarRules: calendarRules,
             reckoning: reckoning,
             startDate: startDate,
             monthViewLayout: monthViewLayout,
@@ -102,7 +111,7 @@ class GondorCalendar extends Component {
     }
 
     makeCalendarDates(today, startDate) {
-        return makeGondorCalendarDates(today, startDate, this.state.reckoning);
+        return makeGondorCalendarDates(today, startDate, this.state.reckoning, this.state.calendarRules);
     }
 
     onMonthViewChange(calendar, monthView) {
@@ -122,7 +131,8 @@ class GondorCalendar extends Component {
     onCalendarStartChange(startDate) {
         let calendar = makeGondorCalendarDates(this.state.calendar.today,
                                                startDate,
-                                               this.state.reckoning);
+                                               this.state.reckoning,
+                                               this.state.calendarRules);
 
         this.setState({
             startDate: startDate,
@@ -134,7 +144,8 @@ class GondorCalendar extends Component {
         let reckoning = event.target.value;
         let calendar = makeGondorCalendarDates(this.state.calendar.today,
                                                this.state.startDate,
-                                               reckoning);
+                                               reckoning,
+                                               this.state.calendarRules);
         let monthView = convertGondorianMonthIndex(this.state.reckoning,
                                                    reckoning,
                                                    this.state.monthView);
