@@ -19,37 +19,3 @@ export {
     RivendellCalendar,
     GondorCalendar
 };
-
-/**
- * Deprecated exports
- */
-export {
-    makeShireCalendarDates,
-    ShireWeekdays,
-    ShireMonths,
-    getShireNewYearDate,
-
-    makeRivendellCalendarDates,
-    TRADITIONAL_RULES,
-    REFORMED_RULES,
-    RivendellWeekdays,
-    RivendellMonths,
-    getRivendellNewYearDay,
-    getRivendellNewYearDate,
-    isRivendellLeapYear,
-
-    makeNumenorCalendarDates,
-    RECKONING_KINGS,
-    RECKONING_STEWARDS,
-    RECKONING_NEW,
-    NumenorWeekdays,
-    NumenorMonths,
-    convertGondorianMonthIndex,
-    convertGregorianToGondorianWeekday,
-    convertMonthIndex,
-    convertGregorianWeekday,
-    getNumenorNewYearDate,
-    getNewReckoningNewYearDate,
-
-    NumenorCalendar
-} from './deprecated';
