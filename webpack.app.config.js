@@ -13,7 +13,7 @@ const config = {
         filename: "static/js/[name].[contenthash:8].js",
         // There are also additional JS chunk files if you use code splitting.
         chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
-        publicPath: ".",
+        publicPath: "/shire-reckoning",
         library: "TolkienCalendars",
         libraryTarget: "umd",
     },
@@ -55,6 +55,23 @@ const config = {
             // both options are optional
             filename: "static/css/[name].[contenthash:8].css",
             chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
+        }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            template: "public/_includes/header.ejs",
+            filename: "../_includes/header.html",
+            minify: {
+                removeComments: false,
+                collapseWhitespace: false,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: false,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: false,
+            },
         }),
     ],
     module: {
