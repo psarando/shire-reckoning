@@ -1,3 +1,8 @@
+---
+layout: page
+title: "Shire Reckoning: The Drifting of the Calendar of Imladris through Time"
+---
+
 The Drifting of the Calendar of Imladris through Time
 =====================================================
 
