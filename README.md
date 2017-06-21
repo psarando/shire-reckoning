@@ -198,6 +198,22 @@ The calendar of Gondor went through 3 variations throughout its history:
    So the New Reckoning calendar adds its leap-day, Cormarë (Ringday), between Yavannië 30 and its Middle-days.
    This way Yavannië 30 is a festival in every year, but in leap-years Cormarë falls on Frodo's actual birthday,
    and his birthday celebrations are doubled!
+   
+   Although Shire Rethe 25 and Halimath 22,
+   which fall on the New Reckoning's Yestarë and Cormarë/Yavannië 30,
+   were holidays in King Elessar's Reunited Kingdom,
+   it appears these dates were not celebrated in the Shire;
+   but note these other holidays celebrated in the Shire after the War of the Ring:
+
+   > There is no record of the Shire-folk commemorating either March 25 or September 22;
+   > but in the Westfarthing, especially in the country round Hobbiton Hill,
+   > there grew up a custom of making holiday and dancing in the Party Field, when weather permitted, on April 6.
+   > Some said that it was old Sam Gardner's birthday,
+   > some that it was the day on which the Golden Tree first flowered in 1420,
+   > and some that it was the Elves' New Year.
+   > In the Buckland the Horn of the Mark was blown at sundown every November 2 and bonfires and feastings followed.
+   >
+   > -- J.R.R. Tolkien, The Lord of the Rings Appendix D
 
 #### Gondor's weekdays
 

@@ -43,7 +43,16 @@ const isLeapYear = (year) => ( !((year % 4) || (!(year % 100) && (year % 400))) 
  * @param {Date} toDate - The end Date (e.g. today)
  * @return {number} The total number of whole days elapsed.
  */
-const toDaysElapsed = (fromDate, toDate) => ( Math.floor((toDate - fromDate) / (24 * 60 * 60 * 1000)) );
+const toDaysElapsed = (fromDate, toDate) => {
+    // reset to/from hours to avoid DST problems
+    let fromDateMidnight = new Date(fromDate);
+    fromDateMidnight.setHours(0,0,0);
+
+    let toDateNoon = new Date(toDate);
+    toDateNoon.setHours(12,0,0);
+
+    return ( Math.floor((toDateNoon - fromDateMidnight) / (24 * 60 * 60 * 1000)) )
+};
 
 /**
  * @typedef {Object} YearWithRemainder

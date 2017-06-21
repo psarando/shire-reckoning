@@ -1,3 +1,10 @@
+## 2.0.4 (2017-06-24)
+
+* Fixed calculations for dates observing Daylight Savings Time.
+    * Starting with v2.0.0,
+      calendars were off by 1 day when adjusting `Dates of Interest` or the current Gregorian date
+      if the device viewing the calendars was in a region where DST was in effect.
+
 ## 2.0.3 (2017-06-21)
 
 * Fixed UI calendars to no longer alter dates passed to them through props.
