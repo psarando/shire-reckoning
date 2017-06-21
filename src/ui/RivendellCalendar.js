@@ -70,6 +70,7 @@ class RivendellCalendar extends Component {
         let calendar = this.state.calendar;
 
         if (nextProps.startDay && !nextProps.startDate) {
+            startDate = new Date(startDate);
             startDate.setDate(nextProps.startDay);
         }
 
@@ -119,7 +120,7 @@ class RivendellCalendar extends Component {
     onCalendarRulesChange(event) {
         let calendarRules = event.target.value;
         let startDay = calendarRules === REFORMED_RULES ? 25 : 22;
-        let startDate = this.state.startDate;
+        let startDate = new Date(this.state.startDate);
         startDate.setDate(startDay);
         let calendar = makeRivendellCalendarDates(this.state.calendar.today, startDate, calendarRules);
 

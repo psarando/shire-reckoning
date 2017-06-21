@@ -89,6 +89,7 @@ class GondorCalendar extends Component {
         let calendar = this.state.calendar;
 
         if (nextProps.startDay && !nextProps.startDate) {
+            startDate = new Date(startDate);
             startDate.setDate(nextProps.startDay);
         }
 
@@ -188,7 +189,7 @@ class GondorCalendar extends Component {
             case "Tuilérë":
                 return (
                     <IntercalaryDay key="Stewards-Midspring"
-                                    name={language === LanguagePicker.ENGLISH ? "Midspring Day" : "Tuilérë"}
+                                    name={language === LanguagePicker.ENGLISH ? "Spring-day" : "Tuilérë"}
                                     description="Stewards' Midspring Day"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -197,8 +198,8 @@ class GondorCalendar extends Component {
             case "Cormarë":
                 return (
                     <IntercalaryDay key={"Gondorian-Leapday" + date.weekDay}
-                                    name={language === LanguagePicker.ENGLISH ? "Ring Bearer's Day" : "Cormarë"}
-                                    description="Ring Bearer's Day"
+                                    name={language === LanguagePicker.ENGLISH ? "Ringday" : "Cormarë"}
+                                    description="Ring-bearer's Day"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
                 );
@@ -224,7 +225,7 @@ class GondorCalendar extends Component {
             case "Yáviérë":
                 return (
                     <IntercalaryDay key={"Stewards-Midautumn"}
-                                    name={language === LanguagePicker.ENGLISH ? "Midautumn Day" : "Yáviérë"}
+                                    name={language === LanguagePicker.ENGLISH ? "Autumn-day" : "Yáviérë"}
                                     description="Stewards' Midautumn Day"
                                     currentDate={today}
                                     gregorian={date.gregorian} />

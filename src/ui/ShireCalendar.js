@@ -72,6 +72,7 @@ class ShireCalendar extends Component {
         let calendar = this.state.calendar;
 
         if (nextProps.startDay && !nextProps.startDate) {
+            startDate = new Date(startDate);
             startDate.setDate(nextProps.startDay);
         }
 

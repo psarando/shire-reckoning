@@ -14,7 +14,7 @@ Shire Reckoning
 * [Tolkien's Calendars](#tolkiens-calendars)
 * [Middle-earth Simulation](#middle-earth-simulation)
 * [Shire Reckoning Notes](#shire-reckoning-notes)
-* [Notes on the visualizations of the calendars of Gondor](#notes-on-the-visualizations-of-the-calendars-of-gondor)
+* [Gondor Reckoning Notes](#gondor-reckoning-notes)
 * [Rivendell Reckoning Notes](#rivendell-reckoning-notes)
     * For a general reference for converting a date in the Gregorian calendar, in any year, to a
       date in the Rivendell Reckoning calendar, I recommend using the
@@ -33,7 +33,7 @@ Shire Reckoning
 The primary goal of this project is to visualize how the calendars described in
 J.R.R. Tolkien's *The Lord of the Rings* Appendix D relate to the
 [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar),
-so the Shire Reckoning calendar is displayed according to the reasonable rules suggested by
+so the default Shire Reckoning calendar is displayed according to the reasonable rules suggested by
 [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html),
 where Shire Mid-year's Day is aligned as much as possible with the contemporary
 [summer solstice](https://en.wikipedia.org/wiki/Solstice) (which is usually on June 21st),
@@ -101,10 +101,10 @@ he "translated" (or rather substituted) the Shire names of the months and weekda
 [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar) names,
 so that Mersday becomes Thursday and Rethe becomes March in the narrative.
 
-This project's calendar uses the original Shire names by default,
-but a control is available in this visualization to display the Shire Calendar with the Gregorian names
-Tolkien used as substitutions, and there's also the option to display the calendar
-with the alternate month names used in Bree.
+This project's visualization provides a control that can display the Shire Calendar with
+either the Gregorian names Tolkien used as substitutions,
+or the original Shire names of the months and weekdays,
+or the alternate month names used in Bree.
 
 To see the descriptions of the month and weekday names in this visualization,
 hover your cursor over any day in a month or over a weekday header cell,
@@ -116,13 +116,17 @@ and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipe
 
 #### Layout of days and weeks
 
-The default layout of the individual month views in the Shire Calendar might look odd at first,
+A control is available to switch the individual month views in the Shire and Gondor calendars
+between a "vertical" layout and a more familiar "horizontal" layout.
+
+The "horizontal" layout is what you see in any modern Gregorian calendar,
+where the dates advance within in each row from left to right,
+and the weeks advance from top to bottom.
+
+The "vertical" layout might look odd at first,
 with the dates starting at the top of the left column and advancing vertically down the column,
 then continuing the next week in the next column (again counting dates from top to bottom),
 but this is the "vertical" layout Tolkien used in his example Shire Calendar at the beginning of Appendix D.
-A control is available to switch the month views from this default "vertical" layout
-to the more familiar "horizontal" layout, where the dates advance within in each row from left to right,
-and the weeks advance from top to bottom.
 
 #### Reckoning start dates
 
@@ -143,28 +147,61 @@ Note this annotation from [The Lord of the Rings: A Reader's Companion](#referen
 > only with Tolkien's method of adjusting the lunar calendar for 1941-2 to his changing ideas within the narrative.
 > It has no relation to the correspondences discussed in Appendix D.
 
-* Since moon phases [approximately repeat dates every 19 years](https://en.wikipedia.org/wiki/Metonic_cycle),
-  then these 1941-2 moon phases will repeat on most of these same "adjusted" dates
-  (reckoning the start of the Shire Calendar year from Gregorian December 25) in 2017-18.
+* Since [moon phases repeat on approximately the same dates every 19 years](https://en.wikipedia.org/wiki/Metonic_cycle),
+  then these 1941-2 moon phases will repeat on most of these same "adjusted" dates in 2017-18.
+  Although reckoning the start of the Shire Calendar year [back 1 more day](https://en.wikipedia.org/wiki/Callippic_cycle)
+  (from Gregorian December 24) allows the full moons of Afteryule and Rethe to fall on the correct days.
 * If reckoning the start of the Shire Calendar year from Gregorian December 21,
   then the moon phases of 2020-21 will match the Shire Reckoning dates of the narrative instead
-  (and a bit better; e.g.
-  [the full moons of Afteryule and Rethe will fall on the correct days](https://www.reddit.com/r/tolkienfans/comments/53i3qa/the_moon_phases_used_for_lotr_are_about_to_mostly/)).
+  (and a bit better).
 
-### Notes on the visualizations of the calendars of Gondor
+### Gondor Reckoning Notes
 
 Since the Shire Calendar originated from the Kings' Reckoning,
 and in order to keep these calendars in sync with each other
 as Tolkien described in *The Lord of the Rings* Appendix D,
-the calendars of Gondor in this project will also follow the Gregorian leap-day rules,
+the calendars of Gondor in this project will also follow the Gregorian leap-day rules by default,
 so that they will always stay in sync with this project's Shire Reckoning calendar.
 
 These calendars actually had very similar, but slightly different leap-day rules compared to the
 Gregorian calendar's leap-day rules, [as described below in the Rivendell Reckoning notes](#why-not-march-29th).
 
+#### The 3 Calendars of Gondor
+
+The calendar of Gondor went through 3 variations throughout its history:
+
+1. **Kings' Reckoning**:
+   The Kings' Reckoning was founded in Númenor and was "used in Númenor, and in Arnor and Gondor until the end of the kings".
+   Next to the Calendar of Imladris, this calendar was in use for the longest period of time;
+   probably throughout the entire history of Númenor, over 3000 years during the Second Age,
+   and up to the Third Age (T.A.) 2059 in Gondor.
+2. **Stewards' Reckoning**:
+   The Stewards' Reckoning was founded in the time of Mardil, the first Ruling Steward of Gondor,
+   and replaced the Kings' Reckoning in T.A. 2060.
+   It was only a minor modification of the Kings' Reckoning that added a "Spring-day" (Tuilérë)
+   and an "Autumn-day" (Yáviérë) and shortened the two 31-day months in summer to 30 days each.
+3. **New Reckoning**:
+   The New Reckoning was introduced by King Elessar (a.k.a Aragorn)
+   and started its reckoning from the day the One Ring was destroyed,
+   T.A. 3019 'March' (Rethe/Súlimë) 25, which became its New Year's Day (Yestarë).
+   So the start of each month was shifted back by a few days to align the calendar with this new Yestarë.
+   It also removed the Stewards' Spring-day and Autumn-day and moved the Mid-year's Day (Loëndë) to autumn,
+   along with 2 Middle-days, which immediately followed its month of Yavannië.
+
+   > But in honour of Frodo *Yavannië* 30, which corresponded with former September 22, his birthday,
+   > was made a festival, and the leap-year was provided for by doubling this feast, called *Cormarë* or Ringday.
+   >
+   > -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+
+   In other words, Yavannië 30 of the New Reckoning calendar falls on Frodo's birthday, Shire 'September' (Halimath) 22,
+   except in leap-years when Yavannië 30 falls on Halimath 21 due to the Shire Calendar's leap-day in summer (Overlithe).
+   So the New Reckoning calendar adds its leap-day, Cormarë (Ringday), between Yavannië 30 and its Middle-days.
+   This way Yavannië 30 is a festival in every year, but in leap-years Cormarë falls on Frodo's actual birthday,
+   and his birthday celebrations are doubled!
+
 #### Gondor's weekdays
 
-Also note Tolkien's statements in Appendix D about the Shire's weekdays.
+This project assumes Tolkien's statements in Appendix D about the Shire's weekdays also apply to Gondor's weekdays:
 
 > The last day of the week, Friday (Highday), was the chief day, and one of holiday (after noon) and evening feasts.
 

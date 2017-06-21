@@ -135,7 +135,7 @@ JSX:
                                            date={sa1697}
                                            startDay={21}
                                            calendarControls={false}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar language={RivendellCalendar.LANGUAGE_ENGLISH}
@@ -143,7 +143,7 @@ JSX:
                                            date={ta2941}
                                            startDay={21}
                                            calendarControls={false}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar language={RivendellCalendar.LANGUAGE_SINDARIN}
@@ -151,10 +151,10 @@ JSX:
                                            date={ta3018}
                                            startDay={21}
                                            calendarControls={false}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                 </tr>
-                <tr>
+                <tr id="date-picker">
                     <td colSpan='3' style={CaptionCellStyle}>
                         <DatePicker date={currentDate} onDateChanged={this.onDateChanged}/>
                     </td>
@@ -260,7 +260,7 @@ JSX:
                         <RivendellCalendar yearView={true}
                                            calendarControls={false}
                                            date={currentDate}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
@@ -269,7 +269,7 @@ JSX:
                                            yearView={true}
                                            calendarControls={false}
                                            date={currentDate}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
@@ -278,7 +278,7 @@ JSX:
                                            yearView={true}
                                            calendarControls={false}
                                            date={currentDate}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                 </tr>
                 <tr>
@@ -372,7 +372,7 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarControls={false}
                                            date={currentDate}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
@@ -380,7 +380,7 @@ JSX:
                                            language={RivendellCalendar.LANGUAGE_ENGLISH}
                                            calendarControls={false}
                                            date={currentDate}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
@@ -388,7 +388,7 @@ JSX:
                                            language={RivendellCalendar.LANGUAGE_SINDARIN}
                                            calendarControls={false}
                                            date={currentDate}
-                                           className="shire-calendar" />
+                                           className="shire-calendar example-calendar" />
                     </td>
                 </tr>
                 </tbody>

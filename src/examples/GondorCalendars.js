@@ -140,7 +140,7 @@ JSX:
                                         yearView={true}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
@@ -148,14 +148,14 @@ JSX:
                                         yearView={true}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         yearView={true}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                 </tr>
                 <tr>
@@ -242,20 +242,20 @@ JSX:
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                 </tr>
                 <tr>
@@ -351,7 +351,7 @@ JSX:
                                         monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
@@ -359,7 +359,7 @@ JSX:
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
@@ -367,10 +367,10 @@ JSX:
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         calendarControls={false}
                                         date={currentDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                 </tr>
-                <tr>
+                <tr id="new-year-sync">
                     <th colSpan="3" style={CaptionCellStyle}>
                         In Appendix D, Tolkien made a brief comparison of our calendar with the Shire calendar
                         "if our years began at the same seasonal point".
@@ -484,7 +484,7 @@ JSX:
                                         calendarControls={false}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
@@ -493,7 +493,7 @@ JSX:
                                         calendarControls={false}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
@@ -501,10 +501,10 @@ JSX:
                                         calendarControls={false}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                 </tr>
-                <tr>
+                <tr id="traditional-rules">
                     <th colSpan="3" style={CaptionCellStyle}>
                         In Appendix D, Tolkien described leap-day and leap-year rules for the calendars of Gondor
                         the that were similar yet different compared to our Gregorian calendar.
@@ -641,7 +641,7 @@ JSX:
                                         calendarControls={false}
                                         date={sa32}
                                         startDate={secondAgeStartDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
@@ -651,7 +651,7 @@ JSX:
                                         calendarControls={false}
                                         date={ta2060}
                                         startDate={secondAgeStartDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
@@ -660,7 +660,7 @@ JSX:
                                         calendarControls={false}
                                         date={ta3019}
                                         startDate={secondAgeStartDate}
-                                        className="shire-calendar" />
+                                        className="shire-calendar example-calendar" />
                     </td>
                 </tr>
                 </tbody>

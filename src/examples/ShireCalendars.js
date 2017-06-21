@@ -132,20 +132,20 @@ JSX:
                                        yearView={true}
                                        calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar yearView={true}
                                        calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                                        yearView={true}
                                        calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                 </tr>
                 <tr>
@@ -222,18 +222,18 @@ JSX:
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
                                        calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                                        calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                 </tr>
                 <tr>
@@ -320,23 +320,23 @@ JSX:
                                        monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                        calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                        calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                                        monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                        calendarControls={false}
                                        date={currentDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                 </tr>
-                <tr>
+                <tr id="new-year-sync">
                     <th colSpan="3" style={CaptionCellStyle}>
                         In Appendix D, Tolkien made a brief comparison of our calendar with the Shire calendar
                         "if our years began at the same seasonal point".
@@ -440,14 +440,14 @@ JSX:
                                        calendarControls={false}
                                        date={currentDate}
                                        startDate={newYearSyncDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar yearView={true}
                                        calendarControls={false}
                                        date={currentDate}
                                        startDate={newYearSyncDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
@@ -455,10 +455,10 @@ JSX:
                                        calendarControls={false}
                                        date={currentDate}
                                        startDate={newYearSyncDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                 </tr>
-                <tr>
+                <tr id="traditional-rules">
                     <th colSpan="3" style={CaptionCellStyle}>
                         In Appendix D, Tolkien described leap-day and leap-year rules for the calendars of Gondor
                         the that were similar yet different compared to our Gregorian calendar.
@@ -586,7 +586,7 @@ JSX:
                                        calendarControls={false}
                                        date={ta1300}
                                        startDate={secondAgeStartDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
@@ -594,7 +594,7 @@ JSX:
                                        calendarControls={false}
                                        date={ta1601}
                                        startDate={secondAgeStartDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
@@ -603,7 +603,7 @@ JSX:
                                        calendarControls={false}
                                        date={ta3019}
                                        startDate={secondAgeStartDate}
-                                       className="shire-calendar" />
+                                       className="shire-calendar example-calendar" />
                     </td>
                 </tr>
                 </tbody>

@@ -586,7 +586,7 @@ const DatesOfInterest = [
     {
         year:    2670 + 3441,
         allYear: true,
-        label:   "III 2670 | Tobold Hornblower plants 'pipe-weed' in the Southfarthing."
+        label:   "III c.2670 | Tobold Hornblower plants 'pipe-weed' in the Southfarthing."
     },
     {
         year:    2570 + 3441,
@@ -654,7 +654,7 @@ const DatesOfInterest = [
         allYear: true,
         month:   6,
         day:     "Midyear's Day",
-        label:   "III 2000 | Millennial Leap-year in Gondor and the Shire."
+        label:   "III 2000 | Millennial Leap-year in Gondor and the Shire. Nazgûl besiege Minas Ithil."
     },
     {
         year:    1999 + 3441,
@@ -689,14 +689,14 @@ const DatesOfInterest = [
     {
         year:    1300 + 3441,
         allYear: true,
-        label:   "III 1300 | Nazgûl reappear in Middle-earth and the realm of Angmar is founded by the Witch-King."
+        label:   "III c.1300 | Nazgûl reappear in Middle-earth and the realm of Angmar is founded by the Witch-King."
     },
     {
         year:    1000 + 3441,
         allYear: true,
         month:   6,
         day:     "Midyear's Day",
-        label:   "III 1000 | The Istari arrive to Middle-earth around this time. Millennial Leap-year in Gondor."
+        label:   "III 1000 | Millennial Leap-year in Gondor. The Istari arrive to Middle-earth around this time."
     },
     {
         year:    241 + 3441,
@@ -743,7 +743,7 @@ const DatesOfInterest = [
         allYear: true,
         month:   6,
         day:     "Midyear's Day",
-        label:   "II 3000 | Millennial Leap-year in Númenor."
+        label:   "II 3000 | Millennial Leap-year in Númenor, in the time when its kings took Adûnaic names."
     },
     {
         year:    2000,
@@ -765,19 +765,19 @@ const DatesOfInterest = [
     {
         year:    1600,
         allYear: true,
-        label:   "II 1600 | Sauron forges The One Ring and completes Barad-dûr."
+        label:   "II c.1600 | Sauron forges The One Ring and completes Barad-dûr."
     },
     {
         year:    1590,
         allYear: true,
-        label:   "II 1590 | The Three Rings are completed in Eregion."
+        label:   "II c.1590 | The Three Rings are completed in Eregion."
     },
     {
         year:    1000,
         allYear: true,
         month:   6,
         day:     "Midyear's Day",
-        label:   "II 1000 | Sauron begins the building of Barad-dûr. Millennial Leap-year in Númenor."
+        label:   "II 1000 | Millennial Leap-year in Númenor. Sauron begins building Barad-dûr around this time."
     },
     {
         year:    750,
@@ -787,12 +787,17 @@ const DatesOfInterest = [
     {
         year:    500,
         allYear: true,
-        label:   "II 500 | Sauron arises again in Middle-earth."
+        label:   "II c.500 | Sauron arises again in Middle-earth."
+    },
+    {
+        year:    442,
+        allYear: true,
+        label:   "II 442 | Death of Elros Tar-Minyatur."
     },
     {
         year:    40,
         allYear: true,
-        label:   "II 40 | Many Dwarves leaving their old cities Ered Luin migrate to Moria."
+        label:   "II c.40 | Many Dwarves leaving their old cities in Ered Luin migrate to Moria."
     },
     {
         year:    32,
@@ -803,6 +808,205 @@ const DatesOfInterest = [
         year:    1,
         allYear: true,
         label:   "II 1 | Foundation of the Grey Havens, and of Lindon."
+    },
+    {
+        year:    0,
+        allYear: true,
+        label:   "Iys 590 | Morgoth cast through the Door of Night into the Void. First Age ends."
+    },
+    {
+        year:    -3,
+        allYear: true,
+        label:   "Iys 587 | Eärendil slays Ancalagon the Black. Morgoth defeated and the War of Wrath ends."
+    },
+    {
+        year:    -45,
+        allYear: true,
+        label:   "Iys 545 | War of Wrath begins."
+    },
+    {
+        year:    -48,
+        allYear: true,
+        label:   "Iys 542 | Eärendil sails to Valinor and delivers the errand of the Two Kindreds."
+    },
+    {
+        year:    -52,
+        allYear: true,
+        label:   "Iys 538 | Third Kinslaying at the Havens of Sirion. Maglor takes Elrond and Elros."
+    },
+    {
+        year:    -58,
+        allYear: true,
+        label:   "Iys 532 | Elrond and Elros born."
+    },
+    {
+        year:    -65,
+        allYear: true,
+        label:   "Iys 525 | Tuor and Idril sail Eärrámë into the West. Eärendil marries Elwing."
+    },
+    {
+        year:    -80,
+        allYear: false,
+        month:   4,
+        day:     26,
+        label:   "Iys 510 Gates of Summer | Fall of Gondolin."
+    },
+    {
+        year:    -84,
+        allYear: false,
+        month:   11,
+        day:     "1 Yule",
+        label:   "Iys 506 Winter | Fall of Doriath in the Second Kinslaying."
+    },
+    {
+        year:    -87,
+        allYear: true,
+        label:   "Iys 503 | Eärendil (spring) and Elwing born. Final deaths of Beren and Lúthien (autumn?)."
+    },
+    {
+        year:    -88,
+        allYear: true,
+        label:   "Iys 502 | Thingol slain by Dwarves in Menegroth. Melian returns to Valinor in grief."
+    },
+    {
+        year:    -91,
+        allYear: true,
+        month:   4,
+        day:     25,
+        label:   "Iys 499 Spring or Summer | Túrin Turambar slays Glaurung."
+    },
+    {
+        year:    -95,
+        allYear: false,
+        month:   10,
+        day:     19,
+        label:   "Iys 495 Hísimë 19 | Tuor comes to Gondolin."
+    },
+    {
+        year:    -95,
+        allYear: false,
+        month:   10,
+        day:     1,
+        label:   "Iys 495 Hísimë 1 (approx.) | Fall of Nargothrond, followed by the Fell Winter."
+    },
+    {
+        year:    -95,
+        allYear: false,
+        month:   9,
+        day:     11,
+        label:   "Iys 495 Narquelië 11 | Tuor meets Ulmo in Nevrast."
+    },
+    {
+        year:    -118,
+        allYear: false,
+        month:   11,
+        day:     "1 Yule",
+        label:   "Iys 472 Winter | Tuor born."
+    },
+    {
+        year:    -118,
+        allYear: false,
+        month:   6,
+        day:     "Midyear's Day",
+        label:   "Iys 472 Midsummer | Nírnaeth Arnoediad: The 6-day \"Battle of Unnumbered Tears\" begins."
+    },
+    {
+        year:    -124,
+        allYear: true,
+        label:   "Iys 466 Spring | Beren and Lúthien achieve the Quest of the Silmaril."
+    },
+    {
+        year:    -125,
+        allYear: true,
+        month:   10,
+        day:     23,
+        label:   "Iys 465 Autumn or Winter | Finrod slain by a werewolf saving Beren during the Quest of the Silmaril."
+    },
+    {
+        year:    -126,
+        allYear: false,
+        month:   6,
+        day:     "Midyear's Day",
+        label:   "Iys 464 Summer | Beren first sees Lúthien dancing under the moonrise in Neldoreth."
+    },
+    {
+        year:    -126,
+        allYear: false,
+        label:   "Iys 464 Gwaeron? | Túrin Turambar born."
+    },
+    {
+        year:    -134,
+        allYear: false,
+        label:   "Iys 456 Spring? | Fingolfin slain in single combat with Morgoth."
+    },
+    {
+        year:    -135,
+        allYear: true,
+        month:   11,
+        day:     "1 Yule",
+        label:   "Iys 455 Winter | Dagor Bragollach: Battle of Sudden Flame. Barahir rescues Finrod."
+    },
+    {
+        year:    -158,
+        allYear: true,
+        label:   "Iys 432 | Beren Erchamion born."
+    },
+    {
+        year:    -280,
+        allYear: true,
+        label:   "Iys 310 | Bëor leads The First House of the Edain into Beleriand and are discovered by Finrod."
+    },
+    {
+        year:    -330,
+        allYear: true,
+        label:   "Iys 260 | Glaurung first appears and is driven back to Angband. The Long Peace begins."
+    },
+    {
+        year:    -474,
+        allYear: true,
+        label:   "Iys 116 | Gondolin completed."
+    },
+    {
+        year:    -488,
+        allYear: true,
+        label:   "Iys 102 | Nargothrond completed."
+    },
+    {
+        year:    -526,
+        allYear: true,
+        label:   "Iys 64 | Turgon begins building Gondolin."
+    },
+    {
+        year:    -530,
+        allYear: true,
+        label:   "Iys 60 | Dagor Aglareb: start of the Siege of Angband."
+    },
+    {
+        year:    -537,
+        allYear: true,
+        label:   "Iys 53 | Turgon, guided by Ulmo, discovers the hidden valley of Tumladen."
+    },
+    {
+        year:    -538,
+        allYear: true,
+        label:   "Iys 52 | Finrod begins building Nargothrond."
+    },
+    {
+        year:    -540,
+        allYear: true,
+        month:   6,
+        day:     "Midyear's Day",
+        label:   "Iys 50 Summer | Ulmo sends Turgon and Finrod a dream near the Aelin-uial."
+    },
+    {
+        year:    -570,
+        allYear: false,
+        label:   "Iys 20 Spring | Mereth Aderthad: The Feast of Reuniting held near Eithel Ivrin."
+    },
+    {
+        year:    -585,
+        allYear: true,
+        label:   "Iys 5 | Fingon rescues Maedhros from atop Thangorodrim."
     },
     {
         year:    -589,
@@ -845,13 +1049,13 @@ var findEventIndex = (currentDate, shireStartDate, rivendellStartDate) => {
     const currentSAYear = daysElapsedToSecondAgeYear(toDaysElapsed(shireStartDate, currentDate)).year;
 
     const eventIndex = DatesOfInterest.findIndex((event) => {
+        if (event.label === "") return false;
+
         if (event.allYear) {
             return (event.year === currentSAYear);
         }
 
-        return (
-            event.year && datesMatch(currentDate, eventOfInterestToDate(event, shireStartDate, rivendellStartDate))
-        );
+        return datesMatch(currentDate, eventOfInterestToDate(event, shireStartDate, rivendellStartDate));
     });
 
     return eventIndex > 0 ? eventIndex : 0;
@@ -1005,15 +1209,15 @@ class SimulatedTolkienCalendars extends Component {
 
         if (selectedEvent < 1) {
             let previousEvent = DatesOfInterest.findIndex((event) => {
+                if (event.label === "") return false;
+
                 if (event.allYear) {
                     return (
                         event.year < daysElapsedToSecondAgeYear(toDaysElapsed(shireStartDate, currentDate)).year
                     );
                 }
 
-                return (
-                    event.year && eventOfInterestToDate(event, shireStartDate, rivendellStartDate) < currentDate
-                );
+                return eventOfInterestToDate(event, shireStartDate, rivendellStartDate) < currentDate;
             });
 
             if (previousEvent > 0) {

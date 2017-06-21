@@ -4,6 +4,9 @@
 .align-rivendell-calendar {
     margin-top: 70rem;
 }
+.example-calendar {
+    margin: auto;
+}
 .date-time-input {
     width: 4rem;
     text-align: center;

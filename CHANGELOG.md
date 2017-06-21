@@ -1,3 +1,11 @@
+## 2.0.3 (2017-06-21)
+
+* Fixed UI calendars to no longer alter dates passed to them through props.
+
+## 2.0.2 (2017-03-30)
+
+* Simulation example `Dates of Interest` auto-select bug fix.
+
 ## 2.0.1 (2017-03-30)
 
 * Updated 2017-18 moon phase simulated calendar start dates

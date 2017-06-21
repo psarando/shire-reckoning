@@ -83,6 +83,8 @@ class TolkienCalendarsExample extends Component {
                 <tr>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar caption={true}
+                                       region={ShireCalendar.REGION_NAMES_TOLKIEN}
+                                       monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                        date={currentDate}
                                        className={shireClassName}
                                        yearView={shireAlign || rivendellAlign} />
@@ -98,6 +100,7 @@ class TolkienCalendarsExample extends Component {
                     <td style={CalendarCellStyle}>
                         <GondorCalendar caption={true}
                                         language={LanguagePicker.ENGLISH}
+                                        monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                                         date={currentDate}
                                         className="shire-calendar gondor-calendar stewards-calendar" />
                     </td>
