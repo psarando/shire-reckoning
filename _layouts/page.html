@@ -5,6 +5,9 @@
     <head>
         <title>{{ page.title }}</title>
         {% include header.html %}
+        {% if page.include_extra %}
+            {% include {{ page.include_extra }} %}
+        {% endif %}
     </head>
 
     <body>
