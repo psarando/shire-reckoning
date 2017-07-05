@@ -1,0 +1,49 @@
+body {
+    font-family: 'Libre Baskerville',Georgia,serif;
+    color: black;
+}
+.project-name {
+    font-family: Fondamento,'Berkshire Swash',sans-serif;
+}
+th, td {
+    padding: 1px;
+}
+@media screen and (min-width: 64em) {
+    .main-content {
+        max-width: none;
+    }
+}
+.main-content #tolkien-calendars {
+    margin-left: -1rem;
+}
+.main-content > table tr:nth-child(2n) {
+    background-color: gainsboro;
+}
+.shire-calendar {
+    border-collapse: separate;
+}
+.shire-calendar td {
+    font-size: 1rem;
+    line-height: 1rem;
+}
+.shire-calendar button {
+    font-size: 0.9rem;
+}
+.shire-calendar .intercalary-multi-day {
+    padding: 0;
+}
+.shire-calendar .weekday-header[scope="col"] .weekday-emoji {
+    margin: 0.2rem;
+}
+.shire-calendar .weekday-header[scope="row"] .weekday-emoji {
+    margin: 0 0.1rem;
+}
+.rivendell-calendar td {
+    height: 4.2rem;
+}
+.rivendell-calendar .month-picker td {
+    height: 1rem;
+}
+.align-shire-calendar {
+    padding-top: 186rem;
+}
