@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Shire Reckoning: The Lord of the Rings Lunar Readalong"
+include_extra: lunar_readalong_styles.html
 ---
 
 The Lord of the Rings Lunar Readalong
