@@ -7,13 +7,16 @@
 <link rel="manifest" href="{{ site.github.url }}/site.webmanifest">
 
 <link rel="stylesheet" type="text/css" href="{{ site.github.url }}/stylesheets/normalize.css" media="screen">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Fondamento" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ site.github.url }}/stylesheets/stylesheet.css" media="screen">
 <link rel="stylesheet" type="text/css" href="{{ site.github.url }}/stylesheets/github-light.css" media="screen">
 
 <% for (var css in htmlWebpackPlugin.files.css) { %>
 <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
 <% } %>
+
+<link rel="stylesheet" type="text/css" href="{{ site.github.url }}/stylesheets/gh-pages-adjust.css" media="screen">
 
 <% for (var chunk in htmlWebpackPlugin.files.js) { %>
 <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[chunk] %>"></script>

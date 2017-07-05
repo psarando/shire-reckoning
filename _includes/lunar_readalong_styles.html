@@ -1,0 +1,34 @@
+<style type="text/css">
+    .main-content > table {
+        overflow: visible;
+        font-size: 1rem;
+    }
+
+    .main-content > table td {
+        vertical-align: top;
+    }
+
+    .main-content > table:nth-last-of-type(1) {
+        font-size: 0.75rem;
+    }
+
+    .main-content > table td:nth-child(1) {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .main-content > table:nth-last-of-type(1) td:nth-child(2) {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .main-content > table:nth-last-of-type(1) td:nth-child(n+3):nth-child(-n+4) {
+        white-space: nowrap;
+    }
+
+    .main-content > table:nth-last-of-type(1) td:nth-child(5) {
+        font-size: 1rem;
+        text-align: right;
+        white-space: nowrap;
+    }
+</style>

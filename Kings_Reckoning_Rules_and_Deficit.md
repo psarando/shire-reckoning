@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Shire Reckoning: The Kings' Reckoning Rules and the Deficit"
+include_extra: deficit_styles.html
 ---
 
 The Kings' Reckoning Rules and the *Deficit*
