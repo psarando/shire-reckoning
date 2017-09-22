@@ -257,7 +257,7 @@ I would consider the following details as canon in this project's simulations:
   was the Elves' New Year on S.R. 1419 (III 3019) Astron 6.
 
 If it was considered canon that the Calendar of Imladris
-[started its reckoning](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar)
+[started its reckoning]({{ site.github.url }}/Rivendell_Drift.html#aligning-the-calendar-of-imladris-to-the-shire-calendar)
 from the first Year of the Sun in the First Age,
 then all the dates and corresponding weekdays of this Calendar of Imladris simulation could be considered canon as well,
 since it follows all the rules exactly as described in Appendix D.
@@ -268,7 +268,7 @@ from about S.R. 1400 (III 3000) until about S.R. 1500 (IV 80).
 So around the end of the Third Age, this appears to fit nicely with Tolkien's statement that Rivendell's Yestarë
 "corresponded more or less with Shire April 6" (Astron 6).
 See the notes on
-[How the Calendar of Imladris drifts apart from the Shire Calendar](Rivendell_Drift.md#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar)
+[How the Calendar of Imladris drifts apart from the Shire Calendar]({{ site.github.url }}/Rivendell_Drift.html#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar)
 for more details on how this works out.
 
 In any case, outside of the one canon year described above,
@@ -318,7 +318,7 @@ Similarly, the `Start reckoning from` dates also include the Gregorian year 0, w
   The current Rivendell year, or coranar ("sun-round"), includes a conversion into the current yén (144 of our years)
   and loa ("growth", equivalent to a coranar).
   These simulations assume the Calendar of Imladris starts reckoning its year 1 from the start of the first Year of the Sun of the First Age
-  (see my notes on [Aligning the Calendar of Imladris to the Shire Calendar](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar)).
+  (see my notes on [Aligning the Calendar of Imladris to the Shire Calendar]({{ site.github.url }}/Rivendell_Drift.html#aligning-the-calendar-of-imladris-to-the-shire-calendar)).
 * **Gondor years**:
   The Gondor calendar is displayed with the appropriate
   [Kings', Stewards', or New Reckoning](https://psarando.github.io/shire-reckoning/#the-3-calendars-of-gondor)

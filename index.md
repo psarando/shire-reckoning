@@ -378,7 +378,7 @@ so that Yestarë will fall on Shire 'April' (or [Astron](#shire-reckoning-notes)
 (i.e. "more or less" on Astron 6).
 
 See the notes on
-[Aligning the Calendar of Imladris to the Shire Calendar](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar)
+[Aligning the Calendar of Imladris to the Shire Calendar]({{ site.github.url }}/Rivendell_Drift.html#aligning-the-calendar-of-imladris-to-the-shire-calendar)
 for more info.
 
 #### Synchronize with Boris Shapiro's "7th Age" Reckoning
@@ -976,7 +976,7 @@ whereas the Calendar of Imladris omits 3 leap-days every 432 years.
 These leap-day rules are close enough that these calendars will stay in sync with each other for a few centuries,
 but due to the differences, these calendars would not stay in sync with each other over longer periods of time.
 Approximately every 1700 years,
-[the 432-year cycle of the Calendar of Imladris will drift a day ahead](Rivendell_Drift.md)
+[the 432-year cycle of the Calendar of Imladris will drift a day ahead]({{ site.github.url }}/Rivendell_Drift.html)
 of the Gregorian calendar's 400-year cycle, and gradually, over the millennia,
 the dates of the Calendar of Imladris will fall on later and later dates in the Gregorian calendar.
 
@@ -991,13 +991,13 @@ on March 22nd, 1 A.D. of the [proleptic Gregorian calendar](https://en.wikipedia
 ### The Drifting of the Calendar of Imladris through Time
 
 For a detailed description on
-[how the Calendar of Imladris drifts apart from the Gregorian calendar](Rivendell_Drift.md#how-the-calendar-of-imladris-drifts-apart-from-the-gregorian-calendar),
-please see the project page titled [The Drifting of the Calendar of Imladris through Time](Rivendell_Drift.md).
+[how the Calendar of Imladris drifts apart from the Gregorian calendar]({{ site.github.url }}/Rivendell_Drift.html#how-the-calendar-of-imladris-drifts-apart-from-the-gregorian-calendar),
+please see the project page titled [The Drifting of the Calendar of Imladris through Time]({{ site.github.url }}/Rivendell_Drift.html).
 
 This page also includes a detailed description on
-[how the Calendar of Imladris drifts apart from the Shire Calendar](Rivendell_Drift.md#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar),
+[how the Calendar of Imladris drifts apart from the Shire Calendar]({{ site.github.url }}/Rivendell_Drift.html#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar),
 and notes on
-[aligning the Calendar of Imladris to the Shire Calendar](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar)
+[aligning the Calendar of Imladris to the Shire Calendar]({{ site.github.url }}/Rivendell_Drift.html#aligning-the-calendar-of-imladris-to-the-shire-calendar)
 around the end of the Third Age.
 
 ### Why March 22nd?
@@ -1093,7 +1093,7 @@ the dates of one calendar will not always fall on the same dates of the other,
 which is why Tolkien said Rivendell New Year's Day "corresponded more or less with Shire April 6" (Astron 6).
 These differences in leap-year rules also means that
 these calendars would not stay in sync over the centuries,
-and [the dates of the Calendar of Imladris would fall on later and later dates in the Shire Calendar](Rivendell_Drift.md#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar)
+and [the dates of the Calendar of Imladris would fall on later and later dates in the Shire Calendar]({{ site.github.url }}/Rivendell_Drift.html#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar)
 (similar to [how the Julian and Gregorian calendars drift apart](https://en.wikipedia.org/wiki/Gregorian_calendar#Difference_between_Gregorian_and_Julian_calendar_dates)).
 So depending on what year the Calendar of Imladris started its reckoning,
 its first New Year's Day could have been much earlier than where Shire Astron 6 would have been in that year.
@@ -1367,11 +1367,11 @@ and around that time
 Due to the difference in leap-day rules between the Calendar of Imladris and the Gregorian calendar,
 these calendars would not stay in sync with each other over long periods of time.
 Approximately every 1700 years,
-[the 432-year cycle of the Calendar of Imladris will drift a day ahead of the Gregorian calendar's 400-year cycle](Rivendell_Drift.md).
+[the 432-year cycle of the Calendar of Imladris will drift a day ahead of the Gregorian calendar's 400-year cycle]({{ site.github.url }}/Rivendell_Drift.html).
 If the Calendar of Imladris started reckoning on a proleptic Gregorian March 21 or 22,
 then after enough millennia Yestarë will have drifted to correspond with March 25.
 
-[If the Calendar of Imladris started reckoning from the first Year of the Sun in the First Age](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar),
+[If the Calendar of Imladris started reckoning from the first Year of the Sun in the First Age]({{ site.github.url }}/Rivendell_Drift.html#aligning-the-calendar-of-imladris-to-the-shire-calendar),
 then the 7049 years from then to the end of the War of the Ring
 (590 Years of the Sun + S.A. 3441 + to the end of T.A. 3018 = 7049)
 would have been enough time for Rivendell New Year's Day (Yestarë) to drift
@@ -1382,7 +1382,7 @@ could be on a March 20th at the start of the Second Age,
 which also allows its New Year's Day in T.A. 3019 to fall on a March 25.
 Reckoning from the start of the Second Age is less likely, though,
 due to the reasons discussed in the notes on
-[Aligning the Calendar of Imladris to the Shire Calendar](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar).
+[Aligning the Calendar of Imladris to the Shire Calendar]({{ site.github.url }}/Rivendell_Drift.html#aligning-the-calendar-of-imladris-to-the-shire-calendar).
 
 In a previous revision of these notes, I had naively
 [set the Gregorian year in this calendar to 7050](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-rivendell-calendar-possible-historic-calendars--for-select-years-in-middle-earth-history)
@@ -1502,7 +1502,7 @@ Likewise, some may wish to always observe the Elves' New Year's Day (Yestarë) o
 since that's the traditional date as observed by the Hobbits in the Fourth Age.
 
 For those who would like to simulate
-[how I think the Calendar of Imladris related to the Shire Calendar at the end of the Third Age](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar),
+[how I think the Calendar of Imladris related to the Shire Calendar at the end of the Third Age]({{ site.github.url }}/Rivendell_Drift.html#aligning-the-calendar-of-imladris-to-the-shire-calendar),
 set the [Rivendell Calendar Synchronization Settings](#rivendell-calendar-synchronization-settings) to
 [Synchronize Yestarë with Shire 'April' 6, "more or less"](#synchronize-yestarë-with-shire-april-6-more-or-less).
 
@@ -1587,7 +1587,7 @@ which fall on (or very close to) the
 * [sym454.org/seasons](http://www.sym454.org/seasons/):
   Provides an in-depth graphical analysis of how the lengths of the seasons change over time.
 
-# Shire Reckoning for Other Calendar Apps: [shire-reckoning.ics](shire-reckoning.ics)
+# Shire Reckoning for Other Calendar Apps: [shire-reckoning.ics]({{ site.github.url }}/shire-reckoning.ics)
 
 This project's library also exports the base calendar functions for
 `ShireReckoning`, `RivendellReckoning`, and `GondorReckoning`
@@ -1597,11 +1597,11 @@ For example, see the [Shire Reckoning iCalendar Creator](https://psarando.github
 under the [examples directory](https://psarando.github.io/shire-reckoning/examples/),
 which can print iCalendar formatted dates with corresponding Shire Reckoning dates,
 which can then be saved as an *.ics* file
-(such as the [shire-reckoning.ics](shire-reckoning.ics) file included in this repo)
+(such as the [shire-reckoning.ics]({{ site.github.url }}/shire-reckoning.ics) file included in this repo)
 then imported into a calendaring program, such as Google Calendar or Apple's iCal.
 
 * *Hint for Google Calendar users*: you probably want to create a new, empty calendar
-(it could be named "Shire Reckoning"), then import the [shire-reckoning.ics](shire-reckoning.ics)
+(it could be named "Shire Reckoning"), then import the [shire-reckoning.ics]({{ site.github.url }}/shire-reckoning.ics)
 events into that calendar.
 This way you can easily hide all these events,
 or delete this new calendar to remove all the events at once,
