@@ -478,7 +478,8 @@ Shapiro focuses on 2 clues from Appendix D for determining this starting date of
       (the year the One Ring was destroyed).
 
 So Shapiro concludes that if Shire Afteryule 9 was January 1, then Shire Astron 6 was March 29
-(and Shire New Year's Day was [December 23](#reckoning-start-dates));
+(to see this for yourself,
+[set the Shire Calendar to start reckoning from December 23 and the Gregorian Date to March 29 in a non-leap-year](https://psarando.github.io/shire-reckoning/#tolkien-calendars));
 and if Rivendell New Year's Day was Shire Astron 6, then Rivendell New Year's Day was also March 29.
 
 Note that Shapiro begins reckoning the Calendar of Imladris from 1 A.D.
@@ -490,7 +491,7 @@ on year 1 of the [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Pr
 to make it easier to compare how the Calendar of Imladris relates to our modern Gregorian calendar.
 
 Regardless of why we start reckoning from 1 A.D.,
-I still don't believe March 29 is a proper starting date for observing the Calendar of Imladris in modern times.
+should March 29 be considered a "proper" starting date for observing the Calendar of Imladris in modern times?
 
 First, I think when Tolkien stated "our New Year's Day corresponded more or less to the Shire January 9" (Afteryule 9),
 he was making a correspondence between the modern Gregorian January 1 and Shire Afteryule 9,
@@ -514,7 +515,7 @@ its first New Year's Day could have been much earlier than where Shire Astron 6 
 Finally, since Tolkien was so vague with the correspondences between the Rivendell, Shire, and Gregorian calendars,
 I will re-examine the clues Tolkien left us in the Appendices to determine a better
 Gregorian date for Rivendell New Year's Day by the end of the Third Age,
-then attempt to work backwards from there to find a more fitting starting date.
+then attempt to work backwards from there to find a more "proper" starting date.
 
 ##### Rivendell New Year's Day fell on a March 25th by the end of the Third Age
 
@@ -535,7 +536,7 @@ mirrors a similar relationship between the old Julian calendar and the modern Gr
   [was the start of the legal year in England](https://en.wikipedia.org/wiki/Gregorian_calendar#Beginning_of_the_year)
   (also known as [Lady Day](https://en.wikipedia.org/wiki/Lady_Day#Non-religious_significance))
   before the adoption of the Gregorian calendar in 1752,
-  which converted to Gregorian April 5 at that time.
+  and Julian March 25 converted to Gregorian April 5 at that time.
   Then the Julian March 25 corresponded to Gregorian April 6 in the year 1800
   (when the Gregorian calendar omitted its leap-day but the Julian calendar did not),
   and [April 6 is still the start of the United Kingdom's tax year to this day](https://en.wikipedia.org/wiki/Quarter_days#In_England).
@@ -552,12 +553,12 @@ I'll examine the following details given by Tolkien in *The Lord of the Rings* A
       lists the Elves' New Year's Day precisely on Astron 6 in the Third Age 3019
       (the year the One Ring was destroyed).
 3. The correlations of the New Reckoning dates with the Kings' and Shire Reckoning dates imply these
-   calendars were in sync by the Third Age 3019:
+   calendars were in sync by T.A. 3019:
     * "March 25, the date of the downfall of Barad-dûr... was, however, March 25 in both Kings' and Stewards' Reckoning."
     * In other words, Shire Rethe 25 = Kings'/Stewards' Reckoning Súlimë 25 = New Reckoning New Year's Day (Yestarë).
 4. The details of the Kings' Reckoning leap-day rules make it possible to calculate that this
    calendar drifted 3 days behind a [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
-   over the 6460 year period from the start of the Second Age to the start of the Third Age 3019,
+   over the 6460 year period from the start of the Second Age to the start of T.A. 3019,
    which implies the Shire Calendar was also 3 days behind this hypothetical Gregorian calendar at the start of T.A. 3019.
 
 When Tolkien stated "our New Year's Day corresponded more or less to the Shire January 9" (Afteryule 9),
@@ -609,7 +610,7 @@ but Tolkien detailed additional (leap-day) adjustments to the calendars of Gondo
         * Gregorian: `6456/4 - 6400/100 + 6400/400 = 1566 leap-days`
         * Gondor: `(3440/4 - 3400/100 + 2*3000/1000) + (3016/4 - 3000/100 + 2*2000/1000 + 2 + 1) = 1563 leap-days`
 
-3. Tolkien implied in the first publication of The Lord of the Rings
+3. Tolkien implied in the first publication of *The Lord of the Rings*
 that the Shire Calendar had incorporated these millennial adjustments as well,
 suggesting how the Shire Calendar stayed in sync with the Stewards' Reckoning calendar
 by the end of the Third Age:
@@ -772,7 +773,7 @@ and its leap-day in 589 B.C.E. will re-sync it with the seasons and this Calenda
 ([see it in action on the Middle-earth simulation page](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)).
 
 So for these reasons, in addition to those [given at the beginning of these Rivendell Reckoning notes](#why-march-22nd),
-I have settled on March 22 as the default date for the first Yestarë of this project's Calendar of Imladris.
+I have settled on March 22 as the more "seasonally appropriate" date for the first Yestarë of this project's Calendar of Imladris.
 
 ###### First Day of the Kings' Reckoning
 
@@ -877,7 +878,8 @@ which fall on (or very close to) the
 * [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html)
 * [A Tolkien Calendar: Part 1 | Miruvor](https://taruithornmiruvor.wordpress.com/2015/05/24/a-tolkien-calendar-part-1/#attachment_143):
   Joe Bartram's article on the history of Middle-earth calendars,
-  including an excellent chart of the "evolution and divergence of calendar systems in Middle Earth".
+  including an excellent chart of the "evolution and divergence of calendar systems in Middle Earth"
+  (though I will point out the minor correction that Hador the Steward added an extra day to T.A. 2360, not 2160).
 * [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html)
 * [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar)
 * [Wikipedia article on the Coligny calendar](https://en.wikipedia.org/wiki/Coligny_calendar):

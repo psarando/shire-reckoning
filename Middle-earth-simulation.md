@@ -81,7 +81,9 @@ so I will do my best in this section to summarize what could be considered canon
 and in the following sections I will explain how I had to fill in the gaps with my own estimations to make these
 simulations possible.
 
-First I want to emphasize that none of the corresponding Gregorian dates in any of the
+#### First some Caveats
+
+I want to emphasize that none of the corresponding Gregorian dates in any of the
 [synchronization schemes](#synchronize-settings) can be considered canon.
 Tolkien never attempted to fix these stories to a specific period in our actual history.
 He only included a rough estimate in his letter #211 that
@@ -116,21 +118,53 @@ So in this section I'm attempting to address questions like the following:
   We don't know, but at least the Rivendell years in these simulations can help track the years elapsed
   since the first Year of the Sun in the First Age vs. Shire-reckoning, Second, Third, and Fourth Age years.
 
-So based on the details given in *The Lord of the Rings* Appendices,
-which I discussed in my [Shire Reckoning Notes](https://psarando.github.io/shire-reckoning/#shire-reckoning-notes)
+#### Now the Minutiae
+
+The following details given in *The Lord of the Rings* Appendices,
+which I also discussed in my [Shire Reckoning Notes](https://psarando.github.io/shire-reckoning/#shire-reckoning-notes)
 and in my [Rivendell Reckoning Notes](https://psarando.github.io/shire-reckoning/#rivendell-reckoning-notes),
-I would consider the following details as canon in these simulations:
+are what I will use to determine what's considered canon:
+
+* Appendix D gives us all of the rules of the calendars of Númenor and Gondor,
+  including all the exceptions to the leap-year and leap-day rules
+  (or [intercalations](https://en.wikipedia.org/wiki/Intercalation_(timekeeping)))
+  throughout the Second and Third Ages, and that "in Númenor calculation started with S.A. 1".
+* Appendix D gives us all of the rules of the Shire Calendar,
+  with no exceptions mentioned after the time [Shire-reform](#shire-reform) was enacted and throughout the Third Age.
+* Appendix D gives us all of the rules of the Calendar of Imladris,
+  and Appendix B tells us the Elves' New Year's Day in III 3019 was on Astron 6.
+* In III 3019, Shire
+  "March 25, the date of the downfall of Barad-dûr... was, however, March 25 in both Kings' and Stewards' Reckoning."
+* "The New Reckoning was begun in the restored Kingdom in T.A. 3019",
+  and its New Year's Day was 'March' 25 of the Shire, Kings', and Stewards' Reckoning calendars.
+
+So based on these details, I would consider the following details as canon in this project's simulations:
 
 * None of the corresponding Gregorian dates.
 * As far as I know, the years and dates of events in the [`Dates of Interest`](#dates-of-interest) list are canon,
-  unless marked with a `?` (also note [the exception to the specific dates in Iys 495](#dates-of-interest)).
+  unless marked with a `?` or a `c.` ([circa](https://en.wikipedia.org/wiki/Circa)),
+  though some events were already marked with a `c.` by Tolkien in Appendix B.
+  Also note [the exception to the specific dates in Iys 495](#dates-of-interest).
 * All of the dates in all the years of the Kings' and Stewards' Reckoning
   (with the exception of the [corresponding weekdays](#gondor-week-days)).
   Tolkien provided thorough details about the history of the calendars of Númenor and Gondor,
-  including all the exceptions to the leap-year and leap-day rules
-  (or [intercalations](https://en.wikipedia.org/wiki/Intercalation_(timekeeping)))
-  throughout its history in the Second and Third Ages.
+  including all of the exceptions throughout their history in the Second and Third Ages.
   So these calendars can be considered the most accurate for the longest period of time in these simulations.
+* The Bree or Shire-reckoning year corresponding to the Gondor calendar years
+  (see the [next section](#shire-gondor-and-rivendell-reckoning-years) about years that are negative or 0).
+* The Shire Calendar dates from S.R. 1122 through S.R. 1500 Mid-year's Day,
+  and the corresponding Stewards' Reckoning dates within those years.
+  S.R. 1122 is the last possible year [Shire-reform](#shire-reform) could have been enacted,
+  and also the last likely year [any millennial adjustments may have been incorporated](#millennial-leap-years).
+  I'm considering S.R. 1500 Mid-year's Day the cutoff
+  since [we don't know how leap-years were handled after the Third Age](#leap-years-beyond-the-third-age),
+  though it may be reasonable to assume that the Shire Calendar continued reckoning as it had
+  since S.R. 1122 up to S.R. 2000.
+  Since the [Red Book](https://en.wikipedia.org/wiki/Red_Book_of_Westmarch) was copied in Gondor in S.R. 1592,
+  if there were any exceptions to the Shire Calendar in S.R. 1500 - 92,
+  we might expect there to be a note or mention of it in Appendix D.
+  In any case, Shire Calendar dates in these simulations after S.R. 1500 Mid-year's Day should be accurate to within a day or 2
+  (at least for a few centuries).
 * The New Reckoning from IV 1 Yestarë through IV 80 Yavannië 30,
   and then again from the Middle-days of IV 100 through IV 180 Yavannië 30,
   [repeating this pattern of non-canon dates during the last 20 years of each century](#leap-years-beyond-the-third-age)
@@ -141,19 +175,7 @@ I would consider the following details as canon in these simulations:
   as far back as III 3019 Yestarë (Súlimë 25 old style) by later historians.
   This would be similar to how the Kings' Reckoning began its reckoning from the 1st year of the Second Age
   even though Númenor was not founded until II 32.
-* The Bree or Shire-reckoning year corresponding to the Gondor calendar years
-  (see the [next section](#shire-gondor-and-rivendell-reckoning-years) about years that are negative or 0).
-* The Shire Calendar dates from S.R. 1122 through S.R. 1500 Mid-year's Day,
-  and the corresponding Gondor dates within those years (as described above).
-  S.R. 1122 is the last possible year [Shire-reform](#shire-reform) could have been enacted,
-  and also the last likely year [any millennial adjustments may have been incorporated](#millennial-leap-years).
-  I'm considering S.R. 1500 Mid-year's Day the cutoff
-  since [we don't know how leap-years were handled after the Third Age](#leap-years-beyond-the-third-age),
-  though it may be reasonable to assume that the Shire Calendar continued without
-  [millennial adjustments](#millennial-leap-years) up to S.R. 2000.
-  In any case, Shire Calendar dates after S.R. 1500 Mid-year's Day should be accurate to within a day or 2 in these simulations
-  (at least for a few centuries).
-* The days and "months" of the Calendar of Imladris can only be considered canon during the corresponding Shire Calendar dates
+* The dates of the Calendar of Imladris can only be considered canon during the corresponding Shire Calendar dates
   from S.R. 1418 (III 3018) Winterfilth 4 through S.R. 1419 (III 3019) Winterfilth 6
   (but not the corresponding Rivendell weekdays or year-counts),
   because the only known Calendar of Imladris date given for a corresponding Shire or Gondor date
