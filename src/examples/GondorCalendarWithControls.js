@@ -34,18 +34,21 @@ class GondorCalendarWithControls extends Component {
         let today            = props.date || new Date();
         let monthViewLayout  = props.monthViewLayout || MonthViewLayout.VERTICAL;
         let reckoning        = props.reckoning || GondorCalendar.RECKONING_STEWARDS;
+        let yearView         = !!props.yearView;
 
         let startDay  = props.startDay || 21;
         let startDate = props.startDate || fullYearDate(0, 11, startDay);
 
         let calendar = makeGondorCalendarDates(today, startDate, reckoning, calendarRules);
-        let monthView = props.yearView ? -1 : calendar.todayGondor.month;
+        let monthView = calendar.todayGondor.month;
 
         this.state = {
             calendarControls: calendarControls,
             startDate:        startDate,
             calendar:         calendar,
             today:            today,
+            viewDate:         today,
+            yearView:         yearView,
             monthView:        monthView,
             monthViewLayout:  monthViewLayout,
             reckoning:        reckoning,
@@ -53,9 +56,7 @@ class GondorCalendarWithControls extends Component {
             language:         language
         };
 
-        this.makeCalendarDates       = this.makeCalendarDates.bind(this);
         this.onMonthViewChange       = this.onMonthViewChange.bind(this);
-        this.onViewCalendarMonth     = this.onViewCalendarMonth.bind(this);
         this.onCalendarStartChange   = this.onCalendarStartChange.bind(this);
         this.onStartMonthChange      = this.onStartMonthChange.bind(this);
         this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
@@ -65,6 +66,7 @@ class GondorCalendarWithControls extends Component {
     componentWillReceiveProps(nextProps) {
         let today = nextProps.date || this.state.today;
         let startDate = nextProps.startDate || this.state.startDate;
+        let yearView = nextProps.yearView || this.state.yearView;
 
         let calendar = this.state.calendar;
 
@@ -79,29 +81,34 @@ class GondorCalendarWithControls extends Component {
             calendar = makeGondorCalendarDates(today, startDate, this.state.reckoning, this.state.calendarRules);
         }
 
+        let monthView = calendar.todayGondor.month;
+
         this.setState({
             today:     today,
+            viewDate:  today,
             calendar:  calendar,
             startDate: startDate,
-            monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayGondor.month
-        });
-    }
-
-    makeCalendarDates(today, startDate) {
-        return makeGondorCalendarDates(today, startDate, this.state.reckoning, this.state.calendarRules);
-    }
-
-    onMonthViewChange(calendar, monthView) {
-        this.setState({
-            calendar: calendar,
+            yearView:  yearView,
             monthView: monthView
         });
     }
 
-    onViewCalendarMonth(calendar) {
+    onMonthViewChange(viewDate, monthView, yearView) {
+        let calendar = this.state.calendar;
+
+        if (!datesMatch(this.state.viewDate, viewDate)) {
+            calendar = makeGondorCalendarDates(viewDate,
+                                               this.state.startDate,
+                                               this.state.reckoning,
+                                               this.state.calendarRules);
+            monthView = calendar.todayGondor.month;
+    }
+
         this.setState({
             calendar: calendar,
-            monthView: calendar.todayGondor.month
+            viewDate: viewDate,
+            yearView: yearView,
+            monthView: monthView
         });
     }
 
@@ -151,6 +158,10 @@ class GondorCalendarWithControls extends Component {
             monthNames.push(GondorMonths[i%12][language]);
         }
 
+        let calendar = this.state.calendar;
+        let firstDay = calendar.dates[0].gregorian;
+        let lastDay = calendar.dates[calendar.dates.length - 1].gregorian;
+
         return (
             <tr>
                 <th className='gondor-calendar-controls' >
@@ -169,13 +180,14 @@ class GondorCalendarWithControls extends Component {
                 </th>
                 <th className='gondor-calendar-controls month-picker-container' >
                     <MonthViewPicker monthNames={monthNames}
+                                     firstDay={firstDay}
+                                     lastDay={lastDay}
+                                     thisMonth={calendar.todayGondor.month}
                                      today={this.state.today}
-                                     calendar={this.state.calendar}
-                                     startDate={this.state.startDate}
+                                     viewDate={this.state.viewDate}
                                      monthView={this.state.monthView}
-                                     makeCalendarDates={this.makeCalendarDates}
-                                     onMonthViewChange={this.onMonthViewChange}
-                                     onViewCalendarMonth={this.onViewCalendarMonth} />
+                                     yearView={this.state.yearView}
+                                     onMonthViewChange={this.onMonthViewChange} />
                 </th>
                 <th className='gondor-calendar-controls' >
                     <LanguagePicker language={this.state.language}
@@ -234,7 +246,7 @@ class GondorCalendarWithControls extends Component {
                                 language={this.state.language}
                                 monthViewLayout={this.state.monthViewLayout}
                                 monthView={this.state.monthView}
-                                yearView={this.state.monthView < 0} />
+                                yearView={this.state.yearView} />
                         </td>
                     </tr>
                 </tbody>

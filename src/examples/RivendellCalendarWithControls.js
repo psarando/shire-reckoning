@@ -30,23 +30,24 @@ class RivendellCalendarWithControls extends Component {
         let startDay         = props.startDay || 22;
         let startDate        = props.startDate || fullYearDate(1, 2, startDay);
         let today            = props.date || new Date();
+        let yearView         = !!props.yearView;
 
         let calendar = makeRivendellCalendarDates(today, startDate, calendarRules);
-        let monthView = props.yearView ? -1 : calendar.todayRivendell.month;
+        let monthView = calendar.todayRivendell.month;
 
         this.state = {
             calendarControls: calendarControls,
             calendar:         calendar,
             today:            today,
+            viewDate:         today,
+            yearView:         yearView,
             monthView:        monthView,
             calendarRules:    calendarRules,
             startDate:        startDate,
             language:         language
         };
 
-        this.makeCalendarDates     = this.makeCalendarDates.bind(this);
         this.onMonthViewChange     = this.onMonthViewChange.bind(this);
-        this.onViewCalendarMonth   = this.onViewCalendarMonth.bind(this);
         this.onCalendarStartChange = this.onCalendarStartChange.bind(this);
         this.onCalendarRulesChange = this.onCalendarRulesChange.bind(this);
         this.onLanguageChange      = this.onLanguageChange.bind(this);
@@ -55,6 +56,8 @@ class RivendellCalendarWithControls extends Component {
     componentWillReceiveProps(nextProps) {
         let today = nextProps.date || this.state.today;
         let startDate = nextProps.startDate || this.state.startDate;
+        let yearView = nextProps.yearView || this.state.yearView;
+
         let calendar = this.state.calendar;
 
         if (nextProps.startDay && !nextProps.startDate) {
@@ -68,29 +71,31 @@ class RivendellCalendarWithControls extends Component {
             calendar = makeRivendellCalendarDates(today, startDate, this.state.calendarRules);
         }
 
+        let monthView = calendar.todayRivendell.month;
+
         this.setState({
             today:     today,
+            viewDate:  today,
             calendar:  calendar,
             startDate: startDate,
-            monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayRivendell.month
-        });
-    }
-
-    makeCalendarDates(today, startDate) {
-        return makeRivendellCalendarDates(today, startDate, this.state.calendarRules);
-    }
-
-    onMonthViewChange(calendar, monthView) {
-        this.setState({
-            calendar: calendar,
+            yearView:  yearView,
             monthView: monthView
         });
     }
 
-    onViewCalendarMonth(calendar) {
+    onMonthViewChange(viewDate, monthView, yearView) {
+        let calendar = this.state.calendar;
+
+        if (!datesMatch(this.state.viewDate, viewDate)) {
+            calendar = makeRivendellCalendarDates(viewDate, this.state.startDate, this.state.calendarRules);
+            monthView = calendar.todayRivendell.month;
+    }
+
         this.setState({
             calendar: calendar,
-            monthView: calendar.todayRivendell.month
+            viewDate: viewDate,
+            yearView: yearView,
+            monthView: monthView
         });
     }
 
@@ -127,6 +132,10 @@ class RivendellCalendarWithControls extends Component {
             return month[language];
         });
 
+        let calendar = this.state.calendar;
+        let firstDay = calendar.dates[0].gregorian;
+        let lastDay = calendar.dates[calendar.dates.length - 1].gregorian;
+
         return (
             <tr>
                 <th className='rivendell-calendar-controls'>
@@ -145,13 +154,14 @@ class RivendellCalendarWithControls extends Component {
                 <th className='rivendell-calendar-controls month-picker-container'>
                     <MonthViewPicker monthNames={monthNames}
                                      monthLabel="Season"
+                                     firstDay={firstDay}
+                                     lastDay={lastDay}
+                                     thisMonth={calendar.todayRivendell.month}
                                      today={this.state.today}
-                                     calendar={this.state.calendar}
-                                     startDate={this.state.startDate}
+                                     viewDate={this.state.viewDate}
                                      monthView={this.state.monthView}
-                                     makeCalendarDates={this.makeCalendarDates}
-                                     onMonthViewChange={this.onMonthViewChange}
-                                     onViewCalendarMonth={this.onViewCalendarMonth} />
+                                     yearView={this.state.yearView}
+                                     onMonthViewChange={this.onMonthViewChange} />
                 </th>
                 <th className='rivendell-calendar-controls' >
                     <LanguagePicker language={this.state.language}
@@ -187,7 +197,7 @@ class RivendellCalendarWithControls extends Component {
                                 date={this.state.today}
                                 language={this.state.language}
                                 monthView={this.state.monthView}
-                                yearView={this.state.monthView < 0} />
+                                yearView={this.state.yearView} />
                         </td>
                     </tr>
                 </tbody>

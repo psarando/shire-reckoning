@@ -3,7 +3,6 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from 'react';
-import { datesMatch } from '../../Utils';
 import '../../ui/tolkien-calendars.css';
 
 class MonthViewPicker extends Component {
@@ -18,56 +17,56 @@ class MonthViewPicker extends Component {
     }
 
     onMonthViewChange(event) {
-        this.props.onMonthViewChange(this.props.calendar, parseInt(event.target.value, 10));
+        let month = parseInt(event.target.value, 10);
+
+        let viewDate = this.props.viewDate;
+        let yearView = (month < 0);
+        let monthView = yearView ? this.props.monthView : month;
+
+        this.props.onMonthViewChange(viewDate, monthView, yearView);
     }
 
     onViewThisYear(event) {
-        var today = this.props.today;
-        var calendar = this.props.calendar;
-        if (!datesMatch(today, calendar.today)) {
-            calendar = this.props.makeCalendarDates(today, this.props.startDate);
-        }
+        let viewDate = this.props.today;
+        let month = this.props.thisMonth;
+        let yearView = true;
 
-        this.props.onMonthViewChange(calendar, -1);
+        this.props.onMonthViewChange(viewDate, month, yearView);
     }
 
     onViewThisMonth(event) {
-        var today = this.props.today;
-        var calendar = this.props.calendar;
-        if (!datesMatch(today, calendar.today)) {
-            calendar = this.props.makeCalendarDates(today, this.props.startDate);
-        }
+        let viewDate = this.props.today;
+        let month = this.props.thisMonth;
+        let yearView = false;
 
-        this.props.onViewCalendarMonth(calendar);
+        this.props.onMonthViewChange(viewDate, month, yearView);
     }
 
     prevMonthView() {
-        var month = this.props.monthView;
-        var yearView = (month === -1);
-        var calendar = this.props.calendar;
+        let viewDate = this.props.viewDate;
+        let month = this.props.monthView;
+        let yearView = this.props.yearView;
 
         if (!yearView) {
             month--;
         }
 
-        if (month < 0) {
+        if (yearView || month < 0) {
             month = yearView ? month : this.props.monthNames.length - 1;
 
             // View the calendar for the previous year
-            var viewDate = calendar.dates[0].gregorian;
+            viewDate = new Date(this.props.firstDay);
             // add a buffer to the view date so the month doesn't change when startDate changes
             viewDate.setDate(viewDate.getDate() - 15);
-
-            calendar = this.props.makeCalendarDates(viewDate, this.props.startDate);
         }
 
-        this.props.onMonthViewChange(calendar, month);
+        this.props.onMonthViewChange(viewDate, month, yearView);
     }
 
     nextMonthView() {
-        var month = this.props.monthView;
-        var yearView = (month === -1);
-        var calendar = this.props.calendar;
+        let viewDate = this.props.viewDate;
+        let month = this.props.monthView;
+        let yearView = this.props.yearView;
 
         if (!yearView) {
             month++;
@@ -77,18 +76,17 @@ class MonthViewPicker extends Component {
             month = yearView ? month : 0;
 
             // View the calendar for the next year
-            var viewDate = calendar.dates[calendar.dates.length - 1].gregorian;
+            viewDate = new Date(this.props.lastDay);
             // add a buffer to the view date so the month doesn't change when startDate changes
             viewDate.setDate(viewDate.getDate() + 15);
-
-            calendar = this.props.makeCalendarDates(viewDate, this.props.startDate);
         }
 
-        this.props.onMonthViewChange(calendar, month);
+        this.props.onMonthViewChange(viewDate, month, yearView);
     }
 
     render() {
         let monthLabel = (this.props.monthLabel || "Month");
+        let monthView = this.props.yearView ? -1 : this.props.monthView;
 
         return (
             <table className="month-picker" >
@@ -114,7 +112,7 @@ class MonthViewPicker extends Component {
                     <td>
                         <select ref='monthViewSelect'
                                 className="month-view-select"
-                                value={this.props.monthView}
+                                value={monthView}
                                 onChange={this.onMonthViewChange} >
                             <option value="-1">Year Calendar</option>
                             {this.props.monthNames.map(function (month, i) {
