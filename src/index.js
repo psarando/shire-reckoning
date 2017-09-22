@@ -9,6 +9,7 @@ import RivendellCalendar from './ui/RivendellCalendar';
 import RivendellCalendarExample from './examples/RivendellCalendars';
 import GondorCalendar from './ui/GondorCalendar';
 import GondorCalendarExample from './examples/GondorCalendars';
+import ICalendarGenerator from './examples/ICalendarGenerator';
 
 const renderTolkienCalendarsExample = (elementID) => {
     ReactDOM.render(
@@ -66,6 +67,13 @@ const renderGondorCalendarExample = (elementID) => {
     );
 };
 
+const renderICalendarGenerator = (elementID) => {
+    ReactDOM.render(
+        <ICalendarGenerator />,
+        document.getElementById(elementID)
+    );
+};
+
 export {
     renderTolkienCalendarsExample,
     renderSimulatedTolkienCalendars,
@@ -74,5 +82,6 @@ export {
     renderRivendellCalendar,
     renderRivendellCalendarExample,
     renderGondorCalendar,
-    renderGondorCalendarExample
+    renderGondorCalendarExample,
+    renderICalendarGenerator
 };

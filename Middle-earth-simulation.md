@@ -151,6 +151,22 @@ In any case, outside of that one cannon year, it should still be accurate to wit
 when compared to the dates of the Gondor calendar in the Second and Third Ages,
 and when compared to the dates of the Shire Calendar around the end of the Third Age.
 
+Also note that even when we know a date in all 3 calendars can be considered cannon,
+those calendar dates only match up that way during the daylight hours of that day;
+because Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
+the Elves reckoned their dates from sunset to sunset,
+and it's implied that the Hobbits reckoned their dates from midnight to midnight (as we do in modern times).
+
+For example, Appendix B tells us that the date the camp under Weathertop was attacked
+and Frodo was wounded by the Witch-king was S.R. 1418 (III 3018) Winterfilth 6.
+From the story we know that Strider and the hobbits arrived at Weathertop during the day, the attack happened at night,
+and Strider attempted to treat Frodo's wound with Kingsfoil just before sunrise.
+So we know when they reached Weathertop on that day that it was Narquelië 6 by the Stewards' Reckoning in Gondor
+and it was the last Enderë of the year in the Calendar of Imladris.
+Since the Elves reckon the next date after sunset, then when Frodo was wounded it was already considered Quellë 1.
+Since Strider came back with Kingsfoil after midnight but before sunrise,
+then it was already Winterfilth 7 by Shire Reckoning but it was still considered Narquelië 6 by the Stewards' Reckoning in Gondor.
+
 ### Shire, Gondor, and Rivendell Reckoning years
 
 The top of each calendar displays a year appropriate to each reckoning,

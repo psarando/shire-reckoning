@@ -44,6 +44,8 @@ module.exports = {
   gondorOutput: 'examples/gondor-calendars.html',
   simulatedHtml: resolveApp('public/examples/simulated.html'),
   simulatedOutput: 'examples/simulated.html',
+  shireICalHtml: resolveApp('public/examples/shire-icalendar.html'),
+  shireICalOutput: 'examples/shire-icalendar.html',
   appIndexJs: resolveApp('src/index.js'),
   libIndexJs: resolveApp('src/lib.js'),
   appPackageJson: resolveApp('package.json'),

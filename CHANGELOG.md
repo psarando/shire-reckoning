@@ -1,3 +1,10 @@
+## 3.1.0 (2017-09-22)
+
+* Replaced the `shire-icalendar.clj` script with a
+  [JSX example](https://psarando.github.io/shire-reckoning/examples/shire-icalendar.html)
+  that uses the `ShireReckoning` library exports.
+  So now this project is all JS.
+
 ## 3.0.0 (2017-09-22)
 
 * **BREAKING:** The calendar controls (for picking months, languages, etc.) are no longer exported by this library,

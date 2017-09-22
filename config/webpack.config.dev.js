@@ -205,6 +205,11 @@ module.exports = {
       template: paths.simulatedHtml,
       filename: paths.simulatedOutput
     }),
+    new HtmlWebpackPlugin({
+      inject: 'head',
+      template: paths.shireICalHtml,
+      filename: paths.shireICalOutput
+    }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env),
