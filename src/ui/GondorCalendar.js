@@ -12,7 +12,6 @@ import {
     RECKONING_RULES_GREGORIAN,
     GondorWeekdays,
     GondorMonths,
-    convertGondorianMonthIndex,
     makeGondorCalendarDates
 } from '../GondorReckoning';
 
@@ -23,10 +22,17 @@ import IntercalaryDay from './IntercalaryDay';
 import WeekDayHeaderCell, { addMonthFiller, addVerticalMonthFiller } from './WeekDayHeaderCell';
 import './tolkien-calendars.css';
 
-import LanguagePicker from './controls/LanguagePicker';
-import MonthViewLayout, { VerticalLayoutFiller } from './controls/MonthViewLayout';
-import MonthViewPicker from './controls/MonthViewPicker';
-import StartDatePicker from './controls/StartDatePicker';
+import {
+    ENGLISH,
+    QUENYA,
+    SINDARIN
+} from './controls/LanguagePicker';
+
+import {
+    VerticalLayoutFiller,
+    VERTICAL,
+    HORIZONTAL
+} from './controls/MonthViewLayout';
 
 class GondorCalendar extends Component {
     static get RECKONING_KINGS() { return RECKONING_KINGS;}
@@ -36,47 +42,40 @@ class GondorCalendar extends Component {
     static get RECKONING_RULES_TRADITIONAL() { return RECKONING_RULES_TRADITIONAL; }
     static get RECKONING_RULES_GREGORIAN() { return RECKONING_RULES_GREGORIAN; }
 
-    static get MONTH_VIEW_VERTICAL() { return MonthViewLayout.VERTICAL; }
-    static get MONTH_VIEW_HORIZONTAL() { return MonthViewLayout.HORIZONTAL; }
+    static get MONTH_VIEW_VERTICAL() { return VERTICAL; }
+    static get MONTH_VIEW_HORIZONTAL() { return HORIZONTAL; }
 
-    static get LANGUAGE_ENGLISH() { return LanguagePicker.ENGLISH; }
-    static get LANGUAGE_QUENYA() { return LanguagePicker.QUENYA; }
-    static get LANGUAGE_SINDARIN() { return LanguagePicker.SINDARIN; }
+    static get LANGUAGE_ENGLISH() { return ENGLISH; }
+    static get LANGUAGE_QUENYA() { return QUENYA; }
+    static get LANGUAGE_SINDARIN() { return SINDARIN; }
 
     constructor(props) {
         super(props);
 
-        let calendarControls = props.calendarControls !== false;
-        let language = props.language || LanguagePicker.QUENYA;
+        let language = props.language || QUENYA;
         let calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
         let today = props.date || new Date();
-        let monthViewLayout = props.monthViewLayout || MonthViewLayout.VERTICAL;
+        let monthViewLayout = props.monthViewLayout || VERTICAL;
         let reckoning = props.reckoning || RECKONING_STEWARDS;
 
         let startDay = props.startDay || 21;
         let startDate = props.startDate || fullYearDate(0, 11, startDay);
-        let calendar = makeGondorCalendarDates(today, startDate, reckoning, calendarRules);
-        let monthView = props.yearView ? -1 : calendar.todayGondor.month;
+
+        let calendar = props.calendar || makeGondorCalendarDates(today, startDate, reckoning, calendarRules);
+        let monthView = props.monthView === undefined ? calendar.todayGondor.month : props.monthView;
+        let yearView = !!props.yearView;
 
         this.state = {
-            calendarControls: calendarControls,
             startDate: startDate,
             calendar: calendar,
             today: today,
+            yearView: yearView,
             monthView: monthView,
             monthViewLayout: monthViewLayout,
             reckoning: reckoning,
             calendarRules: calendarRules,
             language: language
         };
-
-        this.makeCalendarDates       = this.makeCalendarDates.bind(this);
-        this.onMonthViewChange       = this.onMonthViewChange.bind(this);
-        this.onViewCalendarMonth     = this.onViewCalendarMonth.bind(this);
-        this.onCalendarStartChange   = this.onCalendarStartChange.bind(this);
-        this.onStartMonthChange      = this.onStartMonthChange.bind(this);
-        this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
-        this.onLanguageChange        = this.onLanguageChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -86,18 +85,27 @@ class GondorCalendar extends Component {
         let reckoning = nextProps.reckoning || this.state.reckoning;
         let monthViewLayout = nextProps.monthViewLayout || this.state.monthViewLayout;
         let calendarRules = nextProps.calendarRules || this.state.calendarRules;
+        let yearView = nextProps.yearView === undefined ? this.state.yearView : nextProps.yearView;
+
         let calendar = this.state.calendar;
+        let monthView = this.state.monthView;
 
         if (nextProps.startDay && !nextProps.startDate) {
             startDate = new Date(startDate);
             startDate.setDate(nextProps.startDay);
         }
 
-        if (!datesMatch(startDate, this.state.startDate) ||
+        if (nextProps.calendar) {
+            calendar = nextProps.calendar;
+        } else if (calendarRules !== this.state.calendarRules ||
+            !datesMatch(startDate, this.state.startDate) ||
             !datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
             calendar = makeGondorCalendarDates(today, startDate, reckoning, calendarRules);
+            monthView = calendar.todayGondor.month;
         }
+
+        monthView = nextProps.monthView === undefined ? monthView : nextProps.monthView;
 
         this.setState({
             today: today,
@@ -107,63 +115,9 @@ class GondorCalendar extends Component {
             reckoning: reckoning,
             startDate: startDate,
             monthViewLayout: monthViewLayout,
-            monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayGondor.month
+            monthView: monthView,
+            yearView: yearView
         });
-    }
-
-    makeCalendarDates(today, startDate) {
-        return makeGondorCalendarDates(today, startDate, this.state.reckoning, this.state.calendarRules);
-    }
-
-    onMonthViewChange(calendar, monthView) {
-        this.setState({
-            calendar: calendar,
-            monthView: monthView
-        });
-    }
-
-    onViewCalendarMonth(calendar) {
-        this.setState({
-            calendar: calendar,
-            monthView: calendar.todayGondor.month
-        });
-    }
-
-    onCalendarStartChange(startDate) {
-        let calendar = makeGondorCalendarDates(this.state.calendar.today,
-                                               startDate,
-                                               this.state.reckoning,
-                                               this.state.calendarRules);
-
-        this.setState({
-            startDate: startDate,
-            calendar: calendar
-        });
-    }
-
-    onStartMonthChange(event) {
-        let reckoning = event.target.value;
-        let calendar = makeGondorCalendarDates(this.state.calendar.today,
-                                               this.state.startDate,
-                                               reckoning,
-                                               this.state.calendarRules);
-        let monthView = convertGondorianMonthIndex(this.state.reckoning,
-                                                   reckoning,
-                                                   this.state.monthView);
-
-        this.setState({
-            calendar: calendar,
-            monthView: this.state.monthView < 0 ? -1 : monthView,
-            reckoning: reckoning
-        });
-    }
-
-    onMonthViewLayoutChange(event) {
-        this.setState({monthViewLayout: event.target.value});
-    }
-
-    onLanguageChange(event) {
-        this.setState({language: event.target.value});
     }
 
     renderDay(date, today) {
@@ -180,7 +134,7 @@ class GondorCalendar extends Component {
             case "Yestarë":
                 return (
                     <IntercalaryDay key="GondorianNewYear"
-                                    name={language === LanguagePicker.ENGLISH ? "First Day" : "Yestarë"}
+                                    name={language === ENGLISH ? "First Day" : "Yestarë"}
                                     description={reckoningDesc + " New Year's Day!"}
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -189,7 +143,7 @@ class GondorCalendar extends Component {
             case "Tuilérë":
                 return (
                     <IntercalaryDay key="Stewards-Midspring"
-                                    name={language === LanguagePicker.ENGLISH ? "Spring-day" : "Tuilérë"}
+                                    name={language === ENGLISH ? "Spring-day" : "Tuilérë"}
                                     description="Stewards' Midspring Day"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -198,7 +152,7 @@ class GondorCalendar extends Component {
             case "Cormarë":
                 return (
                     <IntercalaryDay key={"Gondorian-Leapday" + date.weekDay}
-                                    name={language === LanguagePicker.ENGLISH ? "Ringday" : "Cormarë"}
+                                    name={language === ENGLISH ? "Ringday" : "Cormarë"}
                                     description="Ring-bearer's Day"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -207,7 +161,7 @@ class GondorCalendar extends Component {
             case "Loëndë":
                 return (
                     <IntercalaryDay key={"Gondorian-Midyear" + date.weekDay}
-                                    name={language === LanguagePicker.ENGLISH ? "Midyear's Day" : "Loëndë"}
+                                    name={language === ENGLISH ? "Midyear's Day" : "Loëndë"}
                                     description="Midyear's Day"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -216,7 +170,7 @@ class GondorCalendar extends Component {
             case "Enderë":
                 return (
                     <IntercalaryDay key={"GondorianMiddleday-" + date.weekDay}
-                                    name={language === LanguagePicker.ENGLISH ? "Middleday" : "Enderë"}
+                                    name={language === ENGLISH ? "Middleday" : "Enderë"}
                                     description="Middleday"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -225,7 +179,7 @@ class GondorCalendar extends Component {
             case "Yáviérë":
                 return (
                     <IntercalaryDay key={"Stewards-Midautumn"}
-                                    name={language === LanguagePicker.ENGLISH ? "Autumn-day" : "Yáviérë"}
+                                    name={language === ENGLISH ? "Autumn-day" : "Yáviérë"}
                                     description="Stewards' Midautumn Day"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -234,7 +188,7 @@ class GondorCalendar extends Component {
             case "Mettarë":
                 return (
                     <IntercalaryDay key="GondorianNewYearsEve"
-                                    name={language === LanguagePicker.ENGLISH ? "Last Day" : "Mettarë"}
+                                    name={language === ENGLISH ? "Last Day" : "Mettarë"}
                                     description={reckoningDesc + " New Year's Eve!"}
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -272,10 +226,10 @@ class GondorCalendar extends Component {
             // seek ahead to current month view
         }
 
-        addMonthFiller(week, dates[i].weekDay);
+        addMonthFiller(week, date.weekDay);
 
         for (;
-            i < dates.length && (monthView < 0 || monthView === dates[i].month);
+            i < dates.length && monthView === date.month;
             i++, date = dates[i]) {
             week.push(this.renderDay(date, today));
 
@@ -346,10 +300,10 @@ class GondorCalendar extends Component {
             // seek ahead to current month view
         }
 
-        addVerticalMonthFiller(weeks, dates[i].weekDay);
+        addVerticalMonthFiller(weeks, date.weekDay);
 
         for (;
-            i < dates.length && (monthView < 0 || monthView === dates[i].month);
+            i < dates.length && monthView === date.month;
             i++, date = dates[i]) {
             weeks[date.weekDay].push(this.renderDay(date, today));
         }
@@ -425,53 +379,6 @@ class GondorCalendar extends Component {
         return weeks;
     }
 
-    renderCalendarControls() {
-        let reckoning = this.state.reckoning;
-        let startMonth = reckoning === RECKONING_NEW ? 3 : 0;
-        let language = this.state.language;
-        let monthNames = [];
-        for (let i = startMonth; i < (GondorMonths.length + startMonth); i++) {
-            monthNames.push(GondorMonths[i%12][language]);
-        }
-
-        return (
-            <tr>
-                <td colSpan='2' className='gondor-calendar-controls' >
-                    <StartDatePicker month="December"
-                                     startRange={18}
-                                     endRange={25}
-                                     startDate={this.state.startDate}
-                                     onCalendarStartChange={this.onCalendarStartChange} />
-                    <select className="gondor-rules-select"
-                            value={reckoning}
-                            onChange={this.onStartMonthChange} >
-                        <option value={RECKONING_KINGS}>Kings' Reckoning</option>
-                        <option value={RECKONING_STEWARDS}>Stewards' Reckoning</option>
-                        <option value={RECKONING_NEW}>New Reckoning</option>
-                    </select>
-                </td>
-                <td colSpan='3' className='gondor-calendar-controls month-picker-container' >
-                    <MonthViewPicker monthNames={monthNames}
-                                     today={this.state.today}
-                                     calendar={this.state.calendar}
-                                     startDate={this.state.startDate}
-                                     monthView={this.state.monthView}
-                                     makeCalendarDates={this.makeCalendarDates}
-                                     onMonthViewChange={this.onMonthViewChange}
-                                     onViewCalendarMonth={this.onViewCalendarMonth} />
-                </td>
-                <td className='gondor-calendar-controls' >
-                    <LanguagePicker language={this.state.language}
-                                    onLanguageChange={this.onLanguageChange} />
-                </td>
-                <td className='gondor-calendar-controls' >
-                    <MonthViewLayout layout={this.state.monthViewLayout}
-                                     onMonthViewLayoutChange={this.onMonthViewLayoutChange} />
-                </td>
-            </tr>
-        );
-    }
-
     render() {
         let language = this.state.language;
         let weekDayHeader = (
@@ -488,16 +395,14 @@ class GondorCalendar extends Component {
         );
 
         let weeks;
-        if (this.state.monthView < 0) {
+        if (this.state.yearView) {
             weeks = this.renderYear();
-        } else if (this.state.monthViewLayout === MonthViewLayout.VERTICAL) {
+        } else if (this.state.monthViewLayout === VERTICAL) {
             weeks = this.renderMonthVertical();
             weekDayHeader = <VerticalLayoutFiller weekdays={GondorWeekdays} />;
         } else {
             weeks = this.renderMonth();
         }
-
-        let controls = this.state.calendarControls ? this.renderCalendarControls() : null;
 
         let caption = null;
         if (this.props.caption) {
@@ -528,7 +433,6 @@ class GondorCalendar extends Component {
             <table className={this.props.className} >
                 {caption}
                 <thead>
-                    {controls}
                     {weekDayHeader}
                 </thead>
                 <tbody>

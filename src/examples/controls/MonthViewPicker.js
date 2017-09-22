@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import { datesMatch } from '../../Utils';
-import '../tolkien-calendars.css';
+import '../../ui/tolkien-calendars.css';
 
 class MonthViewPicker extends Component {
     constructor(props) {

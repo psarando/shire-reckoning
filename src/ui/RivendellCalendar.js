@@ -19,47 +19,42 @@ import IntercalaryDay from './IntercalaryDay';
 import WeekDayHeaderCell, { addMonthFiller } from './WeekDayHeaderCell';
 import './tolkien-calendars.css';
 
-import LanguagePicker from './controls/LanguagePicker';
-import MonthViewPicker from './controls/MonthViewPicker';
-import StartDatePicker from './controls/StartDatePicker';
+import {
+    ENGLISH,
+    QUENYA,
+    SINDARIN
+} from './controls/LanguagePicker';
 
 class RivendellCalendar extends Component {
     static get TRADITIONAL_RULES() { return TRADITIONAL_RULES; }
     static get REFORMED_RULES() { return REFORMED_RULES; }
 
-    static get LANGUAGE_ENGLISH() { return LanguagePicker.ENGLISH; }
-    static get LANGUAGE_QUENYA() { return LanguagePicker.QUENYA; }
-    static get LANGUAGE_SINDARIN() { return LanguagePicker.SINDARIN; }
+    static get LANGUAGE_ENGLISH() { return ENGLISH; }
+    static get LANGUAGE_QUENYA() { return QUENYA; }
+    static get LANGUAGE_SINDARIN() { return SINDARIN; }
 
     constructor(props) {
         super(props);
 
-        let calendarControls = props.calendarControls !== false;
-        let language = props.language || LanguagePicker.QUENYA;
+        let language = props.language || QUENYA;
         let calendarRules = props.calendarRules || TRADITIONAL_RULES;
         let startDay = props.startDay || 22;
         let startDate = props.startDate || fullYearDate(1, 2, startDay);
         let today = props.date || new Date();
 
-        let calendar = makeRivendellCalendarDates(today, startDate, calendarRules);
-        let monthView = props.yearView ? -1 : calendar.todayRivendell.month;
+        let calendar = props.calendar || makeRivendellCalendarDates(today, startDate, calendarRules);
+        let monthView = props.monthView === undefined ? calendar.todayRivendell.month : props.monthView;
+        let yearView = !!props.yearView;
 
         this.state = {
-            calendarControls: calendarControls,
             calendar: calendar,
             today: today,
+            yearView: yearView,
             monthView: monthView,
             calendarRules: calendarRules,
             startDate: startDate,
             language: language
         };
-
-        this.makeCalendarDates     = this.makeCalendarDates.bind(this);
-        this.onMonthViewChange     = this.onMonthViewChange.bind(this);
-        this.onViewCalendarMonth   = this.onViewCalendarMonth.bind(this);
-        this.onCalendarStartChange = this.onCalendarStartChange.bind(this);
-        this.onCalendarRulesChange = this.onCalendarRulesChange.bind(this);
-        this.onLanguageChange      = this.onLanguageChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -67,18 +62,27 @@ class RivendellCalendar extends Component {
         let startDate = nextProps.startDate || this.state.startDate;
         let language = nextProps.language || this.state.language;
         let calendarRules = nextProps.calendarRules || this.state.calendarRules;
+        let yearView = nextProps.yearView === undefined ? this.state.yearView : nextProps.yearView;
+
         let calendar = this.state.calendar;
+        let monthView = this.state.monthView;
 
         if (nextProps.startDay && !nextProps.startDate) {
             startDate = new Date(startDate);
             startDate.setDate(nextProps.startDay);
         }
 
-        if (!datesMatch(startDate, this.state.startDate) ||
+        if (nextProps.calendar) {
+            calendar = nextProps.calendar;
+        } else if (calendarRules !== this.state.calendarRules ||
+            !datesMatch(startDate, this.state.startDate) ||
             !datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
             calendar = makeRivendellCalendarDates(today, startDate, calendarRules);
+            monthView = calendar.todayRivendell.month;
         }
+
+        monthView = nextProps.monthView === undefined ? monthView : nextProps.monthView;
 
         this.setState({
             today: today,
@@ -86,53 +90,9 @@ class RivendellCalendar extends Component {
             calendarRules: calendarRules,
             startDate: startDate,
             language: language,
-            monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayRivendell.month
+            monthView: monthView,
+            yearView: yearView
         });
-    }
-
-    makeCalendarDates(today, startDate) {
-        return makeRivendellCalendarDates(today, startDate, this.state.calendarRules);
-    }
-
-    onMonthViewChange(calendar, monthView) {
-        this.setState({
-            calendar: calendar,
-            monthView: monthView
-        });
-    }
-
-    onViewCalendarMonth(calendar) {
-        this.setState({
-            calendar: calendar,
-            monthView: calendar.todayRivendell.month
-        });
-    }
-
-    onCalendarStartChange(startDate) {
-        let calendar = makeRivendellCalendarDates(this.state.calendar.today, startDate, this.state.calendarRules);
-
-        this.setState({
-            startDate: startDate,
-            calendar: calendar
-        });
-    }
-
-    onCalendarRulesChange(event) {
-        let calendarRules = event.target.value;
-        let startDay = calendarRules === REFORMED_RULES ? 25 : 22;
-        let startDate = new Date(this.state.startDate);
-        startDate.setDate(startDay);
-        let calendar = makeRivendellCalendarDates(this.state.calendar.today, startDate, calendarRules);
-
-        this.setState({
-            calendarRules: calendarRules,
-            startDate: startDate,
-            calendar: calendar
-        });
-    }
-
-    onLanguageChange(event) {
-        this.setState({language: event.target.value});
     }
 
     renderDay(date, today) {
@@ -142,7 +102,7 @@ class RivendellCalendar extends Component {
             case "Yestarë":
                 return (
                     <IntercalaryDay key="RivendellNewYear"
-                                    name={language === LanguagePicker.ENGLISH ? "First Day" : "Yestarë"}
+                                    name={language === ENGLISH ? "First Day" : "Yestarë"}
                                     description="Rivendell New Year's Day!"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -151,7 +111,7 @@ class RivendellCalendar extends Component {
             case "Enderë":
                 return (
                     <IntercalaryDay key={"Middleday-" + date.weekDay}
-                                    name={language === LanguagePicker.ENGLISH ? "Middleday" : "Enderë"}
+                                    name={language === ENGLISH ? "Middleday" : "Enderë"}
                                     description="Middleday"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -160,7 +120,7 @@ class RivendellCalendar extends Component {
             case "Reformed Enderë":
                 return (
                     <IntercalaryDay key={"Middleday-" + date.weekDay}
-                                    name={language === LanguagePicker.ENGLISH ? "Leap Middleday" : "Reformed Enderë"}
+                                    name={language === ENGLISH ? "Leap Middleday" : "Reformed Enderë"}
                                     description="Middleday"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -169,7 +129,7 @@ class RivendellCalendar extends Component {
             case "Mettarë":
                 return (
                     <IntercalaryDay key="RivendellNewYearsEve"
-                                    name={language === LanguagePicker.ENGLISH ? "Last Day" : "Mettarë"}
+                                    name={language === ENGLISH ? "Last Day" : "Mettarë"}
                                     description="Rivendell New Year's Eve!"
                                     currentDate={today}
                                     gregorian={date.gregorian} />
@@ -208,7 +168,7 @@ class RivendellCalendar extends Component {
 
         addMonthFiller(week, date.weekDay);
 
-        for (; i < dates.length && (monthView < 0 || monthView === date.month); i++, date = dates[i]) {
+        for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
             week.push(this.renderDay(date, today));
 
             if ((date.weekDay + 1) % 6 === 0) {
@@ -261,46 +221,6 @@ class RivendellCalendar extends Component {
         return weeks;
     }
 
-    renderCalendarControls() {
-        let language = this.state.language;
-        let monthNames = RivendellMonths.map(function(month) {
-            return month[language];
-        });
-
-        return (
-            <tr>
-                <td className='rivendell-calendar-controls' colSpan='2'>
-                    <StartDatePicker month="March"
-                                     startRange={19}
-                                     endRange={29}
-                                     startDate={this.state.startDate}
-                                     onCalendarStartChange={this.onCalendarStartChange} />
-                    <select className="rivendell-rules-select"
-                            value={this.state.calendarRules}
-                            onChange={this.onCalendarRulesChange} >
-                        <option value={TRADITIONAL_RULES}>Traditional Rules</option>
-                        <option value={REFORMED_RULES}>Reformed Rules</option>
-                    </select>
-                </td>
-                <td className='rivendell-calendar-controls month-picker-container' colSpan='3'>
-                    <MonthViewPicker monthNames={monthNames}
-                                     monthLabel="Season"
-                                     today={this.state.today}
-                                     calendar={this.state.calendar}
-                                     startDate={this.state.startDate}
-                                     monthView={this.state.monthView}
-                                     makeCalendarDates={this.makeCalendarDates}
-                                     onMonthViewChange={this.onMonthViewChange}
-                                     onViewCalendarMonth={this.onViewCalendarMonth} />
-                </td>
-                <td className='rivendell-calendar-controls' >
-                    <LanguagePicker language={this.state.language}
-                                    onLanguageChange={this.onLanguageChange} />
-                </td>
-            </tr>
-        );
-    }
-
     render() {
         let language = this.state.language;
         let weekDayHeader = (
@@ -316,9 +236,8 @@ class RivendellCalendar extends Component {
             </tr>
         );
 
-        let weeks = this.state.monthView < 0 ? this.renderYear() : this.renderMonth();
+        let weeks = this.state.yearView ? this.renderYear() : this.renderMonth();
 
-        let controls = this.state.calendarControls ? this.renderCalendarControls() : null;
         let caption = null;
         if (this.props.caption) {
             caption = (
@@ -332,7 +251,6 @@ class RivendellCalendar extends Component {
             <table className={this.props.className} >
                 {caption}
                 <thead>
-                    {controls}
                     {weekDayHeader}
                 </thead>
                 <tbody>

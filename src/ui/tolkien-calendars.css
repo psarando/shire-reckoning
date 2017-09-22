@@ -1,10 +1,11 @@
 .shire-calendar {
     background-color: gainsboro;
-    border: .2rem solid black;
-    border-collapse: collapse;
+    border: .1rem solid black;
+    border-spacing: 0;
+    width: 35rem;
 }
 .shire-calendar td {
-    border: .1rem solid black;
+    border: .01rem solid black;
     height: 5rem;
     width: 5rem;
     text-align: center;
@@ -13,20 +14,24 @@
 }
 .shire-calendar caption {
     border: .2rem solid black;
+    border-bottom-width: .01rem;
     font-size: 2rem;
 }
+.rivendell-calendar {
+    width: 30rem;
+}
 .rivendell-calendar td {
-    height: 4rem;
+    height: 4.2rem;
 }
 .shire-caption, .rivendell-caption, .gondor-caption {
     background-color: azure;
 }
-.shire-calendar-controls {
-    border-bottom: none !important;
-    height: 4rem !important;
+.shire-calendar-controls, .rivendell-calendar-controls, .gondor-calendar-controls {
+    border: .01rem solid black;
+    font-size: .8rem;
 }
-.rivendell-calendar-controls, .gondor-calendar-controls {
-    height: 4rem !important;
+.shire-calendar-wrapper-cell {
+    padding: 1rem;
 }
 .month-picker {
     margin: auto;
@@ -40,7 +45,7 @@
     font-weight: normal;
 }
 .intercalary-day-separator {
-    transform: rotate(-10deg);
+    transform: rotate(-15deg);
 }
 .vertical-layout-filler {
     height: 0 !important;

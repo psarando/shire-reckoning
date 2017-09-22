@@ -5,11 +5,12 @@
 import React, { Component } from 'react';
 
 import ShireCalendar from '../ui/ShireCalendar';
-import RivendellCalendar from '../ui/RivendellCalendar';
 import GondorCalendar from '../ui/GondorCalendar';
 import '../ui/tolkien-calendars.css';
 
-import LanguagePicker from '../ui/controls/LanguagePicker';
+import ShireCalendarWithControls from './ShireCalendarWithControls';
+import RivendellCalendarWithControls from './RivendellCalendarWithControls';
+import GondorCalendarWithControls from './GondorCalendarWithControls';
 
 import { CalendarCellStyle, DatePicker } from './Common';
 import './examples.css';
@@ -33,9 +34,10 @@ class TolkienCalendarsExample extends Component {
     }
 
     alignChanged(event) {
-        let checked = event.target.checked;
-        let shireAlign = event.target.value === "shire" ? checked : false;
-        let rivendellAlign = event.target.value === "rivendell" ? checked : false;
+        let checked        = event.target.checked;
+        let shireAlign     = (event.target.value === "shire") && checked;
+        let rivendellAlign = (event.target.value === "rivendell") && checked;
+
         this.setState({
             shireAlign: shireAlign,
             rivendellAlign: rivendellAlign
@@ -47,13 +49,13 @@ class TolkienCalendarsExample extends Component {
         let shireAlign = this.state.shireAlign;
         let rivendellAlign = this.state.rivendellAlign;
 
-        let shireClassName = "shire-calendar";
+        let shireCellClassName = "";
         if (shireAlign) {
-            shireClassName += " align-shire-calendar";
+            shireCellClassName = " align-shire-calendar";
         }
-        let rivendellClassName = "shire-calendar rivendell-calendar";
+        let rivendellCellClassName = "";
         if (rivendellAlign) {
-            rivendellClassName += " align-rivendell-calendar";
+            rivendellCellClassName = " align-rivendell-calendar";
         }
 
         return (
@@ -81,34 +83,34 @@ class TolkienCalendarsExample extends Component {
                     </th>
                 </tr>
                 <tr>
-                    <td style={CalendarCellStyle}>
-                        <ShireCalendar caption={true}
-                                       region={ShireCalendar.REGION_NAMES_TOLKIEN}
-                                       monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
-                                       date={currentDate}
-                                       className={shireClassName}
-                                       yearView={shireAlign || rivendellAlign} />
+                    <td style={CalendarCellStyle} className={shireCellClassName}>
+                        <ShireCalendarWithControls caption={true}
+                                                   region={ShireCalendar.REGION_NAMES_TOLKIEN}
+                                                   monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
+                                                   date={currentDate}
+                                                   className="shire-calendar"
+                                                   yearView={shireAlign || rivendellAlign}/>
                     </td>
-                    <td style={CalendarCellStyle}>
-                        <RivendellCalendar caption={true}
-                                           date={currentDate}
-                                           className={rivendellClassName}
-                                           yearView={shireAlign || rivendellAlign} />
+                    <td style={CalendarCellStyle} className={rivendellCellClassName}>
+                        <RivendellCalendarWithControls caption={true}
+                                                       date={currentDate}
+                                                       className="shire-calendar rivendell-calendar"
+                                                       yearView={shireAlign || rivendellAlign}/>
                     </td>
                 </tr>
                 <tr>
                     <td style={CalendarCellStyle}>
-                        <GondorCalendar caption={true}
-                                        language={LanguagePicker.ENGLISH}
-                                        monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
-                                        date={currentDate}
-                                        className="shire-calendar gondor-calendar stewards-calendar" />
+                        <GondorCalendarWithControls caption={true}
+                                                    language={GondorCalendar.LANGUAGE_ENGLISH}
+                                                    monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
+                                                    date={currentDate}
+                                                    className="shire-calendar gondor-calendar stewards-calendar"/>
                     </td>
                     <td style={CalendarCellStyle}>
-                        <GondorCalendar caption={true}
-                                        reckoning={GondorCalendar.RECKONING_NEW}
-                                        date={currentDate}
-                                        className="shire-calendar gondor-calendar new-reckoning-calendar" />
+                        <GondorCalendarWithControls caption={true}
+                                                    reckoning={GondorCalendar.RECKONING_NEW}
+                                                    date={currentDate}
+                                                    className="shire-calendar gondor-calendar new-reckoning-calendar"/>
                     </td>
                 </tr>
                 </tbody>

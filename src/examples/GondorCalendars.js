@@ -62,7 +62,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_KINGS,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_SINDARIN,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -71,7 +70,6 @@ JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                 language={GondorCalendar.LANGUAGE_SINDARIN}
                 yearView={true}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -90,7 +88,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_STEWARDS,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_ENGLISH,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -99,7 +96,6 @@ JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                 language={GondorCalendar.LANGUAGE_ENGLISH}
                 yearView={true}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -117,7 +113,6 @@ React.createElement(
     {reckoning:
         TolkienCalendars.GondorCalendar.RECKONING_NEW,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -125,7 +120,6 @@ React.createElement(
 JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                 yearView={true}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -138,7 +132,6 @@ JSX:
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
@@ -146,14 +139,12 @@ JSX:
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
@@ -170,7 +161,6 @@ React.createElement(
     {reckoning:
         TolkienCalendars.GondorCalendar.RECKONING_KINGS,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_ENGLISH,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -178,7 +168,6 @@ React.createElement(
 JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                 language={GondorCalendar.LANGUAGE_ENGLISH}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -195,14 +184,12 @@ React.createElement(
     TolkienCalendars.GondorCalendar,
     {reckoning:
         TolkienCalendars.GondorCalendar.RECKONING_STEWARDS,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
 
 JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -220,7 +207,6 @@ React.createElement(
     {reckoning:
         TolkienCalendars.GondorCalendar.RECKONING_NEW,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_SINDARIN,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -228,7 +214,6 @@ React.createElement(
 JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                 language={GondorCalendar.LANGUAGE_SINDARIN}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -240,20 +225,17 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
@@ -271,7 +253,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_KINGS,
      monthViewLayout:
         TolkienCalendars.GondorCalendar.MONTH_VIEW_HORIZONTAL,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -279,7 +260,6 @@ React.createElement(
 JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                 monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -299,7 +279,6 @@ React.createElement(
      monthViewLayout:
         TolkienCalendars.GondorCalendar.MONTH_VIEW_HORIZONTAL,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_SINDARIN,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -308,7 +287,6 @@ JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                 monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
                 language={GondorCalendar.LANGUAGE_SINDARIN}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -328,7 +306,6 @@ React.createElement(
      monthViewLayout:
         TolkienCalendars.GondorCalendar.MONTH_VIEW_HORIZONTAL,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_ENGLISH,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -337,7 +314,6 @@ JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                 monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
                 language={GondorCalendar.LANGUAGE_ENGLISH}
-                calendarControls={false}
                 date={${dateString}}
                 className="shire-calendar" />`
                                 }
@@ -349,7 +325,6 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                                         monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
@@ -357,7 +332,6 @@ JSX:
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                                         monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
@@ -365,7 +339,6 @@ JSX:
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
-                                        calendarControls={false}
                                         date={currentDate}
                                         className="shire-calendar example-calendar" />
                     </td>
@@ -393,7 +366,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_KINGS,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_SINDARIN,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      startDate: gregorianStartDate,
      className: "shire-calendar"}
@@ -403,7 +375,6 @@ JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                 language={GondorCalendar.LANGUAGE_SINDARIN}
                 yearView={true}
-                calendarControls={false}
                 date={${dateString}}
                 startDate={gregorianStartDate}
                 className="shire-calendar" />`
@@ -426,7 +397,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_STEWARDS,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_ENGLISH,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      startDate: gregorianStartDate,
      className: "shire-calendar"}
@@ -436,7 +406,6 @@ JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                 language={GondorCalendar.LANGUAGE_ENGLISH}
                 yearView={true}
-                calendarControls={false}
                 date={${dateString}}
                 startDate={gregorianStartDate}
                 className="shire-calendar" />`
@@ -458,7 +427,6 @@ React.createElement(
     {reckoning:
         TolkienCalendars.GondorCalendar.RECKONING_NEW,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      startDate: gregorianStartDate,
      className: "shire-calendar"}
@@ -467,7 +435,6 @@ React.createElement(
 JSX:
 <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                 yearView={true}
-                calendarControls={false}
                 date={${dateString}}
                 startDate={gregorianStartDate}
                 className="shire-calendar" />`
@@ -481,7 +448,6 @@ JSX:
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
                                         className="shire-calendar example-calendar" />
@@ -490,7 +456,6 @@ JSX:
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
                                         className="shire-calendar example-calendar" />
@@ -498,7 +463,6 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
                                         className="shire-calendar example-calendar" />
@@ -534,7 +498,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_KINGS,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_SINDARIN,
      yearView: true,
-     calendarControls: false,
      date: secondAge32,
      startDate: secondAgeStartDate,
      className: "shire-calendar"}
@@ -547,7 +510,6 @@ JSX:
                 reckoning={GondorCalendar.RECKONING_KINGS}
                 language={GondorCalendar.LANGUAGE_SINDARIN}
                 yearView={true}
-                calendarControls={false}
                 date={secondAge32}
                 startDate={secondAgeStartDate}
                 className="shire-calendar" />`
@@ -573,7 +535,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_STEWARDS,
      language: TolkienCalendars.GondorCalendar.LANGUAGE_ENGLISH,
      yearView: true,
-     calendarControls: false,
      date: ${ta2060String},
      startDate: secondAgeStartDate,
      className: "shire-calendar"}
@@ -586,7 +547,6 @@ JSX:
                 reckoning={GondorCalendar.RECKONING_STEWARDS}
                 language={GondorCalendar.LANGUAGE_ENGLISH}
                 yearView={true}
-                calendarControls={false}
                 date={${ta2060String}}
                 startDate={secondAgeStartDate}
                 className="shire-calendar" />`
@@ -611,7 +571,6 @@ React.createElement(
      reckoning:
         TolkienCalendars.GondorCalendar.RECKONING_NEW,
      yearView: true,
-     calendarControls: false,
      date: ${ta3019String},
      startDate: secondAgeStartDate,
      className: "shire-calendar"}
@@ -623,7 +582,6 @@ JSX:
                 }
                 reckoning={GondorCalendar.RECKONING_NEW}
                 yearView={true}
-                calendarControls={false}
                 date={${ta3019String}}
                 startDate={secondAgeStartDate}
                 className="shire-calendar" />`
@@ -638,7 +596,6 @@ JSX:
                                         reckoning={GondorCalendar.RECKONING_KINGS}
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={sa32}
                                         startDate={secondAgeStartDate}
                                         className="shire-calendar example-calendar" />
@@ -648,7 +605,6 @@ JSX:
                                         reckoning={GondorCalendar.RECKONING_STEWARDS}
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={ta2060}
                                         startDate={secondAgeStartDate}
                                         className="shire-calendar example-calendar" />
@@ -657,7 +613,6 @@ JSX:
                         <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
                                         reckoning={GondorCalendar.RECKONING_NEW}
                                         yearView={true}
-                                        calendarControls={false}
                                         date={ta3019}
                                         startDate={secondAgeStartDate}
                                         className="shire-calendar example-calendar" />

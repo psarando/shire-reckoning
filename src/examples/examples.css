@@ -1,8 +1,8 @@
 .align-shire-calendar {
-    margin-top: 194rem;
+    padding-top: 200rem;
 }
 .align-rivendell-calendar {
-    margin-top: 70rem;
+    padding-top: 69rem;
 }
 .example-calendar {
     margin: auto;
@@ -10,9 +10,6 @@
 .date-time-input {
     width: 4rem;
     text-align: center;
-}
-.simulated-calendar {
-    width: 106rem;
 }
 .simulated-calendar caption {
     font-size: 1.5rem;

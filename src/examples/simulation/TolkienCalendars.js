@@ -887,7 +887,7 @@ const DatesOfInterest = [
         allYear: false,
         month:   10,
         day:     1,
-        label:   "Iys 495 Hísimë 1 (approx.) | Fall of Nargothrond, followed by the Fell Winter."
+        label:   "Iys 495 c.Hísimë 1 | Fall of Nargothrond, followed by the Fell Winter."
     },
     {
         year:    -95,
@@ -1110,7 +1110,11 @@ class SimulatedTolkienCalendars extends Component {
             shireStartDate     = startDates.shire;
         }
 
-        currentDate = adjustForSelectedEvent(currentDate, selectedEvent, shireStartDate, rivendellStartDate);
+        if (selectedEvent) {
+            currentDate = adjustForSelectedEvent(currentDate, selectedEvent, shireStartDate, rivendellStartDate);
+        } else {
+            selectedEvent = findEventIndex(currentDate, shireStartDate, rivendellStartDate);
+        }
 
         this.setState({
             date:               currentDate,
@@ -1260,22 +1264,19 @@ class SimulatedTolkienCalendars extends Component {
                 </tr>
                 <tr>
                     <td style={CalendarCellStyle}>
-                        <ShireCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
-                                       startDate={shireStartDate}
+                        <ShireCalendar startDate={shireStartDate}
                                        onCalendarStartChange={this.onShireStartDateChange}
                                        date={currentDate}
                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
-                        <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
-                                        startDate={gondorStartDate}
+                        <GondorCalendar startDate={gondorStartDate}
                                         onCalendarStartChange={this.onGondorStartDateChange}
                                         date={currentDate}
                                         className="shire-calendar gondor-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
-                        <RivendellCalendar calendarRules={RivendellCalendar.TRADITIONAL_RULES}
-                                           startDate={rivendellStartDate}
+                        <RivendellCalendar startDate={rivendellStartDate}
                                            onCalendarStartChange={this.onRivendellStartDateChange}
                                            date={currentDate}
                                            className="shire-calendar rivendell-calendar" />

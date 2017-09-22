@@ -4,40 +4,49 @@
  */
 import React, { Component } from 'react';
 
-import { ShireMonths, makeShireCalendarDates } from '../../ShireReckoning';
-import { RECKONING_RULES_TRADITIONAL } from '../../GondorReckoning';
-import { datesMatch, fullYearDate } from '../../Utils';
+import { ShireMonths, makeShireCalendarDates } from '../ShireReckoning';
+import { RECKONING_RULES_GREGORIAN } from '../GondorReckoning';
+import { fullYearDate, datesMatch } from '../Utils';
 
-import ShireCalendar from '../../ui/ShireCalendar';
-import '../../ui/tolkien-calendars.css';
+import ShireCalendar from '../ui/ShireCalendar';
+import '../ui/tolkien-calendars.css';
 
-import MonthViewLayout from '../controls/MonthViewLayout';
-import MonthViewPicker from '../controls/MonthViewPicker';
+import MonthViewLayout from './controls/MonthViewLayout';
+import MonthViewPicker from './controls/MonthViewPicker';
+import StartDatePicker from './controls/StartDatePicker';
 
-import StartReckoningDatePicker from './StartReckoningDatePicker';
 
-class ShireCalendarSimulated extends Component {
+class ShireCalendarWithControls extends Component {
     constructor(props) {
         super(props);
 
-        let today = props.date || new Date();
-        let startDate = props.startDate || fullYearDate(0, 11, 23);
+        let calendarControls = props.calendarControls !== false;
+        let today            = props.date || new Date();
+        let monthViewLayout  = props.monthViewLayout || MonthViewLayout.VERTICAL;
+        let region           = props.region || ShireCalendar.REGION_NAMES_SHIRE;
+        let calendarRules    = props.calendarRules || RECKONING_RULES_GREGORIAN;
 
-        let calendar = makeShireCalendarDates(today, startDate, RECKONING_RULES_TRADITIONAL);
+        let startDay  = props.startDay || 21;
+        let startDate = props.startDate || fullYearDate(0, 11, startDay);
+
+        let calendar = makeShireCalendarDates(today, startDate, calendarRules);
         let monthView = props.yearView ? -1 : calendar.todayShire.month;
 
         this.state = {
-            startDate:       startDate,
-            today:           today,
-            calendar:        calendar,
-            monthView:       monthView,
-            monthViewLayout: MonthViewLayout.VERTICAL,
-            region:          ShireCalendar.REGION_NAMES_SHIRE
+            calendarControls: calendarControls,
+            calendarRules:    calendarRules,
+            startDate:        startDate,
+            today:            today,
+            calendar:         calendar,
+            monthView:        monthView,
+            monthViewLayout:  monthViewLayout,
+            region:           region
         };
 
         this.makeCalendarDates       = this.makeCalendarDates.bind(this);
         this.onMonthViewChange       = this.onMonthViewChange.bind(this);
         this.onViewCalendarMonth     = this.onViewCalendarMonth.bind(this);
+        this.onCalendarStartChange   = this.onCalendarStartChange.bind(this);
         this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
         this.onRegionChange          = this.onRegionChange.bind(this);
     }
@@ -48,10 +57,15 @@ class ShireCalendarSimulated extends Component {
 
         let calendar = this.state.calendar;
 
+        if (nextProps.startDay && !nextProps.startDate) {
+            startDate = new Date(startDate);
+            startDate.setDate(nextProps.startDay);
+        }
+
         if (!datesMatch(startDate, this.state.startDate) ||
             !datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
-            calendar = makeShireCalendarDates(today, startDate, RECKONING_RULES_TRADITIONAL);
+            calendar = makeShireCalendarDates(today, startDate, this.state.calendarRules);
         }
 
         this.setState({
@@ -63,7 +77,7 @@ class ShireCalendarSimulated extends Component {
     }
 
     makeCalendarDates(today, startDate) {
-        return makeShireCalendarDates(today, startDate, RECKONING_RULES_TRADITIONAL);
+        return makeShireCalendarDates(today, startDate, this.state.calendarRules);
     }
 
     onMonthViewChange(calendar, monthView) {
@@ -77,6 +91,15 @@ class ShireCalendarSimulated extends Component {
         this.setState({
             calendar: calendar,
             monthView: calendar.todayShire.month
+        });
+    }
+
+    onCalendarStartChange(startDate) {
+        let calendar = makeShireCalendarDates(this.state.calendar.today, startDate, this.state.calendarRules);
+
+        this.setState({
+            startDate: startDate,
+            calendar: calendar
         });
     }
 
@@ -97,8 +120,18 @@ class ShireCalendarSimulated extends Component {
         return (
             <tr>
                 <th className='shire-calendar-controls' >
-                    <StartReckoningDatePicker startDate={this.state.startDate}
-                                              onCalendarStartChange={this.props.onCalendarStartChange} />
+                    <StartDatePicker month="December"
+                                     startRange={19}
+                                     endRange={25}
+                                     startDate={this.state.startDate}
+                                     onCalendarStartChange={this.onCalendarStartChange} />
+                    <select className="shire-region-select"
+                            value={region}
+                            onChange={this.onRegionChange} >
+                        <option value={ShireCalendar.REGION_NAMES_TOLKIEN}>Tolkien Names</option>
+                        <option value={ShireCalendar.REGION_NAMES_SHIRE}>Shire Names</option>
+                        <option value={ShireCalendar.REGION_NAMES_BREE}>Bree Names</option>
+                    </select>
                 </th>
                 <th className='shire-calendar-controls month-picker-container' >
                     <MonthViewPicker monthNames={monthNames}
@@ -111,17 +144,6 @@ class ShireCalendarSimulated extends Component {
                                      onViewCalendarMonth={this.onViewCalendarMonth} />
                 </th>
                 <th className='shire-calendar-controls' >
-                    Reckon with:
-                    <br />
-                    <select className="shire-region-select"
-                            value={region}
-                            onChange={this.onRegionChange} >
-                        <option value={ShireCalendar.REGION_NAMES_TOLKIEN}>Tolkien Names</option>
-                        <option value={ShireCalendar.REGION_NAMES_SHIRE}>Shire Names</option>
-                        <option value={ShireCalendar.REGION_NAMES_BREE}>Bree Names</option>
-                    </select>
-                </th>
-                <th className='shire-calendar-controls' >
                     <MonthViewLayout layout={this.state.monthViewLayout}
                                      onMonthViewLayoutChange={this.onMonthViewLayoutChange} />
                 </th>
@@ -130,26 +152,25 @@ class ShireCalendarSimulated extends Component {
     }
 
     render() {
-        let region = this.state.region;
-
-        let reckoningName = "Shire";
-        let reckoningYearOffset = 1600;
-        if (region === ShireCalendar.REGION_NAMES_BREE) {
-            reckoningName = "Bree";
-            reckoningYearOffset = 1299;
+        let controls = this.state.calendarControls ? this.renderCalendarControls() : null;
+        let caption = null;
+        if (this.props.caption) {
+            caption = (
+                <caption className='shire-caption'>{
+                    this.props.caption === true ? "Shire Reckoning" : this.props.caption
+                }</caption>
+            );
         }
 
         return (
             <table className={this.props.className} >
-                <caption className='shire-caption' >{
-                    `${reckoningName} Reckoning ${this.state.calendar.year - 3441 - reckoningYearOffset}`
-                }</caption>
+                {caption}
                 <thead>
-                    {this.renderCalendarControls()}
+                    {controls}
                 </thead>
                 <tbody>
                     <tr>
-                        <td colSpan="4" className="shire-calendar-wrapper-cell" >
+                        <td colSpan="3" className="shire-calendar-wrapper-cell" >
                             <ShireCalendar
                                 className="shire-calendar"
                                 calendar={this.state.calendar}
@@ -166,4 +187,4 @@ class ShireCalendarSimulated extends Component {
     }
 }
 
-export default ShireCalendarSimulated;
+export default ShireCalendarWithControls;

@@ -13,9 +13,11 @@ import IntercalaryDay from './IntercalaryDay';
 import WeekDayHeaderCell, { addMonthFiller, addVerticalMonthFiller } from './WeekDayHeaderCell';
 import './tolkien-calendars.css';
 
-import MonthViewLayout, { VerticalLayoutFiller } from './controls/MonthViewLayout';
-import MonthViewPicker from './controls/MonthViewPicker';
-import StartDatePicker from './controls/StartDatePicker';
+import {
+    VerticalLayoutFiller,
+    VERTICAL,
+    HORIZONTAL
+} from './controls/MonthViewLayout';
 
 
 const REGION_NAMES_TOLKIEN = "tolkien";
@@ -27,40 +29,34 @@ class ShireCalendar extends Component {
     static get REGION_NAMES_SHIRE() { return REGION_NAMES_SHIRE; }
     static get REGION_NAMES_BREE() { return REGION_NAMES_BREE; }
 
-    static get MONTH_VIEW_VERTICAL() { return MonthViewLayout.VERTICAL; }
-    static get MONTH_VIEW_HORIZONTAL() { return MonthViewLayout.HORIZONTAL; }
+    static get MONTH_VIEW_VERTICAL() { return VERTICAL; }
+    static get MONTH_VIEW_HORIZONTAL() { return HORIZONTAL; }
 
     constructor(props) {
         super(props);
 
-        let calendarControls = props.calendarControls !== false;
         let today = props.date || new Date();
-        let monthViewLayout = props.monthViewLayout || MonthViewLayout.VERTICAL;
+        let monthViewLayout = props.monthViewLayout || VERTICAL;
         let region = props.region || REGION_NAMES_SHIRE;
         let calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
 
         let startDay = props.startDay || 21;
         let startDate = props.startDate || fullYearDate(0, 11, startDay);
-        let calendar = makeShireCalendarDates(today, startDate, calendarRules);
-        let monthView = props.yearView ? -1 : calendar.todayShire.month;
+
+        let calendar = props.calendar || makeShireCalendarDates(today, startDate, calendarRules);
+        let monthView = props.monthView === undefined ? calendar.todayShire.month : props.monthView;
+        let yearView = !!props.yearView;
 
         this.state = {
-            calendarControls: calendarControls,
             calendarRules: calendarRules,
             startDate: startDate,
             today: today,
             calendar: calendar,
+            yearView: yearView,
             monthView: monthView,
             monthViewLayout: monthViewLayout,
             region: region
         };
-
-        this.makeCalendarDates       = this.makeCalendarDates.bind(this);
-        this.onMonthViewChange       = this.onMonthViewChange.bind(this);
-        this.onViewCalendarMonth     = this.onViewCalendarMonth.bind(this);
-        this.onCalendarStartChange   = this.onCalendarStartChange.bind(this);
-        this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
-        this.onRegionChange          = this.onRegionChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -69,18 +65,27 @@ class ShireCalendar extends Component {
         let region = nextProps.region || this.state.region;
         let monthViewLayout = nextProps.monthViewLayout || this.state.monthViewLayout;
         let calendarRules = nextProps.calendarRules || this.state.calendarRules;
+        let yearView = nextProps.yearView === undefined ? this.state.yearView : nextProps.yearView;
+
         let calendar = this.state.calendar;
+        let monthView = this.state.monthView;
 
         if (nextProps.startDay && !nextProps.startDate) {
             startDate = new Date(startDate);
             startDate.setDate(nextProps.startDay);
         }
 
-        if (!datesMatch(startDate, this.state.startDate) ||
+        if (nextProps.calendar) {
+            calendar = nextProps.calendar;
+        } else if (calendarRules !== this.state.calendarRules ||
+            !datesMatch(startDate, this.state.startDate) ||
             !datesMatch(today, this.state.today) ||
             !datesMatch(today, calendar.today)) {
             calendar = makeShireCalendarDates(today, startDate, calendarRules);
+            monthView = calendar.todayShire.month;
         }
+
+        monthView = nextProps.monthView === undefined ? monthView : nextProps.monthView;
 
         this.setState({
             today: today,
@@ -89,43 +94,9 @@ class ShireCalendar extends Component {
             startDate: startDate,
             region: region,
             monthViewLayout: monthViewLayout,
-            monthView: this.state.monthView < 0 || nextProps.yearView ? -1 : calendar.todayShire.month
+            monthView: monthView,
+            yearView: yearView
         });
-    }
-
-    makeCalendarDates(today, startDate) {
-        return makeShireCalendarDates(today, startDate, this.state.calendarRules);
-    }
-
-    onMonthViewChange(calendar, monthView) {
-        this.setState({
-            calendar: calendar,
-            monthView: monthView
-        });
-    }
-
-    onViewCalendarMonth(calendar) {
-        this.setState({
-            calendar: calendar,
-            monthView: calendar.todayShire.month
-        });
-    }
-
-    onCalendarStartChange(startDate) {
-        let calendar = makeShireCalendarDates(this.state.calendar.today, startDate, this.state.calendarRules);
-
-        this.setState({
-            startDate: startDate,
-            calendar: calendar
-        });
-    }
-
-    onMonthViewLayoutChange(event) {
-        this.setState({monthViewLayout: event.target.value});
-    }
-
-    onRegionChange(event) {
-        this.setState({region: event.target.value});
     }
 
     renderDay(dates, today) {
@@ -243,9 +214,9 @@ class ShireCalendar extends Component {
             // seek ahead to current month view
         }
 
-        addMonthFiller(week, dates[i].weekDay);
+        addMonthFiller(week, date.weekDay);
 
-        for (; i < dates.length && (monthView < 0 || monthView === dates[i].month); i++, date = dates[i]) {
+        for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
             switch (date.day) {
                 case "1 Lithe":
                     if (date.weekDay === dates[i+1].weekDay) {
@@ -320,9 +291,9 @@ class ShireCalendar extends Component {
             // seek ahead to current month view
         }
 
-        addVerticalMonthFiller(weeks, dates[i].weekDay);
+        addVerticalMonthFiller(weeks, date.weekDay);
 
-        for (; i < dates.length && (monthView < 0 || monthView === dates[i].month); i++, date = dates[i]) {
+        for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
             switch (date.day) {
                 case "1 Lithe":
                     if (date.weekDay === dates[i+1].weekDay) {
@@ -423,46 +394,6 @@ class ShireCalendar extends Component {
         return weeks;
     }
 
-    renderCalendarControls() {
-        let region = this.state.region;
-        let monthNames = ShireMonths.map(function(month) {
-            return month[region];
-        });
-
-        return (
-            <tr>
-                <td colSpan='2' className='shire-calendar-controls' >
-                    <StartDatePicker month="December"
-                                     startRange={19}
-                                     endRange={25}
-                                     startDate={this.state.startDate}
-                                     onCalendarStartChange={this.onCalendarStartChange} />
-                    <select className="shire-region-select"
-                            value={region}
-                            onChange={this.onRegionChange} >
-                        <option value={REGION_NAMES_TOLKIEN}>Tolkien Names</option>
-                        <option value={REGION_NAMES_SHIRE}>Shire Names</option>
-                        <option value={REGION_NAMES_BREE}>Bree Names</option>
-                    </select>
-                </td>
-                <td colSpan='3' className='shire-calendar-controls month-picker-container' >
-                    <MonthViewPicker monthNames={monthNames}
-                                     today={this.state.today}
-                                     calendar={this.state.calendar}
-                                     startDate={this.state.startDate}
-                                     monthView={this.state.monthView}
-                                     makeCalendarDates={this.makeCalendarDates}
-                                     onMonthViewChange={this.onMonthViewChange}
-                                     onViewCalendarMonth={this.onViewCalendarMonth} />
-                </td>
-                <td colSpan='2' className='shire-calendar-controls' >
-                    <MonthViewLayout layout={this.state.monthViewLayout}
-                                     onMonthViewLayoutChange={this.onMonthViewLayoutChange} />
-                </td>
-            </tr>
-        );
-    }
-
     render() {
         let region = this.state.region;
         let weekDayHeader = (
@@ -479,16 +410,15 @@ class ShireCalendar extends Component {
         );
 
         let weeks;
-        if (this.state.monthView < 0) {
+        if (this.state.yearView) {
             weeks = this.renderYear();
-        } else if (this.state.monthViewLayout === MonthViewLayout.VERTICAL) {
+        } else if (this.state.monthViewLayout === VERTICAL) {
             weeks = this.renderMonthVertical();
             weekDayHeader = <VerticalLayoutFiller weekdays={ShireWeekdays} />;
         } else {
             weeks = this.renderMonth();
         }
 
-        let controls = this.state.calendarControls ? this.renderCalendarControls() : null;
         let caption = null;
         if (this.props.caption) {
             caption = (
@@ -502,7 +432,6 @@ class ShireCalendar extends Component {
             <table className={this.props.className} >
                 {caption}
                 <thead>
-                    {controls}
                     {weekDayHeader}
                 </thead>
                 <tbody>

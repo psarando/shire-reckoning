@@ -52,14 +52,12 @@ React.createElement(TolkienCalendars.RivendellCalendar,
                     {yearView: true,
                      date: ${sa1697String},
                      startDay: 21,
-                     calendarControls: false,
                      className: "shire-calendar"})
 
 JSX:
 <RivendellCalendar yearView={true}
                    date={${sa1697String}}
                    startDay={21}
-                   calendarControls={false}
                    className="shire-calendar" />`
                                 }
                             </code>
@@ -80,7 +78,6 @@ React.createElement(
      yearView: true,
      date: ${ta2941String},
      startDay: 21,
-     calendarControls: false,
      className: "shire-calendar"}
 )
 
@@ -91,7 +88,6 @@ JSX:
                    yearView={true}
                    date={${ta2941String}}
                    startDay={21}
-                   calendarControls={false}
                    className="shire-calendar" />`
                                 }
                             </code>
@@ -111,7 +107,6 @@ React.createElement(
      yearView: true,
      date: ${ta3018String},
      startDay: 21,
-     calendarControls: false,
      className: "shire-calendar"}
 )
 
@@ -122,7 +117,6 @@ JSX:
                    yearView={true}
                    date={${ta3018String}}
                    startDay={21}
-                   calendarControls={false}
                    className="shire-calendar" />`
                                 }
                             </code>
@@ -134,7 +128,6 @@ JSX:
                         <RivendellCalendar yearView={true}
                                            date={sa1697}
                                            startDay={21}
-                                           calendarControls={false}
                                            className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
@@ -142,7 +135,6 @@ JSX:
                                            yearView={true}
                                            date={ta2941}
                                            startDay={21}
-                                           calendarControls={false}
                                            className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
@@ -150,7 +142,6 @@ JSX:
                                            yearView={true}
                                            date={ta3018}
                                            startDay={21}
-                                           calendarControls={false}
                                            className="shire-calendar example-calendar" />
                     </td>
                 </tr>
@@ -169,13 +160,11 @@ JSX:
 `JavaScript:
 React.createElement(TolkienCalendars.RivendellCalendar,
                     {yearView: true,
-                     calendarControls: false,
                      date: ${dateString},
                      className: "shire-calendar"})
 
 JSX:
 <RivendellCalendar yearView={true}
-                   calendarControls={false}
                    date={${dateString}}
                    className="shire-calendar" />`
                                 }
@@ -197,7 +186,6 @@ React.createElement(
      language:
         TolkienCalendars.RivendellCalendar.LANGUAGE_ENGLISH,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -211,7 +199,6 @@ JSX:
                        RivendellCalendar.LANGUAGE_ENGLISH
                    }
                    yearView={true}
-                   calendarControls={false}
                    date={${dateString}}
                    className="shire-calendar" />`
                                 }
@@ -233,7 +220,6 @@ React.createElement(
      language:
         TolkienCalendars.RivendellCalendar.LANGUAGE_SINDARIN,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -247,7 +233,6 @@ JSX:
                        RivendellCalendar.LANGUAGE_SINDARIN
                    }
                    yearView={true}
-                   calendarControls={false}
                    date={${dateString}}
                    className="shire-calendar" />`
                                 }
@@ -258,7 +243,6 @@ JSX:
                 <tr>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar yearView={true}
-                                           calendarControls={false}
                                            date={currentDate}
                                            className="shire-calendar example-calendar" />
                     </td>
@@ -267,7 +251,6 @@ JSX:
                                            startDay={25}
                                            language={RivendellCalendar.LANGUAGE_ENGLISH}
                                            yearView={true}
-                                           calendarControls={false}
                                            date={currentDate}
                                            className="shire-calendar example-calendar" />
                     </td>
@@ -276,7 +259,6 @@ JSX:
                                            startDay={29}
                                            language={RivendellCalendar.LANGUAGE_SINDARIN}
                                            yearView={true}
-                                           calendarControls={false}
                                            date={currentDate}
                                            className="shire-calendar example-calendar" />
                     </td>
@@ -289,13 +271,11 @@ JSX:
                                 {
 `JavaScript:
 React.createElement(TolkienCalendars.RivendellCalendar,
-                    {calendarControls: false,
-                     date: ${dateString},
+                    {date: ${dateString},
                      className: "shire-calendar"})
 
 JSX:
-<RivendellCalendar calendarControls={false}
-                   date={${dateString}}
+<RivendellCalendar date={${dateString}}
                    className="shire-calendar" />`
                                 }
                             </code>
@@ -314,7 +294,6 @@ React.createElement(
      startDay: 25,
      language:
         TolkienCalendars.RivendellCalendar.LANGUAGE_ENGLISH,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -327,7 +306,6 @@ JSX:
                    language={
                        RivendellCalendar.LANGUAGE_ENGLISH
                    }
-                   calendarControls={false}
                    date={${dateString}}
                    className="shire-calendar" />`
                                 }
@@ -347,7 +325,6 @@ React.createElement(
      startDay: 20,
      language:
         TolkienCalendars.RivendellCalendar.LANGUAGE_SINDARIN,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -360,7 +337,6 @@ JSX:
                    language={
                        RivendellCalendar.LANGUAGE_SINDARIN
                    }
-                   calendarControls={false}
                    date={${dateString}}
                    className="shire-calendar" />`
                                 }
@@ -370,15 +346,13 @@ JSX:
                 </tr>
                 <tr>
                     <td style={CalendarCellStyle}>
-                        <RivendellCalendar calendarControls={false}
-                                           date={currentDate}
+                        <RivendellCalendar date={currentDate}
                                            className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
                                            startDay={25}
                                            language={RivendellCalendar.LANGUAGE_ENGLISH}
-                                           calendarControls={false}
                                            date={currentDate}
                                            className="shire-calendar example-calendar" />
                     </td>
@@ -386,7 +360,6 @@ JSX:
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
                                            startDay={20}
                                            language={RivendellCalendar.LANGUAGE_SINDARIN}
-                                           calendarControls={false}
                                            date={currentDate}
                                            className="shire-calendar example-calendar" />
                     </td>

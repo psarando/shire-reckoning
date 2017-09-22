@@ -62,7 +62,6 @@ React.createElement(
     TolkienCalendars.ShireCalendar,
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -70,7 +69,6 @@ React.createElement(
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
                yearView={true}
-               calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
                                 }
@@ -86,14 +84,12 @@ JSX:
 React.createElement(
     TolkienCalendars.ShireCalendar,
     {yearView: true,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
 
 JSX:
 <ShireCalendar yearView={true}
-               calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
                                 }
@@ -110,7 +106,6 @@ React.createElement(
     TolkienCalendars.ShireCalendar,
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -118,7 +113,6 @@ React.createElement(
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                yearView={true}
-               calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
                                 }
@@ -130,20 +124,17 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
                                        yearView={true}
-                                       calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar yearView={true}
-                                       calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                                        yearView={true}
-                                       calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
@@ -158,14 +149,12 @@ JSX:
 React.createElement(
     TolkienCalendars.ShireCalendar,
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
 
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
-               calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
                                 }
@@ -180,14 +169,12 @@ JSX:
 `JavaScript:
 React.createElement(
     TolkienCalendars.ShireCalendar,
-    {calendarControls: false,
-     date: ${dateString},
+    {date: ${dateString},
      className: "shire-calendar"}
 )
 
 JSX:
-<ShireCalendar calendarControls={false}
-               date={${dateString}}
+<ShireCalendar date={${dateString}}
                className="shire-calendar" />`
                                 }
                             </code>
@@ -202,14 +189,12 @@ JSX:
 React.createElement(
     TolkienCalendars.ShireCalendar,
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
 
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
-               calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
                                 }
@@ -220,18 +205,15 @@ JSX:
                 <tr>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
-                                       calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
-                        <ShireCalendar calendarControls={false}
-                                       date={currentDate}
+                        <ShireCalendar date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
-                                       calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
@@ -248,7 +230,6 @@ React.createElement(
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
      monthViewLayout:
          TolkienCalendars.ShireCalendar.MONTH_VIEW_HORIZONTAL,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -256,7 +237,6 @@ React.createElement(
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
                monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
-               calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
                                 }
@@ -273,14 +253,12 @@ React.createElement(
     TolkienCalendars.ShireCalendar,
     {monthViewLayout:
         TolkienCalendars.ShireCalendar.MONTH_VIEW_HORIZONTAL,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
 
 JSX:
 <ShireCalendar monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
-               calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
                                 }
@@ -298,7 +276,6 @@ React.createElement(
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
      monthViewLayout:
          TolkienCalendars.ShireCalendar.MONTH_VIEW_HORIZONTAL,
-     calendarControls: false,
      date: ${dateString},
      className: "shire-calendar"}
 )
@@ -306,7 +283,6 @@ React.createElement(
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
-               calendarControls={false}
                date={${dateString}}
                className="shire-calendar" />`
                                 }
@@ -318,20 +294,17 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
                                        monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
-                                       calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
-                                       calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                                        monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
-                                       calendarControls={false}
                                        date={currentDate}
                                        className="shire-calendar example-calendar" />
                     </td>
@@ -357,7 +330,6 @@ React.createElement(
     TolkienCalendars.ShireCalendar,
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      startDate: gregorianStartDate,
      className: "shire-calendar"}
@@ -366,7 +338,6 @@ React.createElement(
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
                yearView={true}
-               calendarControls={false}
                date={${dateString}}
                startDate={gregorianStartDate}
                className="shire-calendar" />`
@@ -386,7 +357,6 @@ gregorianStartDate.setFullYear(1,0,1);
 React.createElement(
     TolkienCalendars.ShireCalendar,
     {yearView: true,
-     calendarControls: false,
      date: ${dateString},
      startDate: gregorianStartDate,
      className: "shire-calendar"}
@@ -394,7 +364,6 @@ React.createElement(
 
 JSX:
 <ShireCalendar yearView={true}
-               calendarControls={false}
                date={${dateString}}
                startDate={gregorianStartDate}
                className="shire-calendar" />`
@@ -415,7 +384,6 @@ React.createElement(
     TolkienCalendars.ShireCalendar,
     {region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
      yearView: true,
-     calendarControls: false,
      date: ${dateString},
      startDate: gregorianStartDate,
      className: "shire-calendar"}
@@ -424,7 +392,6 @@ React.createElement(
 JSX:
 <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                yearView={true}
-               calendarControls={false}
                date={${dateString}}
                startDate={gregorianStartDate}
                className="shire-calendar" />`
@@ -437,14 +404,12 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_TOLKIEN}
                                        yearView={true}
-                                       calendarControls={false}
                                        date={currentDate}
                                        startDate={newYearSyncDate}
                                        className="shire-calendar example-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar yearView={true}
-                                       calendarControls={false}
                                        date={currentDate}
                                        startDate={newYearSyncDate}
                                        className="shire-calendar example-calendar" />
@@ -452,7 +417,6 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <ShireCalendar region={ShireCalendar.REGION_NAMES_BREE}
                                        yearView={true}
-                                       calendarControls={false}
                                        date={currentDate}
                                        startDate={newYearSyncDate}
                                        className="shire-calendar example-calendar" />
@@ -487,7 +451,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_RULES_TRADITIONAL,
      region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
      yearView: true,
-     calendarControls: false,
      date: ${ta1300String},
      startDate: secondAgeStartDate,
      className: "shire-calendar"}
@@ -499,7 +462,6 @@ JSX:
                }
                region={ShireCalendar.REGION_NAMES_BREE}
                yearView={true}
-               calendarControls={false}
                date={${ta1300String}}
                startDate={secondAgeStartDate}
                className="shire-calendar" />`
@@ -522,7 +484,6 @@ React.createElement(
     {calendarRules:
         TolkienCalendars.GondorCalendar.RECKONING_RULES_TRADITIONAL,
      yearView: true,
-     calendarControls: false,
      date: ${ta1601String},
      startDate: secondAgeStartDate,
      className: "shire-calendar"}
@@ -533,7 +494,6 @@ JSX:
                    GondorCalendar.RECKONING_RULES_TRADITIONAL
                }
                yearView={true}
-               calendarControls={false}
                date={${ta1601String}}
                startDate={secondAgeStartDate}
                className="shire-calendar" />`
@@ -557,7 +517,6 @@ React.createElement(
         TolkienCalendars.GondorCalendar.RECKONING_RULES_TRADITIONAL,
      region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
      yearView: true,
-     calendarControls: false,
      date: ${ta3019String},
      startDate: secondAgeStartDate,
      className: "shire-calendar"}
@@ -569,7 +528,6 @@ JSX:
                }
                region={ShireCalendar.REGION_NAMES_TOLKIEN}
                yearView={true}
-               calendarControls={false}
                date={${ta3019String}}
                startDate={secondAgeStartDate}
                className="shire-calendar" />`
@@ -583,7 +541,6 @@ JSX:
                         <ShireCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
                                        region={ShireCalendar.REGION_NAMES_BREE}
                                        yearView={true}
-                                       calendarControls={false}
                                        date={ta1300}
                                        startDate={secondAgeStartDate}
                                        className="shire-calendar example-calendar" />
@@ -591,7 +548,6 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <ShireCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
                                        yearView={true}
-                                       calendarControls={false}
                                        date={ta1601}
                                        startDate={secondAgeStartDate}
                                        className="shire-calendar example-calendar" />
@@ -600,7 +556,6 @@ JSX:
                         <ShireCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
                                        region={ShireCalendar.REGION_NAMES_TOLKIEN}
                                        yearView={true}
-                                       calendarControls={false}
                                        date={ta3019}
                                        startDate={secondAgeStartDate}
                                        className="shire-calendar example-calendar" />
