@@ -20,6 +20,10 @@ import {
     isGondorLeapYear
 } from './GondorReckoning';
 
+const REGION_NAMES_TOLKIEN = "tolkien";
+const REGION_NAMES_SHIRE = "shire";
+const REGION_NAMES_BREE = "bree";
+
 /**
  * @typedef {Object} ShireWeekday
  * @property {string} tolkien - The Gregorian substitution Tolkien used for this weekday name.
@@ -510,4 +514,11 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
     };
 };
 
-export { ShireWeekdays, ShireMonths, getShireNewYearDate, makeShireCalendarDates };
+export {
+    ShireWeekdays,
+    ShireMonths,
+    REGION_NAMES_TOLKIEN,
+    REGION_NAMES_SHIRE,
+    REGION_NAMES_BREE,
+    getShireNewYearDate,
+    makeShireCalendarDates };

@@ -4,7 +4,14 @@
  */
 import React, { Component } from 'react';
 
-import { ShireWeekdays, ShireMonths, makeShireCalendarDates } from '../ShireReckoning';
+import {
+    ShireWeekdays,
+    ShireMonths,
+    makeShireCalendarDates,
+    REGION_NAMES_TOLKIEN,
+    REGION_NAMES_SHIRE,
+    REGION_NAMES_BREE
+} from '../ShireReckoning';
 import { RECKONING_RULES_GREGORIAN } from '../GondorReckoning';
 import { fullYearDate, datesMatch } from '../Utils';
 
@@ -19,10 +26,6 @@ import {
     HORIZONTAL
 } from './controls/MonthViewLayout';
 
-
-const REGION_NAMES_TOLKIEN = "tolkien";
-const REGION_NAMES_SHIRE = "shire";
-const REGION_NAMES_BREE = "bree";
 
 class ShireCalendar extends Component {
     static get REGION_NAMES_TOLKIEN() { return REGION_NAMES_TOLKIEN; }

@@ -13,6 +13,7 @@ import '../ui/tolkien-calendars.css';
 
 import MonthViewLayout from './controls/MonthViewLayout';
 import MonthViewPicker from './controls/MonthViewPicker';
+import ShireRegionPicker from './controls/ShireRegionPicker';
 import StartDatePicker from './controls/StartDatePicker';
 
 
@@ -133,13 +134,8 @@ class ShireCalendarWithControls extends Component {
                                      endRange={25}
                                      startDate={this.state.startDate}
                                      onCalendarStartChange={this.onCalendarStartChange} />
-                    <select className="shire-region-select"
-                            value={region}
-                            onChange={this.onRegionChange} >
-                        <option value={ShireCalendar.REGION_NAMES_TOLKIEN}>Tolkien Names</option>
-                        <option value={ShireCalendar.REGION_NAMES_SHIRE}>Shire Names</option>
-                        <option value={ShireCalendar.REGION_NAMES_BREE}>Bree Names</option>
-                    </select>
+                    <ShireRegionPicker region={region}
+                                       onRegionChange={this.onRegionChange} />
                 </th>
                 <th className='shire-calendar-controls month-picker-container' >
                     <MonthViewPicker monthNames={monthNames}
