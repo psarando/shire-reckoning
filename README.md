@@ -208,7 +208,7 @@ Depending on where the Shire Calendar starts in the Gregorian calendar (such as 
 and considering that all Shire months have 30 days,
 whereas the Gregorian calendar months have anywhere from 28 - 31 days,
 a Shire month could be in advance of the corresponding Gregorian month by anywhere from 6 - 11 days in the example above.
-In fact, if the Shire New Year's Day corresponded with Gregorian December 22,
+In fact, when the Shire New Year's Day corresponds with Gregorian December 21,
 then the differences between the 1st day of each Shire month with the corresponding Gregorian month would average 10 days.
 
 If we don't want to observe the Shire Calendar with these "traditional" leap-year rules,
@@ -265,7 +265,7 @@ referring to its chart demonstrating this alignment:
 
 * It has not escaped my attention that the [proleptic Gregorian](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
   December 23 [would have corresponded to the classical Julian December 25](https://en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars)
-  when that calendar was established in 46 B.C.,
+  from 45 B.C. (when the Julian calendar was enacted) until 100 A.D.,
   but I can only speculate that this may have something to do with Tolkien's alignment of
   the Shire New Year's Day with December 25 in 1940 and 1941 for his moon phase chart,
   and yet he aligned Shire New Year's Day to December 23 in Appendix D when he stated
@@ -625,7 +625,7 @@ then this is also a correspondence between Gregorian January 1 and Kings' Reckon
 So if Shire Mid-year’s Day corresponded more or less with Gregorian June 23,
 then so did the Kings' Reckoning "Mid-year’s Day" (Loëndë),
 and if Shire New Year's Day corresponded more or less with Gregorian December 23,
-then so did the Kings' Reckoning New Year's Day.
+then so did the Kings' Reckoning New Year's Day (Yestarë).
 
 As explained above, the Shire and Gondor calendars would not stay in sync over the centuries with a Gregorian calendar
 due to their differences in leap-year rules,

@@ -41,8 +41,8 @@ Various ways of synchronizing Gregorian years with Shire-reckoning years and the
       and will set the Rivendell Calendar to "Start reckoning from" the Gregorian year -589 (590 B.C.E.), March 23.
     * The [default calendars on this project's home page](https://psarando.github.io/shire-reckoning/#tolkien-calendars)
       are recommended if you're only interested in a Shire, Gondor, or Rivendell date conversion for today's date.
-      Those default Shire and Gondor calendars start reckoning from Gregorian year 0, December 21,
-      and that default Rivendell Calendar starts reckoning from Gregorian year 1, March 22.
+      Those [default Shire and Gondor calendars start reckoning from Gregorian year 0, December 21](https://psarando.github.io/shire-reckoning/#reckoning-start-dates),
+      and that [default Rivendell Calendar starts reckoning from Gregorian year 1, March 22](https://psarando.github.io/shire-reckoning/#rivendell-reckoning-notes).
 2. Choose one of the events of Middle-earth in the `Dates of Interest` list to see its corresponding date in each calendar,
    as well as which Gregorian date corresponds to that chosen event, for the selected `Synchronize` scheme.
     * These dates are listed in descending order, from latest to earliest.
@@ -114,9 +114,11 @@ I would consider the following details as cannon in these simulations:
   unless marked with a `?` (also note [the exception to the specific dates in Iys 495](#dates-of-interest)).
 * All of the years of the Kings' and Stewards' Reckoning
   (with the exception of the [corresponding weekdays](#gondor-week-days)).
-  Since Tolkien provided thorough details about the history of the calendars of Númenor and Gondor,
-  including all the exceptions to the leap-year and leap-day rules throughout its history in the Second and Third Ages,
-  these calendars can be considered the most accurate for the longest period of time in these simulations.
+  Tolkien provided thorough details about the history of the calendars of Númenor and Gondor,
+  including all the exceptions to the leap-year and leap-day rules
+  (or [intercalations](https://en.wikipedia.org/wiki/Intercalation_(timekeeping)))
+  throughout its history in the Second and Third Ages.
+  So these calendars can be considered the most accurate for the longest period of time in these simulations.
 * The New Reckoning from IV 1 Yestarë through IV 80 Yavannië 30,
   and then again from the Middle-days of IV 100 through IV 180 Yavannië 30,
   [repeating this pattern of non-cannon dates during the last 20 years of each century](#leap-years-beyond-the-third-age)
@@ -133,8 +135,10 @@ I would consider the following details as cannon in these simulations:
   S.R. 1122 is the last possible year [Shire-reform](#shire-reform) could have been enacted,
   and also the last likely year [any millennial adjustments may have been incorporated](#millennial-leap-years).
   I'm considering S.R. 1500 Mid-year's Day the cutoff
-  [since we don't know how leap-years were handled after the Third Age](#leap-years-beyond-the-third-age).
-  Although Shire Calendar dates after S.R. 1500 Mid-year's Day should be accurate to within a day or 2
+  since [we don't know how leap-years were handled after the Third Age](#leap-years-beyond-the-third-age),
+  though it may be reasonable to assume that the Shire Calendar continued without
+  [millennial adjustments](#millennial-leap-years) up to S.R. 2000.
+  In any case, Shire Calendar dates after S.R. 1500 Mid-year's Day should be accurate to within a day or 2 in these simulations
   (at least for a few centuries).
 * The days and "months" of the Calendar of Imladris can only be considered cannon during the corresponding Shire Calendar dates
   from S.R. 1418 (III 3018) Winterfilth 4 through S.R. 1419 (III 3019) Winterfilth 6
@@ -202,9 +206,13 @@ Similarly, the `Start reckoning from` dates also include the Gregorian year 0, w
 
 ### Gondor Week Days
 
-Note that Tolkien stated in Appendix D that
+Tolkien stated in Appendix D that
 "all the days, months, and dates are in the Red Book translated into Shire terms, or equated with them in notes".
 This means there probably aren't any references to a current weekday of the Gondor Calendar during the narrative of *The Lord of the Rings*.
+Tolkien also stated that the Kings' Reckoning was based on the calendar of the Edain from the First Age,
+which had a 6-day week like the calendar of the Eldar,
+but at some point the Númenoreans added a 7th weekday to their calendar,
+though it's not stated when the 7th weekday was added.
 So for these simulations, I assume that the weekdays were reckoned continuously
 starting with Elenya on the first day of the Second Age (S.A.).
 Appendix D states that "in Númenor calculation started with S.A. 1",

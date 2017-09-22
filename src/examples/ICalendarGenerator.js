@@ -146,7 +146,8 @@ class ICalendarGenerator extends Component {
             today:     today,
             startDate: startDate,
             calendar:  calendar,
-            region:    REGION_NAMES_SHIRE
+            region:    REGION_NAMES_SHIRE,
+            btnTxt:    "Copy"
         };
 
         this.onCalendarStartChange = this.onCalendarStartChange.bind(this);
@@ -163,12 +164,13 @@ class ICalendarGenerator extends Component {
         this.setState({
             today:     today,
             startDate: startDate,
-            calendar:  calendar
+            calendar:  calendar,
+            btnTxt:    "Copy"
         });
     }
 
     onRegionChange(event) {
-        this.setState({region: event.target.value});
+        this.setState({region: event.target.value, btnTxt: "Copy"});
     }
 
     onCopyText(e) {
@@ -176,7 +178,7 @@ class ICalendarGenerator extends Component {
 
         this.refs.copyTextArea.select();
         if (copySelection()) {
-            this.refs.copyTextBtn.innerText = "Copied!";
+            this.setState({btnTxt: "Copied!"})
         }
     }
 
@@ -241,7 +243,7 @@ class ICalendarGenerator extends Component {
 
         let controls     = this.renderCalendarControls(),
             copyTextArea = this.renderCopyTextArea(formatICalendar(calEvents)),
-            copyButton   = this.renderCopyButton("Copy");
+            copyButton   = this.renderCopyButton(this.state.btnTxt);
 
         return (
             <table className="shire-calendar" >
