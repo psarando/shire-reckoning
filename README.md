@@ -76,7 +76,7 @@ These javascript calendars use the [React javascript library](http://facebook.gi
 
 ### Middle-earth Simulation
 
-As pointed out in the [Rivendell Reckoning notes](https://psarando.github.io/shire-reckoning/#rivendell-reckoning-notes),
+As pointed out in the [Shire Reckoning notes](https://psarando.github.io/shire-reckoning/#reckoning-start-dates),
 the calendars of Gondor and the Shire described in Appendix D had similar
 yet different leap-year and leap-day rules compared to our Gregorian calendar.
 So this project also includes a way to reckon Shire and Gondor dates according to
@@ -193,7 +193,7 @@ are added 200 years after that.
 Eventually these differences would add up,
 and after only 2000 years the calendars would permanently shift 1 day off from where they started
 (or by 5 days with no millennial adjustments).
-So if the Shire Calendar started reckoning from a
+So for example, if the Shire Calendar started reckoning from a
 [proleptic Gregorian](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
 December 23 in 1 A.D.,
 then its New Year's Day would end up on our December 22 for a few centuries after the year 2000,
@@ -255,7 +255,10 @@ Note this annotation from [The Lord of the Rings: A Reader's Companion](#referen
 * Since [moon phases repeat on approximately the same dates every 19 years](https://en.wikipedia.org/wiki/Metonic_cycle),
   then these 1941-2 moon phases will repeat on most of these same "adjusted" dates in 2017-18.
   Although reckoning the start of the Shire Calendar year [back 1 more day](https://en.wikipedia.org/wiki/Callippic_cycle)
-  (from Gregorian December 24) in 2017 allows the full moons of Afteryule and Rethe to fall on the correct days.
+  (from Gregorian December 24) in 2017 allows the full moons of
+  Afteryule (just before the Fellowship reaches Moria)
+  and Rethe (just before the destruction of the One Ring)
+  to fall on the correct days.
 * If reckoning the start of the Shire Calendar year from Gregorian December 21,
   then the moon phases of 2020-21 will match the Shire Reckoning dates of the narrative instead
   (and a bit better).
@@ -277,14 +280,15 @@ Gregorian calendar's leap-day rules, [as described above in the Shire Reckoning 
 The calendar of Gondor went through 3 variations throughout its history:
 
 1. **Kings' Reckoning**:
-   The Kings' Reckoning was founded in Númenor and was "used in Númenor, and in Arnor and Gondor until the end of the kings".
+   The Kings' Reckoning was established in Númenor and was
+   "used in Númenor, and in Arnor and Gondor until the end of the kings".
    This was the calendar that was in use for the longest period of time in Middle-earth
    (with the likely exception of the Calendar of Imladris).
    The Kings' Reckoning was in use probably throughout the entire history of Númenor,
    for over 3000 years during the Second Age,
    and up to the Third Age (T.A.) 2059 in Gondor.
 2. **Stewards' Reckoning**:
-   The Stewards' Reckoning was founded in the time of Mardil, the first Ruling Steward of Gondor,
+   The Stewards' Reckoning was established in the time of Mardil, the first Ruling Steward of Gondor,
    and replaced the Kings' Reckoning in T.A. 2060.
    It was only a minor modification of the Kings' Reckoning that added a "Spring-day" (Tuilérë)
    and an "Autumn-day" (Yáviérë) and shortened the two 31-day months in summer to 30 days each.
@@ -435,7 +439,7 @@ Shapiro focuses on 2 clues from Appendix D for determining this starting date of
       (the year the One Ring was destroyed).
 
 So Shapiro concludes that if Shire Afteryule 9 was January 1, then Shire Astron 6 was March 29
-(and Shire New Year's Day was December 23);
+(and Shire New Year's Day was [December 23](#reckoning-start-dates));
 and if Rivendell New Year's Day was Shire Astron 6, then Rivendell New Year's Day was also March 29.
 
 Note that Shapiro begins reckoning the Calendar of Imladris from 1 A.D.
@@ -456,10 +460,12 @@ and Shire Astron 6 would have corresponded to the Gregorian March 29.
 Shapiro starts his reckoning from the classical Julian March 29 in 1 A.D,
 but the [proleptic Gregorian March 29 in 1 A.D. is equivalent to the classical Julian March 31 in 1 A.D.](https://en.wikipedia.org/wiki/Conversion_between_Julian_and_Gregorian_calendars)
 Likewise, the proleptic Gregorian December 23 in 1 A.D. is equivalent to the classical Julian December 25 in 1 A.D.
+(which may have something to do with [Tolkien's 1942 moon phases alignment](#reckoning-with-moon-phases)).
 
 Second, we know that the Calendar of Imladris New Year's Day ended up on a Shire Astron 6 by the end of the Third Age,
 but that doesn't necessarily mean that a Calendar of Imladris should start reckoning from that date.
-Due to the differences in leap-year rules between the "traditional" Shire Calendar and the Calendar of Imladris,
+Due to the differences between the "traditional" [Shire Calendar leap-year rules](#reckoning-start-dates)
+and the [Calendar of Imladris leap-year rules](#rivendell-reckoning-notes),
 the dates of one calendar will not always fall on the same dates of the other,
 which explains why Tolkien said Rivendell New Year's Day "corresponded more or less with Shire April 6" (Astron 6).
 These differences in leap-year rules also means that
@@ -490,6 +496,7 @@ mirrors a similar relationship between the old Julian calendar and the modern Gr
 
 * March 25 of the Julian calendar
   [was the start of the legal year in England](https://en.wikipedia.org/wiki/Gregorian_calendar#Beginning_of_the_year)
+  (also known as [Lady Day](https://en.wikipedia.org/wiki/Lady_Day#Non-religious_significance))
   before the adoption of the Gregorian calendar in 1752,
   which converted to Gregorian April 5 at that time.
   Then the Julian March 25 corresponded to Gregorian April 6 in the year 1800
@@ -499,7 +506,7 @@ mirrors a similar relationship between the old Julian calendar and the modern Gr
 I don't think this is mere coincidence and it strikes me as intentionally calculated by Tolkien.
 
 In order to demonstrate how Rivendell New Year's Day ended up on a Gregorian March 25th by the end of the Third Age,
-I'll examine the following details given by J.R.R. Tolkien in *The Lord of the Rings* Appendix D
+I'll examine the following details given by Tolkien in *The Lord of the Rings* Appendix D
 (some of which have already been discussed earlier in these notes):
 
 1. "our New Year's Day corresponded more or less to the Shire January 9".
@@ -531,6 +538,9 @@ which later became the Stewards' Reckoning calendar of Gondor.
 These calendars must have been aligned by the Third Age 3019,
 since Tolkien states in Appendix D that the New Year's Day of the New Reckoning calendar corresponded
 with "March 25" of the Shire, Kings', and Stewards' Reckoning calendars (Rethe 25 and Súlimë 25).
+The Stewards' Reckoning was only a slight modification of the Kings' Reckoning calendar,
+and the New Year's Day (Yestarë), 'March' (Súlimë) 25, and "Mid-year’s Day" (Loëndë)
+of both calendars still fell on the same days.
 
     > The months and days, therefore, throughout The Lord of the Rings refer to the Shire Calendar.
     > ... March 25, the date of the downfall of Barad-dûr
@@ -538,7 +548,7 @@ with "March 25" of the Shire, Kings', and Stewards' Reckoning calendars (Rethe 2
     >
     > -- J.R.R. Tolkien, The Lord of the Rings Appendix D
 
-2. The Kings' Reckoning was founded in Númenor, and started reckoning from the first year of the Second Age (S.A.).
+2. The Kings' Reckoning was established in Númenor, and started reckoning from the first year of the Second Age (S.A.).
 Both the [Kings' and Shire Reckoning followed leap-year rules similar to the Gregorian calendar](#reckoning-start-dates),
 but the slight difference in leap-day rules is enough to cause dates between these calendars and the Gregorian calendar
 to gradually drift apart over the millennia
@@ -611,7 +621,7 @@ Since *The Tale of Years* (Appendix B) lists the Elves' New Year's Day on Astron
 then Rivendell New Year's Day (Yestarë) was also Gregorian March 25 in T.A. 3019
 ([see it in action on the Middle-earth simulation page](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)).
 
-Finally, we can be assured that the Elves' New Year's Day was precisely on Shire Astron 6 in T.A. 3019,
+We may also be assured that the Elves' New Year's Day was precisely on Shire Astron 6 in T.A. 3019,
 and the Kings'/Stewards' Reckoning Súlimë 25 was on Shire Rethe 25 in T.A. 3019,
 due to the following quote near the beginning of Appendix D (note that S.R. 1418, 1419 are the same years as T.A. 3018, 3019):
 
@@ -660,17 +670,19 @@ these calendars would not stay in sync with each other over long periods of time
 Approximately every 1700 years,
 [the 432-year cycle of the Calendar of Imladris will drift a day ahead](Rivendell_Drift.md)
 of the Gregorian calendar's 400-year cycle.
-If the Calendar of Imladris started reckoning on a proleptic Gregorian March 22,
+If the Calendar of Imladris started reckoning on a proleptic Gregorian March 21 or 22,
 then after enough millennia Yestarë will have drifted to correspond with March 25th.
 
-[Aaron Chong](http://rinsanity.weebly.com/tolkien.html)
-suggests that the Calendar of Imladris could have started its reckoning from the first Year of the Sun in the First Age
-(590 years before the start of the Second Age).
-"This is certainly closer to where one would expect the elves would begin their year,
-especially if they wanted to put it close to the spring equinox."
+Aaron Chong suggests that the Calendar of Imladris could have started its reckoning from the first Year of the Sun in the First Age
+(590 years before the start of the Second Age)
+in his blog post [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html).
+I also noticed this suggestion in the forum post
+[Middle-earth chronology](http://tolkienforums.activeboard.com/t42820320/middle-earth-chronology/),
+by James "the Just" Strom, which is also linked in Aaron Chong's blog post.
 
-The 7050 years from then to the end of the War of the Ring
-(590 Years of the Sun + S.A. 3441 + T.A. 3019 = 7050)
+If the Calendar of Imladris started reckoning from the first Year of the Sun in the First Age,
+then the 7049 years from then to the end of the War of the Ring
+(590 Years of the Sun + S.A. 3441 + T.A. 3018 = 7049)
 would have been enough time for Rivendell New Year's Day (Yestarë) to drift
 from a spring equinox to the Gregorian March 25 by T.A. 3019.
 
@@ -713,7 +725,13 @@ would not be in sync with the leap-years of this Gregorian calendar,
 so it makes the comparison more complicated;
 but the first few years of this Calendar of Imladris
 would correspond with this Gregorian calendar's March 22
-in order for its Yestarë to fall on March 25 in this Gregorian calendar's year 6460
+in order for its Yestarë to fall on March 25 in this Gregorian calendar's year 6460.
+More precisely,
+the Calendar of Imladris would have to start reckoning on a March 23 in this Gregorian calendar's year 590 B.C.E.,
+but the year 590 B.C.E. in the Gregorian calendar is right before a leap-year,
+so in the next 4 years (589 B.C.E. through 586 B.C.E.) Yestarë would fall on a March 22.
+One way to look at this would be to consider this Gregorian calendar as already a day off from the seasons in 590 B.C.E.,
+and its leap-day in 589 B.C.E. will re-sync it with the seasons and this Calendar of Imladris
 ([see it in action on the Middle-earth simulation page](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)).
 
 So for these reasons, in addition to those [given at the beginning of these Rivendell Reckoning notes](#why-march-22nd),
@@ -765,13 +783,14 @@ perhaps he just didn't concern himself with any other dates of the solar events 
 spring equinox and summer solstice during the hypothetical time-frame
 of the "Great Years" of the War of the Ring.
 
-This may be perfectly reasonable in the context of the mythology of Middle-earth,
+This could be reasonable in the context of the mythology of Middle-earth,
 since the world of Middle-earth was a flat world only about 3000 years before the War of the Ring,
 when the epic cataclysm of the Downfall of Númenor made it into the round world we know today.
 If we allow for the possibility that this mythological flat world
 (and the first 3000 years of the round world)
-had more stable lengths of years and seasons,
+had more static lengths of years and seasons,
 then these calendars could be more applicable to that mythological past than our actual planet's physical history.
+Aaron Chong suggests something similar in his [blog post](http://rinsanity.weebly.com/tolkien.html) as well.
 
 #### Reformed Rivendell Reckoning
 
@@ -806,7 +825,7 @@ usually falls on September 22nd (or early on the 23rd), and as mentioned earlier
 the 3 Enderi were most likely intended to occur around this equinox.
 
 Starting this calendar's year on Gregorian March 25 also means the other seasons of this calendar will align with
-[March 25th](https://en.wikipedia.org/wiki/March_25#Holidays_and_observances),
+[March 25th](https://en.wikipedia.org/wiki/Lady_Day#Non-religious_significance),
 [June 24th](https://en.wikipedia.org/wiki/Midsummer#United_Kingdom) (the middle of Lairë),
 and [December 24th](https://en.wikipedia.org/wiki/Christmas_Eve) (the middle of Hrívë),
 which fall on (or very close to) the

@@ -32,11 +32,17 @@ class DatePicker extends Component {
     }
 
     onDateChanged(event) {
-        let year = this.refs.currentYear.value;
-        let month = this.refs.currentMonth.value;
-        let day = this.refs.currentDay.value;
+        let year  = parseInt(this.refs.currentYear.value, 10);
+        let month = parseInt(this.refs.currentMonth.value, 10);
+        let day   = parseInt(this.refs.currentDay.value, 10);
 
-        this.props.onDateChanged(fullYearDate(year, month, day));
+        if (0 <= day && day <= 32) {
+            let currentDate = fullYearDate(year, month, day);
+
+            if (!isNaN(currentDate.getFullYear())) {
+                this.props.onDateChanged(currentDate);
+            }
+        }
     }
 
     createDateInput(ref, value) {
