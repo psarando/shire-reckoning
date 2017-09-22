@@ -18,12 +18,16 @@ class IntercalaryDay extends Component {
             dayColor = getDateColor(dayColor, gregorianExtra, currentDate);
 
             return (
-                <td className={dayColor} title={dateTitle} >
-                    {this.props.name}
+                <td className={`${dayColor} intercalary-multi-day`} title={dateTitle} >
+                    <span className={this.props.dayClassName} >
+                        {this.props.name}
+                    </span>
                     <br />
                     <GregorianDateDisplay date={gregorianDate} />
                     <hr className="intercalary-day-separator" />
-                    {this.props.dayExtra}
+                    <span className={this.props.dayExtraClassName} >
+                        {this.props.dayExtra}
+                    </span>
                     <br />
                     <GregorianDateDisplay date={gregorianExtra} />
                 </td>

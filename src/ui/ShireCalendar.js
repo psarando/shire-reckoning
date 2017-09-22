@@ -105,6 +105,8 @@ class ShireCalendar extends Component {
     renderDay(dates, today) {
         let date = dates[0];
         let region = this.state.region;
+        let dayClassName = null;
+        let dayExtraClassName = null;
         let dayExtra = null;
         let gregorianExtra = null;
         let description = null;
@@ -135,10 +137,13 @@ class ShireCalendar extends Component {
 
             case "1 Lithe":
                 description = "Midsummer's Eve";
+
                 if (dayExtra === "Midyear's Day") {
                     description = "Midsummer's Eve and Midsummer Day!";
+                    dayExtraClassName = "intercalary-midyears-day";
                 } else if (dayExtra) {
                     description = "Midsummer's Eve and Shire Leap Day!";
+                    dayExtraClassName = "intercalary-overlithe-day";
                 }
 
                 return (
@@ -148,6 +153,7 @@ class ShireCalendar extends Component {
                                     currentDate={today}
                                     gregorian={date.gregorian}
                                     dayExtra={dayExtra}
+                                    dayExtraClassName={dayExtraClassName}
                                     gregorianExtra={gregorianExtra} />
                 );
 
@@ -164,6 +170,7 @@ class ShireCalendar extends Component {
                 let key = `Overlithe-${date.weekDay}`;
                 description = "Shire Leap Day!";
                 if (dayExtra) {
+                    dayClassName = "intercalary-overlithe-day";
                     description = "Shire Leap Day and Day after Midsummer.";
                 }
 
@@ -173,6 +180,7 @@ class ShireCalendar extends Component {
                                     description={description}
                                     currentDate={today}
                                     gregorian={date.gregorian}
+                                    dayClassName={dayClassName}
                                     dayExtra={dayExtra}
                                     gregorianExtra={gregorianExtra} />
                 );

@@ -49,6 +49,16 @@
 }
 .intercalary-day-separator {
     transform: rotate(-15deg);
+    margin: 0.6rem 0;
+}
+.shire-calendar .intercalary-multi-day {
+    font-size: .64rem;
+}
+.intercalary-midyears-day {
+    font-size: .7rem;
+}
+.intercalary-overlithe-day {
+    font-size: .8rem;
 }
 .vertical-layout-filler {
     height: 0 !important;
