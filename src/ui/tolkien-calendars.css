@@ -20,6 +20,9 @@
 .rivendell-calendar {
     width: 30rem;
 }
+.rivendell-calendar-vertical-weeks {
+    width: 70rem;
+}
 .rivendell-calendar td {
     height: 4.2rem;
 }

@@ -133,20 +133,20 @@ JSX:
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
                                         yearView={true}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         yearView={true}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         yearView={true}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                 </tr>
                 <tr>
@@ -226,18 +226,18 @@ JSX:
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                 </tr>
                 <tr>
@@ -326,21 +326,21 @@ JSX:
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_KINGS}
                                         monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
                                         monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
                                         language={GondorCalendar.LANGUAGE_SINDARIN}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
                                         language={GondorCalendar.LANGUAGE_ENGLISH}
                                         date={currentDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                 </tr>
                 <tr id="new-year-sync">
@@ -450,7 +450,7 @@ JSX:
                                         yearView={true}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_STEWARDS}
@@ -458,14 +458,14 @@ JSX:
                                         yearView={true}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar reckoning={GondorCalendar.RECKONING_NEW}
                                         yearView={true}
                                         date={currentDate}
                                         startDate={newYearSyncDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                 </tr>
                 <tr id="traditional-rules">
@@ -598,7 +598,7 @@ JSX:
                                         yearView={true}
                                         date={sa32}
                                         startDate={secondAgeStartDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
@@ -607,7 +607,7 @@ JSX:
                                         yearView={true}
                                         date={ta2060}
                                         startDate={secondAgeStartDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar calendarRules={GondorCalendar.RECKONING_RULES_TRADITIONAL}
@@ -615,7 +615,7 @@ JSX:
                                         yearView={true}
                                         date={ta3019}
                                         startDate={secondAgeStartDate}
-                                        className="shire-calendar example-calendar" />
+                                        className="shire-calendar" />
                     </td>
                 </tr>
                 </tbody>

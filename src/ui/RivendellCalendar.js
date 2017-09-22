@@ -16,7 +16,7 @@ import { fullYearDate, datesMatch } from '../Utils';
 
 import DateCell from './DateCell';
 import IntercalaryDay from './IntercalaryDay';
-import WeekDayHeaderCell, { addMonthFiller } from './WeekDayHeaderCell';
+import WeekDayHeaderCell, { addMonthFiller, addVerticalMonthFiller } from './WeekDayHeaderCell';
 import './tolkien-calendars.css';
 
 import {
@@ -24,6 +24,12 @@ import {
     QUENYA,
     SINDARIN
 } from './controls/LanguagePicker';
+
+import {
+    VerticalLayoutFiller,
+    VERTICAL,
+    HORIZONTAL
+} from './controls/MonthViewLayout';
 
 class RivendellCalendar extends Component {
     static get TRADITIONAL_RULES() { return TRADITIONAL_RULES; }
@@ -33,10 +39,14 @@ class RivendellCalendar extends Component {
     static get LANGUAGE_QUENYA() { return QUENYA; }
     static get LANGUAGE_SINDARIN() { return SINDARIN; }
 
+    static get MONTH_VIEW_VERTICAL() { return VERTICAL; }
+    static get MONTH_VIEW_HORIZONTAL() { return HORIZONTAL; }
+
     constructor(props) {
         super(props);
 
         let language = props.language || QUENYA;
+        let monthViewLayout = props.monthViewLayout || HORIZONTAL;
         let calendarRules = props.calendarRules || TRADITIONAL_RULES;
         let startDay = props.startDay || 22;
         let startDate = props.startDate || fullYearDate(1, 2, startDay);
@@ -51,6 +61,7 @@ class RivendellCalendar extends Component {
             today: today,
             yearView: yearView,
             monthView: monthView,
+            monthViewLayout: monthViewLayout,
             calendarRules: calendarRules,
             startDate: startDate,
             language: language
@@ -61,6 +72,7 @@ class RivendellCalendar extends Component {
         let today = nextProps.date || this.state.today;
         let startDate = nextProps.startDate || this.state.startDate;
         let language = nextProps.language || this.state.language;
+        let monthViewLayout = nextProps.monthViewLayout || this.state.monthViewLayout;
         let calendarRules = nextProps.calendarRules || this.state.calendarRules;
         let yearView = nextProps.yearView === undefined ? this.state.yearView : nextProps.yearView;
 
@@ -90,6 +102,7 @@ class RivendellCalendar extends Component {
             calendarRules: calendarRules,
             startDate: startDate,
             language: language,
+            monthViewLayout: monthViewLayout,
             monthView: monthView,
             yearView: yearView
         });
@@ -196,6 +209,47 @@ class RivendellCalendar extends Component {
         return weeks;
     }
 
+    renderMonthVertical() {
+        let today = this.state.today;
+        let dates = this.state.calendar.dates;
+        let monthView = this.state.monthView;
+        let language = this.state.language;
+
+        let weeks = RivendellWeekdays.map(function (weekday) {
+            let weekdayName = weekday[language];
+            return [(
+                <WeekDayHeaderCell key={weekdayName}
+                                   name={weekdayName}
+                                   description={weekday.description}
+                                   colSpan='2' />
+            )];
+        });
+
+        let i = 0, date = dates[i];
+        for (;
+            i < dates.length && date.month < monthView;
+            i++, date = dates[i]) {
+            // seek ahead to current month view
+        }
+
+        addVerticalMonthFiller(weeks, date.weekDay);
+
+        for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
+            weeks[date.weekDay].push(this.renderDay(date, today));
+        }
+
+        if (monthView === 2) {
+            date = dates[i];
+            for (; date.day === "Enderë"; i++, date = dates[i]) {
+                weeks[date.weekDay].push(this.renderDay(date, today));
+            }
+        }
+
+        return weeks.map(function (week, i) {
+            return (<tr key={i} >{week}</tr>);
+        });
+    }
+
     renderYear() {
         let today = this.state.today;
         let dates = this.state.calendar.dates;
@@ -236,7 +290,15 @@ class RivendellCalendar extends Component {
             </tr>
         );
 
-        let weeks = this.state.yearView ? this.renderYear() : this.renderMonth();
+        let weeks;
+        if (this.state.yearView) {
+            weeks = this.renderYear();
+        } else if (this.state.monthViewLayout === VERTICAL) {
+            weeks = this.renderMonthVertical();
+            weekDayHeader = <VerticalLayoutFiller weekdays={RivendellWeekdays} />;
+        } else {
+            weeks = this.renderMonth();
+        }
 
         let caption = null;
         if (this.props.caption) {

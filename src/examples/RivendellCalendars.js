@@ -128,21 +128,21 @@ JSX:
                         <RivendellCalendar yearView={true}
                                            date={sa1697}
                                            startDay={21}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar language={RivendellCalendar.LANGUAGE_ENGLISH}
                                            yearView={true}
                                            date={ta2941}
                                            startDay={21}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar language={RivendellCalendar.LANGUAGE_SINDARIN}
                                            yearView={true}
                                            date={ta3018}
                                            startDay={21}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                 </tr>
                 <tr id="date-picker">
@@ -244,7 +244,7 @@ JSX:
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar yearView={true}
                                            date={currentDate}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
@@ -252,7 +252,7 @@ JSX:
                                            language={RivendellCalendar.LANGUAGE_ENGLISH}
                                            yearView={true}
                                            date={currentDate}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
@@ -260,7 +260,7 @@ JSX:
                                            language={RivendellCalendar.LANGUAGE_SINDARIN}
                                            yearView={true}
                                            date={currentDate}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                 </tr>
                 <tr>
@@ -347,21 +347,21 @@ JSX:
                 <tr>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar date={currentDate}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
                                            startDay={25}
                                            language={RivendellCalendar.LANGUAGE_ENGLISH}
                                            date={currentDate}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                     <td style={CalendarCellStyle}>
                         <RivendellCalendar calendarRules={RivendellCalendar.REFORMED_RULES}
                                            startDay={20}
                                            language={RivendellCalendar.LANGUAGE_SINDARIN}
                                            date={currentDate}
-                                           className="shire-calendar example-calendar" />
+                                           className="shire-calendar" />
                     </td>
                 </tr>
                 </tbody>

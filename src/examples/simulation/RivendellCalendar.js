@@ -15,7 +15,10 @@ import RivendellCalendar from '../../ui/RivendellCalendar';
 import '../../ui/tolkien-calendars.css';
 
 import LanguagePicker from '../controls/LanguagePicker';
+import MonthViewLayout from '../controls/MonthViewLayout';
 import MonthViewPicker from '../controls/MonthViewPicker';
+
+import '../examples.css';
 
 import StartReckoningDatePicker from './StartReckoningDatePicker';
 
@@ -30,17 +33,19 @@ class RivendellCalendarSimulated extends Component {
         let monthView = calendar.todayRivendell.month;
 
         this.state = {
-            calendar:  calendar,
-            today:     today,
-            viewDate:  today,
-            yearView:  false,
-            monthView: monthView,
-            startDate: startDate,
-            language:  LanguagePicker.QUENYA
+            calendar:        calendar,
+            startDate:       startDate,
+            today:           today,
+            viewDate:        today,
+            yearView:        false,
+            monthView:       monthView,
+            monthViewLayout: MonthViewLayout.VERTICAL,
+            language:        LanguagePicker.QUENYA
         };
 
-        this.onMonthViewChange   = this.onMonthViewChange.bind(this);
-        this.onLanguageChange    = this.onLanguageChange.bind(this);
+        this.onMonthViewChange       = this.onMonthViewChange.bind(this);
+        this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
+        this.onLanguageChange        = this.onLanguageChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -81,6 +86,10 @@ class RivendellCalendarSimulated extends Component {
         });
     }
 
+    onMonthViewLayoutChange(event) {
+        this.setState({monthViewLayout: event.target.value});
+    }
+
     onLanguageChange(event) {
         this.setState({language: event.target.value});
     }
@@ -117,6 +126,10 @@ class RivendellCalendarSimulated extends Component {
                     <LanguagePicker language={this.state.language}
                                     onLanguageChange={this.onLanguageChange} />
                 </th>
+                <th className='rivendell-calendar-controls' >
+                    <MonthViewLayout layout={this.state.monthViewLayout}
+                                     onMonthViewLayoutChange={this.onMonthViewLayoutChange} />
+                </th>
             </tr>
         );
     }
@@ -125,6 +138,11 @@ class RivendellCalendarSimulated extends Component {
         let year = this.state.calendar.year;
         let yen = Math.ceil(year / 144);
         let loa = year > 0 ? (year - 1) % 144 + 1 : year % 144 ;
+
+        let className = "shire-calendar rivendell-calendar";
+        if (!this.state.yearView && this.state.monthViewLayout === MonthViewLayout.VERTICAL) {
+            className += " rivendell-calendar-vertical-weeks";
+        }
 
         return (
             <table className={this.props.className} >
@@ -136,12 +154,13 @@ class RivendellCalendarSimulated extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td colSpan="3" className="shire-calendar-wrapper-cell" >
+                        <td colSpan="4" className="shire-calendar-wrapper-cell" >
                             <RivendellCalendar
-                                className="shire-calendar rivendell-calendar"
+                                className={className}
                                 calendar={this.state.calendar}
                                 date={this.state.today}
                                 language={this.state.language}
+                                monthViewLayout={this.state.monthViewLayout}
                                 monthView={this.state.monthView}
                                 yearView={this.state.yearView} />
                         </td>

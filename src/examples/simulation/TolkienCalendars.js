@@ -1258,7 +1258,7 @@ class SimulatedTolkienCalendars extends Component {
                     </th>
                 </tr>
                 <tr>
-                    <th colSpan='3' className="simulated-date-controls" >
+                    <th className="simulated-date-controls" colSpan='2' >
                         <DatePicker date={currentDate} onDateChanged={this.onDateChanged} className="simulated-gregorian-date-picker" />
                     </th>
                 </tr>
@@ -1275,7 +1275,9 @@ class SimulatedTolkienCalendars extends Component {
                                         date={currentDate}
                                         className="shire-calendar gondor-calendar" />
                     </td>
-                    <td style={CalendarCellStyle}>
+                </tr>
+                <tr>
+                    <td style={CalendarCellStyle} colSpan='2' >
                         <RivendellCalendar startDate={rivendellStartDate}
                                            onCalendarStartChange={this.onRivendellStartDateChange}
                                            date={currentDate}
