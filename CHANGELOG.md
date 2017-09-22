@@ -1,3 +1,10 @@
+## 3.0.0 (2017-09-22)
+
+* **BREAKING:** The calendar controls (for picking months, languages, etc.) are no longer exported by this library,
+  but their sources are still available under the examples directory.
+* The ShireReckoning now exports REGION_NAMES_TOLKIEN, REGION_NAMES_SHIRE, and REGION_NAMES_BREE constants.
+* Added "Vertical Month" layout support to the RivendellCalendar!
+
 ## 2.0.4 (2017-06-24)
 
 * Fixed calculations for dates observing Daylight Savings Time.

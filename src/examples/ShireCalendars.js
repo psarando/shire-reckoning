@@ -431,7 +431,8 @@ JSX:
                         reckon dates according to the "traditional" leap-day and leap-year rules as described in Appendix D,
                         from any start date, which will be considered the start of the Second Age in these reckonings.
                         When reckoning with these "traditional" rules,
-                        the Shire calendars will also only display according Shire Reform on or after T.A. 2685.
+                        the Shire calendars will also only display according Shire Reform on or after T.A. 2685
+                        (my estimate of the earliest year Shire Reform could have been introduced).
                     </th>
                 </tr>
                 <tr>

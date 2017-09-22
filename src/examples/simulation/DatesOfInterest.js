@@ -409,7 +409,7 @@ const DatesOfInterest = [
         allYear: false,
         month:   8,
         day:     28,
-        label:   "III 3018 Halimath 28 | The Hobbits captured by a Barrow-wight, and rescued by Tom Bombadil."
+        label:   "III 3018 Halimath 28 | The Hobbits are captured by a Barrow-wight."
     },
     {
         year:    3018 + 3441,
@@ -509,7 +509,7 @@ const DatesOfInterest = [
         allYear: false,
         month:   3,
         day:     6,
-        label:   "III 2980 Astron 6 | Samwise Gamgee born."
+        label:   "III 2980 (Astron 6?) | Samwise Gamgee born."
     },
     {
         year:    2978 + 3441,
@@ -701,7 +701,7 @@ const DatesOfInterest = [
         allYear: true,
         month:   6,
         day:     "Midyear's Day",
-        label:   "III 2000 | Millennial Leap-year in Gondor and the Shire. Nazgûl besiege Minas Ithil."
+        label:   "III 2000 | Millennial Leap-year in Gondor (and the Shire?). Nazgûl besiege Minas Ithil."
     },
     {
         year:    1999 + 3441,
