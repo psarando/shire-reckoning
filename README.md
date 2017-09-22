@@ -432,7 +432,7 @@ following one of its leap-years during these centuries.
 
 Unfortunately, Tolkien never stated in the Appendices of *The Lord of the Rings*
 when the Calendar of Imladris was established or from what date it started reckoning,
-so we don't have anything "cannon" to choose from as a proper first day to start our reckoning in modern times.
+so we don't have anything "canon" to choose from as a proper first day to start our reckoning in modern times.
 
 Tolkien provided many thorough details about his calendars in Appendix D,
 but he only provided a few (sometimes vague) details of how each calendar related to one another,
@@ -554,10 +554,10 @@ I'll examine the following details given by Tolkien in *The Lord of the Rings* A
 3. The correlations of the New Reckoning dates with the Kings' and Shire Reckoning dates imply these
    calendars were in sync by the Third Age 3019:
     * "March 25, the date of the downfall of Barad-dûr... was, however, March 25 in both Kings' and Stewards' Reckoning."
-    * In other words, Shire Rethe 25 = New Reckoning New Year's Day (Yestarë) = Kings'/Stewards' Reckoning Súlimë 25.
+    * In other words, Shire Rethe 25 = Kings'/Stewards' Reckoning Súlimë 25 = New Reckoning New Year's Day (Yestarë).
 4. The details of the Kings' Reckoning leap-day rules make it possible to calculate that this
-   calendar drifted 3 days behind a proleptic Gregorian calendar over the 6460 year period
-   from the start of the Second Age to the start of the Third Age 3019,
+   calendar drifted 3 days behind a [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
+   over the 6460 year period from the start of the Second Age to the start of the Third Age 3019,
    which implies the Shire Calendar was also 3 days behind this hypothetical Gregorian calendar at the start of T.A. 3019.
 
 When Tolkien stated "our New Year's Day corresponded more or less to the Shire January 9" (Afteryule 9),

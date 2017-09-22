@@ -183,7 +183,7 @@ class ICalendarGenerator extends Component {
     }
 
     renderCopyTextArea(text) {
-        return <textArea ref="copyTextArea" rows="32" cols="80" value={text} readOnly="readonly" />;
+        return <textarea ref="copyTextArea" rows="32" cols="80" value={text} readOnly="readonly" />;
     }
 
     renderCopyButton(btnTxt) {
