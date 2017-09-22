@@ -23,8 +23,8 @@
 ## 2.0.1 (2017-03-30)
 
 * Updated 2017-18 moon phase simulated calendar start dates
-  (see [Synchronize settings: Moon phases notes](http://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#synchronize-settings)).
-* [examples/simulated.html](http://psarando.github.io/shire-reckoning/examples/simulated.html)
+  (see [Synchronize settings: Moon phases notes](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#synchronize-settings)).
+* [examples/simulated.html](https://psarando.github.io/shire-reckoning/examples/simulated.html)
   now synchronizes with 2017-18 moon phases by default.
 
 ## 2.0.0 (2017-03-25)
@@ -32,9 +32,9 @@
 * Calendars can now start reckoning from any date in any year!
 * Added "traditional" Gondor Reckoning rules!
 * Added "traditional" Shire Reckoning rules!
-* Added [Middle-earth calendar simulations](http://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)!
-* See [Shire Calendar examples](http://psarando.github.io/shire-reckoning/examples/shire-calendars.html)
-  and [Gondor Calendar examples](http://psarando.github.io/shire-reckoning/examples/gondor-calendars.html)
+* Added [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)!
+* See [Shire Calendar examples](https://psarando.github.io/shire-reckoning/examples/shire-calendars.html)
+  and [Gondor Calendar examples](https://psarando.github.io/shire-reckoning/examples/gondor-calendars.html)
   for usage examples of different start dates and the "traditional" rules.
 
 
