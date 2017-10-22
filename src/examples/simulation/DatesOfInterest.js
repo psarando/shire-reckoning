@@ -723,7 +723,7 @@ const DatesOfInterest = [
     {
         year:    1636 + 3441,
         allYear: true,
-        label:   "III 1636 | Dark Plague"
+        label:   "III 1636 | Year of the Great Plague (or Dark Plague), which reached the Shire in 1637."
     },
     {
         year:    1601 + 3441,

@@ -117,21 +117,21 @@ In this section of the notes, I'm attempting to address questions like the follo
   For example, it's canon that the Council of Elrond in III 3018 was on Winterfilth 25 by Shire Reckoning.
   So is it also canon that it was Narquelië 25 in Gondor and Quellë 19 by the Reckoning of Rivendell?
 
-  In general, I think the corresponding Gondor dates for any specific Shire month and day given in the
-  [`Dates of Interest`](#dates-of-interest) list can be considered canon,
-  but only some Rivendell dates in III 3018 - 3019 (see below).
-  So for this example, I would say that it is canon that the Council of Elrond in III 3018 was on
-  Narquelië 25 in Gondor and Quellë 19 by the Reckoning of Rivendell.
+    * In general, I think the corresponding Gondor dates for any specific Shire month and day given in the
+      [`Dates of Interest`](#dates-of-interest) list can be considered canon,
+      but only some Rivendell dates in III 3018 - 3019 (see below).
+      So for this example, I would say that it is canon that the Council of Elrond in III 3018 was on
+      Narquelië 25 in Gondor and Quellë 19 by the Reckoning of Rivendell.
 
 * Did the Shire Calendar make the same millennial leap-day adjustments
   in the same years as the Kings' and Stewards' Reckoning made their adjustments?
 
-  [We can't be sure](#millennial-leap-years).
+    * [We can't be sure](#millennial-leap-years).
 
 * Was the Calendar of Imladris in the 137th loa of its 49th yén (i.e. its 7049th year) when the One Ring was destroyed?
 
-  We don't know, but at least the Rivendell years in these simulations can help track the years elapsed
-  since the first Year of the Sun in the First Age vs. Shire-reckoning, Second, Third, and Fourth Age years.
+    * We don't know, but at least the Rivendell years in these simulations can help track the years elapsed
+      since the first Year of the Sun in the First Age vs. Shire-reckoning, Second, Third, and Fourth Age years.
 
 #### Now the Minutiae
 
@@ -146,6 +146,14 @@ and in my [Rivendell Reckoning Notes](https://psarando.github.io/shire-reckoning
   throughout the Second and Third Ages, and that "in Númenor calculation started with S.A. 1".
 * Appendix D gives us all of the rules of the Shire Calendar,
   with no exceptions mentioned after the time [Shire-reform](#shire-reform) was enacted and throughout the Third Age.
+    * Appendix D strongly implies that Bree's calendar followed the same leap-day rules in the same years as the Shire Calendar.
+      Tolkien states that the Shire Calendar inserts its leap-day every 4 years, except the last in a century,
+      but in Bree the exception happens in the 1st year of its centuries
+      (Bree-reckoning 401 and S.R. 100 for example, which are the same year).
+      This only makes sense if they are also inserting leap-days every 4 years in the same years.
+      This would also mean that Bree's calendar would add its leap-day (an extra Summerday)
+      in the same year as the Kings' Reckoning would have added its leap-day
+      (when Loëndë is replaced with the 2 Enderi).
 * Appendix D gives us all of the rules of the Calendar of Imladris,
   and Appendix B tells us the Elves' New Year's Day in III 3019 was on Astron 6.
 * In III 3019, Shire
@@ -265,16 +273,18 @@ Similarly, the `Start reckoning from` dates also include the Gregorian year 0, w
 Tolkien stated in Appendix D that
 "all the days, months, and dates are in the Red Book translated into Shire terms, or equated with them in notes".
 This means there probably aren't any references to a current weekday of the Gondor Calendar during the narrative of *The Lord of the Rings*.
-Tolkien also stated that the Kings' Reckoning was based on the calendar of the Edain from the First Age,
-which had a 6-day week like the calendar of the Eldar,
-but at some point the Númenoreans added a 7th weekday to their calendar,
-though it's not stated when the 7th weekday was added.
-So for these simulations, I assume that the weekdays were reckoned continuously
-starting with Elenya on the first day of the Second Age (S.A.).
-Appendix D states that "in Númenor calculation started with S.A. 1",
+Tolkien also stated that the Kings' Reckoning was based on the First Age calendar of the Edain,
+which had a 6-day week like the elvish calendar of the Eldar,
+but at some point the Númenóreans added to their calendar a 7th weekday called "Sea-day" (Eärenya/Oraearon);
+although it's not stated when the 7th weekday was added
+(one possibility may be during the time of [Tar-Aldarion](http://tolkiengateway.net/wiki/Tar-Aldarion)).
+
+Appendix D also states that "in Númenor calculation started with S.A. 1",
 and though this is mainly a reference to the calculation of leap-days, it may also apply to the calculation of weekdays.
-Conveniently (and perhaps intentionally), reckoning the weekdays of Gondor's calendars in this manner
-allows its weekdays to sync up with the Shire Calendar's weekdays during the events of the narrative,
+So for these simulations I assume that the weekdays were reckoned continuously
+starting with Elenya on the first day of the Second Age (Yestarë of S.A. 1).
+Conveniently (and perhaps intentionally by Tolkien), reckoning the weekdays of Gondor's calendars in this manner
+allows them to sync up with the Shire Calendar's weekdays during the events of the narrative,
 in the 2nd half of III 3018 and the 1st half of III 3019 (a.k.a. the "Great Years" of the War of the Ring).
 
 ### Synchronize settings
@@ -385,10 +395,10 @@ and Iys = [First Age Years of the Sun](https://en.wikipedia.org/wiki/Timeline_of
   Selecting one of these events will select that specific date in each calendar,
   and also set the corresponding `Gregorian Date`.
   * The specific First Age dates come from the 1st chapter of *Unfinished Tales*,
-    but these were most likely dates according to the calendar of the Edain.
+    but these could have been dates according to the calendar of the Edain.
     I know of no details about the calendar of the Edain,
-    other than it had a 6-day week like the calendar of the Eldar,
-    and the Kings' Reckoning was based on it, but at some point the Númenoreans added a 7th weekday to their calendar.
+    other than it had a 6-day week like the elvish calendar of the Eldar,
+    and the Kings' Reckoning was based on it.
     So this simulation displays these events according to the
     [proleptic](https://en.wikipedia.org/wiki/Proleptic_calendar) Kings' Reckoning.
 * If the event only includes a year and a season (e.g. the passing of Arwen),
@@ -419,16 +429,23 @@ since the calendars of Middle-earth described by Tolkien in Appendix D are certa
 
 #### Millennial Leap-years
 
-What I'm calling a "Millennial Leap-year" is a year in which the "millennial adjustment"
+What I'm calling a "Millennial Leap-year" is a year in which the "millennial additions"
 to the calendars of Númenor or Gondor occurred,
 as Tolkien described in Appendix D.
-[As pointed out in my notes on "Reckoning start dates"](https://psarando.github.io/shire-reckoning/#reckoning-start-dates),
-this "adjustment" was an addition of 2 days every millennium,
-and the adjustment was made to the calendars of Númenor, Gondor, and presumably the Shire.
+The "millennial additions" were an addition of 2 days in every millennium of the Kings' Reckoning calendar
+(in S.A. 1000, 2000, 3000 and again in T.A. 1000, 2000).
+Although the second edition of *The Return of the King* does not specify the number of days of the "millennial additions",
+[The Lord of the Rings: A Reader's Companion](https://psarando.github.io/shire-reckoning/#references)
+quotes the first publication where it's explicitly stated that it was 2 days added.
+This can also be deduced from Tolkien's *Deficit* calculations in the second edition of Appendix D,
+as explained by [Åke Jönsson (Bertenstam)](http://tolkiengateway.net/wiki/%C3%85ke_Bertenstam)
+in "The King's Reckoning: Did Tolkien Reckon Correct?" *Beyond Bree* (November 1985),
+and also in Aaron Chong's blog post
+[Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html).
 
 Tolkien never specified how the Shire Calendar stayed in sync
 with the Stewards' Reckoning calendar by the end of the Third Age,
-but if the Shire Calendar originated from the Kings' Reckoning around III 1601,
+but if the Shire Calendar originated from the Kings' Reckoning around or before III 1601,
 then [ended up in sync with the Stewards' Reckoning](https://psarando.github.io/shire-reckoning/#rivendell-new-years-day-fell-on-a-march-25th-by-the-end-of-the-third-age)
 calendar by the end of the Third Age,
 it makes sense to me that the Shire Calendar probably incorporated the Kings' and Stewards' millennial adjustments
@@ -446,13 +463,13 @@ The simulations of this project assume the Shire Calendar incorporated the mille
 Tolkien did not give any more details about what this "adjustment" was exactly, so I had to improvise for these simulations.
 In the tradition of the Eldar calendar that doubles its middle-days every leap-year,
 I decided to double the leap-day in a "Millennial Leap-year" of the Shire and Gondor calendars
-in order to accomplish the "millennial adjustment" of adding 2 days.
+in order to accomplish the "millennial additions" of 2 days.
 
 According to the leap-year rules of the Shire and Gondor calendars, every 4th year is a leap-year,
 which means a millennial year would normally also be a leap-year.
-Since these leap-year rules also omit a leap-day every century,
-then without the "millennial adjustment", a millennial year should be a regular non-leap-year.
-So these calendar simulations accomplish the "millennial adjustment" of adding 2 days to a "Millennial Leap-year"
+Since these leap-year rules also omit the leap-day every century,
+then without the "millennial additions", a millennial year should be a common (non-leap) year.
+So these calendar simulations accomplish the 2-day "millennial additions" in a "Millennial Leap-year"
 by not omitting the leap-day in each millennial year, and also by doubling that year's leap-day.
 
 In each "Millennial Leap-year" of the Shire Calendar, I've added an extra Overlithe to the other side of Mid-year's Day,
@@ -470,7 +487,11 @@ Note the 3 exceptions to this "Millennial Leap-year" rule as stated in Appendix 
 #### Leap-years beyond the Third Age
 
 Tolkien did not give any details on how the New Reckoning handled leap-years in the Fourth Age.
-That leaves me with 2 options for this simulation, and ultimately I chose option #2:
+That leaves me with the following 2 options for this simulation.
+The first option may be more realistic,
+but for the simplicity of not inventing new leap-year rules,
+and to always keep the New Reckoning in sync with Shire Reckoning,
+I chose option #2:
 
 1. Restart leap-year calculations according to the count of Fourth Age years in the New Reckoning.
    This means either altering the Shire Calendar leap-year rules to omit leap-days in the corresponding centuries of the Fourth Age
@@ -506,3 +527,5 @@ which in this simulation means one of these Shire-reckoning years during the tim
 * 1085, 1091, 1103, 1114, or 1120
 
 So for this simulation, I picked the year in the middle of this list as the first year of Shire-reform.
+Shire-reform was also adopted "eventually" in Bree, but we are not told when,
+so this simulation also displays the Bree calendar using Shire-reform starting from this year.
