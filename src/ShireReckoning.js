@@ -351,10 +351,10 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
     let year = yearWithRemainder.year;
 
     if (reckonTraditional) {
-        // Shire Reform was enacted during the time of Isengrim II, sometime between T.A. 2683 - 2722.
+        // Shire-reform was enacted during the time of Isengrim II, sometime between T.A. 2683 - 2722.
         // So probably starting with one of these years (if Kings' weekdays were reckoned continuously from S.A. 1):
         // 2685 2691 2703 2714 2720
-        shireReform = (year >= 2685+3441);
+        shireReform = (year >= 2703+3441);
 
         if (!shireReform) {
             weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 7);

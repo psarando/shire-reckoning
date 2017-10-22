@@ -1,5 +1,12 @@
+## 3.1.3 (2017-10-22)
+
+* Shire Reckoning with "traditional" rules now uses
+  [Shire-reform](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#shire-reform)
+  starting from T.A. 2703.
+
 ## 3.1.0 (2017-09-22)
 
+* Bumped React dependency version to `15.6.2`.
 * Replaced the `shire-icalendar.clj` script with a
   [JSX example](https://psarando.github.io/shire-reckoning/examples/shire-icalendar.html)
   that uses the `ShireReckoning` library exports.
@@ -9,8 +16,8 @@
 
 * **BREAKING:** The calendar controls (for picking months, languages, etc.) are no longer exported by this library,
   but their sources are still available under the examples directory.
-* The ShireReckoning now exports REGION_NAMES_TOLKIEN, REGION_NAMES_SHIRE, and REGION_NAMES_BREE constants.
-* Added "Vertical Month" layout support to the RivendellCalendar!
+* The `ShireReckoning` now exports `REGION_NAMES_TOLKIEN`, `REGION_NAMES_SHIRE`, and `REGION_NAMES_BREE` constants.
+* Added "Vertical Month" layout support to the `RivendellCalendar`!
 
 ## 2.0.4 (2017-06-24)
 

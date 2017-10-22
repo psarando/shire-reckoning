@@ -431,8 +431,10 @@ JSX:
                         reckon dates according to the "traditional" leap-day and leap-year rules as described in Appendix D,
                         from any start date, which will be considered the start of the Second Age in these reckonings.
                         When reckoning with these "traditional" rules,
-                        the Shire calendars will also only display according Shire Reform on or after T.A. 2685
-                        (my estimate of the earliest year Shire Reform could have been introduced).
+                        the Shire calendars will also only display according Shire-reform on or after T.A. 2703
+                        (<a href="https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#shire-reform">
+                            the approximate year Shire-reform was enacted
+                        </a>).
                     </th>
                 </tr>
                 <tr>

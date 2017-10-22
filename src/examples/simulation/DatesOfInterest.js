@@ -509,7 +509,7 @@ const DatesOfInterest = [
         allYear: false,
         month:   3,
         day:     6,
-        label:   "III 2980 (Astron 6?) | Samwise Gamgee born."
+        label:   "III 2980 Astron 6 | Samwise Gamgee born."
     },
     {
         year:    2978 + 3441,
@@ -619,11 +619,11 @@ const DatesOfInterest = [
         label:   "III 2746 | Thorin Oakenshield born."
     },
     {
-        year:    2685 + 3441,
+        year:    2703 + 3441,
         allYear: true,
         month:   5,
         day:     "Midyear's Day",
-        label:   "III 2685 | Earliest likely year Shire Reform enacted."
+        label:   "III c.2703 | Shire-reform enacted during the time of Isengrim II."
     },
     {
         year:    2683 + 3441,
@@ -647,8 +647,10 @@ const DatesOfInterest = [
     },
     {
         year:    2510 + 3441,
-        allYear: true,
-        label:   "III 2510 | Battle of the Field of Celebrant. Rohirrim settle Calenardhon (becomes Rohan later)."
+        allYear: false,
+        month:   3,
+        day:     16,
+        label:   "III 2510 Víressë 15 | Battle of the Field of Celebrant. Rohirrim settle Calenardhon, which becomes Rohan."
     },
     {
         year:    2463 + 3441,
@@ -757,8 +759,10 @@ const DatesOfInterest = [
     },
     {
         year:    2 + 3441,
-        allYear: true,
-        label:   "III 2 | Death of Isildur in the Battle of the Gladden Fields. The One Ring is lost in the river."
+        allYear: false,
+        month:   9,
+        day:     4,
+        label:   "III 2 Narbeleth 4 | Battle of the Gladden Fields. Death of Isildur. The One Ring is lost in the river."
     },
     {
         year:    3441,
@@ -903,7 +907,7 @@ const DatesOfInterest = [
         allYear: false,
         month:   11,
         day:     "1 Yule",
-        label:   "Iys 506 Winter | Fall of Doriath in the Second Kinslaying."
+        label:   "Iys 506 Midwinter | Fall of Doriath in the Second Kinslaying."
     },
     {
         year:    -87,
@@ -974,7 +978,7 @@ const DatesOfInterest = [
         allYear: false,
         month:   6,
         day:     "Midyear's Day",
-        label:   "Iys 464 Summer | Beren first sees Lúthien dancing under the moonrise in Neldoreth."
+        label:   "Iys 464 Midsummer | Beren first sees Lúthien dancing under the moonrise in Neldoreth."
     },
     {
         year:    -126,
@@ -984,14 +988,14 @@ const DatesOfInterest = [
     {
         year:    -134,
         allYear: false,
-        label:   "Iys 456 Spring? | Fingolfin slain in single combat with Morgoth."
+        label:   "Iys 456 | Fingolfin slain in single combat with Morgoth."
     },
     {
         year:    -135,
-        allYear: true,
+        allYear: false,
         month:   11,
         day:     "1 Yule",
-        label:   "Iys 455 Winter | Dagor Bragollach: Battle of Sudden Flame. Barahir rescues Finrod."
+        label:   "Iys 455 Midwinter | Dagor Bragollach: Battle of Sudden Flame. Barahir rescues Finrod."
     },
     {
         year:    -158,
