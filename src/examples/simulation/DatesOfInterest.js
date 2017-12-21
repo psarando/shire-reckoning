@@ -108,6 +108,14 @@ const SyncAges = [
         }
     },
     {
+        label:      "Fourth Age with my Stellarium Reckoning",
+        startDates: {
+            rivendell: fullYearDate(-11227,  2, 22),
+            gondor:    fullYearDate(-10638, 11, 23),
+            shire:     fullYearDate(-10638, 11, 23)
+        }
+    },
+    {
         label:      "Shire Reckoning with Joe Bartram's Reckoning",
         startDates: {
             rivendell: fullYearDate(-11692,  2, 28),
@@ -824,11 +832,21 @@ const DatesOfInterest = [
         label:   "II c.1590 | The Three Rings are completed in Eregion."
     },
     {
+        year:    1075,
+        allYear: true,
+        label:   "II 1075 | Tar-Aldarion yields the Sceptre of Númenor to his daughter, Tar-Ancalimë."
+    },
+    {
         year:    1000,
         allYear: true,
         month:   6,
         day:     "Midyear's Day",
         label:   "II 1000 | Millennial Leap-year in Númenor. Sauron begins building Barad-dûr around this time."
+    },
+    {
+        year:    883,
+        allYear: true,
+        label:   "II 883 | Tar-Aldarion receives the Sceptre of Númenor from his father, Tar-Meneldur."
     },
     {
         year:    750,

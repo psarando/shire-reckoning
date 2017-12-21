@@ -14,6 +14,7 @@ Shire Reckoning
 * [Tolkien's Calendars](#tolkiens-calendars)
 * [Middle-earth Simulation](#middle-earth-simulation)
 * [Shire Reckoning Notes](#shire-reckoning-notes)
+    * [Shire-reform](#shire-reform)
     * [Reckoning start dates](#reckoning-start-dates)
         * [Shire, Gondor, and Gregorian intercalation differences](#shire-gondor-and-gregorian-intercalation-differences)
         * [Adopting Shire Reckoning to modern times](#adopting-shire-reckoning-to-modern-times)
@@ -21,15 +22,14 @@ Shire Reckoning
         * [What if our years began at the same seasonal point?](#what-if-our-years-began-at-the-same-seasonal-point)
 * [Gondor Reckoning Notes](#gondor-reckoning-notes)
 * [Rivendell Reckoning Notes](#rivendell-reckoning-notes)
-    * For a general reference for converting a date in the Gregorian calendar, in any year, to a
-      date in the Rivendell Reckoning calendar, I recommend using my
-      [Reformed Rivendell Reckoning rules](#reformed-rivendell-reckoning)
-      (and choosing a non-leap year for dates between February 28 and Rivendell New Year's Day).
     * [Why March 22nd?](#why-march-22nd)
         * [Why not March 29th?](#why-not-march-29th)
         * [Rivendell New Year's Day fell on a March 25th by the end of the Third Age](#rivendell-new-years-day-fell-on-a-march-25th-by-the-end-of-the-third-age)
     * [Reformed Rivendell Reckoning rules](#reformed-rivendell-reckoning)
         * [Why March 25th?](#why-march-25th)
+        * For a general reference for converting a date in the Gregorian calendar, in any year,
+          to a date in the Rivendell Reckoning calendar, I recommend using my "Reformed" rules
+          (and choosing a non-leap-year for dates between February 28 and Rivendell New Year's Day).
 * [References](#references)
 * [Shire Reckoning for Other Calendar Apps](#shire-reckoning-for-other-calendar-apps-shire-reckoningicsshire-reckoningics)
 * [License](#license)
@@ -162,6 +162,27 @@ The `Vertical` layout might look odd at first,
 with the dates starting at the top of the left column and advancing vertically down the column,
 then continuing the next week in the next column (again counting dates from top to bottom),
 but this is the `Vertical` layout Tolkien used in his example Shire Calendar at the beginning of Appendix D.
+
+#### Shire-reform
+
+> The Shire-folk introduced one small innovation of their own (eventually also adopted in Bree), which they called Shire-reform.
+> They found the shifting of the weekday names in relation to dates from year to year untidy and inconvenient.
+>
+> -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+
+Once Shire-reform was enacted (before Bilbo's time),
+every year of the Shire Calendar always started on the first day of the week and always ended on the last day of the week,
+by not assigning a day of the week to Mid-year's Day or the Overlithe.
+
+That means all other days in the Shire Calendar will always fall on the same day of the week year after year.
+So "1 Yule" is always on a Highday, "2 Yule" is always on a Sterday,
+and Bilbo's and Frodo's birthday is always on a Mersday in every year!
+
+This project borrows the layout of the [Shire-Reckoning.com calendar](http://shire-reckoning.com/calendar.html)
+which shows Mid-year's Day and the Overlithe sharing a cell with the other Lithe days,
+because I also found it tidy to display these days-without-a-weekday in this manner.
+Just keep in mind that only "1 Lithe" was considered to be on a Highday (but not Mid-year's Day),
+and only "2 Lithe" was on a Sterday (but not Overlithe).
 
 #### Reckoning start dates
 
@@ -333,19 +354,34 @@ The calendar of Gondor went through 3 variations throughout its history:
    "used in Númenor, and in Arnor and Gondor until the end of the kings".
    This was the calendar that was in use for the longest period of time in Middle-earth
    (with the likely exception of the Calendar of Imladris).
-   It was based on the First Age calendar of the [Edain](http://tolkiengateway.net/wiki/Edain),
-   which had a 6-day week like the elvish calendar of the [Eldar](http://tolkiengateway.net/wiki/Eldar),
-   but at some point the Númenóreans added to their calendar a 7th weekday called
-   "Sea-day" / Eärenya / Oraearon (so I'm guessing it was added during the time of
+   It "was ultimately of Eldarin origin", and had a 6-day week like the Elvish calendar of the
+   [Eldar](http://tolkiengateway.net/wiki/Eldar),
+   but at some point the Númenóreans added a 7th weekday called "Sea-day" / Eärenya / Oraearon
+   (so I'm guessing it could have been added during the reign of
    [Tar-Aldarion](http://tolkiengateway.net/wiki/Tar-Aldarion)).
    The Kings' Reckoning was used in Númenor
    until the [Downfall](http://tolkiengateway.net/wiki/Downfall_of_N%C3%BAmenor)
    in [Second Age](https://en.wikipedia.org/wiki/History_of_Arda#Second_Age) (S.A.) 3319,
-   probably for the entire history of Númenor starting in S.A. 32,
-   but at least from the time of [Tar-Aldarion](http://tolkiengateway.net/wiki/Tar-Aldarion) in S.A. 1000 at the latest
-   (Appendix D implies that the 1st of the Kings' Reckoning "[millennial additions](#shire-gondor-and-gregorian-intercalation-differences)"
-   to account for the *Deficit* was made on time in S.A. 1000).
-   The Kings' Reckoning continued in Gondor for the rest of the Second Age and up to the Third Age (T.A.) 2059.
+   and starting no later than S.A. 1000 under the reign of [Tar-Aldarion](http://tolkiengateway.net/wiki/Tar-Aldarion),
+   since Appendix D implies that the first of the Kings' Reckoning
+   "[millennial additions](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)"
+   to account for the *Deficit* was made on time in S.A. 1000.
+   I wouldn't be surprised if Tar-Aldarion's father, [Tar-Meneldur](http://tolkiengateway.net/wiki/Tar-Meneldur),
+   decreed that the "[millennial additions](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)"
+   be added to the rules of the Kings' Reckoning, since he was also known as Elentirmo ("Star-watcher")
+   and "built a tall tower, from which he could observe the motions of the stars"
+   (*Unfinished Tales*, Part 2 Ch.1, "A Description of the Island of Númenor").
+   So he may have been the first Númenórean king to become concerned
+   that the calendar was falling out of sync with astronomical events like the summer solstice,
+   and decided to correct this *Deficit*.
+   It's also possible that the Kings' Reckoning was already established
+   (with or without the "[millennial additions](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)")
+   and in use for the entire history of Númenor, starting in S.A. 32.
+   In fact, the first chapter of *Unfinished Tales*
+   [implies it was already in use](http://tolkiengateway.net/wiki/First_Age_495#Notes),
+   in some form, by the [Edain](http://tolkiengateway.net/wiki/Edain) of the First Age.
+   The Kings' Reckoning continued in Gondor for the remainder of the Second Age after the Downfall of Númenor,
+   and up to the Third Age (T.A.) 2059.
    It's also possible that it was still observed by the Dúnedain of the North until the end of the Third Age
    (see the *New Reckoning* notes below).
 2. **Stewards' Reckoning**:
@@ -422,7 +458,7 @@ just as Mersday and Highday was the weekend in the Shire.
 * For a general reference for converting a date in the modern Gregorian calendar, in any year, to a
   date in the Rivendell Reckoning calendar, I recommend using my
   [Reformed Rivendell Reckoning rules](#reformed-rivendell-reckoning)
-  (and choosing a non-leap year for dates between February 28 and Rivendell New Year's Day).
+  (and choosing a non-leap-year for dates between February 28 and Rivendell New Year's Day).
 
 Since the Rivendell Reckoning calendar (also known as the Calendar of Imladris)
 described by Tolkien has very different leap-day rules than the
@@ -622,8 +658,9 @@ Now let's consider all of Tolkien's statements about the Shire Calendar in Appen
 1. Shire Reckoning was based on the [Kings' Reckoning](#the-3-calendars-of-gondor) of Arnor,
    which was also the calendar of Gondor for its entire history until the Stewards' Reckoning was introduced.
    These calendars must have been aligned by the Third Age 3019,
-   since Tolkien states in Appendix D that the New Year's Day of the [New Reckoning](#the-3-calendars-of-gondor) calendar
-   corresponded with "March 25" of the Shire, Kings', and Stewards' Reckoning calendars (Rethe 25 and Súlimë 25).
+   since Tolkien states in Appendix D that the day of the destruction of the One Ring,
+   "March 25" in the Shire Calendar (Rethe 25) and the first New Year's Day of the [New Reckoning](#the-3-calendars-of-gondor) calendar,
+   was also "March 25" (Súlimë 25) in both the Kings' and Stewards' Reckoning calendars.
 
     > The months and days, therefore, throughout The Lord of the Rings refer to the Shire Calendar
     > ... March 25, the date of the downfall of Barad-dûr
@@ -872,8 +909,9 @@ should he have started his calendar of Númenor from that date approximately 120
 The same could be asked of the Calendar of Imladris and the spring equinox of 6000 vs. 13000 years ago.
 
 One potential problem with assuming the first Loëndë should correspond with a June 23rd summer solstice
-is that Tolkien stated in Appendix D that the Kings' Reckoning Yestarë originated in "mid-winter",
-which may imply it was originally intended to correspond with the [winter solstice](https://en.wikipedia.org/wiki/Solstice).
+is that Tolkien stated in Appendix D that the Kings' Reckoning "was ultimately of Eldarin origin"
+but the Númenóreans "adhered to the custom of beginning the year in mid-winter",
+which may imply its Yestarë was originally intended to correspond with the [winter solstice](https://en.wikipedia.org/wiki/Solstice).
 Starting this calendar on the December 21st winter solstice in our time
 allows Loëndë to fall on the contemporary June 21st summer solstice,
 but 6000 years ago the solstices didn't align this way, since
@@ -922,7 +960,7 @@ is nearly equivalent (with the exception of Rivendell's weekday calculations) to
 which start reckoning from the proleptic Gregorian March 27 in 1 A.D.
 See the notes on the Middle-earth simulation's synchronization schemes,
 under the section titled
-"[Gregorian years with Years of the Sun](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#synchronize-settings)",
+"[Gregorian years with Years of the Sun](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#gregorian-years-with-years-of-the-sun)",
 for more details.
 
 ###### What about December 21st?
@@ -932,9 +970,9 @@ that the Shire Calendar New Year's Day in T.A. 3019 corresponded with a hypothet
 does that mean we should observe the Shire New Year's Day on December 20th in modern times?
 I don't think so, [since I argued earlier](#reckoning-start-dates)
 that observing the Shire New Year's Day on December 21st is more seasonally appropriate in modern times
-(keeping Mid-year's Day in sync with the modern summer solstice),
+(keeping Mid-year's Day in sync with the modern summer solstice as it was [originally intended](#reckoning-start-dates)),
 whereas others may consider it more traditionally appropriate to observe Shire New Year's Day on December 23
-(keeping Mid-year's Day in sync with the traditional June 23 as it was "[originally intended](#reckoning-start-dates)").
+(keeping Mid-year's Day in sync with the [traditional June 23](#reckoning-start-dates)).
 
 Likewise, some may wish to always observe the Elves' New Year's Day (Yestarë) on Shire Astron 6
 since that's the traditional date as observed by the Hobbits in the Fourth Age.
@@ -967,7 +1005,7 @@ but starting this calendar's year on Gregorian March 25 with "[reformed](#reform
 also means the Enderi will always start on Gregorian September 22
 (a.k.a. [Hobbit Day](https://en.wikipedia.org/wiki/Hobbit_Day)).
 
-Starting the elvish Calendar of Imladris on the vernal equinox in our time
+Starting the Elvish Calendar of Imladris on the vernal equinox in our time
 would mean starting on the usual date of March 20th,
 but that would put the 3 Enderi from September 17th - 19th
 which is 3 to 5 days before the contemporary [autumnal equinox](http://en.wikipedia.org/wiki/Equinox).
