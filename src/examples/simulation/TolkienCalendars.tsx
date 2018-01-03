@@ -5,6 +5,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { MenuItem, Stack, Toolbar, Typography } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+
 import { datesMatch, getNextDate, getPrevDate } from "../../Utils";
 import "../../ui/tolkien-calendars.css";
 
@@ -21,14 +24,19 @@ import {
 } from "./DatesOfInterest";
 import ShireDatePicker from "./ShireDatePicker";
 
-import { CalendarCellStyle, DatePicker } from "../Common";
+import { CalendarCellStyle, DatePicker, OutlinedSelect } from "../Common";
+import theme from "../theme";
 import "../examples.css";
 
 const ta3019_4_6_EventIndex = DatesOfInterest.findIndex(
     ({ year, month, day }) => 3019 + 3441 === year && 3 === month && 6 === day
 );
 
-const blankEvent = <option key="blankEvent" value={-1}></option>;
+const blankEvent = (
+    <MenuItem key="blankEvent" value={-1}>
+        &nbsp;
+    </MenuItem>
+);
 
 enum DatePickerStyle {
     Gregorian = "gregorian-reckoning",
@@ -299,11 +307,13 @@ export const SimulatedTolkienCalendars = (
     };
 
     const eventOpts = DatesOfInterest.map((event, i) => (
-        <option key={i} value={i}>
-            {event.label
-                ? `${event.displayDate} | ${event.label}`
-                : event.label}
-        </option>
+        <MenuItem key={i} value={i}>
+            {event.label ? (
+                `${event.displayDate} | ${event.label}`
+            ) : (
+                <>&nbsp;</>
+            )}
+        </MenuItem>
     ));
 
     if (selectedEvent === -1) {
@@ -326,9 +336,9 @@ export const SimulatedTolkienCalendars = (
     }
     const syncOptions = syncSchemes.map(function (sync, i) {
         return (
-            <option key={i} value={i}>
+            <MenuItem key={i} value={i}>
                 {sync.label}
-            </option>
+            </MenuItem>
         );
     });
 
@@ -337,74 +347,91 @@ export const SimulatedTolkienCalendars = (
             <tbody>
                 <tr>
                     <th colSpan={3} className="simulated-date-controls">
-                        Synchronize &nbsp;
-                        <select
+                        <OutlinedSelect
+                            label="Synchronize"
+                            style={{ width: "33rem" }}
                             value={calendarRules}
                             onChange={onCalendarRulesChange}
                         >
                             {syncOptions}
-                        </select>
+                        </OutlinedSelect>
                     </th>
                 </tr>
                 <tr>
                     <th colSpan={3} className="simulated-date-controls">
-                        Dates of Interest:&nbsp;
-                        <select
+                        <OutlinedSelect
+                            label="Dates of Interest"
+                            style={{ width: "60rem", marginTop: ".33rem" }}
                             value={selectedEvent}
                             onChange={onDatesOfInterestChange}
                         >
                             {eventOpts}
-                        </select>
+                        </OutlinedSelect>
                     </th>
                 </tr>
                 <tr>
-                    <th className="simulated-date-controls simulated-date-picker">
-                        <select
-                            value={datePickerView}
-                            onChange={(
-                                event: React.ChangeEvent<HTMLSelectElement>
-                            ) =>
-                                setDatePickerView(
-                                    event.target.value as DatePickerStyle
-                                )
-                            }
-                        >
-                            <option value={DatePickerStyle.Gregorian}>
-                                Gregorian Date
-                            </option>
-                            <option value={DatePickerStyle.Shire}>
-                                Shire-reckoning
-                            </option>
-                        </select>
-                        {datePickerView === DatePickerStyle.Gregorian && (
-                            <DatePicker
-                                date={currentDate}
-                                onDateChanged={onDateChanged}
-                                todayEnabled={!!calendarRules}
-                                label=""
-                                className="simulated-gregorian-date-picker"
-                            />
-                        )}
-                        {datePickerView === DatePickerStyle.Shire && (
-                            <ShireDatePicker
-                                today={currentDate}
-                                shireStartDate={shireStartDate}
-                                onDateChanged={onDateChanged}
-                                todayEnabled={!!calendarRules}
-                            />
-                        )}
-                    </th>
-                    <th className="simulated-date-controls">
-                        Time of Day:&nbsp;
-                        <select value={timeOfDay} onChange={onTimeOfDayChange}>
-                            <option value={TimeOfDay.BeforeSunrise}>
-                                Before Sunrise
-                            </option>
-                            <option value={TimeOfDay.Daytime}>Daytime</option>
-                            <option value={TimeOfDay.AfterSunset}>
-                                After Sunset
-                            </option>
-                        </select>
+                    <th className="simulated-date-controls" colSpan={2}>
+                        <Stack direction="row" mt={1}>
+                            <Toolbar style={{ paddingRight: 0 }}>
+                                <OutlinedSelect
+                                    color="success"
+                                    value={datePickerView}
+                                    onChange={(
+                                        event: React.ChangeEvent<HTMLSelectElement>
+                                    ) =>
+                                        setDatePickerView(
+                                            event.target
+                                                .value as DatePickerStyle
+                                        )
+                                    }
+                                >
+                                    <MenuItem value={DatePickerStyle.Gregorian}>
+                                        <Typography variant="h6">
+                                            Gregorian Date
+                                        </Typography>
+                                    </MenuItem>
+                                    <MenuItem value={DatePickerStyle.Shire}>
+                                        <Typography variant="h6">
+                                            Shire-reckoning
+                                        </Typography>
+                                    </MenuItem>
+                                </OutlinedSelect>
+                            </Toolbar>
+                            {datePickerView === DatePickerStyle.Gregorian && (
+                                <DatePicker
+                                    date={currentDate}
+                                    onDateChanged={onDateChanged}
+                                    todayEnabled={!!calendarRules}
+                                    label=""
+                                    className="simulated-gregorian-date-picker"
+                                />
+                            )}
+                            {datePickerView === DatePickerStyle.Shire && (
+                                <ShireDatePicker
+                                    today={currentDate}
+                                    shireStartDate={shireStartDate}
+                                    onDateChanged={onDateChanged}
+                                    todayEnabled={!!calendarRules}
+                                />
+                            )}
+                            <Toolbar>
+                                <OutlinedSelect
+                                    label="Time of Day"
+                                    value={timeOfDay}
+                                    onChange={onTimeOfDayChange}
+                                >
+                                    <MenuItem value={TimeOfDay.BeforeSunrise}>
+                                        Before Sunrise
+                                    </MenuItem>
+                                    <MenuItem value={TimeOfDay.Daytime}>
+                                        Daytime
+                                    </MenuItem>
+                                    <MenuItem value={TimeOfDay.AfterSunset}>
+                                        After Sunset
+                                    </MenuItem>
+                                </OutlinedSelect>
+                            </Toolbar>
+                        </Stack>
                     </th>
                 </tr>
                 <tr>
@@ -437,6 +464,12 @@ export const SimulatedTolkienCalendars = (
     );
 };
 
+export const StyledSimulations = (props: SimulatedTolkienCalendarsProps) => (
+    <ThemeProvider theme={theme}>
+        <SimulatedTolkienCalendars {...props} />
+    </ThemeProvider>
+);
+
 const meta = {
     title: "Shire Reckoning / Middle-earth Simulation",
 
@@ -444,9 +477,9 @@ const meta = {
         options: { showPanel: false },
     },
 
-    component: SimulatedTolkienCalendars,
-    excludeStories: ["SimulatedTolkienCalendars"],
-} satisfies Meta<typeof SimulatedTolkienCalendars>;
+    component: StyledSimulations,
+    excludeStories: ["SimulatedTolkienCalendars", "StyledSimulations"],
+} satisfies Meta<typeof StyledSimulations>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

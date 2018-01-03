@@ -4,6 +4,8 @@
  */
 import React from "react";
 
+import { Button, ListItemText, MenuItem, Toolbar } from "@mui/material";
+
 import { ShireMonths, makeShireCalendarDates } from "../../ShireReckoning";
 import {
     GondorLeapYearRuleEnum,
@@ -12,7 +14,7 @@ import {
 
 import { convertShireToGregorianDate } from "./DatesOfInterest";
 
-import { DateNumberInput } from "../Common";
+import { DateNumberInput, OutlinedSelect } from "../Common";
 import "../examples.css";
 
 interface ShireDatePickerProps {
@@ -79,61 +81,61 @@ const ShireDatePicker = (props: ShireDatePickerProps) => {
     };
 
     return (
-        <table className="simulated-shire-date-picker">
-            <tbody>
-                <tr>
-                    <th>
-                        <select
-                            className="date-time-input simulated-shire-month-picker"
-                            value={todayShire.month}
-                            onChange={onMonthChanged}
-                        >
-                            {ShireMonths.map((month, i) => (
-                                <option key={month.shire} value={i}>
-                                    {month.tolkien} ({month.shire})
-                                </option>
-                            ))}
-                        </select>
-                    </th>
-                    <th>
-                        <select
-                            className="date-time-input"
-                            value={todayShire.gregorian.toISOString()}
-                            onChange={onDayChanged}
-                        >
-                            {calendar.dates
-                                .filter(
-                                    (date) => date.month === todayShire.month
-                                )
-                                .map((date) => (
-                                    <option
-                                        key={date.gregorian.toISOString()}
-                                        value={date.gregorian.toISOString()}
-                                    >
-                                        {date.day}
-                                    </option>
-                                ))}
-                        </select>
-                    </th>
-                    <th>
-                        <DateNumberInput
-                            value={year - 1600 - 3441}
-                            onChange={onYearChanged}
+        <Toolbar
+            className="simulated-shire-date-picker"
+            style={{ paddingLeft: 0 }}
+        >
+            <OutlinedSelect
+                className="date-time-input simulated-shire-month-picker"
+                label="Month"
+                value={todayShire.month}
+                onChange={onMonthChanged}
+                SelectProps={{
+                    renderValue: (value: number) => ShireMonths[value].tolkien,
+                }}
+            >
+                {ShireMonths.map((month, i) => (
+                    <MenuItem key={month.shire} value={i}>
+                        <ListItemText
+                            primary={month.tolkien}
+                            secondary={month.shire}
                         />
-                    </th>
-                    {todayEnabled && (
-                        <th>
-                            <button
-                                className="today-button"
-                                onClick={resetDate}
-                            >
-                                <span className="today-button-txt">Today</span>
-                            </button>
-                        </th>
-                    )}
-                </tr>
-            </tbody>
-        </table>
+                    </MenuItem>
+                ))}
+            </OutlinedSelect>
+            <OutlinedSelect
+                className="date-time-input"
+                label="Day"
+                value={todayShire.gregorian.toISOString()}
+                onChange={onDayChanged}
+            >
+                {calendar.dates
+                    .filter((date) => date.month === todayShire.month)
+                    .map((date) => (
+                        <MenuItem
+                            key={date.gregorian.toISOString()}
+                            value={date.gregorian.toISOString()}
+                        >
+                            {date.day}
+                        </MenuItem>
+                    ))}
+            </OutlinedSelect>
+            <DateNumberInput
+                label="Year"
+                value={year - 1600 - 3441}
+                onChange={onYearChanged}
+            />
+            {todayEnabled && (
+                <Button
+                    variant="outlined"
+                    size="large"
+                    className="today-button"
+                    onClick={resetDate}
+                >
+                    <span className="today-button-txt">Today</span>
+                </Button>
+            )}
+        </Toolbar>
     );
 };
 

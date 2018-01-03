@@ -4,9 +4,12 @@
  */
 import React from "react";
 
+import { Toolbar, Typography } from "@mui/material";
+
 import {
-    DateNumberInput,
     DateMonthSelect,
+    DayInput,
+    YearInput,
     parseDatePickerChangedDate,
 } from "../Common";
 
@@ -51,36 +54,41 @@ const StartReckoningDatePicker = (props: StartDatePickerProps) => {
     };
 
     return (
-        <table style={{ margin: "auto" }}>
-            <tbody>
-                <tr>
-                    <th colSpan={2}>Start reckoning from</th>
-                </tr>
-                <tr>
-                    <th>Year:</th>
-                    <th>
-                        <DateNumberInput
-                            value={currentDate.getFullYear()}
-                            onChange={onYearChanged}
-                        />
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <DateMonthSelect
-                            value={currentDate.getMonth()}
-                            onChange={onMonthChanged}
-                        />
-                    </th>
-                    <th>
-                        <DateNumberInput
-                            value={currentDate.getDate()}
-                            onChange={onDayChanged}
-                        />
-                    </th>
-                </tr>
-            </tbody>
-        </table>
+        <>
+            <Typography variant="subtitle1" gutterBottom>
+                Start reckoning from
+            </Typography>
+            <Toolbar
+                variant="dense"
+                disableGutters
+                style={{
+                    margin: "0 auto 0.25rem",
+                    justifyContent: "center",
+                    fontWeight: "normal",
+                }}
+            >
+                <DateMonthSelect
+                    SelectProps={{
+                        SelectDisplayProps: {
+                            style: { fontSize: "0.75rem" },
+                        },
+                    }}
+                    value={currentDate.getMonth()}
+                    onChange={onMonthChanged}
+                />
+                <DayInput
+                    style={{ width: "4rem" }}
+                    inputProps={{ style: { fontSize: "0.75rem" } }}
+                    value={currentDate.getDate()}
+                    onChange={onDayChanged}
+                />
+                <YearInput
+                    inputProps={{ style: { fontSize: "0.75rem" } }}
+                    value={currentDate.getFullYear()}
+                    onChange={onYearChanged}
+                />
+            </Toolbar>
+        </>
     );
 };
 

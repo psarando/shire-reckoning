@@ -4,6 +4,8 @@
  */
 import React from "react";
 
+import { MenuItem } from "@mui/material";
+
 import {
     GondorMonths,
     GondorReckoningEnum,
@@ -18,10 +20,14 @@ import { LanguageEnum } from "../ui/controls/LanguagePicker";
 import { MonthLayoutEnum } from "../ui/controls/MonthViewLayout";
 import "../ui/tolkien-calendars.css";
 
+import { OutlinedSelect } from "./Common";
 import LanguagePicker from "./controls/LanguagePicker";
 import MonthViewLayout from "./controls/MonthViewLayout";
 import MonthViewPicker from "./controls/MonthViewPicker";
 import { ShireStartDatePicker } from "./controls/StartDatePicker";
+import { scriptFontFamily } from "./theme";
+
+import { Grid } from "@mui/material";
 
 interface GondorCalendarWithControlsProps {
     className: string;
@@ -155,21 +161,52 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
                             selectedDate={startDate}
                             onCalendarStartChange={onCalendarStartChange}
                         />
-                        <select
+                        <OutlinedSelect
                             className="gondor-rules-select"
+                            style={{
+                                width: "9.75rem",
+                                margin: "0.25rem 0",
+                            }}
+                            SelectProps={{
+                                SelectDisplayProps: {
+                                    style: {
+                                        fontSize: "0.72rem",
+                                        fontWeight: "normal",
+                                        fontFamily: scriptFontFamily,
+                                    },
+                                },
+                            }}
                             value={reckoning}
                             onChange={onStartMonthChange}
                         >
-                            <option value={GondorReckoningEnum.KINGS}>
+                            <MenuItem value={GondorReckoningEnum.KINGS}>
                                 Kings' Reckoning
-                            </option>
-                            <option value={GondorReckoningEnum.STEWARDS}>
+                            </MenuItem>
+                            <MenuItem value={GondorReckoningEnum.STEWARDS}>
                                 Stewards' Reckoning
-                            </option>
-                            <option value={GondorReckoningEnum.NEW}>
+                            </MenuItem>
+                            <MenuItem value={GondorReckoningEnum.NEW}>
                                 New Reckoning
-                            </option>
-                        </select>
+                            </MenuItem>
+                        </OutlinedSelect>
+                        <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="flex-end"
+                            wrap="nowrap"
+                        >
+                            <LanguagePicker
+                                language={language}
+                                onLanguageChange={onLanguageChange}
+                            />
+                            <MonthViewLayout
+                                layout={monthViewLayout}
+                                onMonthViewLayoutChange={
+                                    onMonthViewLayoutChange
+                                }
+                            />
+                        </Grid>
                     </th>
                     <th className="gondor-calendar-controls month-picker-container">
                         <MonthViewPicker
@@ -184,23 +221,11 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
                             onMonthViewChange={onMonthViewChange}
                         />
                     </th>
-                    <th className="gondor-calendar-controls">
-                        <LanguagePicker
-                            language={language}
-                            onLanguageChange={onLanguageChange}
-                        />
-                    </th>
-                    <th className="gondor-calendar-controls">
-                        <MonthViewLayout
-                            layout={monthViewLayout}
-                            onMonthViewLayoutChange={onMonthViewLayoutChange}
-                        />
-                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan={4} className="shire-calendar-wrapper-cell">
+                    <td colSpan={3} className="shire-calendar-wrapper-cell">
                         <GondorCalendar
                             className="shire-calendar gondor-calendar"
                             calendar={calendar}

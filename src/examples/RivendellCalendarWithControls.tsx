@@ -4,6 +4,8 @@
  */
 import React from "react";
 
+import { MenuItem } from "@mui/material";
+
 import {
     RivendellMonths,
     RivendellRulesEnum,
@@ -16,6 +18,7 @@ import RivendellCalendar from "../ui/RivendellCalendar";
 import { LanguageEnum } from "../ui/controls/LanguagePicker";
 import "../ui/tolkien-calendars.css";
 
+import { OutlinedSelect } from "./Common";
 import LanguagePicker from "./controls/LanguagePicker";
 import MonthViewPicker from "./controls/MonthViewPicker";
 import { RivendellStartDatePicker } from "./controls/StartDatePicker";
@@ -120,7 +123,7 @@ const RivendellCalendarWithControls = (
     });
 
     return (
-        <table className="shire-calendar rivendell-calendar">
+        <table className="shire-calendar rivendell-calendar shire-calendar-styled-example">
             <caption className="rivendell-caption">Rivendell Reckoning</caption>
             <thead>
                 <tr>
@@ -129,18 +132,31 @@ const RivendellCalendarWithControls = (
                             selectedDate={startDate}
                             onCalendarStartChange={onCalendarStartChange}
                         />
-                        <select
+                        <OutlinedSelect
                             className="rivendell-rules-select"
+                            style={{
+                                width: "9.75rem",
+                                margin: "0.25rem 0",
+                            }}
+                            SelectProps={{
+                                SelectDisplayProps: {
+                                    style: { fontSize: "0.72rem" },
+                                },
+                            }}
                             value={calendarRules}
                             onChange={onCalendarRulesChange}
                         >
-                            <option value={RivendellRulesEnum.TRADITIONAL}>
+                            <MenuItem value={RivendellRulesEnum.TRADITIONAL}>
                                 Traditional Rules
-                            </option>
-                            <option value={RivendellRulesEnum.REFORMED}>
+                            </MenuItem>
+                            <MenuItem value={RivendellRulesEnum.REFORMED}>
                                 Reformed Rules
-                            </option>
-                        </select>
+                            </MenuItem>
+                        </OutlinedSelect>
+                        <LanguagePicker
+                            language={language}
+                            onLanguageChange={onLanguageChange}
+                        />
                     </th>
                     <th className="rivendell-calendar-controls month-picker-container">
                         <MonthViewPicker
@@ -154,12 +170,6 @@ const RivendellCalendarWithControls = (
                             monthView={monthView}
                             yearView={yearView}
                             onMonthViewChange={onMonthViewChange}
-                        />
-                    </th>
-                    <th className="rivendell-calendar-controls">
-                        <LanguagePicker
-                            language={language}
-                            onLanguageChange={onLanguageChange}
                         />
                     </th>
                 </tr>

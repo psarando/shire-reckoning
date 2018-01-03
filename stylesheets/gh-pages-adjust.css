@@ -47,3 +47,26 @@ th, td {
 .align-shire-calendar {
     padding-top: 186rem;
 }
+.shire-sync-select, .rivendell-sync-select {
+    width: 34rem;
+}
+.shire-calendar-styled-example {
+    margin: 0;
+}
+.shire-calendar-styled-example .shire-calendar-wrapper-cell {
+    padding: 0;
+}
+.shire-calendar-styled-example .month-name-display {
+    font-size: 0.75rem;
+}
+.shire-calendar-styled-example .intercalary-overlithe-day {
+    font-size: 0.75rem;
+}
+.simulated-date-controls h6 {
+    margin: 0;
+}
+.shire-calendar-controls h6,
+.gondor-calendar-controls h6,
+.rivendell-calendar-controls h6 {
+    margin: 1rem;
+}
