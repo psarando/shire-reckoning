@@ -4,7 +4,11 @@
  */
 import React, { Component } from "react";
 
+import MenuItem from "@material-ui/core/MenuItem";
+
 import { ENGLISH, QUENYA, SINDARIN } from "../../ui/controls/LanguagePicker";
+import { OutlinedSelect } from "../Common";
+import { scriptFontFamily } from "../theme";
 
 class LanguagePicker extends Component {
     static get ENGLISH() {
@@ -22,17 +26,21 @@ class LanguagePicker extends Component {
     render() {
         return (
             <div>
-                Language:
-                <br />
-                <select
+                <OutlinedSelect
                     className="language-select"
+                    label="Language"
+                    style={{
+                        width: "8rem",
+                        fontSize: "1rem",
+                        fontFamily: scriptFontFamily,
+                    }}
                     value={this.props.language}
                     onChange={this.props.onLanguageChange}
                 >
-                    <option value={ENGLISH}>English</option>
-                    <option value={QUENYA}>Quenya</option>
-                    <option value={SINDARIN}>Sindarin</option>
-                </select>
+                    <MenuItem value={ENGLISH}>English</MenuItem>
+                    <MenuItem value={QUENYA}>Quenya</MenuItem>
+                    <MenuItem value={SINDARIN}>Sindarin</MenuItem>
+                </OutlinedSelect>
             </div>
         );
     }

@@ -4,6 +4,16 @@
  */
 import React, { Component } from "react";
 
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+
 import { fullYearDate } from "../Utils";
 import "./examples.css";
 
@@ -19,11 +29,79 @@ const CaptionCellStyle = {
     borderRightStyle: "solid",
 };
 
+const OutlinedSelect = ({ label, ...props }) => {
+    const inputLabel = React.useRef(null);
+    const [labelWidth, setLabelWidth] = React.useState(0);
+    React.useEffect(() => {
+        setLabelWidth(inputLabel.current.offsetWidth);
+    }, []);
+
+    return (
+        <FormControl variant="outlined" style={{ margin: ".25rem" }}>
+            <InputLabel ref={inputLabel}>{label}</InputLabel>
+            <Select
+                variant="outlined"
+                autoWidth={false}
+                input={<OutlinedInput labelWidth={labelWidth} />}
+                {...props}
+            />
+        </FormControl>
+    );
+};
+
+const MonthInput = props => {
+    return (
+        <OutlinedSelect className="date-time-input" label="Month" {...props}>
+            <MenuItem value={0}>Jan</MenuItem>
+            <MenuItem value={1}>Feb</MenuItem>
+            <MenuItem value={2}>Mar</MenuItem>
+            <MenuItem value={3}>Apr</MenuItem>
+            <MenuItem value={4}>May</MenuItem>
+            <MenuItem value={5}>Jun</MenuItem>
+            <MenuItem value={6}>Jul</MenuItem>
+            <MenuItem value={7}>Aug</MenuItem>
+            <MenuItem value={8}>Sep</MenuItem>
+            <MenuItem value={9}>Oct</MenuItem>
+            <MenuItem value={10}>Nov</MenuItem>
+            <MenuItem value={11}>Dec</MenuItem>
+        </OutlinedSelect>
+    );
+};
+
+const DayInput = props => {
+    return (
+        <TextField
+            className="date-time-input"
+            variant="outlined"
+            label="Day"
+            type="number"
+            step="1"
+            {...props}
+        />
+    );
+};
+
+const YearInput = props => {
+    return (
+        <TextField
+            className="date-time-input"
+            variant="outlined"
+            label="Year"
+            type="number"
+            step="1"
+            {...props}
+        />
+    );
+};
+
 class DatePicker extends Component {
     constructor(props) {
         super(props);
 
         this.resetDate = this.resetDate.bind(this);
+        this.onMonthChanged = this.onMonthChanged.bind(this);
+        this.onDayChanged = this.onDayChanged.bind(this);
+        this.onYearChanged = this.onYearChanged.bind(this);
         this.onDateChanged = this.onDateChanged.bind(this);
     }
 
@@ -31,13 +109,33 @@ class DatePicker extends Component {
         this.props.onDateChanged(new Date());
     }
 
-    onDateChanged(event) {
-        let year = parseInt(this.refs.currentYear.value, 10);
-        let month = parseInt(this.refs.currentMonth.value, 10);
-        let day = parseInt(this.refs.currentDay.value, 10);
+    onMonthChanged(event) {
+        const year = this.props.date.getFullYear();
+        const month = parseInt(event.target.value, 10);
+        const day = this.props.date.getDate();
 
+        this.onDateChanged(year, month, day);
+    }
+
+    onDayChanged(event) {
+        const year = this.props.date.getFullYear();
+        const month = this.props.date.getMonth();
+        const day = parseInt(event.target.value, 10);
+
+        this.onDateChanged(year, month, day);
+    }
+
+    onYearChanged(event) {
+        const year = parseInt(event.target.value, 10);
+        const month = this.props.date.getMonth();
+        const day = this.props.date.getDate();
+
+        this.onDateChanged(year, month, day);
+    }
+
+    onDateChanged(year, month, day) {
         if (0 <= day && day <= 32) {
-            let currentDate = fullYearDate(year, month, day);
+            const currentDate = fullYearDate(year, month, day);
 
             if (!isNaN(currentDate.getFullYear())) {
                 this.props.onDateChanged(currentDate);
@@ -45,72 +143,36 @@ class DatePicker extends Component {
         }
     }
 
-    createDateInput(ref, value) {
-        return (
-            <input
-                type="number"
-                className="date-time-input"
-                ref={ref}
-                step="1"
-                onChange={this.onDateChanged}
-                value={value}
-            />
-        );
-    }
-
     render() {
-        let currentDate = this.props.date;
-        let className = this.props.className || "gregorian-date-picker";
+        const currentDate = this.props.date;
+        const className = this.props.className || "gregorian-date-picker";
 
         return (
-            <table className={className}>
-                <tbody>
-                    <tr>
-                        <th>Gregorian Date:</th>
-                        <th>
-                            <select
-                                className="date-time-input"
-                                ref="currentMonth"
-                                value={currentDate.getMonth()}
-                                onChange={this.onDateChanged}
-                            >
-                                <option value="0">Jan</option>
-                                <option value="1">Feb</option>
-                                <option value="2">Mar</option>
-                                <option value="3">Apr</option>
-                                <option value="4">May</option>
-                                <option value="5">Jun</option>
-                                <option value="6">Jul</option>
-                                <option value="7">Aug</option>
-                                <option value="8">Sep</option>
-                                <option value="9">Oct</option>
-                                <option value="10">Nov</option>
-                                <option value="11">Dec</option>
-                            </select>
-                        </th>
-                        <th>
-                            {this.createDateInput(
-                                "currentDay",
-                                currentDate.getDate()
-                            )}
-                        </th>
-                        <th>
-                            {this.createDateInput(
-                                "currentYear",
-                                currentDate.getFullYear()
-                            )}
-                        </th>
-                        <th>
-                            <button
-                                className="today-button"
-                                onClick={this.resetDate}
-                            >
-                                <span className="today-button-txt">Today</span>
-                            </button>
-                        </th>
-                    </tr>
-                </tbody>
-            </table>
+            <Toolbar className={className} style={{ width: "37rem" }}>
+                <Typography variant="h6">Gregorian Date:</Typography>
+                <MonthInput
+                    style={{ width: "6rem" }}
+                    value={currentDate.getMonth()}
+                    onChange={this.onMonthChanged}
+                />
+                <DayInput
+                    value={currentDate.getDate()}
+                    onChange={this.onDayChanged}
+                />
+                <YearInput
+                    style={{ width: "6rem" }}
+                    value={currentDate.getFullYear()}
+                    onChange={this.onYearChanged}
+                />
+                <Button
+                    variant="outlined"
+                    size="large"
+                    className="today-button"
+                    onClick={this.resetDate}
+                >
+                    <span className="today-button-txt">Today</span>
+                </Button>
+            </Toolbar>
         );
     }
 }
@@ -137,4 +199,13 @@ const Badges = props => (
     </>
 );
 
-export { Badges, CalendarCellStyle, CaptionCellStyle, DatePicker };
+export {
+    Badges,
+    CalendarCellStyle,
+    CaptionCellStyle,
+    DatePicker,
+    MonthInput,
+    DayInput,
+    YearInput,
+    OutlinedSelect,
+};

@@ -4,6 +4,8 @@
  */
 import React, { Component } from "react";
 
+import MenuItem from "@material-ui/core/MenuItem";
+
 import {
     RECKONING_KINGS,
     RECKONING_STEWARDS,
@@ -19,10 +21,12 @@ import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
 import GondorCalendar, { defaultCaption } from "../ui/GondorCalendar";
 import "../ui/tolkien-calendars.css";
 
+import { OutlinedSelect } from "./Common";
 import LanguagePicker from "./controls/LanguagePicker";
 import MonthViewLayout from "./controls/MonthViewLayout";
 import MonthViewPicker from "./controls/MonthViewPicker";
 import { ShireStartDatePicker } from "./controls/StartDatePicker";
+import { scriptFontFamily } from "./theme";
 
 class GondorCalendarWithControls extends Component {
     constructor(props) {
@@ -192,21 +196,27 @@ class GondorCalendarWithControls extends Component {
                                 selectedDate={startDate}
                                 onCalendarStartChange={onCalendarStartChange}
                             />
-                            <select
+                            <OutlinedSelect
                                 className="gondor-rules-select"
+                                style={{
+                                    width: "9.75rem",
+                                    fontSize: "0.72rem",
+                                    fontWeight: "normal",
+                                    fontFamily: scriptFontFamily,
+                                }}
                                 value={reckoning}
                                 onChange={this.onStartMonthChange}
                             >
-                                <option value={RECKONING_KINGS}>
+                                <MenuItem value={RECKONING_KINGS}>
                                     Kings' Reckoning
-                                </option>
-                                <option value={RECKONING_STEWARDS}>
+                                </MenuItem>
+                                <MenuItem value={RECKONING_STEWARDS}>
                                     Stewards' Reckoning
-                                </option>
-                                <option value={RECKONING_NEW}>
+                                </MenuItem>
+                                <MenuItem value={RECKONING_NEW}>
                                     New Reckoning
-                                </option>
-                            </select>
+                                </MenuItem>
+                            </OutlinedSelect>
                         </th>
                         <th className="gondor-calendar-controls month-picker-container">
                             <MonthViewPicker
@@ -226,8 +236,6 @@ class GondorCalendarWithControls extends Component {
                                 language={language}
                                 onLanguageChange={this.onLanguageChange}
                             />
-                        </th>
-                        <th className="gondor-calendar-controls">
                             <MonthViewLayout
                                 layout={monthViewLayout}
                                 onMonthViewLayoutChange={
@@ -239,7 +247,7 @@ class GondorCalendarWithControls extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td colSpan="4" className="shire-calendar-wrapper-cell">
+                        <td colSpan="3" className="shire-calendar-wrapper-cell">
                             <GondorCalendar
                                 className="shire-calendar gondor-calendar"
                                 calendar={calendar}

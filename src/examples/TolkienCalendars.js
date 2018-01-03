@@ -5,6 +5,13 @@
 import React, { Component } from "react";
 import { storiesOf } from "@storybook/react";
 
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuItem from "@material-ui/core/MenuItem";
+
+import { ThemeProvider } from "@material-ui/styles";
+
 import { datesMatch, fullYearDate } from "../Utils";
 
 import ShireCalendar from "../ui/ShireCalendar";
@@ -16,7 +23,14 @@ import ShireCalendarWithControls from "./ShireCalendarWithControls";
 import RivendellCalendarWithControls from "./RivendellCalendarWithControls";
 import GondorCalendarWithControls from "./GondorCalendarWithControls";
 
-import { Badges, CalendarCellStyle, DatePicker } from "./Common";
+import theme from "./theme";
+
+import {
+    Badges,
+    CalendarCellStyle,
+    DatePicker,
+    OutlinedSelect,
+} from "./Common";
 import "./examples.css";
 
 /**
@@ -185,8 +199,8 @@ class TolkienCalendarsExample extends Component {
         this.setState({ date: currentDate });
     }
 
-    alignChanged(event) {
-        let checked = event.target.checked;
+    alignChanged(event, isInputChecked) {
+        let checked = isInputChecked;
         let shireAlign = event.target.value === "shire" && checked;
         let rivendellAlign = event.target.value === "rivendell" && checked;
 
@@ -371,19 +385,20 @@ class TolkienCalendarsExample extends Component {
 
         const shireSyncOptions = SyncShireCalendar.map((sync, i) => {
             return (
-                <option key={i} value={i}>
-                    {sync.label}
-                </option>
+                <MenuItem key={i} value={i}>
+                    {`Synchronize ${sync.label}`}
+                </MenuItem>
             );
         });
 
         const rivendellSyncOptions = SyncRivendellCalendar.map((sync, i) => {
             return (
-                <option key={i} value={i}>
-                    {sync.subtitle
-                        ? `${sync.label} (${sync.subtitle}).`
-                        : sync.label}
-                </option>
+                <MenuItem key={i} value={i}>
+                    <ListItemText
+                        primary={`Synchronize ${sync.label}`}
+                        secondary={sync.subtitle}
+                    />
+                </MenuItem>
             );
         });
 
@@ -400,44 +415,59 @@ class TolkienCalendarsExample extends Component {
                     </tr>
                     <tr>
                         <th className="sync-calendar-controls">
-                            Synchronize
-                            <br />
-                            <select
+                            <OutlinedSelect
+                                className="shire-sync-select"
+                                label="Synchronize"
+                                autoWidth={false}
+                                style={{ width: "36rem" }}
                                 value={shireSyncScheme}
                                 onChange={this.onShireSyncChange}
+                                renderValue={value =>
+                                    SyncShireCalendar[value].label
+                                }
                             >
                                 {shireSyncOptions}
-                            </select>
+                            </OutlinedSelect>
                         </th>
                         <th className="sync-calendar-controls">
-                            Synchronize
-                            <br />
-                            <select
+                            <OutlinedSelect
+                                className="rivendell-sync-select"
+                                label="Synchronize"
+                                style={{ width: "36rem" }}
                                 value={rivendellSyncScheme}
                                 onChange={this.onRivendellSyncChange}
+                                renderValue={value =>
+                                    SyncRivendellCalendar[value].label
+                                }
                             >
                                 {rivendellSyncOptions}
-                            </select>
+                            </OutlinedSelect>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <input
-                                type="checkbox"
-                                value="shire"
-                                checked={shireAlign}
-                                onChange={this.alignChanged}
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value="shire"
+                                        checked={shireAlign}
+                                        onChange={this.alignChanged}
+                                    />
+                                }
+                                label="Try to align Shire Year with Rivendell Year?"
                             />
-                            Try to align Shire Year with Rivendell Year?
                         </th>
                         <th>
-                            <input
-                                type="checkbox"
-                                value="rivendell"
-                                checked={rivendellAlign}
-                                onChange={this.alignChanged}
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        value="rivendell"
+                                        checked={rivendellAlign}
+                                        onChange={this.alignChanged}
+                                    />
+                                }
+                                label="Try to align Rivendell Year with Shire Year?"
                             />
-                            Try to align Rivendell Year with Shire Year?
                         </th>
                     </tr>
                     <tr>
@@ -456,7 +486,7 @@ class TolkienCalendarsExample extends Component {
                                     this.onShireStartDateChange
                                 }
                                 onRegionChange={this.onShireRegionChange}
-                                className="shire-calendar"
+                                className="shire-calendar shire-calendar-styled-example"
                                 yearView={shireAlign || rivendellAlign}
                             />
                         </td>
@@ -474,7 +504,7 @@ class TolkienCalendarsExample extends Component {
                                 onCalendarRulesChange={
                                     this.onRivendellRulesChange
                                 }
-                                className="shire-calendar rivendell-calendar"
+                                className="shire-calendar rivendell-calendar shire-calendar-styled-example"
                                 yearView={shireAlign || rivendellAlign}
                             />
                         </td>
@@ -491,7 +521,7 @@ class TolkienCalendarsExample extends Component {
                                 onCalendarStartChange={
                                     this.onGondorLeftStartDateChange
                                 }
-                                className="shire-calendar gondor-calendar stewards-calendar"
+                                className="shire-calendar gondor-calendar stewards-calendar shire-calendar-styled-example"
                             />
                         </td>
                         <td style={CalendarCellStyle}>
@@ -502,7 +532,7 @@ class TolkienCalendarsExample extends Component {
                                 onCalendarStartChange={
                                     this.onGondorRightStartDateChange
                                 }
-                                className="shire-calendar gondor-calendar new-reckoning-calendar"
+                                className="shire-calendar gondor-calendar new-reckoning-calendar shire-calendar-styled-example"
                             />
                         </td>
                     </tr>
@@ -512,6 +542,12 @@ class TolkienCalendarsExample extends Component {
     }
 }
 
+const StyledTolkienCalendars = () => (
+    <ThemeProvider theme={theme}>
+        <TolkienCalendarsExample />
+    </ThemeProvider>
+);
+
 const srcStyle = {
     border: "1px solid",
     margin: "auto",
@@ -520,7 +556,7 @@ const srcStyle = {
 
 const TolkienCalendarsWithInstructions = () => (
     <>
-        <TolkienCalendarsExample />
+        <StyledTolkienCalendars />
         <br />
         <br />
         The following example shows how a default Shire Calendar, with the
@@ -613,4 +649,4 @@ storiesOf("Shire Reckoning: All Tolkien Calendars", module)
     .addParameters({ options: { showPanel: false } })
     .add("with Synchronization settings", TolkienCalendarsWithInstructions);
 
-export default TolkienCalendarsExample;
+export default StyledTolkienCalendars;

@@ -5,6 +5,9 @@
 import React, { Component } from "react";
 import { storiesOf } from "@storybook/react";
 
+import MenuItem from "@material-ui/core/MenuItem";
+import { ThemeProvider } from "@material-ui/styles";
+
 import "../../ui/tolkien-calendars.css";
 
 import ShireCalendar from "./ShireCalendar";
@@ -18,7 +21,8 @@ import {
     findPreviousEventIndex,
 } from "./DatesOfInterest";
 
-import { CalendarCellStyle, DatePicker } from "../Common";
+import { CalendarCellStyle, DatePicker, OutlinedSelect } from "../Common";
+import theme from "../theme";
 import "../examples.css";
 
 class SimulatedTolkienCalendars extends Component {
@@ -209,11 +213,11 @@ class SimulatedTolkienCalendars extends Component {
         let selectedEvent = this.state.selectedEvent;
 
         let eventOpts = DatesOfInterest.map((event, i) => (
-            <option key={i} value={i}>
+            <MenuItem key={i} value={i}>
                 {event.label
                     ? `${event.displayDate} | ${event.label}`
                     : event.label}
-            </option>
+            </MenuItem>
         ));
 
         if (selectedEvent < 1) {
@@ -234,30 +238,32 @@ class SimulatedTolkienCalendars extends Component {
                 <tbody>
                     <tr>
                         <th colSpan="3" className="simulated-date-controls">
-                            Synchronize &nbsp;
-                            <select
+                            <OutlinedSelect
+                                label="Synchronize"
+                                style={{ width: "33rem" }}
                                 value={this.state.calendarRules}
                                 onChange={this.onCalendarRulesChange}
                             >
                                 {SyncAges.map(function(sync, i) {
                                     return (
-                                        <option key={i} value={i}>
+                                        <MenuItem key={i} value={i}>
                                             {sync.label}
-                                        </option>
+                                        </MenuItem>
                                     );
                                 })}
-                            </select>
+                            </OutlinedSelect>
                         </th>
                     </tr>
                     <tr>
                         <th colSpan="3" className="simulated-date-controls">
-                            Dates of Interest:&nbsp;
-                            <select
+                            <OutlinedSelect
+                                label="Dates of Interest"
+                                style={{ width: "60rem" }}
                                 value={selectedEvent}
                                 onChange={this.onDatesOfInterestChange}
                             >
                                 {eventOpts}
-                            </select>
+                            </OutlinedSelect>
                         </th>
                     </tr>
                     <tr>
@@ -277,7 +283,7 @@ class SimulatedTolkienCalendars extends Component {
                                     this.onShireStartDateChange
                                 }
                                 date={currentDate}
-                                className="shire-calendar"
+                                className="shire-calendar shire-calendar-styled-example"
                             />
                         </td>
                         <td style={CalendarCellStyle}>
@@ -287,7 +293,7 @@ class SimulatedTolkienCalendars extends Component {
                                     this.onGondorStartDateChange
                                 }
                                 date={currentDate}
-                                className="shire-calendar gondor-calendar"
+                                className="shire-calendar gondor-calendar shire-calendar-styled-example"
                             />
                         </td>
                     </tr>
@@ -299,7 +305,7 @@ class SimulatedTolkienCalendars extends Component {
                                     this.onRivendellStartDateChange
                                 }
                                 date={currentDate}
-                                className="shire-calendar rivendell-calendar"
+                                className="shire-calendar rivendell-calendar shire-calendar-styled-example"
                             />
                         </td>
                     </tr>
@@ -309,19 +315,25 @@ class SimulatedTolkienCalendars extends Component {
     }
 }
 
+const StyledSimulations = props => (
+    <ThemeProvider theme={theme}>
+        <SimulatedTolkienCalendars {...props} />
+    </ThemeProvider>
+);
+
 storiesOf("Shire Reckoning: Middle-earth Simulation", module)
     .addParameters({ options: { showPanel: false } })
     .add("Elves' New Year's Day in T.A. 3019 (default example)", () => (
-        <SimulatedTolkienCalendars />
+        <StyledSimulations />
     ))
     .add("2020-21 moon phase synchronized simulation", () => (
-        <SimulatedTolkienCalendars calendarRules={3} selectedEvent={0} />
+        <StyledSimulations calendarRules={3} selectedEvent={0} />
     ))
     .add("2017-18 moon phase synchronized simulation", () => (
-        <SimulatedTolkienCalendars calendarRules={4} selectedEvent={0} />
+        <StyledSimulations calendarRules={4} selectedEvent={0} />
     ))
     .add("1941-42 moon phase synchronized simulation", () => (
-        <SimulatedTolkienCalendars calendarRules={5} selectedEvent={0} />
+        <StyledSimulations calendarRules={5} selectedEvent={0} />
     ));
 
-export default SimulatedTolkienCalendars;
+export default StyledSimulations;

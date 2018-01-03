@@ -4,7 +4,10 @@
  */
 import React from "react";
 
+import MenuItem from "@material-ui/core/MenuItem";
+
 import { datesMatch, fullYearDate } from "../../Utils";
+import { OutlinedSelect } from "../Common";
 
 const StartDatePicker = props => {
     const onDateChanged = event => {
@@ -17,22 +20,21 @@ const StartDatePicker = props => {
     );
 
     const opts = props.startDates.map(startDate => (
-        <option key={startDate.label} value={startDate.date}>
+        <MenuItem key={startDate.label} value={startDate.date}>
             {startDate.label}
-        </option>
+        </MenuItem>
     ));
 
     return (
-        <div>
-            Start reckoning from
-            <select
-                className="first-day-select"
-                value={selectedDate && selectedDate.date}
-                onChange={onDateChanged}
-            >
-                {opts}
-            </select>
-        </div>
+        <OutlinedSelect
+            className="first-day-select"
+            label="Start reckoning from"
+            style={{ width: "9.75rem", fontSize: "0.75rem" }}
+            value={selectedDate && selectedDate.date}
+            onChange={onDateChanged}
+        >
+            {opts}
+        </OutlinedSelect>
     );
 };
 

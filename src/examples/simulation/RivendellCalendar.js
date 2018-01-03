@@ -170,8 +170,6 @@ class RivendellCalendarSimulated extends Component {
                                 language={language}
                                 onLanguageChange={this.onLanguageChange}
                             />
-                        </th>
-                        <th className="rivendell-calendar-controls">
                             <MonthViewLayout
                                 layout={monthViewLayout}
                                 onMonthViewLayoutChange={
@@ -183,7 +181,7 @@ class RivendellCalendarSimulated extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td colSpan="4" className="shire-calendar-wrapper-cell">
+                        <td colSpan="3" className="shire-calendar-wrapper-cell">
                             <RivendellCalendar
                                 className={calendarClassName}
                                 calendar={calendar}

@@ -179,14 +179,11 @@ class ShireCalendarSimulated extends Component {
                             />
                         </th>
                         <th className="shire-calendar-controls">
-                            Reckon with:
-                            <br />
                             <ShireRegionPicker
+                                label="Reckon with"
                                 region={region}
                                 onRegionChange={this.onRegionChange}
                             />
-                        </th>
-                        <th className="shire-calendar-controls">
                             <MonthViewLayout
                                 layout={monthViewLayout}
                                 onMonthViewLayoutChange={
@@ -198,7 +195,7 @@ class ShireCalendarSimulated extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td colSpan="4" className="shire-calendar-wrapper-cell">
+                        <td colSpan="3" className="shire-calendar-wrapper-cell">
                             <ShireCalendar
                                 className="shire-calendar"
                                 calendar={calendar}

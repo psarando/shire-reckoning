@@ -4,6 +4,8 @@
  */
 import React, { Component } from "react";
 
+import MenuItem from "@material-ui/core/MenuItem";
+
 import {
     TRADITIONAL_RULES,
     REFORMED_RULES,
@@ -16,6 +18,7 @@ import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
 import RivendellCalendar from "../ui/RivendellCalendar";
 import "../ui/tolkien-calendars.css";
 
+import { OutlinedSelect } from "./Common";
 import LanguagePicker from "./controls/LanguagePicker";
 import MonthViewPicker from "./controls/MonthViewPicker";
 import { RivendellStartDatePicker } from "./controls/StartDatePicker";
@@ -157,18 +160,22 @@ class RivendellCalendarWithControls extends Component {
                                 selectedDate={startDate}
                                 onCalendarStartChange={onCalendarStartChange}
                             />
-                            <select
+                            <OutlinedSelect
                                 className="rivendell-rules-select"
+                                style={{
+                                    width: "9.75rem",
+                                    fontSize: "0.72rem",
+                                }}
                                 value={calendarRules}
                                 onChange={onCalendarRulesChange}
                             >
-                                <option value={TRADITIONAL_RULES}>
+                                <MenuItem value={TRADITIONAL_RULES}>
                                     Traditional Rules
-                                </option>
-                                <option value={REFORMED_RULES}>
+                                </MenuItem>
+                                <MenuItem value={REFORMED_RULES}>
                                     Reformed Rules
-                                </option>
-                            </select>
+                                </MenuItem>
+                            </OutlinedSelect>
                         </th>
                         <th className="rivendell-calendar-controls month-picker-container">
                             <MonthViewPicker

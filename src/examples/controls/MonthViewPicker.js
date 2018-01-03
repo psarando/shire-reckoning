@@ -3,7 +3,17 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
+
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuItem from "@material-ui/core/MenuItem";
+
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+
+import { OutlinedSelect } from "../Common";
 import "../../ui/tolkien-calendars.css";
+import { scriptFontFamily } from "../theme";
 
 const MonthViewPicker = props => {
     const onMonthViewChange = event => {
@@ -78,9 +88,9 @@ const MonthViewPicker = props => {
     const monthView = props.yearView ? -1 : props.monthView;
 
     const monthViewSelectOptions = props.months.map((month, i) => (
-        <option key={i} value={i}>
+        <MenuItem key={i} value={i}>
             {month.emoji} {month.name}
-        </option>
+        </MenuItem>
     ));
 
     return (
@@ -89,61 +99,67 @@ const MonthViewPicker = props => {
                 <tr>
                     <td />
                     <td>
-                        <button
+                        <Button
+                            variant="outlined"
                             className="this-year-button"
-                            value=""
+                            style={{ fontSize: "0.75rem" }}
+                            fullWidth={true}
                             onClick={onViewThisYear}
                         >
                             <span className="this-year-button-txt">
                                 This Year
                             </span>
-                        </button>
+                        </Button>
                     </td>
                     <td />
                 </tr>
                 <tr>
                     <td style={{ textAlign: "right" }}>
-                        <button
+                        <IconButton
                             className="prev-month-button"
                             onClick={prevMonthView}
                         >
-                            <span className="prev-month-button-txt">
-                                {"<<"}
-                            </span>
-                        </button>
+                            <ArrowBackIcon className="prev-month-button-txt" />
+                        </IconButton>
                     </td>
                     <td>
-                        <select
+                        <OutlinedSelect
                             className="month-view-select"
+                            style={{
+                                width: "10.75rem",
+                                fontWeight: "normal",
+                                fontFamily: scriptFontFamily,
+                            }}
                             value={monthView}
                             onChange={onMonthViewChange}
                         >
-                            <option value="-1">Year Calendar</option>
+                            <MenuItem value={-1}>Year Calendar</MenuItem>
                             {monthViewSelectOptions}
-                        </select>
+                        </OutlinedSelect>
                     </td>
                     <td style={{ textAlign: "left" }}>
-                        <button
+                        <IconButton
                             className="next-month-button"
                             onClick={nextMonthView}
                         >
-                            <span className="next-month-button-txt">
-                                {">>"}
-                            </span>
-                        </button>
+                            <ArrowForwardIcon className="next-month-button-txt" />
+                        </IconButton>
                     </td>
                 </tr>
                 <tr>
                     <td />
                     <td>
-                        <button
+                        <Button
+                            variant="outlined"
                             className="this-month-button"
+                            style={{ fontSize: "0.75rem" }}
+                            fullWidth={true}
                             onClick={onViewThisMonth}
                         >
                             <span className="this-month-button-txt">
                                 {"This " + monthLabel}
                             </span>
-                        </button>
+                        </Button>
                     </td>
                     <td />
                 </tr>

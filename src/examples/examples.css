@@ -24,3 +24,13 @@
     margin: auto;
     padding: 1rem;
 }
+.shire-calendar-styled-example {
+    font-family: Fondamento,'Libre Baskerville',Georgia,serif;
+}
+.shire-calendar-styled-example td {
+    font-weight: normal;
+}
+.shire-calendar-styled-example .gregorian-display {
+    font-family: 'Libre Baskerville',Georgia,serif;
+    white-space: nowrap;
+}
