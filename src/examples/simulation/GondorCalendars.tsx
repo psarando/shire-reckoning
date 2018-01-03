@@ -32,6 +32,8 @@ import MonthViewPicker from "../controls/MonthViewPicker";
 
 import StartReckoningDatePicker from "./StartReckoningDatePicker";
 
+import { Grid } from "@mui/material";
+
 const getNewStyleYear = (startDate: Date, today: Date) =>
     daysElapsedToNewReckoningYear(
         daysElapsedToSecondAgeYear,
@@ -222,7 +224,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
     const lastDay = getLastDay(calendar);
 
     return (
-        <table className="shire-calendar gondor-calendar">
+        <table className="shire-calendar gondor-calendar shire-calendar-styled-example">
             <caption className="shire-caption">{caption}</caption>
             <thead>
                 <tr>
@@ -231,6 +233,24 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
                             startDate={startDate}
                             onCalendarStartChange={onCalendarStartChange}
                         />
+                        <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="flex-end"
+                            wrap="nowrap"
+                        >
+                            <LanguagePicker
+                                language={language}
+                                onLanguageChange={onLanguageChange}
+                            />
+                            <MonthViewLayout
+                                layout={monthViewLayout}
+                                onMonthViewLayoutChange={
+                                    onMonthViewLayoutChange
+                                }
+                            />
+                        </Grid>
                     </th>
                     <th className="gondor-calendar-controls month-picker-container">
                         <MonthViewPicker
@@ -245,23 +265,11 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
                             onMonthViewChange={onMonthViewChange}
                         />
                     </th>
-                    <th className="gondor-calendar-controls">
-                        <LanguagePicker
-                            language={language}
-                            onLanguageChange={onLanguageChange}
-                        />
-                    </th>
-                    <th className="gondor-calendar-controls">
-                        <MonthViewLayout
-                            layout={monthViewLayout}
-                            onMonthViewLayoutChange={onMonthViewLayoutChange}
-                        />
-                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan={4} className="shire-calendar-wrapper-cell">
+                    <td colSpan={3} className="shire-calendar-wrapper-cell">
                         <GondorCalendar
                             className="shire-calendar gondor-calendar"
                             calendar={calendar}

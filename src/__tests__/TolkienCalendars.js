@@ -7,7 +7,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 
-import { TolkienCalendarsExample } from "../examples/TolkienCalendars";
+import {
+    StyledTolkienCalendars,
+    TolkienCalendarsExample,
+} from "../examples/TolkienCalendars";
 import { SimulatedTolkienCalendars } from "../examples/simulation/TolkienCalendars";
 import { ICalendarGenerator } from "../examples/ICalendarGenerator";
 
@@ -36,6 +39,13 @@ it("renders TolkienCalendarsExample without crashing", () => {
     const div = document.createElement("div");
     const root = createRoot(div);
     root.render(<TolkienCalendarsExample />);
+    root.unmount();
+});
+
+it("renders StyledTolkienCalendars without crashing", () => {
+    const div = document.createElement("div");
+    const root = createRoot(div);
+    root.render(<StyledTolkienCalendars />);
     root.unmount();
 });
 

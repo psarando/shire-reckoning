@@ -4,7 +4,11 @@
  */
 import React from "react";
 
+import { MenuItem } from "@mui/material";
+
 import { LanguageEnum } from "../../ui/controls/LanguagePicker";
+import { OutlinedSelect } from "../Common";
+import { scriptFontFamily } from "../theme";
 
 interface LanguagePickerProps {
     language: LanguageEnum;
@@ -16,19 +20,25 @@ const LanguagePicker = ({
     onLanguageChange,
 }: LanguagePickerProps) => {
     return (
-        <div>
-            Language:
-            <br />
-            <select
-                className="language-select"
-                value={language}
-                onChange={onLanguageChange}
-            >
-                <option value={LanguageEnum.ENGLISH}>English</option>
-                <option value={LanguageEnum.QUENYA}>Quenya</option>
-                <option value={LanguageEnum.SINDARIN}>Sindarin</option>
-            </select>
-        </div>
+        <OutlinedSelect
+            className="language-select"
+            label="Language"
+            style={{ width: "8rem", margin: "0.25rem 0" }}
+            SelectProps={{
+                SelectDisplayProps: {
+                    style: {
+                        fontSize: "1rem",
+                        fontFamily: scriptFontFamily,
+                    },
+                },
+            }}
+            value={language}
+            onChange={onLanguageChange}
+        >
+            <MenuItem value={LanguageEnum.ENGLISH}>English</MenuItem>
+            <MenuItem value={LanguageEnum.QUENYA}>Quenya</MenuItem>
+            <MenuItem value={LanguageEnum.SINDARIN}>Sindarin</MenuItem>
+        </OutlinedSelect>
     );
 };
 

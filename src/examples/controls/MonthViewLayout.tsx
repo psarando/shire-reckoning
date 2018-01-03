@@ -4,7 +4,10 @@
  */
 import React from "react";
 
+import { MenuItem } from "@mui/material";
+
 import { MonthLayoutEnum } from "../../ui/controls/MonthViewLayout";
+import { OutlinedSelect } from "../Common";
 
 import "../../ui/tolkien-calendars.css";
 
@@ -18,18 +21,27 @@ const MonthViewLayout = ({
     onMonthViewLayoutChange,
 }: MonthViewLayoutProps) => {
     return (
-        <div>
-            Month View:
-            <br />
-            <select
-                className="month-layout-select"
-                value={layout}
-                onChange={onMonthViewLayoutChange}
-            >
-                <option value={MonthLayoutEnum.VERTICAL}>Vertical</option>
-                <option value={MonthLayoutEnum.HORIZONTAL}>Horizontal</option>
-            </select>
-        </div>
+        <OutlinedSelect
+            className="month-layout-select"
+            label="Month View"
+            style={{
+                width: "8rem",
+                margin: "0.25rem 0",
+            }}
+            SelectProps={{
+                SelectDisplayProps: {
+                    style: {
+                        fontSize: "0.75rem",
+                        fontWeight: "normal",
+                    },
+                },
+            }}
+            value={layout}
+            onChange={onMonthViewLayoutChange}
+        >
+            <MenuItem value={MonthLayoutEnum.VERTICAL}>Vertical</MenuItem>
+            <MenuItem value={MonthLayoutEnum.HORIZONTAL}>Horizontal</MenuItem>
+        </OutlinedSelect>
     );
 };
 
