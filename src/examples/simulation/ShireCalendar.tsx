@@ -22,6 +22,8 @@ import ShireRegionPicker from "../controls/ShireRegionPicker";
 
 import StartReckoningDatePicker from "./StartReckoningDatePicker";
 
+import { Grid } from "@mui/material";
+
 interface ShireCalendarSimulatedProps {
     date: Date;
     startDate: Date;
@@ -144,7 +146,7 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
     const lastDay = getLastDay(calendar);
 
     return (
-        <table className="shire-calendar">
+        <table className="shire-calendar shire-calendar-styled-example">
             <caption className="shire-caption">{caption}</caption>
             <thead>
                 <tr>
@@ -153,6 +155,25 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
                             startDate={startDate}
                             onCalendarStartChange={onCalendarStartChange}
                         />
+                        <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="flex-end"
+                            wrap="nowrap"
+                        >
+                            <ShireRegionPicker
+                                label="Reckon with"
+                                region={region}
+                                onRegionChange={onRegionChange}
+                            />
+                            <MonthViewLayout
+                                layout={monthViewLayout}
+                                onMonthViewLayoutChange={
+                                    onMonthViewLayoutChange
+                                }
+                            />
+                        </Grid>
                     </th>
                     <th className="shire-calendar-controls month-picker-container">
                         <MonthViewPicker
@@ -167,25 +188,11 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
                             onMonthViewChange={onMonthViewChange}
                         />
                     </th>
-                    <th className="shire-calendar-controls">
-                        Reckon with:
-                        <br />
-                        <ShireRegionPicker
-                            region={region}
-                            onRegionChange={onRegionChange}
-                        />
-                    </th>
-                    <th className="shire-calendar-controls">
-                        <MonthViewLayout
-                            layout={monthViewLayout}
-                            onMonthViewLayoutChange={onMonthViewLayoutChange}
-                        />
-                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan={4} className="shire-calendar-wrapper-cell">
+                    <td colSpan={3} className="shire-calendar-wrapper-cell">
                         <ShireCalendar
                             className="shire-calendar"
                             calendar={calendar}

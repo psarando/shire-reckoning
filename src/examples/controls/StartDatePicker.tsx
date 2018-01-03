@@ -4,7 +4,10 @@
  */
 import React from "react";
 
+import { MenuItem } from "@mui/material";
+
 import { datesMatch, fullYearDate } from "../../Utils";
+import { OutlinedSelect } from "../Common";
 
 interface StartDatePickerItem {
     label: string;
@@ -29,22 +32,24 @@ const StartDatePicker = (
     );
 
     const opts = props.startDates.map((startDate) => (
-        <option key={startDate.label} value={startDate.date.toISOString()}>
+        <MenuItem key={startDate.label} value={startDate.date.toISOString()}>
             {startDate.label}
-        </option>
+        </MenuItem>
     ));
 
     return (
-        <div>
-            Start reckoning from
-            <select
-                className="first-day-select"
-                value={selectedDate && selectedDate.date.toISOString()}
-                onChange={onDateChanged}
-            >
-                {opts}
-            </select>
-        </div>
+        <OutlinedSelect
+            className="first-day-select"
+            label="Start reckoning from"
+            style={{ width: "9.75rem", marginTop: "0.25rem" }}
+            SelectProps={{
+                SelectDisplayProps: { style: { fontSize: "0.75rem" } },
+            }}
+            value={selectedDate && selectedDate.date.toISOString()}
+            onChange={onDateChanged}
+        >
+            {opts}
+        </OutlinedSelect>
     );
 };
 
