@@ -24,6 +24,8 @@ import "../examples.css";
 
 import StartReckoningDatePicker from "./StartReckoningDatePicker";
 
+import { Grid } from "@mui/material";
+
 interface RivendellCalendarSimulatedProps {
     date: Date;
     startDate: Date;
@@ -125,7 +127,7 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
     }
 
     return (
-        <table className="shire-calendar rivendell-calendar">
+        <table className="shire-calendar rivendell-calendar shire-calendar-styled-example">
             <caption className="rivendell-caption">{caption}</caption>
             <thead>
                 <tr>
@@ -134,6 +136,24 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
                             startDate={startDate}
                             onCalendarStartChange={onCalendarStartChange}
                         />
+                        <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="flex-end"
+                            wrap="nowrap"
+                        >
+                            <LanguagePicker
+                                language={language}
+                                onLanguageChange={onLanguageChange}
+                            />
+                            <MonthViewLayout
+                                layout={monthViewLayout}
+                                onMonthViewLayoutChange={
+                                    onMonthViewLayoutChange
+                                }
+                            />
+                        </Grid>
                     </th>
                     <th className="rivendell-calendar-controls month-picker-container">
                         <MonthViewPicker
@@ -149,23 +169,11 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
                             onMonthViewChange={onMonthViewChange}
                         />
                     </th>
-                    <th className="rivendell-calendar-controls">
-                        <LanguagePicker
-                            language={language}
-                            onLanguageChange={onLanguageChange}
-                        />
-                    </th>
-                    <th className="rivendell-calendar-controls">
-                        <MonthViewLayout
-                            layout={monthViewLayout}
-                            onMonthViewLayoutChange={onMonthViewLayoutChange}
-                        />
-                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan={4} className="shire-calendar-wrapper-cell">
+                    <td colSpan={3} className="shire-calendar-wrapper-cell">
                         <RivendellCalendar
                             className={calendarClassName}
                             calendar={calendar}
