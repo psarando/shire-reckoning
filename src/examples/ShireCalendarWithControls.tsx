@@ -109,7 +109,7 @@ const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
     });
 
     return (
-        <table className="shire-calendar">
+        <table className="shire-calendar shire-calendar-styled-example">
             <caption className="shire-caption">Shire Reckoning</caption>
             <thead>
                 <tr>
@@ -121,6 +121,10 @@ const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
                         <ShireRegionPicker
                             region={region}
                             onRegionChange={onRegionChange}
+                        />
+                        <MonthViewLayout
+                            layout={monthViewLayout}
+                            onMonthViewLayoutChange={onMonthViewLayoutChange}
                         />
                     </th>
                     <th className="shire-calendar-controls month-picker-container">
@@ -134,12 +138,6 @@ const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
                             monthView={monthView}
                             yearView={yearView}
                             onMonthViewChange={onMonthViewChange}
-                        />
-                    </th>
-                    <th className="shire-calendar-controls">
-                        <MonthViewLayout
-                            layout={monthViewLayout}
-                            onMonthViewLayoutChange={onMonthViewLayoutChange}
                         />
                     </th>
                 </tr>

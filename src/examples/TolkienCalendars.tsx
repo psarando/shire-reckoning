@@ -5,6 +5,16 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+import {
+    Checkbox,
+    FormControlLabel,
+    ListItemText,
+    MenuItem,
+    Stack,
+} from "@mui/material";
+
+import { ThemeProvider } from "@mui/material/styles";
+
 import { datesMatch, fullYearDate } from "../Utils";
 
 import { ShireRegionEnum } from "../ShireReckoning";
@@ -19,7 +29,14 @@ import ShireCalendarWithControls from "./ShireCalendarWithControls";
 import RivendellCalendarWithControls from "./RivendellCalendarWithControls";
 import GondorCalendarWithControls from "./GondorCalendarWithControls";
 
-import { Badges, CalendarCellStyle, DatePicker } from "./Common";
+import theme from "./theme";
+
+import {
+    Badges,
+    CalendarCellStyle,
+    DatePicker,
+    OutlinedSelect,
+} from "./Common";
 import "./examples.css";
 
 /**
@@ -186,9 +203,10 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
         setDate(currentDate);
     };
 
-    const alignChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const checked = event.target.checked;
-
+    const alignChanged = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        checked: boolean
+    ) => {
         setShireAlign(event.target.value === "shire" && checked);
         setRivendellAlign(event.target.value === "rivendell" && checked);
     };
@@ -407,9 +425,9 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
 
     const shireSyncOptions = shireSyncSchemes.map((sync, i) => {
         return (
-            <option key={i} value={i}>
-                {sync.label}
-            </option>
+            <MenuItem key={i} value={i}>
+                {`Synchronize ${sync.label}`}
+            </MenuItem>
         );
     });
 
@@ -420,11 +438,12 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
 
     const rivendellSyncOptions = rivendellSyncSchemes.map((sync, i) => {
         return (
-            <option key={i} value={i}>
-                {sync.subtitle
-                    ? `${sync.label} (${sync.subtitle}).`
-                    : sync.label}
-            </option>
+            <MenuItem key={i} value={i}>
+                <ListItemText
+                    primary={`Synchronize ${sync.label}`}
+                    secondary={sync.subtitle}
+                />
+            </MenuItem>
         );
     });
 
@@ -433,52 +452,68 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
             <tbody>
                 <tr>
                     <td colSpan={2}>
-                        <DatePicker
-                            date={currentDate}
-                            onDateChanged={onDateChanged}
-                        />
+                        <Stack justifyContent="center">
+                            <DatePicker
+                                date={currentDate}
+                                onDateChanged={onDateChanged}
+                            />
+                        </Stack>
                     </td>
                 </tr>
                 <tr>
                     <th className="sync-calendar-controls">
-                        Synchronize
-                        <br />
-                        <select
+                        <OutlinedSelect
+                            className="shire-sync-select"
+                            label="Synchronize"
                             value={shireSyncScheme}
                             onChange={onShireSyncChange}
+                            SelectProps={{
+                                renderValue: (value: number) =>
+                                    shireSyncSchemes[value].label,
+                            }}
                         >
                             {shireSyncOptions}
-                        </select>
+                        </OutlinedSelect>
                     </th>
                     <th className="sync-calendar-controls">
-                        Synchronize
-                        <br />
-                        <select
+                        <OutlinedSelect
+                            className="rivendell-sync-select"
+                            label="Synchronize"
                             value={rivendellSyncScheme}
                             onChange={onRivendellSyncChange}
+                            SelectProps={{
+                                renderValue: (value: number) =>
+                                    rivendellSyncSchemes[value].label,
+                            }}
                         >
                             {rivendellSyncOptions}
-                        </select>
+                        </OutlinedSelect>
                     </th>
                 </tr>
                 <tr>
                     <th>
-                        <input
-                            type="checkbox"
-                            value="shire"
-                            checked={shireAlign}
-                            onChange={alignChanged}
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    value="shire"
+                                    checked={shireAlign}
+                                    onChange={alignChanged}
+                                />
+                            }
+                            label="Try to align Shire Year with Rivendell Year?"
                         />
-                        Try to align Shire Year with Rivendell Year?
                     </th>
                     <th>
-                        <input
-                            type="checkbox"
-                            value="rivendell"
-                            checked={rivendellAlign}
-                            onChange={alignChanged}
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    value="rivendell"
+                                    checked={rivendellAlign}
+                                    onChange={alignChanged}
+                                />
+                            }
+                            label="Try to align Rivendell Year with Shire Year?"
                         />
-                        Try to align Rivendell Year with Shire Year?
                     </th>
                 </tr>
                 <tr>
@@ -519,7 +554,7 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
                             date={currentDate}
                             startDate={gondorLeftStartDate}
                             onCalendarStartChange={onGondorLeftStartDateChange}
-                            className="shire-calendar gondor-calendar stewards-calendar"
+                            className="shire-calendar gondor-calendar stewards-calendar shire-calendar-styled-example"
                         />
                     </td>
                     <td style={CalendarCellStyle}>
@@ -528,7 +563,7 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
                             date={currentDate}
                             startDate={gondorRightStartDate}
                             onCalendarStartChange={onGondorRightStartDateChange}
-                            className="shire-calendar gondor-calendar new-reckoning-calendar"
+                            className="shire-calendar gondor-calendar new-reckoning-calendar shire-calendar-styled-example"
                         />
                     </td>
                 </tr>
@@ -536,6 +571,12 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
         </table>
     );
 };
+
+export const StyledTolkienCalendars = (props: TolkienCalendarsExampleProps) => (
+    <ThemeProvider theme={theme}>
+        <TolkienCalendarsExample {...props} />
+    </ThemeProvider>
+);
 
 const srcStyle = {
     border: "1px solid",
@@ -547,7 +588,7 @@ const TolkienCalendarsWithInstructions = (
     props: TolkienCalendarsExampleProps
 ) => (
     <>
-        <TolkienCalendarsExample {...props} />
+        <StyledTolkienCalendars {...props} />
         <br />
         <br />
         The following example shows how a default Shire Calendar, with the
@@ -646,7 +687,7 @@ const meta = {
     },
 
     component: TolkienCalendarsWithInstructions,
-    excludeStories: ["TolkienCalendarsExample"],
+    excludeStories: ["StyledTolkienCalendars", "TolkienCalendarsExample"],
 } satisfies Meta<typeof TolkienCalendarsWithInstructions>;
 
 export default meta;

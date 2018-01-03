@@ -8,7 +8,7 @@
     margin: auto;
 }
 .date-time-input {
-    width: 4rem;
+    width: 5.5rem;
     text-align: center;
 }
 .month-picker {
@@ -35,8 +35,18 @@
     display: flex;
 }
 .simulated-shire-date-picker .date-time-input {
-    width: 5.5rem;
+    width: 6.6rem;
 }
 .simulated-shire-date-picker .simulated-shire-month-picker {
-    width: 10rem;
+    width: 5.7rem;
+}
+.shire-calendar-styled-example {
+    font-family: Fondamento,'Libre Baskerville',Georgia,serif;
+}
+.shire-calendar-styled-example td {
+    font-weight: normal;
+}
+.shire-calendar-styled-example .gregorian-display {
+    font-family: 'Libre Baskerville',Georgia,serif;
+    white-space: nowrap;
 }
