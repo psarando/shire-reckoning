@@ -24,6 +24,7 @@ Shire Reckoning
         * [Shire, Gondor, and Gregorian intercalation differences](#shire-gondor-and-gregorian-intercalation-differences)
         * [Adopting Shire Reckoning to modern times](#adopting-shire-reckoning-to-modern-times)
         * [Reckoning with moon phases](#reckoning-with-moon-phases)
+            * [The Lord of the Rings Lunar Readalong](#the-lord-of-the-rings-lunar-readalong)
         * [What if our years began at the same seasonal point?](#what-if-our-years-began-at-the-same-seasonal-point)
 * [Gondor Reckoning Notes](#gondor-reckoning-notes)
 * [Rivendell Reckoning Notes](#rivendell-reckoning-notes)
@@ -188,11 +189,23 @@ Tolkien also described the following holidays specific to certain calendars:
   but Appendix D also says that the "Yule-tide" was 6 days in total,
   including the 2 days before and the 2 days after the Yule days.
 * *The Silmarillion* mentions a festival of Gondolin in the First Age
-  called the "Gates of Summer" which occurred at sunrise on the 1st day of summer
-  (and the festivities started the evening before).
+  called the "[Gates of Summer](http://tolkiengateway.net/wiki/Gates_of_Summer)"
+  which occurred at sunrise on the 1st day of summer (and the ceremonies started the evening before).
   Although modern western cultures consider the summer solstice to be the 1st day of summer,
   I think the "Gates of Summer" holiday probably corresponded with the 1st day of "Summer" (Lairë / Laer) in the
   [Calendar of Imladris](https://psarando.github.io/shire-reckoning/#tolkien-calendars) (a.k.a. the Reckoning of Rivendell).
+* The only Dwarvish holiday that I know of is called [Durin's Day](http://tolkiengateway.net/wiki/Durin%27s_Day).
+  In *The Hobbit*, Thorin says, "The first day of the dwarves' New Year...
+  is as all should know the first day of the last moon of Autumn on the threshold of Winter.
+  We still call it Durin's Day when the last moon of Autumn and the sun are in the sky together."
+  Since the Dwarves' New Year depends on the moon at a certain time of year,
+  this implies the Dwarves use a [lunar calendar](https://en.wikipedia.org/wiki/Lunar_calendar).
+  So this holiday would not occur on any fixed date of any of the [solar calendars](https://en.wikipedia.org/wiki/Solar_calendar)
+  of this project, though it should usually fall sometime in the Shire month of 'October' ([Winterfilth](#shire-reckoning-notes)),
+  or possibly in early 'November' ([Blotmath](#shire-reckoning-notes)).
+  See this [Lalaith's Middle-earth Science Pages blog post](https://lalaithmesp.blogspot.de/2017/10/saturday-22-october-2941-t-happy-new.html)
+  and the blog post [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html)
+  for even more details.
 
 ##### Fourth Age Holidays
 
@@ -410,15 +423,28 @@ referring to its chart demonstrating this alignment:
   and yet he aligned Shire New Year's Day to December 23 in Appendix D when he stated
   "our New Year's Day corresponded more or less to the Shire January 9."
 * Since [moon phases repeat on approximately the same dates every 19 years](https://en.wikipedia.org/wiki/Metonic_cycle),
-  then these 1941-2 moon phases will repeat on most of these same "adjusted" dates in 2017-18.
+  then these 1941-2 moon phases repeated on most of these same "adjusted" dates in 2017-18.
   Although reckoning the start of the Shire Calendar year [back 1 more day](https://en.wikipedia.org/wiki/Callippic_cycle)
-  (from Gregorian December 24) in 2017 allows the full moons of
+  (from Gregorian December 24) in 2017 allowed the full moons of
   Afteryule (just before the Fellowship reaches Moria)
   and Rethe (just before the destruction of the One Ring)
   to fall on the correct days.
 * If reckoning the start of the Shire Calendar year from Gregorian December 21,
   then the moon phases of 2020-21 will match the Shire Reckoning dates of the narrative instead
   (and a bit better).
+
+###### The Lord of the Rings Lunar Readalong
+
+In 2017-18, I attempted to re-read *The Lord of the Rings* in chronological order,
+and also aligned with the moon phases in those years.
+It actually was not too difficult with the help of *The Lord of the Rings* Appendix B, the *Reader's Companion*, and this project's
+[Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
+
+I've collected the breakdown of each date's reading by page number,
+including snippets of passages from the story where each date begins or ends,
+and some of my own real-world observations of the moon phases on certain dates.
+You can view the results and the "Grand Scheme" on the
+[The Lord of the Rings Lunar Readalong](https://psarando.github.io/shire-reckoning/Lunar_Readalong.html) page.
 
 ##### What if our years began at the same seasonal point?
 

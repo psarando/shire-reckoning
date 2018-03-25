@@ -11,6 +11,7 @@ scripts
 src/examples
 src/index.js
 src/*.test.js
+Lunar_Readalong.md
 
 # production
 build

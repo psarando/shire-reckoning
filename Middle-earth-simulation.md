@@ -361,14 +361,25 @@ These schemes attempt to align the dates of the 'Great Years' of the War of the 
 with the real-world moon phases of various real-world years.
 See my [Shire Reckoning notes](https://psarando.github.io/shire-reckoning/#reckoning-with-moon-phases)
 for an explanation of how Tolkien used the moon phases of 1941-42 as the model for the moon phases in *The Lord of the Rings*.
-Also see [Moon Phases in The Lord of the Rings](http://shire-reckoning.com/moon.html) for more details.
+Also see [Shire-Reckoning.com's Moon Phases in The Lord of the Rings](http://shire-reckoning.com/moon.html) for additional details.
 
-* Although the moon phases of 2017-18 are [(mostly) a repeat](https://en.wikipedia.org/wiki/Metonic_cycle) of the 1941-2 moon phases,
+* Although the moon phases of 2017-18 were [(mostly) a repeat](https://en.wikipedia.org/wiki/Metonic_cycle) of the 1941-2 moon phases,
   the 2017-18 moon phase scheme has been [adjusted by 1 more day](https://en.wikipedia.org/wiki/Callippic_cycle)
   in order for the full moon of March 2018 to fall on the correct Shire date of Rethe 7 (evening, or pre-dawn Rethe 8).
-  This will make it harder to see some of the young crescent moons described in the story
-  (e.g. the moon the night of Rethe 24 will only be 2 nights old instead of 4 nights old as described in the story),
+  This made it harder to see some of the young crescent moons described in the story on the correct dates
+  (e.g. the moon the night of Rethe 24 was only 2 nights old instead of 4 nights old as described in the story),
   but I think that the full moon of Rethe 7/8 is more crucial to the story than any other moon phase described.
+
+In 2017-18, I attempted to re-read *The Lord of the Rings* in chronological order,
+and also aligned with the moon phases in those years.
+It actually was not too difficult with the help of *The Lord of the Rings* Appendix B, the *Reader's Companion*,
+and these calendar simulations.
+
+I've collected the breakdown of each date's reading by page number,
+including snippets of passages from the story where each date begins or ends,
+and some of my own real-world observations of the moon phases on certain dates.
+You can view the results and the "Grand Scheme" on the
+[The Lord of the Rings Lunar Readalong](https://psarando.github.io/shire-reckoning/Lunar_Readalong.html) page.
 
 #### Gregorian years with Years of the Sun
 
@@ -523,7 +534,7 @@ What I'm calling a "Millennial Leap-year" is a year in which the "millennial add
 to the calendars of Númenor or Gondor occurred,
 as Tolkien described in Appendix D.
 The "millennial additions" were an addition of 2 days in every millennium of the Kings' Reckoning calendar
-(in S.A. 1000, 2000, 3000 and again in T.A. 1000, 2000).
+(in II 1000, 2000, 3000 and again in III 1000, 2000).
 Although the second edition of *The Return of the King* does not specify the number of days of the "millennial additions",
 [The Lord of the Rings: A Reader's Companion](https://psarando.github.io/shire-reckoning/#references)
 quotes the first publication where it's explicitly stated that it was 2 days added.
@@ -570,7 +581,7 @@ and in each "Millennial Leap-year" of the Gondor calendars, I've added an extra 
 except in the New Reckoning where I honor Frodo by doubling the Cormarë
 (meaning the Ring-bearer's birthday celebrations are extended to a 3rd day).
 
-Note the 3 exceptions to this "Millennial Leap-year" rule as stated in Appendix D:
+Note the 3 exceptions to the "Millennial Leap-year" rule as interpreted from Tolkien's statements in Appendix D:
 
 * III 3000 was not a "Millennial Leap-year".
 * Hador the Steward added an extra day to III 2360, and since this year was already a leap-year,
@@ -637,9 +648,9 @@ plus another deficit of 500 years, which I calculate as a total deficit of 2 day
 (2d:2h:16m:40s).
 This figure also agrees with the amount given in the *Reader's Companion* of "50 hours, 16 minutes, 40 seconds."
 
-Second, he should not have added the regular yearly deficit of 5h:48m:46s to that total.
+Second, Jönsson should not have added the regular yearly deficit of 5h:48m:46s to that total.
 He may have been misled by Tolkien's statement in Appendix D that
-"By making T.A. 4 a leap year instead of T.A. 3 (S.A. 3444)
+"by making T.A. 4 a leap year instead of T.A. 3 (S.A. 3444)
 1 more short year of only 365 days was intruded causing a deficit of 5 hours, 48 minutes, 46 seconds."
 While it's correct that the regular yearly deficit of 5h:48m:46s was not offset by a leap-day in III 3,
 the leap day added in III 4 made up the difference, so that by the start of III 5 both systems (either III 5 or II 3446)
@@ -673,12 +684,12 @@ I calculate a *surplus* of 15h:54m:33s by the end of III 2060.
 Omitting the leap-day due in III 2060 (but keeping Mardil's extra 2 days)
 results in a deficit of 8h:5m:26s by the end of that year instead,
 and this may be the (incorrect) figure for Tolkien's "about 8 hours deficit"
-(and also works out to the same deficit as Jönsson's total).
+(and also happens to work out to the same deficit as Jönsson's total).
 
 As an aside, I'll note that my deficit calculations also match Aaron Chong's,
 except for the hypothetical calculations (if the Kings' Reckoning continued beyond III 2059) of course.
 
-In any case, it appears Tolkien may have gotten back on track in his next statement about the deficit by III 2360:
+In Tolkien's next statement about the deficit,
 "Hador to 2360 added 1 day though this deficiency had not quite reached that amount."
 My calculations also show a deficit of not quite 1 day, at 18h:6m:40s by the start of III 2360.
 After Hador's extra day was added to III 2360, however, I calculate another *surplus* of 1d:0h:4m:34s at the start of III 2361,
@@ -690,20 +701,26 @@ If Tolkien meant that the "deficiency had not quite reached" 1 day at the end of
 then once again he may have used a shortcut of calculating the deficit for II 5801,
 and he would again be 1 day off from my calculation for III 2361 and thought Hador only added a surplus of 4m:34s.
 
-Finally, I think my calculations also agree with Tolkien's statement about the deficit by the end of III 3020,
+Tolkien's final statement about the deficit concerns the end of III 3020 or early III 3021,
 which was 660 years after Hador's adjustment:
 "By the end of the Third Age, after 660 more years, the Deficit had not yet amounted to 1 day."
 If the Stewards' Reckoning had continued through III 3020,
 I calculate a deficit of 20h:21m:26s by the start of Stewards' III 3021,
 but adding to this deficit about 1/4 of the yearly deficit (approximately 1h:27m),
 to get to the start of [New Reckoning IV 1](#now-the-minutiae), would still be a deficit of less than 1 day.
+It turns out that the deficit for the end of II 6462
+(and accounting for the [Millennial Leap-year](#millennial-leap-years) exceptions noted earlier)
+works out the same as the deficit for the end of III 3020.
+So Tolkien could have used the shortcut of calculating for a Second Age year equivalent,
+but this time the results would be correct for III 3021.
 
-I believe I have accurately reproduced all of the Kings' and Stewards' Reckoning rules as presented in Appendix D in my calendar simulations,
-and with it I have verified all of Tolkien's statements about the *Deficit*,
-with the exception of "about 8 hours deficit" around III 2060
-(though his statement about the deficit around III 2360 is still a little ambiguous to me).
-I also now believe any miscalculations Tolkien presented in Appendix D might be explained
-by him using a shortcut of calculating the deficit for Second Age years instead of II 3441 plus Third Age years.
+I am confident I have accurately reproduced all of the Kings' and Stewards' Reckoning rules as presented in Appendix D in my calendar simulations.
+Also note that my argument that
+[Rivendell New Year's Day fell on a March 25th by the end of the Third Age](https://psarando.github.io/shire-reckoning/#rivendell-new-years-day-fell-on-a-march-25th-by-the-end-of-the-third-age)
+is also based on these interpretations of these rules.
+I have also been able to analyze all of Tolkien's statements about the Deficit with the assistance of these calculations,
+and I now think it's plausible that any miscalculations Tolkien presented in Appendix D can be explained
+by his using a shortcut of calculating the deficit for Second Age years instead of II 3441 plus Third Age years.
 
 So if Åke Jönsson (Bertenstam) asks "Did Tolkien Reckon Correct?", I can now answer with confidence: "Mostly."
 
@@ -724,8 +741,8 @@ I chose option #2:
    If the traditional Shire Calendar leap-year rules continued into the Fourth Age,
    but the New Reckoning restarted its calculations, then its Yestarë, Yavannië 30, and Cormarë
    would be out of sync with the Shire Calendar for 20 years around every century.
-   Also, the Shire Calendar would have to choose a year to make a "Millennial Leap-year" that would be different than
-   the New Reckoning's "Millennial Leap-year" (since those also fall on a centennial year),
+   Also, the Shire Calendar would have to choose a year to make a [Millennial Leap-year](#millennial-leap-years) that would be different than
+   the New Reckoning's [Millennial Leap-year](#millennial-leap-years) (since those also fall on a centennial year),
    making these calendars even more out of sync in the meantime.
 2. Ignore the new count of years for the Fourth Age and continue reckoning leap-years in the New Reckoning
    and the Shire Calendar as if the count of Third Age years had continued.
@@ -733,5 +750,5 @@ I chose option #2:
    and New Reckoning Yavannië 30 (or Cormarë in leap-years) to always correspond to Shire Halimath 22.
    Since IV 1 corresponds to S.R. 3021, then regular leap-years in the New Reckoning calendar will still occur in years divisible by 4,
    but leap-days omitted at the end of centuries appear to come 20 years early (IV 80, IV 180, IV 280, etc.),
-   and "Millennial Leap-years" would also come 20 years early in the New Reckoning, but continue to come 600 years early
+   and [Millennial Leap-years](#millennial-leap-years) would also come 20 years early in the New Reckoning, but continue to come 600 years early
    (or 400 years late) in Shire-reckoning years (e.g. S.R. 2400, 3400, 4400, etc.)
