@@ -8,7 +8,7 @@ The Lord of the Rings Lunar Readalong
 * [Format of this Lunar Readalong Scheme](#format-of-this-lunar-readalong-scheme)
     * [Shire date](#shire-date)
         * [Key to the Moon Phase Emojis](#key-to-the-moon-phase-emojis)
-    * [2020-21 alignment](#alignment)
+    * [2020-21 alignment](#2020-21-alignment)
     * [Book.Chapter](#bookchapter)
     * [Page Start](#page-start)
     * [Read until](#read-until)
@@ -40,11 +40,18 @@ I also posted my progress to the
 and I made some notes as I went on some of my real-world observations of the moon on those dates.
 I've now collected my results here, along with an example alignment for 2020-21 dates and moon phases.
 
+For those still following the 2017-18 Readalong, the
+[shortcut to the calendar simulations that defaults to syncing with the moon phases for 2017-18 and today's date](https://psarando.github.io/shire-reckoning/examples/simulated.html)
+is still available.
+
 If anyone else wishes to attempt this Readalong,
 a close approximation can probably be achieved in any year by aligning the full moon nearest to the beginning of March with Rethe 8
 (the moon phase that is probably more important to the story than any other moon phase described),
 and this project's [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)
 can help align the Shire dates with the dates in our calendar in that year.
+See the directions on [how to use the Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#how-to-use-these-calendar-simulations),
+and also the [Moon phases](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#moon-phases)
+"Synchronize settings", for more details and directions on how to align Shire dates for a different year.
 
 Also see [Shire-Reckoning.com's Moon Phases in The Lord of the Rings](http://shire-reckoning.com/moon.html)
 for additional details and for direct quotes from *The Lord of the Rings*
@@ -82,7 +89,7 @@ Perhaps this project can also spark some curiosity in amateur astronomy for thos
 Then they can use this scheme to observe the real-world moon themselves,
 during a similar time of year as in the story,
 and they can see just how the moon would have looked to the story's characters,
-or when it would have risen or set (give or take an hour) over certain events.
+or when it would have risen or set over certain events (give or take an hour).
 As noted above, they would have to align the full moon nearest to the beginning of March with Rethe 8,
 and use this project's [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)
 to align all the other Shire dates with the dates in our calendar in that year.
@@ -91,7 +98,11 @@ to align all the other Shire dates with the dates in our calendar in that year.
 
 ### Shire date
 
-The first column gives the date of the event according to Shire Reckoning.
+The first column gives the date of the event according to Shire Reckoning,
+and [each Shire month is given in its "original" name](https://psarando.github.io/shire-reckoning/#shire-reckoning-notes)
+in order to avoid confusion with the Gregorian calendar month names for the dates given in the
+[2020-21 alignment](#2020-21-alignment) column.
+
 A specific date is not always given for some events,
 so those dates will be marked with `(approx.)` to indicate that the date is approximate.
 
@@ -128,7 +139,7 @@ As mentioned above, a close approximation of aligning the moon phases in a diffe
 can probably be achieved by aligning the full moon nearest to the beginning of March with Rethe 8
 (the moon phase that is probably more important to the story than any other moon phase described).
 
-See the directions on [how to use the Middle-earth calendar simulations](#how-to-use-these-calendar-simulations),
+See the directions on [how to use the Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#how-to-use-these-calendar-simulations),
 and also the [Moon phases](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#moon-phases)
 "Synchronize settings", for more details and directions on how to align Shire dates for a different year.
 

@@ -54,7 +54,7 @@ It's my hope that this project can serve as a reference for fans who are interes
 such as the [holidays celebrated in the Fourth Age](#middle-earth-holidays)
 or how the Middle-earth calendars compare to each other,
 but who don't want to get bogged down in details such as the *Deficit* calculations
-(though [I do have some notes on it](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#notes-on-tolkiens-deficit-calculations)
+(though [I do have some notes on it](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html)
 for those that are interested).
 
 I also find it easier to understand the layout of the calendars of Middle-earth visually,
@@ -98,7 +98,7 @@ the calendars described in *The Lord of the Rings* Appendix D in a web browser a
 labeled with each day's corresponding Gregorian date of the current year,
 and with today's date highlighted on each calendar.
 These calendars are the [Shire Reckoning, Rivendell Reckoning, and calendars of Gondor:
-Kings' Reckoning, Stewards' Reckoning, and the New Reckoning](https://psarando.github.io/shire-reckoning).
+Kings' Reckoning, Stewards' Reckoning, and the New Reckoning](https://psarando.github.io/shire-reckoning/#tolkiens-calendars).
 
 More examples of each calendar can be found in the
 [examples directory](https://psarando.github.io/shire-reckoning/examples/),
@@ -338,17 +338,17 @@ The Shire Calendar originated from the Kings' Reckoning calendar of Arnor and Go
 and both the Kings' and Shire Reckoning followed leap-year rules similar to the Gregorian calendar,
 where every 4th year is a leap-year except the last in a century;
 however, the Gregorian calendar adds back the leap-day every 4th century
-whereas the Kings' Reckoning [adds 2 extra leap-days every millennium](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years).
+whereas the Kings' Reckoning [adds 2 extra leap-days every millennium](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html#the-rules).
 
 So maybe he said "more or less to the Shire January 9" because he knows every 400 years that date would shift by 1 day;
 and if the Shire Calendar had
-[millennial leap-days](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)
+[millennial leap-days](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html#the-rules)
 like the Gondor calendars,
 then it would shift back 2 days the other way every 1000 years.
 So even if the Gondor and Shire Calendars' New Year's Day started out on a Gregorian December 23,
 after 400 years they would correspond with December 22, then 400 years after that December 21,
 but they could re-sync with December 23 after the
-[millennial leap-days](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)
+[millennial leap-days](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html#the-rules)
 are added 200 years after that.
 Eventually these differences would add up,
 and after only 2000 years the calendars would permanently shift 1 day off from where they started
@@ -465,7 +465,9 @@ the calendars of Gondor in this project will also follow the Gregorian leap-day 
 so that they will always stay in sync with this project's Shire Reckoning calendar.
 
 These calendars actually had very similar, but slightly different leap-day rules compared to the Gregorian calendar's leap-day rules,
-[as described above in the Shire Reckoning notes](#shire-gondor-and-gregorian-intercalation-differences).
+[as described above in the Shire Reckoning notes](#shire-gondor-and-gregorian-intercalation-differences)
+and on "[The Kings' Reckoning Rules and the *Deficit*](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html)"
+page.
 
 #### The 3 Calendars of Gondor
 
@@ -786,25 +788,24 @@ Now let's consider all of Tolkien's statements about the Shire Calendar in Appen
 2. When Tolkien stated "our New Year's Day corresponded more or less to the Shire January 9" (Afteryule 9),
    this implies he was making a correspondence between the Gregorian January 1 and Shire Afteryule 9.
 
-   The details of the Kings' Reckoning leap-day rules make it possible to calculate that this
-   calendar drifted 3 days behind a [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
-   over the 6460 year period from the start of the Second Age to the start of T.A. 3019,
+   The details of the [Kings' Reckoning leap-day rules](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html#the-rules)
+   make it possible to calculate that this calendar drifted 3 days behind a [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
+   over the 6460 year period from the start of the Second Age (S.A. 1) to the start of T.A. 3019,
    which implies the Shire Calendar was also 3 days behind this hypothetical Gregorian calendar at the start of T.A. 3019.
 
-   The Kings' Reckoning was established in Númenor, and started reckoning from the first year of the Second Age (S.A. 1).
    Both the [Kings' and Shire Reckoning followed leap-year rules similar to the Gregorian calendar](#shire-gondor-and-gregorian-intercalation-differences),
    but the slight difference in leap-day rules is enough to cause dates between these calendars and the Gregorian calendar
    to gradually drift apart over the millennia.
    Tolkien also detailed additional (leap-day) adjustments to the calendars of Gondor during the Third Age:
 
-    * The [2 millennial leap-days](#shire-gondor-and-gregorian-intercalation-differences)
+    * The [2 millennial leap-days](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html#the-rules)
       were added throughout the Second Age, which ended in S.A. 3441,
       and again up to the Third Age (T.A.) 2000 (which would have been S.A. 5441).
       So these millennial leap-days were added 5 times: in S.A. 1000, 2000, 3000, and again in T.A. 1000, 2000.
     * Then 2 more extra leap-days were added in T.A. 2059 (S.A. 5500)
       when Stewards' Reckoning was introduced.
     * Then 1 more extra leap-day was added in T.A. 2360 (S.A. 5801) by Hador the Steward.
-    * Tolkien explicitly states that the [2 millennial leap-days](#shire-gondor-and-gregorian-intercalation-differences)
+    * Tolkien explicitly states that the [2 millennial leap-days](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html#the-rules)
       due in T.A. 3000 were omitted,
       so no more extra leap-days are added between T.A. 2360
       and the War of the Ring, which ended in T.A. 3019 (or S.A. 6460).
@@ -897,7 +898,7 @@ due to the following quote near the beginning of Appendix D (note that S.R. 1418
 If Tolkien really did work out the calculations of the calendars of Appendix D
 so that the Elves' New Year's Day on Shire Astron 6 in T.A. 3019 could fall on a Gregorian March 25,
 then I think he was more skilled in these matters than some might realize.
-This could also explain the reason behind [the seemingly confusing](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#notes-on-tolkiens-deficit-calculations)
+This could also explain the reason behind [the seemingly confusing](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html#the-stewards-reckoning-tolkien-reckoned-mostly-correct)
 extra day added to T.A. 2360 by Hador the Steward, and the omission of the 2 millennial leap-days in T.A. 3000.
 
 ##### Loose Ends
