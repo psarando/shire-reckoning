@@ -3,10 +3,35 @@ The Kings' Reckoning Rules and the *Deficit*
 
 ## Contents
 
+* [Introduction](#introduction)
 * [The Rules](#the-rules)
 * [The *Deficit*](#the-deficit)
     * [Deficit Calculation Results for Select Years](#deficit-calculation-results-for-select-years)
 * [The Stewards' Reckoning: Tolkien Reckoned Mostly Correct](#the-stewards-reckoning-tolkien-reckoned-mostly-correct)
+
+## Introduction
+
+In *The Lord of the Rings* Appendix D,
+after Tolkien describes [the leap-year rules](#the-rules) of the
+[Kings' Reckoning calendar of Númenor and Gondor](https://psarando.github.io/shire-reckoning/#the-3-calendars-of-gondor),
+he describes the *Deficit* of this calendar when compared to the length of the actual ([solar](https://en.wikipedia.org/wiki/Tropical_year)) year:
+
+> In Númenor calculation started with S.A. 1.
+> The *Deficit* caused by deducting 1 day from the last year of a century was not adjusted until the year of a millennium,
+> leaving a *millennial deficit* of 4 hours, 46 minutes, 40 seconds.
+
+He then goes into more (but brief) details and figures of the *Deficit* of the [Kings' and Stewards' Reckoning calendars](https://psarando.github.io/shire-reckoning/#the-3-calendars-of-gondor)
+throughout their history in Gondor.
+
+The *Deficit* is due to the fact that the [solar year](https://en.wikipedia.org/wiki/Tropical_year)
+is slightly longer than the 365 days of a common year
+(365 days, 5 hours, 48 minutes, 46 seconds as given in Appendix D),
+which causes the seasons (such as the summer solstice) to fall on later and later dates in the calendar.
+So leap-days are added every few years to keep the calendar more in sync with the seasons,
+but [the leap-year rules](#the-rules) of these calendars means they will still very gradually fall behind the solar year,
+and this difference is what Tolkien called the *Deficit*.
+In contrast, our modern [Gregorian calendar usually has a surplus of days](https://en.wikipedia.org/wiki/Gregorian_calendar#Accuracy)
+due to its leap-year rules, so the seasons are very gradually falling on earlier dates in our calendar.
 
 For all my interest in Appendix D,
 I was never really interested in Tolkien's *Deficit* calculations and whether or not he made any mistakes.
@@ -35,12 +60,14 @@ I was as perplexed as Darrell A. Martin by these results.
 Then Möhn's suggestion that "the odd allusion to 5500 Second Age as corresponding to 2059 TA might hide a clue"
 pointed me to a different conclusion than Möhn.
 I am confident that all the rules of the Kings' and Stewards' Reckoning are accounted for in Appendix D,
-but I now think that Tolkien attempted to use deficit calculations for Second Age years (S.A.) 5501, 5801, and 6462
+and I think the simplest explanation for Tolkien's *Deficit* figures is that he attempted a mathematical shortcut
+of using deficit calculations for Second Age years (S.A.) 5501, 5801, and 6462
 when discussing the deficit for Third Age years (T.A.) 2060, 2360, and 3021.
 
 ## The Rules
 
-The Kings' Reckoning started reckoning from the first year of the Second Age (S.A. 1).
+[The Kings' Reckoning](https://psarando.github.io/shire-reckoning/#the-3-calendars-of-gondor)
+started reckoning from the first year of the Second Age (S.A. 1).
 The Kings' Reckoning rules are very similar to the [Gregorian calendar rules](https://en.wikipedia.org/wiki/Gregorian_calendar),
 where each year has 365 days, every 4th year (S.A. 4, 8, 12, etc.) is a leap-year that adds an extra day,
 except the last year in a century (S.A. 100, 200, 300, etc.) which is not a leap-year;
@@ -91,10 +118,11 @@ could continue as normal, just as they had for the past 2059 years.
 
 ## The *Deficit*
 
-Using these rules of the Kings' Reckoning and given Tolkien's static year length of
-365 year, 5 hours, 48 minutes, 46 seconds given in Appendix D,
+Using these rules of the Kings' Reckoning and Tolkien's static year length of
+365 days, 5 hours, 48 minutes, 46 seconds given in Appendix D,
 I was able to reproduce Tolkien's millennial deficit of 4 hours, 46 minutes, 40 seconds.
-I understand that the real-world year length is not static, but this fact does not come into these calculations.
+I understand that the real-world [solar year length is not static](https://en.wikipedia.org/wiki/Tropical_year#Length_of_tropical_year),
+but this does not factor into these calculations.
 
 As mentioned earlier, I used my [calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)
 to assist my calculations of the total number of days elapsed since the start of the Second Age,
@@ -241,13 +269,13 @@ if the Second Age had continued through to the end of S.A. 6461 (T.A. 3020),
 and without the Stewards' adjustments in T.A. 2059 (S.A. 5500) and T.A. 2360 (S.A. 5801).
 Of course, this chart includes the 2-day millennial adjustment that would have been due in S.A. 6000 (T.A. 2559).
 
-| Year | Days elapsed since the start of S.A. 1 | Real days elapsed | The deficit |
-| ---- | -------------------------------------- | ----------------- | ----------- |
-| S.A. 3445 | 1258258 | 1258259.3758101852 | -1.3758101852 |
-| S.A. 5500 | 2008830 | 2008832.0949074076 | -2.0949074076 |
-| S.A. 5501 | 2009195 | 2009197.3371064817 | -2.3371064817 |
-| S.A. 5801 | 2118767 | 2118769.9968287037 | -2.9968287037 |
-| S.A. 6461 | 2359828 | 2359829.848217593 | -1.848217593 |
+| Year | Days elapsed since the start of S.A. 1 | Real days elapsed | The deficit | The deficit in days:hours:minutes:seconds |
+| ---- | -------------------------------------- | ----------------- | ----------- | ----------------------------------------- |
+| S.A. 3445 | 1258258 | 1258259.3758101852 | -1.3758101852 | -1d:9h:1m:10s |
+| S.A. 5500 | 2008830 | 2008832.0949074076 | -2.0949074076 | -2d:2h:16m:40s |
+| S.A. 5501 | 2009195 | 2009197.3371064817 | -2.3371064817 | -2d:8h:5m:26s |
+| S.A. 5801 | 2118767 | 2118769.9968287037 | -2.9968287037 | -2d:23h:55m:25s |
+| S.A. 6461 | 2359828 | 2359829.848217593  | -1.848217593  | -1d:20h:21m:26s |
 
 These hypothetical figures may be helpful in the following discussion.
 
