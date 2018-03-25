@@ -31,10 +31,6 @@ conversion for today's date in modern times.
 For example, if you simply want to know how a Shire date listed on [Tolkien Gateway](http://tolkiengateway.net/wiki/Third_Age_3019)
 would convert into a date in this year's calendar, use the [default Shire Calendar on this project's home page](https://psarando.github.io/shire-reckoning/#tolkien-calendars).
 
-If you're more interested in how the different leap-day rules of Appendix D cause dates to shift in each of these calendars relative to each other,
-or how these calendar rules would shift dates relative to the Gregorian calendar over thousands of years,
-then you may be more interested in these Middle-earth calendar simulations.
-
 As pointed out in the [Shire Reckoning notes](https://psarando.github.io/shire-reckoning/#reckoning-start-dates),
 the calendars of Gondor and the Shire described in Appendix D had similar
 yet different leap-year and leap-day rules compared to our Gregorian calendar.
@@ -42,7 +38,19 @@ So this project also includes a way to reckon Shire and Gondor dates according t
 the "traditional" leap-day and leap-year rules as described in Appendix D.
 This allows me to implement a simulation that can display these calendars according to
 Shire-reckoning years and the Ages of Middle-earth.
-Various ways of synchronizing Gregorian years with Shire-reckoning years and the Ages of Middle-earth are also provided.
+
+If you're more interested in how these different leap-day rules of Appendix D cause dates to shift in each of these calendars relative to each other,
+or how these calendar rules would shift dates relative to the Gregorian calendar over thousands of years,
+or if you're only interested in [how the Middle-earth calendars related to each other around the War of the Ring](#whats-considered-canon-in-these-simulations),
+then you may be more interested in these Middle-earth calendar simulations.
+
+I'm confident I have carefully reproduced all of the [rules of Appendix D](#now-the-minutiae) in these simulations
+as accurately as possible, [given the information available](#caveats-and-minutiae) in the Appendices,
+and my analysis of [Tolkien's *Deficit* calculations](#notes-on-tolkiens-deficit-calculations)
+should support this.
+
+Various ways of synchronizing Gregorian years with Shire-reckoning years and the Ages of Middle-earth are also provided
+by the live demonstration below.
 
 [Follow this link for a live demonstration of this simulation](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
 
@@ -591,9 +599,19 @@ I was never really interested in Tolkien's *Deficit* calculations and whether or
 After all, others have already addressed these calculations in other articles,
 such as the article "The King's Reckoning: Did Tolkien Reckon Correct?" (Beyond Bree, November 1985) by [Åke Jönsson (Bertenstam)](http://tolkiengateway.net/wiki/%C3%85ke_Bertenstam)
 and the article "J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent" (Mythlore 54, Summer 1988) by Darrell A. Martin.
+I also did not need to analyze Tolkien's calculations in order to understand the rules of the calendars as presented in Appendix D,
+and I only needed those rules in order to create these calendar simulations.
+
+Then I came across the Reddit post "[Tolkien has reckoned correct in App. D after all](https://www.reddit.com/r/tolkienfans/comments/836lf1/tolkien_has_reckoned_correct_in_app_d_after_all/)"
+by Andreas Möhn, a.k.a. CodexRegius
+(apparently reproduced from the [Lalaith's Middle-earth Science Pages blog post of the same title](https://lalaithmesp.blogspot.de/2018/03/tolkien-has-reckoned-correct-after-all.html)).
+I was skeptical of the conclusions presented in that post
+(that there were unmentioned rules of the Stewards' Reckoning that could explain Tolkien's calculations),
+partly because of my speculation on why Tolkien emended Mardil's 2-day addition to III 2059 instead of III 2060 as discussed above.
+So I decided to finally examine Tolkien's *Deficit* calculations for myself to see if they supported either idea.
 
 Since I'm confident I have accurately reproduced the rules of the Kings' and Stewards' Reckoning in my calendar simulations,
-I am now able to use those calculations to assist my own *Deficit* calculations and compare them with the results of Tolkien and others.
+it was not difficult to use those calculations to assist my own *Deficit* calculations and compare them with the results of Tolkien and others.
 
 Given Tolkien's static year length of 365 year, 5 hours, 48 minutes, 46 seconds,
 I was able to reproduce Tolkien's millennial deficit of 4 hours, 46 minutes, 40 seconds.
@@ -633,8 +651,12 @@ whereas I have calculated a deficit of 2h:16m:40s by the end of III 2059 instead
 One might wonder if Tolkien was also misled in a similar way and came to a similar deficit in Appendix D when he described the
 "special addition of 2 days to 2059 (S.A. 5500), which concluded 5 1/2 millennia since the beginning of the Númenórean system.
 But this still left about 8 hours deficit."
+Instead Möhn suggests
+"whether the odd allusion to 5500 Second Age as corresponding to 2059 TA might hide a clue",
+and then assumes additional Stewards' Reckoning rules that Tolkien "failed to specify" that would explain this "8 hours deficit".
+I have not reproduced Möhn's calculations, but I think his clue points to another explanation instead.
 
-Another possibility was that Tolkien's "8 hours deficit" may be a remnant of calculations done for the first publication of Appendix D.
+Perhaps Tolkien's "8 hours deficit" is a remnant of calculations done for the first publication of Appendix D.
 Just before these "[Notes on Tolkien's *Deficit* calculations](#notes-on-tolkiens-deficit-calculations)",
 I pointed out that in the first publication of Appendix D (as quoted in the *Reader's Companion* and also in Jönsson's article),
 Tolkien had Mardil add 2 days to III 2060 instead of III 2059.
@@ -653,8 +675,8 @@ results in a deficit of 8h:5m:26s by the end of that year instead,
 and this may be the (incorrect) figure for Tolkien's "about 8 hours deficit"
 (and also works out to the same deficit as Jönsson's total).
 
-As an aside, I'll note that my deficit calculations match Aaron Chong's, but only up to III 2059
-(the rest appear to be hypothetical calculations if the Kings' Reckoning continued beyond that year).
+As an aside, I'll note that my deficit calculations also match Aaron Chong's,
+except for the hypothetical calculations (if the Kings' Reckoning continued beyond III 2059) of course.
 
 In any case, it appears Tolkien may have gotten back on track in his next statement about the deficit by III 2360:
 "Hador to 2360 added 1 day though this deficiency had not quite reached that amount."
@@ -663,7 +685,7 @@ After Hador's extra day was added to III 2360, however, I calculate another *sur
 which explains the subtitle of Martin's article, "The Saga of Hador The Incompetent".
 As Martin points out in his article, "had he not added a day, and had Denethor II added the expected two days to 3Age 3000,
 the accumulated deficit to begin the fourth millennium would have been a mere *6 minutes and 6 seconds*!
-As it actually occured, the deficit was 1 day 6 minutes and 6 seconds" by the start of III 3001, and my calculations agree.
+As it actually occurred, the deficit was 1 day 6 minutes and 6 seconds" by the start of III 3001, and my calculations agree.
 If Tolkien meant that the "deficiency had not quite reached" 1 day at the end of III 2360,
 then once again he may have used a shortcut of calculating the deficit for II 5801,
 and he would again be 1 day off from my calculation for III 2361 and thought Hador only added a surplus of 4m:34s.
@@ -674,11 +696,11 @@ which was 660 years after Hador's adjustment:
 If the Stewards' Reckoning had continued through III 3020,
 I calculate a deficit of 20h:21m:26s by the start of Stewards' III 3021,
 but adding to this deficit about 1/4 of the yearly deficit (approximately 1h:27m),
-to get to the start of the New Reckoning IV 1, would still be a deficit of less than 1 day.
+to get to the start of [New Reckoning IV 1](#now-the-minutiae), would still be a deficit of less than 1 day.
 
 I believe I have accurately reproduced all of the Kings' and Stewards' Reckoning rules as presented in Appendix D in my calendar simulations,
 and with it I have verified all of Tolkien's statements about the *Deficit*,
-with the one exception of the "about 8 hours deficit" around III 2060
+with the exception of "about 8 hours deficit" around III 2060
 (though his statement about the deficit around III 2360 is still a little ambiguous to me).
 I also now believe any miscalculations Tolkien presented in Appendix D might be explained
 by him using a shortcut of calculating the deficit for Second Age years instead of II 3441 plus Third Age years.

@@ -15,7 +15,7 @@ Shire Reckoning
 * [Middle-earth Simulation](#middle-earth-simulation)
 * [Middle-earth Holidays](#middle-earth-holidays)
     * [New Year's Eve and New Year's Day](#new-years-eve-and-new-years-day)
-    * [Middle-days](#middle-days)
+    * [Middle-days and Leap-days](#middle-days-and-leap-days)
     * [Unique Holidays](#unique-holidays)
         * [Fourth Age Holidays](#fourth-age-holidays)
 * [Shire Reckoning Notes](#shire-reckoning-notes)
@@ -149,7 +149,7 @@ In each calendar, New Year's Eve and New Year's Day are holidays.
 In the [Shire Calendar](#shire-reckoning-notes) these are called "1 Yule" and "2 Yule",
 but in all other calendars they are called *Mettarë* (Last Day) and *Yestarë* (First Day).
 
-#### Middle-days
+#### Middle-days and Leap-days
 
 Each calendar also has a set of special holidays in the middle of the year.
 In the Shire Calendar these are "Mid-year's Day" in midsummer, surrounded by the Lithe days, "1 Lithe" and "2 Lithe";
@@ -191,7 +191,8 @@ Tolkien also described the following holidays specific to certain calendars:
   called the "Gates of Summer" which occurred at sunrise on the 1st day of summer
   (and the festivities started the evening before).
   Although modern western cultures consider the summer solstice to be the 1st day of summer,
-  I think the "Gates of Summer" holiday probably corresponded with the 1st day of "Summer" (Lairë / Laer) in the Calendar of Imladris.
+  I think the "Gates of Summer" holiday probably corresponded with the 1st day of "Summer" (Lairë / Laer) in the
+  [Calendar of Imladris](https://psarando.github.io/shire-reckoning/#tolkien-calendars) (a.k.a. the Reckoning of Rivendell).
 
 ##### Fourth Age Holidays
 
@@ -205,15 +206,13 @@ Tolkien also described the following holidays specific to certain calendars:
   were holidays in King Elessar’s Reunited Kingdom, it appears these dates were not celebrated in the Shire;
   but I'll quote the end of Appendix D describing these other holidays celebrated in the Shire after the War of the Ring:
 
-> There is no record of the Shire-folk commemorating either March 25 or September 22;
-> but in the Westfarthing, especially in the country round Hobbiton Hill,
-> there grew up a custom of making holiday and dancing in the Party Field, when weather permitted, on April 6.
-> Some said that it was old Sam Gardner's birthday,
-> some that it was the day on which the Golden Tree first flowered in 1420,
-> and some that it was the Elves' New Year.
-> In the Buckland the Horn of the Mark was blown at sundown every November 2 and bonfires and feastings followed.
->
-> -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+    > There is no record of the Shire-folk commemorating either March 25 or September 22;
+    > but in the Westfarthing, especially in the country round Hobbiton Hill,
+    > there grew up a custom of making holiday and dancing in the Party Field, when weather permitted, on April 6.
+    > Some said that it was old Sam Gardner's birthday,
+    > some that it was the day on which the Golden Tree first flowered in 1420,
+    > and some that it was the Elves' New Year.
+    > In the Buckland the Horn of the Mark was blown at sundown every November 2 and bonfires and feastings followed.
 
 ### Shire Reckoning Notes
 
