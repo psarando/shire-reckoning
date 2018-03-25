@@ -131,19 +131,37 @@ class ShireCalendarSimulated extends Component {
     }
 
     render() {
-        let region = this.state.region;
+        let breeReckoning = this.state.region === ShireCalendar.REGION_NAMES_BREE;
+        let calendar = this.state.calendar;
+        let thirdAgeYear = calendar.year - 3441;
 
         let reckoningName = "Shire";
         let reckoningYearOffset = 1600;
-        if (region === ShireCalendar.REGION_NAMES_BREE) {
+        if (breeReckoning) {
             reckoningName = "Bree";
             reckoningYearOffset = 1299;
+        }
+
+        let astron6 = calendar.dates[96];
+        let blotmath2 = calendar.dates[305];
+        if (blotmath2.day === 1) {
+            // leap-year
+            blotmath2 = calendar.dates[306];
+        }
+
+        if (thirdAgeYear < 3020) {
+            // Force these days to the month's default colors, since they are not holidays until at least S.R. 1420.
+            astron6.className = ShireMonths[3].className;
+            blotmath2.className = ShireMonths[10].className;
+        } else {
+            delete astron6.className;
+            delete blotmath2.className;
         }
 
         return (
             <table className={this.props.className} >
                 <caption className='shire-caption' >{
-                    `${reckoningName} Reckoning ${this.state.calendar.year - 3441 - reckoningYearOffset}`
+                    `${reckoningName} Reckoning ${thirdAgeYear - reckoningYearOffset}`
                 }</caption>
                 <thead>
                     {this.renderCalendarControls()}
@@ -153,7 +171,7 @@ class ShireCalendarSimulated extends Component {
                         <td colSpan="4" className="shire-calendar-wrapper-cell" >
                             <ShireCalendar
                                 className="shire-calendar"
-                                calendar={this.state.calendar}
+                                calendar={calendar}
                                 date={this.state.today}
                                 region={this.state.region}
                                 monthViewLayout={this.state.monthViewLayout}

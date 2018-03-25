@@ -13,6 +13,11 @@ Shire Reckoning
 * [Introduction](#introduction)
 * [Tolkien's Calendars](#tolkiens-calendars)
 * [Middle-earth Simulation](#middle-earth-simulation)
+* [Middle-earth Holidays](#middle-earth-holidays)
+    * [New Year's Eve and New Year's Day](#new-years-eve-and-new-years-day)
+    * [Middle-days](#middle-days)
+    * [Unique Holidays](#unique-holidays)
+        * [Fourth Age Holidays](#fourth-age-holidays)
 * [Shire Reckoning Notes](#shire-reckoning-notes)
     * [Shire-reform](#shire-reform)
     * [Reckoning start dates](#reckoning-start-dates)
@@ -45,9 +50,12 @@ I have included some highlights of the lore found in Appendix D in the notes of 
 plus I've added some of my own insights into the details of these calendars for those who wish to learn more.
 
 It's my hope that this project can serve as a reference for fans who are interested in the lore of Appendix D,
-such as the [holidays celebrated in the Fourth Age](#the-3-calendars-of-gondor)
+such as the [holidays celebrated in the Fourth Age](#middle-earth-holidays)
 or how the Middle-earth calendars compare to each other,
-but who don't want to get bogged down in details such as the *Deficit* calculations.
+but who don't want to get bogged down in details such as the *Deficit* calculations
+(though [I do have some notes on it](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#notes-on-tolkiens-deficit-calculations)
+for those that are interested).
+
 I also find it easier to understand the layout of the calendars of Middle-earth visually,
 rather than just relying on the text descriptions of Appendix D.
 So I hope I can help some fans get more out of Appendix D with this project as a reference,
@@ -75,7 +83,7 @@ by selecting the `This Year` button at the top of the calendar.
 Note that Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
 and the Elves reckoned their dates from sunset to sunset,
 but for simplicity, all the calendars of this project reckon their dates from midnight to midnight,
-just as our modern Gregorian calendar and the Shire Calendar reckon dates.
+just as our modern Gregorian calendar and the [Shire Calendar reckon dates](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#reckoning-the-start-or-end-of-a-day).
 
 By default, these calendars make no attempt to correlate Gregorian years with Shire-reckoning years or the Ages of Middle-earth.
 Although I've created a separate set of example calendars that can
@@ -117,6 +125,95 @@ Shire-reckoning years and the Ages of Middle-earth.
 Various ways of synchronizing Gregorian years with Shire-reckoning years and the Ages of Middle-earth are also provided.
 
 [Follow this link for a live demonstration of these simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
+
+Note that those who are only interested in a Shire, Gondor, or Rivendell date conversion for today's date in modern times
+should simply use the [default calendars on this project's home page](#tolkien-calendars) as a reference.
+For example, if you simply want to know how a Shire date listed on [Tolkien Gateway](http://tolkiengateway.net/wiki/Third_Age_3019)
+would convert into a date in this year's calendar, use the [default Shire Calendar on this project's home page](#tolkien-calendars).
+If you're more interested in how the different leap-day rules of Appendix D cause dates to shift in each of these calendars relative to each other,
+or how these calendar rules would shift dates relative to the Gregorian calendar over thousands of years,
+then you may be more interested in [the Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
+
+### Middle-earth Holidays
+
+If you've spent some time exploring these calendar visualizations,
+then you may have noticed that each month is displayed with a color appropriate to that month's name or season,
+but certain days are highlighted with a pale color (different than the yellow highlight marking today's date).
+
+Those highlighted days are considered holidays in those calendars,
+and most are also days that do not belong to any month.
+
+#### New Year's Eve and New Year's Day
+
+In each calendar, New Year's Eve and New Year's Day are holidays.
+In the [Shire Calendar](#shire-reckoning-notes) these are called "1 Yule" and "2 Yule",
+but in all other calendars they are called *Mettarë* (Last Day) and *Yestarë* (First Day).
+
+#### Middle-days
+
+Each calendar also has a set of special holidays in the middle of the year.
+In the Shire Calendar these are "Mid-year's Day" in midsummer, surrounded by the Lithe days, "1 Lithe" and "2 Lithe";
+and in leap-years a leap-day called "Overlithe" follows "Mid-year's Day".
+In Bree these are known as *The Summerdays*, although it's unclear to me whether or not Bree also had a "Mid-year's Day",
+or if that was simply the 2nd *Summerday*. This project displays a "Mid-year's Day" in both the Shire and Bree calendars.
+
+In the [calendars of Gondor](#gondor-reckoning-notes), the "Mid-year's Day" in midsummer is called *Loëndë*,
+and in leap-years that day is replaced by 2 *Enderi* (Middle-days),
+except in Aragorn the King Elessar's [New Reckoning](#the-3-calendars-of-gondor),
+where *Loëndë* is in autumn and Frodo's birthday is a holiday,
+and his birthday celebration is doubled in leap-years by having the leap-day also on his birthday,
+"called *Cormarë* or Ringday" (see the [New Reckoning](#the-3-calendars-of-gondor) notes for more details).
+
+The [Calendar of Imladris](#rivendell-reckoning-notes) simply has 3 Enderi (Middle-days) in the middle of its year
+(around the [autumnal equinox](http://en.wikipedia.org/wiki/Equinox)),
+and those Enderi are doubled (adding 3 leap-days) every 12 years
+(with rare exceptions, see the [Rivendell Reckoning Notes](#rivendell-reckoning-notes) for more details).
+
+Note that Tolkien only specifically stated that New Year's Eve, New Year's Day, and the Middle-days ("Mid-year's Day" / Loëndë etc.)
+were holidays in the Shire and [Stewards' Reckoning](#the-3-calendars-of-gondor) calendars,
+and that in the Shire Calendar "the Overlithe was a day of special holiday",
+but surely these common features in the other Middle-earth calendars would be considered holidays in those calendars as well.
+
+#### Unique Holidays
+
+Tolkien also described the following holidays specific to certain calendars:
+
+* During the Third Age, the [Stewards' Reckoning](#the-3-calendars-of-gondor)
+  calendar had a 'Spring-day' (*Tuilérë*) and an 'Autum-day' (*Yáviérë*),
+  which were holidays in Gondor in addition to holidays inherited from the [Kings' Reckoning](#the-3-calendars-of-gondor):
+  *Loëndë* (Mid-year's Day), *Mettarë* (Last Day), and *Yestarë* (First Day).
+  The *Tuilérë*, *Loëndë*, and *Yáviérë* holidays remind me of the
+  [*Erukyermë*, *Erulaitalë*, and *Eruhantalë* holidays of Númenor](http://tolkiengateway.net/wiki/Three_Prayers).
+* As mentioned above, the [Shire Calendar's](#shire-reckoning-notes) New Year's Eve and New Year's Day were called the Yule days,
+  but Appendix D also says that the "Yule-tide" was 6 days in total,
+  including the 2 days before and the 2 days after the Yule days.
+* *The Silmarillion* mentions a festival of Gondolin in the First Age
+  called the "Gates of Summer" which occurred at sunrise on the 1st day of summer
+  (and the festivities started the evening before).
+  Although modern western cultures consider the summer solstice to be the 1st day of summer,
+  I think the "Gates of Summer" holiday probably corresponded with the 1st day of "Summer" (Lairë / Laer) in the Calendar of Imladris.
+
+##### Fourth Age Holidays
+
+* The day of the destruction of the One Ring, Shire 'March' 25, was observed every year
+  since that became New Year's Day (*Yestarë*) in Aragorn the King Elessar's [New Reckoning](#the-3-calendars-of-gondor) calendar.
+* In the Reunited Kingdom they also celebrated Frodo's birthday, Shire 'September' 22,
+  and doubled the celebration in leap-years by having the leap-day also on his birthday, "called Cormarë or Ringday"
+  (see the [New Reckoning](#the-3-calendars-of-gondor) notes for more details).
+* Finally, although Shire 'March' 25 and 'September' 22,
+  which fall on the [New Reckoning's](#the-3-calendars-of-gondor) Yestarë and Cormarë/Yavannië 30,
+  were holidays in King Elessar’s Reunited Kingdom, it appears these dates were not celebrated in the Shire;
+  but I'll quote the end of Appendix D describing these other holidays celebrated in the Shire after the War of the Ring:
+
+> There is no record of the Shire-folk commemorating either March 25 or September 22;
+> but in the Westfarthing, especially in the country round Hobbiton Hill,
+> there grew up a custom of making holiday and dancing in the Party Field, when weather permitted, on April 6.
+> Some said that it was old Sam Gardner's birthday,
+> some that it was the day on which the Golden Tree first flowered in 1420,
+> and some that it was the Elves' New Year.
+> In the Buckland the Horn of the Mark was blown at sundown every November 2 and bonfires and feastings followed.
+>
+> -- J.R.R. Tolkien, The Lord of the Rings Appendix D
 
 ### Shire Reckoning Notes
 
@@ -392,7 +489,7 @@ The calendar of Gondor went through 3 variations throughout its history:
    It seems to me like these new Tuilérë and Yáviérë days could have been in honor (or a reflection)
    of the holidays of Númenor for [Erukyermë and Eruhantalë](http://tolkiengateway.net/wiki/Three_Prayers).
 3. **New Reckoning**:
-   The New Reckoning was introduced by King Elessar (a.k.a Aragorn)
+   The New Reckoning was introduced by Aragorn the King Elessar
    and started its reckoning from the day the One Ring was destroyed,
    T.A. 3019 'March' (Rethe/Súlimë) 25, which became its New Year's Day (Yestarë).
    So the start of each month was shifted back by a few days to align the calendar with this new Yestarë.
@@ -423,21 +520,9 @@ The calendar of Gondor went through 3 variations throughout its history:
    then that may imply that Aragorn and the Dúnedain of the North never adopted the Stewards' Reckoning
    and continued observing the Kings' Reckoning throughout the Third Age. 
 
-   Although Shire Rethe 25 and Halimath 22,
-   which fall on the New Reckoning's Yestarë and Cormarë/Yavannië 30,
-   were holidays in King Elessar's Reunited Kingdom,
-   it appears these dates were not celebrated in the Shire;
-   but note these other holidays celebrated in the Shire after the War of the Ring:
-
-   > There is no record of the Shire-folk commemorating either March 25 or September 22;
-   > but in the Westfarthing, especially in the country round Hobbiton Hill,
-   > there grew up a custom of making holiday and dancing in the Party Field, when weather permitted, on April 6.
-   > Some said that it was old Sam Gardner's birthday,
-   > some that it was the day on which the Golden Tree first flowered in 1420,
-   > and some that it was the Elves' New Year.
-   > In the Buckland the Horn of the Mark was blown at sundown every November 2 and bonfires and feastings followed.
-   >
-   > -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+   As mentioned in the notes on [Fourth Age Holidays](#fourth-age-holidays),
+   Shire Rethe 25 and Halimath 22, which fall on the New Reckoning's Yestarë and Cormarë/Yavannië 30,
+   apparently were not celebrated in the Shire.
 
 #### Gondor's weekdays
 
@@ -761,7 +846,7 @@ which means its New Year's Day would have drifted back 3 days relative to this G
 so that the New Year's Day of both calendars still fell on the same day).
 Then the New Year's Day of both the Gondor and Shire calendars in T.A. 3019 would have corresponded with December 20.
 
-Now note that the year 6460 in a Gregorian calendar is also a leap year,
+Now note that the year 6460 in a Gregorian calendar is also a leap-year,
 so Astron 6 in T.A. 3019 would have corresponded to the Gregorian March 25
 (to see this for yourself,
 [set the Shire Calendar to start reckoning from December 20 and the Gregorian Date to March 25, 6460](https://psarando.github.io/shire-reckoning/#tolkien-calendars)).
@@ -787,8 +872,8 @@ due to the following quote near the beginning of Appendix D (note that S.R. 1418
 If Tolkien really did work out the calculations of the calendars of Appendix D
 so that the Elves' New Year's Day on Shire Astron 6 in T.A. 3019 could fall on a Gregorian March 25,
 then I think he was more skilled in these matters than some might realize.
-This could also explain the reason behind the seemingly confusing extra day added to T.A. 2360 by Hador the Steward,
-and the omission of the 2 millennial leap-days in T.A. 3000.
+This could also explain the reason behind [the seemingly confusing](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#notes-on-tolkiens-deficit-calculations)
+extra day added to T.A. 2360 by Hador the Steward, and the omission of the 2 millennial leap-days in T.A. 3000.
 
 ##### Loose Ends
 
@@ -832,7 +917,10 @@ Aaron Chong suggests that the Calendar of Imladris could have started its reckon
 in his blog post [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html).
 I also noticed this suggestion in the forum post
 [Middle-earth chronology](http://tolkienforums.activeboard.com/t42820320/middle-earth-chronology/),
-by James "the Just" Strom, which is also linked in Aaron Chong's blog post.
+by James "the Just" Strom, which is also linked in Aaron Chong's blog post,
+but the earliest reference I can find for this suggestion was made by
+Darrell A. Martin in the *Mythlore* 54 (Summer 1988) article
+"[J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent](#references)".
 
 If the Calendar of Imladris started reckoning from the first Year of the Sun in the First Age,
 then the 7049 years from then to the end of the War of the Ring
@@ -1029,6 +1117,7 @@ which fall on (or very close to) the
   [ISBN 0-395-08256-0](https://en.wikipedia.org/wiki/Special:BookSources/?isbn=0-395-08256-0).
 * Hammond, W. G.; Scull, C. *The Lord of the Rings: A Reader's Companion*. Boston: Houghton Mifflin Co, 2005.
   [ISBN-13 978-0-618-64267-0](https://en.wikipedia.org/wiki/Special:BookSources/?isbn=978-0-618-64267-0).
+* Martin, Darrell A. "J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent", *Mythlore* 54, Summer 1988, pp 52-59.
 * [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html)
 * [A Tolkien Calendar: Part 1 | Miruvor](https://taruithornmiruvor.wordpress.com/2015/05/24/a-tolkien-calendar-part-1/#attachment_143):
   Joe Bartram's article on the history of Middle-earth calendars,

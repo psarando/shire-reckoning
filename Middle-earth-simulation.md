@@ -6,6 +6,7 @@ A Simulation of J.R.R. Tolkien's Calendars throughout Middle-earth's History
 * [How to Use these Calendar Simulations](#how-to-use-these-calendar-simulations)
 * [Caveats and Minutiae](#caveats-and-minutiae)
     * [What's Considered Canon in these Simulations?](#whats-considered-canon-in-these-simulations)
+        * [Reckoning the start or end of a day](#reckoning-the-start-or-end-of-a-day)
     * [Shire, Gondor, and Rivendell Reckoning years](#shire-gondor-and-rivendell-reckoning-years)
     * [Gondor Week Days](#gondor-week-days)
     * [Synchronize settings](#synchronize-settings)
@@ -17,15 +18,22 @@ A Simulation of J.R.R. Tolkien's Calendars throughout Middle-earth's History
         * [My Stellarium Reckoning](#my-stellarium-reckoning)
         * [Joe Bartram's Reckoning](#joe-bartrams-reckoning)
     * [Dates of Interest](#dates-of-interest)
-        * [Millennial Leap-years](#millennial-leap-years)
-        * [Leap-years beyond the Third Age](#leap-years-beyond-the-third-age)
         * [Shire-reform](#shire-reform)
+        * [Millennial Leap-years](#millennial-leap-years)
+            * [Notes on Tolkien's *Deficit* calculations](#notes-on-tolkiens-deficit-calculations)
+        * [Leap-years beyond the Third Age](#leap-years-beyond-the-third-age)
 
 The primary goal of the [default calendars on this project's home page](https://psarando.github.io/shire-reckoning/#tolkien-calendars)
 is to visualize how the calendars described in J.R.R. Tolkien's *The Lord of the Rings* Appendix D relate to our modern day
 [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar).
 Those are the calendars one would use if they were only interested in a Shire, Gondor, or Rivendell date
 conversion for today's date in modern times.
+For example, if you simply want to know how a Shire date listed on [Tolkien Gateway](http://tolkiengateway.net/wiki/Third_Age_3019)
+would convert into a date in this year's calendar, use the [default Shire Calendar on this project's home page](https://psarando.github.io/shire-reckoning/#tolkien-calendars).
+
+If you're more interested in how the different leap-day rules of Appendix D cause dates to shift in each of these calendars relative to each other,
+or how these calendar rules would shift dates relative to the Gregorian calendar over thousands of years,
+then you may be more interested in these Middle-earth calendar simulations.
 
 As pointed out in the [Shire Reckoning notes](https://psarando.github.io/shire-reckoning/#reckoning-start-dates),
 the calendars of Gondor and the Shire described in Appendix D had similar
@@ -232,7 +240,14 @@ Even when we know a date in all 3 calendars can be considered canon,
 those calendar dates only match up that way during the daylight hours of that day;
 because Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
 the Elves reckoned their dates from sunset to sunset,
-and it's implied that the Hobbits reckoned their dates from midnight to midnight (as we do in modern times).
+and it's implied that the Hobbits reckoned their dates from midnight to midnight (as we do in modern times),
+exemplified in the following passage from the "Minas Tirith" chapter in *The Return of the King*: 
+
+> With that Gandalf went out;
+> and as he did so, there came the note of a clear sweet bell ringing in a tower of the citadel.
+> Three strokes it rang, like silver in the air, and ceased: the third hour from the rising of the sun.
+> After a minute Pippin went to the door and down the stair...
+> 'Nine o'clock we'd call it in the Shire,' said Pippin aloud to himself.
 
 For example, Appendix B tells us that the date the camp under Weathertop was attacked
 and Frodo was wounded by the Witch-king was S.R. 1418 (III 3018) Winterfilth 6.
@@ -400,7 +415,7 @@ This synchronization scheme is similar to James Strom's reckoning,
 but it's based on my own reckoning using the open-source program [Stellarium](http://www.stellarium.org/).
 The James Strom reckoning above is a very close match to the moon phases used in the story,
 which matches the full moon of the night of III 3019 Afteryule 8,
-and also has Mars in evening skies of III 3018 Blotmath,
+and also has Mars in the evening skies of III 3018 Blotmath,
 and of course a prominent Venus in the evening sky of III 3019 Solmath 15.
 According to Stellarium, however,
 the full moon that should fall on the night of Rethe 7/8 actually occurs on the morning of Rethe 7 by that scheme
@@ -477,6 +492,23 @@ but I don't think it makes sense to view those events in the context of these ca
 since the calendars of Middle-earth described by Tolkien in Appendix D are certainly
 [solar calendars](https://en.wikipedia.org/wiki/Solar_calendar).
 
+#### Shire-reform
+
+Shire-reform was enacted sometime between S.R. 1083 - 1122, during the time of Isengrim II.
+Once enacted, every year of the Shire Calendar always started on the first day of the week and always ended on the last day of the week,
+by not assigning a day of the week to Mid-year's Day or the Overlithe days.
+For these simulations, I am assuming that before Shire-reform was enacted,
+the current day of the week in the Shire Calendar was the same as the corresponding day of the week that was current in Gondor
+(since the Shire Calendar was based on the Kings' Reckoning calendar).
+Shire-reform was probably enacted in a year that was already supposed to start on the first day of the week,
+which in this simulation means one of these Shire-reckoning years during the time of Isengrim II:
+
+* 1085, 1091, 1103, 1114, or 1120
+
+So for this simulation, I picked the year in the middle of this list as the first year of Shire-reform.
+Shire-reform was also adopted "eventually" in Bree, but we are not told when,
+so this simulation also displays the Bree calendar using Shire-reform starting from this year.
+
 #### Millennial Leap-years
 
 What I'm calling a "Millennial Leap-year" is a year in which the "millennial additions"
@@ -507,18 +539,21 @@ Compare this to the real-world example of how the Gregorian calendar was first i
 but Britain did not adopt it until 1752.
 So it could have been a couple of centuries before the Hobbits found a "reasonable" year
 to incorporate the Gondor adjustments into their calendar.
+Since [Shire-reform](#shire-reform) was the last change to the Shire Calendar Tolkien mentions in Appendix D,
+then this is probably the latest time the millennial adjustments would have been incorporated.
 
-The simulations of this project assume the Shire Calendar incorporated the millennial adjustments at the same time as Gondor.
+The simulations of this project simply add the millennial adjustments to the Shire Calendar in the same years as the calendars of Gondor,
+though Tolkien never specified whether or not this occurred.
 
-Tolkien did not give any more details about what this "adjustment" was exactly, so I had to improvise for these simulations.
+Tolkien also did not give any more details about what this "adjustment" was exactly, so I had to improvise for these simulations.
 In the tradition of the Eldar calendar that doubles its middle-days every leap-year,
 I decided to double the leap-day in a "Millennial Leap-year" of the Shire and Gondor calendars
 in order to accomplish the "millennial additions" of 2 days.
 
 According to the leap-year rules of the Shire and Gondor calendars, every 4th year is a leap-year,
-which means a millennial year would normally also be a leap-year.
+and if this were the only leap-year rule, then a millennial year would also be a leap-year.
 Since these leap-year rules also omit the leap-day every century,
-then without the "millennial additions", a millennial year should be a common (non-leap) year.
+then this additional rule would make a millennial year a common (non-leap) year.
 So these calendar simulations accomplish the 2-day "millennial additions" in a "Millennial Leap-year"
 by not omitting the leap-day in each millennial year, and also by doubling that year's leap-day.
 
@@ -533,6 +568,122 @@ Note the 3 exceptions to this "Millennial Leap-year" rule as stated in Appendix 
 * Hador the Steward added an extra day to III 2360, and since this year was already a leap-year,
   adding 1 extra day is equivalent to treating this year as a "Millennial Leap-year".
 * Mardil the Steward made the last year of Kings' Reckoning in III 2059 a "Millennial Leap-year".
+
+In the first publication of Appendix D, according to the *Reader's Companion*,
+Mardil added 2 days to III 2060 instead.
+Since III 2060 was already supposed to be a leap-year, which means it was already to be a year of 366 days,
+then if Mardil's 2-day addition to III 2060 persisted into the second edition,
+that would have meant a year with 368 days,
+which had never happened before in all of the 5500 year history of the Kings' Reckoning;
+not even in a "Millennial Leap-year" which has 367 days.
+
+This is probably why Tolkien emended Mardil's special 2-day addition to III 2059 instead,
+so that the last year of the Kings' Reckoning could be treated as another "Millennial Leap-year"
+(just like the one that occurred 59 years earlier in III 2000),
+and then the first year of Stewards' Reckoning in III 2060 could still be a leap-year of 366 days as already scheduled.
+Then the rules of Third Age leap-years (every 4 years except the last of a century)
+could continue as normal, just as they had for the past 2059 years.
+
+##### Notes on Tolkien's *Deficit* calculations
+
+For all my interest in Appendix D,
+I was never really interested in Tolkien's *Deficit* calculations and whether or not he made any mistakes.
+After all, others have already addressed these calculations in other articles,
+such as the article "The King's Reckoning: Did Tolkien Reckon Correct?" (Beyond Bree, November 1985) by [Åke Jönsson (Bertenstam)](http://tolkiengateway.net/wiki/%C3%85ke_Bertenstam)
+and the article "J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent" (Mythlore 54, Summer 1988) by Darrell A. Martin.
+
+Since I'm confident I have accurately reproduced the rules of the Kings' and Stewards' Reckoning in my calendar simulations,
+I am now able to use those calculations to assist my own *Deficit* calculations and compare them with the results of Tolkien and others.
+
+Given Tolkien's static year length of 365 year, 5 hours, 48 minutes, 46 seconds,
+I was able to reproduce Tolkien's millennial deficit of 4 hours, 46 minutes, 40 seconds.
+
+I was also able to reproduce the calculations presented in "Table 5" of Martin's article,
+where the total deficit of III 1 was given as "1 day 9 hr 46 min 6 sec",
+III 2001 was given as "1 day 19 hr 19 min 26 sec",
+and later in the article the total deficit of III 3001 was calculated as "1 day 6 minutes and 6 seconds".
+So this indicates that I have at least interpreted the Kings' and Stewards' Reckoning rules the same as Martin.
+
+My numbers didn't match Jönsson's calculations, however,
+and I think this is because Jönsson's calculations went astray starting with his deficit calculation for the end of III 2059.
+Without Mardil's 2-day addition to III 2059, Jönsson gives the deficit as
+"2 days, 8 hours, 5 minutes, 26 seconds, consisting of 1 day, 2 hours, 16 minutes, 40 seconds
+(5.5 times the millennial deficit) together with 5 hours, 48 minutes, 46 seconds
+(this deficit was caused by making T.A. 4 instead of T.A. 3 the first leap-year in the Third Age...)".
+
+First, the value given for "5.5 times the millennial deficit"
+would only apply if the King's Reckoning added 1 day every 500 years to account for the millennial deficit.
+Since the millennial deficit is adjusted by adding 2 days only after 1000 years have elapsed,
+then the actual deficit by this system would be 5 times the millennial deficit,
+plus another deficit of 500 years, which I calculate as a total deficit of 2 days, 2 hours, 16 minutes, 40 seconds
+(2d:2h:16m:40s).
+This figure also agrees with the amount given in the *Reader's Companion* of "50 hours, 16 minutes, 40 seconds."
+
+Second, he should not have added the regular yearly deficit of 5h:48m:46s to that total.
+He may have been misled by Tolkien's statement in Appendix D that
+"By making T.A. 4 a leap year instead of T.A. 3 (S.A. 3444)
+1 more short year of only 365 days was intruded causing a deficit of 5 hours, 48 minutes, 46 seconds."
+While it's correct that the regular yearly deficit of 5h:48m:46s was not offset by a leap-day in III 3,
+the leap day added in III 4 made up the difference, so that by the start of III 5 both systems (either III 5 or II 3446)
+would end up with the same deficit.
+
+After adding the 2 days of Mardil's correction, Jönsson's total deficit would come to 8h:5m:26s,
+whereas I have calculated a deficit of 2h:16m:40s by the end of III 2059 instead.
+
+One might wonder if Tolkien was also misled in a similar way and came to a similar deficit in Appendix D when he described the
+"special addition of 2 days to 2059 (S.A. 5500), which concluded 5 1/2 millennia since the beginning of the Númenórean system.
+But this still left about 8 hours deficit."
+
+Another possibility was that Tolkien's "8 hours deficit" may be a remnant of calculations done for the first publication of Appendix D.
+Just before these "[Notes on Tolkien's *Deficit* calculations](#notes-on-tolkiens-deficit-calculations)",
+I pointed out that in the first publication of Appendix D (as quoted in the *Reader's Companion* and also in Jönsson's article),
+Tolkien had Mardil add 2 days to III 2060 instead of III 2059.
+If Tolkien was using a shortcut of calculating the deficit at the end of II 5501 (which would be the same year as III 2060),
+that calculation would be 1 day off of the calculation for the end of III 2060,
+since III 2060 has a leap-day but there would be no leap-day in either II 5500 or II 5501.
+[Aaron Chong](http://rinsanity.weebly.com/tolkien.html) suggests that Tolkien may have forgotten that III 2060 was a leap-year
+and that dropping the leap-day in that year may explain his calculations
+(and the *Reader's Companion* seems to suggest something similar),
+but using a shortcut of calculating the deficit for II 5501 could also explain the missing leap-day in Tolkien's calculations.
+It just so happens that the deficit by the end of II 5500 would match the deficit by the end of III 2059,
+but accounting for Mardil's extra 2 days in III 2059 and the leap-day in III 2060,
+I calculate a *surplus* of 15h:54m:33s by the end of III 2060.
+Omitting the leap-day due in III 2060 (but keeping Mardil's extra 2 days)
+results in a deficit of 8h:5m:26s by the end of that year instead,
+and this may be the (incorrect) figure for Tolkien's "about 8 hours deficit"
+(and also works out to the same deficit as Jönsson's total).
+
+As an aside, I'll note that my deficit calculations match Aaron Chong's, but only up to III 2059
+(the rest appear to be hypothetical calculations if the Kings' Reckoning continued beyond that year).
+
+In any case, it appears Tolkien may have gotten back on track in his next statement about the deficit by III 2360:
+"Hador to 2360 added 1 day though this deficiency had not quite reached that amount."
+My calculations also show a deficit of not quite 1 day, at 18h:6m:40s by the start of III 2360.
+After Hador's extra day was added to III 2360, however, I calculate another *surplus* of 1d:0h:4m:34s at the start of III 2361,
+which explains the subtitle of Martin's article, "The Saga of Hador The Incompetent".
+As Martin points out in his article, "had he not added a day, and had Denethor II added the expected two days to 3Age 3000,
+the accumulated deficit to begin the fourth millennium would have been a mere *6 minutes and 6 seconds*!
+As it actually occured, the deficit was 1 day 6 minutes and 6 seconds" by the start of III 3001, and my calculations agree.
+If Tolkien meant that the "deficiency had not quite reached" 1 day at the end of III 2360,
+then once again he may have used a shortcut of calculating the deficit for II 5801,
+and he would again be 1 day off from my calculation for III 2361 and thought Hador only added a surplus of 4m:34s.
+
+Finally, I think my calculations also agree with Tolkien's statement about the deficit by the end of III 3020,
+which was 660 years after Hador's adjustment:
+"By the end of the Third Age, after 660 more years, the Deficit had not yet amounted to 1 day."
+If the Stewards' Reckoning had continued through III 3020,
+I calculate a deficit of 20h:21m:26s by the start of Stewards' III 3021,
+but adding to this deficit about 1/4 of the yearly deficit (approximately 1h:27m),
+to get to the start of the New Reckoning IV 1, would still be a deficit of less than 1 day.
+
+I believe I have accurately reproduced all of the Kings' and Stewards' Reckoning rules as presented in Appendix D in my calendar simulations,
+and with it I have verified all of Tolkien's statements about the *Deficit*,
+with the one exception of the "about 8 hours deficit" around III 2060
+(though his statement about the deficit around III 2360 is still a little ambiguous to me).
+I also now believe any miscalculations Tolkien presented in Appendix D might be explained
+by him using a shortcut of calculating the deficit for Second Age years instead of II 3441 plus Third Age years.
+
+So if Åke Jönsson (Bertenstam) asks "Did Tolkien Reckon Correct?", I can now answer with confidence: "Mostly."
 
 #### Leap-years beyond the Third Age
 
@@ -562,20 +713,3 @@ I chose option #2:
    but leap-days omitted at the end of centuries appear to come 20 years early (IV 80, IV 180, IV 280, etc.),
    and "Millennial Leap-years" would also come 20 years early in the New Reckoning, but continue to come 600 years early
    (or 400 years late) in Shire-reckoning years (e.g. S.R. 2400, 3400, 4400, etc.)
-
-#### Shire-reform
-
-Shire-reform was enacted sometime between S.R. 1083 - 1122, during the time of Isengrim II.
-Once enacted, every year of the Shire Calendar always started on the first day of the week and always ended on the last day of the week,
-by not assigning a day of the week to Mid-year's Day or the Overlithe days.
-For these simulations, I am assuming that before Shire-reform was enacted,
-the current day of the week in the Shire Calendar was the same as the corresponding day of the week that was current in Gondor
-(since the Shire Calendar was based on the Kings' Reckoning calendar).
-Shire-reform was probably enacted in a year that was already supposed to start on the first day of the week,
-which in this simulation means one of these Shire-reckoning years during the time of Isengrim II:
-
-* 1085, 1091, 1103, 1114, or 1120
-
-So for this simulation, I picked the year in the middle of this list as the first year of Shire-reform.
-Shire-reform was also adopted "eventually" in Bree, but we are not told when,
-so this simulation also displays the Bree calendar using Shire-reform starting from this year.

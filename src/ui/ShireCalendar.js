@@ -27,6 +27,21 @@ import {
 } from './controls/MonthViewLayout';
 
 
+const getDateColor = (region, date, monthColor) => {
+    if (date.className !== undefined) {
+        return date.className;
+    }
+
+    const isHoliday =
+              (region !== REGION_NAMES_BREE) &&
+              (
+                  (date.month === 3 && date.day === 6) ||
+                  (date.month === 10 && date.day === 2)
+              );
+
+    return isHoliday ? "holiday" : monthColor;
+};
+
 class ShireCalendar extends Component {
     static get REGION_NAMES_TOLKIEN() { return REGION_NAMES_TOLKIEN; }
     static get REGION_NAMES_SHIRE() { return REGION_NAMES_SHIRE; }
@@ -197,6 +212,7 @@ class ShireCalendar extends Component {
             default:
                 let month = ShireMonths[date.month];
                 let weekday = ShireWeekdays[date.weekDay];
+                let className = getDateColor(region, date, month.className);
 
                 return (
                     <DateCell key={date.day + month[region]}
@@ -205,7 +221,7 @@ class ShireCalendar extends Component {
                               month={month[region]}
                               description={month.description}
                               weekday={weekday[region]}
-                              className={month.className}/>
+                              className={className}/>
                 );
         }
     }

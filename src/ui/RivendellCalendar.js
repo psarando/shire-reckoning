@@ -151,6 +151,7 @@ class RivendellCalendar extends Component {
             default:
                 let month = RivendellMonths[date.month];
                 let weekday = RivendellWeekdays[date.weekDay];
+                let className = date.className === undefined ? month.className : date.className;
 
                 return (
                     <DateCell key={date.day + month[language]}
@@ -159,7 +160,7 @@ class RivendellCalendar extends Component {
                               month={month[language]}
                               description={month.description}
                               weekday={weekday[language]}
-                              className={month.className}/>
+                              className={className}/>
                 );
         }
     }

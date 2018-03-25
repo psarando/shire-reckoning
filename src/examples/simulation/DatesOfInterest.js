@@ -410,14 +410,14 @@ const DatesOfInterest = [
         allYear: false,
         month:   8,
         day:     29,
-        label:   "III 3018 Halimath 29 | The Hobbits stay at the Prancing Pony."
+        label:   "III 3018 Halimath 29 | The hobbits stay at the Prancing Pony."
     },
     {
         year:    3018 + 3441,
         allYear: false,
         month:   8,
         day:     28,
-        label:   "III 3018 Halimath 28 | The Hobbits are captured by a Barrow-wight."
+        label:   "III 3018 Halimath 28 | The hobbits are captured by a Barrow-wight."
     },
     {
         year:    3018 + 3441,
@@ -656,9 +656,16 @@ const DatesOfInterest = [
     {
         year:    2510 + 3441,
         allYear: false,
+        month:   7,
+        day:     15,
+        label:   "III 2510 Urimë | Cirion the Steward gifts Calenardhon (Rohan) to Eorl and the Rohirrim."
+    },
+    {
+        year:    2510 + 3441,
+        allYear: false,
         month:   3,
         day:     16,
-        label:   "III 2510 Víressë 15 | Battle of the Field of Celebrant. Rohirrim settle Calenardhon, which becomes Rohan."
+        label:   "III 2510 Víressë 15 | Battle of the Field of Celebrant."
     },
     {
         year:    2463 + 3441,

@@ -1,3 +1,11 @@
+## 3.2.0 (2018-03-25)
+
+* The UI calendars will now allow each date to set its own `className`,
+  but will continue to use the month's `className` if the date's `className` is `undefined`.
+  This allows the calendar dates passed to each UI calendar to override any individual date's style.
+* The Shire Calendar UI will now mark Astron 6 and Blotmath 2 as holidays by default.
+* The New Reckoning Calendar UI will now mark Yavannië 30 as a holiday by default.
+
 ## 3.1.3 (2017-10-22)
 
 * Shire Reckoning with "traditional" rules now uses

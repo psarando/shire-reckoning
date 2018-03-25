@@ -34,6 +34,18 @@ import {
     HORIZONTAL
 } from './controls/MonthViewLayout';
 
+const getDateColor = (reckoning, date, monthColor) => {
+    if (date.className !== undefined) {
+        return date.className;
+    }
+
+    if (reckoning === RECKONING_NEW && date.month === 5 && date.day === 30) {
+        return "holiday";
+    }
+
+    return monthColor;
+};
+
 class GondorCalendar extends Component {
     static get RECKONING_KINGS() { return RECKONING_KINGS;}
     static get RECKONING_STEWARDS() { return RECKONING_STEWARDS;}
@@ -121,10 +133,12 @@ class GondorCalendar extends Component {
     }
 
     renderDay(date, today) {
-        let language = this.state.language;
-        let reckoning = this.state.reckoning;
+        let language       = this.state.language;
+        let reckoning      = this.state.reckoning;
+        let isNewReckoning = reckoning === RECKONING_NEW;
+
         let reckoningDesc =
-            reckoning === RECKONING_NEW ?
+            isNewReckoning ?
                 "New Reckoning" :
                 reckoning === RECKONING_KINGS ?
                     "Kings' Reckoning" :
@@ -195,9 +209,10 @@ class GondorCalendar extends Component {
                 );
 
             default:
-                let startMonth = reckoning === RECKONING_NEW ? 3 : 0;
+                let startMonth = isNewReckoning ? 3 : 0;
                 let month = GondorMonths[(date.month+startMonth)%12];
                 let weekday = GondorWeekdays[date.weekDay];
+                let className = getDateColor(reckoning, date, month.className);
 
                 return (
                     <DateCell key={date.day + month[language]}
@@ -206,7 +221,7 @@ class GondorCalendar extends Component {
                               month={month[language]}
                               description={month.description}
                               weekday={weekday[language]}
-                              className={month.className}/>
+                              className={className}/>
                 );
         }
     }
