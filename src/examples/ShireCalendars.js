@@ -426,15 +426,22 @@ JSX:
                     <th colSpan="3" style={CaptionCellStyle}>
                         In Appendix D, Tolkien described leap-day and leap-year rules for the calendars of Gondor
                         the that were similar yet different compared to our Gregorian calendar.
-                        Since the Shire calendars were in sync with the calendars of Gondor,
+                        Since the Shire calendars were in sync with the calendars of Gondor by the end of the Third Age,
                         these calendars also include a "traditional" rules setting that allows the Shire calendars to
-                        reckon dates according to the "traditional" leap-day and leap-year rules as described in Appendix D,
+                        reckon dates according to the "traditional" leap-day and leap-year rules of Gondor as described in Appendix D,
                         from any start date, which will be considered the start of the Second Age in these reckonings.
                         When reckoning with these "traditional" rules,
                         the Shire calendars will also only display according Shire-reform on or after T.A. 2703
                         (<a href="https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#shire-reform">
                             the approximate year Shire-reform was enacted
                         </a>).
+                        Note that these Shire calendars will mark Astron 6 and Blotmath 2 as holidays by default,
+                        but these were not holidays in the Shire until after T.A. 3019.
+                        See the
+                        <a href="https://github.com/psarando/shire-reckoning/blob/master/CHANGELOG.md#320-2018-03-25">
+                            3.2.0 Changelog entry
+                        </a>
+                        for details on how to override a date cell's CSS class (to override or unset its background color).
                     </th>
                 </tr>
                 <tr>

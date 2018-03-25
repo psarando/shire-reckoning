@@ -55,9 +55,10 @@ where the moon is described on specific dates in the story.
 This is **not recommended for first-time readers**,
 and needless to say **this page will contain book spoilers**.
 
-Even though I found it interesting to re-read the story in chronological order with this "Lunar Readalong",
+Even though I found it interesting to re-read the story in chronological order,
+while observing the real-world moon along with the descriptions of it in the story,
 those who have already read *The Lord of the Rings* before might not want to read to such a sparse schedule,
-or rearranged from its original order the way Tolkien meant it to be read.
+or rearranged from its original, "overlapping" order the way Tolkien meant it to be read.
 
 At the beginning of the *Reader's Companion* Book Three, Chapter 1,
 Hammond and Scull quote Richard C. West, who,
@@ -76,6 +77,15 @@ Which I think emphasizes again that attempting to read *The Lord of the Rings* i
 With that said, perhaps this Readalong chart could still help those who are re-reading *The Lord of the Rings* in its original order,
 and want to cross-reference previous chapters of the story to see what else was happening at the same time
 as the passage they are currently reading.
+
+Perhaps this project can also spark some curiosity in amateur astronomy for those who might not usually pay attention to the real-world moon.
+Then they can use this scheme to observe the real-world moon themselves,
+during a similar time of year as in the story,
+and they can see just how the moon would have looked to the story's characters,
+or when it would have risen or set (give or take an hour) over certain events.
+As noted above, they would have to align the full moon nearest to the beginning of March with Rethe 8,
+and use this project's [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)
+to align all the other Shire dates with the dates in our calendar in that year.
 
 ## Format of this Lunar Readalong Scheme
 
@@ -356,7 +366,7 @@ along with various other notes for certain events.
 | | |VI.5|961 (III:239)|963 (III:241) "The days that followed were golden..."|Tidings come to Minas Tirith of the "Downfall of Barad-dûr and passing of Sauron."|
 |(approx.) Rethe 30 (🌓)|March 21| |963 (III:241)|965 (III:243) "All things were now made ready in the City..."|Faramir assumes his authority as Steward of Gondor.|
 |🌖 Astron 8|March 29|VI.4|951 (III:229)|957 (III:235) "And in the morning they rose again..."|"The Ring-bearers are honoured on the Field of Cormallen."|This is the day after the full moon.
-|Astron 9|March 30| |957 (III:235)|But I missed a lot, seemingly.'|They stay a couple of weeks in Ithilien.|
+|Astron 9|March 30| |957 (III:235)|'But I missed a lot, seemingly.'|They stay a couple of weeks in Ithilien.|
 |Astron 27|April 17| | |...and there they remained for one day;|The Captains of the West set sail "from Cair Andros down Anduin" to reach Osgiliath on the 28th.|
 |Astron 30|April 20| | |[end of chapter]|Host camps in the Pelennor.|
 | | |VI.5|965 (III:243)|965 (III:244) "And when the sun rose in the clear morning..."|"All things were now made ready in the City" for the Return of the King.|

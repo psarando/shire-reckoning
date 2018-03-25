@@ -3,6 +3,8 @@
 * The UI calendars will now allow each date to set its own `className`,
   but will continue to use the month's `className` if the date's `className` is `undefined`.
   This allows the calendar dates passed to each UI calendar to override any individual date's style.
+  See the [Middle-earth calendar simulation source](https://github.com/psarando/shire-reckoning/blob/3.2.0/src/examples/simulation/ShireCalendar.js#L145-L159)
+  for an example of how to override a date cell's `className` (to override or unset its background color).
 * The Shire Calendar UI will now mark Astron 6 and Blotmath 2 as holidays by default.
 * The New Reckoning Calendar UI will now mark Yavannië 30 as a holiday by default.
 
