@@ -378,7 +378,7 @@ along with various other notes for certain events.
 |(approx.) Rethe 30 (🌓)|March 21| |963 (III:241)|965 (III:243) "All things were now made ready in the City..."|Faramir assumes his authority as Steward of Gondor.|
 |🌖 Astron 8|March 29|VI.4|951 (III:229)|957 (III:235) "And in the morning they rose again..."|"The Ring-bearers are honoured on the Field of Cormallen."|This is the day after the full moon.
 |Astron 9|March 30| |957 (III:235)|'But I missed a lot, seemingly.'|They stay a couple of weeks in Ithilien.|
-|Astron 27|April 17| | |...and there they remained for one day;|The Captains of the West set sail "from Cair Andros down Anduin" to reach Osgiliath on the 28th.|
+|Astron 27|April 17| | |...and there they remained for one day;|The Captains of the West set sail "from Cair Andros down Anduin" to reach Osgiliath on the 28th.|These dates are quoted in the *Reader's Companion* from Tolkien's "latest and only complete" Time-Scheme for LOTR: [Marquette MSS 4/2/18](http://www.marquette.edu/library/archives/Mss/JRRT/JRRT-seriesa4.php).
 |Astron 30|April 20| | |[end of chapter]|Host camps in the Pelennor.|
 | | |VI.5|965 (III:243)|965 (III:244) "And when the sun rose in the clear morning..."|"All things were now made ready in the City" for the Return of the King.|
 |Thrimidge 1|April 21| |965 (III:244)|968 (III:246) "...it preserved the memory and the glory of the years that were gone."|"Crowning of King Elessar".|

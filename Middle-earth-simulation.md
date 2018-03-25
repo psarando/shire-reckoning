@@ -6,6 +6,7 @@ A Simulation of J.R.R. Tolkien's Calendars throughout Middle-earth's History
 * [How to Use these Calendar Simulations](#how-to-use-these-calendar-simulations)
 * [Caveats and Minutiae](#caveats-and-minutiae)
     * [What's Considered Canon in these Simulations?](#whats-considered-canon-in-these-simulations)
+        * [What I Consider Canon in these Simulations](#what-i-consider-canon-in-these-simulations)
         * [Reckoning the start or end of a day](#reckoning-the-start-or-end-of-a-day)
     * [Shire, Gondor, and Rivendell Reckoning years](#shire-gondor-and-rivendell-reckoning-years)
     * [Gondor Week Days](#gondor-week-days)
@@ -190,7 +191,10 @@ and in my [Rivendell Reckoning Notes](https://psarando.github.io/shire-reckoning
     > in so far as the Hobbits took any account of the change of Age, they maintained that it began with 2 Yule 1422,
     > and not in the previous March.
 
-So based on these details, I would consider the following details as canon in this project's simulations:
+##### What I Consider Canon in these Simulations
+
+So based on those details provided by Tolkien in *The Lord of the Rings* Appendices,
+I would consider the following details as canon in this project's simulations:
 
 * None of the corresponding Gregorian dates.
 * As far as I know, the years and dates of events in the [`Dates of Interest`](#dates-of-interest) list are canon,
@@ -238,7 +242,15 @@ If it was considered canon that the Calendar of Imladris
 from the first Year of the Sun in the First Age,
 then all the dates and corresponding weekdays of this Calendar of Imladris simulation could be considered canon as well,
 since it follows all the rules exactly as described in Appendix D.
-In any case, outside of that one canon year, it should still be accurate to within 3 days (plus or minus)
+I'll also point out that, since Rivendell's Yestarë must fall on Astron 6 in S.R. 1419 (III 3019),
+then if the Calendar of Imladris started reckoning from the first Year of the Sun,
+its Yestarë would also have fallen on Astron 5, 6, or 7 (or the 4th, but only in a Rivendell leap-year)
+from about S.R. 1400 (III 3000) until about S.R. 1500 (IV 80).
+So around the end of the Third Age, this appears to fit nicely with Tolkien's statement that Rivendell's Yestarë
+"corresponded more or less with Shire April 6" (Astron 6).
+
+In any case, outside of the one canon year described above,
+the Calendar of Imladris in these simulations should still be accurate to within 3 days
 when compared to the dates of the Gondor calendar in the Second and Third Ages,
 and when compared to the dates of the Shire Calendar around the end of the Third Age.
 

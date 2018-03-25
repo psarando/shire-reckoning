@@ -27,17 +27,19 @@ The *Deficit* is due to the fact that the [solar year](https://en.wikipedia.org/
 is slightly longer than the 365 days of a common year
 (365 days, 5 hours, 48 minutes, 46 seconds as given in Appendix D),
 which causes the seasons (such as the summer solstice) to fall on later and later dates in the calendar.
-So leap-days are added every few years to keep the calendar more in sync with the seasons,
-but [the leap-year rules](#the-rules) of these calendars means they will still very gradually fall behind the solar year,
-and this difference is what Tolkien called the *Deficit*.
+So [leap-days are added every few years](#the-rules) to keep the calendar more in sync with the seasons,
+but the calendar is not perfectly in sync, so the seasons will still very gradually fall on later dates in the calendar.
+This difference between the length of each calendar year and the solar year is what Tolkien called the *Deficit*.
 In contrast, our modern [Gregorian calendar usually has a surplus of days](https://en.wikipedia.org/wiki/Gregorian_calendar#Accuracy)
 due to its leap-year rules, so the seasons are very gradually falling on earlier dates in our calendar.
 
 For all my interest in Appendix D,
 I was never really interested in Tolkien's *Deficit* calculations and whether or not he made any mistakes.
 After all, others have already addressed these calculations in other articles,
-such as "The King's Reckoning: Did Tolkien Reckon Correct?" (*Beyond Bree*, November 1985) by [Åke Jönsson (Bertenstam)](http://tolkiengateway.net/wiki/%C3%85ke_Bertenstam)
-and "J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent" (*Mythlore* 54, Summer 1988) by Darrell A. Martin.
+such as "The King's Reckoning: Did Tolkien Reckon Correct?"
+(*[Beyond Bree](http://www.cep.unt.edu/bree.html)*, November 1985) by [Åke Jönsson (Bertenstam)](http://tolkiengateway.net/wiki/%C3%85ke_Bertenstam)
+and "J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent"
+(*[Mythlore](http://www.mythsoc.org/mythlore.htm)* 54, Summer 1988) by Darrell A. Martin.
 I also did not need to analyze Tolkien's calculations in order to understand the rules of the calendars as presented in Appendix D,
 and I only needed those rules in order to create the [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
 My understanding of those rules is also the basis of my argument that
@@ -83,7 +85,8 @@ Although the second edition of *The Return of the King* Appendix D does not spec
 [The Lord of the Rings: A Reader's Companion](https://psarando.github.io/shire-reckoning/#references)
 quotes the first publication where it's explicitly stated that it was 2 days added.
 This can also be figured out from Tolkien's *Deficit* calculations in the second edition of Appendix D,
-as explained by Jönsson's *Beyond Bree* (November 1985) article, and [as demonstrated below](#the-deficit).
+as explained by Jönsson's *[Beyond Bree](http://www.cep.unt.edu/bree.html)* (November 1985) article,
+and [as demonstrated below](#the-deficit).
 
 The Second Age ended with S.A. 3441, but this system continued into the
 "Third Age with a new numeration: S.A. 3442 became T.A. 1. By making T.A. 4 a leap year",
@@ -241,27 +244,27 @@ but the deficits should convert to the same `days:hours:minutes:seconds` with ei
 
 | Year | Days elapsed since the start of S.A. 1 | Real days elapsed | The deficit / surplus | The deficit / surplus in days:hours:minutes:seconds |
 | ---- | -------------------------------------- | ----------------- | --------------------- | --------------------------------------------------- |
-| S.A. 1    |     365 | 365.2421990740741 | -0.2421990741 | -0d:5h:48m:46s
-| S.A. 100  |   36524 | 36524.21990740741 | -0.2199074074 | -0d:5h:16m:39s
-| S.A. 500  |  182620 | 182621.09953703705 | -1.0995370371 | -1d:2h:23m:20s
-| S.A. 1000 |  365242 | 365242.1990740741 | -0.1990740741 | -0d:4h:46m:40s
-| S.A. 2000 |  730484 | 730484.3981481482 | -0.3981481482 | -0d:9h:33m:20s
-| S.A. 3000 | 1095726 | 1095726.5972222222 | -0.5972222222 | -0d:14h:19m:59s
-| S.A. 3441 | 1256797 | 1256798.407013889 | -1.4070138889 | -1d:9h:46m:6s
+| S.A. 1    |     365 | 365.2421990740741  | -0.2421990741 | -0d:5h:48m:46s
+| S.A. 100  |   36524 | 36524.21990740741  | -0.2199074074 | -0d:5h:16m:40s
+| S.A. 500  |  182620 | 182621.0995370371  | -1.0995370371 | -1d:2h:23m:20s
+| S.A. 1000 |  365242 | 365242.1990740741  | -0.1990740741 | -0d:4h:46m:40s
+| S.A. 2000 |  730484 | 730484.3981481482  | -0.3981481482 | -0d:9h:33m:20s
+| S.A. 3000 | 1095726 | 1095726.5972222222 | -0.5972222222 | -0d:14h:20m:0s
+| S.A. 3441 | 1256797 | 1256798.407013889  | -1.4070138889 | -1d:9h:46m:6s
 | T.A. 1    | 1257162 | 1257163.6492129632 | -1.6492129632 | -1d:15h:34m:52s
 | T.A. 3    | 1257892 | 1257894.1336111112 | -2.1336111112 | -2d:3h:12m:24s
 | T.A. 4    | 1258258 | 1258259.3758101852 | -1.3758101852 | -1d:9h:1m:10s
-| T.A. 1000 | 1622039 | 1622040.606087963 | -1.6060879631 | -1d:14h:32m:46s
+| T.A. 1000 | 1622039 | 1622040.6060879631 | -1.6060879631 | -1d:14h:32m:46s
 | T.A. 2000 | 1987281 | 1987282.8051620373 | -1.8051620373 | -1d:19h:19m:26s
 | T.A. 2058 | 2008465 | 2008466.8527083334 | -1.8527083334 | -1d:20h:27m:54s
 | T.A. 2059 | 2008832 | 2008832.0949074076 | -0.0949074076 | -0d:2h:16m:40s
-| T.A. 2060 | 2009198 | 2009197.3371064817 | 0.6628935183 | +0d:15h:54m:33s
+| T.A. 2060 | 2009198 | 2009197.3371064817 | 0.6628935183  | +0d:15h:54m:34s
 | T.A. 2359 | 2118404 | 2118404.7546296297 | -0.7546296297 | -0d:18h:6m:40s
-| T.A. 2360 | 2118771 | 2118769.9968287037 | 1.0031712963 | +1d:0h:4m:34s
+| T.A. 2360 | 2118771 | 2118769.9968287037 | 1.0031712963  | +1d:0h:4m:34s
 | T.A. 2999 | 2352159 | 2352159.7620370374 | -0.7620370374 | -0d:18h:17m:20s
 | T.A. 3000 | 2352524 | 2352525.0042361114 | -1.0042361114 | -1d:0h:6m:6s
 | T.A. 3019 | 2359463 | 2359464.6060185186 | -1.6060185186 | -1d:14h:32m:40s
-| T.A. 3020 | 2359829 | 2359829.848217593 | -0.848217593 | -0d:20h:21m:26s
+| T.A. 3020 | 2359829 | 2359829.848217593  | -0.848217593  | -0d:20h:21m:26s
 
 
 The following chart shows hypothetical deficit calculations for some Second Age years,
@@ -274,7 +277,7 @@ Of course, this chart includes the 2-day millennial adjustment that would have b
 | S.A. 3445 | 1258258 | 1258259.3758101852 | -1.3758101852 | -1d:9h:1m:10s |
 | S.A. 5500 | 2008830 | 2008832.0949074076 | -2.0949074076 | -2d:2h:16m:40s |
 | S.A. 5501 | 2009195 | 2009197.3371064817 | -2.3371064817 | -2d:8h:5m:26s |
-| S.A. 5801 | 2118767 | 2118769.9968287037 | -2.9968287037 | -2d:23h:55m:25s |
+| S.A. 5801 | 2118767 | 2118769.9968287037 | -2.9968287037 | -2d:23h:55m:26s |
 | S.A. 6461 | 2359828 | 2359829.848217593  | -1.848217593  | -1d:20h:21m:26s |
 
 These hypothetical figures may be helpful in the following discussion.
@@ -369,7 +372,7 @@ I think Tolkien probably did realize that T.A. 2060 was supposed to have a leap-
 which would explain why he emended Mardil's special 2-day addition to T.A. 2059 in the revised publication.
 
 Accounting for Mardil's extra 2 days in T.A. 2059 and the leap-day in T.A. 2060,
-I calculated a *surplus* of 15h:54m:33s by the end of T.A. 2060.
+I calculated a *surplus* of 15h:54m:34s by the end of T.A. 2060.
 Omitting the leap-day due in T.A. 2060, but keeping Mardil's extra 2 days,
 results in a deficit of 8h:5m:26s by the end of that year instead;
 which also works out to the same result as Jönsson's adjusted deficit as explained earlier.
@@ -409,7 +412,7 @@ but this time the results would be correct for the end of the Third Age.
 I am confident I have accurately reproduced all of the Kings' and Stewards' Reckoning rules as presented in Appendix D in the
 [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
 I have also been able to analyze all of Tolkien's statements about the *Deficit* with the assistance of my simulation,
-and I now think it's plausible that any miscalculations Tolkien presented in Appendix D can be explained
+and I now think it's plausible that any miscalculations Tolkien published in Appendix D can be explained
 by his use of a shortcut of calculating the deficit for Second Age years instead of S.A. 3441 plus Third Age years.
 
 So if Åke Jönsson (Bertenstam) asks "Did Tolkien Reckon Correct?", I can now answer with confidence: "Mostly."
