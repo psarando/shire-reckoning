@@ -57,7 +57,6 @@ class GondorCalendarWithControls extends Component {
         };
 
         this.onMonthViewChange       = this.onMonthViewChange.bind(this);
-        this.onCalendarStartChange   = this.onCalendarStartChange.bind(this);
         this.onStartMonthChange      = this.onStartMonthChange.bind(this);
         this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
         this.onLanguageChange        = this.onLanguageChange.bind(this);
@@ -112,18 +111,6 @@ class GondorCalendarWithControls extends Component {
         });
     }
 
-    onCalendarStartChange(startDate) {
-        let calendar = makeGondorCalendarDates(this.state.calendar.today,
-                                               startDate,
-                                               this.state.reckoning,
-                                               this.state.calendarRules);
-
-        this.setState({
-            startDate: startDate,
-            calendar: calendar
-        });
-    }
-
     onStartMonthChange(event) {
         let reckoning = event.target.value;
         let calendar = makeGondorCalendarDates(this.state.calendar.today,
@@ -169,7 +156,7 @@ class GondorCalendarWithControls extends Component {
                                      startRange={18}
                                      endRange={25}
                                      startDate={this.state.startDate}
-                                     onCalendarStartChange={this.onCalendarStartChange} />
+                                     onCalendarStartChange={this.props.onCalendarStartChange} />
                     <select className="gondor-rules-select"
                             value={reckoning}
                             onChange={this.onStartMonthChange} >

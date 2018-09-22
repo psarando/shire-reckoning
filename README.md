@@ -18,6 +18,16 @@ Shire Reckoning
     * [Middle-days and Leap-days](#middle-days-and-leap-days)
     * [Unique Holidays](#unique-holidays)
         * [Fourth Age Holidays](#fourth-age-holidays)
+* [Synchronization Settings](#synchronization-settings)
+    * [Shire and Gondor Calendar Synchronization Settings](#shire-and-gondor-calendar-synchronization-settings)
+        * [Synchronize Mid-year's Day with the modern summer solstice.](#synchronize-mid-years-day-with-the-modern-summer-solstice)
+        * [Synchronize Shire 'January' 9 with modern New Year's Day.](#synchronize-shire-january-9-with-modern-new-years-day)
+        * [Synchronize Shire New Year's Day with modern Christmas Day.](#synchronize-shire-new-years-day-with-modern-christmas-day)
+    * [Rivendell Calendar Synchronization Settings](#rivendell-calendar-synchronization-settings)
+        * [Synchronize Enderi with "Hobbit Day"](#synchronize-enderi-with-hobbit-day)
+        * [Synchronize Yestarë with modern March 25](#synchronize-yestarë-with-modern-march-25)
+        * [Synchronize Yestarë with Shire 'April' 6, "more or less"](#synchronize-yestarë-with-shire-april-6-more-or-less)
+        * [Synchronize with Boris Shapiro's "7th Age" Reckoning](#synchronize-with-boris-shapiros-7th-age-reckoning)
 * [Shire Reckoning Notes](#shire-reckoning-notes)
     * [Shire-reform](#shire-reform)
     * [Reckoning start dates](#reckoning-start-dates)
@@ -111,7 +121,7 @@ including [instructions for adding these calendars to your own site or app](http
 * [Shire iCalendar and base reckoning function examples](https://psarando.github.io/shire-reckoning/examples/shire-icalendar.html)
     * Shire Reckoning for Google Calendar, Apple's iCal, or other calendar apps!
 
-[![NPM version](https://img.shields.io/npm/v/shire-reckoning.svg)](https://www.npmjs.org/package/shire-reckoning)
+[![[NPM version tag]](https://img.shields.io/npm/v/shire-reckoning.svg)](https://www.npmjs.org/package/shire-reckoning)
 These javascript calendars use the [React javascript library](http://facebook.github.io/react/).
 
 ### Middle-earth Simulation
@@ -226,6 +236,84 @@ Tolkien also described the following holidays specific to certain calendars:
     > some that it was the day on which the Golden Tree first flowered in 1420,
     > and some that it was the Elves' New Year.
     > In the Buckland the Horn of the Mark was blown at sundown every November 2 and bonfires and feastings followed.
+
+### Synchronization Settings
+
+The [default calendars on this project's home page](#tolkien-calendars)
+include settings for synchronizing these Middle-earth calendars with the modern Gregorian calendar in different ways.
+
+These settings keep the Shire and Gondor calendars in sync with the modern Gregorian calendar,
+by making them follow the same leap-day rules of the Gregorian calendar,
+so that most of these calendars' dates will always fall on the same Gregorian dates for each setting.
+The Rivendell Reckoning settings are slightly different,
+where most of those settings allow that calendar to follow its traditional leap-year rules,
+but its leap-years are still kept in sync with the modern Gregorian calendar leap-years.
+
+Note that this is different than the synchronization schemes used by
+[the Middle-earth calendar simulations page](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
+That page keeps the Middle-earth calendars in sync with each other,
+following all the leap-year rules described in Appendix D as much as possible,
+but adjusts how our modern Gregorian calendar synchronizes with those Middle-earth calendar simulations.
+
+#### Shire and Gondor Calendar Synchronization Settings
+
+There is one synchronization setting for the Shire Calendar,
+but it also controls the settings for the 2 example Gondor calendars displayed below the Shire Calendar
+(see the [Gondor Reckoning Notes](#gondor-reckoning-notes) for more info on why these calendars are kept in sync).
+
+This means that independently adjusting the `Start reckoning from` date for one of the Gondor calendar examples
+can change the Shire's synchronization setting to or from the `Custom Reckoning` setting.
+
+##### Synchronize Mid-year's Day with the modern summer solstice.
+This is the default setting used by the Shire and Gondor calendars of this project,
+and is also the recommended setting for those interested in a
+Shire or Gondor date conversion for today's date in modern times.
+
+See the [Shire Reckoning start dates](#reckoning-start-dates) notes for more info.
+
+##### Synchronize Shire 'January' 9 with modern New Year's Day.
+See the [Shire Reckoning start dates](#reckoning-start-dates) notes for more info.
+
+##### Synchronize Shire New Year's Day with modern Christmas Day.
+See the [Reckoning with moon phases](#reckoning-with-moon-phases) notes for more info.
+
+#### Rivendell Calendar Synchronization Settings
+
+##### Synchronize Enderi with "Hobbit Day"
+This setting synchronizes the *Enderi* with "Hobbit Day" (modern September 22, as Tolkien could have intended).
+
+This is the default setting used by the Rivendell calendar of this project,
+and is also the recommended setting for those interested in a
+Rivendell date conversion for today's date in modern times.
+
+See the [Rivendell Reckoning Notes](#rivendell-reckoning-notes) for more info.
+
+##### Synchronize Yestarë with modern March 25
+This setting synchronizes Yestarë with modern March 25, as Tolkien probably intended,
+but using my ["Reformed" rules](#reformed-rivendell-reckoning).
+
+This is the recommended setting for those interested in a Rivendell date conversion for a modern date in any year
+(and not necessarily a modern date in one specific year).
+
+See the [Reformed Rivendell Reckoning rules](#reformed-rivendell-reckoning) notes for more info.
+
+##### Synchronize Yestarë with Shire 'April' 6, "more or less"
+This setting synchronizes Yestarë "more or less" with Shire 'April' 6,
+as Tolkien noted in Appendix D.
+
+This setting synchronizes the Rivendell calendar with the Shire Calendar
+the way I think it may have been by the end of the Third Age.
+
+See the [Rivendell Reckoning Notes](#what-about-december-21st) and the
+[Middle-earth calendar simulation notes](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#what-i-consider-canon-in-these-simulations)
+for more info.
+
+##### Synchronize with Boris Shapiro's "7th Age" Reckoning
+This setting synchronizes the Rivendell calendar with
+[Boris Shapiro's "7th Age" Reckoning](http://www.elvish.org/gwaith/calendars.htm),
+which is also the conversion scheme used by [Quenya101.com](https://Quenya101.com) for their calendar conversion requests.
+
+See the [Rivendell Reckoning Notes](#why-march-22nd) for more info.
 
 ### Shire Reckoning Notes
 

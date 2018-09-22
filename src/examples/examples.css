@@ -17,6 +17,9 @@
 .simulated-date-controls {
     text-align: left;
 }
+.sync-calendar-controls {
+    text-align: left;
+}
 .gregorian-date-picker {
     margin: auto;
     padding: 1rem;

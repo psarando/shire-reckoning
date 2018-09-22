@@ -48,7 +48,6 @@ class ShireCalendarWithControls extends Component {
         };
 
         this.onMonthViewChange       = this.onMonthViewChange.bind(this);
-        this.onCalendarStartChange   = this.onCalendarStartChange.bind(this);
         this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
         this.onRegionChange          = this.onRegionChange.bind(this);
     }
@@ -99,15 +98,6 @@ class ShireCalendarWithControls extends Component {
         });
     }
 
-    onCalendarStartChange(startDate) {
-        let calendar = makeShireCalendarDates(this.state.calendar.today, startDate, this.state.calendarRules);
-
-        this.setState({
-            startDate: startDate,
-            calendar: calendar
-        });
-    }
-
     onMonthViewLayoutChange(event) {
         this.setState({monthViewLayout: event.target.value});
     }
@@ -133,7 +123,7 @@ class ShireCalendarWithControls extends Component {
                                      startRange={19}
                                      endRange={25}
                                      startDate={this.state.startDate}
-                                     onCalendarStartChange={this.onCalendarStartChange} />
+                                     onCalendarStartChange={this.props.onCalendarStartChange} />
                     <ShireRegionPicker region={region}
                                        onRegionChange={this.onRegionChange} />
                 </th>

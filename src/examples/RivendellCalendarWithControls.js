@@ -36,20 +36,18 @@ class RivendellCalendarWithControls extends Component {
         let monthView = calendar.todayRivendell.month;
 
         this.state = {
-            calendarControls: calendarControls,
-            calendar:         calendar,
-            today:            today,
-            viewDate:         today,
-            yearView:         yearView,
-            monthView:        monthView,
-            calendarRules:    calendarRules,
-            startDate:        startDate,
-            language:         language
+            calendarControls,
+            calendar,
+            today,
+            viewDate: today,
+            yearView,
+            monthView,
+            calendarRules,
+            startDate,
+            language,
         };
 
         this.onMonthViewChange     = this.onMonthViewChange.bind(this);
-        this.onCalendarStartChange = this.onCalendarStartChange.bind(this);
-        this.onCalendarRulesChange = this.onCalendarRulesChange.bind(this);
         this.onLanguageChange      = this.onLanguageChange.bind(this);
     }
 
@@ -57,6 +55,7 @@ class RivendellCalendarWithControls extends Component {
         let today = nextProps.date || this.state.today;
         let startDate = nextProps.startDate || this.state.startDate;
         let yearView = nextProps.yearView || this.state.yearView;
+        let calendarRules = nextProps.calendarRules || this.state.calendarRules;
 
         let calendar = this.state.calendar;
 
@@ -67,19 +66,21 @@ class RivendellCalendarWithControls extends Component {
 
         if (!datesMatch(startDate, this.state.startDate) ||
             !datesMatch(today, this.state.today) ||
-            !datesMatch(today, calendar.today)) {
-            calendar = makeRivendellCalendarDates(today, startDate, this.state.calendarRules);
+            !datesMatch(today, calendar.today) ||
+            calendarRules !== this.state.calendarRules) {
+            calendar = makeRivendellCalendarDates(today, startDate, calendarRules);
         }
 
         let monthView = calendar.todayRivendell.month;
 
         this.setState({
-            today:     today,
-            viewDate:  today,
-            calendar:  calendar,
-            startDate: startDate,
-            yearView:  yearView,
-            monthView: monthView
+            today,
+            viewDate: today,
+            calendarRules,
+            calendar,
+            startDate,
+            yearView,
+            monthView,
         });
     }
 
@@ -96,29 +97,6 @@ class RivendellCalendarWithControls extends Component {
             viewDate: viewDate,
             yearView: yearView,
             monthView: monthView
-        });
-    }
-
-    onCalendarStartChange(startDate) {
-        let calendar = makeRivendellCalendarDates(this.state.calendar.today, startDate, this.state.calendarRules);
-
-        this.setState({
-            startDate: startDate,
-            calendar: calendar
-        });
-    }
-
-    onCalendarRulesChange(event) {
-        let calendarRules = event.target.value;
-        let startDay = calendarRules === REFORMED_RULES ? 25 : 22;
-        let startDate = new Date(this.state.startDate);
-        startDate.setDate(startDay);
-        let calendar = makeRivendellCalendarDates(this.state.calendar.today, startDate, calendarRules);
-
-        this.setState({
-            calendarRules: calendarRules,
-            startDate: startDate,
-            calendar: calendar
         });
     }
 
@@ -143,10 +121,10 @@ class RivendellCalendarWithControls extends Component {
                                      startRange={19}
                                      endRange={29}
                                      startDate={this.state.startDate}
-                                     onCalendarStartChange={this.onCalendarStartChange} />
+                                     onCalendarStartChange={this.props.onCalendarStartChange} />
                     <select className="rivendell-rules-select"
                             value={this.state.calendarRules}
-                            onChange={this.onCalendarRulesChange} >
+                            onChange={this.props.onCalendarRulesChange} >
                         <option value={TRADITIONAL_RULES}>Traditional Rules</option>
                         <option value={REFORMED_RULES}>Reformed Rules</option>
                     </select>
