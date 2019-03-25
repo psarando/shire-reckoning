@@ -38,6 +38,7 @@ Shire Reckoning
         * [What if our years began at the same seasonal point?](#what-if-our-years-began-at-the-same-seasonal-point)
 * [Gondor Reckoning Notes](#gondor-reckoning-notes)
 * [Rivendell Reckoning Notes](#rivendell-reckoning-notes)
+    * [The Drifting of the Calendar of Imladris through Time](#the-drifting-of-the-calendar-of-imladris-through-time)
     * [Why March 22nd?](#why-march-22nd)
         * [Why not March 29th?](#why-not-march-29th)
         * [Rivendell New Year's Day fell on a March 25th by the end of the Third Age](#rivendell-new-years-day-fell-on-a-march-25th-by-the-end-of-the-third-age)
@@ -84,7 +85,7 @@ and it follows the same leap-day rules of the Gregorian calendar.
 This allows it to stay in sync with the Gregorian calendar so that most Shire Reckoning dates
 will always fall on the same Gregorian date.
 The exception being in leap-years, when these calendars will temporarily shift out of sync by 1 day,
-starting from the Gregorian leap-day of February 29 until the Shire leap-day of Overlithe in midsummer.
+starting from the Gregorian leap-day of February 29 until the [Shire leap-day of Overlithe in midsummer](#middle-days-and-leap-days).
 To see this for yourself in the default Shire Calendar on this project's home page,
 [set the `Gregorian Date` to June 21 in a leap-year](https://psarando.github.io/shire-reckoning/#tolkien-calendars),
 then change the year to a non-leap-year (2016 and 2017 for example).
@@ -301,11 +302,15 @@ See the [Reformed Rivendell Reckoning rules](#reformed-rivendell-reckoning) note
 This setting synchronizes Yestarë "more or less" with Shire 'April' 6,
 as Tolkien noted in Appendix D.
 
-This setting synchronizes the Rivendell calendar with the Shire Calendar
+This setting synchronizes the Rivendell Reckoning calendar with the Shire Calendar
 the way I think it may have been by the end of the Third Age.
+It will adjust the Rivendell Reckoning's `Start reckoning from` date
+relative to the Shire Calendar's current `Start reckoning from` date
+so that Yestarë will fall on Shire 'April' (or [Astron](#shire-reckoning-notes)) 5, 6, or 7 in modern times
+(i.e. "more or less" on Astron 6).
 
-See the [Rivendell Reckoning Notes](#what-about-december-21st) and the
-[Middle-earth calendar simulation notes](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#what-i-consider-canon-in-these-simulations)
+See the notes on
+[Aligning the Calendar of Imladris to the Shire Calendar](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar)
 for more info.
 
 ##### Synchronize with Boris Shapiro's "7th Age" Reckoning
@@ -692,6 +697,18 @@ in order to keep its leap-years in sync with our Gregorian leap-years
 In other words, this calendar starts reckoning
 on March 22nd, 1 A.D. of the [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar).
 
+#### The Drifting of the Calendar of Imladris through Time
+
+For a detailed description on
+[how the Calendar of Imladris drifts apart from the Gregorian calendar](Rivendell_Drift.md#how-the-calendar-of-imladris-drifts-apart-from-the-gregorian-calendar),
+please see the project page titled [The Drifting of the Calendar of Imladris through Time](Rivendell_Drift.md).
+
+This page also includes a detailed description on
+[how the Calendar of Imladris drifts apart from the Shire Calendar](Rivendell_Drift.md#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar),
+and notes on
+[aligning the Calendar of Imladris to the Shire Calendar](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar)
+around the end of the Third Age.
+
 #### Why March 22nd?
 
 Starting this calendar from Gregorian March 22 with its [traditional rules](https://en.wikipedia.org/wiki/Middle-earth_calendar#Calendar_of_Imladris)
@@ -778,10 +795,10 @@ but that doesn't necessarily mean that a Calendar of Imladris should start recko
 Due to the differences between the traditional [Shire Calendar leap-year rules](#shire-gondor-and-gregorian-intercalation-differences)
 and [Calendar of Imladris leap-year rules](#rivendell-reckoning-notes),
 the dates of one calendar will not always fall on the same dates of the other,
-which explains why Tolkien said Rivendell New Year's Day "corresponded more or less with Shire April 6" (Astron 6).
+which is why Tolkien said Rivendell New Year's Day "corresponded more or less with Shire April 6" (Astron 6).
 These differences in leap-year rules also means that
 these calendars would not stay in sync over the centuries,
-and the dates of the Calendar of Imladris would fall on later and later dates in the Shire Calendar
+and [the dates of the Calendar of Imladris would fall on later and later dates in the Shire Calendar](Rivendell_Drift.md#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar)
 (similar to [how the Julian and Gregorian calendars drift apart](https://en.wikipedia.org/wiki/Gregorian_calendar#Difference_between_Gregorian_and_Julian_calendar_dates)).
 So depending on what year the Calendar of Imladris started its reckoning,
 its first New Year's Day could have been much earlier than where Shire Astron 6 would have been in that year.
@@ -824,7 +841,7 @@ Since this mirrors the relationship between the old Julian calendar and the mode
 it strikes me as intentionally calculated by Tolkien.
 
 [As mentioned earlier](#why-not-march-29th),
-many have concluded that if Shire Afteryule 9 was ("more or less") January 1,
+some would conclude that if Shire Afteryule 9 was ("more or less") January 1,
 then Shire New Year's Day was ("more or less") December 23,
 and Astron 6 was ("more or less") March 29;
 therefore Rivendell's Yestarë should also corresponded ("more or less") with March 29.
@@ -1006,9 +1023,9 @@ and the 3 Middle-days (Enderi) fall on or very close to the [autumnal equinox](h
 
 March 20th is the usual date of the contemporary spring equinox,
 although March 21st was the more common date of the spring equinox in the first half of the 20th century.
-In fact, the [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
-was designed so that the spring equinox should always fall between March 19th and March 21st,
-from the time it was conceived and into the foreseeable future.
+In fact, the [Gregorian calendar's](https://en.wikipedia.org/wiki/Gregorian_calendar) leap-year rules
+were designed so that the spring equinox should always fall between March 19th and March 21st,
+from the time the rules were enacted and into the foreseeable future.
 Since the [Calendar of Imladris and the Gregorian calendar have similar leap-year rules](#rivendell-reckoning-notes),
 this might suggest Rivendell's Yestarë and Enderi were intended to correspond as nearly as possible with the equinoxes,
 which is also similar to how the Shire Calendar
@@ -1021,58 +1038,22 @@ and around that time
 Due to the difference in leap-day rules between the Calendar of Imladris and the Gregorian calendar,
 these calendars would not stay in sync with each other over long periods of time.
 Approximately every 1700 years,
-[the 432-year cycle of the Calendar of Imladris will drift a day ahead](Rivendell_Drift.md)
-of the Gregorian calendar's 400-year cycle.
+[the 432-year cycle of the Calendar of Imladris will drift a day ahead of the Gregorian calendar's 400-year cycle](Rivendell_Drift.md).
 If the Calendar of Imladris started reckoning on a proleptic Gregorian March 21 or 22,
 then after enough millennia Yestarë will have drifted to correspond with March 25.
 
-Aaron Chong suggests that the Calendar of Imladris could have started its reckoning from the first Year of the Sun in the First Age
-(590 years before the start of the Second Age)
-in his blog post [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html).
-I also noticed this suggestion in the forum post
-[Middle-earth chronology](http://tolkienforums.activeboard.com/t42820320/middle-earth-chronology/),
-by James "the Just" Strom, which is also linked in Aaron Chong's blog post,
-but the earliest reference I can find for this suggestion was made by
-Darrell A. Martin in the *[Mythlore](http://www.mythsoc.org/mythlore.htm)* 54 (Summer 1988) article
-"[J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent](#references)".
-
-If the Calendar of Imladris started reckoning from the first Year of the Sun in the First Age,
+[If the Calendar of Imladris started reckoning from the first Year of the Sun in the First Age](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar),
 then the 7049 years from then to the end of the War of the Ring
-(590 Years of the Sun + S.A. 3441 + T.A. 3018 = 7049)
+(590 Years of the Sun + S.A. 3441 + to the end of T.A. 3018 = 7049)
 would have been enough time for Rivendell New Year's Day (Yestarë) to drift
 from a spring equinox to the Gregorian March 25 by T.A. 3019.
 
 Another logical start of the reckoning of the Calendar of Imladris
 could be on a March 20th at the start of the Second Age,
 which also allows its New Year's Day in T.A. 3019 to fall on a March 25.
-
-Interestingly, since Rivendell's Yestarë must fall on Shire 'April' 6 ([Astron](#shire-reckoning-notes) 6) in S.R. 1419
-(Shire-reckoning 1419 which is T.A. 3019),
-reckoning the Calendar of Imladris from either the first Year of the Sun in the First Age
-or from the start of the Second Age allows its Yestarë to fall on Astron 4, 5, 6, or 7
-from about S.R. 1400 (T.A. 3000) until about S.R. 1500 (Fourth Age 80).
-[See for yourself with the Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
-So either of these would appear to fit nicely with Tolkien's statement that Rivendell's Yestarë
-"corresponded more or less with Shire April 6" (Astron 6).
-
-Reckoning from the start of the Second Age is less likely, though, since Tolkien wrote in Appendix D about a note on the
-Calendars of the Red Book (a.k.a. *The Reckoning of Years* by Meriadoc Brandybuck)
-that states that the omission of the 3 extra Enderi at the end of a 432-year cycle
-'has not happened in our time'.
-
-If this calendar did start at the beginning of the Second Age, then it would have started a
-new cycle just 20 years after the War of the Ring in S.R. 1439 (T.A. 3039).
-Starting with the Years of the Sun in the First Age means this calendar started a new 432-year
-cycle in S.R. 1281 (T.A. 2881; 9 years before the birth of Bilbo Baggins)
-and its next wasn't due until S.R. 1713 (more than 100 years after the Red Book was copied in Gondor).
-
-Note that [according to the Elves' mythology](https://en.wikipedia.org/wiki/Timeline_of_Arda#Years_of_the_Sun),
-the Sun was created and first set sail across the sky starting with the Years of the Sun of the First Age.
-So the "years" were of different length before that time,
-which makes it very unlikely that the Elves would use something like the Calendar of Imladris
-to reckon time before then.
-Additionally, the names of the months (or "seasons") and the leap-year rules of the Calendar of Imladris indicate that it's a
-[solar calendar](https://en.wikipedia.org/wiki/Solar_calendar).
+Reckoning from the start of the Second Age is less likely, though,
+due to the reasons discussed in the notes on
+[Aligning the Calendar of Imladris to the Shire Calendar](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar).
 
 In a previous revision of these notes, I had naively
 [set the Gregorian year in this calendar to 7050](https://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
@@ -1184,19 +1165,15 @@ I don't think so, [since I argued earlier](#reckoning-start-dates)
 that observing the Shire New Year's Day on December 21st is more seasonally appropriate in modern times
 (keeping Mid-year's Day in sync with the modern summer solstice as it was [originally intended](#reckoning-start-dates)),
 whereas others may consider it more traditionally appropriate to observe Shire New Year's Day on December 23
-(keeping Mid-year's Day in sync with the [traditional June 23](#reckoning-start-dates)).
+(keeping [Shire 'January' 9 in sync with the modern New Year's Day](#reckoning-start-dates)).
 
-Likewise, some may wish to always observe the Elves' New Year's Day (Yestarë) on Shire 'April 6' ([Astron](#shire-reckoning-notes) 6)
+Likewise, some may wish to always observe the Elves' New Year's Day (Yestarë) on Shire 'April' 6 ([Astron](#shire-reckoning-notes) 6)
 since that's the traditional date as observed by the Hobbits in the Fourth Age.
 
-For those who would like to simulate how
-[I think the Calendar of Imladris related to the Shire Calendar at the end of the Third Age](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#what-i-consider-canon-in-these-simulations),
-and who observe [Shire New Year's Day on December 21](#adopting-shire-reckoning-to-modern-times) every year,
-set the [Rivendell Reckoning calendar to `Start reckoning from` March 25](https://psarando.github.io/shire-reckoning/#tolkiens-calendars).
-This will allow Rivendell's Yestarë to fall on Shire Astron 5, 6, or 7 in modern times (i.e. "more or less" on Astron 6).
-For those who observe [Shire New Year's Day on December 25](#reckoning-with-moon-phases) every year,
-set the [Rivendell Reckoning calendar to `Start reckoning from` March 29](https://psarando.github.io/shire-reckoning/#tolkiens-calendars)
-instead; and for [Shire New Year's Day on December 23](#reckoning-start-dates), start the Rivendell Reckoning from March 27, etc.
+For those who would like to simulate
+[how I think the Calendar of Imladris related to the Shire Calendar at the end of the Third Age](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar),
+set the [Rivendell Calendar Synchronization Settings](#rivendell-calendar-synchronization-settings) to
+[Synchronize Yestarë with Shire 'April' 6, "more or less"](#synchronize-yestarë-with-shire-april-6-more-or-less).
 
 I think aligning Rivendell's Yestarë with our Gregorian March 25 in modern times
 can be considered traditionally appropriate
