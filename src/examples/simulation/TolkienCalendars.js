@@ -166,7 +166,7 @@ class SimulatedTolkienCalendars extends Component {
 
         let eventOpts = DatesOfInterest.map((event, i) => (
             <option key={i} value={i} >
-                {event.label}
+                {event.label ? `${event.displayDate} | ${event.label}` : event.label}
             </option>
         ));
 
