@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/shire-reckoning/static/css/main.31d92830.chunk.css",
+    "main.js": "/shire-reckoning/static/js/main.1f355418.chunk.js",
+    "main.js.map": "/shire-reckoning/static/js/main.1f355418.chunk.js.map",
+    "runtime~main.js": "/shire-reckoning/static/js/runtime~main.f576be14.js",
+    "runtime~main.js.map": "/shire-reckoning/static/js/runtime~main.f576be14.js.map",
+    "static/js/2.722b7d01.chunk.js": "/shire-reckoning/static/js/2.722b7d01.chunk.js",
+    "static/js/2.722b7d01.chunk.js.map": "/shire-reckoning/static/js/2.722b7d01.chunk.js.map",
+    "../_includes/header.html": "/shire-reckoning/../_includes/header.html",
+    "index.html": "/shire-reckoning/index.html",
+    "precache-manifest.c7d2761927219e1beee6e92cddf468a7.js": "/shire-reckoning/precache-manifest.c7d2761927219e1beee6e92cddf468a7.js",
+    "service-worker.js": "/shire-reckoning/service-worker.js",
+    "static/css/main.31d92830.chunk.css.map": "/shire-reckoning/static/css/main.31d92830.chunk.css.map",
+    "static/js/2.722b7d01.chunk.js.LICENSE.txt": "/shire-reckoning/static/js/2.722b7d01.chunk.js.LICENSE.txt"
+  }
+}

@@ -1,0 +1,165 @@
+.shire-calendar {
+    background-color: gainsboro;
+    border: .1rem solid black;
+    border-spacing: 0;
+    width: 35rem;
+}
+.shire-calendar td {
+    border: .01rem solid black;
+    height: 5rem;
+    width: 5rem;
+    text-align: center;
+    font-weight: bold;
+}
+.shire-calendar th {
+    border: .01rem solid black;
+    height: 5rem;
+    width: 5rem;
+}
+.shire-calendar th[scope="col"] {
+    vertical-align: top;
+}
+.shire-calendar th[scope="row"] {
+    text-align: left;
+}
+.shire-calendar .weekday-header[scope="row"] .weekday-name-container {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+}
+.shire-calendar .weekday-header[scope="row"] .weekday-name {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+.shire-calendar .date-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.shire-calendar .date-display-emoji {
+    height: 1rem;
+}
+.shire-calendar caption {
+    border: .2rem solid black;
+    border-bottom-width: .01rem;
+    font-size: 2rem;
+}
+.rivendell-calendar {
+    width: 30rem;
+}
+.rivendell-calendar-vertical-weeks {
+    width: 70rem;
+}
+.rivendell-calendar td {
+    height: 4.2rem;
+}
+.shire-caption, .rivendell-caption, .gondor-caption {
+    background-color: azure;
+}
+.shire-calendar-controls th, .rivendell-calendar-controls th, .gondor-calendar-controls th {
+    border: none;
+    font-size: .8rem;
+    height: inherit;
+    width: inherit;
+}
+.shire-calendar-wrapper-cell {
+    padding: 1rem;
+}
+.month-picker {
+    margin: auto;
+}
+.month-picker td {
+    border: none;
+    height: 1rem;
+}
+.gregorian-display {
+    font-size: .5rem;
+    font-weight: normal;
+}
+.intercalary-day-separator {
+    transform: rotate(-15deg);
+    margin: 0.6rem 0;
+}
+.shire-calendar .intercalary-multi-day {
+    font-size: .64rem;
+}
+.intercalary-midyears-day {
+    font-size: .7rem;
+    white-space: nowrap;
+}
+.intercalary-overlithe-day {
+    font-size: .8rem;
+}
+.vertical-layout-filler {
+    height: 0 !important;
+    visibility: collapse;
+}
+
+.highlight      { background-color: yellow; }
+.weekday-header { background-color: gainsboro; }
+.holiday        { background-color: azure; color: darkred; }
+.holiday .gregorian-display { color: black; }
+
+.afteryule      { background-color: lightskyblue; }
+.solmath        { background-color: lightsteelblue; }
+.rethe          { background-color: yellowgreen; }
+.astron         { background-color: forestgreen; }
+.thrimidge      { background-color: lightcyan; }
+.forelithe      { background-color: lemonchiffon; }
+.afterlithe     { background-color: green; color: lightgoldenrodyellow; }
+.wedmath        { background-color: darkolivegreen; color: honeydew; }
+.halimath       { background-color: darkgoldenrod; color: navy; }
+.winterfilth    { background-color: orange; color: maroon; }
+.blotmath       { background-color: brown; color: ghostwhite; }
+.foreyule       { background-color: cornflowerblue; color: darkblue; }
+
+.spring   { background-color: forestgreen; }
+.summer   { background-color: lemonchiffon; }
+.autumn   { background-color: darkolivegreen; color: honeydew; }
+.fading   { background-color: darkgoldenrod; color: navy; }
+.winter   { background-color: lightskyblue; color: darkblue; }
+.stirring { background-color: yellowgreen; }
+
+.align-shire-calendar {
+    padding-top: 200rem;
+}
+.align-rivendell-calendar {
+    padding-top: 69rem;
+}
+.shire-calendar {
+    margin: auto;
+}
+.date-time-input {
+    width: 4rem;
+    text-align: center;
+}
+.simulated-calendar caption {
+    font-size: 1.5rem;
+}
+.simulated-date-controls {
+    text-align: left;
+}
+.sync-calendar-controls {
+    text-align: left;
+}
+.gregorian-date-picker {
+    margin: auto;
+    padding: 1rem;
+}
+.shire-calendar-styled-example {
+    font-family: Fondamento,'Libre Baskerville',Georgia,serif;
+}
+.shire-calendar-styled-example td {
+    font-weight: normal;
+}
+.shire-calendar-styled-example .gregorian-display {
+    font-family: 'Libre Baskerville',Georgia,serif;
+    white-space: nowrap;
+}
+
+
+/*# sourceMappingURL=main.31d92830.chunk.css.map*/
