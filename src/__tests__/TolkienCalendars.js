@@ -25,6 +25,11 @@ import RivendellCalendarSeasonViewExample from "../examples/rivendell/season-vie
 import RivendellCalendarYearViewExample from "../examples/rivendell/year-view/side-by-side";
 import RivendellCalendarHistoricExample from "../examples/rivendell/historic/side-by-side";
 
+import { fullYearDate } from "../Utils";
+import ShireCalendar from "../ui/ShireCalendar";
+import GondorCalendar from "../ui/GondorCalendar";
+import RivendellCalendar from "../ui/RivendellCalendar";
+
 it("renders TolkienCalendarsExample without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<TolkienCalendarsExample />, div);
@@ -118,5 +123,205 @@ it("renders RivendellCalendarYearViewExample without crashing", () => {
 it("renders RivendellCalendarHistoricExample without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<RivendellCalendarHistoricExample />, div);
+    ReactDOM.unmountComponentAtNode(div);
+});
+
+it("renders ShireCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
+    const div = document.createElement("div");
+
+    [
+        ShireCalendar.REGION_NAMES_TOLKIEN,
+        ShireCalendar.REGION_NAMES_SHIRE,
+        ShireCalendar.REGION_NAMES_BREE,
+    ].forEach(region => {
+        for (let year = 2016; year < 2021; year++) {
+            for (let month = 0; month < 12; month++) {
+                let currentDate = fullYearDate(year, month, 1);
+
+                ReactDOM.render(
+                    <ShireCalendar
+                        region={region}
+                        monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
+                        date={currentDate}
+                        className="shire-calendar"
+                    />,
+                    div
+                );
+            }
+        }
+    });
+
+    ReactDOM.unmountComponentAtNode(div);
+});
+
+it("renders ShireCalendar MONTH_VIEW_VERTICAL without crashing", () => {
+    const div = document.createElement("div");
+
+    [
+        ShireCalendar.REGION_NAMES_TOLKIEN,
+        ShireCalendar.REGION_NAMES_SHIRE,
+        ShireCalendar.REGION_NAMES_BREE,
+    ].forEach(region => {
+        for (let year = 2016; year < 2021; year++) {
+            for (let month = 0; month < 12; month++) {
+                let currentDate = fullYearDate(year, month, 1);
+
+                ReactDOM.render(
+                    <ShireCalendar
+                        region={region}
+                        monthViewLayout={ShireCalendar.MONTH_VIEW_VERTICAL}
+                        date={currentDate}
+                        className="shire-calendar"
+                    />,
+                    div
+                );
+            }
+        }
+    });
+
+    ReactDOM.unmountComponentAtNode(div);
+});
+
+it("renders GondorCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
+    const div = document.createElement("div");
+
+    [
+        GondorCalendar.RECKONING_KINGS,
+        GondorCalendar.RECKONING_STEWARDS,
+        GondorCalendar.RECKONING_NEW,
+    ].forEach(reckoning => {
+        [
+            GondorCalendar.LANGUAGE_ENGLISH,
+            GondorCalendar.LANGUAGE_QUENYA,
+            GondorCalendar.LANGUAGE_SINDARIN,
+        ].forEach(language => {
+            for (let year = 2016; year < 2021; year++) {
+                for (let month = 0; month < 12; month++) {
+                    let currentDate = fullYearDate(year, month, 1);
+
+                    ReactDOM.render(
+                        <GondorCalendar
+                            reckoning={reckoning}
+                            language={language}
+                            monthViewLayout={
+                                GondorCalendar.MONTH_VIEW_HORIZONTAL
+                            }
+                            date={currentDate}
+                            className="shire-calendar"
+                        />,
+                        div
+                    );
+                }
+            }
+        });
+    });
+
+    ReactDOM.unmountComponentAtNode(div);
+});
+
+it("renders GondorCalendar MONTH_VIEW_VERTICAL without crashing", () => {
+    const div = document.createElement("div");
+
+    [
+        GondorCalendar.RECKONING_KINGS,
+        GondorCalendar.RECKONING_STEWARDS,
+        GondorCalendar.RECKONING_NEW,
+    ].forEach(reckoning => {
+        [
+            GondorCalendar.LANGUAGE_ENGLISH,
+            GondorCalendar.LANGUAGE_QUENYA,
+            GondorCalendar.LANGUAGE_SINDARIN,
+        ].forEach(language => {
+            for (let year = 2016; year < 2021; year++) {
+                for (let month = 0; month < 12; month++) {
+                    let currentDate = fullYearDate(year, month, 1);
+
+                    ReactDOM.render(
+                        <GondorCalendar
+                            reckoning={reckoning}
+                            language={language}
+                            monthViewLayout={GondorCalendar.MONTH_VIEW_VERTICAL}
+                            date={currentDate}
+                            className="shire-calendar"
+                        />,
+                        div
+                    );
+                }
+            }
+        });
+    });
+
+    ReactDOM.unmountComponentAtNode(div);
+});
+
+it("renders RivendellCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
+    const div = document.createElement("div");
+
+    [
+        RivendellCalendar.TRADITIONAL_RULES,
+        RivendellCalendar.REFORMED_RULES,
+    ].forEach(calendarRules => {
+        [
+            RivendellCalendar.LANGUAGE_ENGLISH,
+            RivendellCalendar.LANGUAGE_QUENYA,
+            RivendellCalendar.LANGUAGE_SINDARIN,
+        ].forEach(language => {
+            for (let year = 2016; year < 2029; year++) {
+                for (let month = 0; month < 12; month++) {
+                    let currentDate = fullYearDate(year, month, 1);
+
+                    ReactDOM.render(
+                        <RivendellCalendar
+                            calendarRules={calendarRules}
+                            language={language}
+                            monthViewLayout={
+                                RivendellCalendar.MONTH_VIEW_HORIZONTAL
+                            }
+                            date={currentDate}
+                            className="shire-calendar"
+                        />,
+                        div
+                    );
+                }
+            }
+        });
+    });
+
+    ReactDOM.unmountComponentAtNode(div);
+});
+
+it("renders RivendellCalendar MONTH_VIEW_VERTICAL without crashing", () => {
+    const div = document.createElement("div");
+
+    [
+        RivendellCalendar.TRADITIONAL_RULES,
+        RivendellCalendar.REFORMED_RULES,
+    ].forEach(calendarRules => {
+        [
+            RivendellCalendar.LANGUAGE_ENGLISH,
+            RivendellCalendar.LANGUAGE_QUENYA,
+            RivendellCalendar.LANGUAGE_SINDARIN,
+        ].forEach(language => {
+            for (let year = 2016; year < 2029; year++) {
+                for (let month = 0; month < 12; month++) {
+                    let currentDate = fullYearDate(year, month, 1);
+
+                    ReactDOM.render(
+                        <RivendellCalendar
+                            calendarRules={calendarRules}
+                            language={language}
+                            monthViewLayout={
+                                RivendellCalendar.MONTH_VIEW_VERTICAL
+                            }
+                            date={currentDate}
+                            className="shire-calendar"
+                        />,
+                        div
+                    );
+                }
+            }
+        });
+    });
+
     ReactDOM.unmountComponentAtNode(div);
 });

@@ -104,12 +104,13 @@ with various possible Gregorian year correlations.
 
 ## Tolkien's Calendars
 
-The main library module of this project can generate a visualization of
-the calendars described in *The Lord of the Rings* Appendix D in a web browser as simple HTML tables,
-labeled with each day's corresponding Gregorian date of the current year,
-and with today's date highlighted on each calendar.
-These calendars are the [Shire Reckoning, Rivendell Reckoning, and calendars of Gondor:
-Kings' Reckoning, Stewards' Reckoning, and the New Reckoning](https://psarando.github.io/shire-reckoning/#tolkiens-calendars).
+The calendars described in *The Lord of the Rings* Appendix D are
+the [Shire Reckoning](#shire-reckoning-notes) of the Hobbits,
+the [Rivendell Reckoning](#rivendell-reckoning-notes) of the Elves,
+and the 3 calendars of Gondor:
+[Kings' Reckoning, Stewards' Reckoning, and the New Reckoning](#gondor-reckoning-notes).
+
+[Follow this link for a live demonstration of these calendars](https://psarando.github.io/shire-reckoning/#tolkiens-calendars).
 
 More examples of each calendar can be found in the
 [examples directory](https://psarando.github.io/shire-reckoning/examples/),

@@ -38,11 +38,14 @@ with the help of *The Lord of the Rings* Appendix B, the *Reader's Companion*, a
 I also posted my progress to the
 [/r/tolkienfans subreddit](https://www.reddit.com/r/tolkienfans/comments/63kee3/lotr_lunar_readalong_chapter_2_april_5_6_and_more/),
 and I made some notes as I went on some of my real-world observations of the moon on those dates.
-I've now collected my results here, along with an example alignment for 2020-21 dates and moon phases.
+I have collected my results here, along with an example alignment for 2020-21 dates and moon phases.
 
-For those still following the 2017-18 Readalong, the
+A
 [shortcut to the calendar simulations that defaults to syncing with the moon phases for 2017-18 and today's date](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2017-18-moon-phase-synchronized-simulation)
-is still available.
+is still available,
+as well as a
+[shortcut to the simulations that sync with the moon phases for 2020-21](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2020-21-moon-phase-synchronized-simulation),
+on the examples page.
 
 If anyone else wishes to attempt this Readalong,
 a close approximation can probably be achieved in any year by aligning the full moon nearest to the beginning of March with Rethe 8
@@ -419,8 +422,8 @@ along with various other notes for certain events.
 |(approx.) Blotmath 29 (🌕)|November 18| |1022 (III:302)|1023 (III:303) "...restrain himself from going round constantly to see if anything was happening."|Sam begins the reforestation of the Shire.|
 |1420 Rethe 13|2022 March 4| |1024 (III:304) "Sam stayed at first at the Cottons'..."|But the fit passed...|"Frodo is taken ill (on the anniversary of his poisoning by Shelob)."|
 |Rethe 25|March 16| | |...as big a family as you could wish for.|Frodo invites Sam and Rosie to move in to Bag End.|
-|Astron 6|March 27| |1023 (III:303) "Spring surpassed his wildest hopes."|Ah! that was proper fourteen-twenty, that was!'|"The mallorn flowers in the Party Field."|
-|Thrimidge 1|April 21| |1024 (III:304) "And so it was settled."|1025 (III:305) "He resigned the office of Deputy Mayor at the Free Fair..."|"Samwise marries Rose."|
+|Astron 6|March 27| |1023 (III:303) "Spring surpassed his wildest hopes."|'Ah! that was proper fourteen-twenty, that was!'|"The mallorn flowers in the Party Field."|
+|Thrimidge 1|April 21| |1024 (III:304) "And so it was settled."|1025 (III:305) "He resigned the office of Deputy Mayor at the Free Fair that mid-summer..."|"Samwise marries Rose."|
 |Mid-year's Day|June 21| |1025 (III:305)|Also in the autumn there appeared a shadow...|"Frodo resigns office of mayor, and Will Whitfoot is restored."|
 |Winterfilth 6|September 27| | |Two years before on that day it was dark in the dell under Weathertop.|"Frodo is again ill."|
 |1421 Rethe 13|2023 March 5| | |The first of Sam and Rosie's children was born...|"Frodo is again ill."|

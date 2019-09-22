@@ -133,6 +133,9 @@ class ShireCalendarSimulated extends Component {
         if (blotmath2.day === 1) {
             // leap-year
             blotmath2 = calendar.dates[306];
+        } else if (blotmath2.day === 30) {
+            // millennial leap-year
+            blotmath2 = calendar.dates[307];
         }
 
         if (thirdAgeYear < 3020) {

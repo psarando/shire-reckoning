@@ -72,7 +72,7 @@ by the live demonstration below.
    as well as which Gregorian date corresponds to that chosen event,
    for the selected [`Synchronize`](#synchronize-settings) scheme.
     * These dates are listed in descending order, from latest to earliest.
-      Months and days are given according to Shire Reckoning,
+    * Months and days are given according to Shire Reckoning,
       [except for a few dates](#dates-of-interest) before Bilbo's time,
       which are given according to the Stewards' or Kings' Reckoning.
 3. Adjusting the `Gregorian Date` will change the date displayed in each calendar,

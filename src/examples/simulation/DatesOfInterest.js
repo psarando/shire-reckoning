@@ -1247,10 +1247,10 @@ const DatesOfInterestFirstAge = [
         label: "Fingolfin slain in single combat with Morgoth.",
     },
     {
-        year: -135,
+        year: -134,
         allYear: false,
-        month: 11,
-        day: "1 Yule",
+        month: 0,
+        day: "2 Yule",
         displayDate: "Iys 455 Midwinter",
         label:
             "Dagor Bragollach: Battle of Sudden Flame. Barahir rescues Finrod.",
