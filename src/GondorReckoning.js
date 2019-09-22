@@ -2,6 +2,7 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
+import { CommonElvishHolidays } from "./RivendellReckoning";
 import {
     toDaysElapsed,
     daysElapsedToGregorianYear,
@@ -180,11 +181,11 @@ const GondorMonths = [
     },
     {
         emoji: "🍃",
-        english: "Cutting Month",
+        english: "Reaping Month",
         quenya: "Cermië",
         sindarin: "Cerveth",
         description:
-            "English: Cutting Month\nQuenya: Cermië\nSindarin: Cerveth",
+            "English: Reaping Month\nQuenya: Cermië\nSindarin: Cerveth",
         className: "afterlithe",
     },
     {
@@ -197,11 +198,11 @@ const GondorMonths = [
     },
     {
         emoji: "🍇",
-        english: "Harvest Month",
+        english: "Fruit Giving",
         quenya: "Yavannië",
         sindarin: "Ivanneth",
         description:
-            "English: Harvest/Fruit-giving Month\nQuenya: Yavannië\nSindarin: Ivanneth",
+            "English: Fruit-giving Month\nQuenya: Yavannië\nSindarin: Ivanneth",
         className: "halimath",
     },
     {
@@ -231,6 +232,39 @@ const GondorMonths = [
         className: "foreyule",
     },
 ];
+
+/**
+ * Gondor Holiday names and descriptions.
+ * @constant
+ * @type {ElvishHolidays}
+ */
+const GondorHolidays = {
+    ...CommonElvishHolidays,
+    Loëndë: {
+        english: "Midyear's Day",
+        quenya: "Loëndë",
+        sindarin: "Lawenedh",
+        description: "Midyear's Day",
+    },
+    Tuilérë: {
+        english: "Spring-day",
+        quenya: "Tuilérë",
+        sindarin: "Ethuilor",
+        description: "Stewards' Midspring Day",
+    },
+    Yáviérë: {
+        english: "Autumn-day",
+        quenya: "Yáviérë",
+        sindarin: "Iavassor",
+        description: "Stewards' Midautumn Day",
+    },
+    Cormarë: {
+        english: "Ringday",
+        quenya: "Cormarë",
+        sindarin: "Corvor",
+        description: "Ring-bearer's Day",
+    },
+};
 
 /**
  * @typedef {Date} FirstNumenorNewYearDate
@@ -633,6 +667,7 @@ export {
     RECKONING_RULES_GREGORIAN,
     GondorWeekdays,
     GondorMonths,
+    GondorHolidays,
     getGondorNewYearDate,
     getNewReckoningNewYearDate,
     isGondorLeapYear,

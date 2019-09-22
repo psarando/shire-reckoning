@@ -29,6 +29,9 @@ Shire Reckoning
         * [Synchronize Yestarë with Shire 'April' 6, "more or less"](#synchronize-yestarë-with-shire-april-6-more-or-less)
         * [Synchronize with Boris Shapiro's "7th Age" Reckoning](#synchronize-with-boris-shapiros-7th-age-reckoning)
 * [Shire Reckoning Notes](#shire-reckoning-notes)
+    * [Shire Weekdays](#shire-weekdays)
+    * [Shire Months](#shire-months)
+    * [Shire Holidays](#shire-holidays)
     * [Shire-reform](#shire-reform)
     * [Reckoning start dates](#reckoning-start-dates)
         * [Shire, Gondor, and Gregorian intercalation differences](#shire-gondor-and-gregorian-intercalation-differences)
@@ -37,7 +40,14 @@ Shire Reckoning
             * [The Lord of the Rings Lunar Readalong](#the-lord-of-the-rings-lunar-readalong)
         * [What if our years began at the same seasonal point?](#what-if-our-years-began-at-the-same-seasonal-point)
 * [Gondor Reckoning Notes](#gondor-reckoning-notes)
+    * [Gondor's Weekdays](#gondors-weekdays)
+    * [Gondor Months](#gondor-months)
+    * [Gondor Holidays](#gondor-holidays)
 * [Rivendell Reckoning Notes](#rivendell-reckoning-notes)
+    * [Rivendell Weekdays](#rivendell-weekdays)
+    * [Rivendell Seasons](#rivendell-seasons)
+    * [Rivendell Holidays](#rivendell-holidays)
+    * [Aligning the Calendar of Imladris to the Gregorian calendar](#aligning-the-calendar-of-imladris-to-the-gregorian-calendar)
     * [The Drifting of the Calendar of Imladris through Time](#the-drifting-of-the-calendar-of-imladris-through-time)
     * [Why March 22nd?](#why-march-22nd)
         * [Why not March 29th?](#why-not-march-29th)
@@ -352,6 +362,49 @@ These descriptions were compiled from
 [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html),
 and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar).
 
+#### Shire Weekdays
+
+|   |Shire|Tolkien|Description|
+|---|-----|-------|-----------|
+|⭐|Sterday|Saturday|Star Day. From the archaic Sterrendei (from Old English steorra dæg).|
+|☀️|Sunday|Sunday|Sun Day. From the archaic Sunnendei (from Old English sunne dæg).|
+|🌙|Monday|Monday|Moon Day. From the archaic Monendei (from Old English mōna dæg).|
+|🌳|Trewsday|Tuesday|Trees Day. From the archaic Trewesdei (from Old English trēow dæg).|
+|🌌|Hevensday|Wednesday|Heavens Day. From the archaic Hevensdei (from Old English heofen dæg).|
+|🌊|Mersday|Thursday|Sea Day. From the archaic Meresdei (from Old English mere dæg).|
+|🏔|Highday|Friday|High Day. From the archaic Hihdei (from Old English hēah dæg).|
+
+#### Shire Months
+
+|   |Shire|Bree|Tolkien|Description|
+|---|-----|----|-------|-----------|
+|🌄|Afteryule|Frery|January|The month after the winter solstice (Midwinter), from æfter Gēola 'after Winter Solstice', and from frēorig 'freezing, frigid'.|
+|🌧|Solmath|Solmath|February|From Solmōnað, perhaps from the Old English word for mud, 'sol'.|
+|🌬|Rethe|Rethe|March|From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede.|
+|🌱|Astron|Chithing|April|From Ēastermōnað 'Easter-month', named after the Goddess Ēostre, and from cīþing 'growing thing' (cīþ 'young shoot, sprout').|
+|🌼|Thrimidge|Thrimidge|May|The month of plenty, when cows were given three milkings (þri-milce) daily.|
+|☀️|Forelithe|Lithe|June|The month before the summer solstice (Midsummer), when litha (gentle, mild) weather encouraged voyages. From ǣrra Līða 'before Litha'.|
+|🍃|Afterlithe|Mede|July|The month after the summer solstice (Midsummer), from æfter Līða, and from mǣd 'mead, meadow'.|
+|🌿|Wedmath|Wedmath|August|When fields were beset by weeds, from Wēodmōnað 'weed-month'.|
+|🍇|Halimath|Harvestmath|September|The holy month of offerings, from Hāligmōnað 'holy-month', and from Hærfestmōnað 'harvest-month'.|
+|🍂|Winterfilth|Wintring|October|The filling of winter's first full moon, according to the Venerable Bede. Tolkien instead suggests the "filling" or completion of the year before Winter, after the harvest. From Winterfylleð 'winter fullness', and wintrig 'wintry, winter'.|
+|🌫|Blotmath|Blooting|November|The Month of Sacrifice, from Blōtmōnað 'sacrifice-month'.|
+|❄️|Foreyule|Yulemath|December|The month before the winter solstice (Midwinter), from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.|
+
+#### Shire Holidays
+
+|Name|Description|
+|----|-----------|
+|2 Yule|New Year's Day|
+|1 Lithe|Midsummer's Eve|
+|Midyear's Day|Midsummer Day|
+|Overlithe|Shire Leap Day|
+|2 Lithe|Day after Midsummer|
+|1 Yule|New Year's Eve|
+
+See the section on [Middle-earth Holidays](#middle-earth-holidays)
+for more detailed descriptions of these holidays.
+
 #### Layout of days and weeks
 
 The individual month views of the calendars in this project can switch
@@ -645,7 +698,7 @@ The calendar of Gondor went through 3 variations throughout its history:
    Shire Rethe 25 and Halimath 22, which fall on the New Reckoning's Yestarë and Cormarë/Yavannië 30,
    apparently were not celebrated in the Shire.
 
-#### Gondor's weekdays
+#### Gondor's Weekdays
 
 This project assumes Tolkien's statements in Appendix D about the Shire's weekdays also apply to Gondor's weekdays:
 
@@ -659,7 +712,128 @@ so these Gondorian calendars also correlate their weekdays similarly with Gregor
 In other words, I'm assuming Eärenya and Valanya was the weekend in Gondor
 just as Mersday and Highday was the weekend in the Shire.
 
+|   |Quenya|Sindarin|English|
+|---|------|--------|-------|
+|⭐|Elenya|Orgilion|Stars Day|
+|☀️|Anarya|Oranor|Sun Day|
+|🌙|Isilya|Orithil|Moon Day|
+|🌳|Aldëa|Orgaladh|White Tree's Day|
+|🌌|Menelya|Ormenel|Heavens Day|
+|🌊|Eärenya|Oraearon|Sea Day|
+|🏔|Valanya or Tárion|Orbelain or Rodyn|Valar or Powers Day|
+
+#### Gondor Months
+
+|   |Quenya|Sindarin|English|
+|---|------|--------|-------|
+|🌄|Narvinyë|Narwain|New Sun|
+|🌧|Nénimë|Nínui|Wet Month|
+|🌬|Súlimë|Gwaeron|Windy Month|
+|🌱|Víressë|Gwirith|Budding Month*|
+|🌼|Lótessë|Lothron|Flower Month|
+|☀️|Nárië|Nórui|Sunny Month|
+|🍃|Cermië|Cerveth|Reaping Month*|
+|🌿|Urimë|Urui|Hot Month|
+|🍇|Yavannië|Ivanneth|Fruit Giving Month|
+|🍂|Narquelië|Narbeleth|Sun Waning|
+|🌫|Hísimë|Hithui|Misty Month|
+|❄️|Ringarë|Girithron|Cold Month|
+
+\* Most of these English translations are
+[literal translations](http://tolkiengateway.net/wiki/Kings%27_Reckoning),
+except for "budding" and "reaping".
+*[Víressë](http://tolkiengateway.net/wiki/V%C3%ADress%C3%AB)*
+is related to the Quenya word for "freshness" or "youth".
+The meaning of the root word for *Cermië* is not so clear.
+David Salo states, regarding *Cerveth* in his 2004 book *A Gateway to Sindarin*,
+that "the meaning of the root is unknown and cannot be guessed".
+Jim Allen's 1978 *An Introduction to Elvish* states this relation:
+
+> *certa* 'cut character' (see *Cermië* 'Harvest, i.e., Cutting')
+
+Jim Allen also points out that the names of most of the months in this calendar
+are similar to the names of the months in the
+[French Republican Calendar](https://en.wikipedia.org/wiki/French_Republican_Calendar)
+(which in turn were based on
+[earlier unrecorded Germanic month names](http://tolkiengateway.net/wiki/Kings%27_Reckoning#Structure)).
+According to the [Wikipedia article for the French Republican Calendar](https://en.wikipedia.org/wiki/French_Republican_Calendar),
+the month starting near the end of June (which corresponds with *Cermië*)
+is named 'Messidor (from Latin messis, "harvest")'.
+This article also notes that the Scottish historian Thomas Carlyle
+suggested that an English name for *Messidor* could be *Reapidor*
+(in his 1837 work *The French Revolution: A History*).
+Carlyle also suggested *Buddal* for the French Republican month *Germinal*,
+which corresponds with the month of *Víressë*.
+
+So for the English translations of *Víressë / Gwirith* and *Cermië / Cerveth*,
+I have adopted "Budding" and "Reaping",
+which are similar to Carlyle's English alternatives
+for the corresponding French Republican Calendar months.
+
+#### Gondor Holidays
+
+|Quenya|Sindarin*|English|Description|
+|------|--------|-------|-----------|
+|Yestarë|Iestor|First Day|New Year's Day|
+|Enderë|Enedhor|Middleday||
+|Mettarë|Methor|Last Day|New Year's Eve|
+|Loëndë|Lawenedh|Midyear's Day|Midsummer Day (except in the [New Reckoning](#the-3-calendars-of-gondor))|
+|Tuilérë|Ethuilor|Spring-day|Stewards' Midspring Day|
+|Yáviérë|Iavassor|Autumn-day|Stewards' Midautumn Day|
+|Cormarë|Corvor|Ringday|Ring-bearer's Day|
+
+\* **Note**: Tolkien did not give the Sindarin words for these holidays in Appendix D.
+These translations from the Quenya were provided by
+Sindarin expert [/u/Elaran](https://www.reddit.com/user/Elaran)
+in the [/r/sindarin subreddit](https://www.reddit.com/r/sindarin/comments/ctho78/names_for_holidays_new_years_dayeve_midyears_day/).
+
+*Tuilérë* and *Yáviérë* were specific to the [Stewards' Reckoning](#the-3-calendars-of-gondor),
+and *Cormarë* was specific to the [New Reckoning](#the-3-calendars-of-gondor).
+
+See the section on [Middle-earth Holidays](#middle-earth-holidays)
+for more detailed descriptions of these holidays.
+
 ### Rivendell Reckoning Notes
+
+#### Rivendell Weekdays
+
+|   |Quenya|Sindarin|English|
+|---|------|--------|-------|
+|⭐|Elenya|Orgilion|Stars Day|
+|☀️|Anarya|Oranor|Sun Day|
+|🌙|Isilya|Orithil|Moon Day|
+|🌳|Aldúya|Orgaladhad|Two Trees Day|
+|🌌|Menelya|Ormenel|Heavens Day|
+|🏔|Valanya or Tárion|Orbelain or Rodyn|Valar or Powers Day|
+
+#### Rivendell Seasons
+
+|   |Quenya|Sindarin|English|
+|---|------|--------|-------|
+|🌼|Tuilë|Ethuil|Spring|
+|☀️|Lairë|Laer|Summer|
+|🍇|Yávië|Iavas|Autumn|
+|🍂|Quellë|Firith|Fading|
+|❄️|Hrívë|Rhîw|Winter|
+|🌱|Coirë|Echuir|Stirring|
+
+#### Rivendell Holidays
+
+|Quenya|Sindarin*|English|Description|
+|------|--------|-------|-----------|
+|Yestarë|Iestor|First Day|New Year's Day|
+|Enderë|Enedhor|Middleday||
+|Mettarë|Methor|Last Day|New Year's Eve|
+
+\* **Note**: Tolkien did not give the Sindarin words for these holidays in Appendix D.
+These translations from the Quenya were provided by
+Sindarin expert [/u/Elaran](https://www.reddit.com/user/Elaran)
+in the [/r/sindarin subreddit](https://www.reddit.com/r/sindarin/comments/ctho78/names_for_holidays_new_years_dayeve_midyears_day/).
+
+See the section on [Middle-earth Holidays](#middle-earth-holidays)
+for more detailed descriptions of these holidays.
+
+#### Aligning the Calendar of Imladris to the Gregorian calendar
 
 * For a general reference for converting a date in the modern Gregorian calendar, in any year, to a
   date in the Rivendell Reckoning calendar, I recommend using my

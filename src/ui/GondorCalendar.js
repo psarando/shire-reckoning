@@ -5,17 +5,18 @@
 import React, { Component } from "react";
 
 import {
-    RECKONING_KINGS,
-    RECKONING_STEWARDS,
-    RECKONING_NEW,
-    RECKONING_RULES_TRADITIONAL,
-    RECKONING_RULES_GREGORIAN,
-    GondorWeekdays,
+    GondorHolidays,
     GondorMonths,
+    GondorWeekdays,
     makeGondorCalendarDates,
+    RECKONING_KINGS,
+    RECKONING_NEW,
+    RECKONING_RULES_GREGORIAN,
+    RECKONING_RULES_TRADITIONAL,
+    RECKONING_STEWARDS,
 } from "../GondorReckoning";
 
-import { fullYearDate, datesMatch } from "../Utils";
+import { datesMatch, fullYearDate } from "../Utils";
 
 import DateCell, { dateKey } from "./DateCell";
 import IntercalaryDay from "./IntercalaryDay";
@@ -28,9 +29,9 @@ import "./tolkien-calendars.css";
 import { ENGLISH, QUENYA, SINDARIN } from "./controls/LanguagePicker";
 
 import {
-    VerticalLayoutFiller,
-    VERTICAL,
     HORIZONTAL,
+    VERTICAL,
+    VerticalLayoutFiller,
 } from "./controls/MonthViewLayout";
 
 const defaultCaption = reckoning => {
@@ -60,87 +61,27 @@ const getDateColor = (reckoning, date, monthColor) => {
 };
 
 const GondorDate = ({ date, today, language, reckoning }) => {
-    const isNewReckoning = reckoning === RECKONING_NEW;
-
-    const reckoningDesc = isNewReckoning
-        ? "New Reckoning"
-        : reckoning === RECKONING_KINGS
-        ? "Kings' Reckoning"
-        : "Stewards' Reckoning";
-
     switch (date.day) {
         case "Yestarë":
-            return (
-                <IntercalaryDay
-                    name={language === ENGLISH ? "First Day" : "Yestarë"}
-                    description={reckoningDesc + " New Year's Day!"}
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Tuilérë":
-            return (
-                <IntercalaryDay
-                    name={language === ENGLISH ? "Spring-day" : "Tuilérë"}
-                    description="Stewards' Midspring Day"
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Cormarë":
-            return (
-                <IntercalaryDay
-                    name={language === ENGLISH ? "Ringday" : "Cormarë"}
-                    description="Ring-bearer's Day"
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Loëndë":
-            return (
-                <IntercalaryDay
-                    name={language === ENGLISH ? "Midyear's Day" : "Loëndë"}
-                    description="Midyear's Day"
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Enderë":
-            return (
-                <IntercalaryDay
-                    name={language === ENGLISH ? "Middleday" : "Enderë"}
-                    description="Middleday"
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Yáviérë":
-            return (
-                <IntercalaryDay
-                    name={language === ENGLISH ? "Autumn-day" : "Yáviérë"}
-                    description="Stewards' Midautumn Day"
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Mettarë":
+            const holiday = GondorHolidays[date.day];
+
             return (
                 <IntercalaryDay
-                    name={language === ENGLISH ? "Last Day" : "Mettarë"}
-                    description={reckoningDesc + " New Year's Eve!"}
+                    name={holiday[language]}
+                    description={holiday.description}
                     currentDate={today}
                     gregorian={date.gregorian}
                 />
             );
 
         default:
-            const startMonth = isNewReckoning ? 3 : 0;
+            const startMonth = reckoning === RECKONING_NEW ? 3 : 0;
             const month = GondorMonths[(date.month + startMonth) % 12];
             const weekday = GondorWeekdays[date.weekDay];
             const className = getDateColor(reckoning, date, month.className);

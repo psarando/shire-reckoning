@@ -9,6 +9,7 @@ import {
     REFORMED_RULES,
     RivendellWeekdays,
     RivendellMonths,
+    RivendellHolidays,
     makeRivendellCalendarDates,
 } from "../RivendellReckoning";
 
@@ -33,44 +34,15 @@ import {
 const RivendellDate = ({ date, today, language }) => {
     switch (date.day) {
         case "Yestarë":
-            return (
-                <IntercalaryDay
-                    name={language === ENGLISH ? "First Day" : "Yestarë"}
-                    description="Rivendell New Year's Day!"
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Enderë":
-            return (
-                <IntercalaryDay
-                    name={language === ENGLISH ? "Middleday" : "Enderë"}
-                    description="Middleday"
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Reformed Enderë":
-            return (
-                <IntercalaryDay
-                    name={
-                        language === ENGLISH
-                            ? "Leap Middleday"
-                            : "Reformed Enderë"
-                    }
-                    description="Middleday"
-                    currentDate={today}
-                    gregorian={date.gregorian}
-                />
-            );
-
         case "Mettarë":
+            const holiday = RivendellHolidays[date.day];
+
             return (
                 <IntercalaryDay
-                    name={language === ENGLISH ? "Last Day" : "Mettarë"}
-                    description="Rivendell New Year's Eve!"
+                    name={holiday[language]}
+                    description={holiday.description}
                     currentDate={today}
                     gregorian={date.gregorian}
                 />

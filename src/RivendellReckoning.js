@@ -161,6 +161,59 @@ const RivendellMonths = [
 ];
 
 /**
+ * @typedef {Object} ElvishHoliday
+ * @property {string} english - The English translation of this holiday name.
+ * @property {string} quenya - The Quenya name for this holiday.
+ * @property {string} sindarin - The Sindarin name for this holiday.
+ * @property {string} description
+ */
+
+/**
+ * @typedef {Object.<string, ElvishHoliday>} ElvishHolidays
+ */
+
+/**
+ * Elvish Holiday names and descriptions.
+ * @constant
+ * @type {ElvishHolidays}
+ */
+const CommonElvishHolidays = {
+    Yestarë: {
+        english: "First Day",
+        quenya: "Yestarë",
+        sindarin: "Iestor",
+        description: "New Year's Day!",
+    },
+    Enderë: {
+        english: "Middleday",
+        quenya: "Enderë",
+        sindarin: "Enedhor",
+        description: "Middleday",
+    },
+    Mettarë: {
+        english: "Last Day",
+        quenya: "Mettarë",
+        sindarin: "Methor",
+        description: "New Year's Eve!",
+    },
+};
+
+/**
+ * Rivendell Holiday names and descriptions.
+ * @constant
+ * @type {ElvishHolidays}
+ */
+const RivendellHolidays = {
+    ...CommonElvishHolidays,
+    "Reformed Enderë": {
+        english: "Leap Middleday",
+        quenya: "Reformed Enderë",
+        sindarin: "Reformed Enedhor",
+        description: "Leap Middleday",
+    },
+};
+
+/**
  * @param {number} year - The Rivendell year to check.
  * @return {boolean} True if the given `year` is a Rivendell leap-year.
  */
@@ -253,7 +306,8 @@ const getRivendellNewYearDate = (
 
 /**
  * @typedef {Object} RivendellDate
- * @property {(number|string)} day - The number of the day of the month, if this date is not intercalary; otherwise, the name of the intercalary date.
+ * @property {(number|string)} day - The number of the day of the month, if this date is not intercalary; otherwise,
+ *     the name of the intercalary date.
  * @property {number} month - The month index of {@link RivendellMonths}.
  * @property {number} weekDay - The weekday index of {@link RivendellWeekdays}.
  * @property {Date} gregorian - The corresponding Gregorian date.
@@ -264,7 +318,8 @@ const getRivendellNewYearDate = (
  * @property {number} year - The current Rivendell year.
  * @property {RivendellDate[]} dates - The dates of this Rivendell calendar year.
  * @property {Date} today - The given Gregorian Date this calendar year was generated from.
- * @property {RivendellDate} todayRivendell - The current Rivendell date corresponding to the given [today]{@link RivendellCalendarYear#today}.
+ * @property {RivendellDate} todayRivendell - The current Rivendell date corresponding to the given
+ *     [today]{@link RivendellCalendarYear#today}.
  */
 
 /**
@@ -414,6 +469,8 @@ export {
     REFORMED_RULES,
     RivendellWeekdays,
     RivendellMonths,
+    RivendellHolidays,
+    CommonElvishHolidays,
     isRivendellLeapYear,
     getRivendellNewYearDate,
     makeRivendellCalendarDates,
