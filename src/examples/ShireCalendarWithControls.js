@@ -134,8 +134,8 @@ class ShireCalendarWithControls extends Component {
         const firstDay = getFirstDay(calendar);
         const lastDay = getLastDay(calendar);
 
-        const monthNames = ShireMonths.map(function(month) {
-            return month[region];
+        const months = ShireMonths.map(function(month) {
+            return { emoji: month.emoji, name: month[region] };
         });
 
         return (
@@ -158,7 +158,7 @@ class ShireCalendarWithControls extends Component {
                         </th>
                         <th className="shire-calendar-controls month-picker-container">
                             <MonthViewPicker
-                                monthNames={monthNames}
+                                months={months}
                                 firstDay={firstDay}
                                 lastDay={lastDay}
                                 thisMonth={calendar.todayShire.month}

@@ -141,8 +141,8 @@ class RivendellCalendarWithControls extends Component {
         const firstDay = getFirstDay(calendar);
         const lastDay = getLastDay(calendar);
 
-        const monthNames = RivendellMonths.map(function(month) {
-            return month[language];
+        const months = RivendellMonths.map(function(month) {
+            return { emoji: month.emoji, name: month[language] };
         });
 
         return (
@@ -175,7 +175,7 @@ class RivendellCalendarWithControls extends Component {
                         </th>
                         <th className="rivendell-calendar-controls month-picker-container">
                             <MonthViewPicker
-                                monthNames={monthNames}
+                                months={months}
                                 monthLabel="Season"
                                 firstDay={firstDay}
                                 lastDay={lastDay}

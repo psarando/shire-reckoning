@@ -147,8 +147,8 @@ class ShireCalendarSimulated extends Component {
             delete blotmath2.className;
         }
 
-        const monthNames = ShireMonths.map(function(month) {
-            return month[region];
+        const months = ShireMonths.map(function(month) {
+            return { emoji: month.emoji, name: month[region] };
         });
 
         const firstDay = getFirstDay(calendar);
@@ -167,7 +167,7 @@ class ShireCalendarSimulated extends Component {
                         </th>
                         <th className="shire-calendar-controls month-picker-container">
                             <MonthViewPicker
-                                monthNames={monthNames}
+                                months={months}
                                 firstDay={firstDay}
                                 lastDay={lastDay}
                                 thisMonth={calendar.todayShire.month}

@@ -46,6 +46,7 @@ const RECKONING_RULES_GREGORIAN = "reformed";
 
 /**
  * @typedef {Object} GondorWeekday
+ * @property {string} emoji - An icon representing this weekday.
  * @property {string} english - The English translation of this weekday name.
  * @property {string} quenya - The Quenya name for this weekday.
  * @property {string} sindarin - The Sindarin name for this weekday.
@@ -59,24 +60,28 @@ const RECKONING_RULES_GREGORIAN = "reformed";
  */
 const GondorWeekdays = [
     {
+        emoji: "⭐",
         english: "Stars Day",
         quenya: "Elenya",
         sindarin: "Orgilion",
         description: "English: Stars Day\nQuenya: Elenya\nSindarin: Orgilion",
     },
     {
+        emoji: "☀️",
         english: "Sun Day",
         quenya: "Anarya",
         sindarin: "Oranor",
         description: "English: Sun Day\nQuenya: Anarya\nSindarin: Oranor",
     },
     {
+        emoji: "🌙",
         english: "Moon Day",
         quenya: "Isilya",
         sindarin: "Orithil",
         description: "English: Moon Day\nQuenya: Isilya\nSindarin: Orithil",
     },
     {
+        emoji: "🌳",
         english: "White Tree's Day",
         quenya: "Aldëa",
         sindarin: "Orgaladh",
@@ -84,18 +89,21 @@ const GondorWeekdays = [
             "English: White Tree's Day\nQuenya: Aldëa\nSindarin: Orgaladh",
     },
     {
+        emoji: "🌌",
         english: "Heavens Day",
         quenya: "Menelya",
         sindarin: "Ormenel",
         description: "English: Heavens Day\nQuenya: Menelya\nSindarin: Ormenel",
     },
     {
+        emoji: "🌊",
         english: "Sea Day",
         quenya: "Eärenya",
         sindarin: "Oraearon",
         description: "English: Sea Day\nQuenya: Eärenya\nSindarin: Oraearon",
     },
     {
+        emoji: "🏔",
         english: "Valar or Powers Day",
         quenya: "Valanya or Tárion",
         sindarin: "Orbelain or Rodyn",
@@ -106,6 +114,7 @@ const GondorWeekdays = [
 
 /**
  * @typedef {Object} GondorMonth
+ * @property {string} emoji - An icon representing this month.
  * @property {string} english - The English translation of this month name.
  * @property {string} quenya - The Quenya name for this month.
  * @property {string} sindarin - The Sindarin name for this month.
@@ -120,6 +129,7 @@ const GondorWeekdays = [
  */
 const GondorMonths = [
     {
+        emoji: "🌄",
         english: "New Sun",
         quenya: "Narvinyë",
         sindarin: "Narwain",
@@ -127,6 +137,7 @@ const GondorMonths = [
         className: "afteryule",
     },
     {
+        emoji: "🌧",
         english: "Wet Month",
         quenya: "Nénimë",
         sindarin: "Nínui",
@@ -134,6 +145,7 @@ const GondorMonths = [
         className: "solmath",
     },
     {
+        emoji: "🌬",
         english: "Windy Month",
         quenya: "Súlimë",
         sindarin: "Gwaeron",
@@ -141,6 +153,7 @@ const GondorMonths = [
         className: "rethe",
     },
     {
+        emoji: "🌱",
         english: "Budding Month",
         quenya: "Víressë",
         sindarin: "Gwirith",
@@ -149,6 +162,7 @@ const GondorMonths = [
         className: "astron",
     },
     {
+        emoji: "🌼",
         english: "Flower Month",
         quenya: "Lótessë",
         sindarin: "Lothron",
@@ -157,6 +171,7 @@ const GondorMonths = [
         className: "thrimidge",
     },
     {
+        emoji: "☀️",
         english: "Sunny Month",
         quenya: "Nárië",
         sindarin: "Nórui",
@@ -164,6 +179,7 @@ const GondorMonths = [
         className: "forelithe",
     },
     {
+        emoji: "🍃",
         english: "Cutting Month",
         quenya: "Cermië",
         sindarin: "Cerveth",
@@ -172,6 +188,7 @@ const GondorMonths = [
         className: "afterlithe",
     },
     {
+        emoji: "🌿",
         english: "Hot Month",
         quenya: "Urimë",
         sindarin: "Urui",
@@ -179,6 +196,7 @@ const GondorMonths = [
         className: "wedmath",
     },
     {
+        emoji: "🍇",
         english: "Harvest Month",
         quenya: "Yavannië",
         sindarin: "Ivanneth",
@@ -187,6 +205,7 @@ const GondorMonths = [
         className: "halimath",
     },
     {
+        emoji: "🍂",
         english: "Sun Waning",
         quenya: "Narquelië",
         sindarin: "Narbeleth",
@@ -195,6 +214,7 @@ const GondorMonths = [
         className: "winterfilth",
     },
     {
+        emoji: "🌫",
         english: "Misty Month",
         quenya: "Hísimë",
         sindarin: "Hithui",
@@ -202,6 +222,7 @@ const GondorMonths = [
         className: "blotmath",
     },
     {
+        emoji: "❄️",
         english: "Cold Month",
         quenya: "Ringarë",
         sindarin: "Girithron",

@@ -42,7 +42,7 @@ const MonthViewPicker = props => {
         }
 
         if (yearView || month < 0) {
-            month = yearView ? month : props.monthNames.length - 1;
+            month = yearView ? month : props.months.length - 1;
 
             // View the calendar for the previous year
             viewDate = new Date(props.firstDay);
@@ -62,7 +62,7 @@ const MonthViewPicker = props => {
             month++;
         }
 
-        if (yearView || month >= props.monthNames.length) {
+        if (yearView || month >= props.months.length) {
             month = yearView ? month : 0;
 
             // View the calendar for the next year
@@ -77,9 +77,9 @@ const MonthViewPicker = props => {
     const monthLabel = props.monthLabel || "Month";
     const monthView = props.yearView ? -1 : props.monthView;
 
-    const monthViewSelectOptions = props.monthNames.map((month, i) => (
+    const monthViewSelectOptions = props.months.map((month, i) => (
         <option key={i} value={i}>
-            {month}
+            {month.emoji} {month.name}
         </option>
     ));
 

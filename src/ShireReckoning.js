@@ -26,6 +26,7 @@ const REGION_NAMES_BREE = "bree";
 
 /**
  * @typedef {Object} ShireWeekday
+ * @property {string} emoji - An icon representing this weekday.
  * @property {string} tolkien - The Gregorian substitution Tolkien used for this weekday name.
  * @property {string} shire - The Shire name for this weekday.
  * @property {string} bree - The Bree name for this weekday.
@@ -39,6 +40,7 @@ const REGION_NAMES_BREE = "bree";
  */
 const ShireWeekdays = [
     {
+        emoji: "⭐",
         tolkien: "Saturday",
         shire: "Sterday",
         bree: "Sterday",
@@ -49,6 +51,7 @@ Shire: Sterday
 Star Day. From the archaic Sterrendei (from Old English steorra dæg).`
     },
     {
+        emoji: "☀️",
         tolkien: "Sunday",
         shire: "Sunday",
         bree: "Sunday",
@@ -59,6 +62,7 @@ Shire: Sunday
 Sun Day. From the archaic Sunnendei (from Old English sunne dæg).`
     },
     {
+        emoji: "🌙",
         tolkien: "Monday",
         shire: "Monday",
         bree: "Monday",
@@ -69,6 +73,7 @@ Shire: Monday
 Moon Day. From the archaic Monendei (from Old English mōna dæg).`
     },
     {
+        emoji: "🌳",
         tolkien: "Tuesday",
         shire: "Trewsday",
         bree: "Trewsday",
@@ -79,6 +84,7 @@ Shire: Trewsday
 Trees Day. From the archaic Trewesdei (from Old English trēow dæg).`
     },
     {
+        emoji: "🌌",
         tolkien: "Wednesday",
         shire: "Hevensday",
         bree: "Hevensday",
@@ -89,6 +95,7 @@ Shire: Hevensday
 Heavens Day. From the archaic Hevensdei (from Old English heofen dæg).`
     },
     {
+        emoji: "🌊",
         tolkien: "Thursday",
         shire: "Mersday",
         bree: "Mersday",
@@ -99,6 +106,7 @@ Shire: Mersday
 Sea Day. From the archaic Meresdei (from Old English mere dæg).`
     },
     {
+        emoji: "🏔",
         tolkien: "Friday",
         shire: "Highday",
         bree: "Highday",
@@ -112,6 +120,7 @@ High Day. From the archaic Hihdei (from Old English hēah dæg).`
 
 /**
  * @typedef {Object} ShireMonth
+ * @property {string} emoji - An icon representing this month.
  * @property {string} tolkien - The Gregorian substitution Tolkien used for this month name.
  * @property {string} shire - The Shire name for this month.
  * @property {string} bree - The Bree name for this month.
@@ -126,6 +135,7 @@ High Day. From the archaic Hihdei (from Old English hēah dæg).`
  */
 const ShireMonths = [
     {
+        emoji: "🌄",
         tolkien: "January",
         shire: "Afteryule",
         bree: "Frery",
@@ -140,6 +150,7 @@ and from frēorig 'freezing, frigid'.`,
         className: "afteryule",
     },
     {
+        emoji: "🌧",
         tolkien: "February",
         shire: "Solmath",
         bree: "Solmath",
@@ -153,6 +164,7 @@ Muddy Month.`,
         className: "solmath",
     },
     {
+        emoji: "🌬",
         tolkien: "March",
         shire: "Rethe",
         bree: "Rethe",
@@ -166,6 +178,7 @@ Month of Wildness or Roaring Winds.`,
         className: "rethe",
     },
     {
+        emoji: "🌱",
         tolkien: "April",
         shire: "Astron",
         bree: "Chithing",
@@ -180,6 +193,7 @@ Spring Month.`,
         className: "astron",
     },
     {
+        emoji: "🌼",
         tolkien: "May",
         shire: "Thrimidge",
         bree: "Thrimidge",
@@ -192,6 +206,7 @@ The month of plenty, when cows were given three milkings (þri-milce) daily.`,
         className: "thrimidge",
     },
     {
+        emoji: "☀️",
         tolkien: "June",
         shire: "Forelithe",
         bree: "Lithe",
@@ -206,6 +221,7 @@ Calm or Navigable Month.`,
         className: "forelithe",
     },
     {
+        emoji: "🍃",
         tolkien: "July",
         shire: "Afterlithe",
         bree: "Mede",
@@ -219,6 +235,7 @@ Meadow Month.`,
         className: "afterlithe",
     },
     {
+        emoji: "🌿",
         tolkien: "August",
         shire: "Wedmath",
         bree: "Wedmath",
@@ -232,6 +249,7 @@ Plant Month.`,
         className: "wedmath",
     },
     {
+        emoji: "🍇",
         tolkien: "September",
         shire: "Halimath",
         bree: "Harvestmath",
@@ -245,6 +263,7 @@ Harvest Month.`,
         className: "halimath",
     },
     {
+        emoji: "🍂",
         tolkien: "October",
         shire: "Winterfilth",
         bree: "Wintring",
@@ -260,6 +279,7 @@ Wine Month.`,
         className: "winterfilth",
     },
     {
+        emoji: "🌫",
         tolkien: "November",
         shire: "Blotmath",
         bree: "Blooting",
@@ -272,6 +292,7 @@ The Month of Sacrifice, from Blōtmōnað 'sacrifice-month'.`,
         className: "blotmath",
     },
     {
+        emoji: "❄️",
         tolkien: "December",
         shire: "Foreyule",
         bree: "Yulemath",

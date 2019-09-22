@@ -241,9 +241,13 @@ class GondorCalendarSimulated extends Component {
         const caption = `${reckoningDisplay} Reckoning ${age} ${year}`;
 
         const startMonth = reckoning === RECKONING_NEW ? 3 : 0;
-        const monthNames = [];
+        const months = [];
         for (let i = startMonth; i < GondorMonths.length + startMonth; i++) {
-            monthNames.push(GondorMonths[i % 12][language]);
+            const gondorMonth = GondorMonths[i % 12];
+            months.push({
+                emoji: gondorMonth.emoji,
+                name: gondorMonth[language],
+            });
         }
 
         const firstDay = getFirstDay(calendar);
@@ -262,7 +266,7 @@ class GondorCalendarSimulated extends Component {
                         </th>
                         <th className="gondor-calendar-controls month-picker-container">
                             <MonthViewPicker
-                                monthNames={monthNames}
+                                months={months}
                                 firstDay={firstDay}
                                 lastDay={lastDay}
                                 thisMonth={calendar.todayGondor.month}

@@ -128,8 +128,8 @@ class RivendellCalendarSimulated extends Component {
         const loa = year > 0 ? ((year - 1) % 144) + 1 : year % 144;
         const caption = `Rivendell Reckoning ${year} (yén ${yen}, loa ${loa})`;
 
-        const monthNames = RivendellMonths.map(function(month) {
-            return month[language];
+        const months = RivendellMonths.map(function(month) {
+            return { emoji: month.emoji, name: month[language] };
         });
 
         const firstDay = getFirstDay(calendar);
@@ -153,7 +153,7 @@ class RivendellCalendarSimulated extends Component {
                         </th>
                         <th className="rivendell-calendar-controls month-picker-container">
                             <MonthViewPicker
-                                monthNames={monthNames}
+                                months={months}
                                 monthLabel="Season"
                                 firstDay={firstDay}
                                 lastDay={lastDay}

@@ -38,8 +38,11 @@ const IntercalaryDay = props => {
 
     return (
         <td className={dayColor} title={description}>
-            <div className="date-display">{name}</div>
-            <GregorianDateDisplay date={gregorian} />
+            <div className="date-container">
+                <div className="date-display-emoji" />
+                <div className="date-display">{name}</div>
+                <GregorianDateDisplay date={gregorian} />
+            </div>
         </td>
     );
 };

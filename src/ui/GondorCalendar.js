@@ -150,6 +150,7 @@ const GondorDate = ({ date, today, language, reckoning }) => {
                     date={date}
                     currentDate={today}
                     month={month[language]}
+                    emoji={month.emoji}
                     description={month.description}
                     weekday={weekday[language]}
                     className={className}
@@ -271,9 +272,11 @@ const GondorMonthVertical = ({
         return [
             <WeekDayHeaderCell
                 key={weekdayName}
+                emoji={weekday.emoji}
                 name={weekdayName}
                 description={weekday.description}
                 colSpan="2"
+                scope="row"
             />,
         ];
     });
@@ -366,8 +369,10 @@ const GondorMonthVertical = ({
             week.unshift(
                 <WeekDayHeaderCell
                     key={weekdayName}
+                    emoji={weekday.emoji}
                     name={weekdayName}
                     description={weekday.description}
+                    scope="row"
                 />
             );
 
@@ -559,8 +564,10 @@ class GondorCalendar extends Component {
                     return (
                         <WeekDayHeaderCell
                             key={weekdayName}
+                            emoji={weekday.emoji}
                             name={weekdayName}
                             description={weekday.description}
+                            scope="col"
                         />
                     );
                 })}

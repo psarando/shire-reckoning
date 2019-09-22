@@ -7,13 +7,19 @@ import "./tolkien-calendars.css";
 
 const WeekDayHeaderCell = props => {
     return (
-        <td
+        <th
             className="weekday-header"
             colSpan={props.colSpan}
+            scope={props.scope}
             title={props.description}
         >
-            {props.name}
-        </td>
+            {props.name && (
+                <div className="weekday-name-container">
+                    <div className="weekday-emoji">{props.emoji}</div>
+                    <div className="weekday-name">{props.name}</div>
+                </div>
+            )}
+        </th>
     );
 };
 

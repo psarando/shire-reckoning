@@ -149,6 +149,7 @@ const ShireDate = ({ dates, today, region }) => {
                     date={date}
                     currentDate={today}
                     month={month[region]}
+                    emoji={month.emoji}
                     description={month.description}
                     weekday={weekday[region]}
                     className={className}
@@ -235,9 +236,11 @@ const ShireMonthVertical = ({ monthView, today, dates, region }) => {
         return [
             <WeekDayHeaderCell
                 key={weekdayName}
+                emoji={weekday.emoji}
                 name={weekdayName}
                 description={weekday.description}
                 colSpan="2"
+                scope="row"
             />,
         ];
     });
@@ -302,8 +305,10 @@ const ShireMonthVertical = ({ monthView, today, dates, region }) => {
             week.unshift(
                 <WeekDayHeaderCell
                     key={weekdayName}
+                    emoji={weekday.emoji}
                     name={weekdayName}
                     description={weekday.description}
+                    scope="row"
                 />
             );
 
@@ -468,8 +473,10 @@ class ShireCalendar extends Component {
                     return (
                         <WeekDayHeaderCell
                             key={weekdayName}
+                            emoji={weekday.emoji}
                             name={weekdayName}
                             description={weekday.description}
+                            scope="col"
                         />
                     );
                 })}

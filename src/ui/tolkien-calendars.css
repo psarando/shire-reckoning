@@ -11,6 +11,38 @@
     text-align: center;
     font-weight: bold;
 }
+.shire-calendar th {
+    border: .01rem solid black;
+    height: 5rem;
+    width: 5rem;
+}
+.shire-calendar th[scope="col"] {
+    vertical-align: top;
+}
+.shire-calendar th[scope="row"] {
+    text-align: left;
+}
+.shire-calendar .weekday-header[scope="row"] .weekday-name-container {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+}
+.shire-calendar .weekday-header[scope="row"] .weekday-name {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+.shire-calendar .date-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.shire-calendar .date-display-emoji {
+    height: 1rem;
+}
 .shire-calendar caption {
     border: .2rem solid black;
     border-bottom-width: .01rem;
@@ -28,9 +60,11 @@
 .shire-caption, .rivendell-caption, .gondor-caption {
     background-color: azure;
 }
-.shire-calendar-controls, .rivendell-calendar-controls, .gondor-calendar-controls {
-    border: .01rem solid black;
+.shire-calendar-controls th, .rivendell-calendar-controls th, .gondor-calendar-controls th {
+    border: none;
     font-size: .8rem;
+    height: inherit;
+    width: inherit;
 }
 .shire-calendar-wrapper-cell {
     padding: 1rem;
@@ -55,6 +89,7 @@
 }
 .intercalary-midyears-day {
     font-size: .7rem;
+    white-space: nowrap;
 }
 .intercalary-overlithe-day {
     font-size: .8rem;

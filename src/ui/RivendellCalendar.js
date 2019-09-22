@@ -87,6 +87,7 @@ const RivendellDate = ({ date, today, language }) => {
                     date={date}
                     currentDate={today}
                     month={month[language]}
+                    emoji={month.emoji}
                     description={month.description}
                     weekday={weekday[language]}
                     className={className}
@@ -157,9 +158,11 @@ const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
         return [
             <WeekDayHeaderCell
                 key={weekdayName}
+                emoji={weekday.emoji}
                 name={weekdayName}
                 description={weekday.description}
                 colSpan="2"
+                scope="row"
             />,
         ];
     });
@@ -360,8 +363,10 @@ class RivendellCalendar extends Component {
                     return (
                         <WeekDayHeaderCell
                             key={weekdayName}
+                            emoji={weekday.emoji}
                             name={weekdayName}
                             description={weekday.description}
+                            scope="col"
                         />
                     );
                 })}

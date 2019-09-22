@@ -26,19 +26,25 @@ const DateCell = props => {
         currentDate,
         date: { gregorian, day },
         description,
+        emoji,
         month,
         weekday,
     } = props;
 
     const dayColor = getDateColor(className, gregorian, currentDate);
 
+    const day1 = day === 1;
+
+    const dateDisplay = day1 ? month : day;
+    const dateDisplayClassName = day1 ? "month-name-display" : "date-display";
+
     return (
         <td className={dayColor} title={description + "\nWeekday: " + weekday}>
-            <div className="date-display">
-                {day}
-                {day === 1 && ` ${month}`}
+            <div className="date-container">
+                <div className="date-display-emoji">{day1 && emoji}</div>
+                <div className={dateDisplayClassName}>{dateDisplay}</div>
+                <GregorianDateDisplay date={gregorian} />
             </div>
-            <GregorianDateDisplay date={gregorian} />
         </td>
     );
 };

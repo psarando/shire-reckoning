@@ -34,6 +34,7 @@ const REFORMED_RULES = "reformed";
 
 /**
  * @typedef {Object} RivendellWeekday
+ * @property {string} emoji - An icon representing this weekday.
  * @property {string} english - The English translation of this weekday name.
  * @property {string} quenya - The Quenya name for this weekday.
  * @property {string} sindarin - The Sindarin name for this weekday.
@@ -47,24 +48,28 @@ const REFORMED_RULES = "reformed";
  */
 const RivendellWeekdays = [
     {
+        emoji: "⭐",
         english: "Stars Day",
         quenya: "Elenya",
         sindarin: "Orgilion",
         description: "English: Stars Day\nQuenya: Elenya\nSindarin: Orgilion",
     },
     {
+        emoji: "☀️",
         english: "Sun Day",
         quenya: "Anarya",
         sindarin: "Oranor",
         description: "English: Sun Day\nQuenya: Anarya\nSindarin: Oranor",
     },
     {
+        emoji: "🌙",
         english: "Moon Day",
         quenya: "Isilya",
         sindarin: "Orithil",
         description: "English: Moon Day\nQuenya: Isilya\nSindarin: Orithil",
     },
     {
+        emoji: "🌳",
         english: "Two Trees Day",
         quenya: "Aldúya",
         sindarin: "Orgaladhad",
@@ -72,12 +77,14 @@ const RivendellWeekdays = [
             "English: Two Trees of Valinor Day\nQuenya: Aldúya\nSindarin: Orgaladhad",
     },
     {
+        emoji: "🌌",
         english: "Heavens Day",
         quenya: "Menelya",
         sindarin: "Ormenel",
         description: "English: Heavens Day\nQuenya: Menelya\nSindarin: Ormenel",
     },
     {
+        emoji: "🏔",
         english: "Valar or Powers Day",
         quenya: "Valanya or Tárion",
         sindarin: "Orbelain or Rodyn",
@@ -88,6 +95,7 @@ const RivendellWeekdays = [
 
 /**
  * @typedef {Object} RivendellMonth
+ * @property {string} emoji - An icon representing this month.
  * @property {string} english - The English translation of this month name.
  * @property {string} quenya - The Quenya name for this month.
  * @property {string} sindarin - The Sindarin name for this month.
@@ -102,6 +110,7 @@ const RivendellWeekdays = [
  */
 const RivendellMonths = [
     {
+        emoji: "🌼",
         english: "Spring",
         quenya: "Tuilë",
         sindarin: "Ethuil",
@@ -109,6 +118,7 @@ const RivendellMonths = [
         className: "spring",
     },
     {
+        emoji: "☀️",
         english: "Summer",
         quenya: "Lairë",
         sindarin: "Laer",
@@ -116,6 +126,7 @@ const RivendellMonths = [
         className: "summer",
     },
     {
+        emoji: "🍇",
         english: "Autumn",
         quenya: "Yávië",
         sindarin: "Iavas",
@@ -123,6 +134,7 @@ const RivendellMonths = [
         className: "autumn",
     },
     {
+        emoji: "🍂",
         english: "Fading",
         quenya: "Quellë",
         sindarin: "Firith",
@@ -131,6 +143,7 @@ const RivendellMonths = [
         className: "fading",
     },
     {
+        emoji: "❄️",
         english: "Winter",
         quenya: "Hrívë",
         sindarin: "Rhîw",
@@ -138,6 +151,7 @@ const RivendellMonths = [
         className: "winter",
     },
     {
+        emoji: "🌱",
         english: "Stirring",
         quenya: "Coirë",
         sindarin: "Echuir",
