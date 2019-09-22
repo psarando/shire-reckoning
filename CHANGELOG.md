@@ -1,3 +1,16 @@
+## 4.0.0 (2019-09-22)
+
+* **BREAKING:** Upgraded React dependency to version `16.8.6`
+  (and `react-scripts` dev dependency to version `3.0.0`).
+* Converted all examples to [Storybook](https://storybook.js.org) stories!
+* Added [emojis](https://psarando.github.io/shire-reckoning/#shire-weekdays)
+  to all weekday and month reckoning functions and calendar UIs!
+* Changed the English translation of *Cermië* to "Reaping Month".
+* Changed the English translation of *Yavannië* to "Fruit Giving".
+* Added [Sindarin translations](https://psarando.github.io/shire-reckoning/#gondor-holidays)
+  for Elvish holiday names.
+* Updated descriptions of various [Shire Calendar months](https://psarando.github.io/shire-reckoning/#shire-months).
+
 ## 3.2.0 (2018-03-25)
 
 * The UI calendars will now allow each date to set its own `className`,
