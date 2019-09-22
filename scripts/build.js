@@ -45,10 +45,6 @@ const isInteractive = process.stdout.isTTY;
 var requiredFiles = [
   paths.appHtml,
   paths.libHtml,
-  paths.shireHtml,
-  paths.rivendellHtml,
-  paths.gondorHtml,
-  paths.simulatedHtml,
   paths.libIndexJs,
   paths.appIndexJs,
 ];

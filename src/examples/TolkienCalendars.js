@@ -1,8 +1,9 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from "react";
+import { storiesOf } from "@storybook/react";
 
 import { datesMatch, fullYearDate } from "../Utils";
 
@@ -15,7 +16,7 @@ import ShireCalendarWithControls from "./ShireCalendarWithControls";
 import RivendellCalendarWithControls from "./RivendellCalendarWithControls";
 import GondorCalendarWithControls from "./GondorCalendarWithControls";
 
-import { CalendarCellStyle, DatePicker } from "./Common";
+import { Badges, CalendarCellStyle, DatePicker } from "./Common";
 import "./examples.css";
 
 /**
@@ -349,6 +350,24 @@ class TolkienCalendarsExample extends Component {
             rivendellCellClassName = " align-rivendell-calendar";
         }
 
+        const shireSyncOptions = SyncShireCalendar.map((sync, i) => {
+            return (
+                <option key={i} value={i}>
+                    {sync.label}
+                </option>
+            );
+        });
+
+        const rivendellSyncOptions = SyncRivendellCalendar.map((sync, i) => {
+            return (
+                <option key={i} value={i}>
+                    {sync.subtitle
+                        ? `${sync.label} (${sync.subtitle}).`
+                        : sync.label}
+                </option>
+            );
+        });
+
         return (
             <table>
                 <tbody>
@@ -368,13 +387,7 @@ class TolkienCalendarsExample extends Component {
                                 value={shireSyncScheme}
                                 onChange={this.onShireSyncChange}
                             >
-                                {SyncShireCalendar.map(function(sync, i) {
-                                    return (
-                                        <option key={i} value={i}>
-                                            {sync.label}
-                                        </option>
-                                    );
-                                })}
+                                {shireSyncOptions}
                             </select>
                         </th>
                         <th className="sync-calendar-controls">
@@ -384,17 +397,7 @@ class TolkienCalendarsExample extends Component {
                                 value={rivendellSyncScheme}
                                 onChange={this.onRivendellSyncChange}
                             >
-                                {SyncRivendellCalendar.map(function(sync, i) {
-                                    return (
-                                        <option key={i} value={i}>
-                                            {sync.subtitle
-                                                ? `${sync.label} (${
-                                                      sync.subtitle
-                                                  }).`
-                                                : sync.label}
-                                        </option>
-                                    );
-                                })}
+                                {rivendellSyncOptions}
                             </select>
                         </th>
                     </tr>
@@ -488,5 +491,106 @@ class TolkienCalendarsExample extends Component {
         );
     }
 }
+
+const srcStyle = {
+    border: "1px solid",
+    margin: "auto",
+    padding: 8,
+};
+
+const TolkienCalendarsWithInstructions = () => (
+    <>
+        <TolkienCalendarsExample />
+        <br />
+        <br />
+        The following example shows how a default Shire Calendar, with the
+        default styles, may be added to an HTML page. Note that React, ReactDOM,
+        and this library's modules are linked from{" "}
+        <a href="https://www.jsdelivr.com/">jsDelivr</a>.
+        <pre style={srcStyle}>
+            <code>
+                {`
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+
+        <title>Shire Reckoning</title>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@16/umd/react.production.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@16/umd/react-dom.production.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shire-reckoning/lib/TolkienCalendars.css"/>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shire-reckoning/lib/TolkienCalendars.js"></script>
+    </head>
+    <body>
+        <div id="shire-calendar"></div>
+        <script type="text/javascript">
+            ReactDOM.render(
+                React.createElement(TolkienCalendars.ShireCalendar, {
+                    className: "shire-calendar",
+                    caption: true,
+                }),
+                document.getElementById("shire-calendar")
+            );
+        </script>
+    </body>
+</html>
+                `}
+            </code>
+        </pre>
+        Most of the remaining examples also include a <code>source</code>{" "}
+        subfolder. So if there is a view in one of these examples you prefer,
+        look under its <code>source/javascript</code> subfolder for the view you
+        would like to use in your HTML page. Then click that view and a{" "}
+        <code>React.createElement</code> code block will display below the
+        preview, which can be used on your page in place of the{" "}
+        <code>React.createElement</code> block above.
+        <br />
+        <br />
+        <Badges />
+        <br />
+        To use this library as an ES6 module, for example in an app created by{" "}
+        <a href="https://facebook.github.io/react/docs/installation.html#creating-a-single-page-application">
+            create-react-app
+        </a>
+        , first install this library as a dependency by adding{" "}
+        <code>shire-reckoning</code> to your app's{" "}
+        <a href="https://docs.npmjs.com/files/package.json#dependencies">
+            package.json
+        </a>
+        , then run <code>npm install</code>. Then update the default{" "}
+        <code>App.js</code> file with the following code, which will render the
+        default Shire, Rivendell, and Gondor Calendars with the included styles.
+        <pre style={srcStyle}>
+            <code>
+                {`
+import React from "react";
+
+import { ShireCalendar, RivendellCalendar, GondorCalendar } from "shire-reckoning";
+import "shire-reckoning/lib/TolkienCalendars.css";
+
+import "./App.css";
+
+function App() {
+    return (
+        <div className="App">
+            <ShireCalendar className="shire-calendar" caption={true} />
+            <RivendellCalendar className="shire-calendar" caption={true} />
+            <GondorCalendar className="shire-calendar" caption={true} />
+        </div>
+    );
+}
+
+export default App;
+                `}
+            </code>
+        </pre>
+    </>
+);
+
+storiesOf("Shire Reckoning: All Tolkien Calendars", module)
+    .addParameters({ options: { showPanel: false } })
+    .add("with Synchronization settings", TolkienCalendarsWithInstructions);
 
 export default TolkienCalendarsExample;

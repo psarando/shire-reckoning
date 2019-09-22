@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from "react";
@@ -115,4 +115,26 @@ class DatePicker extends Component {
     }
 }
 
-export { CalendarCellStyle, CaptionCellStyle, DatePicker };
+const Badges = props => (
+    <>
+        <a
+            href="https://www.npmjs.org/package/shire-reckoning"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <img
+                src="https://img.shields.io/npm/v/shire-reckoning.svg?logo=npm"
+                alt="[npm version]"
+            />
+        </a>
+        &nbsp;
+        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+            <img
+                src="https://img.shields.io/npm/dependency-version/shire-reckoning/peer/react.svg?logo=react"
+                alt="[react dependency version]"
+            />
+        </a>
+    </>
+);
+
+export { Badges, CalendarCellStyle, CaptionCellStyle, DatePicker };

@@ -17,7 +17,12 @@
   ],
   "license": "EPL-1.0",
   "devDependencies": {
+    "@babel/core": "^7.4.4",
     "@btmills/prettier": "^1.17.0",
+    "@storybook/addon-storysource": "^5.0.11",
+    "@storybook/addons": "^5.0.11",
+    "@storybook/react": "^5.0.11",
+    "babel-loader": "^8.0.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0"
@@ -27,7 +32,9 @@
     "react-dom": "^16.8.6"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "npm run storybook",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "PUBLIC_URL='./' build-storybook --static-dir public/examples --output-dir build/examples",
     "build": "PUBLIC_URL='./' node scripts/build.js",
     "test": "react-scripts test",
     "prettier": "prettier --write 'src/**/*.js'"

@@ -11,10 +11,13 @@ scripts
 src/examples
 src/index.js
 src/*.test.js
+src/__tests__
+.storybook
 Lunar_Readalong.md
 
 # production
 build
+shire-reckoning.ics
 
 # dist
 shire-reckoning-*.tgz

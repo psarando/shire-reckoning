@@ -116,10 +116,10 @@ More examples of each calendar can be found in the
 along with installation and usage instructions,
 including [instructions for adding these calendars to your own site or app](https://psarando.github.io/shire-reckoning/examples/)!
 
-* [Shire Calendar examples](https://psarando.github.io/shire-reckoning/examples/shire-calendars.html)
-* [Rivendell Calendar examples](https://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
-* [Gondor Calendar examples](https://psarando.github.io/shire-reckoning/examples/gondor-calendars.html)
-* [Shire iCalendar and base reckoning function examples](https://psarando.github.io/shire-reckoning/examples/shire-icalendar.html)
+* [Shire Calendar examples](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-shire-calendar-year-view--comparing-all-region-names)
+* [Rivendell Calendar examples](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-rivendell-calendar-possible-historic-calendars--for-select-years-in-middle-earth-history)
+* [Gondor Calendar examples](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-gondor-calendar-year-view--comparing-all-reckonings)
+* [Shire iCalendar and base reckoning function examples](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-shire-calendar--icalendar-creator-for-importing-into-your-calendar)
     * Shire Reckoning for Google Calendar, Apple's iCal, or other calendar apps!
 
 [![[npm version]](https://img.shields.io/npm/v/shire-reckoning.svg?logo=npm)](https://www.npmjs.org/package/shire-reckoning)
@@ -544,9 +544,9 @@ You can view the results and the "Grand Scheme" on the
 Tolkien also made a brief comparison of our calendar with the Shire calendar
 "if our years began at the same seasonal point"; that is, if the Shire and our New Year's Day fell on the same day.
 So I've included an example of this hypothetical alignment in the
-[Shire Calendar examples](https://psarando.github.io/shire-reckoning/examples/shire-calendars.html#new-year-sync),
+[Shire Calendar examples](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-shire-calendar-what-if-our-years-began-at-the-same-seasonal-point--comparing-all-region-names),
 and also in the
-[Gondor Calendar examples](https://psarando.github.io/shire-reckoning/examples/gondor-calendars.html#new-year-sync).
+[Gondor Calendar examples](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-gondor-calendar-what-if-our-years-began-at-the-same-seasonal-point--comparing-all-reckonings).
 
 ### Gondor Reckoning Notes
 
@@ -1056,7 +1056,7 @@ due to the reasons discussed in the notes on
 [Aligning the Calendar of Imladris to the Shire Calendar](Rivendell_Drift.md#aligning-the-calendar-of-imladris-to-the-shire-calendar).
 
 In a previous revision of these notes, I had naively
-[set the Gregorian year in this calendar to 7050](https://psarando.github.io/shire-reckoning/examples/rivendell-calendars.html)
+[set the Gregorian year in this calendar to 7050](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-rivendell-calendar-possible-historic-calendars--for-select-years-in-middle-earth-history)
 and observed that if the Calendar of Imladris started reckoning from a proleptic Gregorian March 21,
 then its Yestarë fell on Gregorian March 25 in the year 7050.
 [Recall in the notes above](#rivendell-new-years-day-fell-on-a-march-25th-by-the-end-of-the-third-age)
@@ -1259,7 +1259,7 @@ This project's library also exports the base calendar functions for
 `ShireReckoning`, `RivendellReckoning`, and `GondorReckoning`
 so that these calendars can be displayed in any other view.
 
-For example, see the [Shire Reckoning iCalendar Creator](https://psarando.github.io/shire-reckoning/examples/shire-icalendar.html)
+For example, see the [Shire Reckoning iCalendar Creator](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-shire-calendar--icalendar-creator-for-importing-into-your-calendar)
 under the [examples directory](https://psarando.github.io/shire-reckoning/examples/),
 which can print iCalendar formatted dates with corresponding Shire Reckoning dates,
 which can then be saved as an *.ics* file

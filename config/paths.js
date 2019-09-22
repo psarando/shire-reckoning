@@ -75,7 +75,7 @@ module.exports = {
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/examples/index.html'),
+  appHtml: resolveApp('public/index.html'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
@@ -91,16 +91,6 @@ module.exports = {
   libIndexJs: resolveModule(resolveApp, 'src/lib'),
   libBuild: resolveApp('lib'),
   libHtml: resolveApp('public/lib.html'),
-  shireHtml: resolveApp('public/examples/shire-calendars.html'),
-  shireOutput: 'examples/shire-calendars.html',
-  rivendellHtml: resolveApp('public/examples/rivendell-calendars.html'),
-  rivendellOutput: 'examples/rivendell-calendars.html',
-  gondorHtml: resolveApp('public/examples/gondor-calendars.html'),
-  gondorOutput: 'examples/gondor-calendars.html',
-  simulatedHtml: resolveApp('public/examples/simulated.html'),
-  simulatedOutput: 'examples/simulated.html',
-  shireICalHtml: resolveApp('public/examples/shire-icalendar.html'),
-  shireICalOutput: 'examples/shire-icalendar.html',
 };
 
 module.exports.moduleFileExtensions = moduleFileExtensions;

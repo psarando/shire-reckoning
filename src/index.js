@@ -11,10 +11,4 @@ export {
     default as SimulatedTolkienCalendars,
 } from "./examples/simulation/TolkienCalendars";
 
-export { default as ShireCalendarExample } from "./examples/ShireCalendars";
-export { default as RivendellCalendarExample } from "./examples/RivendellCalendars"; // prettier-ignore
-export { default as GondorCalendarExample } from "./examples/GondorCalendars";
-
-export { default as ICalendarGenerator } from "./examples/ICalendarGenerator";
-
 export * from "./lib";

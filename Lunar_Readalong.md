@@ -41,7 +41,7 @@ and I made some notes as I went on some of my real-world observations of the moo
 I've now collected my results here, along with an example alignment for 2020-21 dates and moon phases.
 
 For those still following the 2017-18 Readalong, the
-[shortcut to the calendar simulations that defaults to syncing with the moon phases for 2017-18 and today's date](https://psarando.github.io/shire-reckoning/examples/simulated.html)
+[shortcut to the calendar simulations that defaults to syncing with the moon phases for 2017-18 and today's date](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2017-18-moon-phase-synchronized-simulation)
 is still available.
 
 If anyone else wishes to attempt this Readalong,

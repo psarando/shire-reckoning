@@ -3,6 +3,7 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from "react";
+import { storiesOf } from "@storybook/react";
 
 import "../../ui/tolkien-calendars.css";
 
@@ -307,5 +308,20 @@ class SimulatedTolkienCalendars extends Component {
         );
     }
 }
+
+storiesOf("Shire Reckoning: Middle-earth Simulation", module)
+    .addParameters({ options: { showPanel: false } })
+    .add("Elves' New Year's Day in T.A. 3019 (default example)", () => (
+        <SimulatedTolkienCalendars />
+    ))
+    .add("2020-21 moon phase synchronized simulation", () => (
+        <SimulatedTolkienCalendars calendarRules={2} selectedEvent={0} />
+    ))
+    .add("2017-18 moon phase synchronized simulation", () => (
+        <SimulatedTolkienCalendars calendarRules={3} selectedEvent={0} />
+    ))
+    .add("1941-42 moon phase synchronized simulation", () => (
+        <SimulatedTolkienCalendars calendarRules={4} selectedEvent={0} />
+    ));
 
 export default SimulatedTolkienCalendars;
