@@ -173,8 +173,7 @@ Muddy Month.`,
 `Tolkien: March
 Shire: Rethe
 Bree: Rethe
-From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede.
-Month of Wildness or Roaring Winds.`,
+From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede.`,
         className: "rethe",
     },
     {
@@ -188,8 +187,7 @@ Month of Wildness or Roaring Winds.`,
 Shire: Astron
 Bree: Chithing
 From Ēastermōnað 'Easter-month', named after the Goddess Ēostre,
-and from cīþing 'growing thing' (cīþ 'young shoot, sprout').
-Spring Month.`,
+and from cīþing 'growing thing' (cīþ 'young shoot, sprout').`,
         className: "astron",
     },
     {
@@ -215,9 +213,8 @@ The month of plenty, when cows were given three milkings (þri-milce) daily.`,
 `Tolkien: June
 Shire: Forelithe
 Bree: Lithe
-The month before the summer solstice (Midsummer), when litha (gentle, mild) weather encouraged voyages.
-From ǣrra Līða 'before Litha'.
-Calm or Navigable Month.`,
+The month before the summer solstice (Midsummer), when 'litha' (gentle or navigable) weather encouraged voyages.
+From ǣrra Līða 'before Litha'.`,
         className: "forelithe",
     },
     {
@@ -230,8 +227,7 @@ Calm or Navigable Month.`,
 `Tolkien: July
 Shire: Afterlithe
 Bree: Mede
-The month after the summer solstice (Midsummer), from æfter Līða, and from mǣd 'mead, meadow'.
-Meadow Month.`,
+The month after the summer solstice (Midsummer), from æfter Līða, and from mǣd 'mead, meadow'.`,
         className: "afterlithe",
     },
     {
@@ -244,8 +240,7 @@ Meadow Month.`,
 `Tolkien: August
 Shire: Wedmath
 Bree: Wedmath
-When fields were beset by weeds, from Wēodmōnað 'weed-month'.
-Plant Month.`,
+When fields were beset by weeds, from Wēodmōnað 'weed-month'.`,
         className: "wedmath",
     },
     {
@@ -258,8 +253,7 @@ Plant Month.`,
 `Tolkien: September
 Shire: Halimath
 Bree: Harvestmath
-The holy month of offerings, from Hāligmōnað 'holy-month', and from Hærfestmōnað 'harvest-month'.
-Harvest Month.`,
+The holy month of offerings, from Hāligmōnað 'holy-month', and from Hærfestmōnað 'harvest-month'.`,
         className: "halimath",
     },
     {
@@ -274,8 +268,7 @@ Shire: Winterfilth
 Bree: Wintring
 The filling of winter's first full moon, according to the Venerable Bede.
 Tolkien instead suggests the "filling" or completion of the year before Winter, after the harvest.
-From Winterfylleð 'winter fullness', and wintrig 'wintry, winter'.
-Wine Month.`,
+From Winterfylleð 'winter fullness', and wintrig 'wintry, winter'.`,
         className: "winterfilth",
     },
     {
@@ -288,7 +281,7 @@ Wine Month.`,
 `Tolkien: November
 Shire: Blotmath
 Bree: Blooting
-The Month of Sacrifice, from Blōtmōnað 'sacrifice-month'.`,
+From Blōtmōnað 'sacrifice-month'.`,
         className: "blotmath",
     },
     {

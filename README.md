@@ -40,7 +40,7 @@ Shire Reckoning
             * [The Lord of the Rings Lunar Readalong](#the-lord-of-the-rings-lunar-readalong)
         * [What if our years began at the same seasonal point?](#what-if-our-years-began-at-the-same-seasonal-point)
 * [Gondor Reckoning Notes](#gondor-reckoning-notes)
-    * [Gondor's Weekdays](#gondors-weekdays)
+    * [Gondor Weekdays](#gondor-weekdays)
     * [Gondor Months](#gondor-months)
     * [Gondor Holidays](#gondor-holidays)
 * [Rivendell Reckoning Notes](#rivendell-reckoning-notes)
@@ -364,6 +364,20 @@ and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipe
 
 #### Shire Weekdays
 
+In Appendix D, Tolkien gave the Shire names of the week,
+along with more archaic names used by the Hobbits before Bilbo's time.
+The table below lists these Hobbit names,
+along with the Old English origins given by the *Reader's Companion*,
+and the Gregorian names Tolkien used as substitutions.
+
+This table starts with *Sterday* and ends with *Highday* because of this statement made by Tolkien in Appendix D:
+
+> The last day of the week, Friday (Highday), was the chief day, and one of holiday (after noon) and evening feasts.
+
+So culturally speaking, *Highday* "more nearly" corresponded with Gregorian Sunday,
+and *Mersday* with Gregorian Saturday,
+making *Mersday* and *Highday* like the weekend for the Shire.
+
 |   |Shire|Tolkien|Description|
 |---|-----|-------|-----------|
 |⭐|Sterday|Saturday|Star Day. From the archaic Sterrendei (from Old English steorra dæg).|
@@ -383,12 +397,12 @@ and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipe
 |🌬|Rethe|Rethe|March|From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede.|
 |🌱|Astron|Chithing|April|From Ēastermōnað 'Easter-month', named after the Goddess Ēostre, and from cīþing 'growing thing' (cīþ 'young shoot, sprout').|
 |🌼|Thrimidge|Thrimidge|May|The month of plenty, when cows were given three milkings (þri-milce) daily.|
-|☀️|Forelithe|Lithe|June|The month before the summer solstice (Midsummer), when litha (gentle, mild) weather encouraged voyages. From ǣrra Līða 'before Litha'.|
+|☀️|Forelithe|Lithe|June|The month before the summer solstice (Midsummer), when 'litha' (gentle or navigable) weather encouraged voyages. From ǣrra Līða 'before Litha'.|
 |🍃|Afterlithe|Mede|July|The month after the summer solstice (Midsummer), from æfter Līða, and from mǣd 'mead, meadow'.|
 |🌿|Wedmath|Wedmath|August|When fields were beset by weeds, from Wēodmōnað 'weed-month'.|
 |🍇|Halimath|Harvestmath|September|The holy month of offerings, from Hāligmōnað 'holy-month', and from Hærfestmōnað 'harvest-month'.|
 |🍂|Winterfilth|Wintring|October|The filling of winter's first full moon, according to the Venerable Bede. Tolkien instead suggests the "filling" or completion of the year before Winter, after the harvest. From Winterfylleð 'winter fullness', and wintrig 'wintry, winter'.|
-|🌫|Blotmath|Blooting|November|The Month of Sacrifice, from Blōtmōnað 'sacrifice-month'.|
+|🌫|Blotmath|Blooting|November|From Blōtmōnað 'sacrifice-month'.|
 |❄️|Foreyule|Yulemath|December|The month before the winter solstice (Midwinter), from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.|
 
 #### Shire Holidays
@@ -698,19 +712,17 @@ The calendar of Gondor went through 3 variations throughout its history:
    Shire Rethe 25 and Halimath 22, which fall on the New Reckoning's Yestarë and Cormarë/Yavannië 30,
    apparently were not celebrated in the Shire.
 
-#### Gondor's Weekdays
+#### Gondor Weekdays
 
-This project assumes Tolkien's statements in Appendix D about the Shire's weekdays also apply to Gondor's weekdays:
+This project assumes [Tolkien's statements in Appendix D about the Shire's weekdays](#shire-weekdays)
+also apply to Gondor's weekdays.
 
-> The last day of the week, Friday (Highday), was the chief day, and one of holiday (after noon) and evening feasts.
-
-So culturally speaking, Highday "more nearly" corresponded with Gregorian Sunday,
-and Mersday with Gregorian Saturday.
 Since Shire weekday names originated from Kings' Reckoning weekday names,
 I assumed the same cultural correlation in Gondor,
 so these Gondorian calendars also correlate their weekdays similarly with Gregorian weekdays.
-In other words, I'm assuming Eärenya and Valanya was the weekend in Gondor
-just as Mersday and Highday was the weekend in the Shire.
+
+In other words, I'm assuming *Eärenya* and *Valanya* was the weekend in Gondor
+just as *Mersday* and *Highday* was the weekend in the Shire.
 
 |   |Quenya|Sindarin|English|
 |---|------|--------|-------|
