@@ -1,81 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-          content="A visualization of the calendars described in J.R.R. Tolkien's The Lord of the Rings Appendix D,
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description"
+              content="A visualization of the calendars described in J.R.R. Tolkien's The Lord of the Rings Appendix D,
                        labeled with each day's corresponding Gregorian date of the current year,
                        and with today's date highlighted on each calendar.
                        These calendars are the Shire Reckoning,
                        Rivendell Reckoning (also known as the Calendar of Imladris),
-                       and calendars of Gondor: Kings' Reckoning, Stewards' Reckoning, and the New Reckoning.">
+                       and calendars of Gondor: Kings' Reckoning, Stewards' Reckoning, and the New Reckoning."
+        />
 
-    <title>
-        Shire Reckoning iCalendar: An iCalendar for the Shire Reckoning as described in
-        J.R.R. Tolkien's The Lord of the Rings Appendix D
-    </title>
-</head>
-<body>
-<p>
-    This project's library also exports the base calendar functions for
-    <code>ShireReckoning</code>, <code>RivendellReckoning</code>, and <code>GondorReckoning</code>
-    so that these calendars can be displayed in any other view.
-</p>
-<p>
-    The following example can generate an iCalendar with a corresponding
-    Shire Calendar date for each day of the year.
-    An iCalendar can be created for
-    <a href="%PUBLIC_URL%/#reckoning-start-dates">various start dates</a>
-    for the Shire Calendar's New Year's Day and with
-    <a href="%PUBLIC_URL%/#shire-reckoning-notes">the different names of months and weekdays</a>
-    given in <em>The Lord of the Rings</em>.
-    The iCalendar text can be copied from this text-box and saved as an <em>.ics</em> file
-    (such as the <a href="%PUBLIC_URL%/shire-reckoning.ics">shire-reckoning.ics</a>
-    file already included in this project)
-    then imported into a calendaring program, such as Google Calendar or Apple's iCal.
-</p>
+        <title>
+            Shire Reckoning iCalendar: An iCalendar for the Shire Reckoning as described in
+            J.R.R. Tolkien's The Lord of the Rings Appendix D
+        </title>
+    </head>
+    <body>
+        <p>
+            This project's library also exports the base calendar functions for
+            <code>ShireReckoning</code>, <code>RivendellReckoning</code>, and <code>GondorReckoning</code>
+            so that these calendars can be displayed in any other view.
+        </p>
+        <p>
+            The following example can generate an iCalendar with a corresponding
+            Shire Calendar date for each day of the year.
+            An iCalendar can be created for
+            <a href="%PUBLIC_URL%/#reckoning-start-dates">various start dates</a>
+            for the Shire Calendar's New Year's Day and with
+            <a href="%PUBLIC_URL%/#shire-reckoning-notes">the different names of months and weekdays</a>
+            given in <em>The Lord of the Rings</em>.
+            The iCalendar text can be copied from this text-box and saved as an <em>.ics</em> file
+            (such as the <a href="%PUBLIC_URL%/shire-reckoning.ics">shire-reckoning.ics</a>
+            file already included in this project)
+            then imported into a calendaring program, such as Google Calendar or Apple's iCal.
+        </p>
 
-<ul>
-    <li>
-        <em>Hint for Google Calendar users</em>:
-        You probably want to create a new, empty calendar (it could be named "Shire Reckoning"),
-        then import the <a href="%PUBLIC_URL%/shire-reckoning.ics">shire-reckoning.ics</a>
-        events into that calendar.
-        This way you can easily hide all these events,
-        or delete this new calendar to remove all the events at once,
-        without affecting events in your default calendar,
-        and without having to remove these shire dates one at a time.
-    </li>
-</ul>
+        <ul>
+            <li>
+                <em>Hint for Google Calendar users</em>:
+                You probably want to create a new, empty calendar (it could be named "Shire Reckoning"),
+                then import the <a href="%PUBLIC_URL%/shire-reckoning.ics">shire-reckoning.ics</a>
+                events into that calendar.
+                This way you can easily hide all these events,
+                or delete this new calendar to remove all the events at once,
+                without affecting events in your default calendar,
+                and without having to remove these shire dates one at a time.
+            </li>
+        </ul>
 
-<div id="copy-icalendar"></div>
-<script type="text/javascript">
-    TolkienCalendars.renderICalendarGenerator('copy-icalendar');
-</script>
+        <div id="copy-icalendar"></div>
+        <script type="text/javascript">
+            ReactDOM.render(
+                React.createElement(TolkienCalendars.ICalendarGenerator, null),
+                document.getElementById("copy-icalendar")
+            );
+        </script>
 
-<a href="https://www.npmjs.org/package/shire-reckoning">
-    <img src="https://img.shields.io/npm/v/shire-reckoning.svg" alt="NPM version"></a>
-This project's library requires the
-<a href="http://facebook.github.io/react/">React javascript library</a>.
+        <br /><br />
 
-<br/><br/>
-
-The following example shows how to create a Shire Calendar for today's date and parse the name of each day into a list.
-Note that React and this library's modules are linked from
-<a href="https://unpkg.com">https://unpkg.com</a>.
-<pre style="border: 1px solid; margin: auto;">
+        The following example shows how to create a Shire Calendar for today's date and parse the name of each day into a list.
+        Note that React and this library's modules are linked from
+        <a href="https://www.jsdelivr.com/">jsDelivr</a>.
+        <pre style="border: 1px solid; margin: auto; padding: 8px;">
             <code>
-    &lt;!doctype html&gt;
-    &lt;html&gt;
-        &lt;head&gt;
-            &lt;meta charset="UTF-8"&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
 
-            &lt;script type="text/javascript" src="https://unpkg.com/react@15/dist/react.js"&gt;&lt;/script&gt;
-            &lt;script type="text/javascript" src="https://unpkg.com/shire-reckoning/lib/TolkienCalendars.js"&gt;&lt;/script&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-        &lt;div id='shire-dates' &gt;&lt;/div&gt;
+        &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@16/umd/react.production.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shire-reckoning/lib/TolkienCalendars.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="shire-dates" &gt;&lt;/div&gt;
         &lt;script type="text/javascript"&gt;
             let calendar = TolkienCalendars.ShireReckoning.makeShireCalendarDates(new Date());
             let dateListText = calendar.dates.map((date, index) => {
@@ -94,60 +93,70 @@ Note that React and this library's modules are linked from
 
             document.getElementById("shire-dates").innerText = dateListText;
         &lt;/script&gt;
-        &lt;/body&gt;
-    &lt;/html&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
             </code>
         </pre>
 
-<br/><br/>
-To use this library as an ES6 module, for example in an app created by
-<a href="https://reactjs.org/docs/installation.html#creating-a-new-application">create-react-app</a>,
-first install this library as a dependency by adding
-<a href="https://www.npmjs.com/package/shire-reckoning">shire-reckoning</a>
-to your app's
-<a href="https://docs.npmjs.com/files/package.json#dependencies">package.json</a>,
-then run '<code>npm install</code>'.
-Then update the default <code>App.js</code> file with the following code,
-which will render a list of each day's name in the Shire Calendar for this year:
-<pre style="border: 1px solid; margin: auto;">
+        <br />
+        <a href="https://www.npmjs.org/package/shire-reckoning" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.shields.io/npm/v/shire-reckoning.svg?logo=npm"
+                 alt="[npm version]"
+            /></a>
+        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.shields.io/github/package-json/dependency-version/psarando/shire-reckoning/react.svg?logo=react"
+                 alt="[react dependency version]"
+            /></a>
+        <br />
+
+        To use this library as an ES6 module, for example in an app created by
+        <a href="https://reactjs.org/docs/installation.html#creating-a-new-application">create-react-app</a>,
+        first install this library as a dependency by adding
+        <a href="https://www.npmjs.com/package/shire-reckoning">shire-reckoning</a>
+        to your app's
+        <a href="https://docs.npmjs.com/files/package.json#dependencies">package.json</a>,
+        then run '<code>npm install</code>'.
+        Then update the default <code>App.js</code> file with the following code,
+        which will render a list of each day's name in the Shire Calendar for this year:
+        <pre style="border: 1px solid; margin: auto; padding: 8px;">
             <code>
-    import React, { Component } from 'react';
+import React, { Component } from 'react';
 
-    import { ShireReckoning } from 'shire-reckoning';
+import { ShireReckoning } from 'shire-reckoning';
 
-    import './App.css';
+import './App.css';
 
-    class App extends Component {
-        render() {
-            let calendar = ShireReckoning.makeShireCalendarDates(new Date());
-            return (
-                &lt;div className="App"&gt;
-                    {calendar.dates.map((date, index) => {
-                        switch (date.day) {
-                            case "1 Yule":
-                            case "2 Yule":
-                            case "1 Lithe":
-                            case "Midyear's Day":
-                            case "Overlithe":
-                            case "2 Lithe":
-                                return date.day;
-                            default:
-                                return `<%= `$\{date.day} $\{ShireReckoning.ShireMonths[date.month].shire}` %>`;
-                        }
-                    }).join("\n")}
-                &lt;/div&gt;
-            );
-        }
+class App extends Component {
+    render() {
+        let calendar = ShireReckoning.makeShireCalendarDates(new Date());
+        return (
+            &lt;div className="App"&gt;
+                {calendar.dates.map((date, index) => {
+                    switch (date.day) {
+                        case "1 Yule":
+                        case "2 Yule":
+                        case "1 Lithe":
+                        case "Midyear's Day":
+                        case "Overlithe":
+                        case "2 Lithe":
+                            return date.day;
+                        default:
+                            return `<%= `$\{date.day} $\{ShireReckoning.ShireMonths[date.month].shire}` %>`;
+                    }
+                }).join("\n")}
+            &lt;/div&gt;
+        );
     }
+}
 
-    export default App;
+export default App;
             </code>
         </pre>
 
-Also available are the <code>RivendellReckoning</code> and <code>GondorReckoning</code> exports.
+        Also available are the <code>RivendellReckoning</code> and <code>GondorReckoning</code> exports.
 
-<ul>
-    <li><a href="%PUBLIC_URL%/examples/">More examples</a></li>
-</ul>
-</body>
+        <ul>
+            <li><a href="%PUBLIC_URL%/examples/">More examples</a></li>
+        </ul>
+    </body>
 </html>

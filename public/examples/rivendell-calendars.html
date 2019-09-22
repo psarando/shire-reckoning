@@ -1,24 +1,19 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <title>
             Shire Reckoning: Examples of Rivendell Calendar settings.
         </title>
     </head>
     <body>
-        <a href="https://www.npmjs.org/package/shire-reckoning">
-            <img src="https://img.shields.io/npm/v/shire-reckoning.svg" alt="NPM version"></a>
-        These javascript calendars require the
-        <a href="http://facebook.github.io/react/">React javascript library</a>.
         See the <a href="index.html">main examples page</a> for installation and usage instructions.
 
         <br /><br />
         The following examples will only show the <code>JavaScript React.createElement</code>
         or <code>JSX</code> element tag that renders the calendar shown.
         <br />
-        For example,
-        the following code will render the default Rivendell Calendar shown below,
+        For example, the following code will render the default Rivendell Calendar shown below,
         when substituted in the <code>React.createElement(...)</code> line of the <a href="index.html">main examples page</a>:
         <pre>
             <code>
@@ -26,6 +21,16 @@
             </code>
         </pre>
 
+        <br />
+        <a href="https://www.npmjs.org/package/shire-reckoning" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.shields.io/npm/v/shire-reckoning.svg?logo=npm"
+                 alt="[npm version]"
+            /></a>
+        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.shields.io/github/package-json/dependency-version/psarando/shire-reckoning/react.svg?logo=react"
+                 alt="[react dependency version]"
+            /></a>
+        <br />
         The following JSX element tag will render the default Rivendell Calendar (shown below) in a React app:
         <pre>
             <code>
@@ -37,12 +42,17 @@
         Quenya language, Traditional Rules starting from March 22nd,
         today's date, month view, no caption title,
         and no CSS class to style the table.
-        <div id='rivendell-calendar-default' ></div>
-        <div id='rivendell-calendars' ></div>
+        <div id="rivendell-calendar-default"></div>
+        <div id="rivendell-calendars"></div>
         <script type="text/javascript">
-            TolkienCalendars.renderRivendellCalendar('rivendell-calendar-default');
-            TolkienCalendars.renderRivendellCalendarExample('rivendell-calendars');
+            ReactDOM.render(
+                React.createElement(TolkienCalendars.RivendellCalendar, null),
+                document.getElementById("rivendell-calendar-default")
+            );
+            ReactDOM.render(
+                React.createElement(TolkienCalendars.RivendellCalendarExample, null),
+                document.getElementById("rivendell-calendars")
+            );
         </script>
     </body>
 </html>
-

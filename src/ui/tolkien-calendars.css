@@ -9,7 +9,6 @@
     height: 5rem;
     width: 5rem;
     text-align: center;
-    font-size: .8rem;
     font-weight: bold;
 }
 .shire-calendar caption {
@@ -67,7 +66,8 @@
 
 .highlight      { background-color: yellow; }
 .weekday-header { background-color: gainsboro; }
-.holiday        { background-color: azure; }
+.holiday        { background-color: azure; color: darkred; }
+.holiday .gregorian-display { color: black; }
 
 .afteryule      { background-color: lightskyblue; }
 .solmath        { background-color: lightsteelblue; }
@@ -75,16 +75,16 @@
 .astron         { background-color: forestgreen; }
 .thrimidge      { background-color: lightcyan; }
 .forelithe      { background-color: lemonchiffon; }
-.afterlithe     { background-color: green; }
-.wedmath        { background-color: darkolivegreen; }
-.halimath       { background-color: darkgoldenrod; }
-.winterfilth    { background-color: orange; }
-.blotmath       { background-color: brown; }
-.foreyule       { background-color: cornflowerblue; }
+.afterlithe     { background-color: green; color: lightgoldenrodyellow; }
+.wedmath        { background-color: darkolivegreen; color: honeydew; }
+.halimath       { background-color: darkgoldenrod; color: navy; }
+.winterfilth    { background-color: orange; color: maroon; }
+.blotmath       { background-color: brown; color: ghostwhite; }
+.foreyule       { background-color: cornflowerblue; color: darkblue; }
 
 .spring   { background-color: forestgreen; }
 .summer   { background-color: lemonchiffon; }
-.autumn   { background-color: darkolivegreen; }
-.fading   { background-color: darkgoldenrod; }
-.winter   { background-color: lightskyblue; }
+.autumn   { background-color: darkolivegreen; color: honeydew; }
+.fading   { background-color: darkgoldenrod; color: navy; }
+.winter   { background-color: lightskyblue; color: darkblue; }
 .stirring { background-color: yellowgreen; }

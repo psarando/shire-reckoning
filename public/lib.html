@@ -1,69 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <meta name="description"
               content="A visualization of the calendars described in J.R.R. Tolkien's The Lord of the Rings Appendix D,
                        labeled with each day's corresponding Gregorian date of the current year,
                        and with today's date highlighted on each calendar.
                        These calendars are the Shire Reckoning,
                        Rivendell Reckoning (also known as the Calendar of Imladris),
-                       and calendars of Gondor: Kings' Reckoning, Stewards' Reckoning, and the New Reckoning.">
+                       and calendars of Gondor: Kings' Reckoning, Stewards' Reckoning, and the New Reckoning."
+        />
 
         <title>
             Shire Reckoning: A visualization of the calendars described in
             J.R.R. Tolkien's The Lord of the Rings Appendix D
         </title>
 
-        <script type="text/javascript" src="https://unpkg.com/react@15/dist/react.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@16/umd/react.production.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@16/umd/react-dom.production.min.js"></script>
     </head>
     <body>
-    <div id='shire-calendar' ></div>
-    <script type="text/javascript">
-        ReactDOM.render(
-            React.createElement(
-                TolkienCalendars.ShireCalendar,
-                {
-                    "caption": "Shire Calendar",
-                    "className": "shire-calendar"
-                }
-            ),
-            document.getElementById("shire-calendar")
-        );
-    </script>
+        <div id="shire-calendar"></div>
+        <script type="text/javascript">
+            ReactDOM.render(
+                React.createElement(TolkienCalendars.ShireCalendar, {
+                    caption: "Shire Calendar",
+                    className: "shire-calendar"
+                }),
+                document.getElementById("shire-calendar")
+            );
+        </script>
 
-    <hr />
+        <hr />
 
-    <div id='rivendell-calendar' ></div>
-    <script type="text/javascript">
-        ReactDOM.render(
-            React.createElement(
-                TolkienCalendars.RivendellCalendar,
-                {
-                    "caption": "Calendar of Imladris",
-                    "className": "shire-calendar"
-                }
-            ),
-            document.getElementById("rivendell-calendar")
-        );
-    </script>
+        <div id="rivendell-calendar"></div>
+        <script type="text/javascript">
+            ReactDOM.render(
+                React.createElement(TolkienCalendars.RivendellCalendar, {
+                    caption: "Calendar of Imladris",
+                    className: "shire-calendar"
+                }),
+                document.getElementById("rivendell-calendar")
+            );
+        </script>
 
-    <hr />
+        <hr />
 
-    <div id='gondor-calendar' ></div>
-    <script type="text/javascript">
-        ReactDOM.render(
-            React.createElement(
-                TolkienCalendars.GondorCalendar,
-                {
-                    "caption": "Calendars of Gondor",
-                    "className": "shire-calendar"
-                }
-            ),
-            document.getElementById("gondor-calendar")
-        );
-    </script>
+        <div id="gondor-calendar"></div>
+        <script type="text/javascript">
+            ReactDOM.render(
+                React.createElement(TolkienCalendars.GondorCalendar, {
+                    caption: "Calendars of Gondor",
+                    className: "shire-calendar"
+                }),
+                document.getElementById("gondor-calendar")
+            );
+        </script>
+
+        <div id="shire-dates"></div>
+        <script type="text/javascript">
+            const calendar = TolkienCalendars.ShireReckoning.makeShireCalendarDates(new Date());
+            const dateListText = calendar.dates
+                .map((date, index) => {
+                    switch (date.day) {
+                        case "1 Yule":
+                        case "2 Yule":
+                        case "1 Lithe":
+                        case "Midyear's Day":
+                        case "Overlithe":
+                        case "2 Lithe":
+                            return date.day;
+                        default:
+                            return `${date.day} ${TolkienCalendars.ShireReckoning.ShireMonths[date.month].shire}`;
+                    }
+                })
+                .join("\n");
+
+            document.getElementById("shire-dates").innerText = dateListText;
+        </script>
     </body>
 </html>
-

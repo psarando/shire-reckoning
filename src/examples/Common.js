@@ -2,21 +2,21 @@
  * Copyright (C) 2016 Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { fullYearDate } from '../Utils';
-import './examples.css';
+import { fullYearDate } from "../Utils";
+import "./examples.css";
 
 const CalendarCellStyle = {
-    verticalAlign: 'top'
+    verticalAlign: "top",
 };
 
 const CaptionCellStyle = {
-    verticalAlign: 'top',
-    padding: '1rem',
-    borderTopStyle: 'solid',
-    borderLeftStyle: 'solid',
-    borderRightStyle: 'solid'
+    verticalAlign: "top",
+    padding: "1rem",
+    borderTopStyle: "solid",
+    borderLeftStyle: "solid",
+    borderRightStyle: "solid",
 };
 
 class DatePicker extends Component {
@@ -32,9 +32,9 @@ class DatePicker extends Component {
     }
 
     onDateChanged(event) {
-        let year  = parseInt(this.refs.currentYear.value, 10);
+        let year = parseInt(this.refs.currentYear.value, 10);
         let month = parseInt(this.refs.currentMonth.value, 10);
-        let day   = parseInt(this.refs.currentDay.value, 10);
+        let day = parseInt(this.refs.currentDay.value, 10);
 
         if (0 <= day && day <= 32) {
             let currentDate = fullYearDate(year, month, day);
@@ -47,12 +47,14 @@ class DatePicker extends Component {
 
     createDateInput(ref, value) {
         return (
-            <input type="number"
-                   className="date-time-input"
-                   ref={ref}
-                   step='1'
-                   onChange={this.onDateChanged}
-                   value={value} />
+            <input
+                type="number"
+                className="date-time-input"
+                ref={ref}
+                step="1"
+                onChange={this.onDateChanged}
+                value={value}
+            />
         );
     }
 
@@ -61,42 +63,52 @@ class DatePicker extends Component {
         let className = this.props.className || "gregorian-date-picker";
 
         return (
-            <table className={className} >
+            <table className={className}>
                 <tbody>
-                <tr>
-                    <th>Gregorian Date:</th>
-                    <th>
-                        <select className="date-time-input"
-                                ref='currentMonth'
+                    <tr>
+                        <th>Gregorian Date:</th>
+                        <th>
+                            <select
+                                className="date-time-input"
+                                ref="currentMonth"
                                 value={currentDate.getMonth()}
-                                onChange={this.onDateChanged} >
-                            <option value='0'>Jan</option>
-                            <option value='1'>Feb</option>
-                            <option value='2'>Mar</option>
-                            <option value='3'>Apr</option>
-                            <option value='4'>May</option>
-                            <option value='5'>Jun</option>
-                            <option value='6'>Jul</option>
-                            <option value='7'>Aug</option>
-                            <option value='8'>Sep</option>
-                            <option value='9'>Oct</option>
-                            <option value='10'>Nov</option>
-                            <option value='11'>Dec</option>
-                        </select>
-                    </th>
-                    <th>
-                        {this.createDateInput('currentDay', currentDate.getDate())}
-                    </th>
-                    <th>
-                        {this.createDateInput('currentYear', currentDate.getFullYear())}
-                    </th>
-                    <th>
-                        <button className="today-button"
-                                onClick={this.resetDate} >
-                            <span className="today-button-txt">Today</span>
-                        </button>
-                    </th>
-                </tr>
+                                onChange={this.onDateChanged}
+                            >
+                                <option value="0">Jan</option>
+                                <option value="1">Feb</option>
+                                <option value="2">Mar</option>
+                                <option value="3">Apr</option>
+                                <option value="4">May</option>
+                                <option value="5">Jun</option>
+                                <option value="6">Jul</option>
+                                <option value="7">Aug</option>
+                                <option value="8">Sep</option>
+                                <option value="9">Oct</option>
+                                <option value="10">Nov</option>
+                                <option value="11">Dec</option>
+                            </select>
+                        </th>
+                        <th>
+                            {this.createDateInput(
+                                "currentDay",
+                                currentDate.getDate()
+                            )}
+                        </th>
+                        <th>
+                            {this.createDateInput(
+                                "currentYear",
+                                currentDate.getFullYear()
+                            )}
+                        </th>
+                        <th>
+                            <button
+                                className="today-button"
+                                onClick={this.resetDate}
+                            >
+                                <span className="today-button-txt">Today</span>
+                            </button>
+                        </th>
+                    </tr>
                 </tbody>
             </table>
         );

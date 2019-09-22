@@ -2,9 +2,9 @@
  * Copyright (C) 2016 Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from 'react';
-import { datesMatch } from '../Utils';
-import './tolkien-calendars.css';
+import React, { Component } from "react";
+import { datesMatch } from "../Utils";
+import "./tolkien-calendars.css";
 
 const getDateColor = (monthColor, date1, date2) => {
     if (datesMatch(date1, date2)) {
@@ -16,7 +16,11 @@ const getDateColor = (monthColor, date1, date2) => {
 
 class GregorianDateDisplay extends Component {
     render() {
-        return (<span className='gregorian-display' >{this.props.date.toDateString()}</span>);
+        return (
+            <span className="gregorian-display">
+                {this.props.date.toDateString()}
+            </span>
+        );
     }
 }
 
@@ -30,8 +34,11 @@ class DateCell extends Component {
         let dayColor = getDateColor(className, gregorianDate, currentDate);
 
         return (
-            <td className={dayColor} title={dateTitle + "\nWeekday: " + this.props.weekday} >
-                {date.day} {(date.day === 1) ? this.props.month : ''}
+            <td
+                className={dayColor}
+                title={dateTitle + "\nWeekday: " + this.props.weekday}
+            >
+                {date.day} {date.day === 1 ? this.props.month : ""}
                 <br />
                 <GregorianDateDisplay date={gregorianDate} />
             </td>

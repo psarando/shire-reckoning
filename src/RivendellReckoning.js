@@ -10,11 +10,11 @@ import {
     isLeapYear,
     datesMatch,
     fullYearDate,
-    getNextDate
-} from './Utils';
+    getNextDate,
+} from "./Utils";
 
-const RIVENDELL_DAYS_PER_12_YEARS = (365 * 12 + 3);
-const RIVENDELL_DAYS_PER_432_YEARS = (RIVENDELL_DAYS_PER_12_YEARS * 12 * 3 - 3);
+const RIVENDELL_DAYS_PER_12_YEARS = 365 * 12 + 3;
+const RIVENDELL_DAYS_PER_432_YEARS = RIVENDELL_DAYS_PER_12_YEARS * 12 * 3 - 3;
 
 /**
  * Traditional Rivendell Reckoning rules enum
@@ -50,40 +50,41 @@ const RivendellWeekdays = [
         english: "Stars Day",
         quenya: "Elenya",
         sindarin: "Orgilion",
-        description: "English: Stars Day\nQuenya: Elenya\nSindarin: Orgilion"
+        description: "English: Stars Day\nQuenya: Elenya\nSindarin: Orgilion",
     },
     {
         english: "Sun Day",
         quenya: "Anarya",
         sindarin: "Oranor",
-        description: "English: Sun Day\nQuenya: Anarya\nSindarin: Oranor"
+        description: "English: Sun Day\nQuenya: Anarya\nSindarin: Oranor",
     },
     {
         english: "Moon Day",
         quenya: "Isilya",
         sindarin: "Orithil",
-        description: "English: Moon Day\nQuenya: Isilya\nSindarin: Orithil"
+        description: "English: Moon Day\nQuenya: Isilya\nSindarin: Orithil",
     },
     {
         english: "Two Trees Day",
         quenya: "Aldúya",
         sindarin: "Orgaladhad",
-        description: "English: Two Trees of Valinor Day\nQuenya: Aldúya\nSindarin: Orgaladhad"
+        description:
+            "English: Two Trees of Valinor Day\nQuenya: Aldúya\nSindarin: Orgaladhad",
     },
     {
         english: "Heavens Day",
         quenya: "Menelya",
         sindarin: "Ormenel",
-        description: "English: Heavens Day\nQuenya: Menelya\nSindarin: Ormenel"
+        description: "English: Heavens Day\nQuenya: Menelya\nSindarin: Ormenel",
     },
     {
         english: "Valar or Powers Day",
         quenya: "Valanya or Tárion",
         sindarin: "Orbelain or Rodyn",
-        description: "English: Valar or Powers Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn"
-    }
+        description:
+            "English: Valar or Powers Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn",
+    },
 ];
-
 
 /**
  * @typedef {Object} RivendellMonth
@@ -105,51 +106,52 @@ const RivendellMonths = [
         quenya: "Tuilë",
         sindarin: "Ethuil",
         description: "English: Spring\nQuenya: Tuilë\nSindarin: Ethuil",
-        className: "spring"
+        className: "spring",
     },
     {
         english: "Summer",
         quenya: "Lairë",
         sindarin: "Laer",
         description: "English: Summer\nQuenya: Lairë\nSindarin: Laer",
-        className: "summer"
+        className: "summer",
     },
     {
         english: "Autumn",
         quenya: "Yávië",
         sindarin: "Iavas",
         description: "English: Autumn\nQuenya: Yávië\nSindarin: Iavas",
-        className: "autumn"
+        className: "autumn",
     },
     {
         english: "Fading",
         quenya: "Quellë",
         sindarin: "Firith",
-        description: "English: Fading\nQuenya: Quellë or 'lasse-lanta'\nSindarin: Firith or 'narbeleth'",
-        className: "fading"
+        description:
+            "English: Fading\nQuenya: Quellë or 'lasse-lanta'\nSindarin: Firith or 'narbeleth'",
+        className: "fading",
     },
     {
         english: "Winter",
         quenya: "Hrívë",
         sindarin: "Rhîw",
         description: "English: Winter\nQuenya: Hrívë\nSindarin: Rhîw",
-        className: "winter"
+        className: "winter",
     },
     {
         english: "Stirring",
         quenya: "Coirë",
         sindarin: "Echuir",
         description: "English: Stirring\nQuenya: Coirë\nSindarin: Echuir",
-        className: "stirring"
-    }
+        className: "stirring",
+    },
 ];
 
 /**
  * @param {number} year - The Rivendell year to check.
  * @return {boolean} True if the given `year` is a Rivendell leap-year.
  */
-const isRivendellLeapYear = (year) => {
-    return ((year % 12 === 0) && (year % 432 !== 0));
+const isRivendellLeapYear = year => {
+    return year % 12 === 0 && year % 432 !== 0;
 };
 
 /**
@@ -164,7 +166,7 @@ const isRivendellLeapYear = (year) => {
  * @param {FirstRivendellNewYearDate} [startDate]
  * @return {FirstRivendellNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-let getStartDate = (startDate) => {
+let getStartDate = startDate => {
     if (!startDate) {
         startDate = fullYearDate(1, 2, 22);
     }
@@ -176,7 +178,7 @@ let getStartDate = (startDate) => {
  * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
  * @return {YearWithRemainder} The current Rivendell year (including 0) for the given `daysElapsed`.
  */
-const daysElapsedToRivendellYear = (daysElapsed) => {
+const daysElapsedToRivendellYear = daysElapsed => {
     let negativeOffset = 0;
 
     let year = Math.floor(daysElapsed / RIVENDELL_DAYS_PER_432_YEARS) * 432;
@@ -205,7 +207,7 @@ const daysElapsedToRivendellYear = (daysElapsed) => {
 
     return {
         year: year,
-        daysRemainder: daysElapsed
+        daysRemainder: daysElapsed,
     };
 };
 
@@ -216,15 +218,21 @@ const daysElapsedToRivendellYear = (daysElapsed) => {
  *
  * @return {Date} The Gregorian Date corresponding to the Rivendell New Year's Day for the year of the given `today`.
  */
-const getRivendellNewYearDate = (today, startDate, calendarRules = TRADITIONAL_RULES) => {
+const getRivendellNewYearDate = (
+    today,
+    startDate,
+    calendarRules = TRADITIONAL_RULES
+) => {
     startDate = getStartDate(startDate);
 
     let getYearWithRemainder =
-            calendarRules === TRADITIONAL_RULES ?
-                daysElapsedToRivendellYear :
-                daysElapsedToGregorianYear;
+        calendarRules === TRADITIONAL_RULES
+            ? daysElapsedToRivendellYear
+            : daysElapsedToGregorianYear;
 
-    let daysSinceNewYearsDay = getYearWithRemainder(toDaysElapsed(startDate, today)).daysRemainder;
+    let daysSinceNewYearsDay = getYearWithRemainder(
+        toDaysElapsed(startDate, today)
+    ).daysRemainder;
 
     return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
@@ -255,19 +263,27 @@ const getRivendellNewYearDate = (today, startDate, calendarRules = TRADITIONAL_R
  *
  * @return {RivendellCalendarYear} The calendar year for the given `today`.
  */
-const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONAL_RULES) => {
+const makeRivendellCalendarDates = (
+    today,
+    startDate,
+    calendarRules = TRADITIONAL_RULES
+) => {
     startDate = getStartDate(startDate);
 
     let todayRivendell;
     let getYearWithRemainder =
-            calendarRules === TRADITIONAL_RULES ?
-                daysElapsedToRivendellYear :
-                daysElapsedToGregorianYear;
+        calendarRules === TRADITIONAL_RULES
+            ? daysElapsedToRivendellYear
+            : daysElapsedToGregorianYear;
 
     let daysElapsed = toDaysElapsed(startDate, today);
     let yearWithRemainder = getYearWithRemainder(daysElapsed);
 
-    let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
+    let gregorianDate = getNewYearDate(
+        startDate,
+        today,
+        yearWithRemainder.daysRemainder
+    );
 
     let rivendellYear = yearWithRemainder.year;
     let weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 6);
@@ -275,10 +291,10 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
     let dates = [];
     if (calendarRules === REFORMED_RULES && isLeapYear(rivendellYear)) {
         dates.push({
-            "day": "Reformed Enderë",
-            "month": 0,
-            "weekDay": weekDay % 6,
-            "gregorian": gregorianDate
+            day: "Reformed Enderë",
+            month: 0,
+            weekDay: weekDay % 6,
+            gregorian: gregorianDate,
         });
 
         if (datesMatch(today, gregorianDate)) {
@@ -289,10 +305,10 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
     }
 
     dates.push({
-        "day": "Yestarë",
-        "month": 0,
-        "weekDay": weekDay % 6,
-        "gregorian": gregorianDate
+        day: "Yestarë",
+        month: 0,
+        weekDay: weekDay % 6,
+        gregorian: gregorianDate,
     });
     weekDay++;
 
@@ -314,18 +330,24 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
                 break;
             case 3:
                 let enderiCount = 3;
-                if (calendarRules === TRADITIONAL_RULES
-                    && isRivendellLeapYear(rivendellYear)) {
+                if (
+                    calendarRules === TRADITIONAL_RULES
+                    && isRivendellLeapYear(rivendellYear)
+                ) {
                     enderiCount = 6;
                 }
-                for (let enderi = 0;
-                     enderi < enderiCount;
-                     enderi++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
+                for (
+                    let enderi = 0;
+                    enderi < enderiCount;
+                    enderi++,
+                        weekDay++,
+                        gregorianDate = getNextDate(gregorianDate)
+                ) {
                     dates.push({
-                        "day": "Enderë",
-                        "month": month,
-                        "weekDay": weekDay % 6,
-                        "gregorian": gregorianDate
+                        day: "Enderë",
+                        month: month,
+                        weekDay: weekDay % 6,
+                        gregorian: gregorianDate,
                     });
 
                     if (datesMatch(today, gregorianDate)) {
@@ -335,14 +357,16 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
                 break;
         }
 
-        for (let day = 1;
-             day <= maxdays;
-             day++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
+        for (
+            let day = 1;
+            day <= maxdays;
+            day++, weekDay++, gregorianDate = getNextDate(gregorianDate)
+        ) {
             dates.push({
-                "day": day,
-                "month": month,
-                "weekDay": weekDay % 6,
-                "gregorian": gregorianDate
+                day: day,
+                month: month,
+                weekDay: weekDay % 6,
+                gregorian: gregorianDate,
             });
 
             if (datesMatch(today, gregorianDate)) {
@@ -352,10 +376,10 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
     }
 
     dates.push({
-        "day": "Mettarë",
-        "month": 5,
-        "weekDay": weekDay % 6,
-        "gregorian": gregorianDate
+        day: "Mettarë",
+        month: 5,
+        weekDay: weekDay % 6,
+        gregorian: gregorianDate,
     });
 
     if (datesMatch(today, gregorianDate)) {
@@ -366,7 +390,7 @@ const makeRivendellCalendarDates = (today, startDate, calendarRules = TRADITIONA
         year: rivendellYear,
         dates: dates,
         today: today,
-        todayRivendell: todayRivendell
+        todayRivendell: todayRivendell,
     };
 };
 
@@ -377,5 +401,5 @@ export {
     RivendellMonths,
     isRivendellLeapYear,
     getRivendellNewYearDate,
-    makeRivendellCalendarDates
+    makeRivendellCalendarDates,
 };

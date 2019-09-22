@@ -122,8 +122,8 @@ including [instructions for adding these calendars to your own site or app](http
 * [Shire iCalendar and base reckoning function examples](https://psarando.github.io/shire-reckoning/examples/shire-icalendar.html)
     * Shire Reckoning for Google Calendar, Apple's iCal, or other calendar apps!
 
-[![[NPM version tag]](https://img.shields.io/npm/v/shire-reckoning.svg)](https://www.npmjs.org/package/shire-reckoning)
-These javascript calendars use the [React javascript library](http://facebook.github.io/react/).
+[![[npm version]](https://img.shields.io/npm/v/shire-reckoning.svg?logo=npm)](https://www.npmjs.org/package/shire-reckoning)
+[![[react dependency version]](https://img.shields.io/npm/dependency-version/shire-reckoning/peer/react.svg?logo=react)](https://reactjs.org)
 
 ### Middle-earth Simulation
 

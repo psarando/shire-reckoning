@@ -1,15 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description"
               content="A visualization of the calendars described in J.R.R. Tolkien's The Lord of the Rings Appendix D,
                        labeled with each day's corresponding Gregorian date of the current year,
                        and with today's date highlighted on each calendar.
                        These calendars are the Shire Reckoning,
                        Rivendell Reckoning (also known as the Calendar of Imladris),
-                       and calendars of Gondor: Kings' Reckoning, Stewards' Reckoning, and the New Reckoning.">
+                       and calendars of Gondor: Kings' Reckoning, Stewards' Reckoning, and the New Reckoning."
+        />
 
         <title>
             Shire Reckoning: A 2017-18 moon phase synchronized simulation
@@ -19,7 +20,13 @@
     <body>
         <div id="tolkien-calendars"></div>
         <script type="text/javascript">
-            TolkienCalendars.renderSimulatedTolkienCalendars('tolkien-calendars', 3, 0);
+            ReactDOM.render(
+                React.createElement(TolkienCalendars.SimulatedTolkienCalendars, {
+                    calendarRules: 3,
+                    selectedEvent: 0,
+                }),
+                document.getElementById("tolkien-calendars")
+            );
         </script>
     </body>
 </html>

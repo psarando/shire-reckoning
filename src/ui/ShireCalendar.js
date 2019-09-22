@@ -2,7 +2,7 @@
  * Copyright (C) 2016 Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import {
     ShireWeekdays,
@@ -10,22 +10,24 @@ import {
     makeShireCalendarDates,
     REGION_NAMES_TOLKIEN,
     REGION_NAMES_SHIRE,
-    REGION_NAMES_BREE
-} from '../ShireReckoning';
-import { RECKONING_RULES_GREGORIAN } from '../GondorReckoning';
-import { fullYearDate, datesMatch } from '../Utils';
+    REGION_NAMES_BREE,
+} from "../ShireReckoning";
+import { RECKONING_RULES_GREGORIAN } from "../GondorReckoning";
+import { fullYearDate, datesMatch } from "../Utils";
 
-import DateCell from './DateCell';
-import IntercalaryDay from './IntercalaryDay';
-import WeekDayHeaderCell, { addMonthFiller, addVerticalMonthFiller } from './WeekDayHeaderCell';
-import './tolkien-calendars.css';
+import DateCell from "./DateCell";
+import IntercalaryDay from "./IntercalaryDay";
+import WeekDayHeaderCell, {
+    addMonthFiller,
+    addVerticalMonthFiller,
+} from "./WeekDayHeaderCell";
+import "./tolkien-calendars.css";
 
 import {
     VerticalLayoutFiller,
     VERTICAL,
-    HORIZONTAL
-} from './controls/MonthViewLayout';
-
+    HORIZONTAL,
+} from "./controls/MonthViewLayout";
 
 const getDateColor = (region, date, monthColor) => {
     if (date.className !== undefined) {
@@ -33,22 +35,30 @@ const getDateColor = (region, date, monthColor) => {
     }
 
     const isHoliday =
-              (region !== REGION_NAMES_BREE) &&
-              (
-                  (date.month === 3 && date.day === 6) ||
-                  (date.month === 10 && date.day === 2)
-              );
+        region !== REGION_NAMES_BREE
+        && ((date.month === 3 && date.day === 6)
+            || (date.month === 10 && date.day === 2));
 
     return isHoliday ? "holiday" : monthColor;
 };
 
 class ShireCalendar extends Component {
-    static get REGION_NAMES_TOLKIEN() { return REGION_NAMES_TOLKIEN; }
-    static get REGION_NAMES_SHIRE() { return REGION_NAMES_SHIRE; }
-    static get REGION_NAMES_BREE() { return REGION_NAMES_BREE; }
+    static get REGION_NAMES_TOLKIEN() {
+        return REGION_NAMES_TOLKIEN;
+    }
+    static get REGION_NAMES_SHIRE() {
+        return REGION_NAMES_SHIRE;
+    }
+    static get REGION_NAMES_BREE() {
+        return REGION_NAMES_BREE;
+    }
 
-    static get MONTH_VIEW_VERTICAL() { return VERTICAL; }
-    static get MONTH_VIEW_HORIZONTAL() { return HORIZONTAL; }
+    static get MONTH_VIEW_VERTICAL() {
+        return VERTICAL;
+    }
+    static get MONTH_VIEW_HORIZONTAL() {
+        return HORIZONTAL;
+    }
 
     constructor(props) {
         super(props);
@@ -61,8 +71,13 @@ class ShireCalendar extends Component {
         let startDay = props.startDay || 21;
         let startDate = props.startDate || fullYearDate(0, 11, startDay);
 
-        let calendar = props.calendar || makeShireCalendarDates(today, startDate, calendarRules);
-        let monthView = props.monthView === undefined ? calendar.todayShire.month : props.monthView;
+        let calendar =
+            props.calendar
+            || makeShireCalendarDates(today, startDate, calendarRules);
+        let monthView =
+            props.monthView === undefined
+                ? calendar.todayShire.month
+                : props.monthView;
         let yearView = !!props.yearView;
 
         this.state = {
@@ -73,7 +88,7 @@ class ShireCalendar extends Component {
             yearView: yearView,
             monthView: monthView,
             monthViewLayout: monthViewLayout,
-            region: region
+            region: region,
         };
     }
 
@@ -81,9 +96,13 @@ class ShireCalendar extends Component {
         let today = nextProps.date || this.state.today;
         let startDate = nextProps.startDate || this.state.startDate;
         let region = nextProps.region || this.state.region;
-        let monthViewLayout = nextProps.monthViewLayout || this.state.monthViewLayout;
+        let monthViewLayout =
+            nextProps.monthViewLayout || this.state.monthViewLayout;
         let calendarRules = nextProps.calendarRules || this.state.calendarRules;
-        let yearView = nextProps.yearView === undefined ? this.state.yearView : nextProps.yearView;
+        let yearView =
+            nextProps.yearView === undefined
+                ? this.state.yearView
+                : nextProps.yearView;
 
         let calendar = this.state.calendar;
         let monthView = this.state.monthView;
@@ -95,15 +114,18 @@ class ShireCalendar extends Component {
 
         if (nextProps.calendar) {
             calendar = nextProps.calendar;
-        } else if (calendarRules !== this.state.calendarRules ||
-            !datesMatch(startDate, this.state.startDate) ||
-            !datesMatch(today, this.state.today) ||
-            !datesMatch(today, calendar.today)) {
+        } else if (
+            calendarRules !== this.state.calendarRules
+            || !datesMatch(startDate, this.state.startDate)
+            || !datesMatch(today, this.state.today)
+            || !datesMatch(today, calendar.today)
+        ) {
             calendar = makeShireCalendarDates(today, startDate, calendarRules);
             monthView = calendar.todayShire.month;
         }
 
-        monthView = nextProps.monthView === undefined ? monthView : nextProps.monthView;
+        monthView =
+            nextProps.monthView === undefined ? monthView : nextProps.monthView;
 
         this.setState({
             today: today,
@@ -113,7 +135,7 @@ class ShireCalendar extends Component {
             region: region,
             monthViewLayout: monthViewLayout,
             monthView: monthView,
-            yearView: yearView
+            yearView: yearView,
         });
     }
 
@@ -134,20 +156,24 @@ class ShireCalendar extends Component {
         switch (date.day) {
             case "1 Yule":
                 return (
-                    <IntercalaryDay key="1-Yule"
-                                    name={date.day}
-                                    description="Shire New Year's Eve!"
-                                    currentDate={today}
-                                    gregorian={date.gregorian} />
+                    <IntercalaryDay
+                        key="1-Yule"
+                        name={date.day}
+                        description="Shire New Year's Eve!"
+                        currentDate={today}
+                        gregorian={date.gregorian}
+                    />
                 );
 
             case "2 Yule":
                 return (
-                    <IntercalaryDay key="2-Yule"
-                                    name={date.day}
-                                    description="Midwinter: Shire New Year!"
-                                    currentDate={today}
-                                    gregorian={date.gregorian} />
+                    <IntercalaryDay
+                        key="2-Yule"
+                        name={date.day}
+                        description="Midwinter: Shire New Year!"
+                        currentDate={today}
+                        gregorian={date.gregorian}
+                    />
                 );
 
             case "1 Lithe":
@@ -162,23 +188,27 @@ class ShireCalendar extends Component {
                 }
 
                 return (
-                    <IntercalaryDay key="Midsummer's Eve"
-                                    name={date.region[region]}
-                                    description={description}
-                                    currentDate={today}
-                                    gregorian={date.gregorian}
-                                    dayExtra={dayExtra}
-                                    dayExtraClassName={dayExtraClassName}
-                                    gregorianExtra={gregorianExtra} />
+                    <IntercalaryDay
+                        key="Midsummer's Eve"
+                        name={date.region[region]}
+                        description={description}
+                        currentDate={today}
+                        gregorian={date.gregorian}
+                        dayExtra={dayExtra}
+                        dayExtraClassName={dayExtraClassName}
+                        gregorianExtra={gregorianExtra}
+                    />
                 );
 
             case "Midyear's Day":
                 return (
-                    <IntercalaryDay key="Midsummer"
-                                    name={date.day}
-                                    description="Midsummer Day!"
-                                    currentDate={today}
-                                    gregorian={date.gregorian} />
+                    <IntercalaryDay
+                        key="Midsummer"
+                        name={date.day}
+                        description="Midsummer Day!"
+                        currentDate={today}
+                        gregorian={date.gregorian}
+                    />
                 );
 
             case "Overlithe":
@@ -190,23 +220,27 @@ class ShireCalendar extends Component {
                 }
 
                 return (
-                    <IntercalaryDay key={key}
-                                    name={date.region[region]}
-                                    description={description}
-                                    currentDate={today}
-                                    gregorian={date.gregorian}
-                                    dayClassName={dayClassName}
-                                    dayExtra={dayExtra}
-                                    gregorianExtra={gregorianExtra} />
+                    <IntercalaryDay
+                        key={key}
+                        name={date.region[region]}
+                        description={description}
+                        currentDate={today}
+                        gregorian={date.gregorian}
+                        dayClassName={dayClassName}
+                        dayExtra={dayExtra}
+                        gregorianExtra={gregorianExtra}
+                    />
                 );
 
             case "2 Lithe":
                 return (
-                    <IntercalaryDay key="2-Lithe"
-                                    name={date.region[region]}
-                                    description="Day after Midsummer."
-                                    currentDate={today}
-                                    gregorian={date.gregorian} />
+                    <IntercalaryDay
+                        key="2-Lithe"
+                        name={date.region[region]}
+                        description="Day after Midsummer."
+                        currentDate={today}
+                        gregorian={date.gregorian}
+                    />
                 );
 
             default:
@@ -215,13 +249,15 @@ class ShireCalendar extends Component {
                 let className = getDateColor(region, date, month.className);
 
                 return (
-                    <DateCell key={date.day + month[region]}
-                              date={date}
-                              currentDate={today}
-                              month={month[region]}
-                              description={month.description}
-                              weekday={weekday[region]}
-                              className={className}/>
+                    <DateCell
+                        key={date.day + month[region]}
+                        date={date}
+                        currentDate={today}
+                        month={month[region]}
+                        description={month.description}
+                        weekday={weekday[region]}
+                        className={className}
+                    />
                 );
         }
     }
@@ -234,28 +270,35 @@ class ShireCalendar extends Component {
         let week = [];
         let weeks = [];
 
-        let i = 0, date = dates[i];
-        for (;
+        let i = 0,
+            date = dates[i];
+        for (
+            ;
             i < dates.length && date.month < monthView;
-            i++, date = dates[i]) {
+            i++, date = dates[i]
+        ) {
             // seek ahead to current month view
         }
 
         addMonthFiller(week, date.weekDay);
 
-        for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
+        for (
+            ;
+            i < dates.length && monthView === date.month;
+            i++, date = dates[i]
+        ) {
             switch (date.day) {
                 case "1 Lithe":
-                    if (date.weekDay === dates[i+1].weekDay) {
+                    if (date.weekDay === dates[i + 1].weekDay) {
                         week.push(this.renderDay([date, dates[++i]], today));
-                        weeks.push(<tr key={weeks.length} >{week}</tr>);
+                        weeks.push(<tr key={weeks.length}>{week}</tr>);
                         week = [];
 
                         break;
                     } // else fallthrough
                 // eslint-disable-next-line
                 case "Overlithe":
-                    if (date.weekDay === dates[i+1].weekDay) {
+                    if (date.weekDay === dates[i + 1].weekDay) {
                         week.push(this.renderDay([date, dates[++i]], today));
                         break;
                     } // else fallthrough
@@ -264,7 +307,7 @@ class ShireCalendar extends Component {
                     week.push(this.renderDay([date], today));
 
                     if ((date.weekDay + 1) % 7 === 0) {
-                        weeks.push(<tr key={weeks.length} >{week}</tr>);
+                        weeks.push(<tr key={weeks.length}>{week}</tr>);
                         week = [];
                     }
 
@@ -273,23 +316,25 @@ class ShireCalendar extends Component {
         }
 
         if (monthView === 5 && date.day === "1 Lithe") {
-            for (date = dates[i];
-                 date.day === "1 Lithe"
-                 || date.day === "Midyear's Day"
-                 || date.day === "Overlithe"
-                 || date.day === "2 Lithe";
-                 i++, date = dates[i]) {
+            for (
+                date = dates[i];
+                date.day === "1 Lithe"
+                || date.day === "Midyear's Day"
+                || date.day === "Overlithe"
+                || date.day === "2 Lithe";
+                i++, date = dates[i]
+            ) {
                 week.push(this.renderDay([date], today));
 
                 if ((date.weekDay + 1) % 7 === 0) {
-                    weeks.push(<tr key={weeks.length} >{week}</tr>);
+                    weeks.push(<tr key={weeks.length}>{week}</tr>);
                     week = [];
                 }
             }
         }
 
         if (week.length > 0) {
-            weeks.push(<tr key={weeks.length} >{week}</tr>);
+            weeks.push(<tr key={weeks.length}>{week}</tr>);
         }
 
         return weeks;
@@ -301,37 +346,50 @@ class ShireCalendar extends Component {
         let monthView = this.state.monthView;
         let region = this.state.region;
 
-        let weeks = ShireWeekdays.map(function (weekday) {
+        let weeks = ShireWeekdays.map(function(weekday) {
             let weekdayName = weekday[region];
-            return [(
-                <WeekDayHeaderCell key={weekdayName}
-                                   name={weekdayName}
-                                   description={weekday.description}
-                                   colSpan='2' />
-            )];
+            return [
+                <WeekDayHeaderCell
+                    key={weekdayName}
+                    name={weekdayName}
+                    description={weekday.description}
+                    colSpan="2"
+                />,
+            ];
         });
 
-        let i = 0, date = dates[i];
-        for (;
+        let i = 0,
+            date = dates[i];
+        for (
+            ;
             i < dates.length && date.month < monthView;
-            i++, date = dates[i]) {
+            i++, date = dates[i]
+        ) {
             // seek ahead to current month view
         }
 
         addVerticalMonthFiller(weeks, date.weekDay);
 
-        for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
+        for (
+            ;
+            i < dates.length && monthView === date.month;
+            i++, date = dates[i]
+        ) {
             switch (date.day) {
                 case "1 Lithe":
-                    if (date.weekDay === dates[i+1].weekDay) {
-                        weeks[date.weekDay].push(this.renderDay([date, dates[++i]], today));
+                    if (date.weekDay === dates[i + 1].weekDay) {
+                        weeks[date.weekDay].push(
+                            this.renderDay([date, dates[++i]], today)
+                        );
 
                         break;
                     } // else fallthrough
                 // eslint-disable-next-line
                 case "Overlithe":
-                    if (date.weekDay === dates[i+1].weekDay) {
-                        weeks[date.weekDay].push(this.renderDay([date, dates[++i]], today));
+                    if (date.weekDay === dates[i + 1].weekDay) {
+                        weeks[date.weekDay].push(
+                            this.renderDay([date, dates[++i]], today)
+                        );
 
                         break;
                     } // else fallthrough
@@ -344,34 +402,38 @@ class ShireCalendar extends Component {
         }
 
         if (monthView === 5 && date.day === "1 Lithe") {
-            for (date = dates[i];
-                 date.day === "1 Lithe"
-                 || date.day === "Midyear's Day"
-                 || date.day === "Overlithe"
-                 || date.day === "2 Lithe";
-                 i++, date = dates[i]) {
+            for (
+                date = dates[i];
+                date.day === "1 Lithe"
+                || date.day === "Midyear's Day"
+                || date.day === "Overlithe"
+                || date.day === "2 Lithe";
+                i++, date = dates[i]
+            ) {
                 weeks[date.weekDay].push(this.renderDay([date], today));
             }
         }
 
         if (weeks[0].length > 6) {
-            weeks = ShireWeekdays.map(function (weekday, i) {
+            weeks = ShireWeekdays.map(function(weekday, i) {
                 let week = weeks[i];
                 let weekdayName = weekday[region];
 
                 week.shift();
                 week.unshift(
-                    <WeekDayHeaderCell key={weekdayName}
-                                       name={weekdayName}
-                                       description={weekday.description} />
+                    <WeekDayHeaderCell
+                        key={weekdayName}
+                        name={weekdayName}
+                        description={weekday.description}
+                    />
                 );
 
                 return week;
             });
         }
 
-        return weeks.map(function (week, i) {
-            return (<tr key={i} >{week}</tr>);
+        return weeks.map(function(week, i) {
+            return <tr key={i}>{week}</tr>;
         });
     }
 
@@ -384,10 +446,14 @@ class ShireCalendar extends Component {
 
         addMonthFiller(week, dates[0].weekDay);
 
-        for (let i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
+        for (
+            let i = 0, date = dates[i];
+            i < dates.length;
+            i++, date = dates[i]
+        ) {
             switch (date.day) {
                 case "1 Lithe":
-                    if (date.weekDay === dates[i+1].weekDay) {
+                    if (date.weekDay === dates[i + 1].weekDay) {
                         week.push(this.renderDay([date, dates[++i]], today));
                         weeks.push(<tr key={weeks.length}>{week}</tr>);
                         week = [];
@@ -396,7 +462,7 @@ class ShireCalendar extends Component {
                     } // else fallthrough
                 // eslint-disable-next-line
                 case "Overlithe":
-                    if (date.weekDay === dates[i+1].weekDay) {
+                    if (date.weekDay === dates[i + 1].weekDay) {
                         week.push(this.renderDay([date, dates[++i]], today));
 
                         break;
@@ -406,7 +472,7 @@ class ShireCalendar extends Component {
                     week.push(this.renderDay([date], today));
 
                     if ((date.weekDay + 1) % 7 === 0) {
-                        weeks.push(<tr key={weeks.length} >{week}</tr>);
+                        weeks.push(<tr key={weeks.length}>{week}</tr>);
                         week = [];
                     }
 
@@ -415,7 +481,7 @@ class ShireCalendar extends Component {
         }
 
         if (week.length > 0) {
-            weeks.push(<tr key={weeks.length} >{week}</tr>);
+            weeks.push(<tr key={weeks.length}>{week}</tr>);
         }
 
         return weeks;
@@ -425,12 +491,14 @@ class ShireCalendar extends Component {
         let region = this.state.region;
         let weekDayHeader = (
             <tr>
-                {ShireWeekdays.map(function (weekday) {
+                {ShireWeekdays.map(function(weekday) {
                     let weekdayName = weekday[region];
                     return (
-                        <WeekDayHeaderCell key={weekdayName}
-                                           name={weekdayName}
-                                           description={weekday.description} />
+                        <WeekDayHeaderCell
+                            key={weekdayName}
+                            name={weekdayName}
+                            description={weekday.description}
+                        />
                     );
                 })}
             </tr>
@@ -449,21 +517,19 @@ class ShireCalendar extends Component {
         let caption = null;
         if (this.props.caption) {
             caption = (
-                <caption className='shire-caption'>{
-                    this.props.caption === true ? "Shire Reckoning" : this.props.caption
-                }</caption>
+                <caption className="shire-caption">
+                    {this.props.caption === true
+                        ? "Shire Reckoning"
+                        : this.props.caption}
+                </caption>
             );
         }
 
         return (
-            <table className={this.props.className} >
+            <table className={this.props.className}>
                 {caption}
-                <thead>
-                    {weekDayHeader}
-                </thead>
-                <tbody>
-                    {weeks}
-                </tbody>
+                <thead>{weekDayHeader}</thead>
+                <tbody>{weeks}</tbody>
             </table>
         );
     }

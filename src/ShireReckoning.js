@@ -10,15 +10,15 @@ import {
     getWeekDay,
     datesMatch,
     fullYearDate,
-    getNextDate
-} from './Utils';
+    getNextDate,
+} from "./Utils";
 
 import {
     RECKONING_RULES_GREGORIAN,
     RECKONING_RULES_TRADITIONAL,
     isMillennialLeapYear,
-    isGondorLeapYear
-} from './GondorReckoning';
+    isGondorLeapYear,
+} from "./GondorReckoning";
 
 const REGION_NAMES_TOLKIEN = "tolkien";
 const REGION_NAMES_SHIRE = "shire";
@@ -39,68 +39,75 @@ const REGION_NAMES_BREE = "bree";
  */
 const ShireWeekdays = [
     {
-        tolkien: 'Saturday',
-        shire: 'Sterday',
-        bree: 'Sterday',
+        tolkien: "Saturday",
+        shire: "Sterday",
+        bree: "Sterday",
+        // prettier-ignore
         description:
 `Tolkien: Saturday
 Shire: Sterday
 Star Day. From the archaic Sterrendei (from Old English steorra dæg).`
     },
     {
-        tolkien: 'Sunday',
-        shire: 'Sunday',
-        bree: 'Sunday',
+        tolkien: "Sunday",
+        shire: "Sunday",
+        bree: "Sunday",
+        // prettier-ignore
         description:
 `Tolkien: Sunday
 Shire: Sunday
 Sun Day. From the archaic Sunnendei (from Old English sunne dæg).`
     },
     {
-        tolkien: 'Monday',
-        shire: 'Monday',
-        bree: 'Monday',
+        tolkien: "Monday",
+        shire: "Monday",
+        bree: "Monday",
+        // prettier-ignore
         description:
 `Tolkien: Monday
 Shire: Monday
 Moon Day. From the archaic Monendei (from Old English mōna dæg).`
     },
     {
-        tolkien: 'Tuesday',
-        shire: 'Trewsday',
-        bree: 'Trewsday',
+        tolkien: "Tuesday",
+        shire: "Trewsday",
+        bree: "Trewsday",
+        // prettier-ignore
         description:
 `Tolkien: Tuesday
 Shire: Trewsday
 Trees Day. From the archaic Trewesdei (from Old English trēow dæg).`
     },
     {
-        tolkien: 'Wednesday',
-        shire: 'Hevensday',
-        bree: 'Hevensday',
+        tolkien: "Wednesday",
+        shire: "Hevensday",
+        bree: "Hevensday",
+        // prettier-ignore
         description:
 `Tolkien: Wednesday
 Shire: Hevensday
 Heavens Day. From the archaic Hevensdei (from Old English heofen dæg).`
     },
     {
-        tolkien: 'Thursday',
-        shire: 'Mersday',
-        bree: 'Mersday',
+        tolkien: "Thursday",
+        shire: "Mersday",
+        bree: "Mersday",
+        // prettier-ignore
         description:
 `Tolkien: Thursday
 Shire: Mersday
 Sea Day. From the archaic Meresdei (from Old English mere dæg).`
     },
     {
-        tolkien: 'Friday',
-        shire: 'Highday',
-        bree: 'Highday',
+        tolkien: "Friday",
+        shire: "Highday",
+        bree: "Highday",
+        // prettier-ignore
         description:
 `Tolkien: Friday
 Shire: Highday
 High Day. From the archaic Hihdei (from Old English hēah dæg).`
-    }
+    },
 ];
 
 /**
@@ -119,9 +126,10 @@ High Day. From the archaic Hihdei (from Old English hēah dæg).`
  */
 const ShireMonths = [
     {
-        tolkien: 'January',
-        shire: 'Afteryule',
-        bree: 'Frery',
+        tolkien: "January",
+        shire: "Afteryule",
+        bree: "Frery",
+        // prettier-ignore
         description:
 `Tolkien: January
 Shire: Afteryule
@@ -129,36 +137,39 @@ Bree: Frery
 The month after the winter solstice (Midwinter),
 from æfter Gēola 'after Winter Solstice',
 and from frēorig 'freezing, frigid'.`,
-        className: "afteryule"
+        className: "afteryule",
     },
     {
-        tolkien: 'February',
-        shire: 'Solmath',
-        bree: 'Solmath',
+        tolkien: "February",
+        shire: "Solmath",
+        bree: "Solmath",
+        // prettier-ignore
         description:
 `Tolkien: February
 Shire: Solmath
 Bree: Solmath
 From Solmōnað, perhaps from the Old English word for mud, 'sol'.
 Muddy Month.`,
-        className: "solmath"
+        className: "solmath",
     },
     {
-        tolkien: 'March',
-        shire: 'Rethe',
-        bree: 'Rethe',
+        tolkien: "March",
+        shire: "Rethe",
+        bree: "Rethe",
+        // prettier-ignore
         description:
 `Tolkien: March
 Shire: Rethe
 Bree: Rethe
 From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede.
 Month of Wildness or Roaring Winds.`,
-        className: "rethe"
+        className: "rethe",
     },
     {
-        tolkien: 'April',
-        shire: 'Astron',
-        bree: 'Chithing',
+        tolkien: "April",
+        shire: "Astron",
+        bree: "Chithing",
+        // prettier-ignore
         description:
 `Tolkien: April
 Shire: Astron
@@ -166,23 +177,25 @@ Bree: Chithing
 From Ēastermōnað 'Easter-month', named after the Goddess Ēostre,
 and from cīþing 'growing thing' (cīþ 'young shoot, sprout').
 Spring Month.`,
-        className: "astron"
+        className: "astron",
     },
     {
-        tolkien: 'May',
-        shire: 'Thrimidge',
-        bree: 'Thrimidge',
+        tolkien: "May",
+        shire: "Thrimidge",
+        bree: "Thrimidge",
+        // prettier-ignore
         description:
 `Tolkien: May
 Shire: Thrimidge
 Bree: Thrimidge
 The month of plenty, when cows were given three milkings (þri-milce) daily.`,
-        className: "thrimidge"
+        className: "thrimidge",
     },
     {
-        tolkien: 'June',
-        shire: 'Forelithe',
-        bree: 'Lithe',
+        tolkien: "June",
+        shire: "Forelithe",
+        bree: "Lithe",
+        // prettier-ignore
         description:
 `Tolkien: June
 Shire: Forelithe
@@ -190,48 +203,52 @@ Bree: Lithe
 The month before the summer solstice (Midsummer), when litha (gentle, mild) weather encouraged voyages.
 From ǣrra Līða 'before Litha'.
 Calm or Navigable Month.`,
-        className: "forelithe"
+        className: "forelithe",
     },
     {
-        tolkien: 'July',
-        shire: 'Afterlithe',
-        bree: 'Mede',
+        tolkien: "July",
+        shire: "Afterlithe",
+        bree: "Mede",
+        // prettier-ignore
         description:
 `Tolkien: July
 Shire: Afterlithe
 Bree: Mede
 The month after the summer solstice (Midsummer), from æfter Līða, and from mǣd 'mead, meadow'.
 Meadow Month.`,
-        className: "afterlithe"
+        className: "afterlithe",
     },
     {
-        tolkien: 'August',
-        shire: 'Wedmath',
-        bree: 'Wedmath',
+        tolkien: "August",
+        shire: "Wedmath",
+        bree: "Wedmath",
+        // prettier-ignore
         description:
 `Tolkien: August
 Shire: Wedmath
 Bree: Wedmath
 When fields were beset by weeds, from Wēodmōnað 'weed-month'.
 Plant Month.`,
-        className: "wedmath"
+        className: "wedmath",
     },
     {
-        tolkien: 'September',
-        shire: 'Halimath',
-        bree: 'Harvestmath',
+        tolkien: "September",
+        shire: "Halimath",
+        bree: "Harvestmath",
+        // prettier-ignore
         description:
 `Tolkien: September
 Shire: Halimath
 Bree: Harvestmath
 The holy month of offerings, from Hāligmōnað 'holy-month', and from Hærfestmōnað 'harvest-month'.
 Harvest Month.`,
-        className: "halimath"
+        className: "halimath",
     },
     {
-        tolkien: 'October',
-        shire: 'Winterfilth',
-        bree: 'Wintring',
+        tolkien: "October",
+        shire: "Winterfilth",
+        bree: "Wintring",
+        // prettier-ignore
         description:
 `Tolkien: October
 Shire: Winterfilth
@@ -240,31 +257,33 @@ The filling of winter's first full moon, according to the Venerable Bede.
 Tolkien instead suggests the "filling" or completion of the year before Winter, after the harvest.
 From Winterfylleð 'winter fullness', and wintrig 'wintry, winter'.
 Wine Month.`,
-        className: "winterfilth"
+        className: "winterfilth",
     },
     {
-        tolkien: 'November',
-        shire: 'Blotmath',
-        bree: 'Blooting',
+        tolkien: "November",
+        shire: "Blotmath",
+        bree: "Blooting",
+        // prettier-ignore
         description:
 `Tolkien: November
 Shire: Blotmath
 Bree: Blooting
 The Month of Sacrifice, from Blōtmōnað 'sacrifice-month'.`,
-        className: "blotmath"
+        className: "blotmath",
     },
     {
-        tolkien: 'December',
-        shire: 'Foreyule',
-        bree: 'Yulemath',
+        tolkien: "December",
+        shire: "Foreyule",
+        bree: "Yulemath",
+        // prettier-ignore
         description:
 `Tolkien: December
 Shire: Foreyule
 Bree: Yulemath
 The month before the winter solstice (Midwinter),
 from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.`,
-        className: "foreyule"
-    }
+        className: "foreyule",
+    },
 ];
 
 /**
@@ -295,15 +314,21 @@ function getStartDate(startDate) {
  * @return {Date} The Gregorian Date corresponding to the Shire New Year Date
  *                for the year of the given `today`.
  */
-const getShireNewYearDate = (today, startDate, rules = RECKONING_RULES_GREGORIAN) => {
+const getShireNewYearDate = (
+    today,
+    startDate,
+    rules = RECKONING_RULES_GREGORIAN
+) => {
     startDate = getStartDate(startDate);
 
     let getYearWithRemainder =
-            rules === RECKONING_RULES_TRADITIONAL ?
-                daysElapsedToSecondAgeYear :
-                daysElapsedToGregorianYear;
+        rules === RECKONING_RULES_TRADITIONAL
+            ? daysElapsedToSecondAgeYear
+            : daysElapsedToGregorianYear;
 
-    let daysSinceNewYearsDay = getYearWithRemainder(toDaysElapsed(startDate, today)).daysRemainder;
+    let daysSinceNewYearsDay = getYearWithRemainder(
+        toDaysElapsed(startDate, today)
+    ).daysRemainder;
 
     return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
@@ -333,17 +358,27 @@ const getShireNewYearDate = (today, startDate, rules = RECKONING_RULES_GREGORIAN
  *
  * @return {ShireCalendarYear} The calendar year for the given `today`.
  */
-const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGORIAN) => {
+const makeShireCalendarDates = (
+    today,
+    startDate,
+    rules = RECKONING_RULES_GREGORIAN
+) => {
     startDate = getStartDate(startDate);
 
-    let reckonTraditional = (rules === RECKONING_RULES_TRADITIONAL);
+    let reckonTraditional = rules === RECKONING_RULES_TRADITIONAL;
 
-    let getYearWithRemainder = reckonTraditional ? daysElapsedToSecondAgeYear : daysElapsedToGregorianYear;
+    let getYearWithRemainder = reckonTraditional
+        ? daysElapsedToSecondAgeYear
+        : daysElapsedToGregorianYear;
 
     let daysElapsed = toDaysElapsed(startDate, today);
     let yearWithRemainder = getYearWithRemainder(daysElapsed);
 
-    let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
+    let gregorianDate = getNewYearDate(
+        startDate,
+        today,
+        yearWithRemainder.daysRemainder
+    );
 
     let todayShire;
     let weekDay = 0;
@@ -354,19 +389,25 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
         // Shire-reform was enacted during the time of Isengrim II, sometime between T.A. 2683 - 2722.
         // So probably starting with one of these years (if Kings' weekdays were reckoned continuously from S.A. 1):
         // 2685 2691 2703 2714 2720
-        shireReform = (year >= 2703+3441);
+        shireReform = year >= 2703 + 3441;
 
         if (!shireReform) {
-            weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 7);
+            weekDay = getWeekDay(
+                daysElapsed,
+                yearWithRemainder.daysRemainder,
+                7
+            );
         }
     }
 
-    let dates = [{
-        "day": "2 Yule",
-        "month": 0,
-        "weekDay": (weekDay++ % 7),
-        "gregorian": gregorianDate
-    }];
+    let dates = [
+        {
+            day: "2 Yule",
+            month: 0,
+            weekDay: weekDay++ % 7,
+            gregorian: gregorianDate,
+        },
+    ];
 
     if (datesMatch(today, gregorianDate)) {
         todayShire = dates[0];
@@ -375,36 +416,41 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
     gregorianDate = getNextDate(gregorianDate);
 
     for (let month = 0; month < 12; month++) {
-        for (let day = 1; day <= 30; day++, weekDay++, gregorianDate = getNextDate(gregorianDate)) {
+        for (
+            let day = 1;
+            day <= 30;
+            day++, weekDay++, gregorianDate = getNextDate(gregorianDate)
+        ) {
             dates.push({
-                "day": day,
-                "month": month,
-                "weekDay": weekDay % 7,
-                "gregorian": gregorianDate
+                day: day,
+                month: month,
+                weekDay: weekDay % 7,
+                gregorian: gregorianDate,
             });
 
             if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length-1];
+                todayShire = dates[dates.length - 1];
             }
         }
 
         if (month === 5) {
-            let millennialLeapYear = (reckonTraditional && isMillennialLeapYear(year));
+            let millennialLeapYear =
+                reckonTraditional && isMillennialLeapYear(year);
 
             dates.push({
-                "day": "1 Lithe",
-                "region": {
-                    "tolkien": "1 Lithe",
-                    "shire": "1 Lithe",
-                    "bree": "1 Summerday"
+                day: "1 Lithe",
+                region: {
+                    tolkien: "1 Lithe",
+                    shire: "1 Lithe",
+                    bree: "1 Summerday",
                 },
-                "month": shireReform ? month : month + 1,
-                "weekDay": weekDay % 7,
-                "gregorian": gregorianDate
+                month: shireReform ? month : month + 1,
+                weekDay: weekDay % 7,
+                gregorian: gregorianDate,
             });
 
             if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length-1];
+                todayShire = dates[dates.length - 1];
             }
 
             let summerday = 2;
@@ -415,19 +461,19 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
 
                 gregorianDate = getNextDate(gregorianDate);
                 dates.push({
-                    "day": "Overlithe",
-                    "region": {
-                        "tolkien": "Overlithe",
-                        "shire": "Overlithe",
-                        "bree": `${summerday++} Summerday`
+                    day: "Overlithe",
+                    region: {
+                        tolkien: "Overlithe",
+                        shire: "Overlithe",
+                        bree: `${summerday++} Summerday`,
                     },
-                    "month": shireReform ? month : month + 1,
-                    "weekDay": weekDay % 7,
-                    "gregorian": gregorianDate
+                    month: shireReform ? month : month + 1,
+                    weekDay: weekDay % 7,
+                    gregorian: gregorianDate,
                 });
 
                 if (datesMatch(today, gregorianDate)) {
-                    todayShire = dates[dates.length-1];
+                    todayShire = dates[dates.length - 1];
                 }
             }
 
@@ -437,14 +483,14 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
 
             gregorianDate = getNextDate(gregorianDate);
             dates.push({
-                "day": "Midyear's Day",
-                "month": (shireReform && !millennialLeapYear) ? month : month + 1,
-                "weekDay": weekDay % 7,
-                "gregorian": gregorianDate
+                day: "Midyear's Day",
+                month: shireReform && !millennialLeapYear ? month : month + 1,
+                weekDay: weekDay % 7,
+                gregorian: gregorianDate,
             });
 
             if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length-1];
+                todayShire = dates[dates.length - 1];
             }
 
             summerday++;
@@ -453,19 +499,19 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
             if (leapYear) {
                 gregorianDate = getNextDate(gregorianDate);
                 dates.push({
-                    "day": "Overlithe",
-                    "region": {
-                        "tolkien": "Overlithe",
-                        "shire": "Overlithe",
-                        "bree": `${summerday++} Summerday`
+                    day: "Overlithe",
+                    region: {
+                        tolkien: "Overlithe",
+                        shire: "Overlithe",
+                        bree: `${summerday++} Summerday`,
                     },
-                    "month": month+1,
-                    "weekDay": weekDay % 7,
-                    "gregorian": gregorianDate
+                    month: month + 1,
+                    weekDay: weekDay % 7,
+                    gregorian: gregorianDate,
                 });
 
                 if (datesMatch(today, gregorianDate)) {
-                    todayShire = dates[dates.length-1];
+                    todayShire = dates[dates.length - 1];
                 }
 
                 if (!shireReform) {
@@ -475,19 +521,19 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
 
             gregorianDate = getNextDate(gregorianDate);
             dates.push({
-                "day": "2 Lithe",
-                "region": {
-                    "tolkien": "2 Lithe",
-                    "shire": "2 Lithe",
-                    "bree": `${summerday++} Summerday`
+                day: "2 Lithe",
+                region: {
+                    tolkien: "2 Lithe",
+                    shire: "2 Lithe",
+                    bree: `${summerday++} Summerday`,
                 },
-                "month": month+1,
-                "weekDay": weekDay % 7,
-                "gregorian": gregorianDate
+                month: month + 1,
+                weekDay: weekDay % 7,
+                gregorian: gregorianDate,
             });
 
             if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length-1];
+                todayShire = dates[dates.length - 1];
             }
 
             gregorianDate = getNextDate(gregorianDate);
@@ -496,21 +542,21 @@ const makeShireCalendarDates = (today, startDate, rules = RECKONING_RULES_GREGOR
     }
 
     dates.push({
-        "day": "1 Yule",
-        "month": 11,
-        "weekDay": weekDay % 7,
-        "gregorian": gregorianDate
+        day: "1 Yule",
+        month: 11,
+        weekDay: weekDay % 7,
+        gregorian: gregorianDate,
     });
 
     if (datesMatch(today, gregorianDate)) {
-        todayShire = dates[dates.length-1];
+        todayShire = dates[dates.length - 1];
     }
 
     return {
         year: year,
         dates: dates,
         today: today,
-        todayShire: todayShire
+        todayShire: todayShire,
     };
 };
 
@@ -521,4 +567,5 @@ export {
     REGION_NAMES_SHIRE,
     REGION_NAMES_BREE,
     getShireNewYearDate,
-    makeShireCalendarDates };
+    makeShireCalendarDates,
+};

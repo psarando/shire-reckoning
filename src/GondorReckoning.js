@@ -12,8 +12,8 @@ import {
     isLeapYear,
     datesMatch,
     fullYearDate,
-    getNextDate
-} from './Utils';
+    getNextDate,
+} from "./Utils";
 
 /**
  * Kings' Reckoning leap-year rules enum
@@ -62,44 +62,46 @@ const GondorWeekdays = [
         english: "Stars Day",
         quenya: "Elenya",
         sindarin: "Orgilion",
-        description: "English: Stars Day\nQuenya: Elenya\nSindarin: Orgilion"
+        description: "English: Stars Day\nQuenya: Elenya\nSindarin: Orgilion",
     },
     {
         english: "Sun Day",
         quenya: "Anarya",
         sindarin: "Oranor",
-        description: "English: Sun Day\nQuenya: Anarya\nSindarin: Oranor"
+        description: "English: Sun Day\nQuenya: Anarya\nSindarin: Oranor",
     },
     {
         english: "Moon Day",
         quenya: "Isilya",
         sindarin: "Orithil",
-        description: "English: Moon Day\nQuenya: Isilya\nSindarin: Orithil"
+        description: "English: Moon Day\nQuenya: Isilya\nSindarin: Orithil",
     },
     {
         english: "White Tree's Day",
         quenya: "Aldëa",
         sindarin: "Orgaladh",
-        description: "English: White Tree's Day\nQuenya: Aldëa\nSindarin: Orgaladh"
+        description:
+            "English: White Tree's Day\nQuenya: Aldëa\nSindarin: Orgaladh",
     },
     {
         english: "Heavens Day",
         quenya: "Menelya",
         sindarin: "Ormenel",
-        description: "English: Heavens Day\nQuenya: Menelya\nSindarin: Ormenel"
+        description: "English: Heavens Day\nQuenya: Menelya\nSindarin: Ormenel",
     },
     {
         english: "Sea Day",
         quenya: "Eärenya",
         sindarin: "Oraearon",
-        description: "English: Sea Day\nQuenya: Eärenya\nSindarin: Oraearon"
+        description: "English: Sea Day\nQuenya: Eärenya\nSindarin: Oraearon",
     },
     {
         english: "Valar or Powers Day",
         quenya: "Valanya or Tárion",
         sindarin: "Orbelain or Rodyn",
-        description: "English: Valar or Powers Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn"
-    }
+        description:
+            "English: Valar or Powers Day\nQuenya: Valanya or Tárion\nSindarin: Orbelain or Rodyn",
+    },
 ];
 
 /**
@@ -122,85 +124,91 @@ const GondorMonths = [
         quenya: "Narvinyë",
         sindarin: "Narwain",
         description: "English: New Sun\nQuenya: Narvinyë\nSindarin: Narwain",
-        className: "afteryule"
+        className: "afteryule",
     },
     {
         english: "Wet Month",
         quenya: "Nénimë",
         sindarin: "Nínui",
         description: "English: Wet Month\nQuenya: Nénimë\nSindarin: Nínui",
-        className: "solmath"
+        className: "solmath",
     },
     {
         english: "Windy Month",
         quenya: "Súlimë",
         sindarin: "Gwaeron",
         description: "English: Windy Month\nQuenya: Súlimë\nSindarin: Gwaeron",
-        className: "rethe"
+        className: "rethe",
     },
     {
         english: "Budding Month",
         quenya: "Víressë",
         sindarin: "Gwirith",
-        description: "English: Spring/Budding Month\nQuenya: Víressë\nSindarin: Gwirith",
-        className: "astron"
+        description:
+            "English: Spring/Budding Month\nQuenya: Víressë\nSindarin: Gwirith",
+        className: "astron",
     },
     {
         english: "Flower Month",
         quenya: "Lótessë",
         sindarin: "Lothron",
-        description: "English: Flower Month\nQuenya: Lótessë\nSindarin: Lothron",
-        className: "thrimidge"
+        description:
+            "English: Flower Month\nQuenya: Lótessë\nSindarin: Lothron",
+        className: "thrimidge",
     },
     {
         english: "Sunny Month",
         quenya: "Nárië",
         sindarin: "Nórui",
         description: "English: Sunny Month\nQuenya: Nárië\nSindarin: Nórui",
-        className: "forelithe"
+        className: "forelithe",
     },
     {
         english: "Cutting Month",
         quenya: "Cermië",
         sindarin: "Cerveth",
-        description: "English: Cutting Month\nQuenya: Cermië\nSindarin: Cerveth",
-        className: "afterlithe"
+        description:
+            "English: Cutting Month\nQuenya: Cermië\nSindarin: Cerveth",
+        className: "afterlithe",
     },
     {
         english: "Hot Month",
         quenya: "Urimë",
         sindarin: "Urui",
         description: "English: Hot Month\nQuenya: Urimë\nSindarin: Urui",
-        className: "wedmath"
+        className: "wedmath",
     },
     {
         english: "Harvest Month",
         quenya: "Yavannië",
         sindarin: "Ivanneth",
-        description: "English: Harvest/Fruit-giving Month\nQuenya: Yavannië\nSindarin: Ivanneth",
-        className: "halimath"
+        description:
+            "English: Harvest/Fruit-giving Month\nQuenya: Yavannië\nSindarin: Ivanneth",
+        className: "halimath",
     },
     {
         english: "Sun Waning",
         quenya: "Narquelië",
         sindarin: "Narbeleth",
-        description: "English: Sun Waning/Fading\nQuenya: Narquelië\nSindarin: Narbeleth",
-        className: "winterfilth"
+        description:
+            "English: Sun Waning/Fading\nQuenya: Narquelië\nSindarin: Narbeleth",
+        className: "winterfilth",
     },
     {
         english: "Misty Month",
         quenya: "Hísimë",
         sindarin: "Hithui",
         description: "English: Misty Month\nQuenya: Hísimë\nSindarin: Hithui",
-        className: "blotmath"
+        className: "blotmath",
     },
     {
         english: "Cold Month",
         quenya: "Ringarë",
         sindarin: "Girithron",
-        description: "English: Cold/Shivering Month\nQuenya: Ringarë\nSindarin: Girithron",
-        className: "foreyule"
-    }
+        description:
+            "English: Cold/Shivering Month\nQuenya: Ringarë\nSindarin: Girithron",
+        className: "foreyule",
+    },
 ];
 
 /**
@@ -215,7 +223,7 @@ const GondorMonths = [
  * @param {FirstNumenorNewYearDate} [startDate]
  * @return {FirstNumenorNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-const getStartDate = (startDate) => {
+const getStartDate = startDate => {
     if (!startDate) {
         startDate = fullYearDate(0, 11, 21);
     }
@@ -227,15 +235,12 @@ const getStartDate = (startDate) => {
  * @param {number} gondorYear
  * @return {boolean} True if the given `gondorYear` is a millennial year that requires an additional leap-day adjustment.
  */
-const isMillennialLeapYear = (gondorYear) => {
+const isMillennialLeapYear = gondorYear => {
     if (gondorYear > 3441) {
         gondorYear -= 3441;
 
         if (2000 < gondorYear && gondorYear < 4000) {
-            return (
-                (gondorYear === 2059) ||
-                (gondorYear === 2360)
-            );
+            return gondorYear === 2059 || gondorYear === 2360;
         }
     }
 
@@ -259,7 +264,9 @@ const isGondorLeapYear = (gondorYear, rules = RECKONING_RULES_GREGORIAN) => {
         gondorYear -= 3441;
     }
 
-    return ((((gondorYear % 4) === 0) && ((gondorYear % 100) !== 0)) || millennialLeapYear);
+    return (
+        (gondorYear % 4 === 0 && gondorYear % 100 !== 0) || millennialLeapYear
+    );
 };
 
 /**
@@ -270,15 +277,21 @@ const isGondorLeapYear = (gondorYear, rules = RECKONING_RULES_GREGORIAN) => {
  * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
  *                for the year of the given `today`.
  */
-const getGondorNewYearDate = (today, startDate, rules = RECKONING_RULES_GREGORIAN) => {
+const getGondorNewYearDate = (
+    today,
+    startDate,
+    rules = RECKONING_RULES_GREGORIAN
+) => {
     startDate = getStartDate(startDate);
 
     let getYearWithRemainder =
-            rules === RECKONING_RULES_TRADITIONAL ?
-                daysElapsedToSecondAgeYear :
-                daysElapsedToGregorianYear;
+        rules === RECKONING_RULES_TRADITIONAL
+            ? daysElapsedToSecondAgeYear
+            : daysElapsedToGregorianYear;
 
-    let daysSinceNewYearsDay = getYearWithRemainder(toDaysElapsed(startDate, today)).daysRemainder;
+    let daysSinceNewYearsDay = getYearWithRemainder(
+        toDaysElapsed(startDate, today)
+    ).daysRemainder;
 
     return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
@@ -295,12 +308,15 @@ const getNewReckoningNewYearDate = (today, startDate, rules) => {
     startDate = getStartDate(startDate);
 
     let getYearWithRemainder =
-            rules === RECKONING_RULES_TRADITIONAL ?
-                daysElapsedToSecondAgeYear :
-                daysElapsedToGregorianYear;
+        rules === RECKONING_RULES_TRADITIONAL
+            ? daysElapsedToSecondAgeYear
+            : daysElapsedToGregorianYear;
 
     let daysElapsed = toDaysElapsed(startDate, today);
-    let daysSinceNewYearsDay = daysElapsedToNewReckoningYear(getYearWithRemainder, daysElapsed).daysRemainder;
+    let daysSinceNewYearsDay = daysElapsedToNewReckoningYear(
+        getYearWithRemainder,
+        daysElapsed
+    ).daysRemainder;
 
     return getNewYearDate(startDate, today, daysSinceNewYearsDay);
 };
@@ -317,10 +333,10 @@ const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
     let fromNewReckoning = fromReckoning === RECKONING_NEW;
     let toNewReckoning = toReckoning === RECKONING_NEW;
     if (fromNewReckoning !== toNewReckoning) {
-        fromNewReckoning ? monthIndex += 3 : monthIndex -= 3;
+        fromNewReckoning ? (monthIndex += 3) : (monthIndex -= 3);
 
         // handle values less than 0 or greater than 12
-        monthIndex = (monthIndex+12)%12;
+        monthIndex = (monthIndex + 12) % 12;
     }
 
     return monthIndex;
@@ -331,8 +347,8 @@ const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
  * @return {number} The Gondorian weekday index, for use with {@link GondorWeekdays},
  *                  that is the cultural equivalent for the given Gregorian weekday index.
  */
-const convertGregorianToGondorianWeekday = (weekday) => {
-    return (weekday+6)%7;
+const convertGregorianToGondorianWeekday = weekday => {
+    return (weekday + 6) % 7;
 };
 
 /**
@@ -362,7 +378,12 @@ const convertGregorianToGondorianWeekday = (weekday) => {
  *
  * @return {GondorCalendarYear} The calendar year for the given `today`.
  */
-const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARDS, rules = RECKONING_RULES_GREGORIAN) => {
+const makeGondorCalendarDates = (
+    today,
+    startDate,
+    reckoning = RECKONING_STEWARDS,
+    rules = RECKONING_RULES_GREGORIAN
+) => {
     startDate = getStartDate(startDate);
 
     let kingsReckoning = reckoning === RECKONING_KINGS;
@@ -370,20 +391,27 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
     let newReckoning = reckoning === RECKONING_NEW;
 
     let getYearWithRemainder =
-            rules === RECKONING_RULES_TRADITIONAL ?
-                daysElapsedToSecondAgeYear :
-                daysElapsedToGregorianYear;
+        rules === RECKONING_RULES_TRADITIONAL
+            ? daysElapsedToSecondAgeYear
+            : daysElapsedToGregorianYear;
 
     let daysElapsed = toDaysElapsed(startDate, today);
 
     let yearWithRemainder;
     if (newReckoning) {
-        yearWithRemainder = daysElapsedToNewReckoningYear(getYearWithRemainder, daysElapsed);
+        yearWithRemainder = daysElapsedToNewReckoningYear(
+            getYearWithRemainder,
+            daysElapsed
+        );
     } else {
         yearWithRemainder = getYearWithRemainder(daysElapsed);
     }
 
-    let gregorianDate = getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
+    let gregorianDate = getNewYearDate(
+        startDate,
+        today,
+        yearWithRemainder.daysRemainder
+    );
 
     let todayGondor;
     let weekDay = convertGregorianToGondorianWeekday(gregorianDate.getDay());
@@ -403,10 +431,10 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
             // no default case required
             case 0:
                 dates.push({
-                    "day": "Yestarë",
-                    "month": 0,
-                    "weekDay": (weekDay++ % 7),
-                    "gregorian": gregorianDate
+                    day: "Yestarë",
+                    month: 0,
+                    weekDay: weekDay++ % 7,
+                    gregorian: gregorianDate,
                 });
 
                 if (datesMatch(today, gregorianDate)) {
@@ -422,18 +450,20 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
                 break;
         }
 
-        for (let day = 1;
-             day <= maxdays;
-             day++, gregorianDate = getNextDate(gregorianDate)) {
+        for (
+            let day = 1;
+            day <= maxdays;
+            day++, gregorianDate = getNextDate(gregorianDate)
+        ) {
             dates.push({
-                "day": day,
-                "month": month,
-                "weekDay": (weekDay++ % 7),
-                "gregorian": gregorianDate
+                day: day,
+                month: month,
+                weekDay: weekDay++ % 7,
+                gregorian: gregorianDate,
             });
 
             if (datesMatch(today, gregorianDate)) {
-                todayGondor = dates[dates.length-1];
+                todayGondor = dates[dates.length - 1];
             }
         }
 
@@ -443,14 +473,14 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
             case 2:
                 if (stewardsReckoning) {
                     dates.push({
-                        "day": "Tuilérë",
-                        "month": month + 1,
-                        "weekDay": (weekDay++ % 7),
-                        "gregorian": gregorianDate
+                        day: "Tuilérë",
+                        month: month + 1,
+                        weekDay: weekDay++ % 7,
+                        gregorian: gregorianDate,
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length-1];
+                        todayGondor = dates[dates.length - 1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -462,70 +492,73 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
 
                 if (leapYear && newReckoning) {
                     dates.push({
-                        "day": "Cormarë",
-                        "month": month,
-                        "weekDay": (weekDay++ % 7),
-                        "gregorian": gregorianDate
+                        day: "Cormarë",
+                        month: month,
+                        weekDay: weekDay++ % 7,
+                        gregorian: gregorianDate,
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length-1];
+                        todayGondor = dates[dates.length - 1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
-                if (rules === RECKONING_RULES_TRADITIONAL && isMillennialLeapYear(year)) {
+                if (
+                    rules === RECKONING_RULES_TRADITIONAL
+                    && isMillennialLeapYear(year)
+                ) {
                     dates.push({
-                        "day": newReckoning ? "Cormarë" : "Enderë",
-                        "month": newReckoning ? month : month + 1,
-                        "weekDay": (weekDay++ % 7),
-                        "gregorian": gregorianDate
+                        day: newReckoning ? "Cormarë" : "Enderë",
+                        month: newReckoning ? month : month + 1,
+                        weekDay: weekDay++ % 7,
+                        gregorian: gregorianDate,
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length-1];
+                        todayGondor = dates[dates.length - 1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (leapYear || newReckoning) {
                     dates.push({
-                        "day": "Enderë",
-                        "month": month + 1,
-                        "weekDay": (weekDay++ % 7),
-                        "gregorian": gregorianDate
+                        day: "Enderë",
+                        month: month + 1,
+                        weekDay: weekDay++ % 7,
+                        gregorian: gregorianDate,
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length-1];
+                        todayGondor = dates[dates.length - 1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (!leapYear || newReckoning) {
                     dates.push({
-                        "day": "Loëndë",
-                        "month": month + 1,
-                        "weekDay": (weekDay++ % 7),
-                        "gregorian": gregorianDate
+                        day: "Loëndë",
+                        month: month + 1,
+                        weekDay: weekDay++ % 7,
+                        gregorian: gregorianDate,
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length-1];
+                        todayGondor = dates[dates.length - 1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (leapYear || newReckoning) {
                     dates.push({
-                        "day": "Enderë",
-                        "month": month + 1,
-                        "weekDay": (weekDay++ % 7),
-                        "gregorian": gregorianDate
+                        day: "Enderë",
+                        month: month + 1,
+                        weekDay: weekDay++ % 7,
+                        gregorian: gregorianDate,
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length-1];
+                        todayGondor = dates[dates.length - 1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -535,14 +568,14 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
             case 8:
                 if (stewardsReckoning) {
                     dates.push({
-                        "day": "Yáviérë",
-                        "month": month + 1,
-                        "weekDay": (weekDay++ % 7),
-                        "gregorian": gregorianDate
+                        day: "Yáviérë",
+                        month: month + 1,
+                        weekDay: weekDay++ % 7,
+                        gregorian: gregorianDate,
                     });
 
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length-1];
+                        todayGondor = dates[dates.length - 1];
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -551,14 +584,14 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
 
             case 11:
                 dates.push({
-                    "day": "Mettarë",
-                    "month": 11,
-                    "weekDay": (weekDay++ % 7),
-                    "gregorian": gregorianDate
+                    day: "Mettarë",
+                    month: 11,
+                    weekDay: weekDay++ % 7,
+                    gregorian: gregorianDate,
                 });
 
                 if (datesMatch(today, gregorianDate)) {
-                    todayGondor = dates[dates.length-1];
+                    todayGondor = dates[dates.length - 1];
                 }
                 gregorianDate = getNextDate(gregorianDate);
 
@@ -570,7 +603,7 @@ const makeGondorCalendarDates = (today, startDate, reckoning = RECKONING_STEWARD
         year: year,
         dates: dates,
         today: today,
-        todayGondor: todayGondor
+        todayGondor: todayGondor,
     };
 };
 
@@ -588,5 +621,5 @@ export {
     isMillennialLeapYear,
     convertGondorianMonthIndex,
     convertGregorianToGondorianWeekday,
-    makeGondorCalendarDates
+    makeGondorCalendarDates,
 };
