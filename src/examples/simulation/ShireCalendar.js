@@ -4,9 +4,9 @@
  */
 import React, { Component } from "react";
 
-import { ShireMonths, makeShireCalendarDates } from "../../ShireReckoning";
+import { makeShireCalendarDates, ShireMonths } from "../../ShireReckoning";
 import { RECKONING_RULES_TRADITIONAL } from "../../GondorReckoning";
-import { datesMatch, fullYearDate } from "../../Utils";
+import { datesMatch, fullYearDate, getFirstDay, getLastDay } from "../../Utils";
 
 import ShireCalendar from "../../ui/ShireCalendar";
 import "../../ui/tolkien-calendars.css";
@@ -21,23 +21,23 @@ class ShireCalendarSimulated extends Component {
     constructor(props) {
         super(props);
 
-        let today = props.date || new Date();
-        let startDate = props.startDate || fullYearDate(0, 11, 23);
+        const today = props.date || new Date();
+        const startDate = props.startDate || fullYearDate(0, 11, 23);
 
-        let calendar = makeShireCalendarDates(
+        const calendar = makeShireCalendarDates(
             today,
             startDate,
             RECKONING_RULES_TRADITIONAL
         );
-        let monthView = calendar.todayShire.month;
+        const monthView = calendar.todayShire.month;
 
         this.state = {
-            startDate: startDate,
-            today: today,
+            startDate,
+            today,
             viewDate: today,
-            calendar: calendar,
+            calendar,
             yearView: false,
-            monthView: monthView,
+            monthView,
             monthViewLayout: MonthViewLayout.VERTICAL,
             region: ShireCalendar.REGION_NAMES_SHIRE,
         };
@@ -48,8 +48,8 @@ class ShireCalendarSimulated extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date || this.state.today;
-        let startDate = nextProps.startDate || this.state.startDate;
+        const today = nextProps.date || this.state.today;
+        const startDate = nextProps.startDate || this.state.startDate;
         let calendar = this.state.calendar;
 
         if (
@@ -64,14 +64,14 @@ class ShireCalendarSimulated extends Component {
             );
         }
 
-        let monthView = calendar.todayShire.month;
+        const monthView = calendar.todayShire.month;
 
         this.setState({
-            today: today,
+            today,
             viewDate: today,
-            calendar: calendar,
-            startDate: startDate,
-            monthView: monthView,
+            calendar,
+            startDate,
+            monthView,
         });
     }
 
@@ -88,10 +88,10 @@ class ShireCalendarSimulated extends Component {
         }
 
         this.setState({
-            calendar: calendar,
-            viewDate: viewDate,
-            yearView: yearView,
-            monthView: monthView,
+            calendar,
+            viewDate,
+            yearView,
+            monthView,
         });
     }
 
@@ -103,69 +103,32 @@ class ShireCalendarSimulated extends Component {
         this.setState({ region: event.target.value });
     }
 
-    renderCalendarControls() {
-        let region = this.state.region;
-        let monthNames = ShireMonths.map(function(month) {
-            return month[region];
-        });
-
-        let calendar = this.state.calendar;
-        let firstDay = calendar.dates[0].gregorian;
-        let lastDay = calendar.dates[calendar.dates.length - 1].gregorian;
-
-        return (
-            <tr>
-                <th className="shire-calendar-controls">
-                    <StartReckoningDatePicker
-                        startDate={this.state.startDate}
-                        onCalendarStartChange={this.props.onCalendarStartChange}
-                    />
-                </th>
-                <th className="shire-calendar-controls month-picker-container">
-                    <MonthViewPicker
-                        monthNames={monthNames}
-                        firstDay={firstDay}
-                        lastDay={lastDay}
-                        thisMonth={calendar.todayShire.month}
-                        today={this.state.today}
-                        viewDate={this.state.viewDate}
-                        monthView={this.state.monthView}
-                        yearView={this.state.yearView}
-                        onMonthViewChange={this.onMonthViewChange}
-                    />
-                </th>
-                <th className="shire-calendar-controls">
-                    Reckon with:
-                    <br />
-                    <ShireRegionPicker
-                        region={region}
-                        onRegionChange={this.onRegionChange}
-                    />
-                </th>
-                <th className="shire-calendar-controls">
-                    <MonthViewLayout
-                        layout={this.state.monthViewLayout}
-                        onMonthViewLayoutChange={this.onMonthViewLayoutChange}
-                    />
-                </th>
-            </tr>
-        );
-    }
-
     render() {
-        let breeReckoning =
-            this.state.region === ShireCalendar.REGION_NAMES_BREE;
-        let calendar = this.state.calendar;
-        let thirdAgeYear = calendar.year - 3441;
+        const { className, onCalendarStartChange } = this.props;
+        const {
+            calendar,
+            monthView,
+            monthViewLayout,
+            region,
+            startDate,
+            today,
+            viewDate,
+            yearView,
+        } = this.state;
 
         let reckoningName = "Shire";
         let reckoningYearOffset = 1600;
-        if (breeReckoning) {
+        if (region === ShireCalendar.REGION_NAMES_BREE) {
             reckoningName = "Bree";
             reckoningYearOffset = 1299;
         }
 
-        let astron6 = calendar.dates[96];
+        const thirdAgeYear = calendar.year - 3441;
+
+        const reckoningYear = thirdAgeYear - reckoningYearOffset;
+        const caption = `${reckoningName} Reckoning ${reckoningYear}`;
+
+        const astron6 = calendar.dates[96];
         let blotmath2 = calendar.dates[305];
         if (blotmath2.day === 1) {
             // leap-year
@@ -181,22 +144,66 @@ class ShireCalendarSimulated extends Component {
             delete blotmath2.className;
         }
 
+        const monthNames = ShireMonths.map(function(month) {
+            return month[region];
+        });
+
+        const firstDay = getFirstDay(calendar);
+        const lastDay = getLastDay(calendar);
+
         return (
-            <table className={this.props.className}>
-                <caption className="shire-caption">{`${reckoningName} Reckoning ${thirdAgeYear
-                    - reckoningYearOffset}`}</caption>
-                <thead>{this.renderCalendarControls()}</thead>
+            <table className={className}>
+                <caption className="shire-caption">{caption}</caption>
+                <thead>
+                    <tr>
+                        <th className="shire-calendar-controls">
+                            <StartReckoningDatePicker
+                                startDate={startDate}
+                                onCalendarStartChange={onCalendarStartChange}
+                            />
+                        </th>
+                        <th className="shire-calendar-controls month-picker-container">
+                            <MonthViewPicker
+                                monthNames={monthNames}
+                                firstDay={firstDay}
+                                lastDay={lastDay}
+                                thisMonth={calendar.todayShire.month}
+                                today={today}
+                                viewDate={viewDate}
+                                monthView={monthView}
+                                yearView={yearView}
+                                onMonthViewChange={this.onMonthViewChange}
+                            />
+                        </th>
+                        <th className="shire-calendar-controls">
+                            Reckon with:
+                            <br />
+                            <ShireRegionPicker
+                                region={region}
+                                onRegionChange={this.onRegionChange}
+                            />
+                        </th>
+                        <th className="shire-calendar-controls">
+                            <MonthViewLayout
+                                layout={monthViewLayout}
+                                onMonthViewLayoutChange={
+                                    this.onMonthViewLayoutChange
+                                }
+                            />
+                        </th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td colSpan="4" className="shire-calendar-wrapper-cell">
                             <ShireCalendar
                                 className="shire-calendar"
                                 calendar={calendar}
-                                date={this.state.today}
-                                region={this.state.region}
-                                monthViewLayout={this.state.monthViewLayout}
-                                monthView={this.state.monthView}
-                                yearView={this.state.yearView}
+                                date={today}
+                                region={region}
+                                monthViewLayout={monthViewLayout}
+                                monthView={monthView}
+                                yearView={yearView}
                             />
                         </td>
                     </tr>

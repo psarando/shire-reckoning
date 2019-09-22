@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 
@@ -288,6 +288,12 @@ const getNextDate = today => {
     return tomorrow;
 };
 
+const getFirstDate = calendar => calendar.dates[0];
+const getLastDate = calendar => calendar.dates[calendar.dates.length - 1];
+
+const getFirstDay = calendar => getFirstDate(calendar).gregorian;
+const getLastDay = calendar => getLastDate(calendar).gregorian;
+
 export {
     GREGORIAN_DAYS_PER_4_YEARS,
     GREGORIAN_DAYS_PER_100_YEARS,
@@ -308,4 +314,8 @@ export {
     datesMatch,
     fullYearDate,
     getNextDate,
+    getFirstDate,
+    getLastDate,
+    getFirstDay,
+    getLastDay,
 };

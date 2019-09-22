@@ -11,7 +11,7 @@ import {
     makeRivendellCalendarDates,
 } from "../RivendellReckoning";
 
-import { fullYearDate, datesMatch } from "../Utils";
+import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
 
 import RivendellCalendar from "../ui/RivendellCalendar";
 import "../ui/tolkien-calendars.css";
@@ -24,21 +24,21 @@ class RivendellCalendarWithControls extends Component {
     constructor(props) {
         super(props);
 
-        let calendarControls = props.calendarControls !== false;
-        let language = props.language || LanguagePicker.QUENYA;
-        let calendarRules =
+        const calendarControls = props.calendarControls !== false;
+        const language = props.language || LanguagePicker.QUENYA;
+        const calendarRules =
             props.calendarRules || RivendellCalendar.TRADITIONAL_RULES;
-        let startDay = props.startDay || 22;
-        let startDate = props.startDate || fullYearDate(1, 2, startDay);
-        let today = props.date || new Date();
-        let yearView = !!props.yearView;
+        const startDay = props.startDay || 22;
+        const startDate = props.startDate || fullYearDate(1, 2, startDay);
+        const today = props.date || new Date();
+        const yearView = !!props.yearView;
 
-        let calendar = makeRivendellCalendarDates(
+        const calendar = makeRivendellCalendarDates(
             today,
             startDate,
             calendarRules
         );
-        let monthView = calendar.todayRivendell.month;
+        const monthView = calendar.todayRivendell.month;
 
         this.state = {
             calendarControls,
@@ -57,11 +57,12 @@ class RivendellCalendarWithControls extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date || this.state.today;
-        let startDate = nextProps.startDate || this.state.startDate;
-        let yearView = nextProps.yearView || this.state.yearView;
-        let calendarRules = nextProps.calendarRules || this.state.calendarRules;
+        const today = nextProps.date || this.state.today;
+        const yearView = nextProps.yearView || this.state.yearView;
+        const calendarRules =
+            nextProps.calendarRules || this.state.calendarRules;
 
+        let startDate = nextProps.startDate || this.state.startDate;
         let calendar = this.state.calendar;
 
         if (nextProps.startDay && !nextProps.startDate) {
@@ -82,7 +83,7 @@ class RivendellCalendarWithControls extends Component {
             );
         }
 
-        let monthView = calendar.todayRivendell.month;
+        const monthView = calendar.todayRivendell.month;
 
         this.setState({
             today,
@@ -108,10 +109,10 @@ class RivendellCalendarWithControls extends Component {
         }
 
         this.setState({
-            calendar: calendar,
-            viewDate: viewDate,
-            yearView: yearView,
-            monthView: monthView,
+            calendar,
+            viewDate,
+            yearView,
+            monthView,
         });
     }
 
@@ -119,90 +120,91 @@ class RivendellCalendarWithControls extends Component {
         this.setState({ language: event.target.value });
     }
 
-    renderCalendarControls() {
-        let language = this.state.language;
-        let monthNames = RivendellMonths.map(function(month) {
+    render() {
+        const {
+            className,
+            onCalendarStartChange,
+            onCalendarRulesChange,
+        } = this.props;
+
+        const {
+            calendar,
+            language,
+            calendarRules,
+            monthView,
+            startDate,
+            today,
+            viewDate,
+            yearView,
+        } = this.state;
+
+        const firstDay = getFirstDay(calendar);
+        const lastDay = getLastDay(calendar);
+
+        const monthNames = RivendellMonths.map(function(month) {
             return month[language];
         });
 
-        let calendar = this.state.calendar;
-        let firstDay = calendar.dates[0].gregorian;
-        let lastDay = calendar.dates[calendar.dates.length - 1].gregorian;
-
         return (
-            <tr>
-                <th className="rivendell-calendar-controls">
-                    <StartDatePicker
-                        month="March"
-                        startRange={19}
-                        endRange={29}
-                        startDate={this.state.startDate}
-                        onCalendarStartChange={this.props.onCalendarStartChange}
-                    />
-                    <select
-                        className="rivendell-rules-select"
-                        value={this.state.calendarRules}
-                        onChange={this.props.onCalendarRulesChange}
-                    >
-                        <option value={TRADITIONAL_RULES}>
-                            Traditional Rules
-                        </option>
-                        <option value={REFORMED_RULES}>Reformed Rules</option>
-                    </select>
-                </th>
-                <th className="rivendell-calendar-controls month-picker-container">
-                    <MonthViewPicker
-                        monthNames={monthNames}
-                        monthLabel="Season"
-                        firstDay={firstDay}
-                        lastDay={lastDay}
-                        thisMonth={calendar.todayRivendell.month}
-                        today={this.state.today}
-                        viewDate={this.state.viewDate}
-                        monthView={this.state.monthView}
-                        yearView={this.state.yearView}
-                        onMonthViewChange={this.onMonthViewChange}
-                    />
-                </th>
-                <th className="rivendell-calendar-controls">
-                    <LanguagePicker
-                        language={this.state.language}
-                        onLanguageChange={this.onLanguageChange}
-                    />
-                </th>
-            </tr>
-        );
-    }
-
-    render() {
-        let controls = this.state.calendarControls
-            ? this.renderCalendarControls()
-            : null;
-        let caption = null;
-        if (this.props.caption) {
-            caption = (
+            <table className={className}>
                 <caption className="rivendell-caption">
-                    {this.props.caption === true
-                        ? "Rivendell Reckoning"
-                        : this.props.caption}
+                    Rivendell Reckoning
                 </caption>
-            );
-        }
-
-        return (
-            <table className={this.props.className}>
-                {caption}
-                <thead>{controls}</thead>
+                <thead>
+                    <tr>
+                        <th className="rivendell-calendar-controls">
+                            <StartDatePicker
+                                month="March"
+                                startRange={19}
+                                endRange={29}
+                                startDate={startDate}
+                                onCalendarStartChange={onCalendarStartChange}
+                            />
+                            <select
+                                className="rivendell-rules-select"
+                                value={calendarRules}
+                                onChange={onCalendarRulesChange}
+                            >
+                                <option value={TRADITIONAL_RULES}>
+                                    Traditional Rules
+                                </option>
+                                <option value={REFORMED_RULES}>
+                                    Reformed Rules
+                                </option>
+                            </select>
+                        </th>
+                        <th className="rivendell-calendar-controls month-picker-container">
+                            <MonthViewPicker
+                                monthNames={monthNames}
+                                monthLabel="Season"
+                                firstDay={firstDay}
+                                lastDay={lastDay}
+                                thisMonth={calendar.todayRivendell.month}
+                                today={today}
+                                viewDate={viewDate}
+                                monthView={monthView}
+                                yearView={yearView}
+                                onMonthViewChange={this.onMonthViewChange}
+                            />
+                        </th>
+                        <th className="rivendell-calendar-controls">
+                            <LanguagePicker
+                                language={language}
+                                onLanguageChange={this.onLanguageChange}
+                            />
+                        </th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td colSpan="3" className="shire-calendar-wrapper-cell">
                             <RivendellCalendar
                                 className="shire-calendar rivendell-calendar"
-                                calendar={this.state.calendar}
-                                date={this.state.today}
-                                language={this.state.language}
-                                monthView={this.state.monthView}
-                                yearView={this.state.yearView}
+                                calendar={calendar}
+                                date={today}
+                                language={language}
+                                monthView={monthView}
+                                yearView={yearView}
                             />
                         </td>
                     </tr>

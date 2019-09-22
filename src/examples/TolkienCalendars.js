@@ -424,7 +424,6 @@ class TolkienCalendarsExample extends Component {
                             className={shireCellClassName}
                         >
                             <ShireCalendarWithControls
-                                caption={true}
                                 region={ShireCalendar.REGION_NAMES_TOLKIEN}
                                 monthViewLayout={
                                     ShireCalendar.MONTH_VIEW_HORIZONTAL
@@ -443,7 +442,6 @@ class TolkienCalendarsExample extends Component {
                             className={rivendellCellClassName}
                         >
                             <RivendellCalendarWithControls
-                                caption={true}
                                 date={currentDate}
                                 startDate={rivendellStartDate}
                                 calendarRules={rivendellCalendarRules}
@@ -461,7 +459,6 @@ class TolkienCalendarsExample extends Component {
                     <tr>
                         <td style={CalendarCellStyle}>
                             <GondorCalendarWithControls
-                                caption={true}
                                 language={GondorCalendar.LANGUAGE_ENGLISH}
                                 monthViewLayout={
                                     GondorCalendar.MONTH_VIEW_HORIZONTAL
@@ -476,7 +473,6 @@ class TolkienCalendarsExample extends Component {
                         </td>
                         <td style={CalendarCellStyle}>
                             <GondorCalendarWithControls
-                                caption={true}
                                 reckoning={GondorCalendar.RECKONING_NEW}
                                 date={currentDate}
                                 startDate={gondorRightStartDate}

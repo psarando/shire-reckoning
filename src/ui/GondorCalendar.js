@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from "react";
@@ -17,7 +17,7 @@ import {
 
 import { fullYearDate, datesMatch } from "../Utils";
 
-import DateCell from "./DateCell";
+import DateCell, { dateKey } from "./DateCell";
 import IntercalaryDay from "./IntercalaryDay";
 import WeekDayHeaderCell, {
     addMonthFiller,
@@ -33,6 +33,20 @@ import {
     HORIZONTAL,
 } from "./controls/MonthViewLayout";
 
+const defaultCaption = reckoning => {
+    switch (reckoning) {
+        case RECKONING_KINGS:
+            return "Kings' Reckoning";
+        case RECKONING_STEWARDS:
+            return "Stewards' Reckoning";
+        case RECKONING_NEW:
+            return "New Reckoning";
+        default:
+            // should never happen
+            return "Gondor Reckoning";
+    }
+};
+
 const getDateColor = (reckoning, date, monthColor) => {
     if (date.className !== undefined) {
         return date.className;
@@ -43,6 +57,358 @@ const getDateColor = (reckoning, date, monthColor) => {
     }
 
     return monthColor;
+};
+
+const GondorDate = ({ date, today, language, reckoning }) => {
+    const isNewReckoning = reckoning === RECKONING_NEW;
+
+    const reckoningDesc = isNewReckoning
+        ? "New Reckoning"
+        : reckoning === RECKONING_KINGS
+        ? "Kings' Reckoning"
+        : "Stewards' Reckoning";
+
+    switch (date.day) {
+        case "Yestarë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "First Day" : "Yestarë"}
+                    description={reckoningDesc + " New Year's Day!"}
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Tuilérë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "Spring-day" : "Tuilérë"}
+                    description="Stewards' Midspring Day"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Cormarë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "Ringday" : "Cormarë"}
+                    description="Ring-bearer's Day"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Loëndë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "Midyear's Day" : "Loëndë"}
+                    description="Midyear's Day"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Enderë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "Middleday" : "Enderë"}
+                    description="Middleday"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Yáviérë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "Autumn-day" : "Yáviérë"}
+                    description="Stewards' Midautumn Day"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Mettarë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "Last Day" : "Mettarë"}
+                    description={reckoningDesc + " New Year's Eve!"}
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        default:
+            const startMonth = isNewReckoning ? 3 : 0;
+            const month = GondorMonths[(date.month + startMonth) % 12];
+            const weekday = GondorWeekdays[date.weekDay];
+            const className = getDateColor(reckoning, date, month.className);
+
+            return (
+                <DateCell
+                    date={date}
+                    currentDate={today}
+                    month={month[language]}
+                    description={month.description}
+                    weekday={weekday[language]}
+                    className={className}
+                />
+            );
+    }
+};
+
+const GondorMonth = ({ monthView, dates, today, language, reckoning }) => {
+    const weeks = [];
+    let week = [];
+
+    let i = 0,
+        date = dates[i],
+        endere = 1;
+
+    for (; i < dates.length && date.month !== monthView; i++, date = dates[i]) {
+        // seek ahead to current month view
+    }
+
+    addMonthFiller(week, date.weekDay);
+
+    for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
+        week.push(
+            <GondorDate
+                key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
+                date={date}
+                today={today}
+                language={language}
+                reckoning={reckoning}
+            />
+        );
+
+        if ((date.weekDay + 1) % 7 === 0) {
+            weeks.push(<tr key={weeks.length}>{week}</tr>);
+            week = [];
+        }
+    }
+
+    switch (monthView) {
+        case 2:
+            if (date.day === "Tuilérë") {
+                week.push(
+                    <GondorDate
+                        key={dateKey(date)}
+                        date={date}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                );
+            }
+
+            break;
+
+        case 5:
+            date = dates[i];
+            for (
+                ;
+                date.day === "Enderë" || date.day === "Loëndë";
+                i++, date = dates[i]
+            ) {
+                week.push(
+                    <GondorDate
+                        key={dateKey(
+                            date,
+                            date.day === "Enderë" ? endere++ : ""
+                        )}
+                        date={date}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                );
+
+                if ((date.weekDay + 1) % 7 === 0) {
+                    weeks.push(<tr key={weeks.length}>{week}</tr>);
+                    week = [];
+                }
+            }
+
+            break;
+
+        case 8:
+            if (date.day === "Yáviérë") {
+                week.push(
+                    <GondorDate
+                        key={dateKey(date)}
+                        date={date}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                );
+            }
+
+            break;
+
+        default:
+            break;
+    }
+
+    if (week.length > 0) {
+        weeks.push(<tr key={weeks.length}>{week}</tr>);
+    }
+
+    return weeks;
+};
+
+const GondorMonthVertical = ({
+    monthView,
+    dates,
+    today,
+    language,
+    reckoning,
+}) => {
+    let weeks = GondorWeekdays.map(function(weekday) {
+        const weekdayName = weekday[language];
+        return [
+            <WeekDayHeaderCell
+                key={weekdayName}
+                name={weekdayName}
+                description={weekday.description}
+                colSpan="2"
+            />,
+        ];
+    });
+
+    let i = 0,
+        date = dates[i],
+        endere = 1;
+
+    for (; i < dates.length && date.month !== monthView; i++, date = dates[i]) {
+        // seek ahead to current month view
+    }
+
+    addVerticalMonthFiller(weeks, date.weekDay);
+
+    for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
+        weeks[date.weekDay].push(
+            <GondorDate
+                key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
+                date={date}
+                today={today}
+                language={language}
+                reckoning={reckoning}
+            />
+        );
+    }
+
+    switch (monthView) {
+        case 2:
+            if (date.day === "Tuilérë") {
+                weeks[date.weekDay].push(
+                    <GondorDate
+                        key={dateKey(date)}
+                        date={date}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                );
+            }
+
+            break;
+
+        case 5:
+            date = dates[i];
+            for (
+                ;
+                date.day === "Enderë" || date.day === "Loëndë";
+                i++, date = dates[i]
+            ) {
+                weeks[date.weekDay].push(
+                    <GondorDate
+                        key={dateKey(
+                            date,
+                            date.day === "Enderë" ? endere++ : ""
+                        )}
+                        date={date}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                );
+            }
+
+            break;
+        case 8:
+            if (date.day === "Yáviérë") {
+                weeks[date.weekDay].push(
+                    <GondorDate
+                        key={dateKey(date)}
+                        date={date}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                );
+            }
+
+            break;
+
+        default:
+            break;
+    }
+
+    if (weeks[0].length > 6) {
+        weeks = GondorWeekdays.map(function(weekday, i) {
+            const week = weeks[i];
+            const weekdayName = weekday[language];
+
+            week.shift();
+            week.unshift(
+                <WeekDayHeaderCell
+                    key={weekdayName}
+                    name={weekdayName}
+                    description={weekday.description}
+                />
+            );
+
+            return week;
+        });
+    }
+
+    return weeks.map(function(week, i) {
+        return <tr key={i}>{week}</tr>;
+    });
+};
+
+const GondorYear = ({ dates, today, language, reckoning }) => {
+    const weeks = [];
+    let week = [],
+        endere = 1;
+
+    addMonthFiller(week, dates[0].weekDay);
+
+    for (let i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
+        week.push(
+            <GondorDate
+                key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
+                date={date}
+                today={today}
+                language={language}
+                reckoning={reckoning}
+            />
+        );
+
+        if ((date.weekDay + 1) % 7 === 0) {
+            weeks.push(<tr key={weeks.length}>{week}</tr>);
+            week = [];
+        }
+    }
+
+    if (week.length > 0) {
+        weeks.push(<tr key={weeks.length}>{week}</tr>);
+    }
+
+    return weeks;
 };
 
 class GondorCalendar extends Component {
@@ -83,16 +449,16 @@ class GondorCalendar extends Component {
     constructor(props) {
         super(props);
 
-        let language = props.language || QUENYA;
-        let calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
-        let today = props.date || new Date();
-        let monthViewLayout = props.monthViewLayout || VERTICAL;
-        let reckoning = props.reckoning || RECKONING_STEWARDS;
+        const language = props.language || QUENYA;
+        const calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
+        const today = props.date || new Date();
+        const monthViewLayout = props.monthViewLayout || VERTICAL;
+        const reckoning = props.reckoning || RECKONING_STEWARDS;
 
-        let startDay = props.startDay || 21;
-        let startDate = props.startDate || fullYearDate(0, 11, startDay);
+        const startDay = props.startDay || 21;
+        const startDate = props.startDate || fullYearDate(0, 11, startDay);
 
-        let calendar =
+        const calendar =
             props.calendar
             || makeGondorCalendarDates(
                 today,
@@ -100,38 +466,39 @@ class GondorCalendar extends Component {
                 reckoning,
                 calendarRules
             );
-        let monthView =
+        const monthView =
             props.monthView === undefined
                 ? calendar.todayGondor.month
                 : props.monthView;
-        let yearView = !!props.yearView;
+        const yearView = !!props.yearView;
 
         this.state = {
-            startDate: startDate,
-            calendar: calendar,
-            today: today,
-            yearView: yearView,
-            monthView: monthView,
-            monthViewLayout: monthViewLayout,
-            reckoning: reckoning,
-            calendarRules: calendarRules,
-            language: language,
+            startDate,
+            calendar,
+            today,
+            yearView,
+            monthView,
+            monthViewLayout,
+            reckoning,
+            calendarRules,
+            language,
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date || this.state.today;
-        let startDate = nextProps.startDate || this.state.startDate;
-        let language = nextProps.language || this.state.language;
-        let reckoning = nextProps.reckoning || this.state.reckoning;
-        let monthViewLayout =
+        const today = nextProps.date || this.state.today;
+        const language = nextProps.language || this.state.language;
+        const reckoning = nextProps.reckoning || this.state.reckoning;
+        const monthViewLayout =
             nextProps.monthViewLayout || this.state.monthViewLayout;
-        let calendarRules = nextProps.calendarRules || this.state.calendarRules;
-        let yearView =
+        const calendarRules =
+            nextProps.calendarRules || this.state.calendarRules;
+        const yearView =
             nextProps.yearView === undefined
                 ? this.state.yearView
                 : nextProps.yearView;
 
+        let startDate = nextProps.startDate || this.state.startDate;
         let calendar = this.state.calendar;
         let monthView = this.state.monthView;
 
@@ -161,327 +528,34 @@ class GondorCalendar extends Component {
             nextProps.monthView === undefined ? monthView : nextProps.monthView;
 
         this.setState({
-            today: today,
-            calendar: calendar,
-            language: language,
-            calendarRules: calendarRules,
-            reckoning: reckoning,
-            startDate: startDate,
-            monthViewLayout: monthViewLayout,
-            monthView: monthView,
-            yearView: yearView,
+            today,
+            calendar,
+            language,
+            calendarRules,
+            reckoning,
+            startDate,
+            monthViewLayout,
+            monthView,
+            yearView,
         });
-    }
-
-    renderDay(date, today) {
-        let language = this.state.language;
-        let reckoning = this.state.reckoning;
-        let isNewReckoning = reckoning === RECKONING_NEW;
-
-        let reckoningDesc = isNewReckoning
-            ? "New Reckoning"
-            : reckoning === RECKONING_KINGS
-            ? "Kings' Reckoning"
-            : "Stewards' Reckoning";
-
-        switch (date.day) {
-            case "Yestarë":
-                return (
-                    <IntercalaryDay
-                        key="GondorianNewYear"
-                        name={language === ENGLISH ? "First Day" : "Yestarë"}
-                        description={reckoningDesc + " New Year's Day!"}
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Tuilérë":
-                return (
-                    <IntercalaryDay
-                        key="Stewards-Midspring"
-                        name={language === ENGLISH ? "Spring-day" : "Tuilérë"}
-                        description="Stewards' Midspring Day"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Cormarë":
-                return (
-                    <IntercalaryDay
-                        key={"Gondorian-Leapday" + date.weekDay}
-                        name={language === ENGLISH ? "Ringday" : "Cormarë"}
-                        description="Ring-bearer's Day"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Loëndë":
-                return (
-                    <IntercalaryDay
-                        key={"Gondorian-Midyear" + date.weekDay}
-                        name={language === ENGLISH ? "Midyear's Day" : "Loëndë"}
-                        description="Midyear's Day"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Enderë":
-                return (
-                    <IntercalaryDay
-                        key={"GondorianMiddleday-" + date.weekDay}
-                        name={language === ENGLISH ? "Middleday" : "Enderë"}
-                        description="Middleday"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Yáviérë":
-                return (
-                    <IntercalaryDay
-                        key={"Stewards-Midautumn"}
-                        name={language === ENGLISH ? "Autumn-day" : "Yáviérë"}
-                        description="Stewards' Midautumn Day"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Mettarë":
-                return (
-                    <IntercalaryDay
-                        key="GondorianNewYearsEve"
-                        name={language === ENGLISH ? "Last Day" : "Mettarë"}
-                        description={reckoningDesc + " New Year's Eve!"}
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            default:
-                let startMonth = isNewReckoning ? 3 : 0;
-                let month = GondorMonths[(date.month + startMonth) % 12];
-                let weekday = GondorWeekdays[date.weekDay];
-                let className = getDateColor(reckoning, date, month.className);
-
-                return (
-                    <DateCell
-                        key={date.day + month[language]}
-                        date={date}
-                        currentDate={today}
-                        month={month[language]}
-                        description={month.description}
-                        weekday={weekday[language]}
-                        className={className}
-                    />
-                );
-        }
-    }
-
-    renderMonth() {
-        let today = this.state.today;
-        let dates = this.state.calendar.dates;
-        let monthView = this.state.monthView;
-
-        let week = [];
-        let weeks = [];
-
-        let i = 0,
-            date = dates[i];
-        for (
-            ;
-            i < dates.length && date.month !== monthView;
-            i++, date = dates[i]
-        ) {
-            // seek ahead to current month view
-        }
-
-        addMonthFiller(week, date.weekDay);
-
-        for (
-            ;
-            i < dates.length && monthView === date.month;
-            i++, date = dates[i]
-        ) {
-            week.push(this.renderDay(date, today));
-
-            if ((date.weekDay + 1) % 7 === 0) {
-                weeks.push(<tr key={weeks.length}>{week}</tr>);
-                week = [];
-            }
-        }
-
-        // eslint-disable-next-line
-        switch (monthView) {
-            // no default case required
-            case 2:
-                if (date.day === "Tuilérë") {
-                    week.push(this.renderDay(date, today));
-                }
-
-                break;
-
-            case 5:
-                date = dates[i];
-                for (
-                    ;
-                    date.day === "Enderë" || date.day === "Loëndë";
-                    i++, date = dates[i]
-                ) {
-                    week.push(this.renderDay(date, today));
-
-                    if ((date.weekDay + 1) % 7 === 0) {
-                        weeks.push(<tr key={weeks.length}>{week}</tr>);
-                        week = [];
-                    }
-                }
-
-                break;
-
-            case 8:
-                if (date.day === "Yáviérë") {
-                    week.push(this.renderDay(date, today));
-                }
-
-                break;
-        }
-
-        if (week.length > 0) {
-            weeks.push(<tr key={weeks.length}>{week}</tr>);
-        }
-
-        return weeks;
-    }
-
-    renderMonthVertical() {
-        let today = this.state.today;
-        let dates = this.state.calendar.dates;
-        let monthView = this.state.monthView;
-        let language = this.state.language;
-
-        let weeks = GondorWeekdays.map(function(weekday) {
-            let weekdayName = weekday[language];
-            return [
-                <WeekDayHeaderCell
-                    key={weekdayName}
-                    name={weekdayName}
-                    description={weekday.description}
-                    colSpan="2"
-                />,
-            ];
-        });
-
-        let i = 0,
-            date = dates[i];
-        for (
-            ;
-            i < dates.length && date.month !== monthView;
-            i++, date = dates[i]
-        ) {
-            // seek ahead to current month view
-        }
-
-        addVerticalMonthFiller(weeks, date.weekDay);
-
-        for (
-            ;
-            i < dates.length && monthView === date.month;
-            i++, date = dates[i]
-        ) {
-            weeks[date.weekDay].push(this.renderDay(date, today));
-        }
-
-        // eslint-disable-next-line
-        switch (monthView) {
-            // no default case required
-            case 2:
-                if (date.day === "Tuilérë") {
-                    weeks[date.weekDay].push(this.renderDay(date, today));
-                }
-
-                break;
-
-            case 5:
-                date = dates[i];
-                for (
-                    ;
-                    date.day === "Enderë" || date.day === "Loëndë";
-                    i++, date = dates[i]
-                ) {
-                    weeks[date.weekDay].push(this.renderDay(date, today));
-                }
-
-                break;
-            case 8:
-                if (date.day === "Yáviérë") {
-                    weeks[date.weekDay].push(this.renderDay(date, today));
-                }
-
-                break;
-        }
-
-        if (weeks[0].length > 6) {
-            weeks = GondorWeekdays.map(function(weekday, i) {
-                let week = weeks[i];
-                let weekdayName = weekday[language];
-
-                week.shift();
-                week.unshift(
-                    <WeekDayHeaderCell
-                        key={weekdayName}
-                        name={weekdayName}
-                        description={weekday.description}
-                    />
-                );
-
-                return week;
-            });
-        }
-
-        return weeks.map(function(week, i) {
-            return <tr key={i}>{week}</tr>;
-        });
-    }
-
-    renderYear() {
-        let today = this.state.today;
-        let dates = this.state.calendar.dates;
-
-        let week = [];
-        let weeks = [];
-
-        addMonthFiller(week, dates[0].weekDay);
-
-        for (
-            let i = 0, date = dates[i];
-            i < dates.length;
-            i++, date = dates[i]
-        ) {
-            week.push(this.renderDay(date, today));
-
-            if ((date.weekDay + 1) % 7 === 0) {
-                weeks.push(<tr key={weeks.length}>{week}</tr>);
-                week = [];
-            }
-        }
-
-        if (week.length > 0) {
-            weeks.push(<tr key={weeks.length}>{week}</tr>);
-        }
-
-        return weeks;
     }
 
     render() {
-        let language = this.state.language;
+        const { caption, className } = this.props;
+        const {
+            calendar: { dates },
+            language,
+            monthView,
+            monthViewLayout,
+            reckoning,
+            today,
+            yearView,
+        } = this.state;
+
         let weekDayHeader = (
             <tr>
                 {GondorWeekdays.map(function(weekday) {
-                    let weekdayName = weekday[language];
+                    const weekdayName = weekday[language];
                     return (
                         <WeekDayHeaderCell
                             key={weekdayName}
@@ -494,43 +568,45 @@ class GondorCalendar extends Component {
         );
 
         let weeks;
-        if (this.state.yearView) {
-            weeks = this.renderYear();
-        } else if (this.state.monthViewLayout === VERTICAL) {
-            weeks = this.renderMonthVertical();
+        if (yearView) {
+            weeks = (
+                <GondorYear
+                    dates={dates}
+                    today={today}
+                    language={language}
+                    reckoning={reckoning}
+                />
+            );
+        } else if (monthViewLayout === VERTICAL) {
+            weeks = (
+                <GondorMonthVertical
+                    monthView={monthView}
+                    dates={dates}
+                    today={today}
+                    language={language}
+                    reckoning={reckoning}
+                />
+            );
             weekDayHeader = <VerticalLayoutFiller weekdays={GondorWeekdays} />;
         } else {
-            weeks = this.renderMonth();
-        }
-
-        let caption = null;
-        if (this.props.caption) {
-            let captionDisplay = this.props.caption;
-            if (this.props.caption === true) {
-                switch (this.state.reckoning) {
-                    case RECKONING_KINGS:
-                        captionDisplay = "Kings' Reckoning";
-                        break;
-                    case RECKONING_STEWARDS:
-                        captionDisplay = "Stewards' Reckoning";
-                        break;
-                    case RECKONING_NEW:
-                        captionDisplay = "New Reckoning";
-                        break;
-                    default:
-                        captionDisplay = "Gondor Reckoning";
-                        break;
-                }
-            }
-
-            caption = (
-                <caption className="gondor-caption">{captionDisplay}</caption>
+            weeks = (
+                <GondorMonth
+                    monthView={monthView}
+                    dates={dates}
+                    today={today}
+                    language={language}
+                    reckoning={reckoning}
+                />
             );
         }
 
         return (
-            <table className={this.props.className}>
-                {caption}
+            <table className={className}>
+                {caption && (
+                    <caption className="gondor-caption">
+                        {caption === true ? defaultCaption(reckoning) : caption}
+                    </caption>
+                )}
                 <thead>{weekDayHeader}</thead>
                 <tbody>{weeks}</tbody>
             </table>
@@ -539,3 +615,4 @@ class GondorCalendar extends Component {
 }
 
 export default GondorCalendar;
+export { defaultCaption };

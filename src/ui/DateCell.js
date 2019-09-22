@@ -1,10 +1,12 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 import { datesMatch } from "../Utils";
 import "./tolkien-calendars.css";
+
+const dateKey = (date, suffix) => `${date.month}/${date.day}${suffix}`;
 
 const getDateColor = (monthColor, date1, date2) => {
     if (datesMatch(date1, date2)) {
@@ -14,37 +16,32 @@ const getDateColor = (monthColor, date1, date2) => {
     return monthColor;
 };
 
-class GregorianDateDisplay extends Component {
-    render() {
-        return (
-            <span className="gregorian-display">
-                {this.props.date.toDateString()}
-            </span>
-        );
-    }
-}
+const GregorianDateDisplay = props => (
+    <div className="gregorian-display">{props.date.toDateString()}</div>
+);
 
-class DateCell extends Component {
-    render() {
-        let date = this.props.date;
-        let dateTitle = this.props.description;
-        let className = this.props.className;
-        let currentDate = this.props.currentDate;
-        let gregorianDate = date.gregorian;
-        let dayColor = getDateColor(className, gregorianDate, currentDate);
+const DateCell = props => {
+    const {
+        className,
+        currentDate,
+        date: { gregorian, day },
+        description,
+        month,
+        weekday,
+    } = props;
 
-        return (
-            <td
-                className={dayColor}
-                title={dateTitle + "\nWeekday: " + this.props.weekday}
-            >
-                {date.day} {date.day === 1 ? this.props.month : ""}
-                <br />
-                <GregorianDateDisplay date={gregorianDate} />
-            </td>
-        );
-    }
-}
+    const dayColor = getDateColor(className, gregorian, currentDate);
 
-export { getDateColor, GregorianDateDisplay };
+    return (
+        <td className={dayColor} title={description + "\nWeekday: " + weekday}>
+            <div className="date-display">
+                {day}
+                {day === 1 && ` ${month}`}
+            </div>
+            <GregorianDateDisplay date={gregorian} />
+        </td>
+    );
+};
+
+export { dateKey, getDateColor, GregorianDateDisplay };
 export default DateCell;

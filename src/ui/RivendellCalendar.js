@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from "react";
@@ -14,7 +14,7 @@ import {
 
 import { fullYearDate, datesMatch } from "../Utils";
 
-import DateCell from "./DateCell";
+import DateCell, { dateKey } from "./DateCell";
 import IntercalaryDay from "./IntercalaryDay";
 import WeekDayHeaderCell, {
     addMonthFiller,
@@ -29,6 +29,210 @@ import {
     VERTICAL,
     HORIZONTAL,
 } from "./controls/MonthViewLayout";
+
+const RivendellDate = ({ date, today, language }) => {
+    switch (date.day) {
+        case "Yestarë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "First Day" : "Yestarë"}
+                    description="Rivendell New Year's Day!"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Enderë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "Middleday" : "Enderë"}
+                    description="Middleday"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Reformed Enderë":
+            return (
+                <IntercalaryDay
+                    name={
+                        language === ENGLISH
+                            ? "Leap Middleday"
+                            : "Reformed Enderë"
+                    }
+                    description="Middleday"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        case "Mettarë":
+            return (
+                <IntercalaryDay
+                    name={language === ENGLISH ? "Last Day" : "Mettarë"}
+                    description="Rivendell New Year's Eve!"
+                    currentDate={today}
+                    gregorian={date.gregorian}
+                />
+            );
+
+        default:
+            const month = RivendellMonths[date.month];
+            const weekday = RivendellWeekdays[date.weekDay];
+            const className =
+                date.className === undefined ? month.className : date.className;
+
+            return (
+                <DateCell
+                    date={date}
+                    currentDate={today}
+                    month={month[language]}
+                    description={month.description}
+                    weekday={weekday[language]}
+                    className={className}
+                />
+            );
+    }
+};
+
+const RivendellMonth = ({ monthView, dates, today, language }) => {
+    const weeks = [];
+    let week = [];
+
+    let i = 0,
+        date = dates[i],
+        endere = 1;
+
+    for (; i < dates.length && date.month < monthView; i++, date = dates[i]) {
+        // seek ahead to current month view
+    }
+
+    addMonthFiller(week, date.weekDay);
+
+    for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
+        week.push(
+            <RivendellDate
+                key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
+                date={date}
+                today={today}
+                language={language}
+            />
+        );
+
+        if ((date.weekDay + 1) % 6 === 0) {
+            weeks.push(<tr key={weeks.length}>{week}</tr>);
+            week = [];
+        }
+    }
+
+    if (monthView === 2) {
+        date = dates[i];
+        for (; date.day === "Enderë"; i++, date = dates[i]) {
+            week.push(
+                <RivendellDate
+                    key={dateKey(date, endere++)}
+                    date={date}
+                    today={today}
+                    language={language}
+                />
+            );
+
+            if ((date.weekDay + 1) % 6 === 0) {
+                weeks.push(<tr key={weeks.length}>{week}</tr>);
+                week = [];
+            }
+        }
+    }
+
+    if (week.length > 0) {
+        weeks.push(<tr key={weeks.length}>{week}</tr>);
+    }
+
+    return weeks;
+};
+
+const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
+    const weeks = RivendellWeekdays.map(function(weekday) {
+        const weekdayName = weekday[language];
+        return [
+            <WeekDayHeaderCell
+                key={weekdayName}
+                name={weekdayName}
+                description={weekday.description}
+                colSpan="2"
+            />,
+        ];
+    });
+
+    let i = 0,
+        date = dates[i],
+        endere = 1;
+
+    for (; i < dates.length && date.month < monthView; i++, date = dates[i]) {
+        // seek ahead to current month view
+    }
+
+    addVerticalMonthFiller(weeks, date.weekDay);
+
+    for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
+        weeks[date.weekDay].push(
+            <RivendellDate
+                key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
+                date={date}
+                today={today}
+                language={language}
+            />
+        );
+    }
+
+    if (monthView === 2) {
+        date = dates[i];
+        for (; date.day === "Enderë"; i++, date = dates[i]) {
+            weeks[date.weekDay].push(
+                <RivendellDate
+                    key={dateKey(date, endere++)}
+                    date={date}
+                    today={today}
+                    language={language}
+                />
+            );
+        }
+    }
+
+    return weeks.map(function(week, i) {
+        return <tr key={i}>{week}</tr>;
+    });
+};
+
+const RivendellYear = ({ dates, today, language }) => {
+    const weeks = [];
+    let week = [],
+        endere = 1;
+
+    addMonthFiller(week, dates[0].weekDay);
+
+    for (let i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
+        week.push(
+            <RivendellDate
+                key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
+                date={date}
+                today={today}
+                language={language}
+            />
+        );
+
+        if ((date.weekDay + 1) % 6 === 0) {
+            weeks.push(<tr key={weeks.length}>{week}</tr>);
+            week = [];
+        }
+    }
+
+    if (week.length > 0) {
+        weeks.push(<tr key={weeks.length}>{week}</tr>);
+    }
+
+    return weeks;
+};
 
 class RivendellCalendar extends Component {
     static get TRADITIONAL_RULES() {
@@ -58,46 +262,47 @@ class RivendellCalendar extends Component {
     constructor(props) {
         super(props);
 
-        let language = props.language || QUENYA;
-        let monthViewLayout = props.monthViewLayout || HORIZONTAL;
-        let calendarRules = props.calendarRules || TRADITIONAL_RULES;
-        let startDay = props.startDay || 22;
-        let startDate = props.startDate || fullYearDate(1, 2, startDay);
-        let today = props.date || new Date();
+        const language = props.language || QUENYA;
+        const monthViewLayout = props.monthViewLayout || HORIZONTAL;
+        const calendarRules = props.calendarRules || TRADITIONAL_RULES;
+        const startDay = props.startDay || 22;
+        const startDate = props.startDate || fullYearDate(1, 2, startDay);
+        const today = props.date || new Date();
 
-        let calendar =
+        const calendar =
             props.calendar
             || makeRivendellCalendarDates(today, startDate, calendarRules);
-        let monthView =
+        const monthView =
             props.monthView === undefined
                 ? calendar.todayRivendell.month
                 : props.monthView;
-        let yearView = !!props.yearView;
+        const yearView = !!props.yearView;
 
         this.state = {
-            calendar: calendar,
-            today: today,
-            yearView: yearView,
-            monthView: monthView,
-            monthViewLayout: monthViewLayout,
-            calendarRules: calendarRules,
-            startDate: startDate,
-            language: language,
+            calendar,
+            today,
+            yearView,
+            monthView,
+            monthViewLayout,
+            calendarRules,
+            startDate,
+            language,
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date || this.state.today;
-        let startDate = nextProps.startDate || this.state.startDate;
-        let language = nextProps.language || this.state.language;
-        let monthViewLayout =
+        const today = nextProps.date || this.state.today;
+        const language = nextProps.language || this.state.language;
+        const monthViewLayout =
             nextProps.monthViewLayout || this.state.monthViewLayout;
-        let calendarRules = nextProps.calendarRules || this.state.calendarRules;
-        let yearView =
+        const calendarRules =
+            nextProps.calendarRules || this.state.calendarRules;
+        const yearView =
             nextProps.yearView === undefined
                 ? this.state.yearView
                 : nextProps.yearView;
 
+        let startDate = nextProps.startDate || this.state.startDate;
         let calendar = this.state.calendar;
         let monthView = this.state.monthView;
 
@@ -126,224 +331,28 @@ class RivendellCalendar extends Component {
             nextProps.monthView === undefined ? monthView : nextProps.monthView;
 
         this.setState({
-            today: today,
-            calendar: calendar,
-            calendarRules: calendarRules,
-            startDate: startDate,
-            language: language,
-            monthViewLayout: monthViewLayout,
-            monthView: monthView,
-            yearView: yearView,
+            today,
+            calendar,
+            calendarRules,
+            startDate,
+            language,
+            monthViewLayout,
+            monthView,
+            yearView,
         });
-    }
-
-    renderDay(date, today) {
-        let language = this.state.language;
-
-        switch (date.day) {
-            case "Yestarë":
-                return (
-                    <IntercalaryDay
-                        key="RivendellNewYear"
-                        name={language === ENGLISH ? "First Day" : "Yestarë"}
-                        description="Rivendell New Year's Day!"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Enderë":
-                return (
-                    <IntercalaryDay
-                        key={"Middleday-" + date.weekDay}
-                        name={language === ENGLISH ? "Middleday" : "Enderë"}
-                        description="Middleday"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Reformed Enderë":
-                return (
-                    <IntercalaryDay
-                        key={"Middleday-" + date.weekDay}
-                        name={
-                            language === ENGLISH
-                                ? "Leap Middleday"
-                                : "Reformed Enderë"
-                        }
-                        description="Middleday"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            case "Mettarë":
-                return (
-                    <IntercalaryDay
-                        key="RivendellNewYearsEve"
-                        name={language === ENGLISH ? "Last Day" : "Mettarë"}
-                        description="Rivendell New Year's Eve!"
-                        currentDate={today}
-                        gregorian={date.gregorian}
-                    />
-                );
-
-            default:
-                let month = RivendellMonths[date.month];
-                let weekday = RivendellWeekdays[date.weekDay];
-                let className =
-                    date.className === undefined
-                        ? month.className
-                        : date.className;
-
-                return (
-                    <DateCell
-                        key={date.day + month[language]}
-                        date={date}
-                        currentDate={today}
-                        month={month[language]}
-                        description={month.description}
-                        weekday={weekday[language]}
-                        className={className}
-                    />
-                );
-        }
-    }
-
-    renderMonth() {
-        let today = this.state.today;
-        let dates = this.state.calendar.dates;
-        let monthView = this.state.monthView;
-
-        let week = [];
-        let weeks = [];
-
-        let i = 0,
-            date = dates[i];
-        for (
-            ;
-            i < dates.length && date.month < monthView;
-            i++, date = dates[i]
-        ) {
-            // seek ahead to current month view
-        }
-
-        addMonthFiller(week, date.weekDay);
-
-        for (
-            ;
-            i < dates.length && monthView === date.month;
-            i++, date = dates[i]
-        ) {
-            week.push(this.renderDay(date, today));
-
-            if ((date.weekDay + 1) % 6 === 0) {
-                weeks.push(<tr key={weeks.length}>{week}</tr>);
-                week = [];
-            }
-        }
-
-        if (monthView === 2) {
-            date = dates[i];
-            for (; date.day === "Enderë"; i++, date = dates[i]) {
-                week.push(this.renderDay(date, today));
-
-                if ((date.weekDay + 1) % 6 === 0) {
-                    weeks.push(<tr key={weeks.length}>{week}</tr>);
-                    week = [];
-                }
-            }
-        }
-
-        if (week.length > 0) {
-            weeks.push(<tr key={weeks.length}>{week}</tr>);
-        }
-
-        return weeks;
-    }
-
-    renderMonthVertical() {
-        let today = this.state.today;
-        let dates = this.state.calendar.dates;
-        let monthView = this.state.monthView;
-        let language = this.state.language;
-
-        let weeks = RivendellWeekdays.map(function(weekday) {
-            let weekdayName = weekday[language];
-            return [
-                <WeekDayHeaderCell
-                    key={weekdayName}
-                    name={weekdayName}
-                    description={weekday.description}
-                    colSpan="2"
-                />,
-            ];
-        });
-
-        let i = 0,
-            date = dates[i];
-        for (
-            ;
-            i < dates.length && date.month < monthView;
-            i++, date = dates[i]
-        ) {
-            // seek ahead to current month view
-        }
-
-        addVerticalMonthFiller(weeks, date.weekDay);
-
-        for (
-            ;
-            i < dates.length && monthView === date.month;
-            i++, date = dates[i]
-        ) {
-            weeks[date.weekDay].push(this.renderDay(date, today));
-        }
-
-        if (monthView === 2) {
-            date = dates[i];
-            for (; date.day === "Enderë"; i++, date = dates[i]) {
-                weeks[date.weekDay].push(this.renderDay(date, today));
-            }
-        }
-
-        return weeks.map(function(week, i) {
-            return <tr key={i}>{week}</tr>;
-        });
-    }
-
-    renderYear() {
-        let today = this.state.today;
-        let dates = this.state.calendar.dates;
-
-        let week = [];
-        let weeks = [];
-
-        addMonthFiller(week, dates[0].weekDay);
-
-        for (
-            let i = 0, date = dates[i];
-            i < dates.length;
-            i++, date = dates[i]
-        ) {
-            week.push(this.renderDay(date, today));
-
-            if ((date.weekDay + 1) % 6 === 0) {
-                weeks.push(<tr key={weeks.length}>{week}</tr>);
-                week = [];
-            }
-        }
-
-        if (week.length > 0) {
-            weeks.push(<tr key={weeks.length}>{week}</tr>);
-        }
-
-        return weeks;
     }
 
     render() {
-        let language = this.state.language;
+        const { caption, className } = this.props;
+        const {
+            calendar: { dates },
+            language,
+            monthView,
+            monthViewLayout,
+            today,
+            yearView,
+        } = this.state;
+
         let weekDayHeader = (
             <tr>
                 {RivendellWeekdays.map(function(weekday) {
@@ -360,31 +369,44 @@ class RivendellCalendar extends Component {
         );
 
         let weeks;
-        if (this.state.yearView) {
-            weeks = this.renderYear();
-        } else if (this.state.monthViewLayout === VERTICAL) {
-            weeks = this.renderMonthVertical();
+        if (yearView) {
+            weeks = (
+                <RivendellYear
+                    dates={dates}
+                    today={today}
+                    language={language}
+                />
+            );
+        } else if (monthViewLayout === VERTICAL) {
+            weeks = (
+                <RivendellMonthVertical
+                    monthView={monthView}
+                    dates={dates}
+                    today={today}
+                    language={language}
+                />
+            );
             weekDayHeader = (
                 <VerticalLayoutFiller weekdays={RivendellWeekdays} />
             );
         } else {
-            weeks = this.renderMonth();
-        }
-
-        let caption = null;
-        if (this.props.caption) {
-            caption = (
-                <caption className="rivendell-caption">
-                    {this.props.caption === true
-                        ? "Rivendell Reckoning"
-                        : this.props.caption}
-                </caption>
+            weeks = (
+                <RivendellMonth
+                    monthView={monthView}
+                    dates={dates}
+                    today={today}
+                    language={language}
+                />
             );
         }
 
         return (
-            <table className={this.props.className}>
-                {caption}
+            <table className={className}>
+                {caption && (
+                    <caption className="rivendell-caption">
+                        {caption === true ? "Rivendell Reckoning" : caption}
+                    </caption>
+                )}
                 <thead>{weekDayHeader}</thead>
                 <tbody>{weeks}</tbody>
             </table>

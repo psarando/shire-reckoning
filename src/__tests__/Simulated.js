@@ -22,6 +22,10 @@ import {
     getNextDate,
     fullYearDate,
     datesMatch,
+    getFirstDate,
+    getLastDate,
+    getFirstDay,
+    getLastDay,
 } from "../Utils";
 
 import {
@@ -29,12 +33,6 @@ import {
     DatesOfInterest,
     eventOfInterestToDate,
 } from "../examples/simulation/DatesOfInterest";
-
-const getFirstDate = calendar => calendar.dates[0];
-const getLastDate = calendar => calendar.dates[calendar.dates.length - 1];
-
-const getFirstDay = calendar => getFirstDate(calendar).gregorian;
-const getLastDay = calendar => getLastDate(calendar).gregorian;
 
 const getFirstWeekDay = calendar => getFirstDate(calendar).weekDay;
 const getLastWeekDay = calendar => getLastDate(calendar).weekDay;

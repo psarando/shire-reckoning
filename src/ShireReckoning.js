@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import {
@@ -298,13 +298,13 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
  * @param {FirstShireNewYearDate} [startDate]
  * @return {FirstShireNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-function getStartDate(startDate) {
+const getStartDate = startDate => {
     if (!startDate) {
         startDate = fullYearDate(0, 11, 21);
     }
 
     return startDate;
-}
+};
 
 /**
  * @param {Date} today
@@ -321,16 +321,16 @@ const getShireNewYearDate = (
 ) => {
     startDate = getStartDate(startDate);
 
-    let getYearWithRemainder =
+    const getYearWithRemainder =
         rules === RECKONING_RULES_TRADITIONAL
             ? daysElapsedToSecondAgeYear
             : daysElapsedToGregorianYear;
 
-    let daysSinceNewYearsDay = getYearWithRemainder(
+    const yearWithRemainder = getYearWithRemainder(
         toDaysElapsed(startDate, today)
-    ).daysRemainder;
+    );
 
-    return getNewYearDate(startDate, today, daysSinceNewYearsDay);
+    return getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
 };
 
 /**
@@ -365,14 +365,15 @@ const makeShireCalendarDates = (
 ) => {
     startDate = getStartDate(startDate);
 
-    let reckonTraditional = rules === RECKONING_RULES_TRADITIONAL;
+    const reckonTraditional = rules === RECKONING_RULES_TRADITIONAL;
 
-    let getYearWithRemainder = reckonTraditional
+    const getYearWithRemainder = reckonTraditional
         ? daysElapsedToSecondAgeYear
         : daysElapsedToGregorianYear;
 
-    let daysElapsed = toDaysElapsed(startDate, today);
-    let yearWithRemainder = getYearWithRemainder(daysElapsed);
+    const daysElapsed = toDaysElapsed(startDate, today);
+    const yearWithRemainder = getYearWithRemainder(daysElapsed);
+    const year = yearWithRemainder.year;
 
     let gregorianDate = getNewYearDate(
         startDate,
@@ -383,7 +384,6 @@ const makeShireCalendarDates = (
     let todayShire;
     let weekDay = 0;
     let shireReform = true;
-    let year = yearWithRemainder.year;
 
     if (reckonTraditional) {
         // Shire-reform was enacted during the time of Isengrim II, sometime between T.A. 2683 - 2722.
@@ -400,7 +400,7 @@ const makeShireCalendarDates = (
         }
     }
 
-    let dates = [
+    const dates = [
         {
             day: "2 Yule",
             month: 0,
@@ -434,7 +434,7 @@ const makeShireCalendarDates = (
         }
 
         if (month === 5) {
-            let millennialLeapYear =
+            const millennialLeapYear =
                 reckonTraditional && isMillennialLeapYear(year);
 
             dates.push({
@@ -495,7 +495,7 @@ const makeShireCalendarDates = (
 
             summerday++;
             weekDay++;
-            let leapYear = isGondorLeapYear(year, rules);
+            const leapYear = isGondorLeapYear(year, rules);
             if (leapYear) {
                 gregorianDate = getNextDate(gregorianDate);
                 dates.push({
@@ -553,10 +553,10 @@ const makeShireCalendarDates = (
     }
 
     return {
-        year: year,
-        dates: dates,
-        today: today,
-        todayShire: todayShire,
+        year,
+        dates,
+        today,
+        todayShire,
     };
 };
 

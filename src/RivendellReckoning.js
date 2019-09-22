@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import {
@@ -166,7 +166,7 @@ const isRivendellLeapYear = year => {
  * @param {FirstRivendellNewYearDate} [startDate]
  * @return {FirstRivendellNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-let getStartDate = startDate => {
+const getStartDate = startDate => {
     if (!startDate) {
         startDate = fullYearDate(1, 2, 22);
     }
@@ -225,16 +225,16 @@ const getRivendellNewYearDate = (
 ) => {
     startDate = getStartDate(startDate);
 
-    let getYearWithRemainder =
+    const getYearWithRemainder =
         calendarRules === TRADITIONAL_RULES
             ? daysElapsedToRivendellYear
             : daysElapsedToGregorianYear;
 
-    let daysSinceNewYearsDay = getYearWithRemainder(
+    const yearWithRemainder = getYearWithRemainder(
         toDaysElapsed(startDate, today)
-    ).daysRemainder;
+    );
 
-    return getNewYearDate(startDate, today, daysSinceNewYearsDay);
+    return getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
 };
 
 /**
@@ -271,13 +271,14 @@ const makeRivendellCalendarDates = (
     startDate = getStartDate(startDate);
 
     let todayRivendell;
-    let getYearWithRemainder =
+    const getYearWithRemainder =
         calendarRules === TRADITIONAL_RULES
             ? daysElapsedToRivendellYear
             : daysElapsedToGregorianYear;
 
-    let daysElapsed = toDaysElapsed(startDate, today);
-    let yearWithRemainder = getYearWithRemainder(daysElapsed);
+    const daysElapsed = toDaysElapsed(startDate, today);
+    const yearWithRemainder = getYearWithRemainder(daysElapsed);
+    const year = yearWithRemainder.year;
 
     let gregorianDate = getNewYearDate(
         startDate,
@@ -285,11 +286,10 @@ const makeRivendellCalendarDates = (
         yearWithRemainder.daysRemainder
     );
 
-    let rivendellYear = yearWithRemainder.year;
     let weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 6);
 
-    let dates = [];
-    if (calendarRules === REFORMED_RULES && isLeapYear(rivendellYear)) {
+    const dates = [];
+    if (calendarRules === REFORMED_RULES && isLeapYear(year)) {
         dates.push({
             day: "Reformed Enderë",
             month: 0,
@@ -321,9 +321,7 @@ const makeRivendellCalendarDates = (
     for (let month = 0; month < 6; month++) {
         let maxdays = 54;
 
-        // eslint-disable-next-line
         switch (month) {
-            // no default case required
             case 1:
             case 4:
                 maxdays = 72;
@@ -332,7 +330,7 @@ const makeRivendellCalendarDates = (
                 let enderiCount = 3;
                 if (
                     calendarRules === TRADITIONAL_RULES
-                    && isRivendellLeapYear(rivendellYear)
+                    && isRivendellLeapYear(year)
                 ) {
                     enderiCount = 6;
                 }
@@ -354,6 +352,9 @@ const makeRivendellCalendarDates = (
                         todayRivendell = dates[dates.length - 1];
                     }
                 }
+                break;
+
+            default:
                 break;
         }
 
@@ -387,10 +388,10 @@ const makeRivendellCalendarDates = (
     }
 
     return {
-        year: rivendellYear,
-        dates: dates,
-        today: today,
-        todayRivendell: todayRivendell,
+        year,
+        dates,
+        today,
+        todayRivendell,
     };
 };
 

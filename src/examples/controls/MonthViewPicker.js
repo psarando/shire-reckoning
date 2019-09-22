@@ -1,168 +1,155 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 import "../../ui/tolkien-calendars.css";
 
-class MonthViewPicker extends Component {
-    constructor(props) {
-        super(props);
+const MonthViewPicker = props => {
+    const onMonthViewChange = event => {
+        const month = parseInt(event.target.value, 10);
 
-        this.onMonthViewChange = this.onMonthViewChange.bind(this);
-        this.onViewThisYear = this.onViewThisYear.bind(this);
-        this.onViewThisMonth = this.onViewThisMonth.bind(this);
-        this.prevMonthView = this.prevMonthView.bind(this);
-        this.nextMonthView = this.nextMonthView.bind(this);
-    }
+        const viewDate = props.viewDate;
+        const yearView = month < 0;
+        const monthView = yearView ? props.monthView : month;
 
-    onMonthViewChange(event) {
-        let month = parseInt(event.target.value, 10);
+        props.onMonthViewChange(viewDate, monthView, yearView);
+    };
 
-        let viewDate = this.props.viewDate;
-        let yearView = month < 0;
-        let monthView = yearView ? this.props.monthView : month;
+    const onViewThisYear = () => {
+        const viewDate = props.today;
+        const month = props.thisMonth;
+        const yearView = true;
 
-        this.props.onMonthViewChange(viewDate, monthView, yearView);
-    }
+        props.onMonthViewChange(viewDate, month, yearView);
+    };
 
-    onViewThisYear(event) {
-        let viewDate = this.props.today;
-        let month = this.props.thisMonth;
-        let yearView = true;
+    const onViewThisMonth = () => {
+        const viewDate = props.today;
+        const month = props.thisMonth;
+        const yearView = false;
 
-        this.props.onMonthViewChange(viewDate, month, yearView);
-    }
+        props.onMonthViewChange(viewDate, month, yearView);
+    };
 
-    onViewThisMonth(event) {
-        let viewDate = this.props.today;
-        let month = this.props.thisMonth;
-        let yearView = false;
-
-        this.props.onMonthViewChange(viewDate, month, yearView);
-    }
-
-    prevMonthView() {
-        let viewDate = this.props.viewDate;
-        let month = this.props.monthView;
-        let yearView = this.props.yearView;
+    const prevMonthView = () => {
+        let viewDate = props.viewDate;
+        let month = props.monthView;
+        const yearView = props.yearView;
 
         if (!yearView) {
             month--;
         }
 
         if (yearView || month < 0) {
-            month = yearView ? month : this.props.monthNames.length - 1;
+            month = yearView ? month : props.monthNames.length - 1;
 
             // View the calendar for the previous year
-            viewDate = new Date(this.props.firstDay);
+            viewDate = new Date(props.firstDay);
             // add a buffer to the view date so the month doesn't change when startDate changes
             viewDate.setDate(viewDate.getDate() - 15);
         }
 
-        this.props.onMonthViewChange(viewDate, month, yearView);
-    }
+        props.onMonthViewChange(viewDate, month, yearView);
+    };
 
-    nextMonthView() {
-        let viewDate = this.props.viewDate;
-        let month = this.props.monthView;
-        let yearView = this.props.yearView;
+    const nextMonthView = () => {
+        let viewDate = props.viewDate;
+        let month = props.monthView;
+        const yearView = props.yearView;
 
         if (!yearView) {
             month++;
         }
 
-        if (yearView || month >= this.props.monthNames.length) {
+        if (yearView || month >= props.monthNames.length) {
             month = yearView ? month : 0;
 
             // View the calendar for the next year
-            viewDate = new Date(this.props.lastDay);
+            viewDate = new Date(props.lastDay);
             // add a buffer to the view date so the month doesn't change when startDate changes
             viewDate.setDate(viewDate.getDate() + 15);
         }
 
-        this.props.onMonthViewChange(viewDate, month, yearView);
-    }
+        props.onMonthViewChange(viewDate, month, yearView);
+    };
 
-    render() {
-        let monthLabel = this.props.monthLabel || "Month";
-        let monthView = this.props.yearView ? -1 : this.props.monthView;
+    const monthLabel = props.monthLabel || "Month";
+    const monthView = props.yearView ? -1 : props.monthView;
 
-        return (
-            <table className="month-picker">
-                <tbody>
-                    <tr>
-                        <td />
-                        <td>
-                            <button
-                                className="this-year-button"
-                                value=""
-                                onClick={this.onViewThisYear}
-                            >
-                                <span className="this-year-button-txt">
-                                    This Year
-                                </span>
-                            </button>
-                        </td>
-                        <td />
-                    </tr>
-                    <tr>
-                        <td style={{ textAlign: "right" }}>
-                            <button
-                                className="prev-month-button"
-                                onClick={this.prevMonthView}
-                            >
-                                <span className="prev-month-button-txt">
-                                    {"<<"}
-                                </span>
-                            </button>
-                        </td>
-                        <td>
-                            <select
-                                ref="monthViewSelect"
-                                className="month-view-select"
-                                value={monthView}
-                                onChange={this.onMonthViewChange}
-                            >
-                                <option value="-1">Year Calendar</option>
-                                {this.props.monthNames.map(function(month, i) {
-                                    return (
-                                        <option key={i} value={i}>
-                                            {month}
-                                        </option>
-                                    );
-                                })}
-                            </select>
-                        </td>
-                        <td style={{ textAlign: "left" }}>
-                            <button
-                                className="next-month-button"
-                                onClick={this.nextMonthView}
-                            >
-                                <span className="next-month-button-txt">
-                                    {">>"}
-                                </span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td />
-                        <td>
-                            <button
-                                className="this-month-button"
-                                onClick={this.onViewThisMonth}
-                            >
-                                <span className="this-month-button-txt">
-                                    {"This " + monthLabel}
-                                </span>
-                            </button>
-                        </td>
-                        <td />
-                    </tr>
-                </tbody>
-            </table>
-        );
-    }
-}
+    const monthViewSelectOptions = props.monthNames.map((month, i) => (
+        <option key={i} value={i}>
+            {month}
+        </option>
+    ));
+
+    return (
+        <table className="month-picker">
+            <tbody>
+                <tr>
+                    <td />
+                    <td>
+                        <button
+                            className="this-year-button"
+                            value=""
+                            onClick={onViewThisYear}
+                        >
+                            <span className="this-year-button-txt">
+                                This Year
+                            </span>
+                        </button>
+                    </td>
+                    <td />
+                </tr>
+                <tr>
+                    <td style={{ textAlign: "right" }}>
+                        <button
+                            className="prev-month-button"
+                            onClick={prevMonthView}
+                        >
+                            <span className="prev-month-button-txt">
+                                {"<<"}
+                            </span>
+                        </button>
+                    </td>
+                    <td>
+                        <select
+                            className="month-view-select"
+                            value={monthView}
+                            onChange={onMonthViewChange}
+                        >
+                            <option value="-1">Year Calendar</option>
+                            {monthViewSelectOptions}
+                        </select>
+                    </td>
+                    <td style={{ textAlign: "left" }}>
+                        <button
+                            className="next-month-button"
+                            onClick={nextMonthView}
+                        >
+                            <span className="next-month-button-txt">
+                                {">>"}
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td />
+                    <td>
+                        <button
+                            className="this-month-button"
+                            onClick={onViewThisMonth}
+                        >
+                            <span className="this-month-button-txt">
+                                {"This " + monthLabel}
+                            </span>
+                        </button>
+                    </td>
+                    <td />
+                </tr>
+            </tbody>
+        </table>
+    );
+};
 
 export default MonthViewPicker;

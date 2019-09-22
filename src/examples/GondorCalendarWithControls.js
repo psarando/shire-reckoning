@@ -14,9 +14,9 @@ import {
     makeGondorCalendarDates,
 } from "../GondorReckoning";
 
-import { fullYearDate, datesMatch } from "../Utils";
+import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
 
-import GondorCalendar from "../ui/GondorCalendar";
+import GondorCalendar, { defaultCaption } from "../ui/GondorCalendar";
 import "../ui/tolkien-calendars.css";
 
 import LanguagePicker from "./controls/LanguagePicker";
@@ -28,37 +28,36 @@ class GondorCalendarWithControls extends Component {
     constructor(props) {
         super(props);
 
-        let calendarControls = props.calendarControls !== false;
-        let language = props.language || LanguagePicker.QUENYA;
-        let calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
-        let today = props.date || new Date();
-        let monthViewLayout = props.monthViewLayout || MonthViewLayout.VERTICAL;
-        let reckoning = props.reckoning || GondorCalendar.RECKONING_STEWARDS;
-        let yearView = !!props.yearView;
+        const language = props.language || LanguagePicker.QUENYA;
+        const calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
+        const today = props.date || new Date();
+        const monthViewLayout =
+            props.monthViewLayout || MonthViewLayout.VERTICAL;
+        const reckoning = props.reckoning || GondorCalendar.RECKONING_STEWARDS;
+        const yearView = !!props.yearView;
 
-        let startDay = props.startDay || 21;
-        let startDate = props.startDate || fullYearDate(0, 11, startDay);
+        const startDay = props.startDay || 21;
+        const startDate = props.startDate || fullYearDate(0, 11, startDay);
 
-        let calendar = makeGondorCalendarDates(
+        const calendar = makeGondorCalendarDates(
             today,
             startDate,
             reckoning,
             calendarRules
         );
-        let monthView = calendar.todayGondor.month;
+        const monthView = calendar.todayGondor.month;
 
         this.state = {
-            calendarControls: calendarControls,
-            startDate: startDate,
-            calendar: calendar,
-            today: today,
+            startDate,
+            calendar,
+            today,
             viewDate: today,
-            yearView: yearView,
-            monthView: monthView,
-            monthViewLayout: monthViewLayout,
-            reckoning: reckoning,
-            calendarRules: calendarRules,
-            language: language,
+            yearView,
+            monthView,
+            monthViewLayout,
+            reckoning,
+            calendarRules,
+            language,
         };
 
         this.onMonthViewChange = this.onMonthViewChange.bind(this);
@@ -68,10 +67,10 @@ class GondorCalendarWithControls extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date || this.state.today;
-        let startDate = nextProps.startDate || this.state.startDate;
-        let yearView = nextProps.yearView || this.state.yearView;
+        const today = nextProps.date || this.state.today;
+        const yearView = nextProps.yearView || this.state.yearView;
 
+        let startDate = nextProps.startDate || this.state.startDate;
         let calendar = this.state.calendar;
 
         if (nextProps.startDay && !nextProps.startDate) {
@@ -92,15 +91,15 @@ class GondorCalendarWithControls extends Component {
             );
         }
 
-        let monthView = calendar.todayGondor.month;
+        const monthView = calendar.todayGondor.month;
 
         this.setState({
-            today: today,
+            today,
             viewDate: today,
-            calendar: calendar,
-            startDate: startDate,
-            yearView: yearView,
-            monthView: monthView,
+            calendar,
+            startDate,
+            yearView,
+            monthView,
         });
     }
 
@@ -118,22 +117,22 @@ class GondorCalendarWithControls extends Component {
         }
 
         this.setState({
-            calendar: calendar,
-            viewDate: viewDate,
-            yearView: yearView,
-            monthView: monthView,
+            calendar,
+            viewDate,
+            yearView,
+            monthView,
         });
     }
 
     onStartMonthChange(event) {
-        let reckoning = event.target.value;
-        let calendar = makeGondorCalendarDates(
+        const reckoning = event.target.value;
+        const calendar = makeGondorCalendarDates(
             this.state.calendar.today,
             this.state.startDate,
             reckoning,
             this.state.calendarRules
         );
-        let monthView = convertGondorianMonthIndex(
+        const monthView = convertGondorianMonthIndex(
             this.state.reckoning,
             reckoning,
             this.state.monthView
@@ -154,118 +153,101 @@ class GondorCalendarWithControls extends Component {
         this.setState({ language: event.target.value });
     }
 
-    renderCalendarControls() {
-        let reckoning = this.state.reckoning;
-        let startMonth = reckoning === RECKONING_NEW ? 3 : 0;
-        let language = this.state.language;
-        let monthNames = [];
+    render() {
+        const { className, onCalendarStartChange } = this.props;
+        const {
+            calendar,
+            language,
+            reckoning,
+            monthView,
+            monthViewLayout,
+            startDate,
+            today,
+            viewDate,
+            yearView,
+        } = this.state;
+
+        const firstDay = getFirstDay(calendar);
+        const lastDay = getLastDay(calendar);
+
+        const startMonth = reckoning === RECKONING_NEW ? 3 : 0;
+        const monthNames = [];
         for (let i = startMonth; i < GondorMonths.length + startMonth; i++) {
             monthNames.push(GondorMonths[i % 12][language]);
         }
 
-        let calendar = this.state.calendar;
-        let firstDay = calendar.dates[0].gregorian;
-        let lastDay = calendar.dates[calendar.dates.length - 1].gregorian;
-
         return (
-            <tr>
-                <th className="gondor-calendar-controls">
-                    <StartDatePicker
-                        month="December"
-                        startRange={18}
-                        endRange={25}
-                        startDate={this.state.startDate}
-                        onCalendarStartChange={this.props.onCalendarStartChange}
-                    />
-                    <select
-                        className="gondor-rules-select"
-                        value={reckoning}
-                        onChange={this.onStartMonthChange}
-                    >
-                        <option value={RECKONING_KINGS}>
-                            Kings' Reckoning
-                        </option>
-                        <option value={RECKONING_STEWARDS}>
-                            Stewards' Reckoning
-                        </option>
-                        <option value={RECKONING_NEW}>New Reckoning</option>
-                    </select>
-                </th>
-                <th className="gondor-calendar-controls month-picker-container">
-                    <MonthViewPicker
-                        monthNames={monthNames}
-                        firstDay={firstDay}
-                        lastDay={lastDay}
-                        thisMonth={calendar.todayGondor.month}
-                        today={this.state.today}
-                        viewDate={this.state.viewDate}
-                        monthView={this.state.monthView}
-                        yearView={this.state.yearView}
-                        onMonthViewChange={this.onMonthViewChange}
-                    />
-                </th>
-                <th className="gondor-calendar-controls">
-                    <LanguagePicker
-                        language={this.state.language}
-                        onLanguageChange={this.onLanguageChange}
-                    />
-                </th>
-                <th className="gondor-calendar-controls">
-                    <MonthViewLayout
-                        layout={this.state.monthViewLayout}
-                        onMonthViewLayoutChange={this.onMonthViewLayoutChange}
-                    />
-                </th>
-            </tr>
-        );
-    }
-
-    render() {
-        let controls = this.state.calendarControls
-            ? this.renderCalendarControls()
-            : null;
-
-        let caption = null;
-        if (this.props.caption) {
-            let captionDisplay = this.props.caption;
-            if (this.props.caption === true) {
-                switch (this.state.reckoning) {
-                    case RECKONING_KINGS:
-                        captionDisplay = "Kings' Reckoning";
-                        break;
-                    case RECKONING_STEWARDS:
-                        captionDisplay = "Stewards' Reckoning";
-                        break;
-                    case RECKONING_NEW:
-                        captionDisplay = "New Reckoning";
-                        break;
-                    default:
-                        captionDisplay = "Gondor Reckoning";
-                        break;
-                }
-            }
-
-            caption = (
-                <caption className="gondor-caption">{captionDisplay}</caption>
-            );
-        }
-
-        return (
-            <table className={this.props.className}>
-                {caption}
-                <thead>{controls}</thead>
+            <table className={className}>
+                <caption className="gondor-caption">
+                    {defaultCaption(reckoning)}
+                </caption>
+                <thead>
+                    <tr>
+                        <th className="gondor-calendar-controls">
+                            <StartDatePicker
+                                month="December"
+                                startRange={18}
+                                endRange={25}
+                                startDate={startDate}
+                                onCalendarStartChange={onCalendarStartChange}
+                            />
+                            <select
+                                className="gondor-rules-select"
+                                value={reckoning}
+                                onChange={this.onStartMonthChange}
+                            >
+                                <option value={RECKONING_KINGS}>
+                                    Kings' Reckoning
+                                </option>
+                                <option value={RECKONING_STEWARDS}>
+                                    Stewards' Reckoning
+                                </option>
+                                <option value={RECKONING_NEW}>
+                                    New Reckoning
+                                </option>
+                            </select>
+                        </th>
+                        <th className="gondor-calendar-controls month-picker-container">
+                            <MonthViewPicker
+                                monthNames={monthNames}
+                                firstDay={firstDay}
+                                lastDay={lastDay}
+                                thisMonth={calendar.todayGondor.month}
+                                today={today}
+                                viewDate={viewDate}
+                                monthView={monthView}
+                                yearView={yearView}
+                                onMonthViewChange={this.onMonthViewChange}
+                            />
+                        </th>
+                        <th className="gondor-calendar-controls">
+                            <LanguagePicker
+                                language={language}
+                                onLanguageChange={this.onLanguageChange}
+                            />
+                        </th>
+                        <th className="gondor-calendar-controls">
+                            <MonthViewLayout
+                                layout={monthViewLayout}
+                                onMonthViewLayoutChange={
+                                    this.onMonthViewLayoutChange
+                                }
+                            />
+                        </th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td colSpan="4" className="shire-calendar-wrapper-cell">
                             <GondorCalendar
                                 className="shire-calendar gondor-calendar"
-                                calendar={this.state.calendar}
-                                date={this.state.today}
-                                reckoning={this.state.reckoning}
-                                language={this.state.language}
-                                monthViewLayout={this.state.monthViewLayout}
-                                monthView={this.state.monthView}
-                                yearView={this.state.yearView}
+                                calendar={calendar}
+                                date={today}
+                                reckoning={reckoning}
+                                language={language}
+                                monthViewLayout={monthViewLayout}
+                                monthView={monthView}
+                                yearView={yearView}
                             />
                         </td>
                     </tr>

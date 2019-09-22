@@ -9,6 +9,7 @@ import TolkienCalendarsExample from "../examples/TolkienCalendars";
 import ShireCalendarExample from "../examples/ShireCalendars";
 import RivendellCalendarExample from "../examples/RivendellCalendars";
 import GondorCalendarExample from "../examples/GondorCalendars";
+import SimulatedTolkienCalendars from "../examples/simulation/TolkienCalendars";
 
 it("renders TolkienCalendarsExample without crashing", () => {
     const div = document.createElement("div");
@@ -31,5 +32,11 @@ it("renders RivendellCalendarExample without crashing", () => {
 it("renders GondorCalendarExample without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<GondorCalendarExample />, div);
+    ReactDOM.unmountComponentAtNode(div);
+});
+
+it("renders SimulatedTolkienCalendars without crashing", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<SimulatedTolkienCalendars />, div);
     ReactDOM.unmountComponentAtNode(div);
 });

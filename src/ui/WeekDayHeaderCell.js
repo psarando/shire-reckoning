@@ -1,23 +1,21 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 import "./tolkien-calendars.css";
 
-class WeekDayHeaderCell extends Component {
-    render() {
-        return (
-            <td
-                className="weekday-header"
-                colSpan={this.props.colSpan}
-                title={this.props.description}
-            >
-                {this.props.name}
-            </td>
-        );
-    }
-}
+const WeekDayHeaderCell = props => {
+    return (
+        <td
+            className="weekday-header"
+            colSpan={props.colSpan}
+            title={props.description}
+        >
+            {props.name}
+        </td>
+    );
+};
 
 const addMonthFiller = (week, upToWeekDay) => {
     for (let weekday = 0; weekday < upToWeekDay; weekday++) {

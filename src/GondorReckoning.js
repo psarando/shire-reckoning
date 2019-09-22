@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import {
@@ -258,7 +258,7 @@ const isGondorLeapYear = (gondorYear, rules = RECKONING_RULES_GREGORIAN) => {
         return isLeapYear(gondorYear);
     }
 
-    let millennialLeapYear = isMillennialLeapYear(gondorYear);
+    const millennialLeapYear = isMillennialLeapYear(gondorYear);
 
     if (gondorYear > 3441) {
         gondorYear -= 3441;
@@ -284,16 +284,16 @@ const getGondorNewYearDate = (
 ) => {
     startDate = getStartDate(startDate);
 
-    let getYearWithRemainder =
+    const getYearWithRemainder =
         rules === RECKONING_RULES_TRADITIONAL
             ? daysElapsedToSecondAgeYear
             : daysElapsedToGregorianYear;
 
-    let daysSinceNewYearsDay = getYearWithRemainder(
+    const yearWithRemainder = getYearWithRemainder(
         toDaysElapsed(startDate, today)
-    ).daysRemainder;
+    );
 
-    return getNewYearDate(startDate, today, daysSinceNewYearsDay);
+    return getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
 };
 
 /**
@@ -307,18 +307,18 @@ const getGondorNewYearDate = (
 const getNewReckoningNewYearDate = (today, startDate, rules) => {
     startDate = getStartDate(startDate);
 
-    let getYearWithRemainder =
+    const getYearWithRemainder =
         rules === RECKONING_RULES_TRADITIONAL
             ? daysElapsedToSecondAgeYear
             : daysElapsedToGregorianYear;
 
-    let daysElapsed = toDaysElapsed(startDate, today);
-    let daysSinceNewYearsDay = daysElapsedToNewReckoningYear(
+    const daysElapsed = toDaysElapsed(startDate, today);
+    const yearWithRemainder = daysElapsedToNewReckoningYear(
         getYearWithRemainder,
         daysElapsed
-    ).daysRemainder;
+    );
 
-    return getNewYearDate(startDate, today, daysSinceNewYearsDay);
+    return getNewYearDate(startDate, today, yearWithRemainder.daysRemainder);
 };
 
 /**
@@ -330,8 +330,8 @@ const getNewReckoningNewYearDate = (today, startDate, rules) => {
  *                  that most closely matches the given `monthIndex`.
  */
 const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
-    let fromNewReckoning = fromReckoning === RECKONING_NEW;
-    let toNewReckoning = toReckoning === RECKONING_NEW;
+    const fromNewReckoning = fromReckoning === RECKONING_NEW;
+    const toNewReckoning = toReckoning === RECKONING_NEW;
     if (fromNewReckoning !== toNewReckoning) {
         fromNewReckoning ? (monthIndex += 3) : (monthIndex -= 3);
 
@@ -386,26 +386,22 @@ const makeGondorCalendarDates = (
 ) => {
     startDate = getStartDate(startDate);
 
-    let kingsReckoning = reckoning === RECKONING_KINGS;
-    let stewardsReckoning = reckoning === RECKONING_STEWARDS;
-    let newReckoning = reckoning === RECKONING_NEW;
+    const kingsReckoning = reckoning === RECKONING_KINGS;
+    const stewardsReckoning = reckoning === RECKONING_STEWARDS;
+    const newReckoning = reckoning === RECKONING_NEW;
 
-    let getYearWithRemainder =
+    const getYearWithRemainder =
         rules === RECKONING_RULES_TRADITIONAL
             ? daysElapsedToSecondAgeYear
             : daysElapsedToGregorianYear;
 
-    let daysElapsed = toDaysElapsed(startDate, today);
+    const daysElapsed = toDaysElapsed(startDate, today);
 
-    let yearWithRemainder;
-    if (newReckoning) {
-        yearWithRemainder = daysElapsedToNewReckoningYear(
-            getYearWithRemainder,
-            daysElapsed
-        );
-    } else {
-        yearWithRemainder = getYearWithRemainder(daysElapsed);
-    }
+    const yearWithRemainder = newReckoning
+        ? daysElapsedToNewReckoningYear(getYearWithRemainder, daysElapsed)
+        : getYearWithRemainder(daysElapsed);
+
+    const year = yearWithRemainder.year;
 
     let gregorianDate = getNewYearDate(
         startDate,
@@ -415,20 +411,17 @@ const makeGondorCalendarDates = (
 
     let todayGondor;
     let weekDay = convertGregorianToGondorianWeekday(gregorianDate.getDay());
-    let year = yearWithRemainder.year;
 
     if (rules === RECKONING_RULES_TRADITIONAL) {
         weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 7);
     }
 
-    let dates = [];
+    const dates = [];
 
     for (let month = 0; month < 12; month++) {
         let maxdays = 30;
 
-        // eslint-disable-next-line
         switch (month) {
-            // no default case required
             case 0:
                 dates.push({
                     day: "Yestarë",
@@ -447,6 +440,9 @@ const makeGondorCalendarDates = (
             case 5:
             case 6:
                 if (kingsReckoning) maxdays = 31;
+                break;
+
+            default:
                 break;
         }
 
@@ -467,9 +463,7 @@ const makeGondorCalendarDates = (
             }
         }
 
-        // eslint-disable-next-line
         switch (month) {
-            // no default case required
             case 2:
                 if (stewardsReckoning) {
                     dates.push({
@@ -488,7 +482,7 @@ const makeGondorCalendarDates = (
                 break;
 
             case 5:
-                let leapYear = isGondorLeapYear(year, rules);
+                const leapYear = isGondorLeapYear(year, rules);
 
                 if (leapYear && newReckoning) {
                     dates.push({
@@ -596,14 +590,17 @@ const makeGondorCalendarDates = (
                 gregorianDate = getNextDate(gregorianDate);
 
                 break;
+
+            default:
+                break;
         }
     }
 
     return {
-        year: year,
-        dates: dates,
-        today: today,
-        todayGondor: todayGondor,
+        year,
+        dates,
+        today,
+        todayGondor,
     };
 };
 

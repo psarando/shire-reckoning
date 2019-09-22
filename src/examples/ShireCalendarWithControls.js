@@ -6,7 +6,7 @@ import React, { Component } from "react";
 
 import { ShireMonths, makeShireCalendarDates } from "../ShireReckoning";
 import { RECKONING_RULES_GREGORIAN } from "../GondorReckoning";
-import { fullYearDate, datesMatch } from "../Utils";
+import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
 
 import ShireCalendar from "../ui/ShireCalendar";
 import "../ui/tolkien-calendars.css";
@@ -20,30 +20,33 @@ class ShireCalendarWithControls extends Component {
     constructor(props) {
         super(props);
 
-        let calendarControls = props.calendarControls !== false;
-        let today = props.date || new Date();
-        let monthViewLayout = props.monthViewLayout || MonthViewLayout.VERTICAL;
-        let region = props.region || ShireCalendar.REGION_NAMES_SHIRE;
-        let calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
-        let yearView = !!props.yearView;
+        const today = props.date || new Date();
+        const monthViewLayout =
+            props.monthViewLayout || MonthViewLayout.VERTICAL;
+        const region = props.region || ShireCalendar.REGION_NAMES_SHIRE;
+        const calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
+        const yearView = !!props.yearView;
 
-        let startDay = props.startDay || 21;
-        let startDate = props.startDate || fullYearDate(0, 11, startDay);
+        const startDay = props.startDay || 21;
+        const startDate = props.startDate || fullYearDate(0, 11, startDay);
 
-        let calendar = makeShireCalendarDates(today, startDate, calendarRules);
-        let monthView = calendar.todayShire.month;
+        const calendar = makeShireCalendarDates(
+            today,
+            startDate,
+            calendarRules
+        );
+        const monthView = calendar.todayShire.month;
 
         this.state = {
-            calendarControls: calendarControls,
-            calendarRules: calendarRules,
-            startDate: startDate,
-            today: today,
+            calendarRules,
+            startDate,
+            today,
             viewDate: today,
-            calendar: calendar,
-            yearView: yearView,
-            monthView: monthView,
-            monthViewLayout: monthViewLayout,
-            region: region,
+            calendar,
+            yearView,
+            monthView,
+            monthViewLayout,
+            region,
         };
 
         this.onMonthViewChange = this.onMonthViewChange.bind(this);
@@ -52,10 +55,10 @@ class ShireCalendarWithControls extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let today = nextProps.date || this.state.today;
-        let startDate = nextProps.startDate || this.state.startDate;
-        let yearView = nextProps.yearView || this.state.yearView;
+        const today = nextProps.date || this.state.today;
+        const yearView = nextProps.yearView || this.state.yearView;
 
+        let startDate = nextProps.startDate || this.state.startDate;
         let calendar = this.state.calendar;
 
         if (nextProps.startDay && !nextProps.startDate) {
@@ -75,15 +78,15 @@ class ShireCalendarWithControls extends Component {
             );
         }
 
-        let monthView = calendar.todayShire.month;
+        const monthView = calendar.todayShire.month;
 
         this.setState({
-            today: today,
+            today,
             viewDate: today,
-            calendar: calendar,
-            startDate: startDate,
-            yearView: yearView,
-            monthView: monthView,
+            calendar,
+            startDate,
+            yearView,
+            monthView,
         });
     }
 
@@ -100,10 +103,10 @@ class ShireCalendarWithControls extends Component {
         }
 
         this.setState({
-            calendar: calendar,
-            viewDate: viewDate,
-            yearView: yearView,
-            monthView: monthView,
+            calendar,
+            viewDate,
+            yearView,
+            monthView,
         });
     }
 
@@ -115,84 +118,78 @@ class ShireCalendarWithControls extends Component {
         this.setState({ region: event.target.value });
     }
 
-    renderCalendarControls() {
-        let region = this.state.region;
-        let monthNames = ShireMonths.map(function(month) {
+    render() {
+        const { className, onCalendarStartChange } = this.props;
+        const {
+            calendar,
+            region,
+            monthView,
+            monthViewLayout,
+            startDate,
+            today,
+            viewDate,
+            yearView,
+        } = this.state;
+
+        const firstDay = getFirstDay(calendar);
+        const lastDay = getLastDay(calendar);
+
+        const monthNames = ShireMonths.map(function(month) {
             return month[region];
         });
 
-        let calendar = this.state.calendar;
-        let firstDay = calendar.dates[0].gregorian;
-        let lastDay = calendar.dates[calendar.dates.length - 1].gregorian;
-
         return (
-            <tr>
-                <th className="shire-calendar-controls">
-                    <StartDatePicker
-                        month="December"
-                        startRange={19}
-                        endRange={25}
-                        startDate={this.state.startDate}
-                        onCalendarStartChange={this.props.onCalendarStartChange}
-                    />
-                    <ShireRegionPicker
-                        region={region}
-                        onRegionChange={this.onRegionChange}
-                    />
-                </th>
-                <th className="shire-calendar-controls month-picker-container">
-                    <MonthViewPicker
-                        monthNames={monthNames}
-                        firstDay={firstDay}
-                        lastDay={lastDay}
-                        thisMonth={calendar.todayShire.month}
-                        today={this.state.today}
-                        viewDate={this.state.viewDate}
-                        monthView={this.state.monthView}
-                        yearView={this.state.yearView}
-                        onMonthViewChange={this.onMonthViewChange}
-                    />
-                </th>
-                <th className="shire-calendar-controls">
-                    <MonthViewLayout
-                        layout={this.state.monthViewLayout}
-                        onMonthViewLayoutChange={this.onMonthViewLayoutChange}
-                    />
-                </th>
-            </tr>
-        );
-    }
-
-    render() {
-        let controls = this.state.calendarControls
-            ? this.renderCalendarControls()
-            : null;
-        let caption = null;
-        if (this.props.caption) {
-            caption = (
-                <caption className="shire-caption">
-                    {this.props.caption === true
-                        ? "Shire Reckoning"
-                        : this.props.caption}
-                </caption>
-            );
-        }
-
-        return (
-            <table className={this.props.className}>
-                {caption}
-                <thead>{controls}</thead>
+            <table className={className}>
+                <caption className="shire-caption">Shire Reckoning</caption>
+                <thead>
+                    <tr>
+                        <th className="shire-calendar-controls">
+                            <StartDatePicker
+                                month="December"
+                                startRange={19}
+                                endRange={25}
+                                startDate={startDate}
+                                onCalendarStartChange={onCalendarStartChange}
+                            />
+                            <ShireRegionPicker
+                                region={region}
+                                onRegionChange={this.onRegionChange}
+                            />
+                        </th>
+                        <th className="shire-calendar-controls month-picker-container">
+                            <MonthViewPicker
+                                monthNames={monthNames}
+                                firstDay={firstDay}
+                                lastDay={lastDay}
+                                thisMonth={calendar.todayShire.month}
+                                today={today}
+                                viewDate={viewDate}
+                                monthView={monthView}
+                                yearView={yearView}
+                                onMonthViewChange={this.onMonthViewChange}
+                            />
+                        </th>
+                        <th className="shire-calendar-controls">
+                            <MonthViewLayout
+                                layout={monthViewLayout}
+                                onMonthViewLayoutChange={
+                                    this.onMonthViewLayoutChange
+                                }
+                            />
+                        </th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td colSpan="3" className="shire-calendar-wrapper-cell">
                             <ShireCalendar
                                 className="shire-calendar"
-                                calendar={this.state.calendar}
-                                date={this.state.today}
-                                region={this.state.region}
-                                monthViewLayout={this.state.monthViewLayout}
-                                monthView={this.state.monthView}
-                                yearView={this.state.yearView}
+                                calendar={calendar}
+                                date={today}
+                                region={region}
+                                monthViewLayout={monthViewLayout}
+                                monthView={monthView}
+                                yearView={yearView}
                             />
                         </td>
                     </tr>
