@@ -1,54 +1,85 @@
 /**
- * Copyright (C) 2016 Paul Sarando
+ * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 
-class StartDatePicker extends Component {
-    constructor(props) {
-        super(props);
+import { datesMatch, fullYearDate } from "../../Utils";
 
-        this.onDateChanged = this.onDateChanged.bind(this);
+const StartDatePicker = props => {
+    const onDateChanged = event => {
+        const changedDate = event.target.value;
+        props.onCalendarStartChange(new Date(changedDate));
+    };
+
+    const selectedDate = props.startDates.find(startDate =>
+        datesMatch(startDate.date, props.selectedDate)
+    );
+
+    const opts = props.startDates.map(startDate => (
+        <option key={startDate.label} value={startDate.date}>
+            {startDate.label}
+        </option>
+    ));
+
+    return (
+        <div>
+            Start reckoning from
+            <select
+                className="first-day-select"
+                value={selectedDate && selectedDate.date}
+                onChange={onDateChanged}
+            >
+                {opts}
+            </select>
+        </div>
+    );
+};
+
+const getStartDates = (monthLabel, year, month, startRange, endRange) => {
+    const startDates = [];
+    for (let day = startRange; day <= endRange; day++) {
+        const date = fullYearDate(year, month, day);
+
+        // avoid TZ or DST issues in onDateChanged handler
+        date.setHours(12, 0, 0);
+
+        startDates.push({ label: `${monthLabel} ${day}`, date });
     }
 
-    onDateChanged(event) {
-        let startDay = event.target.value;
+    return startDates;
+};
 
-        let changedDate = new Date(this.props.startDate);
-        changedDate.setDate(startDay);
+const ShireStartDatePicker = props => {
+    const { onCalendarStartChange, selectedDate } = props;
+    const startDates = [
+        ...getStartDates("December", 0, 11, 18, 25),
+        ...getStartDates("June", 0, 5, 18, 26),
+    ];
 
-        this.props.onCalendarStartChange(changedDate);
-    }
+    return (
+        <StartDatePicker
+            selectedDate={selectedDate}
+            startDates={startDates}
+            onCalendarStartChange={onCalendarStartChange}
+        />
+    );
+};
 
-    render() {
-        let opts = [];
-        for (
-            let day = this.props.startRange;
-            day <= this.props.endRange;
-            day++
-        ) {
-            opts.push(
-                <option key={day} value={day}>
-                    {day}
-                </option>
-            );
-        }
+const RivendellStartDatePicker = props => {
+    const { onCalendarStartChange, selectedDate } = props;
+    const startDates = [
+        ...getStartDates("March", 1, 2, 17, 29),
+        ...getStartDates("September", 0, 8, 17, 29),
+    ];
 
-        return (
-            <div>
-                Start reckoning from
-                <br />
-                {this.props.month}
-                <select
-                    className="first-day-select"
-                    value={this.props.startDate.getDate()}
-                    onChange={this.onDateChanged}
-                >
-                    {opts}
-                </select>
-            </div>
-        );
-    }
-}
+    return (
+        <StartDatePicker
+            selectedDate={selectedDate}
+            startDates={startDates}
+            onCalendarStartChange={onCalendarStartChange}
+        />
+    );
+};
 
-export default StartDatePicker;
+export { ShireStartDatePicker, RivendellStartDatePicker };

@@ -17,7 +17,7 @@ import "../ui/tolkien-calendars.css";
 
 import { Badges } from "./Common";
 import ShireRegionPicker from "./controls/ShireRegionPicker";
-import StartDatePicker from "./controls/StartDatePicker";
+import { ShireStartDatePicker } from "./controls/StartDatePicker";
 
 /**
  * Element copy code borrowed from https://github.com/cyverse/troposphere/pull/514.
@@ -230,11 +230,8 @@ class ICalendarGenerator extends Component {
                 <thead>
                     <tr>
                         <th className="shire-calendar-controls">
-                            <StartDatePicker
-                                month="December"
-                                startRange={19}
-                                endRange={25}
-                                startDate={this.state.startDate}
+                            <ShireStartDatePicker
+                                selectedDate={this.state.startDate}
                                 onCalendarStartChange={
                                     this.onCalendarStartChange
                                 }

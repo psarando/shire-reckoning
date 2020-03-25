@@ -44,6 +44,10 @@ const SyncShireCalendar = [
         label: "Shire New Year's Day with modern Christmas Day.",
         startDate: fullYearDate(0, 11, 25),
     },
+    {
+        label: "Mid-year's Day with Southern Hemisphere summer solstice.",
+        startDate: fullYearDate(0, 5, 22),
+    },
 ];
 
 /**
@@ -69,7 +73,7 @@ const SyncRivendellCalendar = [
     },
     {
         label: "Yestarë with modern March 25",
-        subtitle: `as Tolkien probably intended, but with "Reformed" rules`,
+        subtitle: `as Tolkien probably intended, but using my "Reformed" rules`,
         startDate: fullYearDate(1, 2, 25),
         calendarRules: RivendellCalendar.REFORMED_RULES,
     },
@@ -83,6 +87,12 @@ const SyncRivendellCalendar = [
         label: `with Boris Shapiro's "7th Age" Reckoning`,
         subtitle: "as used by Quenya101.com",
         startDate: fullYearDate(1, 2, 27),
+        calendarRules: RivendellCalendar.TRADITIONAL_RULES,
+    },
+    {
+        label: "Enderi with March 25",
+        subtitle: "for our friends in the Southern Hemisphere",
+        startDate: fullYearDate(0, 8, 22),
         calendarRules: RivendellCalendar.TRADITIONAL_RULES,
     },
 ];
@@ -108,12 +118,8 @@ const adjustRivendellAprilSyncScheme = (
     rivendellSyncScheme
 ) => {
     const rivendellAprilSyncScheme = SyncRivendellCalendar[3];
-    rivendellAprilSyncScheme.startDate = new Date(
-        rivendellAprilSyncScheme.startDate
-    );
-    rivendellAprilSyncScheme.startDate.setDate(
-        25 + shireStartDate.getDate() - 21
-    );
+    rivendellAprilSyncScheme.startDate = new Date(shireStartDate);
+    rivendellAprilSyncScheme.startDate.setDate(shireStartDate.getDate() + 94);
 
     if (
         SyncRivendellCalendar[rivendellSyncScheme] === rivendellAprilSyncScheme
@@ -149,6 +155,7 @@ class TolkienCalendarsExample extends Component {
             rivendellAlign: false,
             shireSyncScheme,
             shireStartDate,
+            shireRegion: ShireCalendar.REGION_NAMES_TOLKIEN,
             gondorLeftStartDate,
             gondorRightStartDate,
             rivendellSyncScheme,
@@ -160,6 +167,7 @@ class TolkienCalendarsExample extends Component {
         this.alignChanged = this.alignChanged.bind(this);
         this.onShireSyncChange = this.onShireSyncChange.bind(this);
         this.onShireStartDateChange = this.onShireStartDateChange.bind(this);
+        this.onShireRegionChange = this.onShireRegionChange.bind(this);
         this.onGondorLeftStartDateChange = this.onGondorLeftStartDateChange.bind(
             this
         );
@@ -193,6 +201,7 @@ class TolkienCalendarsExample extends Component {
 
         let {
             shireStartDate,
+            shireRegion,
             gondorLeftStartDate,
             gondorRightStartDate,
             rivendellStartDate,
@@ -201,6 +210,10 @@ class TolkienCalendarsExample extends Component {
 
         if (shireSyncScheme > 0) {
             shireStartDate = SyncShireCalendar[shireSyncScheme].startDate;
+
+            if (parseInt(shireSyncScheme, 10) === 4) {
+                shireRegion = ShireCalendar.REGION_NAMES_SHIRE;
+            }
 
             gondorLeftStartDate = new Date(shireStartDate);
             gondorRightStartDate = new Date(shireStartDate);
@@ -215,6 +228,7 @@ class TolkienCalendarsExample extends Component {
         this.setState({
             shireSyncScheme,
             shireStartDate,
+            shireRegion,
             gondorLeftStartDate,
             gondorRightStartDate,
             rivendellStartDate,
@@ -284,6 +298,10 @@ class TolkienCalendarsExample extends Component {
         });
     }
 
+    onShireRegionChange(event) {
+        this.setState({ shireRegion: event.target.value });
+    }
+
     onRivendellSyncChange(event) {
         const rivendellSyncScheme = event.target.value;
         let { rivendellStartDate, rivendellCalendarRules } = this.state;
@@ -334,6 +352,7 @@ class TolkienCalendarsExample extends Component {
             rivendellAlign,
             shireSyncScheme,
             shireStartDate,
+            shireRegion,
             gondorLeftStartDate,
             gondorRightStartDate,
             rivendellSyncScheme,
@@ -427,7 +446,7 @@ class TolkienCalendarsExample extends Component {
                             className={shireCellClassName}
                         >
                             <ShireCalendarWithControls
-                                region={ShireCalendar.REGION_NAMES_TOLKIEN}
+                                region={shireRegion}
                                 monthViewLayout={
                                     ShireCalendar.MONTH_VIEW_HORIZONTAL
                                 }
@@ -436,6 +455,7 @@ class TolkienCalendarsExample extends Component {
                                 onCalendarStartChange={
                                     this.onShireStartDateChange
                                 }
+                                onRegionChange={this.onShireRegionChange}
                                 className="shire-calendar"
                                 yearView={shireAlign || rivendellAlign}
                             />

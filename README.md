@@ -23,11 +23,13 @@ Shire Reckoning
         * [Synchronize Mid-year's Day with the modern summer solstice.](#synchronize-mid-years-day-with-the-modern-summer-solstice)
         * [Synchronize Shire 'January' 9 with modern New Year's Day.](#synchronize-shire-january-9-with-modern-new-years-day)
         * [Synchronize Shire New Year's Day with modern Christmas Day.](#synchronize-shire-new-years-day-with-modern-christmas-day)
+        * [Synchronize Mid-year's Day with Southern Hemisphere summer solstice.](#synchronize-mid-years-day-with-southern-hemisphere-summer-solstice)
     * [Rivendell Calendar Synchronization Settings](#rivendell-calendar-synchronization-settings)
         * [Synchronize Enderi with "Hobbit Day"](#synchronize-enderi-with-hobbit-day)
         * [Synchronize Yestarë with modern March 25](#synchronize-yestarë-with-modern-march-25)
         * [Synchronize Yestarë with Shire 'April' 6, "more or less"](#synchronize-yestarë-with-shire-april-6-more-or-less)
         * [Synchronize with Boris Shapiro's "7th Age" Reckoning](#synchronize-with-boris-shapiros-7th-age-reckoning)
+        * [Synchronize Enderi with March 25](#synchronize-enderi-with-march-25)
 * [Shire Reckoning Notes](#shire-reckoning-notes)
     * [Shire Weekdays](#shire-weekdays)
     * [Shire Months](#shire-months)
@@ -304,6 +306,19 @@ See the [Shire Reckoning start dates](#reckoning-start-dates) notes for more inf
 #### Synchronize Shire New Year's Day with modern Christmas Day.
 See the [Reckoning with moon phases](#reckoning-with-moon-phases) notes for more info.
 
+#### Synchronize Mid-year's Day with Southern Hemisphere summer solstice.
+This setting synchronizes the Shire Calendar's *Mid-year's Day* with the December solstice,
+for our friends in the Southern Hemisphere!
+
+This will flip the seasons of the Shire Calendar
+to match the seasons of the Southern Hemisphere.
+This setting could be used when visiting the movie locations in New Zealand!
+
+Selecting this setting will automatically set this calendar to display with the
+[original Shire names for months and weekdays](#shire-reckoning-notes),
+in order to avoid the confusion of having Shire 'June' overlap with modern November and December.
+The month and weekday name setting can still be readjusted after choosing this synchronization setting.
+
 ### Rivendell Calendar Synchronization Settings
 
 #### Synchronize Enderi with "Hobbit Day"
@@ -345,6 +360,15 @@ This setting synchronizes the Rivendell Reckoning calendar with
 which is also the conversion scheme used by [Quenya101.com](https://Quenya101.com) for their calendar conversion requests.
 
 See the [Rivendell Reckoning Notes](#why-march-22nd) for more info.
+
+#### Synchronize Enderi with March 25
+This setting synchronizes the *Enderi* with [Tolkien Reading Day](https://www.tolkiensociety.org/society/events/reading-day/),
+March 25, for our friends in the Southern Hemisphere!
+
+This will flip the seasons of the Rivendell Reckoning calendar
+to match the seasons of the Southern Hemisphere.
+This setting could be used when visiting the movie locations in New Zealand!
+
 
 ## Shire Reckoning Notes
 

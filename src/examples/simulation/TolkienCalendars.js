@@ -315,13 +315,13 @@ storiesOf("Shire Reckoning: Middle-earth Simulation", module)
         <SimulatedTolkienCalendars />
     ))
     .add("2020-21 moon phase synchronized simulation", () => (
-        <SimulatedTolkienCalendars calendarRules={2} selectedEvent={0} />
-    ))
-    .add("2017-18 moon phase synchronized simulation", () => (
         <SimulatedTolkienCalendars calendarRules={3} selectedEvent={0} />
     ))
-    .add("1941-42 moon phase synchronized simulation", () => (
+    .add("2017-18 moon phase synchronized simulation", () => (
         <SimulatedTolkienCalendars calendarRules={4} selectedEvent={0} />
+    ))
+    .add("1941-42 moon phase synchronized simulation", () => (
+        <SimulatedTolkienCalendars calendarRules={5} selectedEvent={0} />
     ));
 
 export default SimulatedTolkienCalendars;

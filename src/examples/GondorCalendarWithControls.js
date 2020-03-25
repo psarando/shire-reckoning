@@ -22,7 +22,7 @@ import "../ui/tolkien-calendars.css";
 import LanguagePicker from "./controls/LanguagePicker";
 import MonthViewLayout from "./controls/MonthViewLayout";
 import MonthViewPicker from "./controls/MonthViewPicker";
-import StartDatePicker from "./controls/StartDatePicker";
+import { ShireStartDatePicker } from "./controls/StartDatePicker";
 
 class GondorCalendarWithControls extends Component {
     constructor(props) {
@@ -188,11 +188,8 @@ class GondorCalendarWithControls extends Component {
                 <thead>
                     <tr>
                         <th className="gondor-calendar-controls">
-                            <StartDatePicker
-                                month="December"
-                                startRange={18}
-                                endRange={25}
-                                startDate={startDate}
+                            <ShireStartDatePicker
+                                selectedDate={startDate}
                                 onCalendarStartChange={onCalendarStartChange}
                             />
                             <select

@@ -18,7 +18,7 @@ import "../ui/tolkien-calendars.css";
 
 import LanguagePicker from "./controls/LanguagePicker";
 import MonthViewPicker from "./controls/MonthViewPicker";
-import StartDatePicker from "./controls/StartDatePicker";
+import { RivendellStartDatePicker } from "./controls/StartDatePicker";
 
 class RivendellCalendarWithControls extends Component {
     constructor(props) {
@@ -153,11 +153,8 @@ class RivendellCalendarWithControls extends Component {
                 <thead>
                     <tr>
                         <th className="rivendell-calendar-controls">
-                            <StartDatePicker
-                                month="March"
-                                startRange={19}
-                                endRange={29}
-                                startDate={startDate}
+                            <RivendellStartDatePicker
+                                selectedDate={startDate}
                                 onCalendarStartChange={onCalendarStartChange}
                             />
                             <select

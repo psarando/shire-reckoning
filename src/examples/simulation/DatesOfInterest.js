@@ -59,6 +59,14 @@ const SyncAges = [
         },
     },
     {
+        label: "2025-26 Southern Hemisphere moon phases with Third Age 3018-19",
+        startDates: {
+            rivendell: fullYearDate(-5023, 8, 22),
+            gondor: fullYearDate(-4433, 5, 26),
+            shire: fullYearDate(-4433, 5, 26),
+        },
+    },
+    {
         label: "2020-21 Moon phases with Third Age 3018-19",
         startDates: {
             rivendell: fullYearDate(-5028, 2, 23),

@@ -14,7 +14,7 @@ import "../ui/tolkien-calendars.css";
 import MonthViewLayout from "./controls/MonthViewLayout";
 import MonthViewPicker from "./controls/MonthViewPicker";
 import ShireRegionPicker from "./controls/ShireRegionPicker";
-import StartDatePicker from "./controls/StartDatePicker";
+import { ShireStartDatePicker } from "./controls/StartDatePicker";
 
 class ShireCalendarWithControls extends Component {
     constructor(props) {
@@ -23,7 +23,6 @@ class ShireCalendarWithControls extends Component {
         const today = props.date || new Date();
         const monthViewLayout =
             props.monthViewLayout || MonthViewLayout.VERTICAL;
-        const region = props.region || ShireCalendar.REGION_NAMES_SHIRE;
         const calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
         const yearView = !!props.yearView;
 
@@ -46,12 +45,10 @@ class ShireCalendarWithControls extends Component {
             yearView,
             monthView,
             monthViewLayout,
-            region,
         };
 
         this.onMonthViewChange = this.onMonthViewChange.bind(this);
         this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
-        this.onRegionChange = this.onRegionChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -114,15 +111,15 @@ class ShireCalendarWithControls extends Component {
         this.setState({ monthViewLayout: event.target.value });
     }
 
-    onRegionChange(event) {
-        this.setState({ region: event.target.value });
-    }
-
     render() {
-        const { className, onCalendarStartChange } = this.props;
+        const {
+            className,
+            region,
+            onCalendarStartChange,
+            onRegionChange,
+        } = this.props;
         const {
             calendar,
-            region,
             monthView,
             monthViewLayout,
             startDate,
@@ -144,16 +141,13 @@ class ShireCalendarWithControls extends Component {
                 <thead>
                     <tr>
                         <th className="shire-calendar-controls">
-                            <StartDatePicker
-                                month="December"
-                                startRange={19}
-                                endRange={25}
-                                startDate={startDate}
+                            <ShireStartDatePicker
+                                selectedDate={startDate}
                                 onCalendarStartChange={onCalendarStartChange}
                             />
                             <ShireRegionPicker
                                 region={region}
-                                onRegionChange={this.onRegionChange}
+                                onRegionChange={onRegionChange}
                             />
                         </th>
                         <th className="shire-calendar-controls month-picker-container">
