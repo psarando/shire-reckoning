@@ -66,6 +66,19 @@ const ShireStartDatePicker = props => {
     );
 };
 
+const ICalendarStartDatePicker = props => {
+    const { onCalendarStartChange, selectedDate } = props;
+    const startDates = getStartDates("December", 0, 11, 18, 25);
+
+    return (
+        <StartDatePicker
+            selectedDate={selectedDate}
+            startDates={startDates}
+            onCalendarStartChange={onCalendarStartChange}
+        />
+    );
+};
+
 const RivendellStartDatePicker = props => {
     const { onCalendarStartChange, selectedDate } = props;
     const startDates = [
@@ -82,4 +95,8 @@ const RivendellStartDatePicker = props => {
     );
 };
 
-export { ShireStartDatePicker, RivendellStartDatePicker };
+export {
+    ShireStartDatePicker,
+    RivendellStartDatePicker,
+    ICalendarStartDatePicker,
+};
