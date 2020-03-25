@@ -1,7 +1,7 @@
 The Kings' Reckoning Rules and the *Deficit*
 ============================================
 
-## Contents
+# Contents
 
 * [Introduction](#introduction)
 * [The Rules](#the-rules)
@@ -9,7 +9,7 @@ The Kings' Reckoning Rules and the *Deficit*
     * [Deficit Calculation Results for Select Years](#deficit-calculation-results-for-select-years)
 * [The Stewards' Reckoning: Tolkien Reckoned Mostly Correct](#the-stewards-reckoning-tolkien-reckoned-mostly-correct)
 
-## Introduction
+# Introduction
 
 In *The Lord of the Rings* Appendix D,
 after Tolkien describes [the leap-year rules](#the-rules) of the
@@ -66,7 +66,7 @@ and I think the simplest explanation for Tolkien's *Deficit* figures is that he 
 of using deficit calculations for Second Age years (S.A.) 5501, 5801, and 6462
 when discussing the deficit for Third Age years (T.A.) 2060, 2360, and 3021.
 
-## The Rules
+# The Rules
 
 [The Kings' Reckoning](https://psarando.github.io/shire-reckoning/#the-3-calendars-of-gondor)
 started reckoning from the first year of the Second Age (S.A. 1).
@@ -119,7 +119,7 @@ and then the first year of Stewards' Reckoning in T.A. 2060 could still be a lea
 Then the rules of Third Age leap-years (every 4 years except the last of a century)
 could continue as normal, just as they had for the past 2059 years.
 
-## The *Deficit*
+# The *Deficit*
 
 Using these rules of the Kings' Reckoning and Tolkien's static year length of
 365 days, 5 hours, 48 minutes, 46 seconds given in Appendix D,
@@ -227,7 +227,7 @@ but the New Year’s Day (Yestarë) of both calendars would still fall on the sa
 This means that deficit calculations are not affected by the format of the Stewards' Reckoning calendar,
 and we only need to account for Mardil and Hador's special additions and the omission of the millennial adjustment to T.A. 3000.
 
-### Deficit Calculation Results for Select Years
+## Deficit Calculation Results for Select Years
 
 This chart shows deficit calculations for select Second Age and Third Age years,
 as calculated with this project's [Kings' and Stewards' Reckoning simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
@@ -282,7 +282,7 @@ Of course, this chart includes the 2-day millennial adjustment that would have b
 
 These hypothetical figures may be helpful in the following discussion.
 
-## The Stewards' Reckoning: Tolkien Reckoned Mostly Correct
+# The Stewards' Reckoning: Tolkien Reckoned Mostly Correct
 
 As demonstrated in the notes above, and as shown in the table above for the year S.A. 1000,
 I have reproduced Tolkien's millennial deficit of 4 hours, 46 minutes, 40 seconds.

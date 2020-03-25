@@ -13,6 +13,7 @@ src/index.js
 src/*.test.js
 src/__tests__
 .storybook
+*.png
 Lunar_Readalong.md
 
 # production

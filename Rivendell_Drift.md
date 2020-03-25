@@ -1,13 +1,13 @@
 The Drifting of the Calendar of Imladris through Time
 =====================================================
 
-## Contents
+# Contents
 
 * [How the Calendar of Imladris drifts apart from the Gregorian calendar](#how-the-calendar-of-imladris-drifts-apart-from-the-gregorian-calendar)
 * [How the Calendar of Imladris drifts apart from the Shire Calendar](#how-the-calendar-of-imladris-drifts-apart-from-the-shire-calendar)
     * [Aligning the Calendar of Imladris to the Shire Calendar](#aligning-the-calendar-of-imladris-to-the-shire-calendar)
 
-## How the Calendar of Imladris drifts apart from the Gregorian calendar
+# How the Calendar of Imladris drifts apart from the Gregorian calendar
 
 If the Calendar of Imladris (a.k.a. the Rivendell Reckoning calendar) starts reckoning on a
 [proleptic Gregorian](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar) year 1, March 22nd,
@@ -97,7 +97,7 @@ Gradually, over the millennia,
 the Calendar of Imladris 432-year cycle will continue to drift away from the Gregorian calendar's 400-year cycle,
 so that Yestarë will fall on later and later dates in the Gregorian calendar.
 
-## How the Calendar of Imladris drifts apart from the Shire Calendar
+# How the Calendar of Imladris drifts apart from the Shire Calendar
 
 The leap-year cycles of the Calendar of Imladris drift in a similar way when compared to the Shire Calendar,
 though in a slightly different way due to the slightly different leap-year rules of the Shire Calendar,
@@ -254,7 +254,7 @@ causing Yestarë to fall on Shire April 7 once again in T.A. 3014.
 The year that the Calendar of Imladris starts its reckoning would determine
 how its leap-year cycles line up with the Shire Calendar leap-year cycles.
 
-### Aligning the Calendar of Imladris to the Shire Calendar
+## Aligning the Calendar of Imladris to the Shire Calendar
 
 Tolkien never stated when the Calendar of Imladris was established or from what year it started reckoning.
 In Appendix D he stated that Rivendell's New Year's Day (Yestarë) "corresponded more or less with Shire April 6",

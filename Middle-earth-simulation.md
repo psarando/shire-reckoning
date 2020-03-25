@@ -1,7 +1,7 @@
 A Simulation of J.R.R. Tolkien's Calendars throughout Middle-earth's History
 ============================================================================
 
-## Contents
+# Contents
 
 * [How to Use these Calendar Simulations](#how-to-use-these-calendar-simulations)
 * [Caveats and Minutiae](#caveats-and-minutiae)
@@ -55,7 +55,7 @@ by the live demonstration below.
 
 [Follow this link for a live demonstration of this simulation](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
 
-## How to Use these Calendar Simulations
+# How to Use these Calendar Simulations
 
 1. Choose a [`Synchronize`](#synchronize-settings) setting to align Middle-earth years and dates with Gregorian dates.
     * Changing the setting of this list will adjust the `Start reckoning from` dates in each calendar
@@ -92,9 +92,9 @@ by the live demonstration below.
 5. See my [Shire Reckoning notes](https://psarando.github.io/shire-reckoning/#shire-reckoning-notes)
    for more details about the names and layout of the days, weeks, and months of the Shire Calendar.
 
-## Caveats and Minutiae
+# Caveats and Minutiae
 
-### What's Considered Canon in these Simulations?
+## What's Considered Canon in these Simulations?
 
 Tolkien gave us just enough details about these calendar systems in Appendix D to make these simulations possible,
 but [he didn't give us enough details](https://psarando.github.io/shire-reckoning/#why-march-22nd)
@@ -109,7 +109,7 @@ Note that when giving Middle-earth years throughout the rest of these notes,
 I will use S.R. = Shire-reckoning, IV = Fourth Age, III = Third Age, II = Second Age,
 and Iys = [First Age Years of the Sun](https://en.wikipedia.org/wiki/Timeline_of_Arda#Years_of_the_Sun).
 
-#### First some Caveats
+### First some Caveats
 
 I want to emphasize that none of the corresponding Gregorian dates in any of the
 [synchronization schemes](#synchronize-settings) can be considered canon.
@@ -157,7 +157,7 @@ In this section of the notes, I'm attempting to address questions like the follo
     * We don't know, but at least the Rivendell years in these simulations can help track the years elapsed
       since the first Year of the Sun in the First Age vs. Shire-reckoning, Second, Third, and Fourth Age years.
 
-#### Now the Minutiae
+### Now the Minutiae
 
 The following details given in *The Lord of the Rings* Appendices
 are what I will use to determine what's considered canon
@@ -191,7 +191,7 @@ and in my [Rivendell Reckoning Notes](https://psarando.github.io/shire-reckoning
     > in so far as the Hobbits took any account of the change of Age, they maintained that it began with 2 Yule 1422,
     > and not in the previous March.
 
-##### What I Consider Canon in these Simulations
+#### What I Consider Canon in these Simulations
 
 So based on those details provided by Tolkien in *The Lord of the Rings* Appendices,
 I would consider the following details as canon in this project's simulations:
@@ -257,7 +257,7 @@ the Calendar of Imladris in these simulations should still be accurate to within
 when compared to the dates of the Gondor calendar in the Second and Third Ages,
 and when compared to the dates of the Shire Calendar around the end of the Third Age.
 
-##### Reckoning the start or end of a day
+#### Reckoning the start or end of a day
 
 Even when we know a date in all 3 calendars can be considered canon,
 those calendar dates only match up that way during the daylight hours of that day;
@@ -282,7 +282,7 @@ Since the Elves reckon the next date after sunset, then when Frodo was wounded i
 Since Strider came back with Kingsfoil after midnight but before sunrise,
 then it was already Winterfilth 7 by Shire Reckoning but it was still considered Narquelië 6 by the Stewards' Reckoning in Gondor.
 
-### Shire, Gondor, and Rivendell Reckoning years
+## Shire, Gondor, and Rivendell Reckoning years
 
 The top of each calendar displays a year appropriate to each reckoning,
 relative to the chosen [settings described above](#how-to-use-these-calendar-simulations).
@@ -315,7 +315,7 @@ Similarly, the `Start reckoning from` dates also include the Gregorian year 0, w
   [Bree names](https://psarando.github.io/shire-reckoning/#shire-reckoning-notes)
   will also display the appropriate Bree-reckoning year.
 
-### Gondor Week Days
+## Gondor Week Days
 
 Tolkien stated in Appendix D that
 "all the days, months, and dates are in the Red Book translated into Shire terms, or equated with them in notes".
@@ -335,7 +335,7 @@ Conveniently (and perhaps intentionally by Tolkien), reckoning the weekdays of G
 allows them to sync up with the Shire Calendar's weekdays during the events of the narrative,
 in the 2nd half of III 3018 and the 1st half of III 3019 (a.k.a. the "Great Years" of the War of the Ring).
 
-### Synchronize settings
+## Synchronize settings
 
 These Gregorian `Synchronize` settings (except for `Custom Reckonings`) are configured so that all of the dates of
 the Shire, Gondor, and Rivendell calendars will always remain in sync with each other
@@ -344,7 +344,7 @@ no matter which of these `Synchronize` settings is selected.
 So changing the `Synchronize` setting is only changing the relationship of the Gregorian calendar to these Middle-earth calendars,
 but not the relationship of the Middle-earth calendars to each other.
 
-#### Gregorian years with Second Age years
+### Gregorian years with Second Age years
 
 This synchronization scheme is the one I think was most likely used by Tolkien
 while working out the details of *The Lord of the Rings* Appendix D,
@@ -370,7 +370,7 @@ but note the following caveats:
    but the Rivendell Calendar will now start on a March 21 in the Gregorian year -11002,
    and yet Shire Astron 6 and Rivendell's Yestarë still fall on a March 25 in the Third Age 3019!
 
-#### Moon phases
+### Moon phases
 
 These schemes attempt to align the dates of the 'Great Years' of the War of the Ring as much as possible
 with the real-world moon phases of various real-world years.
@@ -396,7 +396,7 @@ and some of my own real-world observations of the moon phases on certain dates.
 You can view the results and the "Grand Scheme" on the
 [The Lord of the Rings Lunar Readalong](https://psarando.github.io/shire-reckoning/Lunar_Readalong.html) page.
 
-#### Gregorian years with Years of the Sun
+### Gregorian years with Years of the Sun
 
 The [default Rivendell calendar on this project's home page](https://psarando.github.io/shire-reckoning/#tolkien-calendars)
 starts reckoning its first year on 1 A.D. of the proleptic Gregorian calendar
@@ -421,7 +421,7 @@ then Shapiro's calculations can be viewed as "traditionally appropriate",
 since it aligns with a Calendar of Imladris that starts its reckoning from a "seasonally appropriate" March 21
 and very close to a "traditionally appropriate" year.
 
-#### Venerable Bede's Reckoning
+### Venerable Bede's Reckoning
 
 This synchronization scheme is based on
 [Venerable Bede's calculation of 3952 B.C. as the year of the "creation" of the world](https://en.wikipedia.org/wiki/Bede#Works_on_historical_and_astronomical_chronology),
@@ -433,7 +433,7 @@ described in Venerable Bede's
 I'm guessing that he may have had Bede's year of 3952 B.C. in mind
 when he estimated the events of *The Lord of the Rings* could have occurred around 6000 years ago in his letter #211.
 
-#### James "the Just" Strom's Reckoning
+### James "the Just" Strom's Reckoning
 
 This synchronization scheme is based on the [Stellarium](http://www.stellarium.org/) calculations in the forum post
 [Middle-earth chronology](http://tolkienforums.activeboard.com/t42820320/middle-earth-chronology/)
@@ -443,7 +443,7 @@ This scheme also appears to match the calculations in his
 [Imladris calendar](http://tolkienforums.activeboard.com/t55579915/imladris-calendar/)
 post in the same forums.
 
-#### My Stellarium Reckoning
+### My Stellarium Reckoning
 
 This synchronization scheme is similar to James Strom's reckoning,
 but it's based on my own reckoning using the open-source program [Stellarium](http://www.stellarium.org/).
@@ -467,7 +467,7 @@ Unfortunately this scheme is not perfect either,
 and the full moon that should fall on the night of Rethe 7/8 occurs on the afternoon of Rethe 7
 (which is the afternoon of Gregorian February 25 or Julian March 30 in 4179 B.C. according to [Stellarium](http://www.stellarium.org/)).
 
-#### Joe Bartram's Reckoning
+### Joe Bartram's Reckoning
 
 This synchronization scheme is based on
 [this post by Joe Bartram of the Oxford Tolkien Society, Taruithorn](https://taruithornmiruvor.wordpress.com/2015/05/24/a-tolkien-calendar-part-1/).
@@ -475,7 +475,7 @@ The `Start reckoning from` dates were chosen to align the start of the Shire Cal
 [part 4 of Bartram's calendar posts](https://taruithornmiruvor.wordpress.com/2015/09/23/a-tolkien-calendar-part-4-my-own-estimate/).
 
 
-### Dates of Interest
+## Dates of Interest
 
 As mentioned in the "[How to Use these Calendar Simulations](#how-to-use-these-calendar-simulations)" notes above,
 the events of Middle-earth in the `Dates of Interest` list are tied to this simulation's Shire Reckoning calendar,
@@ -526,7 +526,7 @@ but I don't think it makes sense to view those events in the context of these ca
 since the calendars of Middle-earth described by Tolkien in Appendix D are certainly
 [solar calendars](https://en.wikipedia.org/wiki/Solar_calendar).
 
-#### Shire-reform
+### Shire-reform
 
 Shire-reform was enacted sometime between S.R. 1083 - 1122, during the time of Isengrim II.
 Once enacted, every year of the Shire Calendar always started on the first day of the week and always ended on the last day of the week,
@@ -543,7 +543,7 @@ So for this simulation, I picked the year in the middle of this list as the firs
 Shire-reform was also adopted "eventually" in Bree, but we are not told when,
 so this simulation also displays the Bree calendar using Shire-reform starting from this year.
 
-#### Millennial Leap-years
+### Millennial Leap-years
 
 What I'm calling a "Millennial Leap-year" is a year in which the "millennial additions"
 to the calendars of Númenor or Gondor occurred,
@@ -601,7 +601,7 @@ Note the 3 exceptions to the "Millennial Leap-year" rule as interpreted from Tol
   which also makes it equivalent to a "Millennial Leap-year".
 
 
-##### Notes on Tolkien's *Deficit* calculations
+#### Notes on Tolkien's *Deficit* calculations
 
 For all my interest in Appendix D,
 I was never really interested in Tolkien's *Deficit* calculations,
@@ -630,7 +630,7 @@ I have posted my results on this project's "[The Kings' Reckoning Rules and the 
 along with more details about the Kings' and Stewards' Reckoning rules,
 and details on how to work out the math of the *Deficit* according to these rules.
 
-#### Leap-years beyond the Third Age
+### Leap-years beyond the Third Age
 
 Tolkien did not give any details on how the New Reckoning handled leap-years in the Fourth Age.
 That leaves me with the following 2 options for this simulation.
