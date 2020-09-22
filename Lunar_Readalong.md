@@ -274,7 +274,7 @@ along with various other notes for certain events.
 |(🌓)|<a id="1418-10-03" href="#1418-10-03">🍂</a>|Winterfilth 3|September 23| |183 (I:195)|They had not gone far on the fifth day...|Strider and the hobbits cross the Midgewater Marshes.|
 | | |(retrospect)| |II.2|263 (I:277)|At sunrise I escaped...|Gandalf "is attacked at night on Weathertop."|Since Gandalf doesn't escape Weathertop until sunrise, at least 1/2 his battle with the Nazgûl would have been under a moonless sky (during the hours between midnight and dawn).
 | |<a id="1418-10-04" href="#1418-10-04">🍂</a>|Winterfilth 4<br/>(retrospect)|September 24| | |264 (I:278) "That helped a little..."|Gandalf escapes Weathertop.|
-| | |Winterfilth 4|September 24|I.11|183 (I:195)|184 (I:196) "Next morning they set out..."|Strider and the hobbits leave the Midgewater Marshes.|
+|🌔| |Winterfilth 4|September 24|I.11|183 (I:195)|184 (I:196) "Next morning they set out..."|Strider and the hobbits leave the Midgewater Marshes.|
 | |<a id="1418-10-05" href="#1418-10-05">🍂</a>|Winterfilth 5|September 25| |184 (I:196)|185 (I:197) "In the morning they found..."|Strider and the hobbits enter the Weather Hills.|
 |🌔|<a id="1418-10-06" href="#1418-10-06">🍂</a>|Winterfilth 6|September 26|I.11 - 12|185 (I:197)|198 (I:210) "Dawn was growing in the sky..."|"The camp under Weathertop attacked at night. Frodo wounded."|The moon would have crested over Weathertop no later than about 3 hours after sunset, which is when it would have reached its zenith in the southern sky.
 | |<a id="1418-10-07" href="#1418-10-07">🍂</a>|Winterfilth 7|September 27|I.12|198 (I:210)|200 (I:212) "Four days passed..."|Strider and the hobbits flee Weathertop.|
