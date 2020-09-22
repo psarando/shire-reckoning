@@ -4,6 +4,8 @@ The Lord of the Rings Lunar Readalong
 # Contents
 
 * [What's this all about?](#whats-this-all-about)
+    * [2020-21 Readalong with Illustrated Blog Posts](#2020-21-readalong-with-illustrated-blog-posts)
+    * [Future Readalongs](#future-readalongs)
 * [Caveats](#caveats)
 * [Format of this Lunar Readalong Scheme](#format-of-this-lunar-readalong-scheme)
     * [Key to the Moon Phase Emojis](#key-to-the-moon-phase-emojis)
@@ -38,17 +40,43 @@ with the help of *The Lord of the Rings* Appendix B, the *Reader's Companion*, a
 
 I also posted my progress to the
 [/r/tolkienfans subreddit](https://www.reddit.com/r/tolkienfans/comments/63kee3/lotr_lunar_readalong_chapter_2_april_5_6_and_more/),
-and I made some notes as I went on some of my real-world observations of the moon on those dates.
-I have collected my results here, along with an example alignment for 2020-21 dates and moon phases.
+and along the way I made some notes on some of my real-world observations of the moon on those dates.
+I have collected my results here, along with the alignment for 2020-21 dates and moon phases.
 
 A
 [shortcut to the calendar simulations that defaults to syncing with the moon phases for 2017-18 and today's date](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2017-18-moon-phase-synchronized-simulation)
 is still available,
 as well as a
-[shortcut to the simulations that sync with the moon phases for 2020-21](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2020-21-moon-phase-synchronized-simulation),
-on the examples page.
+[shortcut to the simulations that sync with the moon phases for 2020-21](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2020-21-moon-phase-synchronized-simulation)
+(both are also accessible from the [examples page](https://psarando.github.io/shire-reckoning/examples/)).
 
-If anyone else wishes to attempt this Readalong,
+## 2020-21 Readalong with Illustrated Blog Posts
+
+I'm now in the process of repeating this Readalong for the
+[2020-21 moon phases](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2020-21-moon-phase-synchronized-simulation)
+(which I think fit the story even better than the 2017-18 moon phases),
+so expect some of the [scheme and my notes](#lunar-readalong-grand-scheme)
+to be updated throughout.
+
+I'm also [publishing blog posts](https://shirereckoningproject.wordpress.com/)
+on some of the key dates when the moon is mentioned in the story,
+with [Stellarium](http://www.stellarium.org/)
+simulations of exactly what the moon should have looked like
+(using the moon phases of 1941-42).
+
+This is similar to what has already been done at
+[Shire-Reckoning.com's Moon Phases in The Lord of the Rings](http://shire-reckoning.com/moon.html),
+but my blog posts will include fuller quotes from *The Lord of the Rings*,
+and are hopefully better illustrated by the [Stellarium](http://www.stellarium.org/) simulations
+(not to mention my posts will be published on the corresponding real-world dates of the Readalong).
+
+So please follow along at
+[The Shire Reckoning Project's Lunar Read-along blog](https://shirereckoningproject.wordpress.com/),
+where you can also subscribe to be notified of every new post!
+
+## Future Readalongs
+
+If anyone else wishes to attempt this Readalong in the future,
 a close approximation can probably be achieved in any year by aligning the full moon nearest to the beginning of March with Rethe 8
 (the moon phase that is probably more important to the story than any other moon phase described).
 Although our friends in the Southern Hemisphere may wish to align the full moon nearest to the end of August with Rethe 8.
@@ -58,10 +86,6 @@ can help align the Shire dates with the dates in our calendar in that year.
 See the directions on [how to use the Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#how-to-use-these-calendar-simulations),
 and also the [Moon phases](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#moon-phases)
 "Synchronize settings", for more details and directions on how to align Shire dates for a different year.
-
-Also see [Shire-Reckoning.com's Moon Phases in The Lord of the Rings](http://shire-reckoning.com/moon.html)
-for additional details and for direct quotes from *The Lord of the Rings*
-where the moon is described on specific dates in the story.
 
 # Caveats
 
@@ -252,7 +276,7 @@ along with various other notes for certain events.
 | |<a id="1418-10-04" href="#1418-10-04">🍂</a>|Winterfilth 4<br/>(retrospect)|September 24| | |264 (I:278) "That helped a little..."|Gandalf escapes Weathertop.|
 | | |Winterfilth 4|September 24|I.11|183 (I:195)|184 (I:196) "Next morning they set out..."|Strider and the hobbits leave the Midgewater Marshes.|
 | |<a id="1418-10-05" href="#1418-10-05">🍂</a>|Winterfilth 5|September 25| |184 (I:196)|185 (I:197) "In the morning they found..."|Strider and the hobbits enter the Weather Hills.|
-|🌔|<a id="1418-10-06" href="#1418-10-06">🍂</a>|Winterfilth 6|September 26|I.11 - 12|185 (I:197)|198 (I:210) "Dawn was growing in the sky..."|"The camp under Weathertop attacked at night. Frodo wounded."|The moon would have crested over Weathertop 2 to 3 hours after sunset (when it would have nearly reached its zenith in the southern sky).
+|🌔|<a id="1418-10-06" href="#1418-10-06">🍂</a>|Winterfilth 6|September 26|I.11 - 12|185 (I:197)|198 (I:210) "Dawn was growing in the sky..."|"The camp under Weathertop attacked at night. Frodo wounded."|The moon would have crested over Weathertop no later than about 3 hours after sunset, which is when it would have reached its zenith in the southern sky.
 | |<a id="1418-10-07" href="#1418-10-07">🍂</a>|Winterfilth 7|September 27|I.12|198 (I:210)|200 (I:212) "Four days passed..."|Strider and the hobbits flee Weathertop.|
 | |<a id="1418-10-09" href="#1418-10-09">🍂</a>|Winterfilth 9<br/>(retrospect)|September 29| |210 (I:222) "...answered Glorfindel. 'Elrond received news that troubled him...'"|...and I came to the Bridge...|"Glorfindel leaves Rivendell."|
 |🌔|<a id="1418-10-10" href="#1418-10-10">🍂</a>|Winterfilth 10|September 30| |200 (I:212)|At the end of the fifth day...|Strider and the hobbits march through the Lonelands.|
