@@ -6,12 +6,12 @@ Shire Reckoning
 > ... Mid-year's Day was intended to correspond as nearly as possible to the summer solstice.
 > In that case the Shire dates were actually in advance of ours by some ten days...
 >
-> -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+> -- J.R.R. Tolkien, *The Lord of the Rings* Appendix D
 
 # Contents
 
-* [Introduction](#introduction)
 * [Tolkien's Calendars](#tolkiens-calendars)
+* [Introduction](#introduction)
 * [Middle-earth Simulation](#middle-earth-simulation)
 * [Middle-earth Holidays](#middle-earth-holidays)
     * [New Year's Eve and New Year's Day](#new-years-eve-and-new-years-day)
@@ -63,72 +63,9 @@ Shire Reckoning
 * [Shire Reckoning for Other Calendar Apps](#shire-reckoning-for-other-calendar-apps-shire-reckoningics)
 * [License](#license)
 
-# Introduction
-
-Have you ever been confused to find the date of February 30 in the timeline of J.R.R. Tolkien's *The Lord of the Rings*?
-Or have you ever tried reading about the Middle-earth calendars in *The Lord of the Rings* Appendix D
-but became bogged down by all the leap-day details and *Deficit* calculations?
-
-Or are you curious about how the calendars of Middle-earth compare to a modern-day calendar?
-Or do you simply wish to
-[find your birthday](https://psarando.github.io/shire-reckoning/#tolkien-calendars) according to the
-[Shire Reckoning](#shire-reckoning-notes) of the Hobbits,
-the Elvish [Reckoning of Rivendell](#rivendell-reckoning-notes),
-or Aragorn the King Elessar's [New Reckoning](#gondor-reckoning-notes) of the Fourth Age?
-
-The primary goal of this Shire Reckoning project is to visualize how the calendars described in
-*The Lord of the Rings* Appendix D relate to the [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
-(the most widely used calendar in modern times),
-but the notes of this project also include some highlights of the lore found in
-[Appendix D](http://tolkiengateway.net/wiki/Appendix_D).
-
-It's my hope that this project can serve as a reference for fans who are interested in the lore of Appendix D,
-such as the [holidays celebrated in the Fourth Age](#middle-earth-holidays)
-or how the Middle-earth calendars compare to each other,
-but who don't want to get bogged down in details such as the *Deficit* calculations.
-Although this project also includes detailed notes
-for anyone who finds the [minutiae](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#caveats-and-minutiae)
-or [math behind the calendars of Middle-earth](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html)
-interesting, plus I've added some of my own insights into the details of these calendars for those who wish to learn more.
-
-I also find it easier to understand the layout of the calendars of Middle-earth visually,
-rather than just relying on the text descriptions of Appendix D.
-So I hope I can help some fans get more out of Appendix D with this project as a reference,
-much like having the visual reference of the map of Middle-earth in the back of the book
-which helps readers understand the different locations described in the story.
-
-I also hope that this visual reference makes it easier to understand how these calendars worked
-by comparing them to the Gregorian calendar that's already familiar to most of us.
-So the default Shire Reckoning calendar is displayed according to the reasonable rules suggested by
-[Shire-Reckoning.com](http://shire-reckoning.com/calendar.html),
-where Shire [Mid-year's Day](#middle-days-and-leap-days)
-is aligned as much as possible with the contemporary
-[summer solstice](https://en.wikipedia.org/wiki/Solstice)
-(which is [usually on June 21st](https://en.wikipedia.org/wiki/Summer_solstice#/media/File:Gregoriancalendarleap_solstice.svg)),
-and it follows the same leap-day rules of the Gregorian calendar.
-This allows it to stay in sync with the Gregorian calendar so that most Shire Reckoning dates
-will always fall on the same Gregorian date.
-The exception being in leap-years, when these calendars will temporarily shift out of sync by 1 day,
-starting from the Gregorian leap-day of February 29 until the [Shire leap-day of Overlithe in midsummer](#middle-days-and-leap-days).
-To see this for yourself in the default Shire Calendar on this project's home page,
-[set the `Gregorian Date` to June 21 in a leap-year](https://psarando.github.io/shire-reckoning/#tolkien-calendars),
-then change the year to a non-leap-year (2016 and 2017 for example).
-It may be easier to see the differences by viewing the entire calendar year at once,
-by selecting the `This Year` button at the top of the calendar.
-
-Note that Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
-and the Elves reckoned their dates from sunset to sunset,
-but for simplicity, all the calendars of this project reckon their dates from midnight to midnight,
-just as our modern Gregorian calendar and the [Shire Calendar reckon dates](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#reckoning-the-start-or-end-of-a-day).
-
-By default, these calendars make no attempt to correlate Gregorian years with Shire-reckoning years or the Ages of Middle-earth.
-Although I've created a separate set of example calendars that can
-[simulate Shire-reckoning years and the Ages of Middle-earth](#middle-earth-simulation)
-with various possible Gregorian year correlations.
-
 # Tolkien's Calendars
 
-The calendars described in *The Lord of the Rings* Appendix D are
+The calendars described in *The Lord of the Rings* [Appendix D](http://tolkiengateway.net/wiki/Appendix_D) are
 the [Shire Reckoning](#shire-reckoning-notes) of the Hobbits,
 the [Rivendell Reckoning](#rivendell-reckoning-notes) of the Elves,
 and the 3 calendars of Gondor:
@@ -152,6 +89,92 @@ including [instructions for adding these calendars to your own site or app](http
 
 [![[npm version]](https://img.shields.io/npm/v/shire-reckoning.svg?logo=npm)](https://www.npmjs.org/package/shire-reckoning)
 [![[react dependency version]](https://img.shields.io/npm/dependency-version/shire-reckoning/peer/react.svg?logo=react)](https://reactjs.org)
+
+## Introduction
+
+Have you ever been confused to find the date of [February 30](http://tolkiengateway.net/wiki/30_February)
+in the timeline of J.R.R. Tolkien's *The Lord of the Rings*?
+Or have you ever tried reading about the Middle-earth calendars in *The Lord of the Rings*
+[Appendix D](http://tolkiengateway.net/wiki/Appendix_D)
+but became bogged down by all the leap-day details and *Deficit* calculations?
+
+Or are you curious about how the calendars of Middle-earth compare to a modern-day calendar?
+Or do you simply wish to
+[find your birthday](https://psarando.github.io/shire-reckoning/#tolkien-calendars) according to the
+[Shire Reckoning](#shire-reckoning-notes) of the Hobbits,
+the Elvish [Reckoning of Rivendell](#rivendell-reckoning-notes),
+or Aragorn the King Elessar's [New Reckoning](#gondor-reckoning-notes) of the Fourth Age?
+
+Many fans of *The Lord of Rings* don't realize that [Middle-earth](http://tolkiengateway.net/wiki/Middle-earth#Inspiration)
+is not meant to be in a parallel universe or on a fictional planet
+like C.S. Lewis' [Narnia](https://en.wikipedia.org/wiki/Narnia_(world))
+or George R.R. Martin's [Westeros](https://en.wikipedia.org/wiki/World_of_A_Song_of_Ice_and_Fire).
+In [one of Tolkien's letters](http://tolkiengateway.net/wiki/Letter_165), he said
+"'Middle-earth' by the way, is not a name of a never-never land without relation to the world we live in...
+imaginatively this 'history' is supposed to take place in a period of the actual Old World of this planet."
+Although there are many supernatural beings and events that occur in Middle-earth,
+the laws of nature that apply to the real Earth should still apply to the world of Middle-earth
+(at least by the [Third Age](http://tolkiengateway.net/wiki/Third_Age)),
+which is why Tolkien put so much effort into ensuring things like distances traveled,
+and the [phases of the Moon](#reckoning-with-moon-phases),
+were as realistic as possible in *The Lord of Rings*.
+As Tolkien put it [in another letter](http://tolkiengateway.net/wiki/Letter_210),
+"The Lord of the Rings may be a 'fairy-story',
+but it takes place in the Northern hemisphere of this earth:
+miles are miles, days are days, and weather is weather."
+So it also follows that years are years, seasons are seasons, and solstices are solstices;
+and by observing the skies of our world, we're also observing the skies of the world of *The Lord of Rings*!
+That is also why the Shire Calendar is so similar to the modern
+[Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
+(the most widely used calendar in modern times),
+and why they have [almost identical leap-year rules](#shire-gondor-and-gregorian-intercalation-differences).
+
+The primary goal of this Shire Reckoning project is to visualize how the calendars described in
+*The Lord of the Rings* [Appendix D](http://tolkiengateway.net/wiki/Appendix_D)
+relate to the Gregorian calendar,
+but the notes of this project also include some highlights of the lore found in Appendix D.
+
+It's my hope that this project can serve as a reference for fans who are interested in the lore of Appendix D,
+such as the [holidays celebrated in the Fourth Age](#middle-earth-holidays)
+or how the Middle-earth calendars compare to each other,
+but who don't want to get bogged down in details such as the *Deficit* calculations.
+Although this project also includes detailed notes
+for anyone who finds the [minutiae](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#caveats-and-minutiae)
+or [math behind the calendars of Middle-earth](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html)
+interesting, plus I've added some of my own insights into the details of these calendars for those who wish to learn more.
+
+I also find it easier to understand the layout of the calendars of Middle-earth visually,
+rather than just relying on the text descriptions of Appendix D.
+So I hope I can help some fans get more out of Appendix D with this project as a reference,
+much like having the visual reference of the map of Middle-earth in the back of the book
+which helps readers understand the different locations described in the story.
+
+I also hope that this visual reference makes it easier to understand how these calendars worked
+by comparing them to the Gregorian calendar that's already familiar to most of us.
+So the default Shire Reckoning calendar is displayed according to the reasonable rules suggested by
+[Shire-reckoning.com](http://shire-reckoning.com/calendar.html)
+(not affiliated with this project),
+where Shire [Mid-year's Day](#middle-days-and-leap-days)
+is aligned as much as possible with the contemporary
+[summer solstice](https://en.wikipedia.org/wiki/Solstice)
+(which is [usually on June 21st](https://en.wikipedia.org/wiki/Summer_solstice#/media/File:Gregoriancalendarleap_solstice.svg)),
+and it follows the same leap-day rules of the Gregorian calendar.
+This allows it to stay in sync with the Gregorian calendar so that most Shire Reckoning dates
+will always fall on the same Gregorian date.
+The exception being in leap-years, when these calendars will temporarily shift out of sync by 1 day,
+starting from the Gregorian leap-day of February 29 until the [Shire leap-day of Overlithe in midsummer](#middle-days-and-leap-days).
+To see this for yourself in the default Shire Calendar on this project's home page,
+[set the `Gregorian Date` to June 21 in a leap-year](https://psarando.github.io/shire-reckoning/#tolkien-calendars),
+then change the year to a non-leap-year (2016 and 2017 for example).
+It may be easier to see the differences by viewing the entire calendar year at once,
+by selecting the `This Year` button at the top of the calendar.
+
+Note that Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
+and the Elves reckoned their dates from sunset to sunset,
+but for simplicity, all the calendars of this project reckon their dates from midnight to midnight,
+just as our modern Gregorian calendar and the [Shire Calendar reckon dates](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#reckoning-the-start-or-end-of-a-day).
+
+By default, these calendars make no attempt to correlate Gregorian years with Shire-reckoning years or the Ages of Middle-earth.
 
 ## Middle-earth Simulation
 
@@ -379,7 +402,7 @@ This setting could be used when visiting the movie locations in New Zealand!
 > All the days, months, and dates are in the Red Book translated into Shire terms, or equated with them in notes.
 > The months and days, therefore, throughout The Lord of the Rings refer to the Shire Calendar.
 >
-> -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+> -- J.R.R. Tolkien, *The Lord of the Rings* Appendix D
 
 In other words,
 as Tolkien "translated" the [Red Book of Westmarch](https://en.wikipedia.org/wiki/Red_Book_of_Westmarch)
@@ -398,7 +421,7 @@ hover your cursor over any day in a month or over a weekday,
 and a tooltip will display the description of that month or weekday name.
 These descriptions were compiled from
 [The Lord of the Rings: A Reader's Companion](#references),
-[Shire-Reckoning.com](http://shire-reckoning.com/calendar.html),
+[Shire-reckoning.com](http://shire-reckoning.com/calendar.html),
 and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar).
 
 ### Shire Weekdays
@@ -477,7 +500,7 @@ but this is the `Vertical` layout Tolkien used in his example Shire Calendar at 
 > The Shire-folk introduced one small innovation of their own (eventually also adopted in Bree), which they called Shire-reform.
 > They found the shifting of the weekday names in relation to dates from year to year untidy and inconvenient.
 >
-> -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+> -- J.R.R. Tolkien, *The Lord of the Rings* Appendix D
 
 Once Shire-reform was enacted (before Bilbo's time),
 every year of the Shire Calendar always started on the first day of the week and always ended on the last day of the week,
@@ -487,7 +510,7 @@ That means all other days in the Shire Calendar will always fall on the same day
 So "1 Yule" is always on a Highday, "2 Yule" is always on a Sterday,
 and Bilbo's and Frodo's birthday is always on a Mersday in every year!
 
-This project borrows the layout of the [Shire-Reckoning.com calendar](http://shire-reckoning.com/calendar.html)
+This project borrows the layout of the [Shire-reckoning.com calendar](http://shire-reckoning.com/calendar.html)
 which shows Mid-year's Day and the Overlithe sharing a cell with the other Lithe days,
 because I also found it tidy to display these days-without-a-weekday in this manner.
 Just keep in mind that only "1 Lithe" was considered to be on a Highday (but not Mid-year's Day),
@@ -498,7 +521,7 @@ and only "2 Lithe" was on a Sterday (but not Overlithe).
 This visualization reckons the start of the Shire Calendar year from Gregorian December 21 by default,
 in order to align Shire Mid-year's Day as much as possible with the contemporary
 [summer solstice](https://en.wikipedia.org/wiki/Solstice)
-(see [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html)),
+(see [Shire-reckoning.com](http://shire-reckoning.com/calendar.html)),
 which is [usually on June 21st](https://en.wikipedia.org/wiki/Summer_solstice#/media/File:Gregoriancalendarleap_solstice.svg)
 (in our lifetimes).
 
@@ -596,7 +619,7 @@ which is why the spring equinox can fall anywhere from the Gregorian March 19th 
 Apparently, the calendars of Gondor and the Shire had similar leap-year rules
 (if including Gondor's [millennial leap-days](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years))
 in order for their Mid-year’s Day "to correspond as nearly as possible to the summer solstice".
-Tolkien also mentioned in his [Letter #176](http://tolkiengateway.net/wiki/Letter_176)
+Tolkien also mentioned in his [letter #176](http://tolkiengateway.net/wiki/Letter_176)
 that the calendar of Gondor was a bit more accurate than the modern Gregorian calendar in tracking the solar year.
 
 #### Reckoning with moon phases
@@ -637,14 +660,25 @@ referring to its chart demonstrating this alignment:
 
 In 2017-18, I attempted to re-read *The Lord of the Rings* in chronological order,
 and also aligned with the moon phases in those years.
-It actually was not too difficult with the help of *The Lord of the Rings* Appendix B, the *Reader's Companion*, and this project's
+It actually was not too difficult with the help of *The Lord of the Rings*
+[Appendix B](http://tolkiengateway.net/wiki/Appendix_B),
+the *Reader's Companion*, and this project's
 [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
 
-I've collected the breakdown of each date's reading by page number,
+I also repeated this Readalong for the (better fitting)
+[2020-21 moon phases](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2020-21-moon-phase-synchronized-simulation),
+and this time I [published blog posts](https://shirereckoningproject.wordpress.com/)
+on the dates when the moon is mentioned in the story,
+with [Stellarium](http://www.stellarium.org/)
+simulations of exactly what the moon should have looked like
+(using the moon phases of 1941-42).
+
+I present the breakdown of each date's reading by page number,
 including snippets of passages from the story where each date begins or ends,
-and some of my own real-world observations of the moon phases on certain dates.
-You can view the results and the "Grand Scheme" on the
-[The Lord of the Rings Lunar Readalong](https://psarando.github.io/shire-reckoning/Lunar_Readalong.html) page.
+along with some of my own real-world observations of the moon phases,
+and with links to the related blog posts, on the
+[The Lord of the Rings Lunar Readalong](https://psarando.github.io/shire-reckoning/Lunar_Readalong.html)
+project page.
 
 #### What if our years began at the same seasonal point?
 
@@ -726,7 +760,7 @@ The calendar of Gondor went through 3 variations throughout its history:
    > But in honour of Frodo *Yavannië* 30, which corresponded with former September 22, his birthday,
    > was made a festival, and the leap-year was provided for by doubling this feast, called *Cormarë* or Ringday.
    >
-   > -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+   > -- J.R.R. Tolkien, *The Lord of the Rings* Appendix D
 
    In other words, Yavannië 30 of the New Reckoning calendar falls on Frodo's birthday, Shire 'September' (Halimath) 22,
    except in leap-years when Yavannië 30 falls on Halimath 21 due to the Shire Calendar's leap-day in summer (Overlithe).
@@ -963,7 +997,7 @@ but I think it also applies to Appendix D:
 > many facts that some enquirer would like to know are omitted,
 > and the truth has to be discovered or guessed from such evidence as there is).
 >
-> -- J.R.R. Tolkien's letter #268, as quoted in The Lord of the Rings: A Reader's Companion
+> -- J.R.R. Tolkien's letter #268, as quoted in *The Lord of the Rings: A Reader's Companion*
 
 So it's up to the reader to put together the clues Tolkien left us in the Appendices of *The Lord of the Rings*,
 in order to figure out how these calendars,
@@ -1040,21 +1074,42 @@ Many fans of J.R.R. Tolkien's *The Lord of the Rings* recognize March 25 as
 [Tolkien Reading Day](https://www.tolkiensociety.org/society/events/reading-day/),
 since 'March' 25 is the date given in the story as the day the One Ring was destroyed
 and of the downfall of Sauron and his dark tower, Barad-dûr.
-*The Tale of Years* (Appendix B) tells us that year was the Third Age (T.A.) 3019.
+As King Elessar, Aragorn declared that from then on, the New Year would start from this date;
+which is why New Year's Day (*Yestarë*) in the [New Reckoning](#the-3-calendars-of-gondor)
+aligns with the Shire 'March' 25.
 
-Appendix B also lists the Elves' New Year's Day (or the Reckoning of Rivendell's Yestarë)
+*The Tale of Years* ([Appendix B](http://tolkiengateway.net/wiki/Appendix_B))
+tells us that year was the [Third Age (T.A.) 3019](http://tolkiengateway.net/wiki/Third_Age_3019),
+and Appendix B also lists the Elves' New Year's Day (or the Reckoning of Rivendell's *Yestarë*)
 on Shire 'April' 6 in T.A. 3019.
 
-Those familiar with the history of the Gregorian calendar in England might also recognize a real-world parallel 
-in the relationship of the Elves' New Year's Day corresponding to Shire 'April' 6.
-March 25 of the classical Julian calendar
+Those familiar with the history of the Gregorian calendar in England might also recognize
+real-world parallels in a March 25 New Year's Day and in an April 6 New Year.
+March 25 in the classical Julian calendar
 [was the start of the legal year in England](https://en.wikipedia.org/wiki/Gregorian_calendar#Beginning_of_the_year)
 (also known as [Lady Day](https://en.wikipedia.org/wiki/Lady_Day#Non-religious_significance))
-before the adoption of the Gregorian calendar in 1752 (now the most widely used calendar in modern times),
-and the Julian March 25 converted to the Gregorian April 5 at that time.
-Then in the year 1800, when the Gregorian calendar omitted its leap-day but the Julian calendar did not,
-the Julian March 25 corresponded to the Gregorian April 6;
-and [April 6 is still the start of the United Kingdom's tax year to this day](https://en.wikipedia.org/wiki/Quarter_days#In_England).
+before the adoption of the Gregorian calendar in 1752 (now the most widely used calendar in modern times).
+The tax year in England was also based on this March 25 New Year's Day,
+and after the Gregorian calendar was adopted,
+the start of the tax year then converted to the Gregorian April 6;
+and [April 6 is still the start of the United Kingdom's tax year to this day](https://en.wikipedia.org/wiki/History_of_taxation_in_the_United_Kingdom#Why_the_United_Kingdom_income_tax_year_begins_on_6_April).
+
+Tom Shippey also touches on this parallel in his book
+[J.R.R. Tolkien: Author of the Century](http://tolkiengateway.net/wiki/J.R.R._Tolkien:_Author_of_the_Century):
+
+> No one any longer celebrates the twenty-fifth of March,
+> and Tolkien's point is accordingly missed, as I think he intended.
+> He inserted it only as a kind of signature, a personal mark of piety.
+> However, as he knew perfectly well, in old English tradition,
+> 25th March is the date of the Crucifixion, of the first Good Friday.
+> As Good Friday is celebrated on a different day each year,
+> Easter being a mobile date defined by the phases of the moon,
+> the connection has been lost, except for one thing.
+> In Gondor the New Year will always begin on 25th March,
+> and the same is true of England, in a sadly altered and declined fasion...
+> in England the year still *does* start on the 6th of April.
+> But only the tax year, which no one sees as a moment of
+> [eucatastrophe](http://tolkiengateway.net/wiki/Eucatastrophe).
 
 Well it turns out that if you align a hypothetical Gregorian calendar with the start of the Second Age,
 and follow all of Tolkien's calendar rules and details from Appendix D,
@@ -1063,8 +1118,18 @@ which means Rivendell's Yestarë in T.A. 3019 would also fall on that Gregorian 
 
 I don't think it's mere coincidence that the Elves' New Year's Day and Shire 'April' 6 in T.A. 3019
 would fall on this hypothetical Gregorian calendar's March 25.
-Since this mirrors the relationship between the old Julian calendar and the modern Gregorian calendar in England,
+Since this mirrors the New Year days in the old Julian calendar and the modern Gregorian calendar in England,
 it strikes me as intentionally calculated by Tolkien.
+Although Tolkien has written before that he "did not like arithmetic at all"
+and was "stupid at arithmetic", as quoted by Dr. Kristine Larsen in the 2019 article
+"Deconstructing Durin's Day: Science, Scientific Fan Fiction, and the Fan-Scholar"
+([Journal of Tolkien Research: Vol. 8: Iss. 1, Article 3](https://scholar.valpo.edu/journaloftolkienresearch/vol8/iss1/3/)),
+Dr. Larsen also admits that "Tolkien was capable of doing basic arithmetic calculations -
+as demonstrated by his scientifically accurate Númenórean calendar".
+As Tolkien himself wrote in [letter #176](http://tolkiengateway.net/wiki/Letter_176),
+regarding his calendar calculations presented in Appendix D:
+"I am sorry about my childish amusement with arithmetic; but there it is". 
+So now let's see what kind of mathematical mischief he may have gotten himself into.
 
 [As mentioned earlier](#why-not-march-29th),
 some would conclude that if Shire Afteryule 9 was ("more or less") January 1,
@@ -1094,7 +1159,7 @@ So the common years in this chart list no correspondence for the Shire's leap-da
 
 To see these alignments for yourself on this project's home page,
 [set the Shire Calendar to start reckoning from one of these New Year's Day dates](https://psarando.github.io/shire-reckoning/#tolkien-calendars),
-then change the `Gregorian Date` year to a either a leap-year or a non-leap-year (2016 and 2017 for example).
+then change the `Gregorian Date` year to either a leap-year or a non-leap-year (2016 and 2017 for example).
 
 Now let's consider all of Tolkien's statements about the Shire Calendar in Appendix D more closely:
 
@@ -1109,7 +1174,7 @@ Now let's consider all of Tolkien's statements about the Shire Calendar in Appen
     > ... March 25, the date of the downfall of Barad-dûr
     > ... was, however, March 25 in both Kings' and Stewards' Reckoning.
     >
-    > -- J.R.R. Tolkien, The Lord of the Rings Appendix D
+    > -- J.R.R. Tolkien, *The Lord of the Rings* Appendix D
 
    The Stewards' Reckoning was only a slight modification of the Kings' Reckoning calendar,
    so that if 'March' (Súlimë) 25 was on the same day in both calendars,
@@ -1159,7 +1224,7 @@ Now let's consider all of Tolkien's statements about the Shire Calendar in Appen
     > These alterations seem to have become recognized eventually throughout the west-lands;
     > but there were no further corrections during the Third Age.
     >
-    > -- J.R.R. Tolkien, as quoted in The Lord of the Rings: A Reader's Companion Appendix D
+    > -- J.R.R. Tolkien, as quoted in *The Lord of the Rings: A Reader's Companion* Appendix D
 
     This may also imply that if the Kings' Reckoning was still in use by the end of the Third Age,
     that it had also incorporated the Stewards' Reckoning millennial adjustments,
@@ -1348,7 +1413,7 @@ In fact, the first publication of *The Lord of the Rings* stated:
 > to the summer and winter solstices, and still do so.
 > In that case the Shire dates were actually in advance of ours by some nine days...
 >
-> -- J.R.R. Tolkien, as quoted in The Lord of the Rings: A Reader's Companion Appendix D
+> -- J.R.R. Tolkien, as quoted in *The Lord of the Rings: A Reader's Companion* Appendix D
 
 So it's also possible Tolkien became aware of the fact that
 the winter solstices occurred relatively earlier around 6000 years ago,
@@ -1459,7 +1524,7 @@ which fall on (or very close to) the
   *[Mythlore](http://www.mythsoc.org/mythlore.htm)* 54, Summer 1988, pp 52-59.
 * Sarando, Paul. "Why We Should Observe the Elves' New Year on March 25",
   *[Beyond Bree](http://www.cep.unt.edu/bree.html)*, March 2018.
-* [Shire-Reckoning.com](http://shire-reckoning.com/calendar.html)
+* [Shire-reckoning.com](http://shire-reckoning.com/calendar.html)
 * [The Tolkien Gateway article on Appendix D](http://tolkiengateway.net/wiki/Appendix_D):
   Includes links to other [Tolkien Gateway](http://tolkiengateway.net)
   articles on the Middle-earth calendars described in this appendix.
