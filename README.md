@@ -779,7 +779,11 @@ The calendar of Gondor went through 3 variations throughout its history:
    which would have fallen on the same day as Shire "September 22" if "March 25" fell on the same day in both calendars.
    If "former September 22" is a reference to the Kings' Reckoning,
    then that may imply that Aragorn and the Dúnedain of the North never adopted the Stewards' Reckoning
-   and continued observing the Kings' Reckoning throughout the Third Age. 
+   and continued observing the Kings' Reckoning throughout the Third Age.
+   Another hint that Aragorn and the Dúnedain of the North continued observing the Kings' Reckoning,
+   up until the New Reckoning was enacted at least,
+   may be found in the implication that
+   [Aragorn intentionally chose former May 1 as his coronation date in T.A. 3019](https://shirereckoningproject.wordpress.com/2021/04/21/3019-05-01-aragorn-crowned-as-king-elessar-on-a-clear-moonless-morning/).
 
    As mentioned in the notes on [Fourth Age Holidays](#fourth-age-holidays),
    Shire Rethe 25 and Halimath 22, which fall on the New Reckoning's Yestarë and Cormarë/Yavannië 30,
