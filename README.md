@@ -707,7 +707,7 @@ page.
 
 The calendar of Gondor went through 3 variations throughout its history:
 
-1. **Kings' Reckoning**:
+1. **[Kings' Reckoning](http://tolkiengateway.net/wiki/Kings%27_Reckoning)**:
    The Kings' Reckoning was established in [Númenor](https://en.wikipedia.org/wiki/N%C3%BAmenor) and was
    "used in Númenor, and in Arnor and Gondor until the end of the kings".
    This was the calendar that was in use for the longest period of time in Middle-earth
@@ -742,14 +742,14 @@ The calendar of Gondor went through 3 variations throughout its history:
    and up to the Third Age (T.A.) 2059.
    It's also possible that it was still observed by the Dúnedain of the North until the end of the Third Age
    (see the *New Reckoning* notes below).
-2. **Stewards' Reckoning**:
+2. **[Stewards' Reckoning](http://tolkiengateway.net/wiki/Stewards%27_Reckoning)**:
    The Stewards' Reckoning was established in the time of Mardil, the first Ruling Steward of Gondor,
    and replaced the Kings' Reckoning in T.A. 2060.
    It was only a minor modification of the Kings' Reckoning that added the days
    "Tuilérë" (Spring-day) and "Yáviérë" (Autumn-day) and shortened the two 31-day months in summer to 30 days each.
    It seems to me like these new Tuilérë and Yáviérë days could have been in honor (or a reflection)
    of the holidays of Númenor for [Erukyermë and Eruhantalë](http://tolkiengateway.net/wiki/Three_Prayers).
-3. **New Reckoning**:
+3. **[New Reckoning](http://tolkiengateway.net/wiki/New_Reckoning)**:
    The New Reckoning was introduced by Aragorn the King Elessar
    and started its reckoning from the day the One Ring was destroyed,
    T.A. 3019 'March' (Rethe/Súlimë) 25, which became its New Year's Day (Yestarë).
@@ -925,11 +925,12 @@ for more detailed descriptions of these holidays.
   [Reformed Rivendell Reckoning rules](#reformed-rivendell-reckoning)
   (and choosing a non-leap-year for dates between February 28 and Rivendell New Year's Day).
 
-Since the Rivendell Reckoning calendar (also known as the Calendar of Imladris)
+Since the Rivendell Reckoning calendar
+(also known as the [Calendar of Imladris](http://tolkiengateway.net/wiki/Reckoning_of_Rivendell))
 described by Tolkien has very different leap-day rules than the
 [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar), then by default,
 the Calendar of Imladris in this project will follow its
-[traditional rules](https://en.wikipedia.org/wiki/Middle-earth_calendar#Calendar_of_Imladris)
+[traditional rules](http://tolkiengateway.net/wiki/Reckoning_of_Rivendell#Observations)
 where every year has 365 days,
 except every 12th year is a leap-year, which adds 3 extra days in the middle of the year,
 however every 432nd year is not a leap-year.
@@ -971,7 +972,8 @@ around the end of the Third Age.
 
 ### Why March 22nd?
 
-Starting this calendar from Gregorian March 22 with its [traditional rules](https://en.wikipedia.org/wiki/Middle-earth_calendar#Calendar_of_Imladris)
+Starting this calendar from Gregorian March 22 with its
+[traditional rules](http://tolkiengateway.net/wiki/Reckoning_of_Rivendell#Observations)
 allows September 22 during our lifetimes
 (the usual date of the contemporary [autumnal equinox](http://en.wikipedia.org/wiki/Equinox);
 and the date also known as [Hobbit Day](https://en.wikipedia.org/wiki/Hobbit_Day))
@@ -1528,6 +1530,7 @@ which fall on (or very close to) the
 * [The Tolkien Gateway article on Appendix D](http://tolkiengateway.net/wiki/Appendix_D):
   Includes links to other [Tolkien Gateway](http://tolkiengateway.net)
   articles on the Middle-earth calendars described in this appendix.
+* [The Tolkien Gateway article on the Ages of Middle-earth](http://tolkiengateway.net/wiki/Ages)
 * [A Tolkien Calendar: Part 1 | Miruvor](https://taruithornmiruvor.wordpress.com/2015/05/24/a-tolkien-calendar-part-1/#attachment_143):
   Joe Bartram's article on the history of Middle-earth calendars,
   including an excellent chart of the "evolution and divergence of calendar systems in Middle Earth"
@@ -1537,8 +1540,6 @@ which fall on (or very close to) the
 * [Wikipedia article on the Coligny calendar](https://en.wikipedia.org/wiki/Coligny_calendar):
   A possible inspiration behind the design of Tolkien's calendars in Appendix D,
   particularly the similarity of the Enderi to the *trinoxtion Samonii*.
-* [Wikipedia article on Middle-earth calendars](https://en.wikipedia.org/wiki/Middle-earth_calendar)
-* [Wikipedia article on the Ages of Middle-earth](https://en.wikipedia.org/wiki/Timeline_of_Arda)
 * [Wikipedia solstice article](https://en.wikipedia.org/wiki/Solstice)
 * [Wikipedia equinox article](https://en.wikipedia.org/wiki/Equinox)
 * [TheTropicalEvents.com](http://www.thetropicalevents.com/):
