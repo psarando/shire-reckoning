@@ -1,5 +1,3 @@
-import "@storybook/addon-storysource/register";
-
 import addons from "@storybook/addons";
 import { STORY_RENDERED } from "@storybook/core-events";
 

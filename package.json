@@ -18,9 +18,10 @@
   "license": "EPL-1.0",
   "devDependencies": {
     "@btmills/prettier": "^1.17.0",
-    "@storybook/addon-storysource": "^5.0.11",
-    "@storybook/addons": "^5.0.11",
-    "@storybook/react": "^5.0.11",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "@storybook/source-loader": "^5.2.8",
+    "@storybook/theming": "^5.2.8",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0",
