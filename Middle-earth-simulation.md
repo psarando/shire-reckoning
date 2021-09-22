@@ -16,8 +16,8 @@ A Simulation of J.R.R. Tolkien's Calendars throughout Middle-earth's History
         * [Gregorian years with Years of the Sun](#gregorian-years-with-years-of-the-sun)
         * [Venerable Bede's Reckoning](#venerable-bedes-reckoning)
         * [James "the Just" Strom's Reckoning](#james-the-just-stroms-reckoning)
-        * [My Stellarium Reckoning](#my-stellarium-reckoning)
         * [Joe Bartram's Reckoning](#joe-bartrams-reckoning)
+        * [My NoME-adjusted Stellarium Reckoning](#my-nome-adjusted-stellarium-reckoning)
     * [Dates of Interest](#dates-of-interest)
         * [Shire-reform](#shire-reform)
         * [Millennial Leap-years](#millennial-leap-years)
@@ -113,10 +113,14 @@ and Iys = [First Age Years of the Sun](https://en.wikipedia.org/wiki/Timeline_of
 
 I want to emphasize that none of the corresponding Gregorian dates in any of the
 [synchronization schemes](#synchronize-settings) can be considered canon.
-Tolkien never attempted to fix these stories to a specific period in our actual history.
-He only included a rough estimate in his letter #211 that
+Tolkien never firmly fixed these stories to a specific period in our actual history.
+He included a rough estimate in his letter #211 that
 the events of *The Lord of the Rings* could have occurred around 6000 years ago,
-which is why these simulations provide so many possible [synchronization schemes](#synchronize-settings).
+but in one note published in
+[The Nature of Middle-earth](http://tolkiengateway.net/wiki/The_Nature_of_Middle-earth),
+he speculates that Iys 310 could have occurred 16000 years ago,
+putting the events of *The Lord of the Rings* further back to around 9000 years ago.
+So these simulations provide many possible [synchronization schemes](#synchronize-settings).
 
 These simulations also make no attempt to display these calendars with the appropriate language during any given year.
 For example, the Hobbits used more archaic names for their months and weekdays around "nine hundred years before Frodo's time",
@@ -443,36 +447,73 @@ This scheme also appears to match the calculations in his
 [Imladris calendar](http://tolkienforums.activeboard.com/t55579915/imladris-calendar/)
 post in the same forums.
 
-### My Stellarium Reckoning
-
-This synchronization scheme is similar to James Strom's reckoning,
-but it's based on my own reckoning using the open-source program [Stellarium](http://www.stellarium.org/).
-The James Strom reckoning above is a very close match to the moon phases used in the story,
-which matches the full moon of the night of III 3019 Afteryule 8,
-and also has Mars in the evening skies of III 3018 Blotmath,
-and of course a prominent Venus in the evening sky of III 3019 Solmath 15.
-According to Stellarium, however,
-the full moon that should fall on the night of Rethe 7/8 actually occurs on the morning of Rethe 7 by that scheme
-(most would probably consider that close enough).
-Also, the moon on the eve of the destruction of the One Ring should be "four nights old",
-so a new moon should occur sometime between dawn on Rethe 21 and dawn on Rethe 22,
-but in that scheme the new moon occurs on the evening of Rethe 22,
-making the moon of Rethe 24 three nights old instead.
-
-So I used [Stellarium](http://www.stellarium.org/) to find a year around 6000 years ago that attempts to meet all of these requirements,
-but also happens to have an even brighter Venus for the evening of III 3019 Solmath 15.
-In this scheme, the destruction of the One Ring occurs on a proleptic Gregorian March 15 in 4179 B.C. (or Julian April 17),
-and also happens to [align the start of II 1 with a Gregorian December 23](https://psarando.github.io/shire-reckoning/#what-if-the-kings-reckoning-started-reckoning-from-a-gregorian-december-23-in-sa-1).
-Unfortunately this scheme is not perfect either,
-and the full moon that should fall on the night of Rethe 7/8 occurs on the afternoon of Rethe 7
-(which is the afternoon of Gregorian February 25 or Julian March 30 in 4179 B.C. according to [Stellarium](http://www.stellarium.org/)).
-
 ### Joe Bartram's Reckoning
 
 This synchronization scheme is based on
 [this post by Joe Bartram of the Oxford Tolkien Society, Taruithorn](https://taruithornmiruvor.wordpress.com/2015/05/24/a-tolkien-calendar-part-1/).
 The `Start reckoning from` dates were chosen to align the start of the Shire Calendar in 2015 (S.R. 8077) with the calendar linked in
 [part 4 of Bartram's calendar posts](https://taruithornmiruvor.wordpress.com/2015/09/23/a-tolkien-calendar-part-4-my-own-estimate/).
+
+### My NoME-adjusted Stellarium Reckoning
+
+This synchronization scheme is similar to [James Strom's reckoning](#james-the-just-stroms-reckoning),
+but rather than using [Stellarium](http://www.stellarium.org/)
+to find a year around 6000 years ago that fits the astronomy described in *The Lord of the Rings*,
+I used that open-source astronomy program to find a fitting year around 9000 years ago,
+due to a note recently published in
+[The Nature of Middle-earth](http://tolkiengateway.net/wiki/The_Nature_of_Middle-earth)
+where Tolkien speculates that Iys 310 could have occurred 16000 years ago.
+
+The James Strom reckoning above is a very close match to the moon phases used in the story,
+which matches the full moon of the night of III 3019 Afteryule 8,
+and also has Mars low (about 20 degrees above the horizon)
+in the southern skies of III 3018 Blotmath,
+and of course a prominent Venus in the evening sky of III 3019 Solmath 15.
+According to Stellarium, however,
+the full moon that should fall on the night of Rethe 7/8 actually occurs
+around dawn on the morning of Rethe 7 by that scheme
+(which some might consider close enough).
+Also, the moon on the eve of the destruction of the One Ring should be "four nights old",
+so a new moon should occur sometime between dawn on Rethe 21 and dawn on Rethe 22,
+but in that scheme the new moon occurs on the evening of Rethe 22,
+making the moon of Rethe 24 three nights old instead.
+
+So I used [Stellarium](http://www.stellarium.org/)
+to find a year around 7300 B.C.E. that attempts to meet all of these requirements.
+
+In this scheme, the destruction of the One Ring occurs on a proleptic Gregorian
+March 16 in 7194 B.C.E. (or Julian May 11),
+and also happens to align Mid-year's Day in III 3019
+(the day of Aragorn and Arwen's wedding) with the summer solstice!
+
+Unfortunately this scheme is not perfect either,
+and the few instances of constellations described in the story are not in
+the same parts of the sky during the same time of year at this point in the past,
+which I believe is due to the
+[Earth's axial precession](https://en.wikipedia.org/wiki/Axial_precession#Effects).
+
+For example, [the night the hobbits first encounter a Black Rider](https://shirereckoningproject.wordpress.com/2020/09/14/3018-09-24-frodo-and-company-encounter-a-black-rider-on-the-road/)
+shortly after setting out from Hobbiton,
+the constellation [Menelvagor](http://tolkiengateway.net/wiki/Menelvagor)
+("the Swordsman of the Sky", a.k.a. [Orion](https://en.wikipedia.org/wiki/Orion_(constellation)))
+began to rise late in the night.
+This constellation usually rises around midnight (or maybe later)
+on September evenings in modern times, and at those northern latitudes,
+but only some of the top-most stars of this constellation would have been visible 9000 years ago.
+From what I can tell in Stellarium,
+it seems Orion's belt never makes it above the horizon at this latitude,
+at any time of the year, around 9000 years ago!
+
+Additionally, it seems these astronomy simulations can not be counted on
+for a high degree of precision for dates so far back into the past.
+The description of the F. Espenak and J. Meeus algorithm used by default in Stellarium
+note that the valid range of usage is "between years -1999 and 3000".
+There are other algorithms available in Stellarium's simulation settings,
+but only a couple are described as valid as far back as -4000.
+I used the default Espenak & Meeus algorithm,
+assuming that it's close enough for this speculative exercise,
+and so that anyone else that wishes to see this for themselves
+will not have to adjust any settings in Stellarium first.
 
 
 ## Dates of Interest
@@ -654,7 +695,7 @@ I chose option #2:
    and the Shire Calendar as if the count of Third Age years had continued.
    This allows the New Reckoning Yestarë to always correspond to Shire Rethe 25,
    and New Reckoning Yavannië 30 (or Cormarë in leap-years) to always correspond to Shire Halimath 22.
-   Since IV 1 corresponds to S.R. 3021, then regular leap-years in the New Reckoning calendar will still occur in years divisible by 4,
+   Since IV 1 corresponds to III 3021, then regular leap-years in the New Reckoning calendar will still occur in years divisible by 4,
    but leap-days omitted at the end of centuries appear to come 20 years early (IV 80, IV 180, IV 280, etc.),
    and [Millennial Leap-years](#millennial-leap-years) would also come 20 years early in the New Reckoning, but continue to come 600 years early
    (or 400 years late) in Shire-reckoning years (e.g. S.R. 2400, 3400, 4400, etc.)

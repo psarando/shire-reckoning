@@ -115,19 +115,19 @@ const SyncAges = [
         },
     },
     {
-        label: "Fourth Age with my Stellarium Reckoning",
-        startDates: {
-            rivendell: fullYearDate(-11227, 2, 22),
-            gondor: fullYearDate(-10638, 11, 23),
-            shire: fullYearDate(-10638, 11, 23),
-        },
-    },
-    {
         label: "Shire Reckoning with Joe Bartram's Reckoning",
         startDates: {
             rivendell: fullYearDate(-11692, 2, 28),
             gondor: fullYearDate(-11103, 11, 28),
             shire: fullYearDate(-11103, 11, 28),
+        },
+    },
+    {
+        label: "Fourth Age with my NoME-adjusted Stellarium Reckoning",
+        startDates: {
+            rivendell: fullYearDate(-14244, 2, 23),
+            gondor: fullYearDate(-13655, 11, 25),
+            shire: fullYearDate(-13655, 11, 25),
         },
     },
 ];
