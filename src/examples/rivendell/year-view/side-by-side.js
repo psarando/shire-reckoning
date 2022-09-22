@@ -3,13 +3,12 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { useState } from "react";
-import { storiesOf } from "@storybook/react";
 
 import { RivendellCalendar } from "../../../lib";
 
 import { CalendarCellStyle, CaptionCellStyle, DatePicker } from "../../Common";
 
-const RivendellCalendarYearViewExample = () => {
+export const RivendellCalendarYearViewExample = () => {
     const [currentDate, onDateChanged] = useState(new Date());
 
     return (
@@ -81,10 +80,20 @@ const RivendellCalendarYearViewExample = () => {
     );
 };
 
-storiesOf("Shire Reckoning: Rivendell Calendar / Year View", module)
-    .addParameters({ options: { showPanel: false } })
-    .add("comparing various rules and languages", () => (
-        <RivendellCalendarYearViewExample />
-    ));
+export default {
+    title: "Shire Reckoning / Rivendell Calendar / Year View",
 
-export default RivendellCalendarYearViewExample;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["RivendellCalendarYearViewExample"],
+};
+
+export const ComparingVariousRulesAndLanguages = () => (
+    <RivendellCalendarYearViewExample />
+);
+
+ComparingVariousRulesAndLanguages.story = {
+    name: "comparing various rules and languages",
+};

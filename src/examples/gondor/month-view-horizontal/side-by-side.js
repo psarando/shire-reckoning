@@ -3,13 +3,12 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { useState } from "react";
-import { storiesOf } from "@storybook/react";
 
 import { GondorCalendar } from "../../../lib";
 
 import { CalendarCellStyle, CaptionCellStyle, DatePicker } from "../../Common";
 
-const GondorCalendarMonthViewHorizontalExample = () => {
+export const GondorCalendarMonthViewHorizontalExample = () => {
     const [currentDate, onDateChanged] = useState(new Date());
 
     return (
@@ -65,10 +64,20 @@ const GondorCalendarMonthViewHorizontalExample = () => {
     );
 };
 
-storiesOf("Shire Reckoning: Gondor Calendar / Month View Horizontal", module)
-    .addParameters({ options: { showPanel: false } })
-    .add("comparing all reckonings", () => (
-        <GondorCalendarMonthViewHorizontalExample />
-    ));
+export default {
+    title: "Shire Reckoning / Gondor Calendar / Month View Horizontal",
 
-export default GondorCalendarMonthViewHorizontalExample;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["GondorCalendarMonthViewHorizontalExample"],
+};
+
+export const ComparingAllReckonings = () => (
+    <GondorCalendarMonthViewHorizontalExample />
+);
+
+ComparingAllReckonings.story = {
+    name: "comparing all reckonings",
+};

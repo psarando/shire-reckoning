@@ -3,7 +3,6 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from "react";
-import { storiesOf } from "@storybook/react";
 
 import "../../ui/tolkien-calendars.css";
 
@@ -21,7 +20,7 @@ import {
 import { CalendarCellStyle, DatePicker } from "../Common";
 import "../examples.css";
 
-class SimulatedTolkienCalendars extends Component {
+export class SimulatedTolkienCalendars extends Component {
     constructor(props) {
         super(props);
 
@@ -59,9 +58,8 @@ class SimulatedTolkienCalendars extends Component {
         this.onDateChanged = this.onDateChanged.bind(this);
         this.onShireStartDateChange = this.onShireStartDateChange.bind(this);
         this.onGondorStartDateChange = this.onGondorStartDateChange.bind(this);
-        this.onRivendellStartDateChange = this.onRivendellStartDateChange.bind(
-            this
-        );
+        this.onRivendellStartDateChange =
+            this.onRivendellStartDateChange.bind(this);
     }
 
     onCalendarRulesChange(event) {
@@ -239,7 +237,7 @@ class SimulatedTolkienCalendars extends Component {
                                 value={this.state.calendarRules}
                                 onChange={this.onCalendarRulesChange}
                             >
-                                {SyncAges.map(function(sync, i) {
+                                {SyncAges.map(function (sync, i) {
                                     return (
                                         <option key={i} value={i}>
                                             {sync.label}
@@ -309,19 +307,44 @@ class SimulatedTolkienCalendars extends Component {
     }
 }
 
-storiesOf("Shire Reckoning: Middle-earth Simulation", module)
-    .addParameters({ options: { showPanel: false } })
-    .add("Elves' New Year's Day in T.A. 3019 (default example)", () => (
-        <SimulatedTolkienCalendars />
-    ))
-    .add("2020-21 moon phase synchronized simulation", () => (
-        <SimulatedTolkienCalendars calendarRules={3} selectedEvent={0} />
-    ))
-    .add("2017-18 moon phase synchronized simulation", () => (
-        <SimulatedTolkienCalendars calendarRules={4} selectedEvent={0} />
-    ))
-    .add("1941-42 moon phase synchronized simulation", () => (
-        <SimulatedTolkienCalendars calendarRules={5} selectedEvent={0} />
-    ));
+export default {
+    title: "Shire Reckoning / Middle-earth Simulation",
 
-export default SimulatedTolkienCalendars;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["SimulatedTolkienCalendars"],
+};
+
+export const Elves_NewYear_sDayInT_A_3019DefaultExample = () => (
+    <SimulatedTolkienCalendars />
+);
+
+Elves_NewYear_sDayInT_A_3019DefaultExample.story = {
+    name: "Elves' New Year's Day in T.A. 3019 (default example)",
+};
+
+export const _2020_21MoonPhaseSynchronizedSimulation = () => (
+    <SimulatedTolkienCalendars calendarRules={3} selectedEvent={0} />
+);
+
+_2020_21MoonPhaseSynchronizedSimulation.story = {
+    name: "2020-21 moon phase synchronized simulation",
+};
+
+export const _2017_18MoonPhaseSynchronizedSimulation = () => (
+    <SimulatedTolkienCalendars calendarRules={4} selectedEvent={0} />
+);
+
+_2017_18MoonPhaseSynchronizedSimulation.story = {
+    name: "2017-18 moon phase synchronized simulation",
+};
+
+export const _1941_42MoonPhaseSynchronizedSimulation = () => (
+    <SimulatedTolkienCalendars calendarRules={5} selectedEvent={0} />
+);
+
+_1941_42MoonPhaseSynchronizedSimulation.story = {
+    name: "1941-42 moon phase synchronized simulation",
+};

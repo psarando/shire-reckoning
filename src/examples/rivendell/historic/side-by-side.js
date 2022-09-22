@@ -3,13 +3,12 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import { RivendellCalendar } from "../../../lib";
 
 import { CalendarCellStyle } from "../../Common";
 
-const RivendellCalendarHistoricExample = () => {
+export const RivendellCalendarHistoricExample = () => {
     const sa1697 = new Date(590 + 1697, 8, 22);
     const ta2941 = new Date(590 + 3441 + 2941, 8, 22);
     const ta3018 = new Date(590 + 3441 + 3018, 8, 22);
@@ -85,13 +84,20 @@ const RivendellCalendarHistoricExample = () => {
     );
 };
 
-storiesOf(
-    "Shire Reckoning: Rivendell Calendar / Possible historic calendars",
-    module
-)
-    .addParameters({ options: { showPanel: false } })
-    .add("for select years in Middle-earth history", () => (
-        <RivendellCalendarHistoricExample />
-    ));
+export default {
+    title: "Shire Reckoning / Rivendell Calendar / Possible historic calendars",
 
-export default RivendellCalendarHistoricExample;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["RivendellCalendarHistoricExample"],
+};
+
+export const ForSelectYearsInMiddleEarthHistory = () => (
+    <RivendellCalendarHistoricExample />
+);
+
+ForSelectYearsInMiddleEarthHistory.story = {
+    name: "for select years in Middle-earth history",
+};

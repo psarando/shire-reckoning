@@ -3,14 +3,13 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import { ShireCalendar, GondorCalendar } from "../../../lib";
 import { fullYearDate } from "../../../Utils";
 
 import { CalendarCellStyle, CaptionCellStyle } from "../../Common";
 
-const ShireCalendarTraditionalRulesExample = () => {
+export const ShireCalendarTraditionalRulesExample = () => {
     const secondAgeStartDate = fullYearDate(0, 11, 23);
 
     const ta1300 = fullYearDate(3441 + 1300, 5, 20);
@@ -119,10 +118,20 @@ const ShireCalendarTraditionalRulesExample = () => {
     );
 };
 
-storiesOf("Shire Reckoning: Shire Calendar / Traditional Rules", module)
-    .addParameters({ options: { showPanel: false } })
-    .add("for select years in Hobbit history", () => (
-        <ShireCalendarTraditionalRulesExample />
-    ));
+export default {
+    title: "Shire Reckoning / Shire Calendar / Traditional Rules",
 
-export default ShireCalendarTraditionalRulesExample;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["ShireCalendarTraditionalRulesExample"],
+};
+
+export const ForSelectYearsInHobbitHistory = () => (
+    <ShireCalendarTraditionalRulesExample />
+);
+
+ForSelectYearsInHobbitHistory.story = {
+    name: "for select years in Hobbit history",
+};

@@ -3,18 +3,25 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import * as TolkienCalendars from "../../../../lib";
 
-storiesOf(
-    "Shire Reckoning: Gondor Calendar / Year View / source / javascript",
-    module
-).add("New Reckoning in Quenya", () =>
+export default {
+    title: "Shire Reckoning / Gondor Calendar / Year View / source / javascript",
+
+    parameters: {
+        options: { showPanel: true },
+    },
+};
+
+export const NewReckoningInQuenya = () =>
     React.createElement(TolkienCalendars.GondorCalendar, {
         reckoning: TolkienCalendars.GondorCalendar.RECKONING_NEW,
         yearView: true,
         caption: true,
         className: "shire-calendar",
-    })
-);
+    });
+
+NewReckoningInQuenya.story = {
+    name: "New Reckoning in Quenya",
+};

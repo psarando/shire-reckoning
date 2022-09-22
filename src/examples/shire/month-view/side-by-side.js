@@ -3,13 +3,12 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { useState } from "react";
-import { storiesOf } from "@storybook/react";
 
 import { ShireCalendar } from "../../../lib";
 
 import { CalendarCellStyle, CaptionCellStyle, DatePicker } from "../../Common";
 
-const ShireCalendarMonthViewVerticalExample = () => {
+export const ShireCalendarMonthViewVerticalExample = () => {
     const [currentDate, onDateChanged] = useState(new Date());
 
     return (
@@ -53,10 +52,20 @@ const ShireCalendarMonthViewVerticalExample = () => {
     );
 };
 
-storiesOf("Shire Reckoning: Shire Calendar / Month View", module)
-    .addParameters({ options: { showPanel: false } })
-    .add("comparing all region names", () => (
-        <ShireCalendarMonthViewVerticalExample />
-    ));
+export default {
+    title: "Shire Reckoning / Shire Calendar / Month View",
 
-export default ShireCalendarMonthViewVerticalExample;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["ShireCalendarMonthViewVerticalExample"],
+};
+
+export const ComparingAllRegionNames = () => (
+    <ShireCalendarMonthViewVerticalExample />
+);
+
+ComparingAllRegionNames.story = {
+    name: "comparing all region names",
+};

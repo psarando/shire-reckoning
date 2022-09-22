@@ -5,25 +5,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import TolkienCalendarsExample from "../examples/TolkienCalendars";
-import SimulatedTolkienCalendars from "../examples/simulation/TolkienCalendars";
-import ICalendarGenerator from "../examples/ICalendarGenerator";
+import { TolkienCalendarsExample } from "../examples/TolkienCalendars";
+import { SimulatedTolkienCalendars } from "../examples/simulation/TolkienCalendars";
+import { ICalendarGenerator } from "../examples/ICalendarGenerator";
 
-import ShireCalendarMonthViewVerticalExample from "../examples/shire/month-view/side-by-side";
-import ShireCalendarMonthViewHorizontalExample from "../examples/shire/month-view-horizontal/side-by-side";
-import ShireCalendarYearViewExample from "../examples/shire/year-view/side-by-side";
-import ShireCalendarNewYearsDaySyncExample from "../examples/shire/new-years-day-sync/side-by-side";
-import ShireCalendarTraditionalRulesExample from "../examples/shire/traditional-rules/side-by-side";
+import { ShireCalendarMonthViewVerticalExample } from "../examples/shire/month-view/side-by-side";
+import { ShireCalendarMonthViewHorizontalExample } from "../examples/shire/month-view-horizontal/side-by-side";
+import { ShireCalendarYearViewExample } from "../examples/shire/year-view/side-by-side";
+import { ShireCalendarNewYearsDaySyncExample } from "../examples/shire/new-years-day-sync/side-by-side";
+import { ShireCalendarTraditionalRulesExample } from "../examples/shire/traditional-rules/side-by-side";
 
-import GondorCalendarMonthViewExample from "../examples/gondor/month-view/side-by-side";
-import GondorCalendarMonthViewHorizontalExample from "../examples/gondor/month-view-horizontal/side-by-side";
-import GondorCalendarYearViewExample from "../examples/gondor/year-view/side-by-side";
-import GondorCalendarNewYearsDaySyncExample from "../examples/gondor/new-years-day-sync/side-by-side";
-import GondorCalendarTraditionalRulesExample from "../examples/gondor/traditional-rules/side-by-side";
+import { GondorCalendarMonthViewExample } from "../examples/gondor/month-view/side-by-side";
+import { GondorCalendarMonthViewHorizontalExample } from "../examples/gondor/month-view-horizontal/side-by-side";
+import { GondorCalendarYearViewExample } from "../examples/gondor/year-view/side-by-side";
+import { GondorCalendarNewYearsDaySyncExample } from "../examples/gondor/new-years-day-sync/side-by-side";
+import { GondorCalendarTraditionalRulesExample } from "../examples/gondor/traditional-rules/side-by-side";
 
-import RivendellCalendarSeasonViewExample from "../examples/rivendell/season-view/side-by-side";
-import RivendellCalendarYearViewExample from "../examples/rivendell/year-view/side-by-side";
-import RivendellCalendarHistoricExample from "../examples/rivendell/historic/side-by-side";
+import { RivendellCalendarSeasonViewExample } from "../examples/rivendell/season-view/side-by-side";
+import { RivendellCalendarYearViewExample } from "../examples/rivendell/year-view/side-by-side";
+import { RivendellCalendarHistoricExample } from "../examples/rivendell/historic/side-by-side";
 
 import { fullYearDate } from "../Utils";
 import ShireCalendar from "../ui/ShireCalendar";
@@ -133,7 +133,7 @@ it("renders ShireCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
         ShireCalendar.REGION_NAMES_TOLKIEN,
         ShireCalendar.REGION_NAMES_SHIRE,
         ShireCalendar.REGION_NAMES_BREE,
-    ].forEach(region => {
+    ].forEach((region) => {
         for (let year = 2016; year < 2021; year++) {
             for (let month = 0; month < 12; month++) {
                 let currentDate = fullYearDate(year, month, 1);
@@ -161,7 +161,7 @@ it("renders ShireCalendar MONTH_VIEW_VERTICAL without crashing", () => {
         ShireCalendar.REGION_NAMES_TOLKIEN,
         ShireCalendar.REGION_NAMES_SHIRE,
         ShireCalendar.REGION_NAMES_BREE,
-    ].forEach(region => {
+    ].forEach((region) => {
         for (let year = 2016; year < 2021; year++) {
             for (let month = 0; month < 12; month++) {
                 let currentDate = fullYearDate(year, month, 1);
@@ -189,12 +189,12 @@ it("renders GondorCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
         GondorCalendar.RECKONING_KINGS,
         GondorCalendar.RECKONING_STEWARDS,
         GondorCalendar.RECKONING_NEW,
-    ].forEach(reckoning => {
+    ].forEach((reckoning) => {
         [
             GondorCalendar.LANGUAGE_ENGLISH,
             GondorCalendar.LANGUAGE_QUENYA,
             GondorCalendar.LANGUAGE_SINDARIN,
-        ].forEach(language => {
+        ].forEach((language) => {
             for (let year = 2016; year < 2021; year++) {
                 for (let month = 0; month < 12; month++) {
                     let currentDate = fullYearDate(year, month, 1);
@@ -226,12 +226,12 @@ it("renders GondorCalendar MONTH_VIEW_VERTICAL without crashing", () => {
         GondorCalendar.RECKONING_KINGS,
         GondorCalendar.RECKONING_STEWARDS,
         GondorCalendar.RECKONING_NEW,
-    ].forEach(reckoning => {
+    ].forEach((reckoning) => {
         [
             GondorCalendar.LANGUAGE_ENGLISH,
             GondorCalendar.LANGUAGE_QUENYA,
             GondorCalendar.LANGUAGE_SINDARIN,
-        ].forEach(language => {
+        ].forEach((language) => {
             for (let year = 2016; year < 2021; year++) {
                 for (let month = 0; month < 12; month++) {
                     let currentDate = fullYearDate(year, month, 1);
@@ -260,12 +260,12 @@ it("renders RivendellCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
     [
         RivendellCalendar.TRADITIONAL_RULES,
         RivendellCalendar.REFORMED_RULES,
-    ].forEach(calendarRules => {
+    ].forEach((calendarRules) => {
         [
             RivendellCalendar.LANGUAGE_ENGLISH,
             RivendellCalendar.LANGUAGE_QUENYA,
             RivendellCalendar.LANGUAGE_SINDARIN,
-        ].forEach(language => {
+        ].forEach((language) => {
             for (let year = 2016; year < 2029; year++) {
                 for (let month = 0; month < 12; month++) {
                     let currentDate = fullYearDate(year, month, 1);
@@ -296,12 +296,12 @@ it("renders RivendellCalendar MONTH_VIEW_VERTICAL without crashing", () => {
     [
         RivendellCalendar.TRADITIONAL_RULES,
         RivendellCalendar.REFORMED_RULES,
-    ].forEach(calendarRules => {
+    ].forEach((calendarRules) => {
         [
             RivendellCalendar.LANGUAGE_ENGLISH,
             RivendellCalendar.LANGUAGE_QUENYA,
             RivendellCalendar.LANGUAGE_SINDARIN,
-        ].forEach(language => {
+        ].forEach((language) => {
             for (let year = 2016; year < 2029; year++) {
                 for (let month = 0; month < 12; month++) {
                     let currentDate = fullYearDate(year, month, 1);

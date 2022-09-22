@@ -3,14 +3,18 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import { GondorCalendar } from "../../../../lib";
 
-storiesOf(
-    "Shire Reckoning: Gondor Calendar / Year View / source / jsx",
-    module
-).add("Kings' Reckoning in Sindarin", () => (
+export default {
+    title: "Shire Reckoning / Gondor Calendar / Year View / source / jsx",
+
+    parameters: {
+        options: { showPanel: true },
+    },
+};
+
+export const KingsReckoningInSindarin = () => (
     <GondorCalendar
         reckoning={GondorCalendar.RECKONING_KINGS}
         language={GondorCalendar.LANGUAGE_SINDARIN}
@@ -18,4 +22,8 @@ storiesOf(
         caption={true}
         className="shire-calendar"
     />
-));
+);
+
+KingsReckoningInSindarin.story = {
+    name: "Kings' Reckoning in Sindarin",
+};

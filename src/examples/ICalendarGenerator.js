@@ -3,7 +3,6 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from "react";
-import { storiesOf } from "@storybook/react";
 
 import {
     REGION_NAMES_SHIRE,
@@ -27,8 +26,8 @@ const hasClipboardAPI = () => {
 
     try {
         result =
-            document.queryCommandSupported
-            && document.queryCommandSupported("copy");
+            document.queryCommandSupported &&
+            document.queryCommandSupported("copy");
     } catch (e) {}
 
     return result;
@@ -49,15 +48,15 @@ const copySelection = () => {
     return copied;
 };
 
-const formatMonthDay = num =>
+const formatMonthDay = (num) =>
     num.toLocaleString("en-US", { minimumIntegerDigits: 2 });
 
-const formatDate = date =>
+const formatDate = (date) =>
     `${date.getFullYear()}${formatMonthDay(
         date.getMonth() + 1
     )}${formatMonthDay(date.getDate())}`;
 
-const formatICalendar = calEvents => {
+const formatICalendar = (calEvents) => {
     let calDesc = `A calendar of J.R.R. Tolkien's 'Shire Reckoning' dates corresponding to our
   Gregorian dates\\, according to http://shire-reckoning.com/calendar.html\\, which
   suggests that we "anchor the Shire calendar on the solstice of one particular
@@ -84,7 +83,7 @@ ${calEvents}
 END:VCALENDAR`;
 };
 
-const formatCalString = str => str.replace(/,/g, "\\,").replace(/\n/g, "\\n");
+const formatCalString = (str) => str.replace(/,/g, "\\,").replace(/\n/g, "\\n");
 
 const formatShireDate = (date, region) => {
     let month = "";
@@ -101,7 +100,7 @@ const formatShireDate = (date, region) => {
     return formatCalString(`${date.day}${month}${weekday}`);
 };
 
-const formatShireDateDescription = date => {
+const formatShireDateDescription = (date) => {
     switch (date.day) {
         case "1 Yule":
             return "Shire New Year's Eve!";
@@ -141,7 +140,7 @@ SUMMARY:${summary}
 TRANSP:OPAQUE
 END:VEVENT`;
 
-class ICalendarGenerator extends Component {
+export class ICalendarGenerator extends Component {
     constructor(props) {
         super(props);
 
@@ -432,10 +431,20 @@ export default App;
     </>
 );
 
-storiesOf("Shire Reckoning: Shire Calendar", module)
-    .addParameters({ options: { showPanel: false } })
-    .add("iCalendar creator for importing into your calendar", () => (
-        <ICalendarGeneratorWithInstructions />
-    ));
+export default {
+    title: "Shire Reckoning / Shire Calendar",
 
-export default ICalendarGenerator;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["ICalendarGenerator"],
+};
+
+export const IcalendarCreatorForImportingIntoYourCalendar = () => (
+    <ICalendarGeneratorWithInstructions />
+);
+
+IcalendarCreatorForImportingIntoYourCalendar.story = {
+    name: "iCalendar creator for importing into your calendar",
+};

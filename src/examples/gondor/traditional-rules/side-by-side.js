@@ -3,14 +3,13 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import { GondorCalendar } from "../../../lib";
 import { fullYearDate } from "../../../Utils";
 
 import { CalendarCellStyle, CaptionCellStyle } from "../../Common";
 
-const GondorCalendarTraditionalRulesExample = () => {
+export const GondorCalendarTraditionalRulesExample = () => {
     const secondAgeStartDate = fullYearDate(0, 11, 23);
 
     const sa32 = fullYearDate(32, 5, 22);
@@ -105,10 +104,20 @@ const GondorCalendarTraditionalRulesExample = () => {
     );
 };
 
-storiesOf("Shire Reckoning: Gondor Calendar / Traditional Rules", module)
-    .addParameters({ options: { showPanel: false } })
-    .add("for select years in Middle-earth history", () => (
-        <GondorCalendarTraditionalRulesExample />
-    ));
+export default {
+    title: "Shire Reckoning / Gondor Calendar / Traditional Rules",
 
-export default GondorCalendarTraditionalRulesExample;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["GondorCalendarTraditionalRulesExample"],
+};
+
+export const ForSelectYearsInMiddleEarthHistory = () => (
+    <GondorCalendarTraditionalRulesExample />
+);
+
+ForSelectYearsInMiddleEarthHistory.story = {
+    name: "for select years in Middle-earth history",
+};

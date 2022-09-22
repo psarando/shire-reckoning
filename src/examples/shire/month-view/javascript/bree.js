@@ -3,17 +3,24 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import * as TolkienCalendars from "../../../../lib";
 
-storiesOf(
-    "Shire Reckoning: Shire Calendar / Month View / source / javascript",
-    module
-).add("with Bree month and weekday names", () =>
+export default {
+    title: "Shire Reckoning / Shire Calendar / Month View / source / javascript",
+
+    parameters: {
+        options: { showPanel: true },
+    },
+};
+
+export const WithBreeMonthAndWeekdayNames = () =>
     React.createElement(TolkienCalendars.ShireCalendar, {
         region: TolkienCalendars.ShireCalendar.REGION_NAMES_BREE,
         caption: true,
         className: "shire-calendar",
-    })
-);
+    });
+
+WithBreeMonthAndWeekdayNames.story = {
+    name: "with Bree month and weekday names",
+};

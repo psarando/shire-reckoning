@@ -1,14 +1,9 @@
 {
   "name": "shire-reckoning",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-alpha.2",
   "homepage": "https://psarando.github.io/shire-reckoning",
   "source": "src/lib.js",
   "main": "lib/TolkienCalendars.js",
-  "targets": {
-    "main": {
-      "isLibrary": true
-    }
-  },
   "keywords": [
     "calendar",
     "date",
@@ -35,29 +30,27 @@
     "Kings_Reckoning_Rules_and_Deficit.md",
     "CHANGELOG.md"
   ],
-  "dependencies": {
-    "@storybook/addons": "^5.2.8",
-    "@storybook/react": "^5.2.8",
-    "@storybook/source-loader": "^5.2.8",
-    "@storybook/theming": "^5.2.8",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@btmills/prettier": "^1.17.0",
+    "@storybook/addon-storysource": "^6.5.12",
+    "@storybook/addons": "^6.5.12",
+    "@storybook/react": "^6.5.12",
+    "@storybook/theming": "^6.5.12",
     "babel-preset-react-app": "^9.1.2",
     "jest": "^24.9.0",
-    "parcel-bundler": "^1.12.5"
-  },
-  "peerDependencies": {
+    "parcel-bundler": "^1.12.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
+  "peerDependencies": {
+    "react": "^16.8.6 || ^17.0.0",
+    "react-dom": "^16.8.6 || ^17.0.0"
+  },
   "scripts": {
     "start": "npm run storybook",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "PUBLIC_URL='./' build-storybook --static-dir public/examples --output-dir build/examples",
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "PUBLIC_URL='./' build-storybook --output-dir build/examples",
     "build": "cp public/lib.html lib/index.html && parcel build src/lib.js --cache-dir .parcel-cache --out-dir lib --out-file TolkienCalendars.js --global TolkienCalendars",
     "test": "jest --watch",
     "prettier": "prettier --write 'src/**/*.js'"

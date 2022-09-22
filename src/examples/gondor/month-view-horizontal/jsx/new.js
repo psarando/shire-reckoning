@@ -3,14 +3,18 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import { GondorCalendar } from "../../../../lib";
 
-storiesOf(
-    "Shire Reckoning: Gondor Calendar / Month View Horizontal / source / jsx",
-    module
-).add("New Reckoning in English", () => (
+export default {
+    title: "Shire Reckoning / Gondor Calendar / Month View Horizontal / source / jsx",
+
+    parameters: {
+        options: { showPanel: true },
+    },
+};
+
+export const NewReckoningInEnglish = () => (
     <GondorCalendar
         reckoning={GondorCalendar.RECKONING_NEW}
         monthViewLayout={GondorCalendar.MONTH_VIEW_HORIZONTAL}
@@ -18,4 +22,8 @@ storiesOf(
         caption={true}
         className="shire-calendar"
     />
-));
+);
+
+NewReckoningInEnglish.story = {
+    name: "New Reckoning in English",
+};

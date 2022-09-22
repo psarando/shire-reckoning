@@ -3,7 +3,6 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { Component } from "react";
-import { storiesOf } from "@storybook/react";
 
 import { datesMatch, fullYearDate } from "../Utils";
 
@@ -99,10 +98,10 @@ const SyncRivendellCalendar = [
 
 const findRivendellSyncIndex = (rivendellStartDate, rivendellCalendarRules) => {
     let rivendellSyncScheme = SyncRivendellCalendar.findIndex(
-        syncScheme =>
-            syncScheme.calendarRules === rivendellCalendarRules
-            && syncScheme.startDate
-            && datesMatch(syncScheme.startDate, rivendellStartDate)
+        (syncScheme) =>
+            syncScheme.calendarRules === rivendellCalendarRules &&
+            syncScheme.startDate &&
+            datesMatch(syncScheme.startDate, rivendellStartDate)
     );
 
     if (rivendellSyncScheme < 0) {
@@ -130,7 +129,7 @@ const adjustRivendellAprilSyncScheme = (
     return rivendellStartDate;
 };
 
-class TolkienCalendarsExample extends Component {
+export class TolkienCalendarsExample extends Component {
     constructor(props) {
         super(props);
 
@@ -168,16 +167,13 @@ class TolkienCalendarsExample extends Component {
         this.onShireSyncChange = this.onShireSyncChange.bind(this);
         this.onShireStartDateChange = this.onShireStartDateChange.bind(this);
         this.onShireRegionChange = this.onShireRegionChange.bind(this);
-        this.onGondorLeftStartDateChange = this.onGondorLeftStartDateChange.bind(
-            this
-        );
-        this.onGondorRightStartDateChange = this.onGondorRightStartDateChange.bind(
-            this
-        );
+        this.onGondorLeftStartDateChange =
+            this.onGondorLeftStartDateChange.bind(this);
+        this.onGondorRightStartDateChange =
+            this.onGondorRightStartDateChange.bind(this);
         this.onRivendellSyncChange = this.onRivendellSyncChange.bind(this);
-        this.onRivendellStartDateChange = this.onRivendellStartDateChange.bind(
-            this
-        );
+        this.onRivendellStartDateChange =
+            this.onRivendellStartDateChange.bind(this);
         this.onRivendellRulesChange = this.onRivendellRulesChange.bind(this);
     }
 
@@ -268,15 +264,15 @@ class TolkienCalendarsExample extends Component {
         gondorRightStartDate
     ) {
         let shireSyncScheme = SyncShireCalendar.findIndex(
-            syncScheme =>
-                syncScheme.startDate
-                && datesMatch(syncScheme.startDate, shireStartDate)
+            (syncScheme) =>
+                syncScheme.startDate &&
+                datesMatch(syncScheme.startDate, shireStartDate)
         );
 
         if (
-            shireSyncScheme < 0
-            || !datesMatch(shireStartDate, gondorLeftStartDate)
-            || !datesMatch(shireStartDate, gondorRightStartDate)
+            shireSyncScheme < 0 ||
+            !datesMatch(shireStartDate, gondorLeftStartDate) ||
+            !datesMatch(shireStartDate, gondorRightStartDate)
         ) {
             shireSyncScheme = 0;
         }
@@ -609,8 +605,18 @@ export default App;
     </>
 );
 
-storiesOf("Shire Reckoning: All Tolkien Calendars", module)
-    .addParameters({ options: { showPanel: false } })
-    .add("with Synchronization settings", TolkienCalendarsWithInstructions);
+export default {
+    title: "Shire Reckoning / All Tolkien Calendars",
 
-export default TolkienCalendarsExample;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["TolkienCalendarsExample"],
+};
+
+export const WithSynchronizationSettings = TolkienCalendarsWithInstructions;
+
+WithSynchronizationSettings.story = {
+    name: "with Synchronization settings",
+};

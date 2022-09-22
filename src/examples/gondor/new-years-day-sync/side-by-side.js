@@ -3,14 +3,13 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React, { useState } from "react";
-import { storiesOf } from "@storybook/react";
 
 import { GondorCalendar } from "../../../lib";
 
 import { CalendarCellStyle, CaptionCellStyle, DatePicker } from "../../Common";
 import { fullYearDate } from "../../../Utils";
 
-const GondorCalendarNewYearsDaySyncExample = () => {
+export const GondorCalendarNewYearsDaySyncExample = () => {
     const [currentDate, onDateChanged] = useState(new Date());
     const newYearSyncDate = fullYearDate(1, 0, 1);
 
@@ -73,13 +72,20 @@ const GondorCalendarNewYearsDaySyncExample = () => {
     );
 };
 
-storiesOf(
-    "Shire Reckoning: Gondor Calendar / What if our years began at the same seasonal point?",
-    module
-)
-    .addParameters({ options: { showPanel: false } })
-    .add("comparing all reckonings", () => (
-        <GondorCalendarNewYearsDaySyncExample />
-    ));
+export default {
+    title: "Shire Reckoning / Gondor Calendar / What if our years began at the same seasonal point?",
 
-export default GondorCalendarNewYearsDaySyncExample;
+    parameters: {
+        options: { showPanel: false },
+    },
+
+    excludeStories: ["GondorCalendarNewYearsDaySyncExample"],
+};
+
+export const ComparingAllReckonings = () => (
+    <GondorCalendarNewYearsDaySyncExample />
+);
+
+ComparingAllReckonings.story = {
+    name: "comparing all reckonings",
+};

@@ -3,21 +3,25 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import * as TolkienCalendars from "../../../../lib";
 
-const secondAgeStartDate = new Date(0, 11, 23, 0, 0, 0);
-secondAgeStartDate.setFullYear(0, 11, 23);
+export default {
+    title: "Shire Reckoning / Gondor Calendar / Traditional Rules / source / javascript",
 
-const secondAge32 = new Date(32, 5, 22, 0, 0, 0);
-secondAge32.setFullYear(32, 5, 22);
+    parameters: {
+        options: { showPanel: true },
+    },
+};
 
-storiesOf(
-    "Shire Reckoning: Gondor Calendar / Traditional Rules / source / javascript",
-    module
-).add("for S.A. 32: first King of Númenor crowned", () =>
-    React.createElement(TolkienCalendars.GondorCalendar, {
+export const ForS_A_32FirstKingOfNúmenorCrowned = () => {
+    const secondAgeStartDate = new Date(0, 11, 23, 0, 0, 0);
+    secondAgeStartDate.setFullYear(0, 11, 23);
+
+    const secondAge32 = new Date(32, 5, 22, 0, 0, 0);
+    secondAge32.setFullYear(32, 5, 22);
+
+    return React.createElement(TolkienCalendars.GondorCalendar, {
         caption: "Kings' Reckoning S.A. 32",
         calendarRules:
             TolkienCalendars.GondorCalendar.RECKONING_RULES_TRADITIONAL,
@@ -27,5 +31,9 @@ storiesOf(
         date: secondAge32,
         startDate: secondAgeStartDate,
         className: "shire-calendar",
-    })
-);
+    });
+};
+
+ForS_A_32FirstKingOfNúmenorCrowned.story = {
+    name: "for S.A. 32: first King of Númenor crowned",
+};

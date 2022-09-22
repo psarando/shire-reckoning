@@ -3,22 +3,30 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import * as TolkienCalendars from "../../../../lib";
 
-const gregorianStartDate = new Date(1, 0, 1, 0, 0, 0);
-gregorianStartDate.setFullYear(1, 0, 1);
+export default {
+    title: "Shire Reckoning / Shire Calendar / What if our years began at the same seasonal point? / source / javascript",
 
-storiesOf(
-    "Shire Reckoning: Shire Calendar / What if our years began at the same seasonal point? / source / javascript",
-    module
-).add("with Tolkien month and weekday names", () =>
-    React.createElement(TolkienCalendars.ShireCalendar, {
+    parameters: {
+        options: { showPanel: true },
+    },
+};
+
+export const WithTolkienMonthAndWeekdayNames = () => {
+    const gregorianStartDate = new Date(1, 0, 1, 0, 0, 0);
+    gregorianStartDate.setFullYear(1, 0, 1);
+
+    return React.createElement(TolkienCalendars.ShireCalendar, {
         region: TolkienCalendars.ShireCalendar.REGION_NAMES_TOLKIEN,
         startDate: gregorianStartDate,
         yearView: true,
         caption: true,
         className: "shire-calendar",
-    })
-);
+    });
+};
+
+WithTolkienMonthAndWeekdayNames.story = {
+    name: "with Tolkien month and weekday names",
+};

@@ -3,18 +3,25 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import * as TolkienCalendars from "../../../../lib";
 
-storiesOf(
-    "Shire Reckoning: Gondor Calendar / Month View / source / javascript",
-    module
-).add("Kings' Reckoning in English", () =>
+export default {
+    title: "Shire Reckoning / Gondor Calendar / Month View / source / javascript",
+
+    parameters: {
+        options: { showPanel: true },
+    },
+};
+
+export const KingsReckoningInEnglish = () =>
     React.createElement(TolkienCalendars.GondorCalendar, {
         reckoning: TolkienCalendars.GondorCalendar.RECKONING_KINGS,
         language: TolkienCalendars.GondorCalendar.LANGUAGE_ENGLISH,
         caption: true,
         className: "shire-calendar",
-    })
-);
+    });
+
+KingsReckoningInEnglish.story = {
+    name: "Kings' Reckoning in English",
+};

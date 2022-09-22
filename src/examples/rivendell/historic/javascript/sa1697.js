@@ -3,21 +3,29 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import * as TolkienCalendars from "../../../../lib";
 
-const secondAge1697 = new Date(590 + 1697, 8, 22);
+export default {
+    title: "Shire Reckoning / Rivendell Calendar / Possible historic calendars / source / javascript",
 
-storiesOf(
-    "Shire Reckoning: Rivendell Calendar / Possible historic calendars / source / javascript",
-    module
-).add("for S.A. 1697: the year Rivendell was founded", () =>
-    React.createElement(TolkienCalendars.RivendellCalendar, {
+    parameters: {
+        options: { showPanel: true },
+    },
+};
+
+export const ForS_A_1697TheYearRivendellWasFounded = () => {
+    const secondAge1697 = new Date(590 + 1697, 8, 22);
+
+    return React.createElement(TolkienCalendars.RivendellCalendar, {
         caption: "The Calendar of Imladris in S.A. 1697 (maybe)",
         yearView: true,
         date: secondAge1697,
         startDay: 21,
         className: "shire-calendar",
-    })
-);
+    });
+};
+
+ForS_A_1697TheYearRivendellWasFounded.story = {
+    name: "for S.A. 1697: the year Rivendell was founded",
+};

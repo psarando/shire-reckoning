@@ -3,19 +3,26 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 
 import * as TolkienCalendars from "../../../../lib";
 
-storiesOf(
-    "Shire Reckoning: Rivendell Calendar / Season View / source / javascript",
-    module
-).add("with Reformed Rules starting from March 20th, in Sindarin", () =>
+export default {
+    title: "Shire Reckoning / Rivendell Calendar / Season View / source / javascript",
+
+    parameters: {
+        options: { showPanel: true },
+    },
+};
+
+export const WithReformedRulesStartingFromMarch20thInSindarin = () =>
     React.createElement(TolkienCalendars.RivendellCalendar, {
         caption: true,
         calendarRules: TolkienCalendars.RivendellCalendar.REFORMED_RULES,
         startDay: 20,
         language: TolkienCalendars.RivendellCalendar.LANGUAGE_SINDARIN,
         className: "shire-calendar",
-    })
-);
+    });
+
+WithReformedRulesStartingFromMarch20thInSindarin.story = {
+    name: "with Reformed Rules starting from March 20th, in Sindarin",
+};
