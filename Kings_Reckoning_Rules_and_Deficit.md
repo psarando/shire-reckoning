@@ -37,7 +37,7 @@ For all my interest in Appendix D,
 I was never really interested in Tolkien's *Deficit* calculations and whether or not he made any mistakes.
 After all, others have already addressed these calculations in other articles,
 such as "The King's Reckoning: Did Tolkien Reckon Correct?"
-(*[Beyond Bree](http://www.cep.unt.edu/bree.html)*, November 1985) by [Åke Jönsson (Bertenstam)](http://tolkiengateway.net/wiki/%C3%85ke_Bertenstam)
+(*[Beyond Bree](http://www.cep.unt.edu/bree.html)*, November 1985) by [Åke Jönsson (Bertenstam)](https://tolkiengateway.net/wiki/%C3%85ke_Bertenstam)
 and "J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent"
 (*[Mythlore](http://www.mythsoc.org/mythlore.htm)* 54, Summer 1988) by Darrell A. Martin.
 I also did not need to analyze Tolkien's calculations in order to understand the rules of the calendars as presented in Appendix D,

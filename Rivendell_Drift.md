@@ -266,7 +266,7 @@ In fact, this is the only known Calendar of Imladris date given with a correspon
 The following table shows some possible alignments of the Rivendell Reckoning's Yestarë
 to Shire dates around the end of the Third Age.
 In this table I'm using `IV` for Fourth Age years, `III` for Third Age years, `II` for Second Age years,
-and `Iys` for [Years of the Sun in the First Age](https://en.wikipedia.org/wiki/Timeline_of_Arda#Years_of_the_Sun).
+and `Iys` for [Years of the Sun in the First Age](https://en.wikipedia.org/wiki/History_of_Arda#Years_of_the_Sun).
 
 The first row displays a potential first Yestarë for year 1 of the Rivendell Reckoning calendar,
 given as a [proleptic](https://en.wikipedia.org/wiki/Proleptic_calendar) Shire Reckoning or Kings' Reckoning date.
@@ -378,7 +378,7 @@ in order for its leap-year cycle to align with III 1601?
 Note that the names of the months (or "seasons")
 and the [leap-year rules of the Calendar of Imladris](https://psarando.github.io/shire-reckoning/#rivendell-reckoning-notes)
 indicate that it's a [solar calendar](https://en.wikipedia.org/wiki/Solar_calendar),
-and [according to the Elves' mythology](https://en.wikipedia.org/wiki/Timeline_of_Arda#Years_of_the_Sun),
+and [according to the Elves' mythology](https://en.wikipedia.org/wiki/History_of_Arda#Years_of_the_Sun),
 the Sun was created and first set sail across the sky starting with the Years of the Sun of the First Age.
 So the "years" were of different length before that time,
 which makes it very unlikely that the Elves would use something like the Calendar of Imladris to reckon time before then.

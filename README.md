@@ -65,7 +65,7 @@ Shire Reckoning
 
 # Tolkien's Calendars
 
-The calendars described in *The Lord of the Rings* [Appendix D](http://tolkiengateway.net/wiki/Appendix_D) are
+The calendars described in *The Lord of the Rings* [Appendix D](https://tolkiengateway.net/wiki/Appendix_D) are
 the [Shire Reckoning](#shire-reckoning-notes) of the Hobbits,
 the [Rivendell Reckoning](#rivendell-reckoning-notes) of the Elves,
 and the 3 calendars of Gondor:
@@ -92,10 +92,10 @@ including [instructions for adding these calendars to your own site or app](http
 
 ## Introduction
 
-Have you ever been confused to find the date of [February 30](http://tolkiengateway.net/wiki/30_February)
+Have you ever been confused to find the date of [February 30](https://tolkiengateway.net/wiki/30_February)
 in the timeline of J.R.R. Tolkien's *The Lord of the Rings*?
 Or have you ever tried reading about the Middle-earth calendars in *The Lord of the Rings*
-[Appendix D](http://tolkiengateway.net/wiki/Appendix_D)
+[Appendix D](https://tolkiengateway.net/wiki/Appendix_D)
 but became bogged down by all the leap-day details and *Deficit* calculations?
 
 Or are you curious about how the calendars of Middle-earth compare to a modern-day calendar?
@@ -105,20 +105,20 @@ Or do you simply wish to
 the Elvish [Reckoning of Rivendell](#rivendell-reckoning-notes),
 or Aragorn the King Elessar's [New Reckoning](#gondor-reckoning-notes) of the Fourth Age?
 
-Many fans of *The Lord of Rings* don't realize that [Middle-earth](http://tolkiengateway.net/wiki/Middle-earth#Inspiration)
+Many fans of *The Lord of Rings* don't realize that [Middle-earth](https://tolkiengateway.net/wiki/Middle-earth#Inspiration)
 is not meant to be in a parallel universe or on a fictional planet
 like C.S. Lewis' [Narnia](https://en.wikipedia.org/wiki/Narnia_(world))
 or George R.R. Martin's [Westeros](https://en.wikipedia.org/wiki/World_of_A_Song_of_Ice_and_Fire).
-In [one of Tolkien's letters](http://tolkiengateway.net/wiki/Letter_165), he said
+In [one of Tolkien's letters](https://tolkiengateway.net/wiki/Letter_165), he said
 "'Middle-earth' by the way, is not a name of a never-never land without relation to the world we live in...
 imaginatively this 'history' is supposed to take place in a period of the actual Old World of this planet."
 Although there are many supernatural beings and events that occur in Middle-earth,
 the laws of nature that apply to the real Earth should still apply to the world of Middle-earth
-(at least by the [Third Age](http://tolkiengateway.net/wiki/Third_Age)),
+(at least by the [Third Age](https://tolkiengateway.net/wiki/Third_Age)),
 which is why Tolkien put so much effort into ensuring things like distances traveled,
 and the [phases of the Moon](#reckoning-with-moon-phases),
 were as realistic as possible in *The Lord of Rings*.
-As Tolkien put it [in another letter](http://tolkiengateway.net/wiki/Letter_210),
+As Tolkien put it [in another letter](https://tolkiengateway.net/wiki/Letter_210),
 "The Lord of the Rings may be a 'fairy-story',
 but it takes place in the Northern hemisphere of this earth:
 miles are miles, days are days, and weather is weather."
@@ -130,7 +130,7 @@ That is also why the Shire Calendar is so similar to the modern
 and why they have [almost identical leap-year rules](#shire-gondor-and-gregorian-intercalation-differences).
 
 The primary goal of this Shire Reckoning project is to visualize how the calendars described in
-*The Lord of the Rings* [Appendix D](http://tolkiengateway.net/wiki/Appendix_D)
+*The Lord of the Rings* [Appendix D](https://tolkiengateway.net/wiki/Appendix_D)
 relate to the Gregorian calendar,
 but the notes of this project also include some highlights of the lore found in Appendix D.
 
@@ -191,7 +191,7 @@ Various ways of synchronizing Gregorian years with Shire-reckoning years and the
 
 Note that those who are only interested in a Shire, Gondor, or Rivendell date conversion for today's date in modern times
 should simply use the [default calendars on this project's home page](#tolkien-calendars) as a reference.
-For example, if you simply want to know how a Shire date listed on [Tolkien Gateway](http://tolkiengateway.net/wiki/Third_Age_3019)
+For example, if you simply want to know how a Shire date listed on [Tolkien Gateway](https://tolkiengateway.net/wiki/Third_Age_3019)
 would convert into a date in this year's calendar, use the [default Shire Calendar on this project's home page](#tolkien-calendars).
 If you're more interested in how the different leap-day rules of Appendix D cause dates to shift in each of these calendars relative to each other,
 or how these calendar rules would shift dates relative to the Gregorian calendar over thousands of years,
@@ -246,17 +246,17 @@ Tolkien also described the following holidays specific to certain calendars:
   which were holidays in Gondor in addition to holidays inherited from the [Kings' Reckoning](#the-3-calendars-of-gondor):
   *Loëndë* (Mid-year's Day), *Mettarë* (Last Day), and *Yestarë* (First Day).
   The *Tuilérë*, *Loëndë*, and *Yáviérë* holidays remind me of the
-  [*Erukyermë*, *Erulaitalë*, and *Eruhantalë* holidays of Númenor](http://tolkiengateway.net/wiki/Three_Prayers).
+  [*Erukyermë*, *Erulaitalë*, and *Eruhantalë* holidays of Númenor](https://tolkiengateway.net/wiki/Three_Prayers).
 * As mentioned above, the [Shire Calendar's](#shire-reckoning-notes) New Year's Eve and New Year's Day were called the Yule days,
   but Appendix D also says that the "Yule-tide" was 6 days in total,
   including the 2 days before and the 2 days after the Yule days.
 * *The Silmarillion* mentions a festival of Gondolin in the First Age
-  called the "[Gates of Summer](http://tolkiengateway.net/wiki/Gates_of_Summer)"
+  called the "[Gates of Summer](https://tolkiengateway.net/wiki/Gates_of_Summer)"
   which occurred at sunrise on the 1st day of summer (and the ceremonies started the evening before).
   Although modern western cultures consider the summer solstice to be the 1st day of summer,
   I think the "Gates of Summer" holiday probably corresponded with the 1st day of "Summer" (Lairë / Laer) in the
   [Calendar of Imladris](https://psarando.github.io/shire-reckoning/#tolkien-calendars) (a.k.a. the Reckoning of Rivendell).
-* The only Dwarvish holiday that I know of is called [Durin's Day](http://tolkiengateway.net/wiki/Durin%27s_Day).
+* The only Dwarvish holiday that I know of is called [Durin's Day](https://tolkiengateway.net/wiki/Durin%27s_Day).
   In *The Hobbit*, Thorin says, "The first day of the dwarves' New Year...
   is as all should know the first day of the last moon of Autumn on the threshold of Winter.
   We still call it Durin's Day when the last moon of Autumn and the sun are in the sky together."
@@ -619,7 +619,7 @@ which is why the spring equinox can fall anywhere from the Gregorian March 19th 
 Apparently, the calendars of Gondor and the Shire had similar leap-year rules
 (if including Gondor's [millennial leap-days](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years))
 in order for their Mid-year’s Day "to correspond as nearly as possible to the summer solstice".
-Tolkien also mentioned in his [letter #176](http://tolkiengateway.net/wiki/Letter_176)
+Tolkien also mentioned in his [letter #176](https://tolkiengateway.net/wiki/Letter_176)
 that the calendar of Gondor was a bit more accurate than the modern Gregorian calendar in tracking the solar year.
 
 #### Reckoning with moon phases
@@ -661,7 +661,7 @@ referring to its chart demonstrating this alignment:
 In 2017-18, I attempted to re-read *The Lord of the Rings* in chronological order,
 and also aligned with the moon phases in those years.
 It actually was not too difficult with the help of *The Lord of the Rings*
-[Appendix B](http://tolkiengateway.net/wiki/Appendix_B),
+[Appendix B](https://tolkiengateway.net/wiki/Appendix_B),
 the *Reader's Companion*, and this project's
 [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
 
@@ -707,24 +707,24 @@ page.
 
 The calendar of Gondor went through 3 variations throughout its history:
 
-1. **[Kings' Reckoning](http://tolkiengateway.net/wiki/Kings%27_Reckoning)**:
-   The Kings' Reckoning was established in [Númenor](https://en.wikipedia.org/wiki/N%C3%BAmenor) and was
+1. **[Kings' Reckoning](https://tolkiengateway.net/wiki/Kings%27_Reckoning)**:
+   The Kings' Reckoning was established in [Númenor](https://tolkiengateway.net/wiki/N%C3%BAmenor) and was
    "used in Númenor, and in Arnor and Gondor until the end of the kings".
    This was the calendar that was in use for the longest period of time in Middle-earth
    (with the likely exception of the Calendar of Imladris).
    It "was ultimately of Eldarin origin", and had a 6-day week like the Elvish calendar of the
-   [Eldar](http://tolkiengateway.net/wiki/Eldar),
+   [Eldar](https://tolkiengateway.net/wiki/Eldar),
    but at some point the Númenóreans added a 7th weekday called "Sea-day" / Eärenya / Oraearon
    (so I'm guessing it could have been added during the reign of
-   [Tar-Aldarion](http://tolkiengateway.net/wiki/Tar-Aldarion)).
+   [Tar-Aldarion](https://tolkiengateway.net/wiki/Tar-Aldarion)).
    The Kings' Reckoning was used in Númenor
-   until the [Downfall](http://tolkiengateway.net/wiki/Downfall_of_N%C3%BAmenor)
-   in [Second Age](https://en.wikipedia.org/wiki/History_of_Arda#Second_Age) (S.A.) 3319,
-   and starting no later than S.A. 1000 under the reign of [Tar-Aldarion](http://tolkiengateway.net/wiki/Tar-Aldarion),
+   until the [Downfall](https://tolkiengateway.net/wiki/Downfall_of_N%C3%BAmenor)
+   in [Second Age](https://tolkiengateway.net/wiki/Second_Age) (S.A.) 3319,
+   and starting no later than S.A. 1000 under the reign of [Tar-Aldarion](https://tolkiengateway.net/wiki/Tar-Aldarion),
    since Appendix D implies that the first of the Kings' Reckoning
    "[millennial additions](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)"
    to account for the *Deficit* was made on time in S.A. 1000.
-   I wouldn't be surprised if Tar-Aldarion's father, [Tar-Meneldur](http://tolkiengateway.net/wiki/Tar-Meneldur),
+   I wouldn't be surprised if Tar-Aldarion's father, [Tar-Meneldur](https://tolkiengateway.net/wiki/Tar-Meneldur),
    decreed that the "[millennial additions](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)"
    be added to the rules of the Kings' Reckoning, since he was also known as Elentirmo ("Star-watcher")
    and "built a tall tower, from which he could observe the motions of the stars"
@@ -736,20 +736,20 @@ The calendar of Gondor went through 3 variations throughout its history:
    (with or without the "[millennial additions](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)")
    and in use for the entire history of Númenor, starting in S.A. 32.
    In fact, the first chapter of *Unfinished Tales*
-   [implies it was already in use](http://tolkiengateway.net/wiki/First_Age_495#Notes),
-   in some form, by the [Edain](http://tolkiengateway.net/wiki/Edain) of the First Age.
+   [implies it was already in use](https://tolkiengateway.net/wiki/First_Age_495#Notes),
+   in some form, by the [Edain](https://tolkiengateway.net/wiki/Edain) of the First Age.
    The Kings' Reckoning continued in Gondor for the remainder of the Second Age after the Downfall of Númenor,
    and up to the Third Age (T.A.) 2059.
    It's also possible that it was still observed by the Dúnedain of the North until the end of the Third Age
    (see the *New Reckoning* notes below).
-2. **[Stewards' Reckoning](http://tolkiengateway.net/wiki/Stewards%27_Reckoning)**:
+2. **[Stewards' Reckoning](https://tolkiengateway.net/wiki/Stewards%27_Reckoning)**:
    The Stewards' Reckoning was established in the time of Mardil, the first Ruling Steward of Gondor,
    and replaced the Kings' Reckoning in T.A. 2060.
    It was only a minor modification of the Kings' Reckoning that added the days
    "Tuilérë" (Spring-day) and "Yáviérë" (Autumn-day) and shortened the two 31-day months in summer to 30 days each.
    It seems to me like these new Tuilérë and Yáviérë days could have been in honor (or a reflection)
-   of the holidays of Númenor for [Erukyermë and Eruhantalë](http://tolkiengateway.net/wiki/Three_Prayers).
-3. **[New Reckoning](http://tolkiengateway.net/wiki/New_Reckoning)**:
+   of the holidays of Númenor for [Erukyermë and Eruhantalë](https://tolkiengateway.net/wiki/Three_Prayers).
+3. **[New Reckoning](https://tolkiengateway.net/wiki/New_Reckoning)**:
    The New Reckoning was introduced by Aragorn the King Elessar
    and started its reckoning from the day the One Ring was destroyed,
    T.A. 3019 'March' (Rethe/Súlimë) 25, which became its New Year's Day (Yestarë).
@@ -829,9 +829,9 @@ just as *Mersday* and *Highday* was the weekend in the Shire.
 |❄️|Ringarë|Girithron|Cold Month|
 
 \* Most of these English translations are
-[literal translations](http://tolkiengateway.net/wiki/Kings%27_Reckoning),
+[literal translations](https://tolkiengateway.net/wiki/Kings%27_Reckoning),
 except for "budding" and "reaping".
-*[Víressë](http://tolkiengateway.net/wiki/V%C3%ADress%C3%AB)*
+*[Víressë](https://tolkiengateway.net/wiki/V%C3%ADress%C3%AB)*
 is related to the Quenya word for "freshness" or "youth".
 The meaning of the root word for *Cermië* is not so clear.
 David Salo states, regarding *Cerveth* in his 2004 book *A Gateway to Sindarin*,
@@ -844,7 +844,7 @@ Jim Allen also points out that the names of most of the months in this calendar
 are similar to the names of the months in the
 [French Republican Calendar](https://en.wikipedia.org/wiki/French_Republican_Calendar)
 (which in turn were based on
-[earlier unrecorded Germanic month names](http://tolkiengateway.net/wiki/Kings%27_Reckoning#Structure)).
+[earlier unrecorded Germanic month names](https://tolkiengateway.net/wiki/Kings%27_Reckoning#Structure)).
 According to the [Wikipedia article for the French Republican Calendar](https://en.wikipedia.org/wiki/French_Republican_Calendar),
 the month starting near the end of June (which corresponds with *Cermië*)
 is named 'Messidor (from Latin messis, "harvest")'.
@@ -930,11 +930,11 @@ for more detailed descriptions of these holidays.
   (and choosing a non-leap-year for dates between February 28 and Rivendell New Year's Day).
 
 Since the Rivendell Reckoning calendar
-(also known as the [Calendar of Imladris](http://tolkiengateway.net/wiki/Reckoning_of_Rivendell))
+(also known as the [Calendar of Imladris](https://tolkiengateway.net/wiki/Reckoning_of_Rivendell))
 described by Tolkien has very different leap-day rules than the
 [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar), then by default,
 the Calendar of Imladris in this project will follow its
-[traditional rules](http://tolkiengateway.net/wiki/Reckoning_of_Rivendell#Observations)
+[traditional rules](https://tolkiengateway.net/wiki/Reckoning_of_Rivendell#Observations)
 where every year has 365 days,
 except every 12th year is a leap-year, which adds 3 extra days in the middle of the year,
 however every 432nd year is not a leap-year.
@@ -977,7 +977,7 @@ around the end of the Third Age.
 ### Why March 22nd?
 
 Starting this calendar from Gregorian March 22 with its
-[traditional rules](http://tolkiengateway.net/wiki/Reckoning_of_Rivendell#Observations)
+[traditional rules](https://tolkiengateway.net/wiki/Reckoning_of_Rivendell#Observations)
 allows September 22 during our lifetimes
 (the usual date of the contemporary [autumnal equinox](http://en.wikipedia.org/wiki/Equinox);
 and the date also known as [Hobbit Day](https://en.wikipedia.org/wiki/Hobbit_Day))
@@ -994,7 +994,7 @@ but he only provided a few (sometimes vague) details of how each calendar relate
 and [as mentioned earlier](#reckoning-start-dates), only the Shire Calendar was compared to the Gregorian calendar,
 which complicates attempts to observe these calendars in modern times.
 Perhaps he was intentionally vague on some of these details,
-as indicated by his [letter #268](http://tolkiengateway.net/wiki/Letter_268).
+as indicated by his [letter #268](https://tolkiengateway.net/wiki/Letter_268).
 The following excerpt is referring to the fate of Shadowfax at the end of the story,
 but I think it also applies to Appendix D:
 
@@ -1084,8 +1084,8 @@ As King Elessar, Aragorn declared that from then on, the New Year would start fr
 which is why New Year's Day (*Yestarë*) in the [New Reckoning](#the-3-calendars-of-gondor)
 aligns with the Shire 'March' 25.
 
-*The Tale of Years* ([Appendix B](http://tolkiengateway.net/wiki/Appendix_B))
-tells us that year was the [Third Age (T.A.) 3019](http://tolkiengateway.net/wiki/Third_Age_3019),
+*The Tale of Years* ([Appendix B](https://tolkiengateway.net/wiki/Appendix_B))
+tells us that year was the [Third Age (T.A.) 3019](https://tolkiengateway.net/wiki/Third_Age_3019),
 and Appendix B also lists the Elves' New Year's Day (or the Reckoning of Rivendell's *Yestarë*)
 on Shire 'April' 6 in T.A. 3019.
 
@@ -1101,7 +1101,7 @@ the start of the tax year then converted to the Gregorian April 6;
 and [April 6 is still the start of the United Kingdom's tax year to this day](https://en.wikipedia.org/wiki/History_of_taxation_in_the_United_Kingdom#Why_the_United_Kingdom_income_tax_year_begins_on_6_April).
 
 Tom Shippey also touches on this parallel in his book
-[J.R.R. Tolkien: Author of the Century](http://tolkiengateway.net/wiki/J.R.R._Tolkien:_Author_of_the_Century):
+[J.R.R. Tolkien: Author of the Century](https://tolkiengateway.net/wiki/J.R.R._Tolkien:_Author_of_the_Century):
 
 > No one any longer celebrates the twenty-fifth of March,
 > and Tolkien's point is accordingly missed, as I think he intended.
@@ -1115,7 +1115,7 @@ Tom Shippey also touches on this parallel in his book
 > and the same is true of England, in a sadly altered and declined fasion...
 > in England the year still *does* start on the 6th of April.
 > But only the tax year, which no one sees as a moment of
-> [eucatastrophe](http://tolkiengateway.net/wiki/Eucatastrophe).
+> [eucatastrophe](https://tolkiengateway.net/wiki/Eucatastrophe).
 
 Well it turns out that if you align a hypothetical Gregorian calendar with the start of the Second Age,
 and follow all of Tolkien's calendar rules and details from Appendix D,
@@ -1132,7 +1132,7 @@ and was "stupid at arithmetic", as quoted by Dr. Kristine Larsen in the 2019 art
 ([Journal of Tolkien Research: Vol. 8: Iss. 1, Article 3](https://scholar.valpo.edu/journaloftolkienresearch/vol8/iss1/3/)),
 Dr. Larsen also admits that "Tolkien was capable of doing basic arithmetic calculations -
 as demonstrated by his scientifically accurate Númenórean calendar".
-As Tolkien himself wrote in [letter #176](http://tolkiengateway.net/wiki/Letter_176),
+As Tolkien himself wrote in [letter #176](https://tolkiengateway.net/wiki/Letter_176),
 regarding his calendar calculations presented in Appendix D:
 "I am sorry about my childish amusement with arithmetic; but there it is". 
 So now let's see what kind of mathematical mischief he may have gotten himself into.
@@ -1430,7 +1430,7 @@ of the "Great Years" of the War of the Ring.
 
 This could be reasonable in the context of the mythology of Middle-earth,
 since the world of Middle-earth was a flat world only about 3000 years before the War of the Ring,
-when the epic cataclysm of the [Downfall of Númenor](http://tolkiengateway.net/wiki/Downfall_of_N%C3%BAmenor)
+when the epic cataclysm of the [Downfall of Númenor](https://tolkiengateway.net/wiki/Downfall_of_N%C3%BAmenor)
 made it into the round world we know today.
 If we allow for the possibility that this mythological flat world
 (and the first 3000 years of the round world)
@@ -1531,10 +1531,10 @@ which fall on (or very close to) the
 * Sarando, Paul. "Why We Should Observe the Elves' New Year on March 25",
   *[Beyond Bree](http://www.cep.unt.edu/bree.html)*, March 2018.
 * [Shire-reckoning.com](http://shire-reckoning.com/calendar.html)
-* [The Tolkien Gateway article on Appendix D](http://tolkiengateway.net/wiki/Appendix_D):
-  Includes links to other [Tolkien Gateway](http://tolkiengateway.net)
+* [The Tolkien Gateway article on Appendix D](https://tolkiengateway.net/wiki/Appendix_D):
+  Includes links to other [Tolkien Gateway](https://tolkiengateway.net)
   articles on the Middle-earth calendars described in this appendix.
-* [The Tolkien Gateway article on the Ages of Middle-earth](http://tolkiengateway.net/wiki/Ages)
+* [The Tolkien Gateway article on the Ages of Middle-earth](https://tolkiengateway.net/wiki/Ages)
 * [A Tolkien Calendar: Part 1 | Miruvor](https://taruithornmiruvor.wordpress.com/2015/05/24/a-tolkien-calendar-part-1/#attachment_143):
   Joe Bartram's article on the history of Middle-earth calendars,
   including an excellent chart of the "evolution and divergence of calendar systems in Middle Earth"

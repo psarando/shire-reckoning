@@ -29,7 +29,7 @@ is to visualize how the calendars described in J.R.R. Tolkien's *The Lord of the
 [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar).
 Those are the calendars one would use if they were only interested in a Shire, Gondor, or Rivendell date
 conversion for today's date in modern times.
-For example, if you simply want to know how a Shire date listed on [Tolkien Gateway](http://tolkiengateway.net/wiki/Third_Age_3019)
+For example, if you simply want to know how a Shire date listed on [Tolkien Gateway](https://tolkiengateway.net/wiki/Third_Age_3019)
 would convert into a date in this year's calendar, use the [default Shire Calendar on this project's home page](https://psarando.github.io/shire-reckoning/#tolkien-calendars).
 
 As pointed out in the [Shire Reckoning notes](https://psarando.github.io/shire-reckoning/#reckoning-start-dates),
@@ -107,7 +107,7 @@ simulations possible.
 
 Note that when giving Middle-earth years throughout the rest of these notes,
 I will use S.R. = Shire-reckoning, IV = Fourth Age, III = Third Age, II = Second Age,
-and Iys = [First Age Years of the Sun](https://en.wikipedia.org/wiki/Timeline_of_Arda#Years_of_the_Sun).
+and Iys = [First Age Years of the Sun](https://en.wikipedia.org/wiki/History_of_Arda#Years_of_the_Sun).
 
 ### First some Caveats
 
@@ -117,7 +117,7 @@ Tolkien never firmly fixed these stories to a specific period in our actual hist
 He included a rough estimate in his letter #211 that
 the events of *The Lord of the Rings* could have occurred around 6000 years ago,
 but in one note published in
-[The Nature of Middle-earth](http://tolkiengateway.net/wiki/The_Nature_of_Middle-earth),
+[The Nature of Middle-earth](https://tolkiengateway.net/wiki/The_Nature_of_Middle-earth),
 he speculates that Iys 310 could have occurred 16000 years ago,
 putting the events of *The Lord of the Rings* further back to around 9000 years ago.
 So these simulations provide many possible [synchronization schemes](#synchronize-settings).
@@ -299,7 +299,7 @@ it should be considered [proleptic](https://en.wikipedia.org/wiki/Proleptic_cale
 Similarly, the `Start reckoning from` dates also include the Gregorian year 0, which is equivalent to 1 B.C.
 (and -999 is equivalent to 1000 B.C.)
 
-* [Rivendell Reckoning years](https://en.wikipedia.org/wiki/Middle-earth_calendar#Calendar_of_Imladris):
+* [Rivendell Reckoning years](https://tolkiengateway.net/wiki/Reckoning_of_Rivendell):
   The current Rivendell year, or coranar ("sun-round"), includes a conversion into the current yén (144 of our years)
   and loa ("growth", equivalent to a coranar).
   These simulations assume the Calendar of Imladris starts reckoning its year 1 from the start of the first Year of the Sun of the First Age
@@ -326,10 +326,10 @@ Tolkien stated in Appendix D that
 This means there probably aren't any references to a current weekday of the Gondor Calendar during the narrative of *The Lord of the Rings*.
 Tolkien also stated that the [Kings' Reckoning](https://psarando.github.io/shire-reckoning/#the-3-calendars-of-gondor)
 "was ultimately of Eldarin origin" and had a 6-day week like the Elvish calendar of the
-[Eldar](http://tolkiengateway.net/wiki/Eldar),
+[Eldar](https://tolkiengateway.net/wiki/Eldar),
 but at some point the Númenóreans added a 7th weekday called "Sea-day" (Eärenya/Oraearon);
 although it's not stated when the 7th weekday was added
-(one possibility may be sometime during II 883 - 1075 under the reign of [Tar-Aldarion](http://tolkiengateway.net/wiki/Tar-Aldarion)).
+(one possibility may be sometime during II 883 - 1075 under the reign of [Tar-Aldarion](https://tolkiengateway.net/wiki/Tar-Aldarion)).
 
 Appendix D also states that "in Númenor calculation started with S.A. 1",
 and though this is mainly a reference to the calculation of leap-days, it may also apply to the calculation of weekdays.
@@ -461,7 +461,7 @@ but rather than using [Stellarium](http://www.stellarium.org/)
 to find a year around 6000 years ago that fits the astronomy described in *The Lord of the Rings*,
 I used that open-source astronomy program to find a fitting year around 9000 years ago,
 due to a note recently published in
-[The Nature of Middle-earth](http://tolkiengateway.net/wiki/The_Nature_of_Middle-earth)
+[The Nature of Middle-earth](https://tolkiengateway.net/wiki/The_Nature_of_Middle-earth)
 where Tolkien speculates that Iys 310 could have occurred 16000 years ago.
 
 The James Strom reckoning above is a very close match to the moon phases used in the story,
@@ -494,7 +494,7 @@ which I believe is due to the
 
 For example, [the night the hobbits first encounter a Black Rider](https://shirereckoningproject.wordpress.com/2020/09/14/3018-09-24-frodo-and-company-encounter-a-black-rider-on-the-road/)
 shortly after setting out from Hobbiton,
-the constellation [Menelvagor](http://tolkiengateway.net/wiki/Menelvagor)
+the constellation [Menelvagor](https://tolkiengateway.net/wiki/Menelvagor)
 ("the Swordsman of the Sky", a.k.a. [Orion](https://en.wikipedia.org/wiki/Orion_(constellation)))
 began to rise late in the night.
 This constellation usually rises around midnight (or maybe later)
@@ -526,14 +526,14 @@ These dates are listed in descending order, from latest to earliest.
 
 The years in this list correspond to the appropriate Shire-reckoning year or Age of Middle-earth,
 where S.R. = Shire-reckoning, III = Third Age, II = Second Age,
-and Iys = [First Age Years of the Sun](https://en.wikipedia.org/wiki/Timeline_of_Arda#Years_of_the_Sun).
+and Iys = [First Age Years of the Sun](https://en.wikipedia.org/wiki/History_of_Arda#Years_of_the_Sun).
 
 * When the date includes a month and a day, they are given according to Shire Reckoning,
   except for a few dates before Bilbo's time,
   which were taken from *Unfinished Tales* and are given according to the Stewards' or Kings' Reckoning.
   Selecting one of these events will select that specific date in each calendar,
   and also set the corresponding `Gregorian Date`.
-  * The [specific First Age dates come from the first chapter of *Unfinished Tales*](http://tolkiengateway.net/wiki/First_Age_495#Notes),
+  * The [specific First Age dates come from the first chapter of *Unfinished Tales*](https://tolkiengateway.net/wiki/First_Age_495#Notes),
     but these could have been dates according to the calendar of the Edain.
     I know of no details about the calendar of the Edain,
     other than it appears that the Kings' Reckoning was based on it.
@@ -555,12 +555,11 @@ or from some of the other Appendices (such as some of the birth dates),
 with a few corrections from *The Lord of the Rings: A Reader's Companion*.
 The seasons for First Age events in this list were derived from the text of *The Silmarillion*,
 but most of these First Age years were compiled from sites like
-the [Timeline of Arda article on Wikipedia](https://en.wikipedia.org/wiki/Timeline_of_Arda#Years_of_the_Sun),
-the [Tolkien Gateway Timeline](http://tolkiengateway.net/wiki/Timeline),
+the [First Age Timeline article on Tolkien Gateway](https://tolkiengateway.net/wiki/Timeline/First_Age),
 the [Henneth Annun Story Archive](http://www.henneth-annun.net/events.cfm),
 and the [LOTR Project Timeline](http://lotrproject.com/timeline/).
 Ultimately these First Age years come from "The Grey Annals" in
-[*The War of the Jewels*](http://tolkiengateway.net/wiki/The_War_of_the_Jewels).
+[*The War of the Jewels*](https://tolkiengateway.net/wiki/The_War_of_the_Jewels).
 
 There were many more events that occurred in the First Age before the first rising of the Sun and Moon,
 but I don't think it makes sense to view those events in the context of these calendars,
