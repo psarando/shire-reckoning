@@ -34,7 +34,7 @@
   "devDependencies": {
     "@btmills/prettier": "^1.17.0",
     "babel-preset-react-app": "^9.1.2",
-    "jest": "^24.9.0",
+    "jest": "^29.0.3",
     "parcel": "2.6.2"
   },
   "peerDependencies": {
