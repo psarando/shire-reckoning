@@ -1,5 +1,5 @@
 .shire-calendar {
-    background-color: gainsboro;
+    background-color: whitesmoke;
     border: .1rem solid black;
     border-spacing: 0;
     width: 35rem;
@@ -100,7 +100,7 @@
 }
 
 .highlight      { background-color: yellow; }
-.weekday-header { background-color: gainsboro; }
+.weekday-header { background-color: whitesmoke; }
 .holiday        { background-color: azure; color: darkred; }
 .holiday .gregorian-display { color: black; }
 
