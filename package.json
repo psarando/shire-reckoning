@@ -1,6 +1,6 @@
 {
   "name": "shire-reckoning",
-  "version": "5.0.0-alpha",
+  "version": "5.0.0-alpha.1",
   "homepage": "https://psarando.github.io/shire-reckoning",
   "source": "src/lib.js",
   "main": "lib/TolkienCalendars.js",
@@ -22,20 +22,33 @@
     "middle-earth"
   ],
   "license": "EPL-1.0",
+  "files": [
+    "lib",
+    "src/lib.js",
+    "src/ui",
+    "src/ShireReckoning.js",
+    "src/RivendellReckoning.js",
+    "src/GondorReckoning.js",
+    "src/Utils.js",
+    "Middle-earth-simulation.md",
+    "Rivendell_Drift.md",
+    "Kings_Reckoning_Rules_and_Deficit.md",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
     "@storybook/addons": "^5.2.8",
     "@storybook/react": "^5.2.8",
     "@storybook/source-loader": "^5.2.8",
     "@storybook/theming": "^5.2.8",
-    "@swc/helpers": "^0.4.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.3",
     "@btmills/prettier": "^1.17.0",
     "babel-preset-react-app": "^9.1.2",
     "jest": "^24.9.0",
-    "parcel": "2.6.2"
+    "parcel-bundler": "^1.12.5"
   },
   "peerDependencies": {
     "react": "^16.8.6",
@@ -45,13 +58,18 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "PUBLIC_URL='./' build-storybook --static-dir public/examples --output-dir build/examples",
-    "build": "cp public/lib.html lib/index.html && parcel build",
+    "build": "cp public/lib.html lib/index.html && parcel build src/lib.js --cache-dir .parcel-cache --out-dir lib --out-file TolkienCalendars.js --global TolkienCalendars",
     "test": "jest --watch",
     "prettier": "prettier --write 'src/**/*.js'"
   },
   "babel": {
     "presets": [
-      "react-app"
+      [
+        "react-app",
+        {
+          "absoluteRuntime": false
+        }
+      ]
     ]
   },
   "eslintConfig": {
@@ -59,13 +77,13 @@
   },
   "jest": {
     "moduleDirectories": [
-        "node_modules",
-        "src"
+      "node_modules",
+      "src"
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
     }
-},
+  },
   "prettier": {
     "tabWidth": 4,
     "trailingComma": "es5"
