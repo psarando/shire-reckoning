@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "@storybook/addons": "^5.2.8",
-    "@storybook/react": "^5.2.8",
+    "@storybook/react": "^6.5.12",
     "@storybook/source-loader": "^5.2.8",
     "@storybook/theming": "^5.2.8",
     "react": "^16.8.6",
