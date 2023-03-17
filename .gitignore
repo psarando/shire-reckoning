@@ -15,7 +15,6 @@ shire-reckoning-*.tgz
 .DS_Store
 .idea
 .vscode
-.parcel-cache
 .module-cache
 .env
 npm-debug.log

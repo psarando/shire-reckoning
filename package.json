@@ -1,6 +1,6 @@
 {
   "name": "shire-reckoning",
-  "version": "5.0.0-alpha.2",
+  "version": "5.0.0-alpha.3",
   "homepage": "https://psarando.github.io/shire-reckoning",
   "source": "src/lib.js",
   "main": "lib/TolkienCalendars.js",
@@ -25,6 +25,7 @@
     "src/RivendellReckoning.js",
     "src/GondorReckoning.js",
     "src/Utils.js",
+    "README.md",
     "Middle-earth-simulation.md",
     "Rivendell_Drift.md",
     "Kings_Reckoning_Rules_and_Deficit.md",
@@ -32,17 +33,25 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
     "@btmills/prettier": "^1.17.0",
     "@storybook/addon-storysource": "^6.5.12",
     "@storybook/addons": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/react": "^6.5.12",
     "@storybook/theming": "^6.5.12",
-    "babel-preset-react-app": "^9.1.2",
+    "autoprefixer": "^10.4.14",
+    "css-minimizer-webpack-plugin": "^4.2.2",
     "jest": "^29.1.2",
     "jest-environment-jsdom": "^29.1.2",
-    "parcel-bundler": "^1.12.5",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "mini-css-extract-plugin": "^2.7.4",
+    "postcss-loader": "^7.1.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1"
   },
   "peerDependencies": {
     "react": "^16.8.6 || ^17.0.0",
@@ -52,19 +61,23 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "PUBLIC_URL='./' build-storybook --output-dir build/examples",
-    "build": "cp public/lib.html lib/index.html && parcel build src/lib.js --cache-dir .parcel-cache --out-dir lib --out-file TolkienCalendars.js --global TolkienCalendars",
+    "build": "webpack --mode=production --node-env=production",
     "test": "jest --watch",
     "prettier": "prettier --write 'src/**/*.js'"
   },
   "babel": {
     "presets": [
-      [
-        "react-app",
-        {
-          "absoluteRuntime": false
-        }
-      ]
+      "@babel/preset-env",
+      "@babel/preset-react"
     ]
+  },
+  "postcss": {
+    "plugins": [
+      "autoprefixer"
+    ]
+  },
+  "resolutions": {
+    "@storybook/react/webpack": "^5"
   },
   "eslintConfig": {
     "extends": "react-app"

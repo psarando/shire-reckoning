@@ -1,6 +1,10 @@
 const path = require("path");
 
 module.exports = {
+    framework: "@storybook/react",
+    core: {
+        builder: "webpack5",
+    },
     staticDirs: ["../public/examples"],
     addons: [
         {
