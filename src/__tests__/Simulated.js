@@ -34,15 +34,15 @@ import {
     eventOfInterestToDate,
 } from "../examples/simulation/DatesOfInterest";
 
-const getFirstWeekDay = calendar => getFirstDate(calendar).weekDay;
-const getLastWeekDay = calendar => getLastDate(calendar).weekDay;
+const getFirstWeekDay = (calendar) => getFirstDate(calendar).weekDay;
+const getLastWeekDay = (calendar) => getLastDate(calendar).weekDay;
 const weekDayString = (date, weekDay) =>
     `${date.toDateString()} weekDay: ${weekDay}`;
 
 it("makes traditional Shire Calendar Dates", () => {
     let startDate = fullYearDate(0, 11, 23);
     let nextFirstDay = fullYearDate(-405, 11, 23);
-    let makeCalendar = nextFirstDay =>
+    let makeCalendar = (nextFirstDay) =>
         makeShireCalendarDates(
             nextFirstDay,
             startDate,
@@ -73,10 +73,10 @@ it("makes correct Gondor Traditional Dates", () => {
     let startDate = fullYearDate(0, 11, 21);
     let nextFirstDay = fullYearDate(-405, 11, 21);
 
-    let gondorDaysElapsed = today => toDaysElapsed(startDate, today);
-    let reckonGondorYear = daysElapsed =>
+    let gondorDaysElapsed = (today) => toDaysElapsed(startDate, today);
+    let reckonGondorYear = (daysElapsed) =>
         daysElapsedToSecondAgeYear(daysElapsed);
-    let reckonNewReckoningYear = daysElapsed =>
+    let reckonNewReckoningYear = (daysElapsed) =>
         daysElapsedToNewReckoningYear(daysElapsedToSecondAgeYear, daysElapsed);
     let reckonNewYearsDay = (today, daysRemainder) =>
         getNewYearDate(startDate, today, daysRemainder);
@@ -117,21 +117,21 @@ it("makes correct Gondor Traditional Dates", () => {
         }
     };
 
-    let makeCalendarKings = nextFirstDay =>
+    let makeCalendarKings = (nextFirstDay) =>
         GondorReckoning.makeGondorCalendarDates(
             nextFirstDay,
             startDate,
             GondorReckoning.RECKONING_KINGS,
             GondorReckoning.RECKONING_RULES_TRADITIONAL
         );
-    let makeCalendarStewards = nextFirstDay =>
+    let makeCalendarStewards = (nextFirstDay) =>
         GondorReckoning.makeGondorCalendarDates(
             nextFirstDay,
             startDate,
             GondorReckoning.RECKONING_STEWARDS,
             GondorReckoning.RECKONING_RULES_TRADITIONAL
         );
-    let makeCalendarNew = nextFirstDay =>
+    let makeCalendarNew = (nextFirstDay) =>
         GondorReckoning.makeGondorCalendarDates(
             nextFirstDay,
             startDate,
@@ -144,12 +144,12 @@ it("makes correct Gondor Traditional Dates", () => {
     nextFirstDay.setFullYear(-404, 2, 16);
     let calendarNew = makeCalendarNew(nextFirstDay);
 
-    let gondorWeekDayString = todayGondor =>
+    let gondorWeekDayString = (todayGondor) =>
         `${todayGondor.gregorian.toDateString()} weekDay: ${
             todayGondor.weekDay
         }`;
 
-    const roundDecimals = deficit => {
+    const roundDecimals = (deficit) => {
         return Math.round(deficit * 100000000000) / 100000000000;
     };
 
@@ -161,7 +161,7 @@ it("makes correct Gondor Traditional Dates", () => {
         + 48 / (24 * 60)
         + 46 / (24 * 60 * 60);
 
-    const formatDeficit = deficit => {
+    const formatDeficit = (deficit) => {
         let deficitSign = deficit < 0 ? "-" : "+";
 
         let deficitDays = Math.abs(deficit);
@@ -274,7 +274,7 @@ it("makes correct Gondor Traditional Dates", () => {
 
 describe("print only", () => {
     const startDateSA = fullYearDate(0, 11, 23);
-    const makeShireCalendar = nextFirstDay =>
+    const makeShireCalendar = (nextFirstDay) =>
         makeShireCalendarDates(
             nextFirstDay,
             startDateSA,
@@ -283,11 +283,11 @@ describe("print only", () => {
     const findElvesNewYear = (elvesStartDate, shireCalendar) => {
         let myd = shireCalendar.dates[183].gregorian;
         let elvesNewYear = getRivendellNewYearDate(myd, elvesStartDate);
-        return shireCalendar.dates.find(date =>
+        return shireCalendar.dates.find((date) =>
             datesMatch(date.gregorian, elvesNewYear)
         );
     };
-    const displayYear = year =>
+    const displayYear = (year) =>
         year > 3441 + 3020
             ? `IV ${year - 3441 - 3020}`
             : year > 3441
@@ -386,7 +386,7 @@ describe("print only", () => {
             fullYearDate(1697, 2, 25),
             fullYearDate(3442, 2, 23),
             fullYearDate(5042, 2, 25),
-        ].forEach(elvesStartDate => {
+        ].forEach((elvesStartDate) => {
             let calendar = makeShireCalendar(elvesStartDate);
             let elvesNewYearShire = findElvesNewYear(elvesStartDate, calendar);
             const elvesFirstNewYear = `${displayYear(
@@ -441,7 +441,7 @@ describe("print only", () => {
 it("keeps Dates of Interest in sync", () => {
     const meDatesMatch = (d1, d2) => d1.day === d2.day && d1.month === d2.month;
     const logs = [];
-    DatesOfInterest.forEach(event => {
+    DatesOfInterest.forEach((event) => {
         if (event.label === "") return;
 
         let startDatesGSA = SyncAges[1].startDates;

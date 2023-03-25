@@ -48,7 +48,7 @@ const ShireWeekdays = [
         description:
 `Tolkien: Saturday
 Shire: Sterday
-Star Day. From the archaic Sterrendei (from Old English steorra dæg).`
+Star Day. From the archaic Sterrendei (from Old English steorra dæg).`,
     },
     {
         emoji: "☀️",
@@ -59,7 +59,7 @@ Star Day. From the archaic Sterrendei (from Old English steorra dæg).`
         description:
 `Tolkien: Sunday
 Shire: Sunday
-Sun Day. From the archaic Sunnendei (from Old English sunne dæg).`
+Sun Day. From the archaic Sunnendei (from Old English sunne dæg).`,
     },
     {
         emoji: "🌙",
@@ -70,7 +70,7 @@ Sun Day. From the archaic Sunnendei (from Old English sunne dæg).`
         description:
 `Tolkien: Monday
 Shire: Monday
-Moon Day. From the archaic Monendei (from Old English mōna dæg).`
+Moon Day. From the archaic Monendei (from Old English mōna dæg).`,
     },
     {
         emoji: "🌳",
@@ -81,7 +81,7 @@ Moon Day. From the archaic Monendei (from Old English mōna dæg).`
         description:
 `Tolkien: Tuesday
 Shire: Trewsday
-Trees Day. From the archaic Trewesdei (from Old English trēow dæg).`
+Trees Day. From the archaic Trewesdei (from Old English trēow dæg).`,
     },
     {
         emoji: "🌌",
@@ -92,7 +92,7 @@ Trees Day. From the archaic Trewesdei (from Old English trēow dæg).`
         description:
 `Tolkien: Wednesday
 Shire: Hevensday
-Heavens Day. From the archaic Hevensdei (from Old English heofen dæg).`
+Heavens Day. From the archaic Hevensdei (from Old English heofen dæg).`,
     },
     {
         emoji: "🌊",
@@ -103,7 +103,7 @@ Heavens Day. From the archaic Hevensdei (from Old English heofen dæg).`
         description:
 `Tolkien: Thursday
 Shire: Mersday
-Sea Day. From the archaic Meresdei (from Old English mere dæg).`
+Sea Day. From the archaic Meresdei (from Old English mere dæg).`,
     },
     {
         emoji: "🏔",
@@ -114,7 +114,7 @@ Sea Day. From the archaic Meresdei (from Old English mere dæg).`
         description:
 `Tolkien: Friday
 Shire: Highday
-High Day. From the archaic Hihdei (from Old English hēah dæg).`
+High Day. From the archaic Hihdei (from Old English hēah dæg).`,
     },
 ];
 
@@ -312,7 +312,7 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
  * @param {FirstShireNewYearDate} [startDate]
  * @return {FirstShireNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-const getStartDate = startDate => {
+const getStartDate = (startDate) => {
     if (!startDate) {
         startDate = fullYearDate(0, 11, 21);
     }

@@ -33,4 +33,5 @@ export const ForT_A_1300TheYearHobbitsFirstSettledInBree = () => {
     );
 };
 
-ForT_A_1300TheYearHobbitsFirstSettledInBree.storyName = "for T.A. 1300: the year Hobbits first settled in Bree";
+ForT_A_1300TheYearHobbitsFirstSettledInBree.storyName =
+    "for T.A. 1300: the year Hobbits first settled in Bree";

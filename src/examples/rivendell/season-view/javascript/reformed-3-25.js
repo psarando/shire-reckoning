@@ -23,4 +23,5 @@ export const WithReformedRulesStartingFromMarch25thInEnglish = () =>
         className: "shire-calendar",
     });
 
-WithReformedRulesStartingFromMarch25thInEnglish.storyName = "with Reformed Rules starting from March 25th, in English";
+WithReformedRulesStartingFromMarch25thInEnglish.storyName =
+    "with Reformed Rules starting from March 25th, in English";

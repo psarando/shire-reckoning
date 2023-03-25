@@ -24,4 +24,5 @@ export const WithReformedRulesStartingFromMarch20thInSindarin = () => (
     />
 );
 
-WithReformedRulesStartingFromMarch20thInSindarin.storyName = "with Reformed Rules starting from March 20th, in Sindarin";
+WithReformedRulesStartingFromMarch20thInSindarin.storyName =
+    "with Reformed Rules starting from March 20th, in Sindarin";

@@ -33,4 +33,5 @@ export const ForT_A_3019DateOfTheDestructionOfTheOneRing = () => {
     );
 };
 
-ForT_A_3019DateOfTheDestructionOfTheOneRing.storyName = "for T.A. 3019: date of the destruction of the One Ring";
+ForT_A_3019DateOfTheDestructionOfTheOneRing.storyName =
+    "for T.A. 3019: date of the destruction of the One Ring";

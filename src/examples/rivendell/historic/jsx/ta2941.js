@@ -30,4 +30,5 @@ export const ForT_A_2941TheYearBilboFindsTheOneRingOfTheDeathOfSmaugAndOfTheBatt
         );
     };
 
-ForT_A_2941TheYearBilboFindsTheOneRingOfTheDeathOfSmaugAndOfTheBattleOfFiveArmies.storyName = "for T.A. 2941: the year Bilbo finds the One Ring, of the death of Smaug, and of The Battle of Five Armies";
+ForT_A_2941TheYearBilboFindsTheOneRingOfTheDeathOfSmaugAndOfTheBattleOfFiveArmies.storyName =
+    "for T.A. 2941: the year Bilbo finds the One Ring, of the death of Smaug, and of The Battle of Five Armies";

@@ -217,7 +217,7 @@ const RivendellHolidays = {
  * @param {number} year - The Rivendell year to check.
  * @return {boolean} True if the given `year` is a Rivendell leap-year.
  */
-const isRivendellLeapYear = year => {
+const isRivendellLeapYear = (year) => {
     return year % 12 === 0 && year % 432 !== 0;
 };
 
@@ -233,7 +233,7 @@ const isRivendellLeapYear = year => {
  * @param {FirstRivendellNewYearDate} [startDate]
  * @return {FirstRivendellNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-const getStartDate = startDate => {
+const getStartDate = (startDate) => {
     if (!startDate) {
         startDate = fullYearDate(1, 2, 22);
     }
@@ -245,7 +245,7 @@ const getStartDate = startDate => {
  * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
  * @return {YearWithRemainder} The current Rivendell year (including 0) for the given `daysElapsed`.
  */
-const daysElapsedToRivendellYear = daysElapsed => {
+const daysElapsedToRivendellYear = (daysElapsed) => {
     let negativeOffset = 0;
 
     let year = Math.floor(daysElapsed / RIVENDELL_DAYS_PER_432_YEARS) * 432;

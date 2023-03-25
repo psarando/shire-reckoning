@@ -185,8 +185,7 @@ const DatesOfInterestFourthAge = [
         month: 8,
         day: 22,
         displayDate: "S.R. 1482 Halimath 22",
-        label:
-            "Samwise departs Bag End, then leaves Middle-earth, last of the Ring-bearers.",
+        label: "Samwise departs Bag End, then leaves Middle-earth, last of the Ring-bearers.",
     },
 ];
 
@@ -202,8 +201,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 8,
         day: 29,
         displayDate: "III 3021 Halimath 29",
-        label:
-            "Frodo and Bilbo depart over Sea with the Three Keepers. End of Third Age.",
+        label: "Frodo and Bilbo depart over Sea with the Three Keepers. End of Third Age.",
     },
     {
         year: 3020 + 3441,
@@ -219,8 +217,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 3,
         day: 6,
         displayDate: "III 3020 Astron 6",
-        label:
-            "The mallorn tree planted by Samwise first flowers in the Party Field.",
+        label: "The mallorn tree planted by Samwise first flowers in the Party Field.",
     },
     {
         year: 3019 + 3441,
@@ -228,8 +225,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 10,
         day: 3,
         displayDate: "III 3019 Blotmath 3",
-        label:
-            "Battle of Bywater. Passing of Saruman. End of the War of the Ring.",
+        label: "Battle of Bywater. Passing of Saruman. End of the War of the Ring.",
     },
     {
         year: 3019 + 3441,
@@ -269,8 +265,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 3,
         day: 6,
         displayDate: "III 3019 Astron 6",
-        label:
-            "Elves' New Year's Day. Meeting of Celeborn and Thranduil in Mirkwood.",
+        label: "Elves' New Year's Day. Meeting of Celeborn and Thranduil in Mirkwood.",
     },
     {
         year: 3019 + 3441,
@@ -302,8 +297,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 2,
         day: 13,
         displayDate: "III 3019 Rethe 13",
-        label:
-            "Frodo is poisoned by Shelob. Aragorn captures the fleet at Pelargir.",
+        label: "Frodo is poisoned by Shelob. Aragorn captures the fleet at Pelargir.",
     },
     {
         year: 3019 + 3441,
@@ -335,8 +329,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 2,
         day: 5,
         displayDate: "III 3019 Rethe 5",
-        label:
-            "Parley with Saruman in Orthanc. Frodo hides in sight of the Morannon.",
+        label: "Parley with Saruman in Orthanc. Frodo hides in sight of the Morannon.",
     },
     {
         year: 3019 + 3441,
@@ -352,8 +345,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 2,
         day: 2,
         displayDate: "III 3019 Rethe 2",
-        label:
-            "Gandalf comes to Edoras and heals Théoden. The Ents march on Isengard.",
+        label: "Gandalf comes to Edoras and heals Théoden. The Ents march on Isengard.",
     },
     {
         year: 3019 + 3441,
@@ -361,8 +353,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 2,
         day: 1,
         displayDate: "III 3019 Rethe 1",
-        label:
-            "Frodo begins passage of Dead Marshes. Aragorn meets Gandalf the White.",
+        label: "Frodo begins passage of Dead Marshes. Aragorn meets Gandalf the White.",
     },
     {
         year: 3019 + 3441,
@@ -394,8 +385,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 1,
         day: 25,
         displayDate: "III 3019 Solmath 25",
-        label:
-            "First Battle of the Fords of Isen; Théodred son of Théoden is slain.",
+        label: "First Battle of the Fords of Isen; Théodred son of Théoden is slain.",
     },
     {
         year: 3019 + 3441,
@@ -467,8 +457,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 9,
         day: 6,
         displayDate: "III 3018 Winterfilth 6",
-        label:
-            "The camp under Weathertop attacked. Frodo wounded by the Witch-king.",
+        label: "The camp under Weathertop attacked. Frodo wounded by the Witch-king.",
     },
     {
         year: 3018 + 3441,
@@ -500,8 +489,7 @@ const DatesOfInterestThirdAgeLotR = [
         month: 8,
         day: 23,
         displayDate: "III 3018 Halimath 23",
-        label:
-            "Frodo leaves Bag End. A Black Rider comes to Hobbiton at nightfall.",
+        label: "Frodo leaves Bag End. A Black Rider comes to Hobbiton at nightfall.",
     },
     {
         year: 3018 + 3441,
@@ -571,8 +559,7 @@ const DatesOfInterestThirdAge = [
         month: 10,
         day: 10,
         displayDate: "III 2994 Blotmath 10",
-        label:
-            "Balin, Lord of Moria, is killed. Dwarf-colony destroyed soon after.",
+        label: "Balin, Lord of Moria, is killed. Dwarf-colony destroyed soon after.",
     },
     {
         year: 2991 + 3441,
@@ -650,8 +637,7 @@ const DatesOfInterestThirdAge = [
         month: 2,
         day: 2,
         displayDate: "III 2951 Rethe 2",
-        label:
-            "Aragorn meets Arwen Undómiel. Sauron reveals himself in Mordor in this year.",
+        label: "Aragorn meets Arwen Undómiel. Sauron reveals himself in Mordor in this year.",
     },
     {
         year: 2948 + 3441,
@@ -665,8 +651,7 @@ const DatesOfInterestThirdAge = [
         month: 8,
         day: 22,
         displayDate: "III 2941",
-        label:
-            "The year Bilbo finds the One Ring, Bard slays Smaug, and of The Battle of Five Armies.",
+        label: "The year Bilbo finds the One Ring, Bard slays Smaug, and of The Battle of Five Armies.",
     },
     {
         year: 2931 + 3441,
@@ -712,8 +697,7 @@ const DatesOfInterestThirdAge = [
         year: 2790 + 3441,
         allYear: true,
         displayDate: "III 2790",
-        label:
-            "Thrór slain by Azog in Moria. Gerontius born, later known as the Old Took.",
+        label: "Thrór slain by Azog in Moria. Gerontius born, later known as the Old Took.",
     },
     {
         year: 2770 + 3441,
@@ -733,8 +717,7 @@ const DatesOfInterestThirdAge = [
         year: 2747 + 3441,
         allYear: true,
         displayDate: "III 2747",
-        label:
-            "The Battle of the Greenfields. Bandobras 'the Bullroarer' Took invents golf.",
+        label: "The Battle of the Greenfields. Bandobras 'the Bullroarer' Took invents golf.",
     },
     {
         year: 2746 + 3441,
@@ -754,8 +737,7 @@ const DatesOfInterestThirdAge = [
         year: 2683 + 3441,
         allYear: true,
         displayDate: "III 2683",
-        label:
-            "Isengrim II becomes 10th Thain of the Took-line, begins excavation of the Great Smials.",
+        label: "Isengrim II becomes 10th Thain of the Took-line, begins excavation of the Great Smials.",
     },
     {
         year: 2670 + 3441,
@@ -767,8 +749,7 @@ const DatesOfInterestThirdAge = [
         year: 2570 + 3441,
         allYear: true,
         displayDate: "III 2570",
-        label:
-            "Baldor son of Brego lost beyond Forbidden Door of the 'Paths of the Dead'.",
+        label: "Baldor son of Brego lost beyond Forbidden Door of the 'Paths of the Dead'.",
     },
     {
         year: 2569 + 3441,
@@ -782,8 +763,7 @@ const DatesOfInterestThirdAge = [
         month: 7,
         day: 15,
         displayDate: "III 2510 Urimë",
-        label:
-            "Cirion the Steward gifts Calenardhon (Rohan) to Eorl and the Rohirrim.",
+        label: "Cirion the Steward gifts Calenardhon (Rohan) to Eorl and the Rohirrim.",
     },
     {
         year: 2510 + 3441,
@@ -811,8 +791,7 @@ const DatesOfInterestThirdAge = [
         month: 6,
         day: "Midyear's Day",
         displayDate: "III 2360",
-        label:
-            "Hador the Steward adds an extra day to the calendars of the west-lands.",
+        label: "Hador the Steward adds an extra day to the calendars of the west-lands.",
     },
     {
         year: 2063 + 3441,
@@ -854,8 +833,7 @@ const DatesOfInterestThirdAge = [
         month: 6,
         day: "Midyear's Day",
         displayDate: "III 2000",
-        label:
-            "Millennial Leap-year in Gondor (and the Shire?). Nazgûl besiege Minas Ithil.",
+        label: "Millennial Leap-year in Gondor (and the Shire?). Nazgûl besiege Minas Ithil.",
     },
     {
         year: 1999 + 3441,
@@ -873,15 +851,13 @@ const DatesOfInterestThirdAge = [
         year: 1975 + 3441,
         allYear: true,
         displayDate: "III 1975",
-        label:
-            "Last-king Arvedui drowned in Bay of Forochel. Witch-king defeated at Battle of Fornost.",
+        label: "Last-king Arvedui drowned in Bay of Forochel. Witch-king defeated at Battle of Fornost.",
     },
     {
         year: 1636 + 3441,
         allYear: true,
         displayDate: "III 1636",
-        label:
-            "Year of the Great Plague (or Dark Plague), which reached the Shire in 1637.",
+        label: "Year of the Great Plague (or Dark Plague), which reached the Shire in 1637.",
     },
     {
         year: 1601 + 3441,
@@ -893,15 +869,13 @@ const DatesOfInterestThirdAge = [
         year: 1409 + 3441,
         allYear: true,
         displayDate: "III 1409",
-        label:
-            "The Witch-king of Angmar invades Arnor. King Arvaleg I slain. Tower of Amon Sûl destroyed.",
+        label: "The Witch-king of Angmar invades Arnor. King Arvaleg I slain. Tower of Amon Sûl destroyed.",
     },
     {
         year: 1300 + 3441,
         allYear: true,
         displayDate: "III c.1300",
-        label:
-            "Nazgûl reappear in Middle-earth and the realm of Angmar is founded by the Witch-King.",
+        label: "Nazgûl reappear in Middle-earth and the realm of Angmar is founded by the Witch-King.",
     },
     {
         year: 1000 + 3441,
@@ -909,8 +883,7 @@ const DatesOfInterestThirdAge = [
         month: 6,
         day: "Midyear's Day",
         displayDate: "III 1000",
-        label:
-            "Millennial Leap-year in Gondor. The Istari arrive to Middle-earth around this time.",
+        label: "Millennial Leap-year in Gondor. The Istari arrive to Middle-earth around this time.",
     },
     {
         year: 241 + 3441,
@@ -930,8 +903,7 @@ const DatesOfInterestThirdAge = [
         month: 9,
         day: 4,
         displayDate: "III 2 Narbeleth 4",
-        label:
-            "Battle of the Gladden Fields. Death of Isildur. The One Ring is lost in the river.",
+        label: "Battle of the Gladden Fields. Death of Isildur. The One Ring is lost in the river.",
     },
 ];
 
@@ -945,8 +917,7 @@ const DatesOfInterestSecondAge = [
         year: 3441,
         allYear: true,
         displayDate: "II 3441",
-        label:
-            "Defeat of Sauron and death of Elendil and Gil-galad. End of Second Age.",
+        label: "Defeat of Sauron and death of Elendil and Gil-galad. End of Second Age.",
     },
     {
         year: 3440,
@@ -964,15 +935,13 @@ const DatesOfInterestSecondAge = [
         year: 3320,
         allYear: true,
         displayDate: "II 3320",
-        label:
-            "Elendil and his sons, Isildur and Anárion, found the Realms in Exile: Arnor and Gondor.",
+        label: "Elendil and his sons, Isildur and Anárion, found the Realms in Exile: Arnor and Gondor.",
     },
     {
         year: 3319,
         allYear: true,
         displayDate: "II 3319",
-        label:
-            "Downfall of Númenor. World is made round. Elendil and his sons escape.",
+        label: "Downfall of Númenor. World is made round. Elendil and his sons escape.",
     },
     {
         year: 3000,
@@ -980,8 +949,7 @@ const DatesOfInterestSecondAge = [
         month: 6,
         day: "Midyear's Day",
         displayDate: "II 3000",
-        label:
-            "Millennial Leap-year in Númenor, in the time when its kings took Adûnaic names.",
+        label: "Millennial Leap-year in Númenor, in the time when its kings took Adûnaic names.",
     },
     {
         year: 2000,
@@ -989,22 +957,19 @@ const DatesOfInterestSecondAge = [
         month: 6,
         day: "Midyear's Day",
         displayDate: "II 2000",
-        label:
-            "Millennial Leap-year. Sauron has extended his power and the shadow has fallen on Númenor.",
+        label: "Millennial Leap-year. Sauron has extended his power and the shadow has fallen on Númenor.",
     },
     {
         year: 1697,
         allYear: true,
         displayDate: "II 1697",
-        label:
-            "Eregion destroyed. The gates of Moria are shut. Elrond founds Rivendell.",
+        label: "Eregion destroyed. The gates of Moria are shut. Elrond founds Rivendell.",
     },
     {
         year: 1693,
         allYear: true,
         displayDate: "II 1693",
-        label:
-            "The Three Rings are hidden and the War of the Elves and Sauron begins.",
+        label: "The Three Rings are hidden and the War of the Elves and Sauron begins.",
     },
     {
         year: 1600,
@@ -1022,8 +987,7 @@ const DatesOfInterestSecondAge = [
         year: 1075,
         allYear: true,
         displayDate: "II 1075",
-        label:
-            "Tar-Aldarion yields the Sceptre of Númenor to his daughter, Tar-Ancalimë.",
+        label: "Tar-Aldarion yields the Sceptre of Númenor to his daughter, Tar-Ancalimë.",
     },
     {
         year: 1000,
@@ -1031,15 +995,13 @@ const DatesOfInterestSecondAge = [
         month: 6,
         day: "Midyear's Day",
         displayDate: "II 1000",
-        label:
-            "Millennial Leap-year in Númenor. Sauron begins building Barad-dûr around this time.",
+        label: "Millennial Leap-year in Númenor. Sauron begins building Barad-dûr around this time.",
     },
     {
         year: 883,
         allYear: true,
         displayDate: "II 883",
-        label:
-            "Tar-Aldarion receives the Sceptre of Númenor from his father, Tar-Meneldur.",
+        label: "Tar-Aldarion receives the Sceptre of Númenor from his father, Tar-Meneldur.",
     },
     {
         year: 870,
@@ -1069,8 +1031,7 @@ const DatesOfInterestSecondAge = [
         year: 40,
         allYear: true,
         displayDate: "II c.40",
-        label:
-            "Many Dwarves leaving their old cities in Ered Luin migrate to Moria.",
+        label: "Many Dwarves leaving their old cities in Ered Luin migrate to Moria.",
     },
     {
         year: 32,
@@ -1096,15 +1057,13 @@ const DatesOfInterestFirstAge = [
         year: 0,
         allYear: true,
         displayDate: "Iys 590",
-        label:
-            "Morgoth cast through the Door of Night into the Void. First Age ends.",
+        label: "Morgoth cast through the Door of Night into the Void. First Age ends.",
     },
     {
         year: -3,
         allYear: true,
         displayDate: "Iys 587",
-        label:
-            "Eärendil slays Ancalagon the Black. Morgoth defeated and the War of Wrath ends.",
+        label: "Eärendil slays Ancalagon the Black. Morgoth defeated and the War of Wrath ends.",
     },
     {
         year: -45,
@@ -1116,15 +1075,13 @@ const DatesOfInterestFirstAge = [
         year: -48,
         allYear: true,
         displayDate: "Iys 542",
-        label:
-            "Eärendil sails to Valinor and delivers the errand of the Two Kindreds.",
+        label: "Eärendil sails to Valinor and delivers the errand of the Two Kindreds.",
     },
     {
         year: -52,
         allYear: true,
         displayDate: "Iys 538",
-        label:
-            "Third Kinslaying at the Havens of Sirion. Maglor takes Elrond and Elros.",
+        label: "Third Kinslaying at the Havens of Sirion. Maglor takes Elrond and Elros.",
     },
     {
         year: -58,
@@ -1136,8 +1093,7 @@ const DatesOfInterestFirstAge = [
         year: -65,
         allYear: true,
         displayDate: "Iys 525",
-        label:
-            "Tuor and Idril sail Eärrámë into the West. Eärendil marries Elwing.",
+        label: "Tuor and Idril sail Eärrámë into the West. Eärendil marries Elwing.",
     },
     {
         year: -80,
@@ -1159,15 +1115,13 @@ const DatesOfInterestFirstAge = [
         year: -87,
         allYear: true,
         displayDate: "Iys 503",
-        label:
-            "Eärendil (spring) and Elwing born. Final deaths of Beren and Lúthien (autumn?).",
+        label: "Eärendil (spring) and Elwing born. Final deaths of Beren and Lúthien (autumn?).",
     },
     {
         year: -88,
         allYear: true,
         displayDate: "Iys 502",
-        label:
-            "Thingol slain by Dwarves in Menegroth. Melian returns to Valinor in grief.",
+        label: "Thingol slain by Dwarves in Menegroth. Melian returns to Valinor in grief.",
     },
     {
         year: -91,
@@ -1215,8 +1169,7 @@ const DatesOfInterestFirstAge = [
         month: 6,
         day: "Midyear's Day",
         displayDate: "Iys 472 Midsummer",
-        label:
-            'Nírnaeth Arnoediad: The 6-day "Battle of Unnumbered Tears" begins.',
+        label: 'Nírnaeth Arnoediad: The 6-day "Battle of Unnumbered Tears" begins.',
     },
     {
         year: -124,
@@ -1230,8 +1183,7 @@ const DatesOfInterestFirstAge = [
         month: 10,
         day: 23,
         displayDate: "Iys 465 Autumn or Winter",
-        label:
-            "Finrod slain by a werewolf saving Beren during the Quest of the Silmaril.",
+        label: "Finrod slain by a werewolf saving Beren during the Quest of the Silmaril.",
     },
     {
         year: -126,
@@ -1239,8 +1191,7 @@ const DatesOfInterestFirstAge = [
         month: 6,
         day: "Midyear's Day",
         displayDate: "Iys 464 Midsummer",
-        label:
-            "Beren first sees Lúthien dancing under the moonrise in Neldoreth.",
+        label: "Beren first sees Lúthien dancing under the moonrise in Neldoreth.",
     },
     {
         year: -126,
@@ -1260,8 +1211,7 @@ const DatesOfInterestFirstAge = [
         month: 0,
         day: "2 Yule",
         displayDate: "Iys 455 Midwinter",
-        label:
-            "Dagor Bragollach: Battle of Sudden Flame. Barahir rescues Finrod.",
+        label: "Dagor Bragollach: Battle of Sudden Flame. Barahir rescues Finrod.",
     },
     {
         year: -158,
@@ -1273,15 +1223,13 @@ const DatesOfInterestFirstAge = [
         year: -280,
         allYear: true,
         displayDate: "Iys 310",
-        label:
-            "Bëor leads The First House of the Edain into Beleriand and are discovered by Finrod.",
+        label: "Bëor leads The First House of the Edain into Beleriand and are discovered by Finrod.",
     },
     {
         year: -330,
         allYear: true,
         displayDate: "Iys 260",
-        label:
-            "Glaurung first appears and is driven back to Angband. The Long Peace begins.",
+        label: "Glaurung first appears and is driven back to Angband. The Long Peace begins.",
     },
     {
         year: -474,
@@ -1311,8 +1259,7 @@ const DatesOfInterestFirstAge = [
         year: -537,
         allYear: true,
         displayDate: "Iys 53",
-        label:
-            "Turgon, guided by Ulmo, discovers the hidden valley of Tumladen.",
+        label: "Turgon, guided by Ulmo, discovers the hidden valley of Tumladen.",
     },
     {
         year: -538,
@@ -1332,8 +1279,7 @@ const DatesOfInterestFirstAge = [
         year: -570,
         allYear: false,
         displayDate: "Iys 20 Spring",
-        label:
-            "Mereth Aderthad: The Feast of Reuniting held near Eithel Ivrin.",
+        label: "Mereth Aderthad: The Feast of Reuniting held near Eithel Ivrin.",
     },
     {
         year: -585,
@@ -1345,8 +1291,7 @@ const DatesOfInterestFirstAge = [
         year: -589,
         allYear: false, // don't set a Shire date, so that Eldar New Year's Day is always selected.
         displayDate: "Iys 1",
-        label:
-            "The Sun first rises over Middle-earth. Awakening of Men in Hildórien.",
+        label: "The Sun first rises over Middle-earth. Awakening of Men in Hildórien.",
     },
 ];
 
@@ -1390,7 +1335,7 @@ const eventOfInterestToDate = (
             RECKONING_RULES_TRADITIONAL
         );
         let shireDate = calendar.dates.find(
-            date =>
+            (date) =>
                 date.month === eventOfInterest.month
                 && date.day === eventOfInterest.day
         );
@@ -1440,7 +1385,7 @@ const findEventIndex = (currentDate, shireStartDate, rivendellStartDate) => {
         toDaysElapsed(shireStartDate, currentDate)
     ).year;
 
-    const eventIndex = DatesOfInterest.findIndex(event => {
+    const eventIndex = DatesOfInterest.findIndex((event) => {
         if (event.label === "") {
             return false;
         }
@@ -1473,7 +1418,7 @@ const findPreviousEventIndex = (
         toDaysElapsed(shireStartDate, currentDate)
     ).year;
 
-    return DatesOfInterest.findIndex(event => {
+    return DatesOfInterest.findIndex((event) => {
         if (event.label === "") {
             return false;
         }

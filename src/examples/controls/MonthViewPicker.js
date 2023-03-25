@@ -5,8 +5,8 @@
 import React from "react";
 import "../../ui/tolkien-calendars.css";
 
-const MonthViewPicker = props => {
-    const onMonthViewChange = event => {
+const MonthViewPicker = (props) => {
+    const onMonthViewChange = (event) => {
         const month = parseInt(event.target.value, 10);
 
         const viewDate = props.viewDate;

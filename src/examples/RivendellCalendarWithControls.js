@@ -121,11 +121,8 @@ class RivendellCalendarWithControls extends Component {
     }
 
     render() {
-        const {
-            className,
-            onCalendarStartChange,
-            onCalendarRulesChange,
-        } = this.props;
+        const { className, onCalendarStartChange, onCalendarRulesChange } =
+            this.props;
 
         const {
             calendar,
@@ -141,7 +138,7 @@ class RivendellCalendarWithControls extends Component {
         const firstDay = getFirstDay(calendar);
         const lastDay = getLastDay(calendar);
 
-        const months = RivendellMonths.map(function(month) {
+        const months = RivendellMonths.map(function (month) {
             return { emoji: month.emoji, name: month[language] };
         });
 

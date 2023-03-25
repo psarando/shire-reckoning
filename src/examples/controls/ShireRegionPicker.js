@@ -10,7 +10,7 @@ import {
     REGION_NAMES_BREE,
 } from "../../ShireReckoning";
 
-const ShireRegionPicker = props => (
+const ShireRegionPicker = (props) => (
     <select
         className="shire-region-select"
         value={props.region}

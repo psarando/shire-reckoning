@@ -112,12 +112,8 @@ class ShireCalendarWithControls extends Component {
     }
 
     render() {
-        const {
-            className,
-            region,
-            onCalendarStartChange,
-            onRegionChange,
-        } = this.props;
+        const { className, region, onCalendarStartChange, onRegionChange } =
+            this.props;
         const {
             calendar,
             monthView,
@@ -131,7 +127,7 @@ class ShireCalendarWithControls extends Component {
         const firstDay = getFirstDay(calendar);
         const lastDay = getLastDay(calendar);
 
-        const months = ShireMonths.map(function(month) {
+        const months = ShireMonths.map(function (month) {
             return { emoji: month.emoji, name: month[region] };
         });
 

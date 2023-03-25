@@ -19,13 +19,13 @@ import {
 } from "../GondorReckoning";
 import { fullYearDate, getNextDate } from "../Utils";
 
-const getFirstDay = calendar => calendar.dates[0].gregorian;
-const getLastDay = calendar =>
+const getFirstDay = (calendar) => calendar.dates[0].gregorian;
+const getLastDay = (calendar) =>
     calendar.dates[calendar.dates.length - 1].gregorian;
 let weekDayString = (date, weekDay) =>
     `${date.toDateString()} weekDay: ${weekDay}`;
-let getFirstWeekDay = calendar => calendar.dates[0].weekDay;
-let getLastWeekDay = calendar =>
+let getFirstWeekDay = (calendar) => calendar.dates[0].weekDay;
+let getLastWeekDay = (calendar) =>
     calendar.dates[calendar.dates.length - 1].weekDay;
 
 let reckonTests = (nextFirstDay, reckonCalendar, reckonFrom, reckonTo) => {
@@ -71,16 +71,16 @@ describe("ShireReckoning", () => {
 
     it("makes correct Calendar Dates", () => {
         let nextFirstDay = fullYearDate(-3000, 11, 21);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeShireCalendarDates(nextFirstDay, startDate);
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
 
     it("makes correct Shire New Year Dates", () => {
         let nextFirstDay = fullYearDate(-401, 11, 31);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeShireCalendarDates(nextFirstDay, startDate);
-        let reckonNewYearsDay = nextDay =>
+        let reckonNewYearsDay = (nextDay) =>
             getShireNewYearDate(nextDay, startDate);
 
         reckonNewYearTests(
@@ -98,7 +98,7 @@ describe("RivendellReckoning", () => {
 
     it("makes correct Traditional Calendar Dates", () => {
         let nextFirstDay = fullYearDate(-10800, 2, 23);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeRivendellCalendarDates(
                 nextFirstDay,
                 startDate,
@@ -109,7 +109,7 @@ describe("RivendellReckoning", () => {
 
     it("makes correct Reformed Calendar Dates", () => {
         let nextFirstDay = fullYearDate(-3000, 2, 25);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeRivendellCalendarDates(nextFirstDay, startDate, REFORMED_RULES);
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
@@ -149,9 +149,9 @@ describe("RivendellReckoning", () => {
 
     it("makes correct Traditional New Year Dates", () => {
         let nextFirstDay = fullYearDate(-433, 2, 23);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeRivendellCalendarDates(nextFirstDay, startDate);
-        let reckonNewYearsDay = nextDay =>
+        let reckonNewYearsDay = (nextDay) =>
             getRivendellNewYearDate(nextDay, startDate);
 
         reckonRivendellNewYearTests(
@@ -165,9 +165,9 @@ describe("RivendellReckoning", () => {
 
     it("makes correct Traditional New Year Dates", () => {
         let nextFirstDay = fullYearDate(-433, 2, 23);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeRivendellCalendarDates(nextFirstDay, startDate, REFORMED_RULES);
-        let reckonNewYearsDay = nextDay =>
+        let reckonNewYearsDay = (nextDay) =>
             getRivendellNewYearDate(nextDay, startDate, REFORMED_RULES);
 
         reckonRivendellNewYearTests(
@@ -185,14 +185,14 @@ describe("GondorReckoning", () => {
 
     it("makes correct Kings Calendar Dates", () => {
         let nextFirstDay = fullYearDate(-3000, 11, 21);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeGondorCalendarDates(nextFirstDay, startDate, RECKONING_KINGS);
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
 
     it("makes correct Stewards Calendar Dates", () => {
         let nextFirstDay = fullYearDate(-3000, 11, 21);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeGondorCalendarDates(
                 nextFirstDay,
                 startDate,
@@ -203,16 +203,16 @@ describe("GondorReckoning", () => {
 
     it("makes correct New Reckoning Calendar Dates", () => {
         let nextFirstDay = fullYearDate(-3000, 2, 16);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeGondorCalendarDates(nextFirstDay, startDate, RECKONING_NEW);
         reckonTests(nextFirstDay, reckonCalendar, -3000, 3000);
     });
 
     it("makes correct Stewards Reckoning New Year Dates", () => {
         let nextFirstDay = fullYearDate(-401, 11, 31);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeGondorCalendarDates(nextFirstDay, startDate);
-        let reckonNewYearsDay = nextDay =>
+        let reckonNewYearsDay = (nextDay) =>
             getGondorNewYearDate(nextDay, startDate);
 
         reckonNewYearTests(
@@ -226,9 +226,9 @@ describe("GondorReckoning", () => {
 
     it("makes correct New Reckoning New Year Dates", () => {
         let nextFirstDay = fullYearDate(-401, 11, 31);
-        let reckonCalendar = nextFirstDay =>
+        let reckonCalendar = (nextFirstDay) =>
             makeGondorCalendarDates(nextFirstDay, startDate, RECKONING_NEW);
-        let reckonNewYearsDay = nextDay =>
+        let reckonNewYearsDay = (nextDay) =>
             getNewReckoningNewYearDate(nextDay, startDate);
 
         reckonNewYearTests(

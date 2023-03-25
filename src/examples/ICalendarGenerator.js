@@ -26,8 +26,8 @@ const hasClipboardAPI = () => {
 
     try {
         result =
-            document.queryCommandSupported &&
-            document.queryCommandSupported("copy");
+            document.queryCommandSupported
+            && document.queryCommandSupported("copy");
     } catch (e) {}
 
     return result;
@@ -445,4 +445,5 @@ export const IcalendarCreatorForImportingIntoYourCalendar = () => (
     <ICalendarGeneratorWithInstructions />
 );
 
-IcalendarCreatorForImportingIntoYourCalendar.storyName = "iCalendar creator for importing into your calendar";
+IcalendarCreatorForImportingIntoYourCalendar.storyName =
+    "iCalendar creator for importing into your calendar";

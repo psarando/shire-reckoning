@@ -118,4 +118,5 @@ export const ForSelectYearsInMiddleEarthHistory = () => (
     <GondorCalendarTraditionalRulesExample />
 );
 
-ForSelectYearsInMiddleEarthHistory.storyName = "for select years in Middle-earth history";
+ForSelectYearsInMiddleEarthHistory.storyName =
+    "for select years in Middle-earth history";

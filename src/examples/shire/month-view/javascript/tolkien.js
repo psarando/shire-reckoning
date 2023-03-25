@@ -21,4 +21,5 @@ export const WithTolkienMonthAndWeekdayNames = () =>
         className: "shire-calendar",
     });
 
-WithTolkienMonthAndWeekdayNames.storyName = "with Tolkien month and weekday names";
+WithTolkienMonthAndWeekdayNames.storyName =
+    "with Tolkien month and weekday names";

@@ -16,11 +16,11 @@ const getDateColor = (monthColor, date1, date2) => {
     return monthColor;
 };
 
-const GregorianDateDisplay = props => (
+const GregorianDateDisplay = (props) => (
     <div className="gregorian-display">{props.date.toDateString()}</div>
 );
 
-const DateCell = props => {
+const DateCell = (props) => {
     const {
         className,
         currentDate,

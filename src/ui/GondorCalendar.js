@@ -34,7 +34,7 @@ import {
     VerticalLayoutFiller,
 } from "./controls/MonthViewLayout";
 
-const defaultCaption = reckoning => {
+const defaultCaption = (reckoning) => {
     switch (reckoning) {
         case RECKONING_KINGS:
             return "Kings' Reckoning";
@@ -208,7 +208,7 @@ const GondorMonthVertical = ({
     language,
     reckoning,
 }) => {
-    let weeks = GondorWeekdays.map(function(weekday) {
+    let weeks = GondorWeekdays.map(function (weekday) {
         const weekdayName = weekday[language];
         return [
             <WeekDayHeaderCell
@@ -302,7 +302,7 @@ const GondorMonthVertical = ({
     }
 
     if (weeks[0].length > 6) {
-        weeks = GondorWeekdays.map(function(weekday, i) {
+        weeks = GondorWeekdays.map(function (weekday, i) {
             const week = weeks[i];
             const weekdayName = weekday[language];
 
@@ -321,7 +321,7 @@ const GondorMonthVertical = ({
         });
     }
 
-    return weeks.map(function(week, i) {
+    return weeks.map(function (week, i) {
         return <tr key={i}>{week}</tr>;
     });
 };
@@ -500,7 +500,7 @@ class GondorCalendar extends Component {
 
         let weekDayHeader = (
             <tr>
-                {GondorWeekdays.map(function(weekday) {
+                {GondorWeekdays.map(function (weekday) {
                     const weekdayName = weekday[language];
                     return (
                         <WeekDayHeaderCell

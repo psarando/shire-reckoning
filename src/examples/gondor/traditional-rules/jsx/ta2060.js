@@ -34,4 +34,5 @@ export const ForT_A_2060FirstYearOfStewardsReckoning = () => {
     );
 };
 
-ForT_A_2060FirstYearOfStewardsReckoning.storyName = "for T.A. 2060: first year of Stewards' Reckoning";
+ForT_A_2060FirstYearOfStewardsReckoning.storyName =
+    "for T.A. 2060: first year of Stewards' Reckoning";

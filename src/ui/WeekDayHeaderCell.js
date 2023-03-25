@@ -5,7 +5,7 @@
 import React from "react";
 import "./tolkien-calendars.css";
 
-const WeekDayHeaderCell = props => {
+const WeekDayHeaderCell = (props) => {
     return (
         <th
             className="weekday-header"

@@ -21,4 +21,5 @@ export const WithDefaultsTraditionalRulesStartingFromMarch22ndInQuenya = () =>
         className: "shire-calendar",
     });
 
-WithDefaultsTraditionalRulesStartingFromMarch22ndInQuenya.storyName = "with defaults (Traditional Rules starting from March 22nd, in Quenya)";
+WithDefaultsTraditionalRulesStartingFromMarch22ndInQuenya.storyName =
+    "with defaults (Traditional Rules starting from March 22nd, in Quenya)";

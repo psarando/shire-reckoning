@@ -35,7 +35,7 @@ const THIRD_AGE_2360_TOTAL_DAYS =
  * @param {number} year
  * @return {boolean} True if the given year is a Gregorian leap-year.
  */
-const isLeapYear = year => !(year % 4 || (!(year % 100) && year % 400));
+const isLeapYear = (year) => !(year % 4 || (!(year % 100) && year % 400));
 
 /**
  * @param {Date} fromDate - The starting Date (e.g. first New Year's Day)
@@ -63,7 +63,7 @@ const toDaysElapsed = (fromDate, toDate) => {
  * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
  * @return {YearWithRemainder} The current Gregorian year for the given `daysElapsed`.
  */
-const daysElapsedToGregorianYear = daysElapsed => {
+const daysElapsedToGregorianYear = (daysElapsed) => {
     let negativeOffset = 0;
 
     let year = Math.floor(daysElapsed / GREGORIAN_DAYS_PER_400_YEARS) * 400;
@@ -137,7 +137,7 @@ const getWeekDay = (daysElapsed, daysSinceNewYearsDay, daysPerWeek) => {
     return weekDay;
 };
 
-const offsetThirdAgeDaysElapsed = daysElapsed => {
+const offsetThirdAgeDaysElapsed = (daysElapsed) => {
     if (daysElapsed >= THIRD_AGE_2059_TOTAL_DAYS) {
         if (daysElapsed >= THIRD_AGE_2360_TOTAL_DAYS) {
             daysElapsed--;
@@ -160,7 +160,7 @@ const offsetThirdAgeDaysElapsed = daysElapsed => {
  * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
  * @return {YearWithRemainder} The current Gondor (S.A.) year for the given `daysElapsed`.
  */
-const daysElapsedToSecondAgeYear = daysElapsed => {
+const daysElapsedToSecondAgeYear = (daysElapsed) => {
     let year = 0;
 
     if (
@@ -281,18 +281,18 @@ const fullYearDate = (fullYear, month, day) => {
  * @param {Date} today
  * @return {Date} tomorrow - A new Date instance that is 1 day after the given `today`.
  */
-const getNextDate = today => {
+const getNextDate = (today) => {
     let tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
 
     return tomorrow;
 };
 
-const getFirstDate = calendar => calendar.dates[0];
-const getLastDate = calendar => calendar.dates[calendar.dates.length - 1];
+const getFirstDate = (calendar) => calendar.dates[0];
+const getLastDate = (calendar) => calendar.dates[calendar.dates.length - 1];
 
-const getFirstDay = calendar => getFirstDate(calendar).gregorian;
-const getLastDay = calendar => getLastDate(calendar).gregorian;
+const getFirstDay = (calendar) => getFirstDate(calendar).gregorian;
+const getLastDay = (calendar) => getLastDate(calendar).gregorian;
 
 export {
     GREGORIAN_DAYS_PER_4_YEARS,

@@ -128,7 +128,7 @@ class RivendellCalendarSimulated extends Component {
         const loa = year > 0 ? ((year - 1) % 144) + 1 : year % 144;
         const caption = `Rivendell Reckoning ${year} (yén ${yen}, loa ${loa})`;
 
-        const months = RivendellMonths.map(function(month) {
+        const months = RivendellMonths.map(function (month) {
             return { emoji: month.emoji, name: month[language] };
         });
 

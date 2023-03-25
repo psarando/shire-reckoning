@@ -27,4 +27,5 @@ export const WithTolkienMonthAndWeekdayNames = () => {
     });
 };
 
-WithTolkienMonthAndWeekdayNames.storyName = "with Tolkien month and weekday names";
+WithTolkienMonthAndWeekdayNames.storyName =
+    "with Tolkien month and weekday names";

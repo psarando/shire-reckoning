@@ -5,7 +5,7 @@
 import React from "react";
 import { getDateColor, GregorianDateDisplay } from "./DateCell";
 
-const IntercalaryDay = props => {
+const IntercalaryDay = (props) => {
     const {
         currentDate,
         dayClassName,

@@ -99,9 +99,9 @@ const SyncRivendellCalendar = [
 const findRivendellSyncIndex = (rivendellStartDate, rivendellCalendarRules) => {
     let rivendellSyncScheme = SyncRivendellCalendar.findIndex(
         (syncScheme) =>
-            syncScheme.calendarRules === rivendellCalendarRules &&
-            syncScheme.startDate &&
-            datesMatch(syncScheme.startDate, rivendellStartDate)
+            syncScheme.calendarRules === rivendellCalendarRules
+            && syncScheme.startDate
+            && datesMatch(syncScheme.startDate, rivendellStartDate)
     );
 
     if (rivendellSyncScheme < 0) {
@@ -265,14 +265,14 @@ export class TolkienCalendarsExample extends Component {
     ) {
         let shireSyncScheme = SyncShireCalendar.findIndex(
             (syncScheme) =>
-                syncScheme.startDate &&
-                datesMatch(syncScheme.startDate, shireStartDate)
+                syncScheme.startDate
+                && datesMatch(syncScheme.startDate, shireStartDate)
         );
 
         if (
-            shireSyncScheme < 0 ||
-            !datesMatch(shireStartDate, gondorLeftStartDate) ||
-            !datesMatch(shireStartDate, gondorRightStartDate)
+            shireSyncScheme < 0
+            || !datesMatch(shireStartDate, gondorLeftStartDate)
+            || !datesMatch(shireStartDate, gondorRightStartDate)
         ) {
             shireSyncScheme = 0;
         }

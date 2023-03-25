@@ -125,7 +125,7 @@ const RivendellMonth = ({ monthView, dates, today, language }) => {
 };
 
 const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
-    const weeks = RivendellWeekdays.map(function(weekday) {
+    const weeks = RivendellWeekdays.map(function (weekday) {
         const weekdayName = weekday[language];
         return [
             <WeekDayHeaderCell
@@ -174,7 +174,7 @@ const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
         }
     }
 
-    return weeks.map(function(week, i) {
+    return weeks.map(function (week, i) {
         return <tr key={i}>{week}</tr>;
     });
 };
@@ -330,7 +330,7 @@ class RivendellCalendar extends Component {
 
         let weekDayHeader = (
             <tr>
-                {RivendellWeekdays.map(function(weekday) {
+                {RivendellWeekdays.map(function (weekday) {
                     let weekdayName = weekday[language];
                     return (
                         <WeekDayHeaderCell

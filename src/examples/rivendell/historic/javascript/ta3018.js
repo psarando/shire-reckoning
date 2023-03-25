@@ -28,4 +28,5 @@ export const ForT_A_3018_3019TheGreatYearsOfTheWarOfTheRingAndTheDownfallOfBarad
         });
     };
 
-ForT_A_3018_3019TheGreatYearsOfTheWarOfTheRingAndTheDownfallOfBarad_dûr.storyName = 'for T.A. 3018~3019: "The Great Years" of the War of the Ring and the downfall of Barad-dûr';
+ForT_A_3018_3019TheGreatYearsOfTheWarOfTheRingAndTheDownfallOfBarad_dûr.storyName =
+    'for T.A. 3018~3019: "The Great Years" of the War of the Ring and the downfall of Barad-dûr';

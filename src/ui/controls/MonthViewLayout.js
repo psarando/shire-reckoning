@@ -5,8 +5,8 @@
 import React from "react";
 import "../tolkien-calendars.css";
 
-const VerticalLayoutFiller = props => {
-    const weekdays = props.weekdays.map(function(weekday, i) {
+const VerticalLayoutFiller = (props) => {
+    const weekdays = props.weekdays.map(function (weekday, i) {
         return <td key={i} className="vertical-layout-filler" />;
     });
 

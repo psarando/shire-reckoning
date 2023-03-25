@@ -278,7 +278,7 @@ const GondorHolidays = {
  * @param {FirstNumenorNewYearDate} [startDate]
  * @return {FirstNumenorNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-const getStartDate = startDate => {
+const getStartDate = (startDate) => {
     if (!startDate) {
         startDate = fullYearDate(0, 11, 21);
     }
@@ -290,7 +290,7 @@ const getStartDate = startDate => {
  * @param {number} gondorYear
  * @return {boolean} True if the given `gondorYear` is a millennial year that requires an additional leap-day adjustment.
  */
-const isMillennialLeapYear = gondorYear => {
+const isMillennialLeapYear = (gondorYear) => {
     if (gondorYear > 3441) {
         gondorYear -= 3441;
 
@@ -402,7 +402,7 @@ const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
  * @return {number} The Gondorian weekday index, for use with {@link GondorWeekdays},
  *                  that is the cultural equivalent for the given Gregorian weekday index.
  */
-const convertGregorianToGondorianWeekday = weekday => {
+const convertGregorianToGondorianWeekday = (weekday) => {
     return (weekday + 6) % 7;
 };
 

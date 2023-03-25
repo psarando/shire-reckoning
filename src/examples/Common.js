@@ -115,7 +115,7 @@ class DatePicker extends Component {
     }
 }
 
-const Badges = props => (
+const Badges = (props) => (
     <>
         <a
             href="https://www.npmjs.org/package/shire-reckoning"

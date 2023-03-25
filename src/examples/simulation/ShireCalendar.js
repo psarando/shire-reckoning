@@ -147,7 +147,7 @@ class ShireCalendarSimulated extends Component {
             delete blotmath2.className;
         }
 
-        const months = ShireMonths.map(function(month) {
+        const months = ShireMonths.map(function (month) {
             return { emoji: month.emoji, name: month[region] };
         });
 

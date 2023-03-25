@@ -231,7 +231,7 @@ const ShireMonth = ({ monthView, today, dates, region }) => {
 };
 
 const ShireMonthVertical = ({ monthView, today, dates, region }) => {
-    let weeks = ShireWeekdays.map(function(weekday) {
+    let weeks = ShireWeekdays.map(function (weekday) {
         const weekdayName = weekday[region];
         return [
             <WeekDayHeaderCell
@@ -297,7 +297,7 @@ const ShireMonthVertical = ({ monthView, today, dates, region }) => {
     }
 
     if (weeks[0].length > 6) {
-        weeks = ShireWeekdays.map(function(weekday, i) {
+        weeks = ShireWeekdays.map(function (weekday, i) {
             const week = weeks[i];
             const weekdayName = weekday[region];
 
@@ -316,7 +316,7 @@ const ShireMonthVertical = ({ monthView, today, dates, region }) => {
         });
     }
 
-    return weeks.map(function(week, i) {
+    return weeks.map(function (week, i) {
         return <tr key={i}>{week}</tr>;
     });
 };
@@ -468,7 +468,7 @@ class ShireCalendar extends Component {
 
         let weekDayHeader = (
             <tr>
-                {ShireWeekdays.map(function(weekday) {
+                {ShireWeekdays.map(function (weekday) {
                     const weekdayName = weekday[region];
                     return (
                         <WeekDayHeaderCell
