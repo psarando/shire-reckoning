@@ -191,7 +191,6 @@ it("makes correct Gondor Traditional Dates", () => {
 
 it("keeps Dates of Interest in sync", () => {
     const meDatesMatch = (d1, d2) => d1.day === d2.day && d1.month === d2.month;
-    const logs = [];
     DatesOfInterest.forEach((event) => {
         if (event.label === "") return;
 
@@ -252,29 +251,5 @@ it("keeps Dates of Interest in sync", () => {
                 )
             ).toBeTruthy();
         }
-
-        // Also print Dates of Interest aligned so that III 3019 = modern 2019,
-        // for fun!
-        let year = event.year - 4441;
-        let bce = "";
-        if (year < 1) {
-            year *= -1;
-            year++;
-            bce = " B.C.E.";
-        }
-        logs.push({
-            "Modern Year": `${year}${bce}`,
-            "Middle-earth Year": event.displayDate,
-            "Event Description": event.label,
-        });
     });
-
-    console.log(
-        [
-            "The following table will print the Dates of Interest",
-            "aligned with a corresponding modern year so that III 3019 = modern 2019,",
-            "just for fun!",
-        ].join("\n")
-    );
-    console.table(logs);
 });

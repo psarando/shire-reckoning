@@ -38,6 +38,8 @@ export default {
 
         "../src/examples/ICalendarGenerator.js",
 
+        "../src/examples/simulation/history-perspective-table.js",
+
         "../src/examples/shire/year-view/side-by-side.js",
         "../src/examples/shire/year-view/javascript/tolkien.js",
         "../src/examples/shire/year-view/javascript/shire.js",
