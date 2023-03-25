@@ -132,6 +132,4 @@ export const ForSelectYearsInHobbitHistory = () => (
     <ShireCalendarTraditionalRulesExample />
 );
 
-ForSelectYearsInHobbitHistory.story = {
-    name: "for select years in Hobbit history",
-};
+ForSelectYearsInHobbitHistory.storyName = "for select years in Hobbit history";

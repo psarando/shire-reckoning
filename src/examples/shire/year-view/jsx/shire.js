@@ -18,6 +18,4 @@ export const WithShireMonthAndWeekdayNames = () => (
     <ShireCalendar yearView={true} caption={true} className="shire-calendar" />
 );
 
-WithShireMonthAndWeekdayNames.story = {
-    name: "with Shire month and weekday names",
-};
+WithShireMonthAndWeekdayNames.storyName = "with Shire month and weekday names";

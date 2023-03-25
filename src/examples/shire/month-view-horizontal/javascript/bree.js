@@ -22,6 +22,4 @@ export const WithBreeMonthAndWeekdayNames = () =>
         className: "shire-calendar",
     });
 
-WithBreeMonthAndWeekdayNames.story = {
-    name: "with Bree month and weekday names",
-};
+WithBreeMonthAndWeekdayNames.storyName = "with Bree month and weekday names";

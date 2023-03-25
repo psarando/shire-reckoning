@@ -22,6 +22,4 @@ export const WithTolkienMonthAndWeekdayNames = () => (
     />
 );
 
-WithTolkienMonthAndWeekdayNames.story = {
-    name: "with Tolkien month and weekday names",
-};
+WithTolkienMonthAndWeekdayNames.storyName = "with Tolkien month and weekday names";

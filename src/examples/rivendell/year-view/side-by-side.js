@@ -94,6 +94,4 @@ export const ComparingVariousRulesAndLanguages = () => (
     <RivendellCalendarYearViewExample />
 );
 
-ComparingVariousRulesAndLanguages.story = {
-    name: "comparing various rules and languages",
-};
+ComparingVariousRulesAndLanguages.storyName = "comparing various rules and languages";

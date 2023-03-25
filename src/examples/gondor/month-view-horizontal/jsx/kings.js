@@ -23,6 +23,4 @@ export const KingsReckoningInQuenya = () => (
     />
 );
 
-KingsReckoningInQuenya.story = {
-    name: "Kings' Reckoning in Quenya",
-};
+KingsReckoningInQuenya.storyName = "Kings' Reckoning in Quenya";

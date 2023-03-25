@@ -29,6 +29,4 @@ export const WithBreeMonthAndWeekdayNames = () => {
     );
 };
 
-WithBreeMonthAndWeekdayNames.story = {
-    name: "with Bree month and weekday names",
-};
+WithBreeMonthAndWeekdayNames.storyName = "with Bree month and weekday names";

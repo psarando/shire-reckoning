@@ -23,6 +23,4 @@ export const WithReformedRulesStartingFromMarch20thInSindarin = () =>
         className: "shire-calendar",
     });
 
-WithReformedRulesStartingFromMarch20thInSindarin.story = {
-    name: "with Reformed Rules starting from March 20th, in Sindarin",
-};
+WithReformedRulesStartingFromMarch20thInSindarin.storyName = "with Reformed Rules starting from March 20th, in Sindarin";

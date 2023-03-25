@@ -28,6 +28,4 @@ export const ForS_A_1697TheYearRivendellWasFounded = () => {
     );
 };
 
-ForS_A_1697TheYearRivendellWasFounded.story = {
-    name: "for S.A. 1697: the year Rivendell was founded",
-};
+ForS_A_1697TheYearRivendellWasFounded.storyName = "for S.A. 1697: the year Rivendell was founded";

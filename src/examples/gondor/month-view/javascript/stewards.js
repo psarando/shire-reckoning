@@ -21,6 +21,4 @@ export const StewardsReckoningInQuenya = () =>
         className: "shire-calendar",
     });
 
-StewardsReckoningInQuenya.story = {
-    name: "Stewards' Reckoning in Quenya",
-};
+StewardsReckoningInQuenya.storyName = "Stewards' Reckoning in Quenya";

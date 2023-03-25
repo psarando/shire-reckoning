@@ -22,6 +22,4 @@ export const NewReckoningInQuenya = () =>
         className: "shire-calendar",
     });
 
-NewReckoningInQuenya.story = {
-    name: "New Reckoning in Quenya",
-};
+NewReckoningInQuenya.storyName = "New Reckoning in Quenya";

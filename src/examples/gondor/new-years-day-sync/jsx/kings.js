@@ -30,6 +30,4 @@ export const KingsReckoningInSindarin = () => {
     );
 };
 
-KingsReckoningInSindarin.story = {
-    name: "Kings' Reckoning in Sindarin",
-};
+KingsReckoningInSindarin.storyName = "Kings' Reckoning in Sindarin";

@@ -23,6 +23,4 @@ export const StewardsReckoningInSindarin = () =>
         className: "shire-calendar",
     });
 
-StewardsReckoningInSindarin.story = {
-    name: "Stewards' Reckoning in Sindarin",
-};
+StewardsReckoningInSindarin.storyName = "Stewards' Reckoning in Sindarin";

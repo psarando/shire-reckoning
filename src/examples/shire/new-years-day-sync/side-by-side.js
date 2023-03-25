@@ -82,6 +82,4 @@ export const ComparingAllRegionNames = () => (
     <ShireCalendarNewYearsDaySyncExample />
 );
 
-ComparingAllRegionNames.story = {
-    name: "comparing all region names",
-};
+ComparingAllRegionNames.storyName = "comparing all region names";

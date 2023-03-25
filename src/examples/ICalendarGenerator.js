@@ -445,6 +445,4 @@ export const IcalendarCreatorForImportingIntoYourCalendar = () => (
     <ICalendarGeneratorWithInstructions />
 );
 
-IcalendarCreatorForImportingIntoYourCalendar.story = {
-    name: "iCalendar creator for importing into your calendar",
-};
+IcalendarCreatorForImportingIntoYourCalendar.storyName = "iCalendar creator for importing into your calendar";

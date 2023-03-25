@@ -23,6 +23,4 @@ export const NewReckoningInQuenya = () => (
     />
 );
 
-NewReckoningInQuenya.story = {
-    name: "New Reckoning in Quenya",
-};
+NewReckoningInQuenya.storyName = "New Reckoning in Quenya";

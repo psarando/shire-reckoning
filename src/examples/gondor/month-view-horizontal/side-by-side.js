@@ -78,6 +78,4 @@ export const ComparingAllReckonings = () => (
     <GondorCalendarMonthViewHorizontalExample />
 );
 
-ComparingAllReckonings.story = {
-    name: "comparing all reckonings",
-};
+ComparingAllReckonings.storyName = "comparing all reckonings";

@@ -32,6 +32,4 @@ export const ForT_A_1601TheYearHobbitsFirstColonizedTheShire = () => {
     );
 };
 
-ForT_A_1601TheYearHobbitsFirstColonizedTheShire.story = {
-    name: "for T.A. 1601: the year Hobbits first colonized the Shire",
-};
+ForT_A_1601TheYearHobbitsFirstColonizedTheShire.storyName = "for T.A. 1601: the year Hobbits first colonized the Shire";

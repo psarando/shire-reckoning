@@ -86,6 +86,4 @@ export const ComparingAllReckonings = () => (
     <GondorCalendarNewYearsDaySyncExample />
 );
 
-ComparingAllReckonings.story = {
-    name: "comparing all reckonings",
-};
+ComparingAllReckonings.storyName = "comparing all reckonings";

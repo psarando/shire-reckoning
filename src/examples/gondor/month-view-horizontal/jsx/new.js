@@ -24,6 +24,4 @@ export const NewReckoningInEnglish = () => (
     />
 );
 
-NewReckoningInEnglish.story = {
-    name: "New Reckoning in English",
-};
+NewReckoningInEnglish.storyName = "New Reckoning in English";

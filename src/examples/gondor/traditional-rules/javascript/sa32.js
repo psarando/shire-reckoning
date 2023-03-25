@@ -34,6 +34,4 @@ export const ForS_A_32FirstKingOfNúmenorCrowned = () => {
     });
 };
 
-ForS_A_32FirstKingOfNúmenorCrowned.story = {
-    name: "for S.A. 32: first King of Númenor crowned",
-};
+ForS_A_32FirstKingOfNúmenorCrowned.storyName = "for S.A. 32: first King of Númenor crowned";

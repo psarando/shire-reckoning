@@ -88,6 +88,4 @@ export default {
 
 export const ComparingAllReckonings = () => <GondorCalendarYearViewExample />;
 
-ComparingAllReckonings.story = {
-    name: "comparing all reckonings",
-};
+ComparingAllReckonings.storyName = "comparing all reckonings";

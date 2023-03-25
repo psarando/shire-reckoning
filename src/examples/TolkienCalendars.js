@@ -617,6 +617,4 @@ export default {
 
 export const WithSynchronizationSettings = TolkienCalendarsWithInstructions;
 
-WithSynchronizationSettings.story = {
-    name: "with Synchronization settings",
-};
+WithSynchronizationSettings.storyName = "with Synchronization settings";

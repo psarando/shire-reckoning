@@ -22,6 +22,4 @@ export const KingsReckoningInEnglish = () =>
         className: "shire-calendar",
     });
 
-KingsReckoningInEnglish.story = {
-    name: "Kings' Reckoning in English",
-};
+KingsReckoningInEnglish.storyName = "Kings' Reckoning in English";

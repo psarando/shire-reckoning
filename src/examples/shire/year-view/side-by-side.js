@@ -67,6 +67,4 @@ export default {
 
 export const ComparingAllRegionNames = () => <ShireCalendarYearViewExample />;
 
-ComparingAllRegionNames.story = {
-    name: "comparing all region names",
-};
+ComparingAllRegionNames.storyName = "comparing all region names";

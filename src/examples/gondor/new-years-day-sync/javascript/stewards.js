@@ -28,6 +28,4 @@ export const StewardsReckoningInEnglish = () => {
     });
 };
 
-StewardsReckoningInEnglish.story = {
-    name: "Stewards' Reckoning in English",
-};
+StewardsReckoningInEnglish.storyName = "Stewards' Reckoning in English";
