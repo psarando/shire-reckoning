@@ -13,10 +13,6 @@ import {
 } from "../../Utils";
 import { DisplayTableMap } from "../Common";
 
-const roundDecimals = (deficit) => {
-    return Math.round(deficit * 100000000000) / 100000000000;
-};
-
 // prettier-ignore
 // assuming year length 365:05:48:46 = 365.2421990740741
 const yearLengthDays =
@@ -24,6 +20,23 @@ const yearLengthDays =
     + 5 / 24
     + 48 / (24 * 60)
     + 46 / (24 * 60 * 60);
+
+// Need to round off deficit/surplus decimal digits,
+// since the `realElapsed` days per solar year should only be 16 sig figs,
+// due to the year length precision calculated above.
+const roundDeficit = (daysElapsed, realElapsed) => {
+    let factor = 1000;
+    let fixedDigits = 13;
+    while (realElapsed >= factor) {
+        fixedDigits--;
+        factor *= 10;
+    }
+
+    return (daysElapsed - realElapsed).toFixed(fixedDigits);
+};
+
+const formatDurationDigits = (digits) =>
+    Math.floor(digits).toString().padStart(2, "0");
 
 const formatDeficit = (deficit) => {
     let sign = deficit < 0 ? "-" : "+";
@@ -34,22 +47,60 @@ const formatDeficit = (deficit) => {
 
     let hours = remainder * 24;
     remainder = hours - Math.floor(hours);
-    hours = Math.floor(hours);
+    hours = formatDurationDigits(hours);
 
     let mins = remainder * 60;
     remainder = mins - Math.floor(mins);
-    mins = Math.floor(mins);
+    mins = formatDurationDigits(mins);
 
     let secs = Math.round(remainder * 60);
+    if (secs === 60) {
+        // Now have to round up the minutes,
+        // so just add 1/2 second to the deficit
+        // and reformat the whole thing.
+        const halfSec = 0.5 / (24 * 60 * 60);
+        deficit = Number.parseFloat(deficit);
+
+        return formatDeficit(
+            deficit < 0 ? deficit - halfSec : deficit + halfSec
+        );
+    }
+
+    secs = formatDurationDigits(secs);
 
     return `${sign}${days}d:${hours}h:${mins}m:${secs}s`;
 };
+
+const padDeficitValue = (deficit) => {
+    if (deficit >= 0) {
+        deficit = " " + deficit.toString();
+    }
+
+    return deficit.toString().padEnd(16, " ");
+};
+
+const deficitDisplayYear = (year) => {
+    let yearLabel = "S.A.";
+    if (year > 3441) {
+        yearLabel = "T.A.";
+        year -= 3441;
+    }
+    return `${yearLabel} ${year.toString().padStart(4, " ")}`;
+};
+
+const saYearToDaysElapsed = (year) =>
+    365 * year
+    + Math.floor(year / 4)
+    - Math.floor(year / 100)
+    + Math.floor(year / 1000) * 2;
 
 const DeficitTables = () => {
     const startDate = fullYearDate(0, 11, 21);
 
     const table = {};
     const rowKeys = [];
+    const saTable = {};
+    const saRowKeys = [];
     const appendixTable = {};
     const appendixRowKeys = [];
     [
@@ -87,17 +138,14 @@ const DeficitTables = () => {
         // Get the Deficit for this year.
         const daysElapsed = toDaysElapsed(startDate, nextFirstDay);
         const realElapsed = calendarStewards.year * yearLengthDays;
-        const deficit = roundDecimals(daysElapsed - realElapsed);
+        const deficit = roundDeficit(daysElapsed, realElapsed);
 
-        const displayYear =
-            calendarStewards.year > 3441
-                ? `T.A. ${calendarStewards.year - 3441}`
-                : `S.A. ${calendarStewards.year}`;
+        const displayYear = deficitDisplayYear(calendarStewards.year);
 
         table[displayYear] = {
-            "Days Elapsed": daysElapsed,
-            "Days per Solar Year": realElapsed,
-            Deficit: deficit,
+            "Days Elapsed": daysElapsed.toString().padStart(7, " "),
+            "Days per Solar Year": realElapsed.toPrecision(16),
+            Deficit: padDeficitValue(deficit),
             "Deficit in days:hrs:min:sec": formatDeficit(deficit),
         };
         rowKeys.push(displayYear);
@@ -106,11 +154,32 @@ const DeficitTables = () => {
             calendarStewards.year === 3441 + 2060
             || calendarStewards.year === 3441 + 2360
         ) {
+            const deficitMinus1 = roundDeficit(daysElapsed - 1, realElapsed);
             appendixTable[displayYear] = {
-                "Deficit minus 1 day": roundDecimals(deficit - 1.0),
-                "in days:hrs:min:sec": formatDeficit(deficit - 1.0),
+                "Deficit minus 1 day": deficitMinus1,
+                "in days:hrs:min:sec": formatDeficit(deficitMinus1),
             };
             appendixRowKeys.push(displayYear);
+        }
+
+        if (
+            calendarStewards.year === 3445
+            || calendarStewards.year === 5500
+            || calendarStewards.year === 5501
+            || calendarStewards.year === 5801
+            || calendarStewards.year === 6461
+        ) {
+            const saDisplayYear = `S.A. ${calendarStewards.year}`;
+            const saDaysElapsed = saYearToDaysElapsed(calendarStewards.year);
+            const saDeficit = roundDeficit(saDaysElapsed, realElapsed);
+
+            saTable[saDisplayYear] = {
+                "Days Elapsed": saDaysElapsed,
+                "Days per Solar Year": realElapsed.toPrecision(16),
+                Deficit: saDeficit,
+                "in days:hrs:min:sec": formatDeficit(saDeficit),
+            };
+            saRowKeys.push(saDisplayYear);
         }
     });
 
@@ -171,6 +240,25 @@ const DeficitTables = () => {
                 rowKeys={appendixRowKeys}
                 colKeys={["Deficit minus 1 day", "in days:hrs:min:sec"]}
                 table={appendixTable}
+            />
+            <p>
+                The following table shows hypothetical deficit calculations for
+                some Second Age years, if the Second Age had continued through
+                to the end of S.A. 6461 (T.A. 3020), and without the Stewards'
+                adjustments in T.A. 2059 (S.A. 5500) and T.A. 2360 (S.A. 5801).
+                Of course, this table includes the 2-day millennial adjustment
+                that would have been due in S.A. 6000 (T.A. 2559). These
+                hypothetical figures may be helpful in the article linked above.
+            </p>
+            <DisplayTableMap
+                rowKeys={saRowKeys}
+                colKeys={[
+                    "Days Elapsed",
+                    "Days per Solar Year",
+                    "Deficit",
+                    "in days:hrs:min:sec",
+                ]}
+                table={saTable}
             />
         </>
     );

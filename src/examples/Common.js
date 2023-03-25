@@ -159,7 +159,7 @@ const DisplayTableMap = ({ rowKeys, colKeys, table }) => (
     <table
         border="1rm"
         cellPadding="2rm"
-        style={{ margin: "1em", fontFamily: "monospace" }}
+        style={{ margin: "1em", fontFamily: "monospace", whiteSpace: "pre" }}
     >
         <tbody>
             <tr>
