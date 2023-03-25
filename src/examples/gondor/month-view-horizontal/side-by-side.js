@@ -71,11 +71,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: GondorCalendarMonthViewHorizontalExample,
     excludeStories: ["GondorCalendarMonthViewHorizontalExample"],
 };
 
-export const ComparingAllReckonings = () => (
-    <GondorCalendarMonthViewHorizontalExample />
-);
-
-ComparingAllReckonings.storyName = "comparing all reckonings";
+export const ComparingAllReckonings = {
+    name: "comparing all reckonings",
+};

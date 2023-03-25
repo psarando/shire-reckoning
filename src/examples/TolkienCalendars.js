@@ -612,9 +612,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: TolkienCalendarsWithInstructions,
     excludeStories: ["TolkienCalendarsExample"],
 };
 
-export const WithSynchronizationSettings = TolkienCalendarsWithInstructions;
-
-WithSynchronizationSettings.storyName = "with Synchronization settings";
+export const WithSynchronizationSettings = {
+    name: "with Synchronization settings",
+};

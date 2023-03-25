@@ -125,11 +125,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: ShireCalendarTraditionalRulesExample,
     excludeStories: ["ShireCalendarTraditionalRulesExample"],
 };
 
-export const ForSelectYearsInHobbitHistory = () => (
-    <ShireCalendarTraditionalRulesExample />
-);
-
-ForSelectYearsInHobbitHistory.storyName = "for select years in Hobbit history";
+export const ForSelectYearsInHobbitHistory = {
+    name: "for select years in Hobbit history",
+};

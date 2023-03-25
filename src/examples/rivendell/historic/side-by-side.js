@@ -91,12 +91,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: RivendellCalendarHistoricExample,
     excludeStories: ["RivendellCalendarHistoricExample"],
 };
 
-export const ForSelectYearsInMiddleEarthHistory = () => (
-    <RivendellCalendarHistoricExample />
-);
-
-ForSelectYearsInMiddleEarthHistory.storyName =
-    "for select years in Middle-earth history";
+export const ForSelectYearsInMiddleEarthHistory = {
+    name: "for select years in Middle-earth history",
+};

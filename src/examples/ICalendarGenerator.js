@@ -438,12 +438,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: ICalendarGeneratorWithInstructions,
     excludeStories: ["ICalendarGenerator"],
 };
 
-export const IcalendarCreatorForImportingIntoYourCalendar = () => (
-    <ICalendarGeneratorWithInstructions />
-);
-
-IcalendarCreatorForImportingIntoYourCalendar.storyName =
-    "iCalendar creator for importing into your calendar";
+export const IcalendarCreatorForImportingIntoYourCalendar = {
+    name: "iCalendar creator for importing into your calendar",
+};

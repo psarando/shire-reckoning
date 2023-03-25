@@ -111,12 +111,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: GondorCalendarTraditionalRulesExample,
     excludeStories: ["GondorCalendarTraditionalRulesExample"],
 };
 
-export const ForSelectYearsInMiddleEarthHistory = () => (
-    <GondorCalendarTraditionalRulesExample />
-);
-
-ForSelectYearsInMiddleEarthHistory.storyName =
-    "for select years in Middle-earth history";
+export const ForSelectYearsInMiddleEarthHistory = {
+    name: "for select years in Middle-earth history",
+};

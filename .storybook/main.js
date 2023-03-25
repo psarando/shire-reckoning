@@ -1,9 +1,15 @@
-const path = require("path");
+import path from "path";
 
-module.exports = {
-    framework: "@storybook/react",
-    core: {
-        builder: "webpack5",
+export default {
+    framework: {
+        name: "@storybook/react-webpack5",
+        options: {},
+    },
+    // Use story store v6 for now,
+    // since indexer not finding non-stories.js files,
+    // and show/hide addon panel not working.
+    features: {
+        storyStoreV7: false,
     },
     staticDirs: ["../public/examples"],
     addons: [

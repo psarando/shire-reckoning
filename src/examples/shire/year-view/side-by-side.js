@@ -62,9 +62,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: ShireCalendarYearViewExample,
     excludeStories: ["ShireCalendarYearViewExample"],
 };
 
-export const ComparingAllRegionNames = () => <ShireCalendarYearViewExample />;
-
-ComparingAllRegionNames.storyName = "comparing all region names";
+export const ComparingAllRegionNames = {
+    name: "comparing all region names",
+};

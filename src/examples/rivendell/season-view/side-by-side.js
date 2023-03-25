@@ -84,12 +84,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: RivendellCalendarSeasonViewExample,
     excludeStories: ["RivendellCalendarSeasonViewExample"],
 };
 
-export const ComparingVariousRulesAndLanguages = () => (
-    <RivendellCalendarSeasonViewExample />
-);
-
-ComparingVariousRulesAndLanguages.storyName =
-    "comparing various rules and languages";
+export const ComparingVariousRulesAndLanguages = {
+    name: "comparing various rules and languages",
+};

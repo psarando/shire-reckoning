@@ -75,11 +75,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: ShireCalendarNewYearsDaySyncExample,
     excludeStories: ["ShireCalendarNewYearsDaySyncExample"],
 };
 
-export const ComparingAllRegionNames = () => (
-    <ShireCalendarNewYearsDaySyncExample />
-);
-
-ComparingAllRegionNames.storyName = "comparing all region names";
+export const ComparingAllRegionNames = {
+    name: "comparing all region names",
+};

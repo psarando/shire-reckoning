@@ -83,9 +83,10 @@ export default {
         options: { showPanel: false },
     },
 
+    component: GondorCalendarYearViewExample,
     excludeStories: ["GondorCalendarYearViewExample"],
 };
 
-export const ComparingAllReckonings = () => <GondorCalendarYearViewExample />;
-
-ComparingAllReckonings.storyName = "comparing all reckonings";
+export const ComparingAllReckonings = {
+    name: "comparing all reckonings",
+};
