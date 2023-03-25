@@ -1,6 +1,6 @@
 {
   "name": "shire-reckoning",
-  "version": "5.0.0-alpha.3",
+  "version": "5.0.0-alpha.4",
   "homepage": "https://psarando.github.io/shire-reckoning",
   "source": "src/lib.js",
   "main": "lib/TolkienCalendars.js",
@@ -60,7 +60,8 @@
   "scripts": {
     "start": "npm run storybook",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "PUBLIC_URL='./' build-storybook --output-dir build/examples",
+    "build-storybook": "build-storybook --output-dir build/examples",
+    "build-app": "webpack --mode=production --node-env=production --config webpack.app.config.js",
     "build": "webpack --mode=production --node-env=production",
     "test": "jest --watch",
     "prettier": "prettier --write 'src/**/*.js'"
