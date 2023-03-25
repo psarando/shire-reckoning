@@ -141,5 +141,7 @@ export default {
         "../src/examples/rivendell/season-view/jsx/default.js",
         "../src/examples/rivendell/season-view/jsx/reformed-3-25.js",
         "../src/examples/rivendell/season-view/jsx/reformed-3-20.js",
+
+        "../src/examples/rivendell/yestare-tables.js",
     ],
 };
