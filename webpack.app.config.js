@@ -22,13 +22,7 @@ const config = {
     devtool: "source-map",
     optimization: {
         minimize: true,
-        minimizer: [
-            new TerserPlugin({
-                cache: true,
-                sourceMap: true,
-            }),
-            new CssMinimizerPlugin(),
-        ],
+        minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
         runtimeChunk: "single",
         splitChunks: {
             cacheGroups: {
@@ -43,6 +37,7 @@ const config = {
     plugins: [
         new HtmlWebpackPlugin({
             inject: "head",
+            scriptLoading: "blocking",
             template: "public/index.html",
             minify: {
                 removeRedundantAttributes: true,

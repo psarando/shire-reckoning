@@ -19,17 +19,12 @@ const config = {
     devtool: "source-map",
     optimization: {
         minimize: true,
-        minimizer: [
-            new TerserPlugin({
-                cache: true,
-                sourceMap: true,
-            }),
-            new CssMinimizerPlugin(),
-        ],
+        minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
     },
     plugins: [
         new HtmlWebpackPlugin({
             inject: "head",
+            scriptLoading: "blocking",
             template: "public/lib.html",
         }),
         new MiniCssExtractPlugin({
