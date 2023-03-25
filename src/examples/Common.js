@@ -137,4 +137,54 @@ const Badges = (props) => (
     </>
 );
 
-export { Badges, CalendarCellStyle, CaptionCellStyle, DatePicker };
+const DisplayTableRows = ({ rows }) => (
+    <table
+        border="1rm"
+        cellPadding="2rm"
+        style={{ margin: "1em", fontFamily: "monospace" }}
+    >
+        <tbody>
+            {rows.map((row, index) => (
+                <tr key={index}>
+                    {row.map((cell, index) => (
+                        <td key={index}>{cell}</td>
+                    ))}
+                </tr>
+            ))}
+        </tbody>
+    </table>
+);
+
+const DisplayTableMap = ({ rowKeys, colKeys, table }) => (
+    <table
+        border="1rm"
+        cellPadding="2rm"
+        style={{ margin: "1em", fontFamily: "monospace" }}
+    >
+        <tbody>
+            <tr>
+                <th></th>
+                {colKeys.map((head) => (
+                    <th key={head}>{head}</th>
+                ))}
+            </tr>
+            {rowKeys.map((row) => (
+                <tr key={row} style={{ textAlign: "right" }}>
+                    <th>{row}</th>
+                    {colKeys.map((col) => (
+                        <td key={col}>{table[row][col]}</td>
+                    ))}
+                </tr>
+            ))}
+        </tbody>
+    </table>
+);
+
+export {
+    Badges,
+    CalendarCellStyle,
+    CaptionCellStyle,
+    DatePicker,
+    DisplayTableMap,
+    DisplayTableRows,
+};

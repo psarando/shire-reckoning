@@ -17,6 +17,7 @@ import {
     getLastDay,
     getNextDate,
 } from "../../Utils";
+import { DisplayTableMap, DisplayTableRows } from "../Common";
 
 const startDateSA = fullYearDate(0, 11, 23);
 const makeShireCalendar = (nextFirstDay) =>
@@ -42,41 +43,6 @@ const displayYear = (year) =>
         : year > 0
         ? `II ${year}`
         : `Iys ${590 + year}`;
-
-const DisplayTableRows = ({ rows }) => (
-    <table border="1rm" cellPadding="2rm" style={{ margin: "1em" }}>
-        <tbody>
-            {rows.map((row, index) => (
-                <tr key={index}>
-                    {row.map((cell, index) => (
-                        <td key={index}>{cell}</td>
-                    ))}
-                </tr>
-            ))}
-        </tbody>
-    </table>
-);
-
-const DisplayTableMap = ({ rowKeys, colKeys, table }) => (
-    <table border="1rm" cellPadding="2rm" style={{ margin: "1em" }}>
-        <tbody>
-            <tr>
-                <th></th>
-                {colKeys.map((head) => (
-                    <th key={head}>{head}</th>
-                ))}
-            </tr>
-            {rowKeys.map((row) => (
-                <tr key={row} style={{ textAlign: "right" }}>
-                    <th>{row}</th>
-                    {colKeys.map((col) => (
-                        <td key={col}>{table[row][col]}</td>
-                    ))}
-                </tr>
-            ))}
-        </tbody>
-    </table>
-);
 
 const RivendellReckoningNewYearsDayTables = () => {
     const gregorianTables = [];

@@ -118,6 +118,8 @@ export default {
         "../src/examples/gondor/traditional-rules/jsx/ta2060.js",
         "../src/examples/gondor/traditional-rules/jsx/ta3019.js",
 
+        "../src/examples/gondor/deficits.js",
+
         "../src/examples/rivendell/historic/side-by-side.js",
         "../src/examples/rivendell/historic/javascript/sa1697.js",
         "../src/examples/rivendell/historic/javascript/ta2941.js",

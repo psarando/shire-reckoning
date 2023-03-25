@@ -69,31 +69,31 @@ it("makes traditional Shire Calendar Dates", () => {
 });
 
 it("makes correct Gondor Traditional Dates", () => {
-    let startDate = fullYearDate(0, 11, 21);
+    const startDate = fullYearDate(0, 11, 21);
     let nextFirstDay = fullYearDate(-405, 11, 21);
 
-    let gondorDaysElapsed = (today) => toDaysElapsed(startDate, today);
-    let reckonGondorYear = (daysElapsed) =>
+    const gondorDaysElapsed = (today) => toDaysElapsed(startDate, today);
+    const reckonGondorYear = (daysElapsed) =>
         daysElapsedToSecondAgeYear(daysElapsed);
-    let reckonNewReckoningYear = (daysElapsed) =>
+    const reckonNewReckoningYear = (daysElapsed) =>
         daysElapsedToNewReckoningYear(daysElapsedToSecondAgeYear, daysElapsed);
-    let reckonNewYearsDay = (today, daysRemainder) =>
+    const reckonNewYearsDay = (today, daysRemainder) =>
         getNewYearDate(startDate, today, daysRemainder);
-    let reckonWeekDay = (daysElapsed, daysRemainder) =>
+    const reckonWeekDay = (daysElapsed, daysRemainder) =>
         getWeekDay(daysElapsed, daysRemainder, 7);
-    let reckonNewYearTests = (calendar, getYearWithRemainder) => {
-        let newYearsDayString = (year, date, firstDay) =>
+    const reckonNewYearTests = (calendar, getYearWithRemainder) => {
+        const newYearsDayString = (year, date, firstDay) =>
             `${year}: ${date.toDateString()} => ${firstDay.toDateString()}`;
-        let firstWeekDayString = weekDayString(
+        const firstWeekDayString = weekDayString(
             getFirstDay(calendar),
             getFirstWeekDay(calendar)
         );
         for (let day = 0; day < calendar.dates.length; day++) {
-            let nextGondorDate = calendar.dates[day];
-            let nextDay = nextGondorDate.gregorian;
-            let daysElapsed = gondorDaysElapsed(nextDay);
-            let yearWithRemainder = getYearWithRemainder(daysElapsed);
-            let nextNewYearsDay = reckonNewYearsDay(
+            const nextGondorDate = calendar.dates[day];
+            const nextDay = nextGondorDate.gregorian;
+            const daysElapsed = gondorDaysElapsed(nextDay);
+            const yearWithRemainder = getYearWithRemainder(daysElapsed);
+            const nextNewYearsDay = reckonNewYearsDay(
                 nextDay,
                 yearWithRemainder.daysRemainder
             );
@@ -116,21 +116,21 @@ it("makes correct Gondor Traditional Dates", () => {
         }
     };
 
-    let makeCalendarKings = (nextFirstDay) =>
+    const makeCalendarKings = (nextFirstDay) =>
         GondorReckoning.makeGondorCalendarDates(
             nextFirstDay,
             startDate,
             GondorReckoning.RECKONING_KINGS,
             GondorReckoning.RECKONING_RULES_TRADITIONAL
         );
-    let makeCalendarStewards = (nextFirstDay) =>
+    const makeCalendarStewards = (nextFirstDay) =>
         GondorReckoning.makeGondorCalendarDates(
             nextFirstDay,
             startDate,
             GondorReckoning.RECKONING_STEWARDS,
             GondorReckoning.RECKONING_RULES_TRADITIONAL
         );
-    let makeCalendarNew = (nextFirstDay) =>
+    const makeCalendarNew = (nextFirstDay) =>
         GondorReckoning.makeGondorCalendarDates(
             nextFirstDay,
             startDate,
@@ -148,40 +148,6 @@ it("makes correct Gondor Traditional Dates", () => {
             todayGondor.weekDay
         }`;
 
-    const roundDecimals = (deficit) => {
-        return Math.round(deficit * 100000000000) / 100000000000;
-    };
-
-    // prettier-ignore
-    // assuming year length 365:05:48:46 = 365.2421990740741
-    const yearLengthDays =
-        365.0
-        + 5 / 24
-        + 48 / (24 * 60)
-        + 46 / (24 * 60 * 60);
-
-    const formatDeficit = (deficit) => {
-        let deficitSign = deficit < 0 ? "-" : "+";
-
-        let deficitDays = Math.abs(deficit);
-        let deficitR = deficitDays - Math.floor(deficitDays);
-        deficitDays = Math.floor(deficitDays);
-
-        let deficitHours = deficitR * 24;
-        deficitR = deficitHours - Math.floor(deficitHours);
-        deficitHours = Math.floor(deficitHours);
-
-        let deficitMins = deficitR * 60;
-        deficitR = deficitMins - Math.floor(deficitMins);
-        deficitMins = Math.floor(deficitMins);
-
-        let deficitSecs = Math.round(deficitR * 60);
-
-        return `${deficitSign}${deficitDays}d:${deficitHours}h:${deficitMins}m:${deficitSecs}s`;
-    };
-
-    let logs = [];
-    let appendixLogs = [];
     for (let i = 0; i < 8000; i++) {
         nextFirstDay = getNextDate(getLastDay(calendarNew));
         calendarNew = makeCalendarNew(nextFirstDay);
@@ -220,57 +186,8 @@ it("makes correct Gondor Traditional Dates", () => {
             reckonNewYearTests(calendarStewards, reckonGondorYear);
             reckonNewYearTests(calendarNew, reckonNewReckoningYear);
         }
-
-        if (
-            calendarStewards.year <= 3441 + 3021
-            && (GondorReckoning.isMillennialLeapYear(calendarStewards.year - 1)
-                || calendarStewards.year === 2
-                || calendarStewards.year === 101
-                || calendarStewards.year === 501
-                || calendarStewards.year === 3441 + 1
-                || calendarStewards.year === 3441 + 2
-                || calendarStewards.year === 3441 + 4
-                || calendarStewards.year === 3441 + 5
-                || calendarStewards.year === 3441 + 2059
-                || calendarStewards.year === 3441 + 2061
-                || calendarStewards.year === 3441 + 2360
-                || calendarStewards.year === 3441 + 3000
-                || calendarStewards.year === 3441 + 3001
-                || calendarStewards.year === 3441 + 3020
-                || calendarStewards.year === 3441 + 3021)
-        ) {
-            // Print the Deficit for this year.
-            const displayYear =
-                calendarStewards.year > 3441 + 1
-                    ? `T.A. ${calendarStewards.year - 3441 - 1}`
-                    : `S.A. ${calendarStewards.year - 1}`;
-            const daysElapsed = toDaysElapsed(startDate, nextFirstDay);
-            const realElapsed = (calendarStewards.year - 1) * yearLengthDays;
-            const deficit = roundDecimals(daysElapsed - realElapsed);
-            logs[displayYear] = {
-                "Days Elapsed": daysElapsed,
-                "Real Elapsed": realElapsed,
-                Deficit: deficit,
-                "Defict Formatted": formatDeficit(deficit),
-            };
-
-            if (
-                calendarStewards.year === 3441 + 2061
-                || calendarStewards.year === 3441 + 2361
-            ) {
-                appendixLogs.push(
-                    `\t${displayYear} deficit - 1day = ${roundDecimals(
-                        deficit - 1.0
-                    )} ---> ${formatDeficit(deficit - 1.0)}`
-                );
-            }
-        }
     }
-
-    console.table(logs);
-    console.log(appendixLogs.join("\n"));
 });
-
 
 it("keeps Dates of Interest in sync", () => {
     const meDatesMatch = (d1, d2) => d1.day === d2.day && d1.month === d2.month;
