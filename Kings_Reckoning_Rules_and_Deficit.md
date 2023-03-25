@@ -257,9 +257,9 @@ The code used to generate these tables is also included in the examples director
 | T.A. 2000 | 1987281 | 1987282.805162037 | -1.805162037     | -1d:19h:19m:26s |
 | T.A. 2058 | 2008465 | 2008466.852708333 | -1.852708333     | -1d:20h:27m:54s |
 | T.A. 2059 | 2008832 | 2008832.094907408 | -0.094907408     | -0d:02h:16m:40s |
-| T.A. 2060 | 2009198 | 2009197.337106482 |  0.662893518     | +0d:15h:54m:34s |
+| T.A. 2060 | 2009198 | 2009197.337106482 | +0.662893518     | +0d:15h:54m:34s |
 | T.A. 2359 | 2118404 | 2118404.754629630 | -0.754629630     | -0d:18h:06m:40s |
-| T.A. 2360 | 2118771 | 2118769.996828704 |  1.003171296     | +1d:00h:04m:34s |
+| T.A. 2360 | 2118771 | 2118769.996828704 | +1.003171296     | +1d:00h:04m:34s |
 | T.A. 2999 | 2352159 | 2352159.762037037 | -0.762037037     | -0d:18h:17m:20s |
 | T.A. 3000 | 2352524 | 2352525.004236111 | -1.004236111     | -1d:00h:06m:06s |
 | T.A. 3019 | 2359463 | 2359464.606018519 | -1.606018519     | -1d:14h:32m:40s |
@@ -376,8 +376,9 @@ Omitting the leap-day due in T.A. 2060, but keeping Mardil's extra 2 days,
 results in a deficit of 8h:5m:26s by the end of that year instead;
 which also works out to the same result as Jönsson's adjusted deficit as explained earlier.
 If Tolkien used a shortcut of calculating the deficit for the end of S.A. 5501,
-which is equivalent to the deficit for the end of T.A. 2060 minus the leap-day,
-and if he did not emend his calculation when the year of Mardil's 2-day addition was emended for the revised publication,
+and then added Mardil's 2 days,
+this would be equivalent to the deficit for the end of T.A. 2060 minus the leap-day.
+If he did not emend his calculation when the year of Mardil's 2-day addition was emended for the revised publication,
 then this 8h:5m:26s result would explain Tolkien's "about 8 hours deficit" for the beginning of the Stewards' Reckoning.
 
 In Tolkien's next statement about the deficit,
@@ -392,7 +393,8 @@ the accumulated deficit to begin the fourth millennium would have been a mere *6
 As it actually occurred, the deficit was 1 day 6 minutes and 6 seconds" by the end of T.A. 3000, and my calculations agree.
 If Tolkien meant that the "deficiency had not quite reached" 1 day at the end of T.A. 2360,
 then once again he may have used a shortcut of calculating the deficit for the end of S.A. 5801,
-and he would again be 1 day off from my calculation for the end of T.A. 2360,
+and after adding the Stewards' extra 3 days,
+he would again be 1 day off from my calculation for the end of T.A. 2360
 and thought that Hador only added a surplus of 4m:34s.
 
 Tolkien's final statement about the deficit concerns the end of T.A. 3020 or early T.A. 3021,
@@ -404,7 +406,10 @@ Adding to this deficit about 1/4 of the yearly deficit (approximately 1h:27m),
 to get to the start of [Fourth Age 1 of the New Reckoning](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#now-the-minutiae)
 (T.A. 3021 March 25 "old style"),
 would still be a deficit of less than 1 day.
-It works out that the deficit for the start of S.A. 6462 would be the same as the deficit for the start of Stewards' T.A. 3021.
+It works out that the deficit for the start of S.A. 6462 would be the same as the deficit for the start of Stewards' T.A. 3021
+(if Hador's 1 day addition were taken into account;
+Mardil's 2 day addition does not need to be taken into account
+since 2 days would have been added to S.A. 6000).
 So once again Tolkien could have used the shortcut of calculating for a Second Age year equivalent,
 but this time the results would be correct for the end of the Third Age.
 

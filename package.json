@@ -1,6 +1,6 @@
 {
   "name": "shire-reckoning",
-  "version": "5.0.0-alpha.6",
+  "version": "5.0.0-alpha.7",
   "homepage": "https://psarando.github.io/shire-reckoning",
   "source": "src/lib.js",
   "main": "lib/TolkienCalendars.js",
@@ -35,7 +35,7 @@
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
-    "@btmills/prettier": "^2.8.4",
+    "@btmills/prettier": "^2.8.7",
     "@storybook/addon-storysource": "^7.0.7",
     "@storybook/addons": "^7.0.7",
     "@storybook/react": "^7.0.7",
