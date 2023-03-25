@@ -97,6 +97,10 @@ Gradually, over the millennia,
 the Calendar of Imladris 432-year cycle will continue to drift away from the Gregorian calendar's 400-year cycle,
 so that Yestarë will fall on later and later dates in the Gregorian calendar.
 
+The examples include
+[tables that demonstrate these cycles](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-rivendell-calendar-new-year-s-day-alignments--for-gregorian-dates)
+generated using this project's calendars!
+
 # How the Calendar of Imladris drifts apart from the Shire Calendar
 
 The leap-year cycles of the Calendar of Imladris drift in a similar way when compared to the Shire Calendar,
@@ -254,6 +258,10 @@ causing Yestarë to fall on Shire April 7 once again in T.A. 3014.
 The year that the Calendar of Imladris starts its reckoning would determine
 how its leap-year cycles line up with the Shire Calendar leap-year cycles.
 
+The examples include
+[tables that demonstrate these cycles](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-rivendell-calendar-new-year-s-day-alignments--for-shire-dates)
+generated using this project's Middle-earth simulation calendars!
+
 ## Aligning the Calendar of Imladris to the Shire Calendar
 
 Tolkien never stated when the Calendar of Imladris was established or from what year it started reckoning.
@@ -301,6 +309,9 @@ Note that in every column, Yestarë falls on Shire April 6 in III 3019.
 |       IV 10 |     4/6     |    4/6     |     4/6      |    4/3     |      4/6      |
 |       IV 11 |     4/6     |    4/6     |     4/6      |    4/3     |      4/6      |
 |       IV 12 |     4/6     |    4/6     |     4/9      |    4/3     |      4/6      |
+
+**Note:** The code used to generate this table is also included in the examples directory,
+[with a live version in this project's hosted examples pages](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-rivendell-calendar-new-year-s-day-alignments--possible-shire-alignments).
 
 So in order for the Calendar of Imladris to start reckoning from Iys 1 and end up on Shire April 6 in III 3019,
 the first Yestarë would have to have been on a proleptic Kings' Reckoning Súlimë 30 in Iys 1,

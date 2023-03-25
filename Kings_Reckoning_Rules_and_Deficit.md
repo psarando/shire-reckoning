@@ -53,7 +53,8 @@ I decided to finally examine Tolkien's *Deficit* calculations for myself to see 
 
 Since I'm confident I have accurately reproduced the rules of the Kings' and Stewards' Reckoning in the
 [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html),
-it was not difficult to use these simulations to assist my own *Deficit* calculations,
+it was not difficult
+[to use these simulations to assist my own *Deficit* calculations](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-gondor-calendar--deficits),
 and then compare my results with the results of Tolkien and others.
 When I finally performed these calculations for myself,
 using the rules as presented in Appendix D,
@@ -237,10 +238,8 @@ which is why the first row displays 365 days elapsed by the end of S.A. 1.
 
 In the last 2 columns, a negative value represents a *deficit*, and a positive value a *surplus*.
 
-The math done by this JavaScript project may have some variation in the least significant digits
-compared to results done by hand using the method described above,
-but the deficits should convert to the same `days:hours:minutes:seconds` with either method
-(plus or minus 1 second in some cases).
+The code used to generate these tables is also included in the examples directory,
+[with a live version in this project's hosted examples pages](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-gondor-calendar--deficits).
 
 | Year | Days elapsed since the start of S.A. 1 | Days per Solar Year elapsed | The deficit / surplus | The deficit / surplus in days:hours:minutes:seconds |
 | ---- | -------------------------------------- | --------------------------- | --------------------- | --------------------------------------------------- |
