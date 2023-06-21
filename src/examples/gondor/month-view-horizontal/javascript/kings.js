@@ -10,7 +10,7 @@ export default {
     title: "Shire Reckoning / Gondor Calendar / Month View Horizontal / source / javascript",
 
     parameters: {
-        options: { showPanel: true },
+        chromatic: { disableSnapshot: true },
     },
 };
 

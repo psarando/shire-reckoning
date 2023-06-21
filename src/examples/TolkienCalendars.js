@@ -514,9 +514,9 @@ const srcStyle = {
     padding: 8,
 };
 
-const TolkienCalendarsWithInstructions = () => (
+const TolkienCalendarsWithInstructions = (props) => (
     <>
-        <TolkienCalendarsExample />
+        <TolkienCalendarsExample {...props} />
         <br />
         <br />
         The following example shows how a default Shire Calendar, with the

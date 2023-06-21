@@ -8,8 +8,8 @@ import { ShireCalendar } from "../../../lib";
 
 import { CalendarCellStyle, CaptionCellStyle, DatePicker } from "../../Common";
 
-export const ShireCalendarYearViewExample = () => {
-    const [currentDate, onDateChanged] = useState(new Date());
+export const ShireCalendarYearViewExample = (props) => {
+    const [currentDate, onDateChanged] = useState(props.date || new Date());
 
     return (
         <table>

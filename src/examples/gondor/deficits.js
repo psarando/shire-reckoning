@@ -318,8 +318,4 @@ export const Deficits = {
 
 export default {
     title: "Shire Reckoning / Gondor Calendar",
-
-    parameters: {
-        options: { showPanel: true },
-    },
 };

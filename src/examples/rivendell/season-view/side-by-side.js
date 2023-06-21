@@ -8,8 +8,8 @@ import { RivendellCalendar } from "../../../lib";
 
 import { CalendarCellStyle, CaptionCellStyle, DatePicker } from "../../Common";
 
-export const RivendellCalendarSeasonViewExample = () => {
-    const [currentDate, onDateChanged] = useState(new Date());
+export const RivendellCalendarSeasonViewExample = (props) => {
+    const [currentDate, onDateChanged] = useState(props.date || new Date());
 
     return (
         <table>

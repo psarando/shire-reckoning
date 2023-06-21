@@ -8,10 +8,6 @@ import * as TolkienCalendars from "../../../../lib";
 
 export default {
     title: "Shire Reckoning / Gondor Calendar / Traditional Rules / source / javascript",
-
-    parameters: {
-        options: { showPanel: true },
-    },
 };
 
 export const ForS_A_32FirstKingOfNúmenorCrowned = () => {

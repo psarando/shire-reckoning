@@ -8,10 +8,6 @@ import * as TolkienCalendars from "../../../../lib";
 
 export default {
     title: "Shire Reckoning / Rivendell Calendar / Possible historic calendars / source / javascript",
-
-    parameters: {
-        options: { showPanel: true },
-    },
 };
 
 export const ForS_A_1697TheYearRivendellWasFounded = () => {

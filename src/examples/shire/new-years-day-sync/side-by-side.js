@@ -9,8 +9,8 @@ import { fullYearDate } from "../../../Utils";
 
 import { CalendarCellStyle, CaptionCellStyle, DatePicker } from "../../Common";
 
-export const ShireCalendarNewYearsDaySyncExample = () => {
-    const [currentDate, onDateChanged] = useState(new Date());
+export const ShireCalendarNewYearsDaySyncExample = (props) => {
+    const [currentDate, onDateChanged] = useState(props.date || new Date());
     const newYearSyncDate = fullYearDate(1, 0, 1);
 
     return (

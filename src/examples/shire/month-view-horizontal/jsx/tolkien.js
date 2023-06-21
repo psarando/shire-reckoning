@@ -10,7 +10,7 @@ export default {
     title: "Shire Reckoning / Shire Calendar / Month View Horizontal / source / jsx",
 
     parameters: {
-        options: { showPanel: true },
+        chromatic: { disableSnapshot: true },
     },
 };
 

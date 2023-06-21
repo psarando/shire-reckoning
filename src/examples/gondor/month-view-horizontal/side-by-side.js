@@ -8,8 +8,8 @@ import { GondorCalendar } from "../../../lib";
 
 import { CalendarCellStyle, CaptionCellStyle, DatePicker } from "../../Common";
 
-export const GondorCalendarMonthViewHorizontalExample = () => {
-    const [currentDate, onDateChanged] = useState(new Date());
+export const GondorCalendarMonthViewHorizontalExample = (props) => {
+    const [currentDate, onDateChanged] = useState(props.date || new Date());
 
     return (
         <table>

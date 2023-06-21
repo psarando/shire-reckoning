@@ -3,6 +3,7 @@ node_modules
 
 # testing
 coverage
+build-storybook.log
 
 # production
 build

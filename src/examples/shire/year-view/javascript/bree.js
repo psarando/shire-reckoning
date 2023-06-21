@@ -10,7 +10,7 @@ export default {
     title: "Shire Reckoning / Shire Calendar / Year View / source / javascript",
 
     parameters: {
-        options: { showPanel: true },
+        chromatic: { disableSnapshot: true },
     },
 };
 

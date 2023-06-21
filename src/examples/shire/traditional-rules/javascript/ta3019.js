@@ -8,10 +8,6 @@ import * as TolkienCalendars from "../../../../lib";
 
 export default {
     title: "Shire Reckoning / Shire Calendar / Traditional Rules / source / javascript",
-
-    parameters: {
-        options: { showPanel: true },
-    },
 };
 
 export const ForT_A_3019DateOfTheDestructionOfTheOneRing = () => {

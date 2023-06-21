@@ -10,7 +10,7 @@ export default {
     title: "Shire Reckoning / Rivendell Calendar / Year View / source / jsx",
 
     parameters: {
-        options: { showPanel: true },
+        chromatic: { disableSnapshot: true },
     },
 };
 

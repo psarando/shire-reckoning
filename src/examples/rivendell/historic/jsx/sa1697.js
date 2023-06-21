@@ -8,10 +8,6 @@ import { RivendellCalendar } from "../../../../lib";
 
 export default {
     title: "Shire Reckoning / Rivendell Calendar / Possible historic calendars / source / jsx",
-
-    parameters: {
-        options: { showPanel: true },
-    },
 };
 
 export const ForS_A_1697TheYearRivendellWasFounded = () => {

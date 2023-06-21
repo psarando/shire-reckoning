@@ -8,10 +8,6 @@ import { GondorCalendar } from "../../../../lib";
 
 export default {
     title: "Shire Reckoning / Gondor Calendar / Traditional Rules / source / jsx",
-
-    parameters: {
-        options: { showPanel: true },
-    },
 };
 
 export const ForT_A_3019DateOfTheDestructionOfTheOneRing = () => {

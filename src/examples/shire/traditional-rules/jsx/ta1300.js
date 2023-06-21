@@ -8,10 +8,6 @@ import { GondorCalendar, ShireCalendar } from "../../../../lib";
 
 export default {
     title: "Shire Reckoning / Shire Calendar / Traditional Rules / source / jsx",
-
-    parameters: {
-        options: { showPanel: true },
-    },
 };
 
 export const ForT_A_1300TheYearHobbitsFirstSettledInBree = () => {

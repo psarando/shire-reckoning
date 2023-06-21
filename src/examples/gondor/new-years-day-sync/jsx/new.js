@@ -10,7 +10,7 @@ export default {
     title: "Shire Reckoning / Gondor Calendar / What if our years began at the same seasonal point? / source / jsx",
 
     parameters: {
-        options: { showPanel: true },
+        chromatic: { disableSnapshot: true },
     },
 };
 
