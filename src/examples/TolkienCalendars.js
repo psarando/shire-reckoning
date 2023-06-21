@@ -536,8 +536,8 @@ const TolkienCalendarsWithInstructions = (props) => (
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js"></script>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shire-reckoning/lib/TolkienCalendars.css"/>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shire-reckoning/lib/TolkienCalendars.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shire-reckoning@4/lib/TolkienCalendars.css"/>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shire-reckoning@4/lib/TolkienCalendars.js"></script>
     </head>
     <body>
         <div id="shire-calendar"></div>

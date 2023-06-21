@@ -3,6 +3,9 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import {
+    Calendar,
+    CalendarDate,
+    YearWithRemainder,
     toDaysElapsed,
     daysElapsedToGregorianYear,
     getNewYearDate,
@@ -16,37 +19,30 @@ import {
 const RIVENDELL_DAYS_PER_12_YEARS = 365 * 12 + 3;
 const RIVENDELL_DAYS_PER_432_YEARS = RIVENDELL_DAYS_PER_12_YEARS * 12 * 3 - 3;
 
-/**
- * Traditional Rivendell Reckoning rules enum
- * @constant
- */
-const TRADITIONAL_RULES = "traditional";
+enum RivendellRulesEnum {
+    TRADITIONAL = "traditional",
+    REFORMED = "reformed",
+}
 
 /**
- * Reformed Rivendell Reckoning rules enum
- * @constant
+ * @property emoji - An icon representing this weekday.
+ * @property english - The English translation of this weekday name.
+ * @property quenya - The Quenya name for this weekday.
+ * @property sindarin - The Sindarin name for this weekday.
  */
-const REFORMED_RULES = "reformed";
-
-/**
- * @typedef {(TRADITIONAL_RULES|REFORMED_RULES)} RivendellRulesEnum
- */
-
-/**
- * @typedef {Object} RivendellWeekday
- * @property {string} emoji - An icon representing this weekday.
- * @property {string} english - The English translation of this weekday name.
- * @property {string} quenya - The Quenya name for this weekday.
- * @property {string} sindarin - The Sindarin name for this weekday.
- * @property {string} description
- */
+interface RivendellWeekday {
+    emoji: string;
+    english: string;
+    quenya: string;
+    sindarin: string;
+    description: string;
+}
 
 /**
  * Weekday names and descriptions
  * @constant
- * @type {RivendellWeekday[]}
  */
-const RivendellWeekdays = [
+const RivendellWeekdays: RivendellWeekday[] = [
     {
         emoji: "⭐",
         english: "Stars Day",
@@ -94,21 +90,27 @@ const RivendellWeekdays = [
 ];
 
 /**
- * @typedef {Object} RivendellMonth
- * @property {string} emoji - An icon representing this month.
- * @property {string} english - The English translation of this month name.
- * @property {string} quenya - The Quenya name for this month.
- * @property {string} sindarin - The Sindarin name for this month.
- * @property {string} description
- * @property {string} className - UI-hint for styling this month.
+ * @property emoji - An icon representing this month.
+ * @property english - The English translation of this month name.
+ * @property quenya - The Quenya name for this month.
+ * @property sindarin - The Sindarin name for this month.
+ * @property description
+ * @property className - UI-hint for styling this month.
  */
+interface RivendellMonth {
+    emoji: string;
+    english: string;
+    quenya: string;
+    sindarin: string;
+    description: string;
+    className: string;
+}
 
 /**
  * Month names and descriptions.
  * @constant
- * @type {RivendellMonth[]}
  */
-const RivendellMonths = [
+const RivendellMonths: RivendellMonth[] = [
     {
         emoji: "🌼",
         english: "Spring",
@@ -161,23 +163,25 @@ const RivendellMonths = [
 ];
 
 /**
- * @typedef {Object} ElvishHoliday
- * @property {string} english - The English translation of this holiday name.
- * @property {string} quenya - The Quenya name for this holiday.
- * @property {string} sindarin - The Sindarin name for this holiday.
- * @property {string} description
+ * @property english - The English translation of this holiday name.
+ * @property quenya - The Quenya name for this holiday.
+ * @property sindarin - The Sindarin name for this holiday.
+ * @property description
  */
+interface ElvishHoliday {
+    english: string;
+    quenya: string;
+    sindarin: string;
+    description: string;
+}
 
-/**
- * @typedef {Object.<string, ElvishHoliday>} ElvishHolidays
- */
+type ElvishHolidays = Record<string, ElvishHoliday>;
 
 /**
  * Elvish Holiday names and descriptions.
  * @constant
- * @type {ElvishHolidays}
  */
-const CommonElvishHolidays = {
+const CommonElvishHolidays: ElvishHolidays = {
     Yestarë: {
         english: "First Day",
         quenya: "Yestarë",
@@ -201,9 +205,8 @@ const CommonElvishHolidays = {
 /**
  * Rivendell Holiday names and descriptions.
  * @constant
- * @type {ElvishHolidays}
  */
-const RivendellHolidays = {
+const RivendellHolidays: ElvishHolidays = {
     ...CommonElvishHolidays,
     "Reformed Enderë": {
         english: "Leap Middleday",
@@ -217,23 +220,25 @@ const RivendellHolidays = {
  * @param {number} year - The Rivendell year to check.
  * @return {boolean} True if the given `year` is a Rivendell leap-year.
  */
-const isRivendellLeapYear = (year) => {
+const isRivendellLeapYear = (year: number): boolean => {
     return year % 12 === 0 && year % 432 !== 0;
 };
 
 /**
- * @typedef {Date} FirstRivendellNewYearDate
  * @default new Date(1, 2, 22, 0,0,0)
  *
  * The Gregorian Date corresponding to the first Rivendell New Year Date.
  * The default year is 1 in order to keep Rivendell leap-years in sync with Gregorian leap-years.
  */
+type FirstRivendellNewYearDate = Date;
 
 /**
  * @param {FirstRivendellNewYearDate} [startDate]
  * @return {FirstRivendellNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-const getStartDate = (startDate) => {
+const getStartDate = (
+    startDate: FirstRivendellNewYearDate
+): FirstRivendellNewYearDate => {
     if (!startDate) {
         startDate = fullYearDate(1, 2, 22);
     }
@@ -245,7 +250,7 @@ const getStartDate = (startDate) => {
  * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
  * @return {YearWithRemainder} The current Rivendell year (including 0) for the given `daysElapsed`.
  */
-const daysElapsedToRivendellYear = (daysElapsed) => {
+const daysElapsedToRivendellYear = (daysElapsed: number): YearWithRemainder => {
     let negativeOffset = 0;
 
     let year = Math.floor(daysElapsed / RIVENDELL_DAYS_PER_432_YEARS) * 432;
@@ -286,10 +291,10 @@ const daysElapsedToRivendellYear = (daysElapsed) => {
  * @return {Date} The Gregorian Date corresponding to the Rivendell New Year's Day for the year of the given `today`.
  */
 const getRivendellNewYearDate = (
-    today,
-    startDate,
-    calendarRules = TRADITIONAL_RULES
-) => {
+    today: Date,
+    startDate: FirstRivendellNewYearDate,
+    calendarRules: RivendellRulesEnum = TRADITIONAL_RULES
+): Date => {
     startDate = getStartDate(startDate);
 
     const getYearWithRemainder =
@@ -305,22 +310,21 @@ const getRivendellNewYearDate = (
 };
 
 /**
- * @typedef {Object} RivendellDate
- * @property {(number|string)} day - The number of the day of the month, if this date is not intercalary; otherwise,
- *     the name of the intercalary date.
- * @property {number} month - The month index of {@link RivendellMonths}.
- * @property {number} weekDay - The weekday index of {@link RivendellWeekdays}.
- * @property {Date} gregorian - The corresponding Gregorian date.
+ * @property month - The month index of {@link RivendellMonths}.
+ * @property weekDay - The weekday index of {@link RivendellWeekdays}.
  */
+interface RivendellDate extends CalendarDate {}
 
 /**
- * @typedef {Object} RivendellCalendarYear
- * @property {number} year - The current Rivendell year.
- * @property {RivendellDate[]} dates - The dates of this Rivendell calendar year.
- * @property {Date} today - The given Gregorian Date this calendar year was generated from.
- * @property {RivendellDate} todayRivendell - The current Rivendell date corresponding to the given
- *     [today]{@link RivendellCalendarYear#today}.
+ * @property year - The current Rivendell year.
+ * @property dates - The dates of this Rivendell calendar year.
+ * @property todayRivendell - The current Rivendell date corresponding to the given
+ *     [today]{@link RivendellCalendarYear.today}.
  */
+interface RivendellCalendarYear extends Calendar {
+    dates: RivendellDate[];
+    todayRivendell: RivendellDate | undefined;
+}
 
 /**
  * Generates a calendar year for the given Date `today`,
@@ -333,10 +337,10 @@ const getRivendellNewYearDate = (
  * @return {RivendellCalendarYear} The calendar year for the given `today`.
  */
 const makeRivendellCalendarDates = (
-    today,
-    startDate,
-    calendarRules = TRADITIONAL_RULES
-) => {
+    today: Date,
+    startDate: FirstRivendellNewYearDate,
+    calendarRules: RivendellRulesEnum = TRADITIONAL_RULES
+): RivendellCalendarYear => {
     startDate = getStartDate(startDate);
 
     let todayRivendell;
@@ -357,7 +361,7 @@ const makeRivendellCalendarDates = (
 
     let weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 6);
 
-    const dates = [];
+    const dates: RivendellDate[] = [];
     if (calendarRules === REFORMED_RULES && isLeapYear(year)) {
         dates.push({
             day: "Reformed Enderë",
@@ -464,9 +468,14 @@ const makeRivendellCalendarDates = (
     };
 };
 
+const { TRADITIONAL: TRADITIONAL_RULES, REFORMED: REFORMED_RULES } =
+    RivendellRulesEnum;
+
 export {
     TRADITIONAL_RULES,
     REFORMED_RULES,
+    RivendellRulesEnum,
+    ElvishHolidays,
     RivendellWeekdays,
     RivendellMonths,
     RivendellHolidays,

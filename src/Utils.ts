@@ -35,14 +35,15 @@ const THIRD_AGE_2360_TOTAL_DAYS =
  * @param {number} year
  * @return {boolean} True if the given year is a Gregorian leap-year.
  */
-const isLeapYear = (year) => !(year % 4 || (!(year % 100) && year % 400));
+const isLeapYear = (year: number): boolean =>
+    !(year % 4 || (!(year % 100) && year % 400));
 
 /**
  * @param {Date} fromDate - The starting Date (e.g. first New Year's Day)
  * @param {Date} toDate - The end Date (e.g. today)
  * @return {number} The total number of whole days elapsed.
  */
-const toDaysElapsed = (fromDate, toDate) => {
+const toDaysElapsed = (fromDate: Date, toDate: Date): number => {
     // reset to/from hours to avoid DST problems
     let fromDateMidnight = new Date(fromDate);
     fromDateMidnight.setHours(0, 0, 0);
@@ -50,20 +51,26 @@ const toDaysElapsed = (fromDate, toDate) => {
     let toDateNoon = new Date(toDate);
     toDateNoon.setHours(12, 0, 0);
 
-    return Math.floor((toDateNoon - fromDateMidnight) / (24 * 60 * 60 * 1000));
+    const millisecondsElapsed =
+        toDateNoon.getTime() - fromDateMidnight.getTime();
+
+    return Math.floor(millisecondsElapsed / (24 * 60 * 60 * 1000));
 };
 
 /**
- * @typedef {Object} YearWithRemainder
- * @property {number} year - The current year (including 0).
- * @property {number} daysRemainder - The number of days elapsed since the current New Year's Day.
+ * @property year - The current year (including 0).
+ * @property daysRemainder - The number of days elapsed since the current New Year's Day.
  */
+interface YearWithRemainder {
+    year: number;
+    daysRemainder: number;
+}
 
 /**
  * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
  * @return {YearWithRemainder} The current Gregorian year for the given `daysElapsed`.
  */
-const daysElapsedToGregorianYear = (daysElapsed) => {
+const daysElapsedToGregorianYear = (daysElapsed: number): YearWithRemainder => {
     let negativeOffset = 0;
 
     let year = Math.floor(daysElapsed / GREGORIAN_DAYS_PER_400_YEARS) * 400;
@@ -110,7 +117,11 @@ const daysElapsedToGregorianYear = (daysElapsed) => {
  * @param {number} daysSinceNewYearsDay - The number of whole days elapsed since today's New Year's Day.
  * @return {Date} The New Year Date for the year of the given `today`.
  */
-const getNewYearDate = (startDate, today, daysSinceNewYearsDay) => {
+const getNewYearDate = (
+    startDate: Date,
+    today: Date,
+    daysSinceNewYearsDay: number
+): Date => {
     let newYearDate = new Date(startDate);
     newYearDate.setFullYear(
         today.getFullYear(),
@@ -127,7 +138,11 @@ const getNewYearDate = (startDate, today, daysSinceNewYearsDay) => {
  * @param {number} daysPerWeek - The number of days in a week.
  * @return {number} The current day of the week.
  */
-const getWeekDay = (daysElapsed, daysSinceNewYearsDay, daysPerWeek) => {
+const getWeekDay = (
+    daysElapsed: number,
+    daysSinceNewYearsDay: number,
+    daysPerWeek: number
+): number => {
     let weekDay = (daysElapsed - daysSinceNewYearsDay) % daysPerWeek;
 
     if (weekDay < 0) {
@@ -137,7 +152,7 @@ const getWeekDay = (daysElapsed, daysSinceNewYearsDay, daysPerWeek) => {
     return weekDay;
 };
 
-const offsetThirdAgeDaysElapsed = (daysElapsed) => {
+const offsetThirdAgeDaysElapsed = (daysElapsed: number): number => {
     if (daysElapsed >= THIRD_AGE_2059_TOTAL_DAYS) {
         if (daysElapsed >= THIRD_AGE_2360_TOTAL_DAYS) {
             daysElapsed--;
@@ -160,7 +175,7 @@ const offsetThirdAgeDaysElapsed = (daysElapsed) => {
  * @param {number} daysElapsed - The total number of whole days elapsed since the first New Year Date.
  * @return {YearWithRemainder} The current Gondor (S.A.) year for the given `daysElapsed`.
  */
-const daysElapsedToSecondAgeYear = (daysElapsed) => {
+const daysElapsedToSecondAgeYear = (daysElapsed: number): YearWithRemainder => {
     let year = 0;
 
     if (
@@ -235,7 +250,10 @@ const daysElapsedToSecondAgeYear = (daysElapsed) => {
  * @return {YearWithRemainder} The current Gondor (S.A.) year, with daysRemainder since the current New Reckoning
  *                             New Year's Day.
  */
-const daysElapsedToNewReckoningYear = (getYearWithRemainder, daysElapsed) => {
+const daysElapsedToNewReckoningYear = (
+    getYearWithRemainder: { (daysElapsed: number): YearWithRemainder },
+    daysElapsed: number
+): YearWithRemainder => {
     let yearWithRemainder = getYearWithRemainder(daysElapsed);
 
     // New Reckoning always starts 85 days after old style New Year's Day.
@@ -254,7 +272,7 @@ const daysElapsedToNewReckoningYear = (getYearWithRemainder, daysElapsed) => {
  * @param {Date} date2
  * @return {boolean} True if the given dates have the same year, month, and date.
  */
-const datesMatch = (date1, date2) => {
+const datesMatch = (date1: Date, date2: Date): boolean => {
     return (
         date1.getFullYear() === date2.getFullYear()
         && date1.getMonth() === date2.getMonth()
@@ -268,7 +286,7 @@ const datesMatch = (date1, date2) => {
  * @param {number} day
  * @return {Date} - A Date at midnight for the given year/month/day.
  */
-const fullYearDate = (fullYear, month, day) => {
+const fullYearDate = (fullYear: number, month: number, day: number): Date => {
     let date = new Date(fullYear, month, day, 0, 0, 0);
 
     // reset full year, month, and day for years 0-99
@@ -281,18 +299,43 @@ const fullYearDate = (fullYear, month, day) => {
  * @param {Date} today
  * @return {Date} tomorrow - A new Date instance that is 1 day after the given `today`.
  */
-const getNextDate = (today) => {
+const getNextDate = (today: Date): Date => {
     let tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
 
     return tomorrow;
 };
 
-const getFirstDate = (calendar) => calendar.dates[0];
-const getLastDate = (calendar) => calendar.dates[calendar.dates.length - 1];
+/**
+ * @property day - The number of the day of the month, if this date is not intercalary; otherwise, the name of the intercalary date.
+ * @property month - The month index.
+ * @property weekDay - The weekday index.
+ * @property gregorian - The corresponding Gregorian date.
+ */
+interface CalendarDate {
+    day: number | string;
+    month: number;
+    weekDay: number;
+    gregorian: Date;
+}
 
-const getFirstDay = (calendar) => getFirstDate(calendar).gregorian;
-const getLastDay = (calendar) => getLastDate(calendar).gregorian;
+/**
+ * @property year - The current year.
+ * @property dates - The dates of this calendar year.
+ * @property today - The given Gregorian Date this calendar year was generated from.
+ */
+interface Calendar {
+    year: number;
+    dates: CalendarDate[];
+    today: Date;
+}
+
+const getFirstDate = (calendar: Calendar) => calendar.dates[0];
+const getLastDate = (calendar: Calendar) =>
+    calendar.dates[calendar.dates.length - 1];
+
+const getFirstDay = (calendar: Calendar) => getFirstDate(calendar).gregorian;
+const getLastDay = (calendar: Calendar) => getLastDate(calendar).gregorian;
 
 export {
     GREGORIAN_DAYS_PER_4_YEARS,
@@ -304,6 +347,9 @@ export {
     SECOND_AGE_TOTAL_DAYS,
     THIRD_AGE_2059_TOTAL_DAYS,
     THIRD_AGE_2360_TOTAL_DAYS,
+    Calendar,
+    CalendarDate,
+    YearWithRemainder,
     toDaysElapsed,
     daysElapsedToGregorianYear,
     daysElapsedToSecondAgeYear,

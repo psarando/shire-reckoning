@@ -3,6 +3,8 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import {
+    Calendar,
+    CalendarDate,
     toDaysElapsed,
     daysElapsedToGregorianYear,
     daysElapsedToSecondAgeYear,
@@ -14,31 +16,37 @@ import {
 } from "./Utils";
 
 import {
-    RECKONING_RULES_GREGORIAN,
-    RECKONING_RULES_TRADITIONAL,
+    GondorLeapYearRuleEnum,
     isMillennialLeapYear,
     isGondorLeapYear,
 } from "./GondorReckoning";
 
-const REGION_NAMES_TOLKIEN = "tolkien";
-const REGION_NAMES_SHIRE = "shire";
-const REGION_NAMES_BREE = "bree";
+enum ShireRegionEnum {
+    TOLKIEN = "tolkien",
+    SHIRE = "shire",
+    BREE = "bree",
+}
 
 /**
- * @typedef {Object} ShireWeekday
- * @property {string} emoji - An icon representing this weekday.
- * @property {string} tolkien - The Gregorian substitution Tolkien used for this weekday name.
- * @property {string} shire - The Shire name for this weekday.
- * @property {string} bree - The Bree name for this weekday.
- * @property {string} description
+ * @property emoji - An icon representing this weekday.
+ * @property tolkien - The Gregorian substitution Tolkien used for this weekday name.
+ * @property shire - The Shire name for this weekday.
+ * @property bree - The Bree name for this weekday.
+ * @property description
  */
+interface ShireWeekday {
+    emoji: string;
+    tolkien: string;
+    shire: string;
+    bree: string;
+    description: string;
+}
 
 /**
  * Weekday names and descriptions
  * @constant
- * @type {ShireWeekday[]}
  */
-const ShireWeekdays = [
+const ShireWeekdays: ShireWeekday[] = [
     {
         emoji: "⭐",
         tolkien: "Saturday",
@@ -119,21 +127,27 @@ High Day. From the archaic Hihdei (from Old English hēah dæg).`,
 ];
 
 /**
- * @typedef {Object} ShireMonth
- * @property {string} emoji - An icon representing this month.
- * @property {string} tolkien - The Gregorian substitution Tolkien used for this month name.
- * @property {string} shire - The Shire name for this month.
- * @property {string} bree - The Bree name for this month.
- * @property {string} description
- * @property {string} className - UI-hint for styling this month.
+ * @property emoji - An icon representing this month.
+ * @property tolkien - The Gregorian substitution Tolkien used for this month name.
+ * @property shire - The Shire name for this month.
+ * @property bree - The Bree name for this month.
+ * @property description
+ * @property className - UI-hint for styling this month.
  */
+interface ShireMonth {
+    emoji: string;
+    tolkien: string;
+    shire: string;
+    bree: string;
+    description: string;
+    className: string;
+}
 
 /**
  * Month names and descriptions.
  * @constant
- * @type {ShireMonth[]}
  */
-const ShireMonths = [
+const ShireMonths: ShireMonth[] = [
     {
         emoji: "🌄",
         tolkien: "January",
@@ -301,18 +315,20 @@ from ǣrra Gēola 'before Winter Solstice', and from Gēolamōnað 'Yule-month'.
 ];
 
 /**
- * @typedef {Date} FirstShireNewYearDate
  * @default new Date(0, 11, 21, 0,0,0)
  *
  * The Gregorian Date corresponding to the first Shire New Year Date.
  * The default year is 0 in order to keep Shire leap-years in sync with Gregorian leap-years.
  */
+type FirstShireNewYearDate = Date;
 
 /**
  * @param {FirstShireNewYearDate} [startDate]
  * @return {FirstShireNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-const getStartDate = (startDate) => {
+const getStartDate = (
+    startDate: FirstShireNewYearDate
+): FirstShireNewYearDate => {
     if (!startDate) {
         startDate = fullYearDate(0, 11, 21);
     }
@@ -323,20 +339,20 @@ const getStartDate = (startDate) => {
 /**
  * @param {Date} today
  * @param {FirstShireNewYearDate} [startDate]
- * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
+ * @param {GondorLeapYearRuleEnum} [rules=GondorLeapYearRuleEnum.GREGORIAN]
  *
  * @return {Date} The Gregorian Date corresponding to the Shire New Year Date
  *                for the year of the given `today`.
  */
 const getShireNewYearDate = (
-    today,
-    startDate,
-    rules = RECKONING_RULES_GREGORIAN
+    today: Date,
+    startDate: FirstShireNewYearDate,
+    rules = GondorLeapYearRuleEnum.GREGORIAN
 ) => {
     startDate = getStartDate(startDate);
 
     const getYearWithRemainder =
-        rules === RECKONING_RULES_TRADITIONAL
+        rules === GondorLeapYearRuleEnum.TRADITIONAL
             ? daysElapsedToSecondAgeYear
             : daysElapsedToGregorianYear;
 
@@ -348,38 +364,46 @@ const getShireNewYearDate = (
 };
 
 /**
- * @typedef {Object} ShireDate
- * @property {(number|string)} day - The number of the day of the month, if this date is not intercalary; otherwise, the name of the intercalary date.
- * @property {number} month - The month index of {@link ShireMonths}.
- * @property {number} weekDay - The weekday index of {@link ShireWeekdays}.
- * @property {Date} gregorian - The corresponding Gregorian date.
+ * The Shire or Bree name of a holiday.
  */
+type ShireHolidayRegionNames = Record<ShireRegionEnum, string>;
 
 /**
- * @typedef {Object} ShireCalendarYear
- * @property {number} year - The current Shire year.
- * @property {ShireDate[]} dates - The dates of this Shire calendar year.
- * @property {Date} today - The given Gregorian Date this calendar year was generated from.
- * @property {ShireDate} todayShire - The current Shire date corresponding to the given [today]{@link ShireCalendarYear#today}.
+ * @property month - The month index of {@link ShireMonths}.
+ * @property weekDay - The weekday index of {@link ShireWeekdays}.
+ * @property region - The regional name variation.
  */
+interface ShireDate extends CalendarDate {
+    region?: ShireHolidayRegionNames;
+}
+
+/**
+ * @property year - The current Shire year.
+ * @property dates - The dates of this Shire calendar year.
+ * @property todayShire - The current Shire date corresponding to the given [today]{@link ShireCalendarYear#today}.
+ */
+interface ShireCalendarYear extends Calendar {
+    dates: ShireDate[];
+    todayShire: ShireDate | undefined;
+}
 
 /**
  * Generates a calendar year for the given Date `today`, according to the given `startDate`.
  *
  * @param {Date} today
  * @param {FirstShireNewYearDate} [startDate]
- * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
+ * @param {GondorLeapYearRuleEnum} [rules=GondorLeapYearRuleEnum.GREGORIAN]
  *
  * @return {ShireCalendarYear} The calendar year for the given `today`.
  */
 const makeShireCalendarDates = (
-    today,
-    startDate,
-    rules = RECKONING_RULES_GREGORIAN
-) => {
+    today: Date,
+    startDate: FirstShireNewYearDate,
+    rules: GondorLeapYearRuleEnum = GondorLeapYearRuleEnum.GREGORIAN
+): ShireCalendarYear => {
     startDate = getStartDate(startDate);
 
-    const reckonTraditional = rules === RECKONING_RULES_TRADITIONAL;
+    const reckonTraditional = rules === GondorLeapYearRuleEnum.TRADITIONAL;
 
     const getYearWithRemainder = reckonTraditional
         ? daysElapsedToSecondAgeYear
@@ -414,7 +438,7 @@ const makeShireCalendarDates = (
         }
     }
 
-    const dates = [
+    const dates: ShireDate[] = [
         {
             day: "2 Yule",
             month: 0,
@@ -574,9 +598,16 @@ const makeShireCalendarDates = (
     };
 };
 
+const {
+    TOLKIEN: REGION_NAMES_TOLKIEN,
+    SHIRE: REGION_NAMES_SHIRE,
+    BREE: REGION_NAMES_BREE,
+} = ShireRegionEnum;
+
 export {
     ShireWeekdays,
     ShireMonths,
+    ShireRegionEnum,
     REGION_NAMES_TOLKIEN,
     REGION_NAMES_SHIRE,
     REGION_NAMES_BREE,

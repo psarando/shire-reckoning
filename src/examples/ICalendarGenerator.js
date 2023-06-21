@@ -341,7 +341,7 @@ const ICalendarGeneratorWithInstructions = () => (
         <title>Shire Reckoning</title>
 
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shire-reckoning/lib/TolkienCalendars.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shire-reckoning@4/lib/TolkienCalendars.js"></script>
     </head>
     <body>
         <div id="shire-dates"></div>

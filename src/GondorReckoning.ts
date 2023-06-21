@@ -2,8 +2,10 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import { CommonElvishHolidays } from "./RivendellReckoning";
+import { CommonElvishHolidays, ElvishHolidays } from "./RivendellReckoning";
 import {
+    Calendar,
+    CalendarDate,
     toDaysElapsed,
     daysElapsedToGregorianYear,
     daysElapsedToSecondAgeYear,
@@ -16,50 +18,37 @@ import {
     getNextDate,
 } from "./Utils";
 
-/**
- * Kings' Reckoning leap-year rules enum
- * @constant
- */
-const RECKONING_KINGS = "kings";
+enum GondorReckoningEnum {
+    KINGS = "kings",
+    STEWARDS = "stewards",
+    NEW = "new",
+}
+
+enum GondorLeapYearRuleEnum {
+    TRADITIONAL = "traditional",
+    GREGORIAN = "reformed",
+}
 
 /**
- * Stewards' Reckoning leap-year rules enum
- * @constant
+ * @property emoji - An icon representing this weekday.
+ * @property english - The English translation of this weekday name.
+ * @property quenya - The Quenya name for this weekday.
+ * @property sindarin - The Sindarin name for this weekday.
+ * @property description
  */
-const RECKONING_STEWARDS = "stewards";
-
-/**
- * New Reckoning leap-year rules enum
- * @constant
- */
-const RECKONING_NEW = "new";
-
-/**
- * @typedef {(RECKONING_KINGS|RECKONING_STEWARDS|RECKONING_NEW)} GondorReckoningEnum
- */
-
-const RECKONING_RULES_TRADITIONAL = "traditional";
-const RECKONING_RULES_GREGORIAN = "reformed";
-
-/**
- * @typedef {(RECKONING_RULES_TRADITIONAL|RECKONING_RULES_GREGORIAN)} GondorLeapYearRuleEnum
- */
-
-/**
- * @typedef {Object} GondorWeekday
- * @property {string} emoji - An icon representing this weekday.
- * @property {string} english - The English translation of this weekday name.
- * @property {string} quenya - The Quenya name for this weekday.
- * @property {string} sindarin - The Sindarin name for this weekday.
- * @property {string} description
- */
+interface GondorWeekday {
+    emoji: string;
+    english: string;
+    quenya: string;
+    sindarin: string;
+    description: string;
+}
 
 /**
  * Weekday names and descriptions
  * @constant
- * @type {GondorWeekday[]}
  */
-const GondorWeekdays = [
+const GondorWeekdays: GondorWeekday[] = [
     {
         emoji: "⭐",
         english: "Stars Day",
@@ -114,21 +103,27 @@ const GondorWeekdays = [
 ];
 
 /**
- * @typedef {Object} GondorMonth
- * @property {string} emoji - An icon representing this month.
- * @property {string} english - The English translation of this month name.
- * @property {string} quenya - The Quenya name for this month.
- * @property {string} sindarin - The Sindarin name for this month.
- * @property {string} description
- * @property {string} className - UI-hint for styling this month.
+ * @property emoji - An icon representing this month.
+ * @property english - The English translation of this month name.
+ * @property quenya - The Quenya name for this month.
+ * @property sindarin - The Sindarin name for this month.
+ * @property description
+ * @property className - UI-hint for styling this month.
  */
+interface GondorMonth {
+    emoji: string;
+    english: string;
+    quenya: string;
+    sindarin: string;
+    description: string;
+    className: string;
+}
 
 /**
  * Month names and descriptions.
  * @constant
- * @type {GondorMonth[]}
  */
-const GondorMonths = [
+const GondorMonths: GondorMonth[] = [
     {
         emoji: "🌄",
         english: "New Sun",
@@ -236,9 +231,8 @@ const GondorMonths = [
 /**
  * Gondor Holiday names and descriptions.
  * @constant
- * @type {ElvishHolidays}
  */
-const GondorHolidays = {
+const GondorHolidays: ElvishHolidays = {
     ...CommonElvishHolidays,
     Loëndë: {
         english: "Midyear's Day",
@@ -267,18 +261,20 @@ const GondorHolidays = {
 };
 
 /**
- * @typedef {Date} FirstNumenorNewYearDate
  * @default new Date(0, 11, 21, 0,0,0)
  *
  * The Gregorian Date corresponding to the first Númenor New Year Date.
  * The default year is 0 in order to keep Gondor leap-years in sync with Gregorian leap-years.
  */
+type FirstNumenorNewYearDate = Date;
 
 /**
  * @param {FirstNumenorNewYearDate} [startDate]
  * @return {FirstNumenorNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
-const getStartDate = (startDate) => {
+const getStartDate = (
+    startDate: FirstNumenorNewYearDate
+): FirstNumenorNewYearDate => {
     if (!startDate) {
         startDate = fullYearDate(0, 11, 21);
     }
@@ -290,7 +286,7 @@ const getStartDate = (startDate) => {
  * @param {number} gondorYear
  * @return {boolean} True if the given `gondorYear` is a millennial year that requires an additional leap-day adjustment.
  */
-const isMillennialLeapYear = (gondorYear) => {
+const isMillennialLeapYear = (gondorYear: number): boolean => {
     if (gondorYear > 3441) {
         gondorYear -= 3441;
 
@@ -304,12 +300,15 @@ const isMillennialLeapYear = (gondorYear) => {
 
 /**
  * @param {number} gondorYear
- * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
+ * @param {GondorLeapYearRuleEnum} [rules=GondorLeapYearRuleEnum.GREGORIAN]
  *
  * @return {boolean} True if the given `gondorYear` is a leap-year (standard or millennial).
  */
-const isGondorLeapYear = (gondorYear, rules = RECKONING_RULES_GREGORIAN) => {
-    if (rules === RECKONING_RULES_GREGORIAN) {
+const isGondorLeapYear = (
+    gondorYear: number,
+    rules: GondorLeapYearRuleEnum = GondorLeapYearRuleEnum.GREGORIAN
+): boolean => {
+    if (rules === GondorLeapYearRuleEnum.GREGORIAN) {
         return isLeapYear(gondorYear);
     }
 
@@ -327,20 +326,20 @@ const isGondorLeapYear = (gondorYear, rules = RECKONING_RULES_GREGORIAN) => {
 /**
  * @param {Date} today
  * @param {FirstNumenorNewYearDate} [startDate]
- * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
+ * @param {GondorLeapYearRuleEnum} [rules=GondorLeapYearRuleEnum.GREGORIAN]
  *
  * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
  *                for the year of the given `today`.
  */
 const getGondorNewYearDate = (
-    today,
-    startDate,
-    rules = RECKONING_RULES_GREGORIAN
-) => {
+    today: Date,
+    startDate: FirstNumenorNewYearDate,
+    rules: GondorLeapYearRuleEnum = GondorLeapYearRuleEnum.GREGORIAN
+): Date => {
     startDate = getStartDate(startDate);
 
     const getYearWithRemainder =
-        rules === RECKONING_RULES_TRADITIONAL
+        rules === GondorLeapYearRuleEnum.TRADITIONAL
             ? daysElapsedToSecondAgeYear
             : daysElapsedToGregorianYear;
 
@@ -354,16 +353,20 @@ const getGondorNewYearDate = (
 /**
  * @param {Date} today
  * @param {FirstNumenorNewYearDate} [startDate]
- * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
+ * @param {GondorLeapYearRuleEnum} [rules=GondorLeapYearRuleEnum.GREGORIAN]
  *
  * @return {Date} The Gregorian Date corresponding to the Gondor New Year Date
  *                in the New Reckoning calendar for the year of the given `today`.
  */
-const getNewReckoningNewYearDate = (today, startDate, rules) => {
+const getNewReckoningNewYearDate = (
+    today: Date,
+    startDate: FirstNumenorNewYearDate,
+    rules: GondorLeapYearRuleEnum
+): Date => {
     startDate = getStartDate(startDate);
 
     const getYearWithRemainder =
-        rules === RECKONING_RULES_TRADITIONAL
+        rules === GondorLeapYearRuleEnum.TRADITIONAL
             ? daysElapsedToSecondAgeYear
             : daysElapsedToGregorianYear;
 
@@ -384,9 +387,13 @@ const getNewReckoningNewYearDate = (today, startDate, rules) => {
  * @return {number} The index to use with {@link GondorMonths} for the given `toReckoning`
  *                  that most closely matches the given `monthIndex`.
  */
-const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
-    const fromNewReckoning = fromReckoning === RECKONING_NEW;
-    const toNewReckoning = toReckoning === RECKONING_NEW;
+const convertGondorianMonthIndex = (
+    fromReckoning: GondorReckoningEnum,
+    toReckoning: GondorReckoningEnum,
+    monthIndex: number
+): number => {
+    const fromNewReckoning = fromReckoning === GondorReckoningEnum.NEW;
+    const toNewReckoning = toReckoning === GondorReckoningEnum.NEW;
     if (fromNewReckoning !== toNewReckoning) {
         fromNewReckoning ? (monthIndex += 3) : (monthIndex -= 3);
 
@@ -402,25 +409,27 @@ const convertGondorianMonthIndex = (fromReckoning, toReckoning, monthIndex) => {
  * @return {number} The Gondorian weekday index, for use with {@link GondorWeekdays},
  *                  that is the cultural equivalent for the given Gregorian weekday index.
  */
-const convertGregorianToGondorianWeekday = (weekday) => {
+const convertGregorianToGondorianWeekday = (weekday: number): number => {
     return (weekday + 6) % 7;
 };
 
 /**
- * @typedef {Object} GondorDate
- * @property {(number|string)} day - The number of the day of the month, if this date is not intercalary; otherwise, the name of the intercalary date.
- * @property {number} month - The month index of {@link GondorMonths}.
- * @property {number} weekDay - The weekday index of {@link GondorWeekdays}.
- * @property {Date} gregorian - The corresponding Gregorian date.
+ * @property day - The number of the day of the month, if this date is not intercalary; otherwise, the name of the intercalary date.
+ * @property month - The month index of {@link GondorMonths}.
+ * @property weekDay - The weekday index of {@link GondorWeekdays}.
+ * @property gregorian - The corresponding Gregorian date.
  */
+interface GondorDate extends CalendarDate {}
 
 /**
- * @typedef {Object} GondorCalendarYear
- * @property {number} year - The current Gondor year.
- * @property {GondorDate[]} dates - The dates of this Gondor calendar year.
- * @property {Date} today - The given Gregorian Date this calendar year was generated from.
- * @property {GondorDate} todayGondor - The current Gondor date corresponding to the given [today]{@link GondorCalendarYear#today}.
+ * @property year - The current Gondor year.
+ * @property dates - The dates of this Gondor calendar year.
+ * @property todayGondor - The current Gondor date corresponding to the given {@link GondorCalendarYear.today}.
  */
+interface GondorCalendarYear extends Calendar {
+    dates: GondorDate[];
+    todayGondor: GondorDate | undefined;
+}
 
 /**
  * Generates a calendar year for the given Date `today`,
@@ -428,25 +437,25 @@ const convertGregorianToGondorianWeekday = (weekday) => {
  *
  * @param {Date} today
  * @param {FirstNumenorNewYearDate} [startDate]
- * @param {GondorReckoningEnum} [reckoning=RECKONING_STEWARDS]
- * @param {GondorLeapYearRuleEnum} [rules=RECKONING_RULES_GREGORIAN]
+ * @param {GondorReckoningEnum} [reckoning=GondorReckoningEnum.STEWARDS]
+ * @param {GondorLeapYearRuleEnum} [rules=GondorLeapYearRuleEnum.GREGORIAN]
  *
  * @return {GondorCalendarYear} The calendar year for the given `today`.
  */
 const makeGondorCalendarDates = (
-    today,
-    startDate,
-    reckoning = RECKONING_STEWARDS,
-    rules = RECKONING_RULES_GREGORIAN
-) => {
+    today: Date,
+    startDate: FirstNumenorNewYearDate,
+    reckoning: GondorReckoningEnum = GondorReckoningEnum.STEWARDS,
+    rules: GondorLeapYearRuleEnum = GondorLeapYearRuleEnum.GREGORIAN
+): GondorCalendarYear => {
     startDate = getStartDate(startDate);
 
-    const kingsReckoning = reckoning === RECKONING_KINGS;
-    const stewardsReckoning = reckoning === RECKONING_STEWARDS;
-    const newReckoning = reckoning === RECKONING_NEW;
+    const kingsReckoning = reckoning === GondorReckoningEnum.KINGS;
+    const stewardsReckoning = reckoning === GondorReckoningEnum.STEWARDS;
+    const newReckoning = reckoning === GondorReckoningEnum.NEW;
 
     const getYearWithRemainder =
-        rules === RECKONING_RULES_TRADITIONAL
+        rules === GondorLeapYearRuleEnum.TRADITIONAL
             ? daysElapsedToSecondAgeYear
             : daysElapsedToGregorianYear;
 
@@ -467,11 +476,11 @@ const makeGondorCalendarDates = (
     let todayGondor;
     let weekDay = convertGregorianToGondorianWeekday(gregorianDate.getDay());
 
-    if (rules === RECKONING_RULES_TRADITIONAL) {
+    if (rules === GondorLeapYearRuleEnum.TRADITIONAL) {
         weekDay = getWeekDay(daysElapsed, yearWithRemainder.daysRemainder, 7);
     }
 
-    const dates = [];
+    const dates: GondorDate[] = [];
 
     for (let month = 0; month < 12; month++) {
         let maxdays = 30;
@@ -554,7 +563,7 @@ const makeGondorCalendarDates = (
                 }
 
                 if (
-                    rules === RECKONING_RULES_TRADITIONAL
+                    rules === GondorLeapYearRuleEnum.TRADITIONAL
                     && isMillennialLeapYear(year)
                 ) {
                     dates.push({
@@ -659,12 +668,25 @@ const makeGondorCalendarDates = (
     };
 };
 
+const {
+    KINGS: RECKONING_KINGS,
+    STEWARDS: RECKONING_STEWARDS,
+    NEW: RECKONING_NEW,
+} = GondorReckoningEnum;
+
+const {
+    TRADITIONAL: RECKONING_RULES_TRADITIONAL,
+    GREGORIAN: RECKONING_RULES_GREGORIAN,
+} = GondorLeapYearRuleEnum;
+
 export {
     RECKONING_KINGS,
     RECKONING_STEWARDS,
     RECKONING_NEW,
     RECKONING_RULES_TRADITIONAL,
     RECKONING_RULES_GREGORIAN,
+    GondorReckoningEnum,
+    GondorLeapYearRuleEnum,
     GondorWeekdays,
     GondorMonths,
     GondorHolidays,

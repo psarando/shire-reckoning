@@ -53,7 +53,15 @@ const config = {
                     "postcss-loader",
                 ],
             },
+            {
+                test: /\.ts(x)?$/,
+                loader: "ts-loader",
+                exclude: /node_modules/,
+            },
         ],
+    },
+    resolve: {
+        extensions: [".tsx", ".ts", ".js"],
     },
     externals: {
         react: {
