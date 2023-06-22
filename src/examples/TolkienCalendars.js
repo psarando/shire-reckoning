@@ -2,7 +2,7 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 
 import { datesMatch, fullYearDate } from "../Utils";
 
@@ -129,140 +129,103 @@ const adjustRivendellAprilSyncScheme = (
     return rivendellStartDate;
 };
 
-export class TolkienCalendarsExample extends Component {
-    constructor(props) {
-        super(props);
+const TolkienCalendarsExample = (props) => {
+    const [currentDate, setDate] = React.useState(props.date || new Date());
 
-        const currentDate = props.date || new Date();
+    const [shireAlign, setShireAlign] = React.useState(false);
+    const [rivendellAlign, setRivendellAlign] = React.useState(false);
 
-        const shireSyncScheme =
-            props.shireSyncScheme > 0 ? props.shireSyncScheme : 1;
-        const shireStartDate = SyncShireCalendar[shireSyncScheme].startDate;
+    const [shireSyncScheme, setShireSyncScheme] = React.useState(1);
+    const [shireStartDate, setShireStartDate] = React.useState(
+        SyncShireCalendar[shireSyncScheme].startDate
+    );
+    const [shireRegion, setShireRegion] = React.useState(
+        ShireCalendar.REGION_NAMES_TOLKIEN
+    );
 
-        const gondorLeftStartDate = new Date(shireStartDate);
-        const gondorRightStartDate = new Date(shireStartDate);
+    const [gondorLeftStartDate, setGondorLeftStartDate] = React.useState(
+        new Date(shireStartDate)
+    );
+    const [gondorRightStartDate, setGondorRightStartDate] = React.useState(
+        new Date(shireStartDate)
+    );
 
-        const rivendellSyncScheme =
-            props.rivendellSyncScheme > 0 ? props.rivendellSyncScheme : 1;
-        const rivendellSync = SyncRivendellCalendar[rivendellSyncScheme];
-        const rivendellStartDate = rivendellSync.startDate;
-        const rivendellCalendarRules = rivendellSync.calendarRules;
+    const [rivendellSyncScheme, setRivendellSyncScheme] = React.useState(1);
+    const rivendellSync = SyncRivendellCalendar[rivendellSyncScheme];
+    const [rivendellStartDate, setRivendellStartDate] = React.useState(
+        rivendellSync.startDate
+    );
+    const [rivendellCalendarRules, setRivendellCalendarRules] = React.useState(
+        rivendellSync.calendarRules
+    );
 
-        this.state = {
-            date: currentDate,
-            shireAlign: false,
-            rivendellAlign: false,
-            shireSyncScheme,
-            shireStartDate,
-            shireRegion: ShireCalendar.REGION_NAMES_TOLKIEN,
-            gondorLeftStartDate,
-            gondorRightStartDate,
-            rivendellSyncScheme,
-            rivendellStartDate,
-            rivendellCalendarRules,
-        };
+    const onDateChanged = (currentDate) => {
+        setDate(currentDate);
+    };
 
-        this.onDateChanged = this.onDateChanged.bind(this);
-        this.alignChanged = this.alignChanged.bind(this);
-        this.onShireSyncChange = this.onShireSyncChange.bind(this);
-        this.onShireStartDateChange = this.onShireStartDateChange.bind(this);
-        this.onShireRegionChange = this.onShireRegionChange.bind(this);
-        this.onGondorLeftStartDateChange =
-            this.onGondorLeftStartDateChange.bind(this);
-        this.onGondorRightStartDateChange =
-            this.onGondorRightStartDateChange.bind(this);
-        this.onRivendellSyncChange = this.onRivendellSyncChange.bind(this);
-        this.onRivendellStartDateChange =
-            this.onRivendellStartDateChange.bind(this);
-        this.onRivendellRulesChange = this.onRivendellRulesChange.bind(this);
-    }
+    const alignChanged = (event) => {
+        const checked = event.target.checked;
 
-    onDateChanged(currentDate) {
-        this.setState({ date: currentDate });
-    }
+        setShireAlign(event.target.value === "shire" && checked);
+        setRivendellAlign(event.target.value === "rivendell" && checked);
+    };
 
-    alignChanged(event) {
-        let checked = event.target.checked;
-        let shireAlign = event.target.value === "shire" && checked;
-        let rivendellAlign = event.target.value === "rivendell" && checked;
-
-        this.setState({
-            shireAlign,
-            rivendellAlign,
-        });
-    }
-
-    onShireSyncChange(event) {
+    const onShireSyncChange = (event) => {
         const shireSyncScheme = event.target.value;
 
-        let {
-            shireStartDate,
-            shireRegion,
-            gondorLeftStartDate,
-            gondorRightStartDate,
-            rivendellStartDate,
-            rivendellSyncScheme,
-        } = this.state;
-
         if (shireSyncScheme > 0) {
-            shireStartDate = SyncShireCalendar[shireSyncScheme].startDate;
+            const shireStartDate = SyncShireCalendar[shireSyncScheme].startDate;
 
             if (parseInt(shireSyncScheme, 10) === 4) {
-                shireRegion = ShireCalendar.REGION_NAMES_SHIRE;
+                setShireRegion(ShireCalendar.REGION_NAMES_SHIRE);
             }
 
-            gondorLeftStartDate = new Date(shireStartDate);
-            gondorRightStartDate = new Date(shireStartDate);
+            setGondorLeftStartDate(new Date(shireStartDate));
+            setGondorRightStartDate(new Date(shireStartDate));
 
-            rivendellStartDate = adjustRivendellAprilSyncScheme(
-                shireStartDate,
-                rivendellStartDate,
-                rivendellSyncScheme
+            setRivendellStartDate(
+                adjustRivendellAprilSyncScheme(
+                    shireStartDate,
+                    rivendellStartDate,
+                    rivendellSyncScheme
+                )
             );
+
+            setShireStartDate(shireStartDate);
         }
 
-        this.setState({
-            shireSyncScheme,
-            shireStartDate,
-            shireRegion,
-            gondorLeftStartDate,
-            gondorRightStartDate,
-            rivendellStartDate,
-        });
-    }
+        setShireSyncScheme(shireSyncScheme);
+    };
 
-    onShireStartDateChange(shireStartDate) {
-        const { gondorLeftStartDate, gondorRightStartDate } = this.state;
-        this.adjustShireSyncScheme(
+    const onShireStartDateChange = (shireStartDate) => {
+        adjustShireSyncScheme(
             shireStartDate,
             gondorLeftStartDate,
             gondorRightStartDate
         );
-    }
+    };
 
-    onGondorLeftStartDateChange(gondorLeftStartDate) {
-        const { shireStartDate, gondorRightStartDate } = this.state;
-        this.adjustShireSyncScheme(
+    const onGondorLeftStartDateChange = (gondorLeftStartDate) => {
+        adjustShireSyncScheme(
             shireStartDate,
             gondorLeftStartDate,
             gondorRightStartDate
         );
-    }
+    };
 
-    onGondorRightStartDateChange(gondorRightStartDate) {
-        const { shireStartDate, gondorLeftStartDate } = this.state;
-        this.adjustShireSyncScheme(
+    const onGondorRightStartDateChange = (gondorRightStartDate) => {
+        adjustShireSyncScheme(
             shireStartDate,
             gondorLeftStartDate,
             gondorRightStartDate
         );
-    }
+    };
 
-    adjustShireSyncScheme(
+    const adjustShireSyncScheme = (
         shireStartDate,
         gondorLeftStartDate,
         gondorRightStartDate
-    ) {
+    ) => {
         let shireSyncScheme = SyncShireCalendar.findIndex(
             (syncScheme) =>
                 syncScheme.startDate
@@ -277,236 +240,197 @@ export class TolkienCalendarsExample extends Component {
             shireSyncScheme = 0;
         }
 
-        let { rivendellStartDate } = this.state;
-
-        rivendellStartDate = adjustRivendellAprilSyncScheme(
-            shireStartDate,
-            rivendellStartDate,
-            this.state.rivendellSyncScheme
+        setRivendellStartDate(
+            adjustRivendellAprilSyncScheme(
+                shireStartDate,
+                rivendellStartDate,
+                rivendellSyncScheme
+            )
         );
 
-        this.setState({
-            shireStartDate,
-            gondorLeftStartDate,
-            gondorRightStartDate,
-            shireSyncScheme,
-            rivendellStartDate,
-        });
-    }
+        setShireStartDate(shireStartDate);
+        setGondorLeftStartDate(gondorLeftStartDate);
+        setGondorRightStartDate(gondorRightStartDate);
+        setShireSyncScheme(shireSyncScheme);
+    };
 
-    onShireRegionChange(event) {
-        this.setState({ shireRegion: event.target.value });
-    }
+    const onShireRegionChange = (event) => {
+        setShireRegion(event.target.value);
+    };
 
-    onRivendellSyncChange(event) {
+    const onRivendellSyncChange = (event) => {
         const rivendellSyncScheme = event.target.value;
-        let { rivendellStartDate, rivendellCalendarRules } = this.state;
 
         if (rivendellSyncScheme > 0) {
             const syncScheme = SyncRivendellCalendar[rivendellSyncScheme];
-            rivendellStartDate = syncScheme.startDate;
-            rivendellCalendarRules = syncScheme.calendarRules;
+            setRivendellStartDate(syncScheme.startDate);
+            setRivendellCalendarRules(syncScheme.calendarRules);
         }
 
-        this.setState({
-            rivendellSyncScheme,
-            rivendellStartDate,
-            rivendellCalendarRules,
-        });
-    }
+        setRivendellSyncScheme(rivendellSyncScheme);
+    };
 
-    onRivendellStartDateChange(rivendellStartDate) {
-        const { rivendellCalendarRules } = this.state;
+    const onRivendellStartDateChange = (rivendellStartDate) => {
         const rivendellSyncScheme = findRivendellSyncIndex(
             rivendellStartDate,
             rivendellCalendarRules
         );
 
-        this.setState({
-            rivendellStartDate,
-            rivendellSyncScheme,
-        });
-    }
+        setRivendellStartDate(rivendellStartDate);
+        setRivendellSyncScheme(rivendellSyncScheme);
+    };
 
-    onRivendellRulesChange(event) {
+    const onRivendellRulesChange = (event) => {
         const rivendellCalendarRules = event.target.value;
         const rivendellSyncScheme = findRivendellSyncIndex(
-            this.state.rivendellStartDate,
+            rivendellStartDate,
             rivendellCalendarRules
         );
 
-        this.setState({
-            rivendellCalendarRules,
-            rivendellSyncScheme,
-        });
+        setRivendellCalendarRules(rivendellCalendarRules);
+        setRivendellSyncScheme(rivendellSyncScheme);
+    };
+
+    let shireCellClassName = "";
+    if (shireAlign) {
+        shireCellClassName = " align-shire-calendar";
+    }
+    let rivendellCellClassName = "";
+    if (rivendellAlign) {
+        rivendellCellClassName = " align-rivendell-calendar";
     }
 
-    render() {
-        const {
-            date: currentDate,
-            shireAlign,
-            rivendellAlign,
-            shireSyncScheme,
-            shireStartDate,
-            shireRegion,
-            gondorLeftStartDate,
-            gondorRightStartDate,
-            rivendellSyncScheme,
-            rivendellStartDate,
-            rivendellCalendarRules,
-        } = this.state;
-
-        let shireCellClassName = "";
-        if (shireAlign) {
-            shireCellClassName = " align-shire-calendar";
-        }
-        let rivendellCellClassName = "";
-        if (rivendellAlign) {
-            rivendellCellClassName = " align-rivendell-calendar";
-        }
-
-        const shireSyncOptions = SyncShireCalendar.map((sync, i) => {
-            return (
-                <option key={i} value={i}>
-                    {sync.label}
-                </option>
-            );
-        });
-
-        const rivendellSyncOptions = SyncRivendellCalendar.map((sync, i) => {
-            return (
-                <option key={i} value={i}>
-                    {sync.subtitle
-                        ? `${sync.label} (${sync.subtitle}).`
-                        : sync.label}
-                </option>
-            );
-        });
-
+    const shireSyncOptions = SyncShireCalendar.map((sync, i) => {
         return (
-            <table>
-                <tbody>
-                    <tr>
-                        <td colSpan="2">
-                            <DatePicker
-                                date={currentDate}
-                                onDateChanged={this.onDateChanged}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th className="sync-calendar-controls">
-                            Synchronize
-                            <br />
-                            <select
-                                value={shireSyncScheme}
-                                onChange={this.onShireSyncChange}
-                            >
-                                {shireSyncOptions}
-                            </select>
-                        </th>
-                        <th className="sync-calendar-controls">
-                            Synchronize
-                            <br />
-                            <select
-                                value={rivendellSyncScheme}
-                                onChange={this.onRivendellSyncChange}
-                            >
-                                {rivendellSyncOptions}
-                            </select>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <input
-                                type="checkbox"
-                                value="shire"
-                                checked={shireAlign}
-                                onChange={this.alignChanged}
-                            />
-                            Try to align Shire Year with Rivendell Year?
-                        </th>
-                        <th>
-                            <input
-                                type="checkbox"
-                                value="rivendell"
-                                checked={rivendellAlign}
-                                onChange={this.alignChanged}
-                            />
-                            Try to align Rivendell Year with Shire Year?
-                        </th>
-                    </tr>
-                    <tr>
-                        <td
-                            style={CalendarCellStyle}
-                            className={shireCellClassName}
-                        >
-                            <ShireCalendarWithControls
-                                region={shireRegion}
-                                monthViewLayout={
-                                    ShireCalendar.MONTH_VIEW_HORIZONTAL
-                                }
-                                date={currentDate}
-                                startDate={shireStartDate}
-                                onCalendarStartChange={
-                                    this.onShireStartDateChange
-                                }
-                                onRegionChange={this.onShireRegionChange}
-                                className="shire-calendar"
-                                yearView={shireAlign || rivendellAlign}
-                            />
-                        </td>
-                        <td
-                            style={CalendarCellStyle}
-                            className={rivendellCellClassName}
-                        >
-                            <RivendellCalendarWithControls
-                                date={currentDate}
-                                startDate={rivendellStartDate}
-                                calendarRules={rivendellCalendarRules}
-                                onCalendarStartChange={
-                                    this.onRivendellStartDateChange
-                                }
-                                onCalendarRulesChange={
-                                    this.onRivendellRulesChange
-                                }
-                                className="shire-calendar rivendell-calendar"
-                                yearView={shireAlign || rivendellAlign}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style={CalendarCellStyle}>
-                            <GondorCalendarWithControls
-                                language={GondorCalendar.LANGUAGE_ENGLISH}
-                                monthViewLayout={
-                                    GondorCalendar.MONTH_VIEW_HORIZONTAL
-                                }
-                                date={currentDate}
-                                startDate={gondorLeftStartDate}
-                                onCalendarStartChange={
-                                    this.onGondorLeftStartDateChange
-                                }
-                                className="shire-calendar gondor-calendar stewards-calendar"
-                            />
-                        </td>
-                        <td style={CalendarCellStyle}>
-                            <GondorCalendarWithControls
-                                reckoning={GondorCalendar.RECKONING_NEW}
-                                date={currentDate}
-                                startDate={gondorRightStartDate}
-                                onCalendarStartChange={
-                                    this.onGondorRightStartDateChange
-                                }
-                                className="shire-calendar gondor-calendar new-reckoning-calendar"
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <option key={i} value={i}>
+                {sync.label}
+            </option>
         );
-    }
-}
+    });
+
+    const rivendellSyncOptions = SyncRivendellCalendar.map((sync, i) => {
+        return (
+            <option key={i} value={i}>
+                {sync.subtitle
+                    ? `${sync.label} (${sync.subtitle}).`
+                    : sync.label}
+            </option>
+        );
+    });
+
+    return (
+        <table>
+            <tbody>
+                <tr>
+                    <td colSpan="2">
+                        <DatePicker
+                            date={currentDate}
+                            onDateChanged={onDateChanged}
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th className="sync-calendar-controls">
+                        Synchronize
+                        <br />
+                        <select
+                            value={shireSyncScheme}
+                            onChange={onShireSyncChange}
+                        >
+                            {shireSyncOptions}
+                        </select>
+                    </th>
+                    <th className="sync-calendar-controls">
+                        Synchronize
+                        <br />
+                        <select
+                            value={rivendellSyncScheme}
+                            onChange={onRivendellSyncChange}
+                        >
+                            {rivendellSyncOptions}
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <input
+                            type="checkbox"
+                            value="shire"
+                            checked={shireAlign}
+                            onChange={alignChanged}
+                        />
+                        Try to align Shire Year with Rivendell Year?
+                    </th>
+                    <th>
+                        <input
+                            type="checkbox"
+                            value="rivendell"
+                            checked={rivendellAlign}
+                            onChange={alignChanged}
+                        />
+                        Try to align Rivendell Year with Shire Year?
+                    </th>
+                </tr>
+                <tr>
+                    <td
+                        style={CalendarCellStyle}
+                        className={shireCellClassName}
+                    >
+                        <ShireCalendarWithControls
+                            region={shireRegion}
+                            monthViewLayout={
+                                ShireCalendar.MONTH_VIEW_HORIZONTAL
+                            }
+                            date={currentDate}
+                            startDate={shireStartDate}
+                            onCalendarStartChange={onShireStartDateChange}
+                            onRegionChange={onShireRegionChange}
+                            className="shire-calendar"
+                            yearView={shireAlign || rivendellAlign}
+                        />
+                    </td>
+                    <td
+                        style={CalendarCellStyle}
+                        className={rivendellCellClassName}
+                    >
+                        <RivendellCalendarWithControls
+                            date={currentDate}
+                            startDate={rivendellStartDate}
+                            calendarRules={rivendellCalendarRules}
+                            onCalendarStartChange={onRivendellStartDateChange}
+                            onCalendarRulesChange={onRivendellRulesChange}
+                            className="shire-calendar rivendell-calendar"
+                            yearView={shireAlign || rivendellAlign}
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td style={CalendarCellStyle}>
+                        <GondorCalendarWithControls
+                            language={GondorCalendar.LANGUAGE_ENGLISH}
+                            monthViewLayout={
+                                GondorCalendar.MONTH_VIEW_HORIZONTAL
+                            }
+                            date={currentDate}
+                            startDate={gondorLeftStartDate}
+                            onCalendarStartChange={onGondorLeftStartDateChange}
+                            className="shire-calendar gondor-calendar stewards-calendar"
+                        />
+                    </td>
+                    <td style={CalendarCellStyle}>
+                        <GondorCalendarWithControls
+                            reckoning={GondorCalendar.RECKONING_NEW}
+                            date={currentDate}
+                            startDate={gondorRightStartDate}
+                            onCalendarStartChange={onGondorRightStartDateChange}
+                            className="shire-calendar gondor-calendar new-reckoning-calendar"
+                        />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    );
+};
 
 const srcStyle = {
     border: "1px solid",
@@ -619,3 +543,5 @@ export default {
 export const WithSynchronizationSettings = {
     name: "with Synchronization settings",
 };
+
+export { TolkienCalendarsExample };
