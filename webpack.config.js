@@ -56,6 +56,7 @@ const config = {
             {
                 test: /\.ts(x)?$/,
                 loader: "ts-loader",
+                options: { configFile: "tsconfig.lib.json" },
                 exclude: /node_modules/,
             },
         ],
