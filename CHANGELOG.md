@@ -1,3 +1,8 @@
+## 5.0.0 (beta) (2023-08-06)
+
+* The library has been rewritten in Typescript and should be fully compatible (without warnings) with React v18!
+* There are no breaking changes so far, and the API should be backwards compatible with v4.0.6, but that could change during the Beta phase.
+
 ## 4.0.0 (2019-09-22)
 
 * **BREAKING:** Upgraded React dependency to version `16.8.6`
