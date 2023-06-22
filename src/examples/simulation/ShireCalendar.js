@@ -2,10 +2,10 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 
 import { makeShireCalendarDates, ShireMonths } from "../../ShireReckoning";
-import { RECKONING_RULES_TRADITIONAL } from "../../GondorReckoning";
+import { GondorLeapYearRuleEnum } from "../../GondorReckoning";
 import { datesMatch, fullYearDate, getFirstDay, getLastDay } from "../../Utils";
 
 import ShireCalendar from "../../ui/ShireCalendar";
@@ -17,203 +17,175 @@ import ShireRegionPicker from "../controls/ShireRegionPicker";
 
 import StartReckoningDatePicker from "./StartReckoningDatePicker";
 
-class ShireCalendarSimulated extends Component {
-    constructor(props) {
-        super(props);
+const defaultStartDate = fullYearDate(0, 11, 23);
 
-        const today = props.date || new Date();
-        const startDate = props.startDate || fullYearDate(0, 11, 23);
+const ShireCalendarSimulated = (props) => {
+    const { className, onCalendarStartChange } = props;
 
-        const calendar = makeShireCalendarDates(
+    const [yearView, setYearView] = React.useState(false);
+    const [monthViewLayout, setMonthViewLayout] = React.useState(
+        MonthViewLayout.VERTICAL
+    );
+    const [region, setRegion] = React.useState(
+        ShireCalendar.REGION_NAMES_SHIRE
+    );
+
+    const nextDate = props.date || new Date();
+    const [today, setToday] = React.useState(nextDate);
+    const [viewDate, setViewDate] = React.useState(today);
+
+    const nextStartDate = props.startDate || defaultStartDate;
+    const [startDate, setStartDate] = React.useState(nextStartDate);
+
+    const [calendar, setCalendar] = React.useState(() =>
+        makeShireCalendarDates(
             today,
             startDate,
-            RECKONING_RULES_TRADITIONAL
-        );
-        const monthView = calendar.todayShire.month;
+            GondorLeapYearRuleEnum.TRADITIONAL
+        )
+    );
+    const [monthView, setMonthView] = React.useState(calendar.todayShire.month);
 
-        this.state = {
-            startDate,
-            today,
-            viewDate: today,
-            calendar,
-            yearView: false,
-            monthView,
-            monthViewLayout: MonthViewLayout.VERTICAL,
-            region: ShireCalendar.REGION_NAMES_SHIRE,
-        };
-
-        this.onMonthViewChange = this.onMonthViewChange.bind(this);
-        this.onMonthViewLayoutChange = this.onMonthViewLayoutChange.bind(this);
-        this.onRegionChange = this.onRegionChange.bind(this);
+    const updateToday = !datesMatch(today, nextDate);
+    if (updateToday) {
+        setToday(nextDate);
+        setViewDate(nextDate);
     }
 
-    componentWillReceiveProps(nextProps) {
-        const today = nextProps.date || this.state.today;
-        const startDate = nextProps.startDate || this.state.startDate;
-        let calendar = this.state.calendar;
+    const updateStartDate = !datesMatch(startDate, nextStartDate);
+    if (updateStartDate) {
+        setStartDate(nextStartDate);
+    }
 
-        if (
-            !datesMatch(startDate, this.state.startDate)
-            || !datesMatch(today, this.state.today)
-            || !datesMatch(today, calendar.today)
-        ) {
-            calendar = makeShireCalendarDates(
-                today,
+    if (updateToday || updateStartDate) {
+        const nextCalendar = makeShireCalendarDates(
+            nextDate,
+            nextStartDate,
+            GondorLeapYearRuleEnum.TRADITIONAL
+        );
+        setCalendar(nextCalendar);
+        setMonthView(nextCalendar.todayShire.month);
+    }
+
+    const onMonthViewChange = (nextViewDate, monthView, yearView) => {
+        setMonthView(monthView);
+        setYearView(yearView);
+
+        if (!datesMatch(viewDate, nextViewDate)) {
+            const nextCalendar = makeShireCalendarDates(
+                nextViewDate,
                 startDate,
-                RECKONING_RULES_TRADITIONAL
+                GondorLeapYearRuleEnum.TRADITIONAL
             );
+            setCalendar(nextCalendar);
+            setMonthView(nextCalendar.todayShire.month);
+            setViewDate(nextViewDate);
         }
+    };
 
-        const monthView = calendar.todayShire.month;
+    const onMonthViewLayoutChange = (event) => {
+        setMonthViewLayout(event.target.value);
+    };
 
-        this.setState({
-            today,
-            viewDate: today,
-            calendar,
-            startDate,
-            monthView,
-        });
+    const onRegionChange = (event) => {
+        setRegion(event.target.value);
+    };
+
+    let reckoningName = "Shire";
+    let reckoningYearOffset = 1600;
+    if (region === ShireCalendar.REGION_NAMES_BREE) {
+        reckoningName = "Bree";
+        reckoningYearOffset = 1299;
     }
 
-    onMonthViewChange(viewDate, monthView, yearView) {
-        let calendar = this.state.calendar;
+    const thirdAgeYear = calendar.year - 3441;
 
-        if (!datesMatch(this.state.viewDate, viewDate)) {
-            calendar = makeShireCalendarDates(
-                viewDate,
-                this.state.startDate,
-                RECKONING_RULES_TRADITIONAL
-            );
-            monthView = calendar.todayShire.month;
-        }
+    const reckoningYear = thirdAgeYear - reckoningYearOffset;
+    const caption = `${reckoningName} Reckoning ${reckoningYear}`;
 
-        this.setState({
-            calendar,
-            viewDate,
-            yearView,
-            monthView,
-        });
+    const astron6 = calendar.dates[96];
+    let blotmath2 = calendar.dates[305];
+    if (blotmath2.day === 1) {
+        // leap-year
+        blotmath2 = calendar.dates[306];
+    } else if (blotmath2.day === 30) {
+        // millennial leap-year
+        blotmath2 = calendar.dates[307];
     }
 
-    onMonthViewLayoutChange(event) {
-        this.setState({ monthViewLayout: event.target.value });
+    if (thirdAgeYear < 3020) {
+        // Force these days to the month's default colors, since they are not holidays until at least S.R. 1420.
+        astron6.className = ShireMonths[3].className;
+        blotmath2.className = ShireMonths[10].className;
+    } else {
+        delete astron6.className;
+        delete blotmath2.className;
     }
 
-    onRegionChange(event) {
-        this.setState({ region: event.target.value });
-    }
+    const months = ShireMonths.map(function (month) {
+        return { emoji: month.emoji, name: month[region] };
+    });
 
-    render() {
-        const { className, onCalendarStartChange } = this.props;
-        const {
-            calendar,
-            monthView,
-            monthViewLayout,
-            region,
-            startDate,
-            today,
-            viewDate,
-            yearView,
-        } = this.state;
+    const firstDay = getFirstDay(calendar);
+    const lastDay = getLastDay(calendar);
 
-        let reckoningName = "Shire";
-        let reckoningYearOffset = 1600;
-        if (region === ShireCalendar.REGION_NAMES_BREE) {
-            reckoningName = "Bree";
-            reckoningYearOffset = 1299;
-        }
-
-        const thirdAgeYear = calendar.year - 3441;
-
-        const reckoningYear = thirdAgeYear - reckoningYearOffset;
-        const caption = `${reckoningName} Reckoning ${reckoningYear}`;
-
-        const astron6 = calendar.dates[96];
-        let blotmath2 = calendar.dates[305];
-        if (blotmath2.day === 1) {
-            // leap-year
-            blotmath2 = calendar.dates[306];
-        } else if (blotmath2.day === 30) {
-            // millennial leap-year
-            blotmath2 = calendar.dates[307];
-        }
-
-        if (thirdAgeYear < 3020) {
-            // Force these days to the month's default colors, since they are not holidays until at least S.R. 1420.
-            astron6.className = ShireMonths[3].className;
-            blotmath2.className = ShireMonths[10].className;
-        } else {
-            delete astron6.className;
-            delete blotmath2.className;
-        }
-
-        const months = ShireMonths.map(function (month) {
-            return { emoji: month.emoji, name: month[region] };
-        });
-
-        const firstDay = getFirstDay(calendar);
-        const lastDay = getLastDay(calendar);
-
-        return (
-            <table className={className}>
-                <caption className="shire-caption">{caption}</caption>
-                <thead>
-                    <tr>
-                        <th className="shire-calendar-controls">
-                            <StartReckoningDatePicker
-                                startDate={startDate}
-                                onCalendarStartChange={onCalendarStartChange}
-                            />
-                        </th>
-                        <th className="shire-calendar-controls month-picker-container">
-                            <MonthViewPicker
-                                months={months}
-                                firstDay={firstDay}
-                                lastDay={lastDay}
-                                thisMonth={calendar.todayShire.month}
-                                today={today}
-                                viewDate={viewDate}
-                                monthView={monthView}
-                                yearView={yearView}
-                                onMonthViewChange={this.onMonthViewChange}
-                            />
-                        </th>
-                        <th className="shire-calendar-controls">
-                            Reckon with:
-                            <br />
-                            <ShireRegionPicker
-                                region={region}
-                                onRegionChange={this.onRegionChange}
-                            />
-                        </th>
-                        <th className="shire-calendar-controls">
-                            <MonthViewLayout
-                                layout={monthViewLayout}
-                                onMonthViewLayoutChange={
-                                    this.onMonthViewLayoutChange
-                                }
-                            />
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colSpan="4" className="shire-calendar-wrapper-cell">
-                            <ShireCalendar
-                                className="shire-calendar"
-                                calendar={calendar}
-                                date={today}
-                                region={region}
-                                monthViewLayout={monthViewLayout}
-                                monthView={monthView}
-                                yearView={yearView}
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        );
-    }
-}
+    return (
+        <table className={className}>
+            <caption className="shire-caption">{caption}</caption>
+            <thead>
+                <tr>
+                    <th className="shire-calendar-controls">
+                        <StartReckoningDatePicker
+                            startDate={startDate}
+                            onCalendarStartChange={onCalendarStartChange}
+                        />
+                    </th>
+                    <th className="shire-calendar-controls month-picker-container">
+                        <MonthViewPicker
+                            months={months}
+                            firstDay={firstDay}
+                            lastDay={lastDay}
+                            thisMonth={calendar.todayShire.month}
+                            today={today}
+                            viewDate={viewDate}
+                            monthView={monthView}
+                            yearView={yearView}
+                            onMonthViewChange={onMonthViewChange}
+                        />
+                    </th>
+                    <th className="shire-calendar-controls">
+                        Reckon with:
+                        <br />
+                        <ShireRegionPicker
+                            region={region}
+                            onRegionChange={onRegionChange}
+                        />
+                    </th>
+                    <th className="shire-calendar-controls">
+                        <MonthViewLayout
+                            layout={monthViewLayout}
+                            onMonthViewLayoutChange={onMonthViewLayoutChange}
+                        />
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colSpan="4" className="shire-calendar-wrapper-cell">
+                        <ShireCalendar
+                            className="shire-calendar"
+                            calendar={calendar}
+                            date={today}
+                            region={region}
+                            monthViewLayout={monthViewLayout}
+                            monthView={monthView}
+                            yearView={yearView}
+                        />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    );
+};
 
 export default ShireCalendarSimulated;
