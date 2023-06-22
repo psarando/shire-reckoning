@@ -2,14 +2,13 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 
 import {
-    TRADITIONAL_RULES,
-    REFORMED_RULES,
     RivendellWeekdays,
     RivendellMonths,
     RivendellHolidays,
+    RivendellRulesEnum,
     makeRivendellCalendarDates,
 } from "../RivendellReckoning";
 
@@ -209,186 +208,121 @@ const RivendellYear = ({ dates, today, language }) => {
     return weeks;
 };
 
-class RivendellCalendar extends Component {
-    static get TRADITIONAL_RULES() {
-        return TRADITIONAL_RULES;
-    }
-    static get REFORMED_RULES() {
-        return REFORMED_RULES;
-    }
+const RivendellCalendar = (props) => {
+    const { caption, className } = props;
 
-    static get LANGUAGE_ENGLISH() {
-        return ENGLISH;
-    }
-    static get LANGUAGE_QUENYA() {
-        return QUENYA;
-    }
-    static get LANGUAGE_SINDARIN() {
-        return SINDARIN;
-    }
+    const language = props.language || QUENYA;
+    const yearView = !!props.yearView;
+    const monthViewLayout = props.monthViewLayout || HORIZONTAL;
 
-    static get MONTH_VIEW_VERTICAL() {
-        return VERTICAL;
-    }
-    static get MONTH_VIEW_HORIZONTAL() {
-        return HORIZONTAL;
-    }
+    const [today, setToday] = React.useState(props.date || new Date());
 
-    constructor(props) {
-        super(props);
+    const [calendarRules, setCalendarRules] = React.useState(
+        props.calendarRules || RivendellRulesEnum.TRADITIONAL
+    );
 
-        const language = props.language || QUENYA;
-        const monthViewLayout = props.monthViewLayout || HORIZONTAL;
-        const calendarRules = props.calendarRules || TRADITIONAL_RULES;
-        const startDay = props.startDay || 22;
-        const startDate = props.startDate || fullYearDate(1, 2, startDay);
-        const today = props.date || new Date();
+    const startDay = props.startDay || 22;
+    const [startDate, setStartDate] = React.useState(
+        props.startDate || fullYearDate(1, 2, startDay)
+    );
 
-        const calendar =
+    const [calendar, setCalendar] = React.useState(
+        props.calendar
+            || makeRivendellCalendarDates(today, startDate, calendarRules)
+    );
+
+    React.useEffect(() => {
+        const newDate = props.date || new Date();
+        if (!datesMatch(today, newDate)) {
+            setToday(newDate);
+        }
+    }, [props.date]);
+
+    React.useEffect(() => {
+        const newStartDate = props.startDate || fullYearDate(1, 2, startDay);
+        if (!datesMatch(startDate, newStartDate)) {
+            setStartDate(newStartDate);
+        }
+    }, [props.startDate, props.startDay]);
+
+    React.useEffect(() => {
+        setCalendarRules(props.calendarRules || RivendellRulesEnum.TRADITIONAL);
+    }, [props.calendarRules]);
+
+    React.useEffect(() => {
+        setCalendar(
             props.calendar
-            || makeRivendellCalendarDates(today, startDate, calendarRules);
-        const monthView =
-            props.monthView === undefined
-                ? calendar.todayRivendell.month
-                : props.monthView;
-        const yearView = !!props.yearView;
-
-        this.state = {
-            calendar,
-            today,
-            yearView,
-            monthView,
-            monthViewLayout,
-            calendarRules,
-            startDate,
-            language,
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const today = nextProps.date || this.state.today;
-        const language = nextProps.language || this.state.language;
-        const monthViewLayout =
-            nextProps.monthViewLayout || this.state.monthViewLayout;
-        const calendarRules =
-            nextProps.calendarRules || this.state.calendarRules;
-        const yearView =
-            nextProps.yearView === undefined
-                ? this.state.yearView
-                : nextProps.yearView;
-
-        let startDate = nextProps.startDate || this.state.startDate;
-        let calendar = this.state.calendar;
-        let monthView = this.state.monthView;
-
-        if (nextProps.startDay && !nextProps.startDate) {
-            startDate = new Date(startDate);
-            startDate.setDate(nextProps.startDay);
-        }
-
-        if (nextProps.calendar) {
-            calendar = nextProps.calendar;
-        } else if (
-            calendarRules !== this.state.calendarRules
-            || !datesMatch(startDate, this.state.startDate)
-            || !datesMatch(today, this.state.today)
-            || !datesMatch(today, calendar.today)
-        ) {
-            calendar = makeRivendellCalendarDates(
-                today,
-                startDate,
-                calendarRules
-            );
-            monthView = calendar.todayRivendell.month;
-        }
-
-        monthView =
-            nextProps.monthView === undefined ? monthView : nextProps.monthView;
-
-        this.setState({
-            today,
-            calendar,
-            calendarRules,
-            startDate,
-            language,
-            monthViewLayout,
-            monthView,
-            yearView,
-        });
-    }
-
-    render() {
-        const { caption, className } = this.props;
-        const {
-            calendar: { dates },
-            language,
-            monthView,
-            monthViewLayout,
-            today,
-            yearView,
-        } = this.state;
-
-        let weekDayHeader = (
-            <tr>
-                {RivendellWeekdays.map(function (weekday) {
-                    let weekdayName = weekday[language];
-                    return (
-                        <WeekDayHeaderCell
-                            key={weekdayName}
-                            emoji={weekday.emoji}
-                            name={weekdayName}
-                            description={weekday.description}
-                            scope="col"
-                        />
-                    );
-                })}
-            </tr>
+                || makeRivendellCalendarDates(today, startDate, calendarRules)
         );
+    }, [props.calendar, today, startDate, calendarRules]);
 
-        let weeks;
-        if (yearView) {
-            weeks = (
-                <RivendellYear
-                    dates={dates}
-                    today={today}
-                    language={language}
-                />
-            );
-        } else if (monthViewLayout === VERTICAL) {
-            weeks = (
-                <RivendellMonthVertical
-                    monthView={monthView}
-                    dates={dates}
-                    today={today}
-                    language={language}
-                />
-            );
-            weekDayHeader = (
-                <VerticalLayoutFiller weekdays={RivendellWeekdays} />
-            );
-        } else {
-            weeks = (
-                <RivendellMonth
-                    monthView={monthView}
-                    dates={dates}
-                    today={today}
-                    language={language}
-                />
-            );
-        }
+    const { dates, todayRivendell } = calendar;
 
-        return (
-            <table className={className}>
-                {caption && (
-                    <caption className="rivendell-caption">
-                        {caption === true ? "Rivendell Reckoning" : caption}
-                    </caption>
+    const monthView =
+        props.monthView === undefined ? todayRivendell.month : props.monthView;
+
+    return (
+        <table className={className}>
+            {caption && (
+                <caption className="rivendell-caption">
+                    {caption === true ? "Rivendell Reckoning" : caption}
+                </caption>
+            )}
+            <thead>
+                {monthViewLayout === VERTICAL && !yearView ? (
+                    <VerticalLayoutFiller weekdays={RivendellWeekdays} />
+                ) : (
+                    <tr>
+                        {RivendellWeekdays.map(function (weekday) {
+                            let weekdayName = weekday[language];
+                            return (
+                                <WeekDayHeaderCell
+                                    key={weekdayName}
+                                    emoji={weekday.emoji}
+                                    name={weekdayName}
+                                    description={weekday.description}
+                                    scope="col"
+                                />
+                            );
+                        })}
+                    </tr>
                 )}
-                <thead>{weekDayHeader}</thead>
-                <tbody>{weeks}</tbody>
-            </table>
-        );
-    }
-}
+            </thead>
+            <tbody>
+                {yearView ? (
+                    <RivendellYear
+                        dates={dates}
+                        today={today}
+                        language={language}
+                    />
+                ) : monthViewLayout === VERTICAL ? (
+                    <RivendellMonthVertical
+                        monthView={monthView}
+                        dates={dates}
+                        today={today}
+                        language={language}
+                    />
+                ) : (
+                    <RivendellMonth
+                        monthView={monthView}
+                        dates={dates}
+                        today={today}
+                        language={language}
+                    />
+                )}
+            </tbody>
+        </table>
+    );
+};
+
+RivendellCalendar.TRADITIONAL_RULES = RivendellRulesEnum.TRADITIONAL;
+RivendellCalendar.REFORMED_RULES = RivendellRulesEnum.REFORMED;
+
+RivendellCalendar.LANGUAGE_ENGLISH = ENGLISH;
+RivendellCalendar.LANGUAGE_QUENYA = QUENYA;
+RivendellCalendar.LANGUAGE_SINDARIN = SINDARIN;
+
+RivendellCalendar.MONTH_VIEW_VERTICAL = VERTICAL;
+RivendellCalendar.MONTH_VIEW_HORIZONTAL = HORIZONTAL;
 
 export default RivendellCalendar;

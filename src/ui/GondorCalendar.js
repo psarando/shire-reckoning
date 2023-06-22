@@ -2,18 +2,15 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 
 import {
     GondorHolidays,
     GondorMonths,
     GondorWeekdays,
+    GondorLeapYearRuleEnum,
+    GondorReckoningEnum,
     makeGondorCalendarDates,
-    RECKONING_KINGS,
-    RECKONING_NEW,
-    RECKONING_RULES_GREGORIAN,
-    RECKONING_RULES_TRADITIONAL,
-    RECKONING_STEWARDS,
 } from "../GondorReckoning";
 
 import { datesMatch, fullYearDate } from "../Utils";
@@ -36,11 +33,11 @@ import {
 
 const defaultCaption = (reckoning) => {
     switch (reckoning) {
-        case RECKONING_KINGS:
+        case GondorReckoningEnum.KINGS:
             return "Kings' Reckoning";
-        case RECKONING_STEWARDS:
+        case GondorReckoningEnum.STEWARDS:
             return "Stewards' Reckoning";
-        case RECKONING_NEW:
+        case GondorReckoningEnum.NEW:
             return "New Reckoning";
         default:
             // should never happen
@@ -53,7 +50,11 @@ const getDateColor = (reckoning, date, monthColor) => {
         return date.className;
     }
 
-    if (reckoning === RECKONING_NEW && date.month === 5 && date.day === 30) {
+    if (
+        reckoning === GondorReckoningEnum.NEW
+        && date.month === 5
+        && date.day === 30
+    ) {
         return "holiday";
     }
 
@@ -81,7 +82,7 @@ const GondorDate = ({ date, today, language, reckoning }) => {
             );
 
         default:
-            const startMonth = reckoning === RECKONING_NEW ? 3 : 0;
+            const startMonth = reckoning === GondorReckoningEnum.NEW ? 3 : 0;
             const month = GondorMonths[(date.month + startMonth) % 12];
             const weekday = GondorWeekdays[date.weekDay];
             const className = getDateColor(reckoning, date, month.className);
@@ -357,210 +358,149 @@ const GondorYear = ({ dates, today, language, reckoning }) => {
     return weeks;
 };
 
-class GondorCalendar extends Component {
-    static get RECKONING_KINGS() {
-        return RECKONING_KINGS;
-    }
-    static get RECKONING_STEWARDS() {
-        return RECKONING_STEWARDS;
-    }
-    static get RECKONING_NEW() {
-        return RECKONING_NEW;
-    }
+const GondorCalendar = (props) => {
+    const { caption, className } = props;
 
-    static get RECKONING_RULES_TRADITIONAL() {
-        return RECKONING_RULES_TRADITIONAL;
-    }
-    static get RECKONING_RULES_GREGORIAN() {
-        return RECKONING_RULES_GREGORIAN;
-    }
+    const language = props.language || QUENYA;
+    const yearView = !!props.yearView;
+    const monthViewLayout = props.monthViewLayout || VERTICAL;
 
-    static get MONTH_VIEW_VERTICAL() {
-        return VERTICAL;
-    }
-    static get MONTH_VIEW_HORIZONTAL() {
-        return HORIZONTAL;
-    }
+    const [today, setToday] = React.useState(props.date || new Date());
 
-    static get LANGUAGE_ENGLISH() {
-        return ENGLISH;
-    }
-    static get LANGUAGE_QUENYA() {
-        return QUENYA;
-    }
-    static get LANGUAGE_SINDARIN() {
-        return SINDARIN;
-    }
+    const [calendarRules, setCalendarRules] = React.useState(
+        props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN
+    );
 
-    constructor(props) {
-        super(props);
+    const [reckoning, setReckoning] = React.useState(
+        props.reckoning || GondorReckoningEnum.STEWARDS
+    );
 
-        const language = props.language || QUENYA;
-        const calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
-        const today = props.date || new Date();
-        const monthViewLayout = props.monthViewLayout || VERTICAL;
-        const reckoning = props.reckoning || RECKONING_STEWARDS;
+    const startDay = props.startDay || 21;
+    const [startDate, setStartDate] = React.useState(
+        props.startDate || fullYearDate(0, 11, startDay)
+    );
 
-        const startDay = props.startDay || 21;
-        const startDate = props.startDate || fullYearDate(0, 11, startDay);
-
-        const calendar =
-            props.calendar
+    const [calendar, setCalendar] = React.useState(
+        props.calendar
             || makeGondorCalendarDates(
                 today,
                 startDate,
                 reckoning,
                 calendarRules
-            );
-        const monthView =
-            props.monthView === undefined
-                ? calendar.todayGondor.month
-                : props.monthView;
-        const yearView = !!props.yearView;
+            )
+    );
 
-        this.state = {
-            startDate,
-            calendar,
-            today,
-            yearView,
-            monthView,
-            monthViewLayout,
-            reckoning,
-            calendarRules,
-            language,
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const today = nextProps.date || this.state.today;
-        const language = nextProps.language || this.state.language;
-        const reckoning = nextProps.reckoning || this.state.reckoning;
-        const monthViewLayout =
-            nextProps.monthViewLayout || this.state.monthViewLayout;
-        const calendarRules =
-            nextProps.calendarRules || this.state.calendarRules;
-        const yearView =
-            nextProps.yearView === undefined
-                ? this.state.yearView
-                : nextProps.yearView;
-
-        let startDate = nextProps.startDate || this.state.startDate;
-        let calendar = this.state.calendar;
-        let monthView = this.state.monthView;
-
-        if (nextProps.startDay && !nextProps.startDate) {
-            startDate = new Date(startDate);
-            startDate.setDate(nextProps.startDay);
+    React.useEffect(() => {
+        const newDate = props.date || new Date();
+        if (!datesMatch(today, newDate)) {
+            setToday(newDate);
         }
+    }, [props.date]);
 
-        if (nextProps.calendar) {
-            calendar = nextProps.calendar;
-        } else if (
-            calendarRules !== this.state.calendarRules
-            || !datesMatch(startDate, this.state.startDate)
-            || !datesMatch(today, this.state.today)
-            || !datesMatch(today, calendar.today)
-        ) {
-            calendar = makeGondorCalendarDates(
-                today,
-                startDate,
-                reckoning,
-                calendarRules
-            );
-            monthView = calendar.todayGondor.month;
+    React.useEffect(() => {
+        const newStartDate = props.startDate || fullYearDate(0, 11, startDay);
+        if (!datesMatch(startDate, newStartDate)) {
+            setStartDate(newStartDate);
         }
+    }, [props.startDate, props.startDay]);
 
-        monthView =
-            nextProps.monthView === undefined ? monthView : nextProps.monthView;
-
-        this.setState({
-            today,
-            calendar,
-            language,
-            calendarRules,
-            reckoning,
-            startDate,
-            monthViewLayout,
-            monthView,
-            yearView,
-        });
-    }
-
-    render() {
-        const { caption, className } = this.props;
-        const {
-            calendar: { dates },
-            language,
-            monthView,
-            monthViewLayout,
-            reckoning,
-            today,
-            yearView,
-        } = this.state;
-
-        let weekDayHeader = (
-            <tr>
-                {GondorWeekdays.map(function (weekday) {
-                    const weekdayName = weekday[language];
-                    return (
-                        <WeekDayHeaderCell
-                            key={weekdayName}
-                            emoji={weekday.emoji}
-                            name={weekdayName}
-                            description={weekday.description}
-                            scope="col"
-                        />
-                    );
-                })}
-            </tr>
+    React.useEffect(() => {
+        setCalendarRules(
+            props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN
         );
+    }, [props.calendarRules]);
 
-        let weeks;
-        if (yearView) {
-            weeks = (
-                <GondorYear
-                    dates={dates}
-                    today={today}
-                    language={language}
-                    reckoning={reckoning}
-                />
-            );
-        } else if (monthViewLayout === VERTICAL) {
-            weeks = (
-                <GondorMonthVertical
-                    monthView={monthView}
-                    dates={dates}
-                    today={today}
-                    language={language}
-                    reckoning={reckoning}
-                />
-            );
-            weekDayHeader = <VerticalLayoutFiller weekdays={GondorWeekdays} />;
-        } else {
-            weeks = (
-                <GondorMonth
-                    monthView={monthView}
-                    dates={dates}
-                    today={today}
-                    language={language}
-                    reckoning={reckoning}
-                />
-            );
-        }
+    React.useEffect(() => {
+        setReckoning(props.reckoning || GondorReckoningEnum.STEWARDS);
+    }, [props.reckoning]);
 
-        return (
-            <table className={className}>
-                {caption && (
-                    <caption className="gondor-caption">
-                        {caption === true ? defaultCaption(reckoning) : caption}
-                    </caption>
+    React.useEffect(() => {
+        setCalendar(
+            props.calendar
+                || makeGondorCalendarDates(
+                    today,
+                    startDate,
+                    reckoning,
+                    calendarRules
+                )
+        );
+    }, [props.calendar, today, startDate, reckoning, calendarRules]);
+
+    const { dates, todayGondor } = calendar;
+
+    const monthView =
+        props.monthView === undefined ? todayGondor.month : props.monthView;
+
+    return (
+        <table className={className}>
+            {caption && (
+                <caption className="gondor-caption">
+                    {caption === true ? defaultCaption(reckoning) : caption}
+                </caption>
+            )}
+            <thead>
+                {monthViewLayout === VERTICAL && !yearView ? (
+                    <VerticalLayoutFiller weekdays={GondorWeekdays} />
+                ) : (
+                    <tr>
+                        {GondorWeekdays.map(function (weekday) {
+                            const weekdayName = weekday[language];
+                            return (
+                                <WeekDayHeaderCell
+                                    key={weekdayName}
+                                    emoji={weekday.emoji}
+                                    name={weekdayName}
+                                    description={weekday.description}
+                                    scope="col"
+                                />
+                            );
+                        })}
+                    </tr>
                 )}
-                <thead>{weekDayHeader}</thead>
-                <tbody>{weeks}</tbody>
-            </table>
-        );
-    }
-}
+            </thead>
+            <tbody>
+                {yearView ? (
+                    <GondorYear
+                        dates={dates}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                ) : monthViewLayout === VERTICAL ? (
+                    <GondorMonthVertical
+                        monthView={monthView}
+                        dates={dates}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                ) : (
+                    <GondorMonth
+                        monthView={monthView}
+                        dates={dates}
+                        today={today}
+                        language={language}
+                        reckoning={reckoning}
+                    />
+                )}
+            </tbody>
+        </table>
+    );
+};
+
+GondorCalendar.RECKONING_KINGS = GondorReckoningEnum.KINGS;
+GondorCalendar.RECKONING_STEWARDS = GondorReckoningEnum.STEWARDS;
+GondorCalendar.RECKONING_NEW = GondorReckoningEnum.NEW;
+
+GondorCalendar.RECKONING_RULES_TRADITIONAL = GondorLeapYearRuleEnum.TRADITIONAL;
+GondorCalendar.RECKONING_RULES_GREGORIAN = GondorLeapYearRuleEnum.GREGORIAN;
+
+GondorCalendar.MONTH_VIEW_VERTICAL = VERTICAL;
+GondorCalendar.MONTH_VIEW_HORIZONTAL = HORIZONTAL;
+
+GondorCalendar.LANGUAGE_ENGLISH = ENGLISH;
+GondorCalendar.LANGUAGE_QUENYA = QUENYA;
+GondorCalendar.LANGUAGE_SINDARIN = SINDARIN;
 
 export default GondorCalendar;
 export { defaultCaption };

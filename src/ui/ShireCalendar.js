@@ -2,17 +2,15 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 
 import {
     ShireWeekdays,
     ShireMonths,
+    ShireRegionEnum,
     makeShireCalendarDates,
-    REGION_NAMES_TOLKIEN,
-    REGION_NAMES_SHIRE,
-    REGION_NAMES_BREE,
 } from "../ShireReckoning";
-import { RECKONING_RULES_GREGORIAN } from "../GondorReckoning";
+import { GondorLeapYearRuleEnum } from "../GondorReckoning";
 import { fullYearDate, datesMatch } from "../Utils";
 
 import DateCell, { dateKey } from "./DateCell";
@@ -35,7 +33,7 @@ const getDateColor = (region, date, monthColor) => {
     }
 
     const isHoliday =
-        region !== REGION_NAMES_BREE
+        region !== ShireRegionEnum.BREE
         && ((date.month === 3 && date.day === 6)
             || (date.month === 10 && date.day === 2));
 
@@ -357,168 +355,115 @@ const ShireYear = ({ today, dates, region }) => {
     return weeks;
 };
 
-class ShireCalendar extends Component {
-    static get REGION_NAMES_TOLKIEN() {
-        return REGION_NAMES_TOLKIEN;
-    }
-    static get REGION_NAMES_SHIRE() {
-        return REGION_NAMES_SHIRE;
-    }
-    static get REGION_NAMES_BREE() {
-        return REGION_NAMES_BREE;
-    }
+const ShireCalendar = (props) => {
+    const { caption, className } = props;
 
-    static get MONTH_VIEW_VERTICAL() {
-        return VERTICAL;
-    }
-    static get MONTH_VIEW_HORIZONTAL() {
-        return HORIZONTAL;
-    }
+    const region = props.region || ShireRegionEnum.SHIRE;
+    const yearView = !!props.yearView;
+    const monthViewLayout = props.monthViewLayout || VERTICAL;
 
-    constructor(props) {
-        super(props);
+    const [today, setToday] = React.useState(props.date || new Date());
 
-        const today = props.date || new Date();
-        const monthViewLayout = props.monthViewLayout || VERTICAL;
-        const region = props.region || REGION_NAMES_SHIRE;
-        const calendarRules = props.calendarRules || RECKONING_RULES_GREGORIAN;
+    const [calendarRules, setCalendarRules] = React.useState(
+        props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN
+    );
 
-        const startDay = props.startDay || 21;
-        const startDate = props.startDate || fullYearDate(0, 11, startDay);
+    const startDay = props.startDay || 21;
+    const [startDate, setStartDate] = React.useState(
+        props.startDate || fullYearDate(0, 11, startDay)
+    );
 
-        const calendar =
+    const [calendar, setCalendar] = React.useState(
+        props.calendar
+            || makeShireCalendarDates(today, startDate, calendarRules)
+    );
+
+    React.useEffect(() => {
+        const newDate = props.date || new Date();
+        if (!datesMatch(today, newDate)) {
+            setToday(newDate);
+        }
+    }, [props.date]);
+
+    React.useEffect(() => {
+        const newStartDate = props.startDate || fullYearDate(0, 11, startDay);
+        if (!datesMatch(startDate, newStartDate)) {
+            setStartDate(newStartDate);
+        }
+    }, [props.startDate, props.startDay]);
+
+    React.useEffect(() => {
+        setCalendarRules(
+            props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN
+        );
+    }, [props.calendarRules]);
+
+    React.useEffect(() => {
+        setCalendar(
             props.calendar
-            || makeShireCalendarDates(today, startDate, calendarRules);
-        const monthView =
-            props.monthView === undefined
-                ? calendar.todayShire.month
-                : props.monthView;
-        const yearView = !!props.yearView;
-
-        this.state = {
-            calendarRules,
-            startDate,
-            today,
-            calendar,
-            yearView,
-            monthView,
-            monthViewLayout,
-            region,
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const today = nextProps.date || this.state.today;
-        const region = nextProps.region || this.state.region;
-        const monthViewLayout =
-            nextProps.monthViewLayout || this.state.monthViewLayout;
-        const calendarRules =
-            nextProps.calendarRules || this.state.calendarRules;
-        const yearView =
-            nextProps.yearView === undefined
-                ? this.state.yearView
-                : nextProps.yearView;
-
-        let startDate = nextProps.startDate || this.state.startDate;
-        let calendar = this.state.calendar;
-        let monthView = this.state.monthView;
-
-        if (nextProps.startDay && !nextProps.startDate) {
-            startDate = new Date(startDate);
-            startDate.setDate(nextProps.startDay);
-        }
-
-        if (nextProps.calendar) {
-            calendar = nextProps.calendar;
-        } else if (
-            calendarRules !== this.state.calendarRules
-            || !datesMatch(startDate, this.state.startDate)
-            || !datesMatch(today, this.state.today)
-            || !datesMatch(today, calendar.today)
-        ) {
-            calendar = makeShireCalendarDates(today, startDate, calendarRules);
-            monthView = calendar.todayShire.month;
-        }
-
-        monthView =
-            nextProps.monthView === undefined ? monthView : nextProps.monthView;
-
-        this.setState({
-            today,
-            calendarRules,
-            calendar,
-            startDate,
-            region,
-            monthViewLayout,
-            monthView,
-            yearView,
-        });
-    }
-
-    render() {
-        const { caption, className } = this.props;
-        const {
-            calendar: { dates },
-            monthView,
-            monthViewLayout,
-            region,
-            today,
-            yearView,
-        } = this.state;
-
-        let weekDayHeader = (
-            <tr>
-                {ShireWeekdays.map(function (weekday) {
-                    const weekdayName = weekday[region];
-                    return (
-                        <WeekDayHeaderCell
-                            key={weekdayName}
-                            emoji={weekday.emoji}
-                            name={weekdayName}
-                            description={weekday.description}
-                            scope="col"
-                        />
-                    );
-                })}
-            </tr>
+                || makeShireCalendarDates(today, startDate, calendarRules)
         );
+    }, [props.calendar, today, startDate, calendarRules]);
 
-        let weeks;
-        if (yearView) {
-            weeks = <ShireYear today={today} dates={dates} region={region} />;
-        } else if (monthViewLayout === VERTICAL) {
-            weeks = (
-                <ShireMonthVertical
-                    monthView={monthView}
-                    today={today}
-                    dates={dates}
-                    region={region}
-                />
-            );
-            weekDayHeader = <VerticalLayoutFiller weekdays={ShireWeekdays} />;
-        } else {
-            weeks = (
-                <ShireMonth
-                    monthView={monthView}
-                    today={today}
-                    dates={dates}
-                    region={region}
-                />
-            );
-        }
+    const { dates, todayShire } = calendar;
 
-        return (
-            <table className={className}>
-                {caption && (
-                    <caption className="shire-caption">
-                        {caption === true ? "Shire Reckoning" : caption}
-                    </caption>
+    const monthView =
+        props.monthView === undefined ? todayShire.month : props.monthView;
+
+    return (
+        <table className={className}>
+            {caption && (
+                <caption className="shire-caption">
+                    {caption === true ? "Shire Reckoning" : caption}
+                </caption>
+            )}
+            <thead>
+                {monthViewLayout === VERTICAL && !yearView ? (
+                    <VerticalLayoutFiller weekdays={ShireWeekdays} />
+                ) : (
+                    <tr>
+                        {ShireWeekdays.map((weekday) => {
+                            const weekdayName = weekday[region];
+                            return (
+                                <WeekDayHeaderCell
+                                    key={weekdayName}
+                                    emoji={weekday.emoji}
+                                    name={weekdayName}
+                                    description={weekday.description}
+                                    scope="col"
+                                />
+                            );
+                        })}
+                    </tr>
                 )}
-                <thead>{weekDayHeader}</thead>
-                <tbody>{weeks}</tbody>
-            </table>
-        );
-    }
-}
+            </thead>
+            <tbody>
+                {yearView ? (
+                    <ShireYear today={today} dates={dates} region={region} />
+                ) : monthViewLayout === VERTICAL ? (
+                    <ShireMonthVertical
+                        monthView={monthView}
+                        today={today}
+                        dates={dates}
+                        region={region}
+                    />
+                ) : (
+                    <ShireMonth
+                        monthView={monthView}
+                        today={today}
+                        dates={dates}
+                        region={region}
+                    />
+                )}
+            </tbody>
+        </table>
+    );
+};
+
+ShireCalendar.REGION_NAMES_TOLKIEN = ShireRegionEnum.TOLKIEN;
+ShireCalendar.REGION_NAMES_SHIRE = ShireRegionEnum.SHIRE;
+ShireCalendar.REGION_NAMES_BREE = ShireRegionEnum.BREE;
+ShireCalendar.MONTH_VIEW_VERTICAL = VERTICAL;
+ShireCalendar.MONTH_VIEW_HORIZONTAL = HORIZONTAL;
 
 export default ShireCalendar;
