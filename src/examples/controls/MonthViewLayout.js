@@ -2,37 +2,30 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 
 import { VERTICAL, HORIZONTAL } from "../../ui/controls/MonthViewLayout";
 
 import "../../ui/tolkien-calendars.css";
 
-class MonthViewLayout extends Component {
-    static get VERTICAL() {
-        return VERTICAL;
-    }
+const MonthViewLayout = ({ layout, onMonthViewLayoutChange }) => {
+    return (
+        <div>
+            Month View:
+            <br />
+            <select
+                className="month-layout-select"
+                value={layout}
+                onChange={onMonthViewLayoutChange}
+            >
+                <option value={VERTICAL}>Vertical</option>
+                <option value={HORIZONTAL}>Horizontal</option>
+            </select>
+        </div>
+    );
+};
 
-    static get HORIZONTAL() {
-        return HORIZONTAL;
-    }
-
-    render() {
-        return (
-            <div>
-                Month View:
-                <br />
-                <select
-                    className="month-layout-select"
-                    value={this.props.layout}
-                    onChange={this.props.onMonthViewLayoutChange}
-                >
-                    <option value={VERTICAL}>Vertical</option>
-                    <option value={HORIZONTAL}>Horizontal</option>
-                </select>
-            </div>
-        );
-    }
-}
+MonthViewLayout.VERTICAL = VERTICAL;
+MonthViewLayout.HORIZONTAL = HORIZONTAL;
 
 export default MonthViewLayout;
