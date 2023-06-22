@@ -3,9 +3,21 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
+
 import { getDateColor, GregorianDateDisplay } from "./DateCell";
 
-const IntercalaryDay = (props) => {
+interface IntercalaryDayProps {
+    currentDate: Date;
+    dayClassName?: string;
+    dayExtra?: string | number;
+    dayExtraClassName?: string;
+    description: string;
+    gregorian: Date;
+    gregorianExtra?: Date;
+    name: string | number;
+}
+
+const IntercalaryDay = (props: IntercalaryDayProps) => {
     const {
         currentDate,
         dayClassName,
@@ -19,7 +31,7 @@ const IntercalaryDay = (props) => {
 
     let dayColor = getDateColor("holiday", gregorian, currentDate);
 
-    if (dayExtra) {
+    if (dayExtra && gregorianExtra) {
         dayColor = getDateColor(dayColor, gregorianExtra, currentDate);
 
         return (

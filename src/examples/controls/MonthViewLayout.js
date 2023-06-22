@@ -4,7 +4,7 @@
  */
 import React from "react";
 
-import { VERTICAL, HORIZONTAL } from "../../ui/controls/MonthViewLayout";
+import { MonthLayoutEnum } from "../../ui/controls/MonthViewLayout";
 
 import "../../ui/tolkien-calendars.css";
 
@@ -18,14 +18,14 @@ const MonthViewLayout = ({ layout, onMonthViewLayoutChange }) => {
                 value={layout}
                 onChange={onMonthViewLayoutChange}
             >
-                <option value={VERTICAL}>Vertical</option>
-                <option value={HORIZONTAL}>Horizontal</option>
+                <option value={MonthLayoutEnum.VERTICAL}>Vertical</option>
+                <option value={MonthLayoutEnum.HORIZONTAL}>Horizontal</option>
             </select>
         </div>
     );
 };
 
-MonthViewLayout.VERTICAL = VERTICAL;
-MonthViewLayout.HORIZONTAL = HORIZONTAL;
+MonthViewLayout.VERTICAL = MonthLayoutEnum.VERTICAL;
+MonthViewLayout.HORIZONTAL = MonthLayoutEnum.HORIZONTAL;
 
 export default MonthViewLayout;

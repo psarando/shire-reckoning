@@ -5,6 +5,8 @@
 import React from "react";
 
 import {
+    GondorCalendarYear,
+    GondorDate,
     GondorHolidays,
     GondorMonths,
     GondorWeekdays,
@@ -23,15 +25,47 @@ import WeekDayHeaderCell, {
 } from "./WeekDayHeaderCell";
 import "./tolkien-calendars.css";
 
-import { ENGLISH, QUENYA, SINDARIN } from "./controls/LanguagePicker";
+import { LanguageEnum } from "./controls/LanguagePicker";
 
 import {
-    HORIZONTAL,
-    VERTICAL,
+    MonthLayoutEnum,
     VerticalLayoutFiller,
 } from "./controls/MonthViewLayout";
 
-const defaultCaption = (reckoning) => {
+interface GondorCalendarProps {
+    caption?: string | boolean;
+    className?: string;
+    language?: LanguageEnum;
+    monthView?: number;
+    monthViewLayout?: MonthLayoutEnum;
+    startDay?: number;
+    yearView?: boolean;
+    date?: Date;
+    startDate?: Date;
+    reckoning?: GondorReckoningEnum;
+    calendarRules?: GondorLeapYearRuleEnum;
+    calendar?: GondorCalendarYear;
+}
+
+interface GondorDateProps {
+    date: GondorDate;
+    today: Date;
+    language: LanguageEnum;
+    reckoning: GondorReckoningEnum;
+}
+
+interface GondorYearProps {
+    dates: GondorDate[];
+    today: Date;
+    language: LanguageEnum;
+    reckoning: GondorReckoningEnum;
+}
+
+interface GondorMonthProps extends GondorYearProps {
+    monthView: number;
+}
+
+const defaultCaption = (reckoning: GondorReckoningEnum) => {
     switch (reckoning) {
         case GondorReckoningEnum.KINGS:
             return "Kings' Reckoning";
@@ -45,7 +79,11 @@ const defaultCaption = (reckoning) => {
     }
 };
 
-const getDateColor = (reckoning, date, monthColor) => {
+const getDateColor = (
+    reckoning: GondorReckoningEnum,
+    date: GondorDate,
+    monthColor: string
+) => {
     if (date.className !== undefined) {
         return date.className;
     }
@@ -61,7 +99,12 @@ const getDateColor = (reckoning, date, monthColor) => {
     return monthColor;
 };
 
-const GondorDate = ({ date, today, language, reckoning }) => {
+const GondorDateCell = ({
+    date,
+    today,
+    language,
+    reckoning,
+}: GondorDateProps) => {
     switch (date.day) {
         case "Yestarë":
         case "Tuilérë":
@@ -101,9 +144,15 @@ const GondorDate = ({ date, today, language, reckoning }) => {
     }
 };
 
-const GondorMonth = ({ monthView, dates, today, language, reckoning }) => {
-    const weeks = [];
-    let week = [];
+const GondorMonth = ({
+    monthView,
+    dates,
+    today,
+    language,
+    reckoning,
+}: GondorMonthProps) => {
+    const weeks: React.JSX.Element[] = [];
+    let week: React.JSX.Element[] = [];
 
     let i = 0,
         date = dates[i],
@@ -117,7 +166,7 @@ const GondorMonth = ({ monthView, dates, today, language, reckoning }) => {
 
     for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
         week.push(
-            <GondorDate
+            <GondorDateCell
                 key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
                 date={date}
                 today={today}
@@ -136,7 +185,7 @@ const GondorMonth = ({ monthView, dates, today, language, reckoning }) => {
         case 2:
             if (date.day === "Tuilérë") {
                 week.push(
-                    <GondorDate
+                    <GondorDateCell
                         key={dateKey(date)}
                         date={date}
                         today={today}
@@ -156,7 +205,7 @@ const GondorMonth = ({ monthView, dates, today, language, reckoning }) => {
                 i++, date = dates[i]
             ) {
                 week.push(
-                    <GondorDate
+                    <GondorDateCell
                         key={dateKey(
                             date,
                             date.day === "Enderë" ? endere++ : ""
@@ -179,7 +228,7 @@ const GondorMonth = ({ monthView, dates, today, language, reckoning }) => {
         case 8:
             if (date.day === "Yáviérë") {
                 week.push(
-                    <GondorDate
+                    <GondorDateCell
                         key={dateKey(date)}
                         date={date}
                         today={today}
@@ -208,7 +257,7 @@ const GondorMonthVertical = ({
     today,
     language,
     reckoning,
-}) => {
+}: GondorMonthProps) => {
     let weeks = GondorWeekdays.map(function (weekday) {
         const weekdayName = weekday[language];
         return [
@@ -217,7 +266,7 @@ const GondorMonthVertical = ({
                 emoji={weekday.emoji}
                 name={weekdayName}
                 description={weekday.description}
-                colSpan="2"
+                colSpan={2}
                 scope="row"
             />,
         ];
@@ -235,7 +284,7 @@ const GondorMonthVertical = ({
 
     for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
         weeks[date.weekDay].push(
-            <GondorDate
+            <GondorDateCell
                 key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
                 date={date}
                 today={today}
@@ -249,7 +298,7 @@ const GondorMonthVertical = ({
         case 2:
             if (date.day === "Tuilérë") {
                 weeks[date.weekDay].push(
-                    <GondorDate
+                    <GondorDateCell
                         key={dateKey(date)}
                         date={date}
                         today={today}
@@ -269,7 +318,7 @@ const GondorMonthVertical = ({
                 i++, date = dates[i]
             ) {
                 weeks[date.weekDay].push(
-                    <GondorDate
+                    <GondorDateCell
                         key={dateKey(
                             date,
                             date.day === "Enderë" ? endere++ : ""
@@ -286,7 +335,7 @@ const GondorMonthVertical = ({
         case 8:
             if (date.day === "Yáviérë") {
                 weeks[date.weekDay].push(
-                    <GondorDate
+                    <GondorDateCell
                         key={dateKey(date)}
                         date={date}
                         today={today}
@@ -327,16 +376,16 @@ const GondorMonthVertical = ({
     });
 };
 
-const GondorYear = ({ dates, today, language, reckoning }) => {
-    const weeks = [];
-    let week = [],
+const GondorYear = ({ dates, today, language, reckoning }: GondorYearProps) => {
+    const weeks: React.JSX.Element[] = [];
+    let week: React.JSX.Element[] = [],
         endere = 1;
 
     addMonthFiller(week, dates[0].weekDay);
 
     for (let i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
         week.push(
-            <GondorDate
+            <GondorDateCell
                 key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
                 date={date}
                 today={today}
@@ -358,12 +407,12 @@ const GondorYear = ({ dates, today, language, reckoning }) => {
     return weeks;
 };
 
-const GondorCalendar = (props) => {
+const GondorCalendar = (props: GondorCalendarProps) => {
     const {
         caption,
         className,
-        language = QUENYA,
-        monthViewLayout = VERTICAL,
+        language = LanguageEnum.QUENYA,
+        monthViewLayout = MonthLayoutEnum.VERTICAL,
         startDay = 21,
         yearView = false,
     } = props;
@@ -433,7 +482,9 @@ const GondorCalendar = (props) => {
     const { dates, todayGondor } = calendar;
 
     const monthView =
-        props.monthView === undefined ? todayGondor.month : props.monthView;
+        props.monthView === undefined
+            ? todayGondor?.month || 0
+            : props.monthView;
 
     return (
         <table className={className}>
@@ -443,7 +494,7 @@ const GondorCalendar = (props) => {
                 </caption>
             )}
             <thead>
-                {monthViewLayout === VERTICAL && !yearView ? (
+                {monthViewLayout === MonthLayoutEnum.VERTICAL && !yearView ? (
                     <VerticalLayoutFiller weekdays={GondorWeekdays} />
                 ) : (
                     <tr>
@@ -470,7 +521,7 @@ const GondorCalendar = (props) => {
                         language={language}
                         reckoning={reckoning}
                     />
-                ) : monthViewLayout === VERTICAL ? (
+                ) : monthViewLayout === MonthLayoutEnum.VERTICAL ? (
                     <GondorMonthVertical
                         monthView={monthView}
                         dates={dates}
@@ -499,12 +550,12 @@ GondorCalendar.RECKONING_NEW = GondorReckoningEnum.NEW;
 GondorCalendar.RECKONING_RULES_TRADITIONAL = GondorLeapYearRuleEnum.TRADITIONAL;
 GondorCalendar.RECKONING_RULES_GREGORIAN = GondorLeapYearRuleEnum.GREGORIAN;
 
-GondorCalendar.MONTH_VIEW_VERTICAL = VERTICAL;
-GondorCalendar.MONTH_VIEW_HORIZONTAL = HORIZONTAL;
+GondorCalendar.MONTH_VIEW_VERTICAL = MonthLayoutEnum.VERTICAL;
+GondorCalendar.MONTH_VIEW_HORIZONTAL = MonthLayoutEnum.HORIZONTAL;
 
-GondorCalendar.LANGUAGE_ENGLISH = ENGLISH;
-GondorCalendar.LANGUAGE_QUENYA = QUENYA;
-GondorCalendar.LANGUAGE_SINDARIN = SINDARIN;
+GondorCalendar.LANGUAGE_ENGLISH = LanguageEnum.ENGLISH;
+GondorCalendar.LANGUAGE_QUENYA = LanguageEnum.QUENYA;
+GondorCalendar.LANGUAGE_SINDARIN = LanguageEnum.SINDARIN;
 
 export default GondorCalendar;
 export { defaultCaption };

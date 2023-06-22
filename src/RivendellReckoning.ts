@@ -237,7 +237,7 @@ type FirstRivendellNewYearDate = Date;
  * @return {FirstRivendellNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
 const getStartDate = (
-    startDate: FirstRivendellNewYearDate
+    startDate?: FirstRivendellNewYearDate
 ): FirstRivendellNewYearDate => {
     if (!startDate) {
         startDate = fullYearDate(1, 2, 22);
@@ -313,7 +313,9 @@ const getRivendellNewYearDate = (
  * @property month - The month index of {@link RivendellMonths}.
  * @property weekDay - The weekday index of {@link RivendellWeekdays}.
  */
-interface RivendellDate extends CalendarDate {}
+interface RivendellDate extends CalendarDate {
+    className?: string;
+}
 
 /**
  * @property year - The current Rivendell year.
@@ -338,7 +340,7 @@ interface RivendellCalendarYear extends Calendar {
  */
 const makeRivendellCalendarDates = (
     today: Date,
-    startDate: FirstRivendellNewYearDate,
+    startDate?: FirstRivendellNewYearDate,
     calendarRules: RivendellRulesEnum = TRADITIONAL_RULES
 ): RivendellCalendarYear => {
     startDate = getStartDate(startDate);
@@ -476,6 +478,8 @@ export {
     REFORMED_RULES,
     RivendellRulesEnum,
     ElvishHolidays,
+    RivendellCalendarYear,
+    RivendellDate,
     RivendellWeekdays,
     RivendellMonths,
     RivendellHolidays,

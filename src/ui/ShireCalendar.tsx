@@ -5,6 +5,8 @@
 import React from "react";
 
 import {
+    ShireCalendarYear,
+    ShireDate,
     ShireWeekdays,
     ShireMonths,
     ShireRegionEnum,
@@ -22,12 +24,39 @@ import WeekDayHeaderCell, {
 import "./tolkien-calendars.css";
 
 import {
+    MonthLayoutEnum,
     VerticalLayoutFiller,
-    VERTICAL,
-    HORIZONTAL,
 } from "./controls/MonthViewLayout";
 
-const getDateColor = (region, date, monthColor) => {
+interface ShireCalendarProps {
+    caption?: string | boolean;
+    className?: string;
+    region?: ShireRegionEnum;
+    monthView?: number;
+    monthViewLayout?: string;
+    startDay?: number;
+    yearView?: boolean;
+    date?: Date;
+    startDate?: Date;
+    calendarRules?: GondorLeapYearRuleEnum;
+    calendar?: ShireCalendarYear;
+}
+
+interface ShireDateProps {
+    dates: ShireDate[];
+    today: Date;
+    region: ShireRegionEnum;
+}
+
+interface ShireMonthProps extends ShireDateProps {
+    monthView: number;
+}
+
+const getDateColor = (
+    region: ShireRegionEnum,
+    date: ShireDate,
+    monthColor: string
+): string => {
     if (date.className !== undefined) {
         return date.className;
     }
@@ -40,14 +69,15 @@ const getDateColor = (region, date, monthColor) => {
     return isHoliday ? "holiday" : monthColor;
 };
 
-const ShireDate = ({ dates, today, region }) => {
+const ShireDateCell = ({ dates, today, region }: ShireDateProps) => {
     const date = dates[0];
+    const dayName = date.region ? date.region[region] : date.day;
 
-    let dayClassName = null;
-    let dayExtraClassName = null;
-    let dayExtra = null;
-    let gregorianExtra = null;
-    let description = null;
+    let dayClassName;
+    let dayExtraClassName;
+    let dayExtra;
+    let gregorianExtra;
+    let description;
 
     if (dates.length > 1) {
         dayExtra = dates[1].region ? dates[1].region[region] : dates[1].day;
@@ -58,7 +88,7 @@ const ShireDate = ({ dates, today, region }) => {
         case "1 Yule":
             return (
                 <IntercalaryDay
-                    name={date.day}
+                    name={dayName}
                     description="Shire New Year's Eve!"
                     currentDate={today}
                     gregorian={date.gregorian}
@@ -68,7 +98,7 @@ const ShireDate = ({ dates, today, region }) => {
         case "2 Yule":
             return (
                 <IntercalaryDay
-                    name={date.day}
+                    name={dayName}
                     description="Midwinter: Shire New Year!"
                     currentDate={today}
                     gregorian={date.gregorian}
@@ -88,7 +118,7 @@ const ShireDate = ({ dates, today, region }) => {
 
             return (
                 <IntercalaryDay
-                    name={date.region[region]}
+                    name={dayName}
                     description={description}
                     currentDate={today}
                     gregorian={date.gregorian}
@@ -101,7 +131,7 @@ const ShireDate = ({ dates, today, region }) => {
         case "Midyear's Day":
             return (
                 <IntercalaryDay
-                    name={date.day}
+                    name={dayName}
                     description="Midsummer Day!"
                     currentDate={today}
                     gregorian={date.gregorian}
@@ -117,7 +147,7 @@ const ShireDate = ({ dates, today, region }) => {
 
             return (
                 <IntercalaryDay
-                    name={date.region[region]}
+                    name={dayName}
                     description={description}
                     currentDate={today}
                     gregorian={date.gregorian}
@@ -130,7 +160,7 @@ const ShireDate = ({ dates, today, region }) => {
         case "2 Lithe":
             return (
                 <IntercalaryDay
-                    name={date.region[region]}
+                    name={dayName}
                     description="Day after Midsummer."
                     currentDate={today}
                     gregorian={date.gregorian}
@@ -156,9 +186,9 @@ const ShireDate = ({ dates, today, region }) => {
     }
 };
 
-const ShireMonth = ({ monthView, today, dates, region }) => {
-    const weeks = [];
-    let week = [];
+const ShireMonth = ({ monthView, today, dates, region }: ShireMonthProps) => {
+    const weeks: React.JSX.Element[] = [];
+    let week: React.JSX.Element[] = [];
 
     let i = 0,
         date = dates[i],
@@ -178,7 +208,7 @@ const ShireMonth = ({ monthView, today, dates, region }) => {
         }
 
         week.push(
-            <ShireDate
+            <ShireDateCell
                 key={dateKey(date, date.day === "Overlithe" ? overlithe++ : "")}
                 dates={nextDates}
                 today={today}
@@ -203,7 +233,7 @@ const ShireMonth = ({ monthView, today, dates, region }) => {
             i++, date = dates[i]
         ) {
             week.push(
-                <ShireDate
+                <ShireDateCell
                     key={dateKey(
                         date,
                         date.day === "Overlithe" ? overlithe++ : ""
@@ -228,7 +258,12 @@ const ShireMonth = ({ monthView, today, dates, region }) => {
     return weeks;
 };
 
-const ShireMonthVertical = ({ monthView, today, dates, region }) => {
+const ShireMonthVertical = ({
+    monthView,
+    today,
+    dates,
+    region,
+}: ShireMonthProps) => {
     let weeks = ShireWeekdays.map(function (weekday) {
         const weekdayName = weekday[region];
         return [
@@ -237,7 +272,7 @@ const ShireMonthVertical = ({ monthView, today, dates, region }) => {
                 emoji={weekday.emoji}
                 name={weekdayName}
                 description={weekday.description}
-                colSpan="2"
+                colSpan={2}
                 scope="row"
             />,
         ];
@@ -261,7 +296,7 @@ const ShireMonthVertical = ({ monthView, today, dates, region }) => {
         }
 
         weeks[date.weekDay].push(
-            <ShireDate
+            <ShireDateCell
                 key={dateKey(date, date.day === "Overlithe" ? overlithe++ : "")}
                 dates={nextDates}
                 today={today}
@@ -281,7 +316,7 @@ const ShireMonthVertical = ({ monthView, today, dates, region }) => {
             i++, date = dates[i]
         ) {
             weeks[date.weekDay].push(
-                <ShireDate
+                <ShireDateCell
                     key={dateKey(
                         date,
                         date.day === "Overlithe" ? overlithe++ : ""
@@ -319,9 +354,9 @@ const ShireMonthVertical = ({ monthView, today, dates, region }) => {
     });
 };
 
-const ShireYear = ({ today, dates, region }) => {
-    const weeks = [];
-    let week = [],
+const ShireYear = ({ today, dates, region }: ShireDateProps) => {
+    const weeks: React.JSX.Element[] = [];
+    let week: React.JSX.Element[] = [],
         overlithe = 1;
 
     addMonthFiller(week, dates[0].weekDay);
@@ -334,7 +369,7 @@ const ShireYear = ({ today, dates, region }) => {
         }
 
         week.push(
-            <ShireDate
+            <ShireDateCell
                 key={dateKey(date, date.day === "Overlithe" ? overlithe++ : "")}
                 dates={nextDates}
                 today={today}
@@ -355,12 +390,12 @@ const ShireYear = ({ today, dates, region }) => {
     return weeks;
 };
 
-const ShireCalendar = (props) => {
+const ShireCalendar = (props: ShireCalendarProps) => {
     const {
         caption,
         className,
         region = ShireRegionEnum.SHIRE,
-        monthViewLayout = VERTICAL,
+        monthViewLayout = MonthLayoutEnum.VERTICAL,
         startDay = 21,
         yearView = false,
     } = props;
@@ -406,7 +441,9 @@ const ShireCalendar = (props) => {
     const { dates, todayShire } = calendar;
 
     const monthView =
-        props.monthView === undefined ? todayShire.month : props.monthView;
+        props.monthView === undefined
+            ? todayShire?.month || 0
+            : props.monthView;
 
     return (
         <table className={className}>
@@ -416,7 +453,7 @@ const ShireCalendar = (props) => {
                 </caption>
             )}
             <thead>
-                {monthViewLayout === VERTICAL && !yearView ? (
+                {monthViewLayout === MonthLayoutEnum.VERTICAL && !yearView ? (
                     <VerticalLayoutFiller weekdays={ShireWeekdays} />
                 ) : (
                     <tr>
@@ -438,7 +475,7 @@ const ShireCalendar = (props) => {
             <tbody>
                 {yearView ? (
                     <ShireYear today={today} dates={dates} region={region} />
-                ) : monthViewLayout === VERTICAL ? (
+                ) : monthViewLayout === MonthLayoutEnum.VERTICAL ? (
                     <ShireMonthVertical
                         monthView={monthView}
                         today={today}
@@ -461,7 +498,8 @@ const ShireCalendar = (props) => {
 ShireCalendar.REGION_NAMES_TOLKIEN = ShireRegionEnum.TOLKIEN;
 ShireCalendar.REGION_NAMES_SHIRE = ShireRegionEnum.SHIRE;
 ShireCalendar.REGION_NAMES_BREE = ShireRegionEnum.BREE;
-ShireCalendar.MONTH_VIEW_VERTICAL = VERTICAL;
-ShireCalendar.MONTH_VIEW_HORIZONTAL = HORIZONTAL;
+
+ShireCalendar.MONTH_VIEW_VERTICAL = MonthLayoutEnum.VERTICAL;
+ShireCalendar.MONTH_VIEW_HORIZONTAL = MonthLayoutEnum.HORIZONTAL;
 
 export default ShireCalendar;

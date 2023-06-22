@@ -5,6 +5,8 @@
 import React from "react";
 
 import {
+    RivendellCalendarYear,
+    RivendellDate,
     RivendellWeekdays,
     RivendellMonths,
     RivendellHolidays,
@@ -22,15 +24,44 @@ import WeekDayHeaderCell, {
 } from "./WeekDayHeaderCell";
 import "./tolkien-calendars.css";
 
-import { ENGLISH, QUENYA, SINDARIN } from "./controls/LanguagePicker";
+import { LanguageEnum } from "./controls/LanguagePicker";
 
 import {
+    MonthLayoutEnum,
     VerticalLayoutFiller,
-    VERTICAL,
-    HORIZONTAL,
 } from "./controls/MonthViewLayout";
 
-const RivendellDate = ({ date, today, language }) => {
+interface RivendellCalendarProps {
+    caption?: string | boolean;
+    className?: string;
+    language?: LanguageEnum;
+    monthView?: number;
+    monthViewLayout?: MonthLayoutEnum;
+    startDay?: number;
+    yearView?: boolean;
+    date?: Date;
+    startDate?: Date;
+    calendarRules?: RivendellRulesEnum;
+    calendar?: RivendellCalendarYear;
+}
+
+interface RivendellDateProps {
+    date: RivendellDate;
+    today: Date;
+    language: LanguageEnum;
+}
+
+interface RivendellYearProps {
+    dates: RivendellDate[];
+    today: Date;
+    language: LanguageEnum;
+}
+
+interface RivendellMonthProps extends RivendellYearProps {
+    monthView: number;
+}
+
+const RivendellDateCell = ({ date, today, language }: RivendellDateProps) => {
     switch (date.day) {
         case "Yestarë":
         case "Enderë":
@@ -67,9 +98,14 @@ const RivendellDate = ({ date, today, language }) => {
     }
 };
 
-const RivendellMonth = ({ monthView, dates, today, language }) => {
-    const weeks = [];
-    let week = [];
+const RivendellMonth = ({
+    monthView,
+    dates,
+    today,
+    language,
+}: RivendellMonthProps) => {
+    const weeks: React.JSX.Element[] = [];
+    let week: React.JSX.Element[] = [];
 
     let i = 0,
         date = dates[i],
@@ -83,7 +119,7 @@ const RivendellMonth = ({ monthView, dates, today, language }) => {
 
     for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
         week.push(
-            <RivendellDate
+            <RivendellDateCell
                 key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
                 date={date}
                 today={today}
@@ -101,7 +137,7 @@ const RivendellMonth = ({ monthView, dates, today, language }) => {
         date = dates[i];
         for (; date.day === "Enderë"; i++, date = dates[i]) {
             week.push(
-                <RivendellDate
+                <RivendellDateCell
                     key={dateKey(date, endere++)}
                     date={date}
                     today={today}
@@ -123,7 +159,12 @@ const RivendellMonth = ({ monthView, dates, today, language }) => {
     return weeks;
 };
 
-const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
+const RivendellMonthVertical = ({
+    monthView,
+    dates,
+    today,
+    language,
+}: RivendellMonthProps) => {
     const weeks = RivendellWeekdays.map(function (weekday) {
         const weekdayName = weekday[language];
         return [
@@ -132,7 +173,7 @@ const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
                 emoji={weekday.emoji}
                 name={weekdayName}
                 description={weekday.description}
-                colSpan="2"
+                colSpan={2}
                 scope="row"
             />,
         ];
@@ -150,7 +191,7 @@ const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
 
     for (; i < dates.length && monthView === date.month; i++, date = dates[i]) {
         weeks[date.weekDay].push(
-            <RivendellDate
+            <RivendellDateCell
                 key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
                 date={date}
                 today={today}
@@ -163,7 +204,7 @@ const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
         date = dates[i];
         for (; date.day === "Enderë"; i++, date = dates[i]) {
             weeks[date.weekDay].push(
-                <RivendellDate
+                <RivendellDateCell
                     key={dateKey(date, endere++)}
                     date={date}
                     today={today}
@@ -178,16 +219,16 @@ const RivendellMonthVertical = ({ monthView, dates, today, language }) => {
     });
 };
 
-const RivendellYear = ({ dates, today, language }) => {
-    const weeks = [];
-    let week = [],
+const RivendellYear = ({ dates, today, language }: RivendellYearProps) => {
+    const weeks: React.JSX.Element[] = [];
+    let week: React.JSX.Element[] = [],
         endere = 1;
 
     addMonthFiller(week, dates[0].weekDay);
 
     for (let i = 0, date = dates[i]; i < dates.length; i++, date = dates[i]) {
         week.push(
-            <RivendellDate
+            <RivendellDateCell
                 key={dateKey(date, date.day === "Enderë" ? endere++ : "")}
                 date={date}
                 today={today}
@@ -208,12 +249,12 @@ const RivendellYear = ({ dates, today, language }) => {
     return weeks;
 };
 
-const RivendellCalendar = (props) => {
+const RivendellCalendar = (props: RivendellCalendarProps) => {
     const {
         caption,
         className,
-        language = QUENYA,
-        monthViewLayout = HORIZONTAL,
+        language = LanguageEnum.QUENYA,
+        monthViewLayout = MonthLayoutEnum.HORIZONTAL,
         startDay = 22,
         yearView = false,
     } = props;
@@ -263,7 +304,9 @@ const RivendellCalendar = (props) => {
     const { dates, todayRivendell } = calendar;
 
     const monthView =
-        props.monthView === undefined ? todayRivendell.month : props.monthView;
+        props.monthView === undefined
+            ? todayRivendell?.month || 0
+            : props.monthView;
 
     return (
         <table className={className}>
@@ -273,7 +316,7 @@ const RivendellCalendar = (props) => {
                 </caption>
             )}
             <thead>
-                {monthViewLayout === VERTICAL && !yearView ? (
+                {monthViewLayout === MonthLayoutEnum.VERTICAL && !yearView ? (
                     <VerticalLayoutFiller weekdays={RivendellWeekdays} />
                 ) : (
                     <tr>
@@ -299,7 +342,7 @@ const RivendellCalendar = (props) => {
                         today={today}
                         language={language}
                     />
-                ) : monthViewLayout === VERTICAL ? (
+                ) : monthViewLayout === MonthLayoutEnum.VERTICAL ? (
                     <RivendellMonthVertical
                         monthView={monthView}
                         dates={dates}
@@ -322,11 +365,11 @@ const RivendellCalendar = (props) => {
 RivendellCalendar.TRADITIONAL_RULES = RivendellRulesEnum.TRADITIONAL;
 RivendellCalendar.REFORMED_RULES = RivendellRulesEnum.REFORMED;
 
-RivendellCalendar.LANGUAGE_ENGLISH = ENGLISH;
-RivendellCalendar.LANGUAGE_QUENYA = QUENYA;
-RivendellCalendar.LANGUAGE_SINDARIN = SINDARIN;
+RivendellCalendar.LANGUAGE_ENGLISH = LanguageEnum.ENGLISH;
+RivendellCalendar.LANGUAGE_QUENYA = LanguageEnum.QUENYA;
+RivendellCalendar.LANGUAGE_SINDARIN = LanguageEnum.SINDARIN;
 
-RivendellCalendar.MONTH_VIEW_VERTICAL = VERTICAL;
-RivendellCalendar.MONTH_VIEW_HORIZONTAL = HORIZONTAL;
+RivendellCalendar.MONTH_VIEW_VERTICAL = MonthLayoutEnum.VERTICAL;
+RivendellCalendar.MONTH_VIEW_HORIZONTAL = MonthLayoutEnum.HORIZONTAL;
 
 export default RivendellCalendar;

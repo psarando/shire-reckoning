@@ -327,7 +327,7 @@ type FirstShireNewYearDate = Date;
  * @return {FirstShireNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
 const getStartDate = (
-    startDate: FirstShireNewYearDate
+    startDate?: FirstShireNewYearDate
 ): FirstShireNewYearDate => {
     if (!startDate) {
         startDate = fullYearDate(0, 11, 21);
@@ -375,6 +375,7 @@ type ShireHolidayRegionNames = Record<ShireRegionEnum, string>;
  */
 interface ShireDate extends CalendarDate {
     region?: ShireHolidayRegionNames;
+    className?: string;
 }
 
 /**
@@ -398,7 +399,7 @@ interface ShireCalendarYear extends Calendar {
  */
 const makeShireCalendarDates = (
     today: Date,
-    startDate: FirstShireNewYearDate,
+    startDate?: FirstShireNewYearDate,
     rules: GondorLeapYearRuleEnum = GondorLeapYearRuleEnum.GREGORIAN
 ): ShireCalendarYear => {
     startDate = getStartDate(startDate);
@@ -605,6 +606,9 @@ const {
 } = ShireRegionEnum;
 
 export {
+    ShireCalendarYear,
+    ShireDate,
+    ShireWeekday,
     ShireWeekdays,
     ShireMonths,
     ShireRegionEnum,

@@ -3,24 +3,44 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
-import { datesMatch } from "../Utils";
+
+import { CalendarDate, datesMatch } from "../Utils";
 import "./tolkien-calendars.css";
 
-const dateKey = (date, suffix) => `${date.month}/${date.day}${suffix}`;
+interface DateCellProps {
+    className: string;
+    currentDate: Date;
+    date: CalendarDate;
+    description: string;
+    emoji: string;
+    month: string;
+    weekday: string;
+}
 
-const getDateColor = (monthColor, date1, date2) => {
-    if (datesMatch(date1, date2)) {
+interface GregorianDateDisplayProps {
+    date: Date;
+}
+
+const dateKey = (date: CalendarDate, suffix?: string | number) =>
+    `${date.month}/${date.day}${suffix}`;
+
+const getDateColor = (
+    monthColor: string,
+    date1: Date | undefined,
+    date2: Date
+) => {
+    if (date1 && datesMatch(date1, date2)) {
         return "highlight";
     }
 
     return monthColor;
 };
 
-const GregorianDateDisplay = (props) => (
+const GregorianDateDisplay = (props: GregorianDateDisplayProps) => (
     <div className="gregorian-display">{props.date.toDateString()}</div>
 );
 
-const DateCell = (props) => {
+const DateCell = (props: DateCellProps) => {
     const {
         className,
         currentDate,

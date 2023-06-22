@@ -5,7 +5,15 @@
 import React from "react";
 import "./tolkien-calendars.css";
 
-const WeekDayHeaderCell = (props) => {
+interface WeekDayHeaderCellProps {
+    colSpan?: number;
+    scope?: string;
+    description?: string;
+    name?: string;
+    emoji?: string;
+}
+
+const WeekDayHeaderCell = (props: WeekDayHeaderCellProps) => {
     return (
         <th
             className="weekday-header"
@@ -23,13 +31,16 @@ const WeekDayHeaderCell = (props) => {
     );
 };
 
-const addMonthFiller = (week, upToWeekDay) => {
+const addMonthFiller = (week: React.JSX.Element[], upToWeekDay: number) => {
     for (let weekday = 0; weekday < upToWeekDay; weekday++) {
         week.push(<WeekDayHeaderCell key={"month-filler-" + weekday} />);
     }
 };
 
-const addVerticalMonthFiller = (weeks, upToWeekDay) => {
+const addVerticalMonthFiller = (
+    weeks: React.JSX.Element[][],
+    upToWeekDay: number
+) => {
     for (let weekday = 0; weekday < upToWeekDay; weekday++) {
         weeks[weekday].push(
             <WeekDayHeaderCell key={"month-filler-" + weekday} />

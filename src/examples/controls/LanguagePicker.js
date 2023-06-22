@@ -4,7 +4,7 @@
  */
 import React from "react";
 
-import { ENGLISH, QUENYA, SINDARIN } from "../../ui/controls/LanguagePicker";
+import { LanguageEnum } from "../../ui/controls/LanguagePicker";
 
 const LanguagePicker = ({ language, onLanguageChange }) => {
     return (
@@ -16,16 +16,16 @@ const LanguagePicker = ({ language, onLanguageChange }) => {
                 value={language}
                 onChange={onLanguageChange}
             >
-                <option value={ENGLISH}>English</option>
-                <option value={QUENYA}>Quenya</option>
-                <option value={SINDARIN}>Sindarin</option>
+                <option value={LanguageEnum.ENGLISH}>English</option>
+                <option value={LanguageEnum.QUENYA}>Quenya</option>
+                <option value={LanguageEnum.SINDARIN}>Sindarin</option>
             </select>
         </div>
     );
 };
 
-LanguagePicker.ENGLISH = ENGLISH;
-LanguagePicker.QUENYA = QUENYA;
-LanguagePicker.SINDARIN = SINDARIN;
+LanguagePicker.ENGLISH = LanguageEnum.ENGLISH;
+LanguagePicker.QUENYA = LanguageEnum.QUENYA;
+LanguagePicker.SINDARIN = LanguageEnum.SINDARIN;
 
 export default LanguagePicker;

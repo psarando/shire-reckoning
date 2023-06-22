@@ -273,7 +273,7 @@ type FirstNumenorNewYearDate = Date;
  * @return {FirstNumenorNewYearDate} startDate if not null, otherwise the default first New Year Date.
  */
 const getStartDate = (
-    startDate: FirstNumenorNewYearDate
+    startDate?: FirstNumenorNewYearDate
 ): FirstNumenorNewYearDate => {
     if (!startDate) {
         startDate = fullYearDate(0, 11, 21);
@@ -419,7 +419,9 @@ const convertGregorianToGondorianWeekday = (weekday: number): number => {
  * @property weekDay - The weekday index of {@link GondorWeekdays}.
  * @property gregorian - The corresponding Gregorian date.
  */
-interface GondorDate extends CalendarDate {}
+interface GondorDate extends CalendarDate {
+    className?: string;
+}
 
 /**
  * @property year - The current Gondor year.
@@ -444,7 +446,7 @@ interface GondorCalendarYear extends Calendar {
  */
 const makeGondorCalendarDates = (
     today: Date,
-    startDate: FirstNumenorNewYearDate,
+    startDate?: FirstNumenorNewYearDate,
     reckoning: GondorReckoningEnum = GondorReckoningEnum.STEWARDS,
     rules: GondorLeapYearRuleEnum = GondorLeapYearRuleEnum.GREGORIAN
 ): GondorCalendarYear => {
@@ -685,6 +687,8 @@ export {
     RECKONING_NEW,
     RECKONING_RULES_TRADITIONAL,
     RECKONING_RULES_GREGORIAN,
+    GondorCalendarYear,
+    GondorDate,
     GondorReckoningEnum,
     GondorLeapYearRuleEnum,
     GondorWeekdays,
