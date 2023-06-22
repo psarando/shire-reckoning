@@ -2,7 +2,7 @@
  * Copyright (C) Paul Sarando
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
-import React, { Component } from "react";
+import React from "react";
 
 import {
     REGION_NAMES_SHIRE,
@@ -18,34 +18,22 @@ import { Badges } from "./Common";
 import ShireRegionPicker from "./controls/ShireRegionPicker";
 import { ICalendarStartDatePicker } from "./controls/StartDatePicker";
 
-/**
- * Element copy code borrowed from https://github.com/cyverse/troposphere/pull/514.
- */
+const COPY_TEXT = "Copy";
+const COPIED_TEXT = "Copied!";
+
 const hasClipboardAPI = () => {
-    let result = false;
-
-    try {
-        result =
-            document.queryCommandSupported
-            && document.queryCommandSupported("copy");
-    } catch (e) {}
-
-    return result;
+    return !!navigator?.clipboard?.writeText;
 };
 
 /**
- * Safely copies the contents of an `element` that has been selected to the clipboard.
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText
  */
-const copySelection = () => {
-    let copied = false;
-
+const clipboardCopyText = (text) => {
     if (hasClipboardAPI()) {
-        try {
-            copied = document.execCommand("copy");
-        } catch (e) {}
+        return navigator.clipboard.writeText(text);
     }
 
-    return copied;
+    return null;
 };
 
 const formatMonthDay = (num) =>
@@ -140,139 +128,118 @@ SUMMARY:${summary}
 TRANSP:OPAQUE
 END:VEVENT`;
 
-export class ICalendarGenerator extends Component {
-    constructor(props) {
-        super(props);
+const ICalendarGenerator = (props) => {
+    const [today, setToday] = React.useState(new Date(1931, 11, 21));
+    const [startDate, setStartDate] = React.useState(fullYearDate(0, 11, 21));
+    const [calendar, setCalendar] = React.useState(() =>
+        makeShireCalendarDates(today, startDate)
+    );
+    const [region, setRegion] = React.useState(REGION_NAMES_SHIRE);
+    const [btnTxt, setBtnTxt] = React.useState(COPY_TEXT);
 
-        let today = new Date(1931, 11, 21);
-        let startDate = fullYearDate(0, 11, 21);
-        let calendar = makeShireCalendarDates(today, startDate);
+    const copyTextArea = React.useRef();
 
-        this.state = {
-            today: today,
-            startDate: startDate,
-            calendar: calendar,
-            region: REGION_NAMES_SHIRE,
-            btnTxt: "Copy",
-        };
-
-        this.onCalendarStartChange = this.onCalendarStartChange.bind(this);
-        this.onRegionChange = this.onRegionChange.bind(this);
-        this.onCopyText = this.onCopyText.bind(this);
-    }
-
-    onCalendarStartChange(startDate) {
-        let today = new Date(this.state.calendar.today);
+    const onCalendarStartChange = (startDate) => {
+        const today = new Date(calendar.today);
         today.setDate(startDate.getDate());
 
-        let calendar = makeShireCalendarDates(today, startDate);
+        setToday(today);
+        setStartDate(startDate);
+        setCalendar(makeShireCalendarDates(today, startDate));
+        setBtnTxt(COPY_TEXT);
+    };
 
-        this.setState({
-            today: today,
-            startDate: startDate,
-            calendar: calendar,
-            btnTxt: "Copy",
-        });
-    }
+    const onRegionChange = (event) => {
+        setRegion(event.target.value);
+        setBtnTxt(COPY_TEXT);
+    };
 
-    onRegionChange(event) {
-        this.setState({ region: event.target.value, btnTxt: "Copy" });
-    }
-
-    onCopyText(e) {
+    const onCopyText = (e) => {
         e.preventDefault();
 
-        this.refs.copyTextArea.select();
-        if (copySelection()) {
-            this.setState({ btnTxt: "Copied!" });
-        }
-    }
+        clipboardCopyText(copyTextArea.current.value)?.then(() => {
+            setBtnTxt(COPIED_TEXT);
+        });
+    };
 
-    render() {
-        let calendar = this.state.calendar;
+    const gregorianNewYearsDay = new Date(today);
+    gregorianNewYearsDay.setFullYear(
+        gregorianNewYearsDay.getFullYear() + 1,
+        0,
+        1
+    );
 
-        let gregorianNewYearsDay = new Date(this.state.today);
-        gregorianNewYearsDay.setFullYear(
-            gregorianNewYearsDay.getFullYear() + 1,
-            0,
-            1
-        );
+    const calEvents = calendar.dates
+        .map((date, index) => {
+            const sequence = index + 1;
+            let ruleExtra = "";
 
-        let calEvents = calendar.dates
-            .map((date, index) => {
-                let sequence = index + 1;
-                let ruleExtra = "";
+            const dayOfYear =
+                1 + toDaysElapsed(gregorianNewYearsDay, date.gregorian);
+            if (60 <= dayOfYear && sequence <= 184) {
+                const interval = date.day === "Overlithe" ? 4 : 1;
 
-                let dayOfYear =
-                    1 + toDaysElapsed(gregorianNewYearsDay, date.gregorian);
-                if (60 <= dayOfYear && sequence <= 184) {
-                    let interval = date.day === "Overlithe" ? 4 : 1;
+                ruleExtra = `;INTERVAL=${interval};BYYEARDAY=${dayOfYear}`;
+            }
 
-                    ruleExtra = `;INTERVAL=${interval};BYYEARDAY=${dayOfYear}`;
-                }
+            return formatCalEvent(
+                date.gregorian,
+                sequence,
+                formatShireDate(date, region),
+                formatShireDateDescription(date),
+                ruleExtra
+            );
+        })
+        .join("\n");
 
-                return formatCalEvent(
-                    date.gregorian,
-                    sequence,
-                    formatShireDate(date, this.state.region),
-                    formatShireDateDescription(date),
-                    ruleExtra
-                );
-            })
-            .join("\n");
-
-        return (
-            <table className="shire-calendar">
-                <caption className="shire-caption">
-                    Shire Reckoning iCalendar Creator
-                </caption>
-                <thead>
-                    <tr>
-                        <th className="shire-calendar-controls">
-                            <ICalendarStartDatePicker
-                                selectedDate={this.state.startDate}
-                                onCalendarStartChange={
-                                    this.onCalendarStartChange
-                                }
-                            />
-                        </th>
-                        <th className="shire-calendar-controls">
-                            <ShireRegionPicker
-                                region={this.state.region}
-                                onRegionChange={this.onRegionChange}
-                            />
-                        </th>
-                        <th className="shire-calendar-controls">
-                            {hasClipboardAPI() && (
-                                <button
-                                    ref="copyTextBtn"
-                                    type="button"
-                                    style={{ height: "2rem", width: "8rem" }}
-                                    onClick={this.onCopyText}
-                                >
-                                    {this.state.btnTxt}
-                                </button>
-                            )}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colSpan="3" className="shire-calendar-wrapper-cell">
-                            <textarea
-                                ref="copyTextArea"
-                                rows="32"
-                                cols="80"
-                                value={formatICalendar(calEvents)}
-                                readOnly="readonly"
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        );
-    }
-}
+    return (
+        <table className="shire-calendar">
+            <caption className="shire-caption">
+                Shire Reckoning iCalendar Creator
+            </caption>
+            <thead>
+                <tr>
+                    <th className="shire-calendar-controls">
+                        <ICalendarStartDatePicker
+                            selectedDate={startDate}
+                            onCalendarStartChange={onCalendarStartChange}
+                        />
+                    </th>
+                    <th className="shire-calendar-controls">
+                        <ShireRegionPicker
+                            region={region}
+                            onRegionChange={onRegionChange}
+                        />
+                    </th>
+                    <th className="shire-calendar-controls">
+                        {hasClipboardAPI() && (
+                            <button
+                                type="button"
+                                style={{ height: "2rem", width: "8rem" }}
+                                onClick={onCopyText}
+                            >
+                                {btnTxt}
+                            </button>
+                        )}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colSpan="3" className="shire-calendar-wrapper-cell">
+                        <textarea
+                            ref={copyTextArea}
+                            rows="32"
+                            cols="80"
+                            value={formatICalendar(calEvents)}
+                            readOnly="readonly"
+                        />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    );
+};
 
 const srcStyle = {
     border: "1px solid",
@@ -445,3 +412,5 @@ export default {
 export const IcalendarCreatorForImportingIntoYourCalendar = {
     name: "iCalendar creator for importing into your calendar",
 };
+
+export { ICalendarGenerator };
