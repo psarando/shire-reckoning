@@ -457,8 +457,8 @@ const TolkienCalendarsWithInstructions = (props) => (
 
         <title>Shire Reckoning</title>
 
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shire-reckoning@4/lib/TolkienCalendars.css"/>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shire-reckoning@4/lib/TolkienCalendars.js"></script>
@@ -466,12 +466,14 @@ const TolkienCalendarsWithInstructions = (props) => (
     <body>
         <div id="shire-calendar"></div>
         <script type="text/javascript">
-            ReactDOM.render(
+            const root ReactDOM.createRoot(
+                document.getElementById("shire-calendar")
+            );
+            root.render(
                 React.createElement(TolkienCalendars.ShireCalendar, {
                     className: "shire-calendar",
                     caption: true,
-                }),
-                document.getElementById("shire-calendar")
+                })
             );
         </script>
     </body>

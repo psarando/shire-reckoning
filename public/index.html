@@ -28,8 +28,8 @@
     &lt;head&gt;
         &lt;meta charset="UTF-8" /&gt;
 
-        &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js"&gt;&lt;/script&gt;
-        &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
 
         &lt;link href="https://cdn.jsdelivr.net/npm/shire-reckoning/lib/TolkienCalendars.css" rel="stylesheet"&gt;
         &lt;script type="text/javascript" src="https://cdn.jsdelivr.net/npm/shire-reckoning/lib/TolkienCalendars.js"&gt;&lt;/script&gt;
@@ -37,10 +37,8 @@
     &lt;body&gt;
     &lt;div id="shire-calendar" &gt;&lt;/div&gt;
     &lt;script type="text/javascript"&gt;
-        ReactDOM.render(
-            React.createElement(TolkienCalendars.ShireCalendar, {className: "shire-calendar", caption: true}),
-            document.getElementById("shire-calendar")
-        );
+        const root = ReactDOM.createRoot(document.getElementById("shire-calendar"));
+        root.render(React.createElement(TolkienCalendars.ShireCalendar, {className: "shire-calendar", caption: true}));
     &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
@@ -96,10 +94,8 @@ export default App;
 
         <div id="tolkien-calendars"></div>
         <script type="text/javascript">
-            ReactDOM.render(
-                React.createElement(TolkienCalendars.TolkienCalendarsExample, null),
-                document.getElementById("tolkien-calendars")
-            );
+            const root = ReactDOM.createRoot(document.getElementById("tolkien-calendars"));
+            root.render(React.createElement(TolkienCalendars.TolkienCalendarsExample, null));
         </script>
     </body>
 </html>

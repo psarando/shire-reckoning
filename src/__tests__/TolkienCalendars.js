@@ -5,7 +5,7 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
 import { TolkienCalendarsExample } from "../examples/TolkienCalendars";
 import { SimulatedTolkienCalendars } from "../examples/simulation/TolkienCalendars";
@@ -34,98 +34,114 @@ import RivendellCalendar from "../ui/RivendellCalendar";
 
 it("renders TolkienCalendarsExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<TolkienCalendarsExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<TolkienCalendarsExample />);
+    root.unmount();
 });
 
 it("renders SimulatedTolkienCalendars without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<SimulatedTolkienCalendars />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<SimulatedTolkienCalendars />);
+    root.unmount();
 });
 
 it("renders ICalendarGenerator without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<ICalendarGenerator />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<ICalendarGenerator />);
+    root.unmount();
 });
 
 it("renders ShireCalendarMonthViewVerticalExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<ShireCalendarMonthViewVerticalExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<ShireCalendarMonthViewVerticalExample />);
+    root.unmount();
 });
 
 it("renders ShireCalendarMonthViewHorizontalExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<ShireCalendarMonthViewHorizontalExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<ShireCalendarMonthViewHorizontalExample />);
+    root.unmount();
 });
 
 it("renders ShireCalendarYearViewExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<ShireCalendarYearViewExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<ShireCalendarYearViewExample />);
+    root.unmount();
 });
 
 it("renders ShireCalendarNewYearsDaySyncExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<ShireCalendarNewYearsDaySyncExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<ShireCalendarNewYearsDaySyncExample />);
+    root.unmount();
 });
 
 it("renders ShireCalendarTraditionalRulesExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<ShireCalendarTraditionalRulesExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<ShireCalendarTraditionalRulesExample />);
+    root.unmount();
 });
 
 it("renders GondorCalendarMonthViewExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<GondorCalendarMonthViewExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<GondorCalendarMonthViewExample />);
+    root.unmount();
 });
 
 it("renders GondorCalendarMonthViewHorizontalExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<GondorCalendarMonthViewHorizontalExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<GondorCalendarMonthViewHorizontalExample />);
+    root.unmount();
 });
 
 it("renders GondorCalendarYearViewExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<GondorCalendarYearViewExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<GondorCalendarYearViewExample />);
+    root.unmount();
 });
 
 it("renders GondorCalendarNewYearsDaySyncExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<GondorCalendarNewYearsDaySyncExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<GondorCalendarNewYearsDaySyncExample />);
+    root.unmount();
 });
 
 it("renders GondorCalendarTraditionalRulesExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<GondorCalendarTraditionalRulesExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<GondorCalendarTraditionalRulesExample />);
+    root.unmount();
 });
 
 it("renders RivendellCalendarSeasonViewExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<RivendellCalendarSeasonViewExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<RivendellCalendarSeasonViewExample />);
+    root.unmount();
 });
 
 it("renders RivendellCalendarYearViewExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<RivendellCalendarYearViewExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<RivendellCalendarYearViewExample />);
+    root.unmount();
 });
 
 it("renders RivendellCalendarHistoricExample without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<RivendellCalendarHistoricExample />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    const root = createRoot(div);
+    root.render(<RivendellCalendarHistoricExample />);
+    root.unmount();
 });
 
 it("renders ShireCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
@@ -140,20 +156,19 @@ it("renders ShireCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
             for (let month = 0; month < 12; month++) {
                 let currentDate = fullYearDate(year, month, 1);
 
-                ReactDOM.render(
+                const root = createRoot(div);
+                root.render(
                     <ShireCalendar
                         region={region}
                         monthViewLayout={ShireCalendar.MONTH_VIEW_HORIZONTAL}
                         date={currentDate}
                         className="shire-calendar"
-                    />,
-                    div
+                    />
                 );
+                root.unmount();
             }
         }
     });
-
-    ReactDOM.unmountComponentAtNode(div);
 });
 
 it("renders ShireCalendar MONTH_VIEW_VERTICAL without crashing", () => {
@@ -168,20 +183,19 @@ it("renders ShireCalendar MONTH_VIEW_VERTICAL without crashing", () => {
             for (let month = 0; month < 12; month++) {
                 let currentDate = fullYearDate(year, month, 1);
 
-                ReactDOM.render(
+                const root = createRoot(div);
+                root.render(
                     <ShireCalendar
                         region={region}
                         monthViewLayout={ShireCalendar.MONTH_VIEW_VERTICAL}
                         date={currentDate}
                         className="shire-calendar"
-                    />,
-                    div
+                    />
                 );
+                root.unmount();
             }
         }
     });
-
-    ReactDOM.unmountComponentAtNode(div);
 });
 
 it("renders GondorCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
@@ -201,7 +215,8 @@ it("renders GondorCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
                 for (let month = 0; month < 12; month++) {
                     let currentDate = fullYearDate(year, month, 1);
 
-                    ReactDOM.render(
+                    const root = createRoot(div);
+                    root.render(
                         <GondorCalendar
                             reckoning={reckoning}
                             language={language}
@@ -210,15 +225,13 @@ it("renders GondorCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
                             }
                             date={currentDate}
                             className="shire-calendar"
-                        />,
-                        div
+                        />
                     );
+                    root.unmount();
                 }
             }
         });
     });
-
-    ReactDOM.unmountComponentAtNode(div);
 });
 
 it("renders GondorCalendar MONTH_VIEW_VERTICAL without crashing", () => {
@@ -238,22 +251,21 @@ it("renders GondorCalendar MONTH_VIEW_VERTICAL without crashing", () => {
                 for (let month = 0; month < 12; month++) {
                     let currentDate = fullYearDate(year, month, 1);
 
-                    ReactDOM.render(
+                    const root = createRoot(div);
+                    root.render(
                         <GondorCalendar
                             reckoning={reckoning}
                             language={language}
                             monthViewLayout={GondorCalendar.MONTH_VIEW_VERTICAL}
                             date={currentDate}
                             className="shire-calendar"
-                        />,
-                        div
+                        />
                     );
+                    root.unmount();
                 }
             }
         });
     });
-
-    ReactDOM.unmountComponentAtNode(div);
 });
 
 it("renders RivendellCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
@@ -272,7 +284,8 @@ it("renders RivendellCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
                 for (let month = 0; month < 12; month++) {
                     let currentDate = fullYearDate(year, month, 1);
 
-                    ReactDOM.render(
+                    const root = createRoot(div);
+                    root.render(
                         <RivendellCalendar
                             calendarRules={calendarRules}
                             language={language}
@@ -281,15 +294,13 @@ it("renders RivendellCalendar MONTH_VIEW_HORIZONTAL without crashing", () => {
                             }
                             date={currentDate}
                             className="shire-calendar"
-                        />,
-                        div
+                        />
                     );
+                    root.unmount();
                 }
             }
         });
     });
-
-    ReactDOM.unmountComponentAtNode(div);
 });
 
 it("renders RivendellCalendar MONTH_VIEW_VERTICAL without crashing", () => {
@@ -308,7 +319,8 @@ it("renders RivendellCalendar MONTH_VIEW_VERTICAL without crashing", () => {
                 for (let month = 0; month < 12; month++) {
                     let currentDate = fullYearDate(year, month, 1);
 
-                    ReactDOM.render(
+                    const root = createRoot(div);
+                    root.render(
                         <RivendellCalendar
                             calendarRules={calendarRules}
                             language={language}
@@ -317,13 +329,11 @@ it("renders RivendellCalendar MONTH_VIEW_VERTICAL without crashing", () => {
                             }
                             date={currentDate}
                             className="shire-calendar"
-                        />,
-                        div
+                        />
                     );
+                    root.unmount();
                 }
             }
         });
     });
-
-    ReactDOM.unmountComponentAtNode(div);
 });

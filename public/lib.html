@@ -16,18 +16,19 @@
             J.R.R. Tolkien's The Lord of the Rings Appendix D
         </title>
 
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
     </head>
     <body>
         <div id="shire-calendar"></div>
         <script type="text/javascript">
-            ReactDOM.render(
+            ReactDOM.createRoot(
+                document.getElementById("shire-calendar")
+            ).render(
                 React.createElement(TolkienCalendars.ShireCalendar, {
                     caption: "Shire Calendar",
                     className: "shire-calendar",
                 }),
-                document.getElementById("shire-calendar")
             );
         </script>
 
@@ -35,12 +36,13 @@
 
         <div id="rivendell-calendar"></div>
         <script type="text/javascript">
-            ReactDOM.render(
+            ReactDOM.createRoot(
+                document.getElementById("rivendell-calendar")
+            ).render(
                 React.createElement(TolkienCalendars.RivendellCalendar, {
                     caption: "Calendar of Imladris",
                     className: "shire-calendar",
                 }),
-                document.getElementById("rivendell-calendar")
             );
         </script>
 
@@ -48,12 +50,13 @@
 
         <div id="gondor-calendar"></div>
         <script type="text/javascript">
-            ReactDOM.render(
+            ReactDOM.createRoot(
+                document.getElementById("gondor-calendar")
+            ).render(
                 React.createElement(TolkienCalendars.GondorCalendar, {
                     caption: "Calendars of Gondor",
                     className: "shire-calendar",
                 }),
-                document.getElementById("gondor-calendar")
             );
         </script>
 
