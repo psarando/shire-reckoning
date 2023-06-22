@@ -356,54 +356,52 @@ const ShireYear = ({ today, dates, region }) => {
 };
 
 const ShireCalendar = (props) => {
-    const { caption, className } = props;
+    const {
+        caption,
+        className,
+        region = ShireRegionEnum.SHIRE,
+        monthViewLayout = VERTICAL,
+        startDay = 21,
+        yearView = false,
+    } = props;
 
-    const region = props.region || ShireRegionEnum.SHIRE;
-    const yearView = !!props.yearView;
-    const monthViewLayout = props.monthViewLayout || VERTICAL;
+    const nextDate = props.date || new Date();
+    const [today, setToday] = React.useState(nextDate);
 
-    const [today, setToday] = React.useState(props.date || new Date());
+    const nextStartDate = props.startDate || fullYearDate(0, 11, startDay);
+    const [startDate, setStartDate] = React.useState(nextStartDate);
 
-    const [calendarRules, setCalendarRules] = React.useState(
-        props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN
-    );
-
-    const startDay = props.startDay || 21;
-    const [startDate, setStartDate] = React.useState(
-        props.startDate || fullYearDate(0, 11, startDay)
-    );
+    const nextRules = props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN;
+    const [calendarRules, setCalendarRules] = React.useState(nextRules);
 
     const [calendar, setCalendar] = React.useState(
-        props.calendar
+        () =>
+            props.calendar
             || makeShireCalendarDates(today, startDate, calendarRules)
     );
 
-    React.useEffect(() => {
-        const newDate = props.date || new Date();
-        if (!datesMatch(today, newDate)) {
-            setToday(newDate);
-        }
-    }, [props.date]);
+    const updateToday = !datesMatch(today, nextDate);
+    if (updateToday) {
+        setToday(nextDate);
+    }
 
-    React.useEffect(() => {
-        const newStartDate = props.startDate || fullYearDate(0, 11, startDay);
-        if (!datesMatch(startDate, newStartDate)) {
-            setStartDate(newStartDate);
-        }
-    }, [props.startDate, props.startDay]);
+    const updateStartDate = !datesMatch(startDate, nextStartDate);
+    if (updateStartDate) {
+        setStartDate(nextStartDate);
+    }
 
-    React.useEffect(() => {
-        setCalendarRules(
-            props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN
-        );
-    }, [props.calendarRules]);
+    const updateRules = calendarRules !== nextRules;
+    if (updateRules) {
+        setCalendarRules(nextRules);
+    }
 
-    React.useEffect(() => {
+    const updateCalendar = props.calendar && props.calendar !== calendar;
+    if (updateCalendar || updateToday || updateStartDate || updateRules) {
         setCalendar(
             props.calendar
-                || makeShireCalendarDates(today, startDate, calendarRules)
+                || makeShireCalendarDates(nextDate, nextStartDate, nextRules)
         );
-    }, [props.calendar, today, startDate, calendarRules]);
+    }
 
     const { dates, todayShire } = calendar;
 

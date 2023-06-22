@@ -209,52 +209,56 @@ const RivendellYear = ({ dates, today, language }) => {
 };
 
 const RivendellCalendar = (props) => {
-    const { caption, className } = props;
+    const {
+        caption,
+        className,
+        language = QUENYA,
+        monthViewLayout = HORIZONTAL,
+        startDay = 22,
+        yearView = false,
+    } = props;
 
-    const language = props.language || QUENYA;
-    const yearView = !!props.yearView;
-    const monthViewLayout = props.monthViewLayout || HORIZONTAL;
+    const nextDate = props.date || new Date();
+    const [today, setToday] = React.useState(nextDate);
 
-    const [today, setToday] = React.useState(props.date || new Date());
+    const nextStartDate = props.startDate || fullYearDate(1, 2, startDay);
+    const [startDate, setStartDate] = React.useState(nextStartDate);
 
-    const [calendarRules, setCalendarRules] = React.useState(
-        props.calendarRules || RivendellRulesEnum.TRADITIONAL
-    );
-
-    const startDay = props.startDay || 22;
-    const [startDate, setStartDate] = React.useState(
-        props.startDate || fullYearDate(1, 2, startDay)
-    );
+    const nextRules = props.calendarRules || RivendellRulesEnum.TRADITIONAL;
+    const [calendarRules, setCalendarRules] = React.useState(nextRules);
 
     const [calendar, setCalendar] = React.useState(
-        props.calendar
+        () =>
+            props.calendar
             || makeRivendellCalendarDates(today, startDate, calendarRules)
     );
 
-    React.useEffect(() => {
-        const newDate = props.date || new Date();
-        if (!datesMatch(today, newDate)) {
-            setToday(newDate);
-        }
-    }, [props.date]);
+    const updateToday = !datesMatch(today, nextDate);
+    if (updateToday) {
+        setToday(nextDate);
+    }
 
-    React.useEffect(() => {
-        const newStartDate = props.startDate || fullYearDate(1, 2, startDay);
-        if (!datesMatch(startDate, newStartDate)) {
-            setStartDate(newStartDate);
-        }
-    }, [props.startDate, props.startDay]);
+    const updateStartDate = !datesMatch(startDate, nextStartDate);
+    if (updateStartDate) {
+        setStartDate(nextStartDate);
+    }
 
-    React.useEffect(() => {
-        setCalendarRules(props.calendarRules || RivendellRulesEnum.TRADITIONAL);
-    }, [props.calendarRules]);
+    const updateRules = calendarRules !== nextRules;
+    if (updateRules) {
+        setCalendarRules(nextRules);
+    }
 
-    React.useEffect(() => {
+    const updateCalendar = props.calendar && props.calendar !== calendar;
+    if (updateCalendar || updateToday || updateStartDate || updateRules) {
         setCalendar(
             props.calendar
-                || makeRivendellCalendarDates(today, startDate, calendarRules)
+                || makeRivendellCalendarDates(
+                    nextDate,
+                    nextStartDate,
+                    nextRules
+                )
         );
-    }, [props.calendar, today, startDate, calendarRules]);
+    }
 
     const { dates, todayRivendell } = calendar;
 

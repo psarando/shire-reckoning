@@ -359,29 +359,30 @@ const GondorYear = ({ dates, today, language, reckoning }) => {
 };
 
 const GondorCalendar = (props) => {
-    const { caption, className } = props;
+    const {
+        caption,
+        className,
+        language = QUENYA,
+        monthViewLayout = VERTICAL,
+        startDay = 21,
+        yearView = false,
+    } = props;
 
-    const language = props.language || QUENYA;
-    const yearView = !!props.yearView;
-    const monthViewLayout = props.monthViewLayout || VERTICAL;
+    const nextDate = props.date || new Date();
+    const [today, setToday] = React.useState(nextDate);
 
-    const [today, setToday] = React.useState(props.date || new Date());
+    const nextStartDate = props.startDate || fullYearDate(0, 11, startDay);
+    const [startDate, setStartDate] = React.useState(nextStartDate);
 
-    const [calendarRules, setCalendarRules] = React.useState(
-        props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN
-    );
+    const nextReckoning = props.reckoning || GondorReckoningEnum.STEWARDS;
+    const [reckoning, setReckoning] = React.useState(nextReckoning);
 
-    const [reckoning, setReckoning] = React.useState(
-        props.reckoning || GondorReckoningEnum.STEWARDS
-    );
-
-    const startDay = props.startDay || 21;
-    const [startDate, setStartDate] = React.useState(
-        props.startDate || fullYearDate(0, 11, startDay)
-    );
+    const nextRules = props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN;
+    const [calendarRules, setCalendarRules] = React.useState(nextRules);
 
     const [calendar, setCalendar] = React.useState(
-        props.calendar
+        () =>
+            props.calendar
             || makeGondorCalendarDates(
                 today,
                 startDate,
@@ -390,41 +391,44 @@ const GondorCalendar = (props) => {
             )
     );
 
-    React.useEffect(() => {
-        const newDate = props.date || new Date();
-        if (!datesMatch(today, newDate)) {
-            setToday(newDate);
-        }
-    }, [props.date]);
+    const updateToday = !datesMatch(today, nextDate);
+    if (updateToday) {
+        setToday(nextDate);
+    }
 
-    React.useEffect(() => {
-        const newStartDate = props.startDate || fullYearDate(0, 11, startDay);
-        if (!datesMatch(startDate, newStartDate)) {
-            setStartDate(newStartDate);
-        }
-    }, [props.startDate, props.startDay]);
+    const updateStartDate = !datesMatch(startDate, nextStartDate);
+    if (updateStartDate) {
+        setStartDate(nextStartDate);
+    }
 
-    React.useEffect(() => {
-        setCalendarRules(
-            props.calendarRules || GondorLeapYearRuleEnum.GREGORIAN
-        );
-    }, [props.calendarRules]);
+    const updateReckoning = reckoning !== nextReckoning;
+    if (updateReckoning) {
+        setReckoning(nextReckoning);
+    }
 
-    React.useEffect(() => {
-        setReckoning(props.reckoning || GondorReckoningEnum.STEWARDS);
-    }, [props.reckoning]);
+    const updateRules = calendarRules !== nextRules;
+    if (updateRules) {
+        setCalendarRules(nextRules);
+    }
 
-    React.useEffect(() => {
+    const updateCalendar = props.calendar && props.calendar !== calendar;
+    if (
+        updateCalendar
+        || updateToday
+        || updateStartDate
+        || updateReckoning
+        || updateRules
+    ) {
         setCalendar(
             props.calendar
                 || makeGondorCalendarDates(
-                    today,
-                    startDate,
-                    reckoning,
-                    calendarRules
+                    nextDate,
+                    nextStartDate,
+                    nextReckoning,
+                    nextRules
                 )
         );
-    }, [props.calendar, today, startDate, reckoning, calendarRules]);
+    }
 
     const { dates, todayGondor } = calendar;
 
