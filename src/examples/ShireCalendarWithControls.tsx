@@ -9,7 +9,7 @@ import {
     ShireRegionEnum,
     makeShireCalendarDates,
 } from "../ShireReckoning";
-import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
+import { datesMatch, getFirstDay, getLastDay } from "../Utils";
 
 import ShireCalendar from "../ui/ShireCalendar";
 import { MonthLayoutEnum } from "../ui/controls/MonthViewLayout";
@@ -21,9 +21,7 @@ import ShireRegionPicker from "./controls/ShireRegionPicker";
 import { ShireStartDatePicker } from "./controls/StartDatePicker";
 
 interface ShireCalendarWithControlsProps {
-    className: string;
     region: ShireRegionEnum;
-    monthViewLayout: MonthLayoutEnum;
     yearView: boolean;
     date: Date;
     startDate: Date;
@@ -31,37 +29,35 @@ interface ShireCalendarWithControlsProps {
     onRegionChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
-const defaultStartDate = fullYearDate(0, 11, 21);
-
 const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
-    const { className, region, onCalendarStartChange, onRegionChange } = props;
+    const {
+        region,
+        yearView: nextYearView,
+        date: nextDate,
+        startDate: nextStartDate,
+        onCalendarStartChange,
+        onRegionChange,
+    } = props;
 
     const [monthViewLayout, setMonthViewLayout] = React.useState(
-        props.monthViewLayout || MonthLayoutEnum.VERTICAL
+        MonthLayoutEnum.HORIZONTAL
     );
-
-    const nextYearView = !!props.yearView;
     const [propsYearView, setPropsYearView] = React.useState(nextYearView);
     const [yearView, setYearView] = React.useState(nextYearView);
-
-    const nextDate = props.date || new Date();
     const [today, setToday] = React.useState(nextDate);
-    const [viewDate, setViewDate] = React.useState(today);
-
-    const nextStartDate = props.startDate || defaultStartDate;
     const [startDate, setStartDate] = React.useState(nextStartDate);
-
     const [calendar, setCalendar] = React.useState(() =>
         makeShireCalendarDates(today, startDate)
     );
 
+    const viewDate = calendar.todayShire.gregorian;
     const thisMonth = calendar.todayShire.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
-    const updateToday = !datesMatch(today, nextDate);
+    // Check object equality so views are updated anytime `Today` is clicked.
+    const updateToday = today !== nextDate;
     if (updateToday) {
         setToday(nextDate);
-        setViewDate(nextDate);
     }
 
     const updateStartDate = !datesMatch(startDate, nextStartDate);
@@ -96,7 +92,6 @@ const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
             );
             setCalendar(nextCalendar);
             setMonthView(nextCalendar.todayShire.month);
-            setViewDate(nextViewDate);
         }
     };
 
@@ -114,7 +109,7 @@ const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
     });
 
     return (
-        <table className={className}>
+        <table className="shire-calendar">
             <caption className="shire-caption">Shire Reckoning</caption>
             <thead>
                 <tr>

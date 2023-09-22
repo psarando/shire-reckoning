@@ -14,7 +14,7 @@ import {
     makeGondorCalendarDates,
 } from "../GondorReckoning";
 
-import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
+import { datesMatch, getFirstDay, getLastDay } from "../Utils";
 
 import GondorCalendar, { defaultCaption } from "../ui/GondorCalendar";
 import { LanguageEnum } from "../ui/controls/LanguagePicker";
@@ -36,10 +36,13 @@ interface GondorCalendarWithControlsProps {
     onCalendarStartChange: (startDate: Date) => void;
 }
 
-const defaultStartDate = fullYearDate(0, 11, 21);
-
 const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
-    const { className, onCalendarStartChange } = props;
+    const {
+        className,
+        date: nextDate,
+        startDate: nextStartDate,
+        onCalendarStartChange,
+    } = props;
 
     const [language, setLanguage] = React.useState(
         props.language || LanguageEnum.QUENYA
@@ -48,12 +51,7 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
         props.monthViewLayout || MonthLayoutEnum.VERTICAL
     );
     const [yearView, setYearView] = React.useState(false);
-
-    const nextDate = props.date || new Date();
     const [today, setToday] = React.useState(nextDate);
-    const [viewDate, setViewDate] = React.useState(today);
-
-    const nextStartDate = props.startDate || defaultStartDate;
     const [startDate, setStartDate] = React.useState(nextStartDate);
 
     const [reckoning, setReckoning] = React.useState(
@@ -64,13 +62,14 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
         makeGondorCalendarDates(today, startDate, reckoning)
     );
 
+    const viewDate = calendar.todayGondor.gregorian;
     const thisMonth = calendar.todayGondor.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
-    const updateToday = !datesMatch(today, nextDate);
+    // Check object equality so views are updated anytime `Today` is clicked.
+    const updateToday = today !== nextDate;
     if (updateToday) {
         setToday(nextDate);
-        setViewDate(nextDate);
     }
 
     const updateStartDate = !datesMatch(startDate, nextStartDate);
@@ -104,7 +103,6 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
             );
             setCalendar(nextCalendar);
             setMonthView(nextCalendar.todayGondor.month);
-            setViewDate(nextViewDate);
         }
     };
 
@@ -119,7 +117,7 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
         );
 
         setReckoning(nextReckoning);
-        setMonthView(monthView < 0 ? -1 : convertedMonthView);
+        setMonthView(convertedMonthView);
         setCalendar(
             makeGondorCalendarDates(viewDate, startDate, nextReckoning)
         );

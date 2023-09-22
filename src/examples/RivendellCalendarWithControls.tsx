@@ -12,7 +12,7 @@ import {
     makeRivendellCalendarDates,
 } from "../RivendellReckoning";
 
-import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
+import { datesMatch, getFirstDay, getLastDay } from "../Utils";
 
 import RivendellCalendar from "../ui/RivendellCalendar";
 import { LanguageEnum } from "../ui/controls/LanguagePicker";
@@ -23,7 +23,6 @@ import MonthViewPicker from "./controls/MonthViewPicker";
 import { RivendellStartDatePicker } from "./controls/StartDatePicker";
 
 interface RivendellCalendarWithControlsProps {
-    className: string;
     yearView: boolean;
     date: Date;
     startDate: Date;
@@ -32,24 +31,21 @@ interface RivendellCalendarWithControlsProps {
     onCalendarRulesChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
-const defaultStartDate = fullYearDate(1, 2, 22);
-
 const RivendellCalendarWithControls = (
     props: RivendellCalendarWithControlsProps
 ) => {
-    const { className, onCalendarStartChange, onCalendarRulesChange } = props;
+    const {
+        yearView: nextYearView,
+        date: nextDate,
+        startDate: nextStartDate,
+        onCalendarStartChange,
+        onCalendarRulesChange,
+    } = props;
 
     const [language, setLanguage] = React.useState(LanguageEnum.QUENYA);
-
-    const nextYearView = !!props.yearView;
     const [propsYearView, setPropsYearView] = React.useState(nextYearView);
     const [yearView, setYearView] = React.useState(nextYearView);
-
-    const nextDate = props.date || new Date();
     const [today, setToday] = React.useState(nextDate);
-    const [viewDate, setViewDate] = React.useState(today);
-
-    const nextStartDate = props.startDate || defaultStartDate;
     const [startDate, setStartDate] = React.useState(nextStartDate);
 
     const nextRules = props.calendarRules || RivendellRulesEnum.TRADITIONAL;
@@ -59,13 +55,14 @@ const RivendellCalendarWithControls = (
         makeRivendellCalendarDates(today, startDate, calendarRules)
     );
 
+    const viewDate = calendar.todayRivendell.gregorian;
     const thisMonth = calendar.todayRivendell.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
-    const updateToday = !datesMatch(today, nextDate);
+    // Check object equality so views are updated anytime `Today` is clicked.
+    const updateToday = today !== nextDate;
     if (updateToday) {
         setToday(nextDate);
-        setViewDate(nextDate);
     }
 
     const updateStartDate = !datesMatch(startDate, nextStartDate);
@@ -110,7 +107,6 @@ const RivendellCalendarWithControls = (
             );
             setCalendar(nextCalendar);
             setMonthView(nextCalendar.todayRivendell.month);
-            setViewDate(nextViewDate);
         }
     };
 
@@ -126,7 +122,7 @@ const RivendellCalendarWithControls = (
     });
 
     return (
-        <table className={className}>
+        <table className="shire-calendar rivendell-calendar">
             <caption className="rivendell-caption">Rivendell Reckoning</caption>
             <thead>
                 <tr>

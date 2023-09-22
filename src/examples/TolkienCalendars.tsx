@@ -195,15 +195,15 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
 
     const onShireSyncChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         let shireSyncScheme = parseInt(event.target.value, 10);
-        let shireStartDate;
+        let shireStartDate, gondorLeftStartDate, gondorRightStartDate;
 
         if (
             shireCustomSyncScheme
             && shireSyncScheme === SyncShireCalendar.length
         ) {
             shireStartDate = shireCustomSyncScheme.startDate;
-            setGondorLeftStartDate(shireCustomSyncScheme.gondorLeftStartDate);
-            setGondorRightStartDate(shireCustomSyncScheme.gondorRightStartDate);
+            gondorLeftStartDate = shireCustomSyncScheme.gondorLeftStartDate;
+            gondorRightStartDate = shireCustomSyncScheme.gondorRightStartDate;
         } else {
             if (shireSyncScheme === SyncShireCalendar.length) {
                 shireSyncScheme = 0;
@@ -216,8 +216,8 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
 
             shireStartDate = SyncShireCalendar[shireSyncScheme].startDate;
 
-            setGondorLeftStartDate(new Date(shireStartDate));
-            setGondorRightStartDate(new Date(shireStartDate));
+            gondorLeftStartDate = shireStartDate;
+            gondorRightStartDate = shireStartDate;
         }
 
         setRivendellStartDate(
@@ -229,6 +229,8 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
         );
 
         setShireStartDate(shireStartDate);
+        setGondorLeftStartDate(gondorLeftStartDate);
+        setGondorRightStartDate(gondorRightStartDate);
 
         setShireSyncScheme(shireSyncScheme);
     };
@@ -486,14 +488,10 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
                     >
                         <ShireCalendarWithControls
                             region={shireRegion}
-                            monthViewLayout={
-                                ShireCalendar.MONTH_VIEW_HORIZONTAL
-                            }
                             date={currentDate}
                             startDate={shireStartDate}
                             onCalendarStartChange={onShireStartDateChange}
                             onRegionChange={onShireRegionChange}
-                            className="shire-calendar"
                             yearView={shireAlign || rivendellAlign}
                         />
                     </td>
@@ -507,7 +505,6 @@ const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
                             calendarRules={rivendellCalendarRules}
                             onCalendarStartChange={onRivendellStartDateChange}
                             onCalendarRulesChange={onRivendellRulesChange}
-                            className="shire-calendar rivendell-calendar"
                             yearView={shireAlign || rivendellAlign}
                         />
                     </td>
