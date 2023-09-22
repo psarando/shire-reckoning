@@ -11,6 +11,13 @@
     width: 4rem;
     text-align: center;
 }
+.month-picker {
+    margin: auto;
+}
+.month-picker td {
+    border: none;
+    height: 1rem;
+}
 .simulated-calendar caption {
     font-size: 1.5rem;
 }
