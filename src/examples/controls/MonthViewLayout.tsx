@@ -33,7 +33,4 @@ const MonthViewLayout = ({
     );
 };
 
-MonthViewLayout.VERTICAL = MonthLayoutEnum.VERTICAL;
-MonthViewLayout.HORIZONTAL = MonthLayoutEnum.HORIZONTAL;
-
 export default MonthViewLayout;

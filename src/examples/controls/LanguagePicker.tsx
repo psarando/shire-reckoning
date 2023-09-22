@@ -32,8 +32,4 @@ const LanguagePicker = ({
     );
 };
 
-LanguagePicker.ENGLISH = LanguageEnum.ENGLISH;
-LanguagePicker.QUENYA = LanguageEnum.QUENYA;
-LanguagePicker.SINDARIN = LanguageEnum.SINDARIN;
-
 export default LanguagePicker;

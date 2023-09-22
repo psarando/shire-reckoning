@@ -14,42 +14,28 @@ import {
 } from "../../Utils";
 
 /**
- * @typedef {Date} RivendellStartDate
- * The Gregorian Date of the first Rivendell New Year Date.
- */
-
-/**
- * @typedef {Date} NumenorStartDate
- * The Gregorian Date of the first Númenor New Year Date, relative to the Second Age.
- */
-
-/**
- * @typedef {Date} ShireStartDate
- * The Gregorian Date of the first Shire New Year Date, relative to the Second Age.
- */
-
-/**
  * The Middle-earth New Year Dates, relative to the Second Age.
- *
- * @typedef {Object} StartDates
- * @property {RivendellStartDate} rivendell
- * @property {NumenorStartDate} gondor
- * @property {ShireStartDate} shire
  */
+interface StartDates {
+    // The Gregorian Date of the first Rivendell New Year Date.
+    rivendell: Date;
+    // The Gregorian Date of the first Númenor New Year Date, relative to the Second Age.
+    gondor: Date;
+    // The Gregorian Date of the first Shire New Year Date, relative to the Second Age.
+    shire: Date;
+}
 
-/**
- * @typedef {Object} SecondAgeSyncScheme
- * @property {string} label - Display label for this synchronization scheme.
- * @property {StartDates} startDates
- */
+interface SecondAgeSyncScheme {
+    // Display label for this synchronization scheme.
+    label: string;
+    startDates: StartDates;
+}
 
 /**
  * Calendar simulation synchronization schemes.
  * @constant
- * @type {SecondAgeSyncScheme[]}
  */
-const SyncAges = [
-    { label: "Custom Reckoning" },
+const SyncAges: SecondAgeSyncScheme[] = [
     {
         label: "Gregorian years with Second Age years",
         startDates: {
@@ -132,23 +118,26 @@ const SyncAges = [
     },
 ];
 
-/**
- * @typedef {Object} DateOfInterest
- * @property {string} label - Display label for this Middle-earth event.
- * @property {string} displayDate - Middle-earth display date for this event.
- * @property {boolean} allYear - True if this event should display in the simulation for the entire S.R. year.
- * @property {number} year - Second Age year of this event.
- * @property {number} [month] - S.R. month of this event.
- * @property {number} [day] - S.R. day of this event.
- */
+interface DateOfInterest {
+    // Display label for this Middle-earth event.
+    label: string;
+    // Middle-earth display date for this event.
+    displayDate: string;
+    // True if this event should display in the simulation for the entire S.R. year.
+    allYear: boolean;
+    // Second Age year of this event.
+    year: number;
+    // S.R. month of this event.
+    month?: number;
+    // S.R. day of this event.
+    day?: string | number;
+}
 
 /**
  * Calendar simulation Dates of Interest list of Fourth Age events.
  * @constant
- * @type {DateOfInterest[]}
  */
-const DatesOfInterestFourthAge = [
-    { label: "" },
+const DatesOfInterestFourthAge: DateOfInterest[] = [
     {
         year: 1592 + 1600 + 3441,
         allYear: true,
@@ -192,9 +181,8 @@ const DatesOfInterestFourthAge = [
 /**
  * Calendar simulation Dates of Interest list of events that took place during the main story of The Lord of the Rings.
  * @constant
- * @type {DateOfInterest[]}
  */
-const DatesOfInterestThirdAgeLotR = [
+const DatesOfInterestThirdAgeLotR: DateOfInterest[] = [
     {
         year: 3021 + 3441,
         allYear: false,
@@ -544,9 +532,8 @@ const DatesOfInterestThirdAgeLotR = [
 /**
  * Calendar simulation Dates of Interest list of Third Age events.
  * @constant
- * @type {DateOfInterest[]}
  */
-const DatesOfInterestThirdAge = [
+const DatesOfInterestThirdAge: DateOfInterest[] = [
     {
         year: 2995 + 3441,
         allYear: true,
@@ -910,9 +897,8 @@ const DatesOfInterestThirdAge = [
 /**
  * Calendar simulation Dates of Interest list of Second Age events.
  * @constant
- * @type {DateOfInterest[]}
  */
-const DatesOfInterestSecondAge = [
+const DatesOfInterestSecondAge: DateOfInterest[] = [
     {
         year: 3441,
         allYear: true,
@@ -1050,9 +1036,8 @@ const DatesOfInterestSecondAge = [
 /**
  * Calendar simulation Dates of Interest list of First Age events.
  * @constant
- * @type {DateOfInterest[]}
  */
-const DatesOfInterestFirstAge = [
+const DatesOfInterestFirstAge: DateOfInterest[] = [
     {
         year: 0,
         allYear: true,
@@ -1298,9 +1283,8 @@ const DatesOfInterestFirstAge = [
 /**
  * Calendar simulation Dates of Interest list.
  * @constant
- * @type {DateOfInterest[]}
  */
-const DatesOfInterest = [
+const DatesOfInterest: DateOfInterest[] = [
     ...DatesOfInterestFourthAge,
     ...DatesOfInterestThirdAgeLotR,
     ...DatesOfInterestThirdAge,
@@ -1309,16 +1293,13 @@ const DatesOfInterest = [
 ];
 
 /**
- * @param {DateOfInterest} eventOfInterest
- * @param {ShireStartDate} shireStartDate
- * @param {RivendellStartDate} rivendellStartDate
  * @return {Date} The Gregorian Date corresponding to the given `DateOfInterest` and start dates.
  */
 const eventOfInterestToDate = (
-    eventOfInterest,
-    shireStartDate,
-    rivendellStartDate
-) => {
+    eventOfInterest: DateOfInterest,
+    shireStartDate: Date,
+    rivendellStartDate: Date
+): Date => {
     // Find a date somewhere in the middle of the current Shire calendar year.
     let gregorian = new Date(shireStartDate);
     let daysElapsed =
@@ -1340,7 +1321,7 @@ const eventOfInterestToDate = (
                 && date.day === eventOfInterest.day
         );
 
-        gregorian = shireDate.gregorian;
+        gregorian = shireDate?.gregorian || calendar.dates[0].gregorian;
     } else {
         // Find the Elves' New Year's Day for the current Shire calendar year.
         gregorian = getRivendellNewYearDate(gregorian, rivendellStartDate);
@@ -1350,20 +1331,16 @@ const eventOfInterestToDate = (
 };
 
 /**
- * @param {Date} currentDate
- * @param {number} currentEventIndex
- * @param {ShireStartDate} shireStartDate
- * @param {RivendellStartDate} rivendellStartDate
  * @return {Date} The Gregorian Date corresponding to the `currentEventIndex` and start dates,
  *                or `currentDate` if the `currentEventIndex` is not a valid `DateOfInterest`.
  */
 const adjustDateForCurrentEvent = (
-    currentDate,
-    currentEventIndex,
-    shireStartDate,
-    rivendellStartDate
-) => {
-    if (currentEventIndex < 1 || DatesOfInterest.length <= currentEventIndex) {
+    currentDate: Date,
+    currentEventIndex: number,
+    shireStartDate: Date,
+    rivendellStartDate: Date
+): Date => {
+    if (currentEventIndex < 0 || DatesOfInterest.length <= currentEventIndex) {
         return currentDate;
     }
 
@@ -1375,21 +1352,18 @@ const adjustDateForCurrentEvent = (
 };
 
 /**
- * @param {Date} currentDate
- * @param {ShireStartDate} shireStartDate
- * @param {RivendellStartDate} rivendellStartDate
  * @return {number} The DatesOfInterest index for the `currentDate` according to the given start dates.
  */
-const findEventIndex = (currentDate, shireStartDate, rivendellStartDate) => {
+const findEventIndex = (
+    currentDate: Date,
+    shireStartDate: Date,
+    rivendellStartDate: Date
+): number => {
     const currentSAYear = daysElapsedToSecondAgeYear(
         toDaysElapsed(shireStartDate, currentDate)
     ).year;
 
-    const eventIndex = DatesOfInterest.findIndex((event) => {
-        if (event.label === "") {
-            return false;
-        }
-
+    return DatesOfInterest.findIndex((event) => {
         if (event.allYear) {
             return currentSAYear === event.year;
         }
@@ -1399,30 +1373,21 @@ const findEventIndex = (currentDate, shireStartDate, rivendellStartDate) => {
             eventOfInterestToDate(event, shireStartDate, rivendellStartDate)
         );
     });
-
-    return eventIndex > 0 ? eventIndex : 0;
 };
 
 /**
- * @param {Date} currentDate
- * @param {ShireStartDate} shireStartDate
- * @param {RivendellStartDate} rivendellStartDate
  * @return {number} The DatesOfInterest index preceding the `currentDate` according to the given start dates, or -1.
  */
 const findPreviousEventIndex = (
-    currentDate,
-    shireStartDate,
-    rivendellStartDate
-) => {
+    currentDate: Date,
+    shireStartDate: Date,
+    rivendellStartDate: Date
+): number => {
     const currentSAYear = daysElapsedToSecondAgeYear(
         toDaysElapsed(shireStartDate, currentDate)
     ).year;
 
     return DatesOfInterest.findIndex((event) => {
-        if (event.label === "") {
-            return false;
-        }
-
         if (event.allYear) {
             return currentSAYear > event.year;
         }
@@ -1435,6 +1400,7 @@ const findPreviousEventIndex = (
 };
 
 export {
+    SecondAgeSyncScheme,
     SyncAges,
     DatesOfInterest,
     DatesOfInterestFourthAge,

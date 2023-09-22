@@ -34,7 +34,7 @@ export default {
     stories: [
         "../src/examples/TolkienCalendars.tsx",
 
-        "../src/examples/simulation/TolkienCalendars.js",
+        "../src/examples/simulation/TolkienCalendars.tsx",
 
         "../src/examples/ICalendarGenerator.tsx",
 

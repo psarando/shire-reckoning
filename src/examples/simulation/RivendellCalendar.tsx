@@ -5,13 +5,15 @@
 import React from "react";
 
 import {
-    TRADITIONAL_RULES,
     RivendellMonths,
+    RivendellRulesEnum,
     makeRivendellCalendarDates,
 } from "../../RivendellReckoning";
 import { datesMatch, fullYearDate, getFirstDay, getLastDay } from "../../Utils";
 
 import RivendellCalendar from "../../ui/RivendellCalendar";
+import { LanguageEnum } from "../../ui/controls/LanguagePicker";
+import { MonthLayoutEnum } from "../../ui/controls/MonthViewLayout";
 import "../../ui/tolkien-calendars.css";
 
 import LanguagePicker from "../controls/LanguagePicker";
@@ -22,15 +24,22 @@ import "../examples.css";
 
 import StartReckoningDatePicker from "./StartReckoningDatePicker";
 
+interface RivendellCalendarSimulatedProps {
+    className: string;
+    date: Date;
+    startDate: Date;
+    onCalendarStartChange: (startDate: Date) => void;
+}
+
 const defaultStartDate = fullYearDate(-589, 2, 23);
 
-const RivendellCalendarSimulated = (props) => {
+const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
     const { className, onCalendarStartChange } = props;
 
-    const [language, setLanguage] = React.useState(LanguagePicker.QUENYA);
+    const [language, setLanguage] = React.useState(LanguageEnum.QUENYA);
     const [yearView, setYearView] = React.useState(false);
     const [monthViewLayout, setMonthViewLayout] = React.useState(
-        MonthViewLayout.VERTICAL
+        MonthLayoutEnum.VERTICAL
     );
 
     const nextStartDate = props.startDate || defaultStartDate;
@@ -40,11 +49,15 @@ const RivendellCalendarSimulated = (props) => {
     const [viewDate, setViewDate] = React.useState(today);
 
     const [calendar, setCalendar] = React.useState(() =>
-        makeRivendellCalendarDates(today, startDate, TRADITIONAL_RULES)
+        makeRivendellCalendarDates(
+            today,
+            startDate,
+            RivendellRulesEnum.TRADITIONAL
+        )
     );
-    const [monthView, setMonthView] = React.useState(
-        calendar.todayRivendell.month
-    );
+
+    const thisMonth = calendar.todayRivendell?.month || 0;
+    const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
     if (updateToday) {
@@ -61,13 +74,17 @@ const RivendellCalendarSimulated = (props) => {
         const nextCalendar = makeRivendellCalendarDates(
             nextDate,
             nextStartDate,
-            TRADITIONAL_RULES
+            RivendellRulesEnum.TRADITIONAL
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayRivendell.month);
+        setMonthView(nextCalendar.todayRivendell?.month || 0);
     }
 
-    const onMonthViewChange = (nextViewDate, monthView, yearView) => {
+    const onMonthViewChange = (
+        nextViewDate: Date,
+        monthView: number,
+        yearView: boolean
+    ) => {
         setMonthView(monthView);
         setYearView(yearView);
 
@@ -75,20 +92,22 @@ const RivendellCalendarSimulated = (props) => {
             const nextCalendar = makeRivendellCalendarDates(
                 nextViewDate,
                 startDate,
-                TRADITIONAL_RULES
+                RivendellRulesEnum.TRADITIONAL
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayRivendell.month);
+            setMonthView(nextCalendar.todayRivendell?.month || 0);
             setViewDate(nextViewDate);
         }
     };
 
-    const onMonthViewLayoutChange = (event) => {
-        setMonthViewLayout(event.target.value);
+    const onMonthViewLayoutChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        setMonthViewLayout(event.target.value as MonthLayoutEnum);
     };
 
-    const onLanguageChange = (event) => {
-        setLanguage(event.target.value);
+    const onLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setLanguage(event.target.value as LanguageEnum);
     };
 
     const year = calendar.year;
@@ -104,7 +123,7 @@ const RivendellCalendarSimulated = (props) => {
     const lastDay = getLastDay(calendar);
 
     let calendarClassName = "shire-calendar rivendell-calendar";
-    if (!yearView && monthViewLayout === MonthViewLayout.VERTICAL) {
+    if (!yearView && monthViewLayout === MonthLayoutEnum.VERTICAL) {
         calendarClassName += " rivendell-calendar-vertical-weeks";
     }
 
@@ -125,7 +144,7 @@ const RivendellCalendarSimulated = (props) => {
                             monthLabel="Season"
                             firstDay={firstDay}
                             lastDay={lastDay}
-                            thisMonth={calendar.todayRivendell.month}
+                            thisMonth={thisMonth}
                             today={today}
                             viewDate={viewDate}
                             monthView={monthView}
@@ -149,7 +168,7 @@ const RivendellCalendarSimulated = (props) => {
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan="4" className="shire-calendar-wrapper-cell">
+                    <td colSpan={4} className="shire-calendar-wrapper-cell">
                         <RivendellCalendar
                             className={calendarClassName}
                             calendar={calendar}

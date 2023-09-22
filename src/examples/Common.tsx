@@ -209,7 +209,10 @@ export {
     Badges,
     CalendarCellStyle,
     CaptionCellStyle,
+    DateMonthSelect,
+    DateNumberInput,
     DatePicker,
     DisplayTableMap,
     DisplayTableRows,
+    parseDatePickerChangedDate,
 };
