@@ -441,9 +441,7 @@ const ShireCalendar = (props: ShireCalendarProps) => {
     const { dates, todayShire } = calendar;
 
     const monthView =
-        props.monthView === undefined
-            ? todayShire?.month || 0
-            : props.monthView;
+        props.monthView === undefined ? todayShire.month : props.monthView;
 
     return (
         <table className={className}>

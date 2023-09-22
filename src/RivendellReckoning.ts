@@ -325,7 +325,7 @@ interface RivendellDate extends CalendarDate {
  */
 interface RivendellCalendarYear extends Calendar {
     dates: RivendellDate[];
-    todayRivendell: RivendellDate | undefined;
+    todayRivendell: RivendellDate;
 }
 
 /**
@@ -355,6 +355,7 @@ const makeRivendellCalendarDates = (
     const yearWithRemainder = getYearWithRemainder(daysElapsed);
     const year = yearWithRemainder.year;
 
+    let rivendellDate;
     let gregorianDate = getNewYearDate(
         startDate,
         today,
@@ -365,33 +366,34 @@ const makeRivendellCalendarDates = (
 
     const dates: RivendellDate[] = [];
     if (calendarRules === REFORMED_RULES && isLeapYear(year)) {
-        dates.push({
+        rivendellDate = {
             day: "Reformed Enderë",
             month: 0,
             weekDay: weekDay % 6,
             gregorian: gregorianDate,
-        });
+        };
 
+        dates.push(rivendellDate);
         if (datesMatch(today, gregorianDate)) {
-            todayRivendell = dates[dates.length - 1];
+            todayRivendell = rivendellDate;
         }
         gregorianDate = getNextDate(gregorianDate);
         weekDay++;
     }
 
-    dates.push({
+    rivendellDate = {
         day: "Yestarë",
         month: 0,
         weekDay: weekDay % 6,
         gregorian: gregorianDate,
-    });
-    weekDay++;
+    };
 
+    dates.push(rivendellDate);
     if (datesMatch(today, gregorianDate)) {
-        todayRivendell = dates[0];
+        todayRivendell = rivendellDate;
     }
-
     gregorianDate = getNextDate(gregorianDate);
+    weekDay++;
 
     for (let month = 0; month < 6; month++) {
         let maxdays = 54;
@@ -416,15 +418,16 @@ const makeRivendellCalendarDates = (
                         weekDay++,
                         gregorianDate = getNextDate(gregorianDate)
                 ) {
-                    dates.push({
+                    rivendellDate = {
                         day: "Enderë",
                         month: month,
                         weekDay: weekDay % 6,
                         gregorian: gregorianDate,
-                    });
+                    };
 
+                    dates.push(rivendellDate);
                     if (datesMatch(today, gregorianDate)) {
-                        todayRivendell = dates[dates.length - 1];
+                        todayRivendell = rivendellDate;
                     }
                 }
                 break;
@@ -438,35 +441,37 @@ const makeRivendellCalendarDates = (
             day <= maxdays;
             day++, weekDay++, gregorianDate = getNextDate(gregorianDate)
         ) {
-            dates.push({
+            rivendellDate = {
                 day: day,
                 month: month,
                 weekDay: weekDay % 6,
                 gregorian: gregorianDate,
-            });
+            };
 
+            dates.push(rivendellDate);
             if (datesMatch(today, gregorianDate)) {
-                todayRivendell = dates[dates.length - 1];
+                todayRivendell = rivendellDate;
             }
         }
     }
 
-    dates.push({
+    rivendellDate = {
         day: "Mettarë",
         month: 5,
         weekDay: weekDay % 6,
         gregorian: gregorianDate,
-    });
+    };
 
+    dates.push(rivendellDate);
     if (datesMatch(today, gregorianDate)) {
-        todayRivendell = dates[dates.length - 1];
+        todayRivendell = rivendellDate;
     }
 
     return {
         year,
         dates,
         today,
-        todayRivendell,
+        todayRivendell: todayRivendell || dates[0],
     };
 };
 

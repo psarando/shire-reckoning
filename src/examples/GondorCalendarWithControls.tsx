@@ -64,7 +64,7 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
         makeGondorCalendarDates(today, startDate, reckoning)
     );
 
-    const thisMonth = calendar.todayGondor?.month || 0;
+    const thisMonth = calendar.todayGondor.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
@@ -85,7 +85,7 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
             reckoning
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayGondor?.month || 0);
+        setMonthView(nextCalendar.todayGondor.month);
     }
 
     const onMonthViewChange = (
@@ -103,7 +103,7 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
                 reckoning
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayGondor?.month || 0);
+            setMonthView(nextCalendar.todayGondor.month);
             setViewDate(nextViewDate);
         }
     };

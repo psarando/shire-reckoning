@@ -430,7 +430,7 @@ interface GondorDate extends CalendarDate {
  */
 interface GondorCalendarYear extends Calendar {
     dates: GondorDate[];
-    todayGondor: GondorDate | undefined;
+    todayGondor: GondorDate;
 }
 
 /**
@@ -475,6 +475,7 @@ const makeGondorCalendarDates = (
         yearWithRemainder.daysRemainder
     );
 
+    let gondorDate;
     let todayGondor;
     let weekDay = convertGregorianToGondorianWeekday(gregorianDate.getDay());
 
@@ -489,15 +490,16 @@ const makeGondorCalendarDates = (
 
         switch (month) {
             case 0:
-                dates.push({
+                gondorDate = {
                     day: "Yestarë",
                     month: 0,
                     weekDay: weekDay++ % 7,
                     gregorian: gregorianDate,
-                });
+                };
 
+                dates.push(gondorDate);
                 if (datesMatch(today, gregorianDate)) {
-                    todayGondor = dates[0];
+                    todayGondor = gondorDate;
                 }
                 gregorianDate = getNextDate(gregorianDate);
 
@@ -517,30 +519,32 @@ const makeGondorCalendarDates = (
             day <= maxdays;
             day++, gregorianDate = getNextDate(gregorianDate)
         ) {
-            dates.push({
+            gondorDate = {
                 day: day,
                 month: month,
                 weekDay: weekDay++ % 7,
                 gregorian: gregorianDate,
-            });
+            };
 
+            dates.push(gondorDate);
             if (datesMatch(today, gregorianDate)) {
-                todayGondor = dates[dates.length - 1];
+                todayGondor = gondorDate;
             }
         }
 
         switch (month) {
             case 2:
                 if (stewardsReckoning) {
-                    dates.push({
+                    gondorDate = {
                         day: "Tuilérë",
                         month: month + 1,
                         weekDay: weekDay++ % 7,
                         gregorian: gregorianDate,
-                    });
+                    };
 
+                    dates.push(gondorDate);
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length - 1];
+                        todayGondor = gondorDate;
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -551,15 +555,16 @@ const makeGondorCalendarDates = (
                 const leapYear = isGondorLeapYear(year, rules);
 
                 if (leapYear && newReckoning) {
-                    dates.push({
+                    gondorDate = {
                         day: "Cormarë",
                         month: month,
                         weekDay: weekDay++ % 7,
                         gregorian: gregorianDate,
-                    });
+                    };
 
+                    dates.push(gondorDate);
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length - 1];
+                        todayGondor = gondorDate;
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -568,57 +573,61 @@ const makeGondorCalendarDates = (
                     rules === GondorLeapYearRuleEnum.TRADITIONAL
                     && isMillennialLeapYear(year)
                 ) {
-                    dates.push({
+                    gondorDate = {
                         day: newReckoning ? "Cormarë" : "Enderë",
                         month: newReckoning ? month : month + 1,
                         weekDay: weekDay++ % 7,
                         gregorian: gregorianDate,
-                    });
+                    };
 
+                    dates.push(gondorDate);
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length - 1];
+                        todayGondor = gondorDate;
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (leapYear || newReckoning) {
-                    dates.push({
+                    gondorDate = {
                         day: "Enderë",
                         month: month + 1,
                         weekDay: weekDay++ % 7,
                         gregorian: gregorianDate,
-                    });
+                    };
 
+                    dates.push(gondorDate);
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length - 1];
+                        todayGondor = gondorDate;
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (!leapYear || newReckoning) {
-                    dates.push({
+                    gondorDate = {
                         day: "Loëndë",
                         month: month + 1,
                         weekDay: weekDay++ % 7,
                         gregorian: gregorianDate,
-                    });
+                    };
 
+                    dates.push(gondorDate);
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length - 1];
+                        todayGondor = gondorDate;
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
 
                 if (leapYear || newReckoning) {
-                    dates.push({
+                    gondorDate = {
                         day: "Enderë",
                         month: month + 1,
                         weekDay: weekDay++ % 7,
                         gregorian: gregorianDate,
-                    });
+                    };
 
+                    dates.push(gondorDate);
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length - 1];
+                        todayGondor = gondorDate;
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -627,15 +636,16 @@ const makeGondorCalendarDates = (
 
             case 8:
                 if (stewardsReckoning) {
-                    dates.push({
+                    gondorDate = {
                         day: "Yáviérë",
                         month: month + 1,
                         weekDay: weekDay++ % 7,
                         gregorian: gregorianDate,
-                    });
+                    };
 
+                    dates.push(gondorDate);
                     if (datesMatch(today, gregorianDate)) {
-                        todayGondor = dates[dates.length - 1];
+                        todayGondor = gondorDate;
                     }
                     gregorianDate = getNextDate(gregorianDate);
                 }
@@ -643,15 +653,16 @@ const makeGondorCalendarDates = (
                 break;
 
             case 11:
-                dates.push({
+                gondorDate = {
                     day: "Mettarë",
                     month: 11,
                     weekDay: weekDay++ % 7,
                     gregorian: gregorianDate,
-                });
+                };
 
+                dates.push(gondorDate);
                 if (datesMatch(today, gregorianDate)) {
-                    todayGondor = dates[dates.length - 1];
+                    todayGondor = gondorDate;
                 }
                 gregorianDate = getNextDate(gregorianDate);
 
@@ -666,7 +677,7 @@ const makeGondorCalendarDates = (
         year,
         dates,
         today,
-        todayGondor,
+        todayGondor: todayGondor || dates[0],
     };
 };
 

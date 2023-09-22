@@ -304,9 +304,7 @@ const RivendellCalendar = (props: RivendellCalendarProps) => {
     const { dates, todayRivendell } = calendar;
 
     const monthView =
-        props.monthView === undefined
-            ? todayRivendell?.month || 0
-            : props.monthView;
+        props.monthView === undefined ? todayRivendell.month : props.monthView;
 
     return (
         <table className={className}>

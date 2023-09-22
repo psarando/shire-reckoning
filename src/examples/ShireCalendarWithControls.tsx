@@ -55,7 +55,7 @@ const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
         makeShireCalendarDates(today, startDate)
     );
 
-    const thisMonth = calendar.todayShire?.month || 0;
+    const thisMonth = calendar.todayShire.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
@@ -72,7 +72,7 @@ const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
     if (updateToday || updateStartDate) {
         const nextCalendar = makeShireCalendarDates(nextDate, nextStartDate);
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayShire?.month || 0);
+        setMonthView(nextCalendar.todayShire.month);
     }
 
     // If yearView from props changes, or is on, it should override this state.
@@ -95,7 +95,7 @@ const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
                 startDate
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayShire?.month || 0);
+            setMonthView(nextCalendar.todayShire.month);
             setViewDate(nextViewDate);
         }
     };

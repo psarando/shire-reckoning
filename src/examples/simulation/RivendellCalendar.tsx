@@ -56,7 +56,7 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
         )
     );
 
-    const thisMonth = calendar.todayRivendell?.month || 0;
+    const thisMonth = calendar.todayRivendell.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
@@ -77,7 +77,7 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
             RivendellRulesEnum.TRADITIONAL
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayRivendell?.month || 0);
+        setMonthView(nextCalendar.todayRivendell.month);
     }
 
     const onMonthViewChange = (
@@ -95,7 +95,7 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
                 RivendellRulesEnum.TRADITIONAL
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayRivendell?.month || 0);
+            setMonthView(nextCalendar.todayRivendell.month);
             setViewDate(nextViewDate);
         }
     };

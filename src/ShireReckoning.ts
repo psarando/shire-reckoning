@@ -385,7 +385,7 @@ interface ShireDate extends CalendarDate {
  */
 interface ShireCalendarYear extends Calendar {
     dates: ShireDate[];
-    todayShire: ShireDate | undefined;
+    todayShire: ShireDate;
 }
 
 /**
@@ -420,7 +420,6 @@ const makeShireCalendarDates = (
         yearWithRemainder.daysRemainder
     );
 
-    let todayShire;
     let weekDay = 0;
     let shireReform = true;
 
@@ -439,18 +438,15 @@ const makeShireCalendarDates = (
         }
     }
 
-    const dates: ShireDate[] = [
-        {
-            day: "2 Yule",
-            month: 0,
-            weekDay: weekDay++ % 7,
-            gregorian: gregorianDate,
-        },
-    ];
+    let shireDate: ShireDate = {
+        day: "2 Yule",
+        month: 0,
+        weekDay: weekDay++ % 7,
+        gregorian: gregorianDate,
+    };
+    const dates: ShireDate[] = [shireDate];
 
-    if (datesMatch(today, gregorianDate)) {
-        todayShire = dates[0];
-    }
+    let todayShire = shireDate;
 
     gregorianDate = getNextDate(gregorianDate);
 
@@ -460,15 +456,16 @@ const makeShireCalendarDates = (
             day <= 30;
             day++, weekDay++, gregorianDate = getNextDate(gregorianDate)
         ) {
-            dates.push({
+            shireDate = {
                 day: day,
                 month: month,
                 weekDay: weekDay % 7,
                 gregorian: gregorianDate,
-            });
+            };
 
+            dates.push(shireDate);
             if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length - 1];
+                todayShire = shireDate;
             }
         }
 
@@ -476,7 +473,7 @@ const makeShireCalendarDates = (
             const millennialLeapYear =
                 reckonTraditional && isMillennialLeapYear(year);
 
-            dates.push({
+            shireDate = {
                 day: "1 Lithe",
                 region: {
                     tolkien: "1 Lithe",
@@ -486,10 +483,11 @@ const makeShireCalendarDates = (
                 month: shireReform ? month : month + 1,
                 weekDay: weekDay % 7,
                 gregorian: gregorianDate,
-            });
+            };
 
+            dates.push(shireDate);
             if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length - 1];
+                todayShire = shireDate;
             }
 
             let summerday = 2;
@@ -499,7 +497,7 @@ const makeShireCalendarDates = (
                 }
 
                 gregorianDate = getNextDate(gregorianDate);
-                dates.push({
+                shireDate = {
                     day: "Overlithe",
                     region: {
                         tolkien: "Overlithe",
@@ -509,10 +507,11 @@ const makeShireCalendarDates = (
                     month: shireReform ? month : month + 1,
                     weekDay: weekDay % 7,
                     gregorian: gregorianDate,
-                });
+                };
 
+                dates.push(shireDate);
                 if (datesMatch(today, gregorianDate)) {
-                    todayShire = dates[dates.length - 1];
+                    todayShire = shireDate;
                 }
             }
 
@@ -521,15 +520,16 @@ const makeShireCalendarDates = (
             }
 
             gregorianDate = getNextDate(gregorianDate);
-            dates.push({
+            shireDate = {
                 day: "Midyear's Day",
                 month: shireReform && !millennialLeapYear ? month : month + 1,
                 weekDay: weekDay % 7,
                 gregorian: gregorianDate,
-            });
+            };
 
+            dates.push(shireDate);
             if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length - 1];
+                todayShire = shireDate;
             }
 
             summerday++;
@@ -537,7 +537,7 @@ const makeShireCalendarDates = (
             const leapYear = isGondorLeapYear(year, rules);
             if (leapYear) {
                 gregorianDate = getNextDate(gregorianDate);
-                dates.push({
+                shireDate = {
                     day: "Overlithe",
                     region: {
                         tolkien: "Overlithe",
@@ -547,10 +547,11 @@ const makeShireCalendarDates = (
                     month: month + 1,
                     weekDay: weekDay % 7,
                     gregorian: gregorianDate,
-                });
+                };
 
+                dates.push(shireDate);
                 if (datesMatch(today, gregorianDate)) {
-                    todayShire = dates[dates.length - 1];
+                    todayShire = shireDate;
                 }
 
                 if (!shireReform) {
@@ -559,7 +560,7 @@ const makeShireCalendarDates = (
             }
 
             gregorianDate = getNextDate(gregorianDate);
-            dates.push({
+            shireDate = {
                 day: "2 Lithe",
                 region: {
                     tolkien: "2 Lithe",
@@ -569,10 +570,11 @@ const makeShireCalendarDates = (
                 month: month + 1,
                 weekDay: weekDay % 7,
                 gregorian: gregorianDate,
-            });
+            };
 
+            dates.push(shireDate);
             if (datesMatch(today, gregorianDate)) {
-                todayShire = dates[dates.length - 1];
+                todayShire = shireDate;
             }
 
             gregorianDate = getNextDate(gregorianDate);
@@ -580,15 +582,16 @@ const makeShireCalendarDates = (
         }
     }
 
-    dates.push({
+    shireDate = {
         day: "1 Yule",
         month: 11,
         weekDay: weekDay % 7,
         gregorian: gregorianDate,
-    });
+    };
 
+    dates.push(shireDate);
     if (datesMatch(today, gregorianDate)) {
-        todayShire = dates[dates.length - 1];
+        todayShire = shireDate;
     }
 
     return {

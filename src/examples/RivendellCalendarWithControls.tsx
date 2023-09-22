@@ -59,7 +59,7 @@ const RivendellCalendarWithControls = (
         makeRivendellCalendarDates(today, startDate, calendarRules)
     );
 
-    const thisMonth = calendar.todayRivendell?.month || 0;
+    const thisMonth = calendar.todayRivendell.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
@@ -85,7 +85,7 @@ const RivendellCalendarWithControls = (
             nextRules
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayRivendell?.month || 0);
+        setMonthView(nextCalendar.todayRivendell.month);
     }
 
     // If yearView from props changes, or is on, it should override this state.
@@ -109,7 +109,7 @@ const RivendellCalendarWithControls = (
                 calendarRules
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayRivendell?.month || 0);
+            setMonthView(nextCalendar.todayRivendell.month);
             setViewDate(nextViewDate);
         }
     };

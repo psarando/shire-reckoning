@@ -103,7 +103,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
         )
     );
 
-    const thisMonth = calendar.todayGondor?.month || 0;
+    const thisMonth = calendar.todayGondor.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
     let gondorReckoning = gondorReckoningForYear(calendar, startDate, viewDate);
@@ -127,7 +127,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
             RECKONING_RULES_TRADITIONAL
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayGondor?.month || 0);
+        setMonthView(nextCalendar.todayGondor.month);
 
         gondorReckoning = gondorReckoningForYear(calendar, startDate, viewDate);
     }
@@ -143,7 +143,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
             RECKONING_RULES_TRADITIONAL
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayGondor?.month || 0);
+        setMonthView(nextCalendar.todayGondor.month);
     }
 
     const onMonthViewChange = (
@@ -178,7 +178,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
             }
 
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayGondor?.month || 0);
+            setMonthView(nextCalendar.todayGondor.month);
             setViewDate(nextViewDate);
         }
     };

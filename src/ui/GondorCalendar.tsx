@@ -482,9 +482,7 @@ const GondorCalendar = (props: GondorCalendarProps) => {
     const { dates, todayGondor } = calendar;
 
     const monthView =
-        props.monthView === undefined
-            ? todayGondor?.month || 0
-            : props.monthView;
+        props.monthView === undefined ? todayGondor.month : props.monthView;
 
     return (
         <table className={className}>

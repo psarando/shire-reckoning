@@ -55,7 +55,7 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
         )
     );
 
-    const thisMonth = calendar.todayShire?.month || 0;
+    const thisMonth = calendar.todayShire.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
@@ -76,7 +76,7 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
             GondorLeapYearRuleEnum.TRADITIONAL
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayShire?.month || 0);
+        setMonthView(nextCalendar.todayShire.month);
     }
 
     const onMonthViewChange = (
@@ -94,7 +94,7 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
                 GondorLeapYearRuleEnum.TRADITIONAL
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayShire?.month || 0);
+            setMonthView(nextCalendar.todayShire.month);
             setViewDate(nextViewDate);
         }
     };
