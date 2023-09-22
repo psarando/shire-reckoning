@@ -58,6 +58,7 @@ const parseDatePickerChangedDate = (
 interface DatePickerProps {
     date: Date;
     onDateChanged: (date: Date) => void;
+    todayEnabled?: boolean;
     label?: string;
     className?: string;
 }
@@ -65,6 +66,7 @@ interface DatePickerProps {
 const DatePicker = (props: DatePickerProps) => {
     const {
         date: currentDate,
+        todayEnabled = true,
         label = "Gregorian Date:",
         className = "gregorian-date-picker",
     } = props;
@@ -129,11 +131,16 @@ const DatePicker = (props: DatePickerProps) => {
                             onChange={onYearChanged}
                         />
                     </th>
-                    <th>
-                        <button className="today-button" onClick={resetDate}>
-                            <span className="today-button-txt">Today</span>
-                        </button>
-                    </th>
+                    {todayEnabled && (
+                        <th>
+                            <button
+                                className="today-button"
+                                onClick={resetDate}
+                            >
+                                <span className="today-button-txt">Today</span>
+                            </button>
+                        </th>
+                    )}
                 </tr>
             </tbody>
         </table>

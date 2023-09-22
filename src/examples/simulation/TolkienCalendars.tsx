@@ -5,7 +5,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { datesMatch, getNextDate } from "../../Utils";
+import { datesMatch, getNextDate, getPrevDate } from "../../Utils";
 import "../../ui/tolkien-calendars.css";
 
 import ShireCalendar from "./ShireCalendar";
@@ -23,6 +23,10 @@ import ShireDatePicker from "./ShireDatePicker";
 
 import { CalendarCellStyle, DatePicker } from "../Common";
 import "../examples.css";
+
+const ta3019_4_6_EventIndex = DatesOfInterest.findIndex(
+    ({ year, month, day }) => 3019 + 3441 === year && 3 === month && 6 === day
+);
 
 const blankEvent = <option key="blankEvent" value={-1}></option>;
 
@@ -53,10 +57,12 @@ export const SimulatedTolkienCalendars = (
         && -1 <= props.selectedEvent
         && props.selectedEvent < DatesOfInterest.length
             ? props.selectedEvent
-            : 13; // III 3019 Astron 6 | Elves' New Year
+            : -1;
 
     const [calendarRules, setCalendarRules] = React.useState(
-        props.calendarRules || 0 // Sync Gregorian years with Second Age years
+        props.calendarRules || props.calendarRules === 0
+            ? props.calendarRules
+            : 2 // Sync 2020-21 Moon phases with T.A. 3018-19
     );
 
     const [customSyncScheme, setCustomSyncScheme] =
@@ -106,7 +112,7 @@ export const SimulatedTolkienCalendars = (
     const [rivendellDate, setRivendellDate] = React.useState(currentDate);
 
     const [datePickerView, setDatePickerView] = React.useState(
-        DatePickerStyle.Shire
+        DatePickerStyle.Gregorian
     );
 
     const [timeOfDay, setTimeOfDay] = React.useState(TimeOfDay.Daytime);
@@ -116,8 +122,7 @@ export const SimulatedTolkienCalendars = (
         let rivendellDate = currentDate;
 
         if (nextTimeOfDay === TimeOfDay.BeforeSunrise) {
-            gondorDate = new Date(currentDate);
-            gondorDate.setDate(currentDate.getDate() - 1);
+            gondorDate = getPrevDate(currentDate);
         }
 
         if (nextTimeOfDay === TimeOfDay.AfterSunset) {
@@ -143,10 +148,16 @@ export const SimulatedTolkienCalendars = (
         const nextGondorStartDate = startDates.gondor;
         const nextShireStartDate = startDates.shire;
 
-        if (selectedEvent >= 0) {
-            const adjustedDate = adjustDateForCurrentEvent(
+        let adjustedDate = currentDate;
+        let nextSelectedEvent = selectedEvent;
+        if (nextSelectedEvent === -1 && calendarRules === 0) {
+            nextSelectedEvent = ta3019_4_6_EventIndex;
+        }
+
+        if (nextSelectedEvent >= 0) {
+            adjustedDate = adjustDateForCurrentEvent(
                 currentDate,
-                selectedEvent,
+                nextSelectedEvent,
                 nextShireStartDate,
                 nextRivendellStartDate
             );
@@ -154,16 +165,17 @@ export const SimulatedTolkienCalendars = (
                 updateTodayState(adjustedDate, timeOfDay);
             }
         } else {
-            const foundEvent = findEventIndex(
+            nextSelectedEvent = findEventIndex(
                 currentDate,
                 nextShireStartDate,
                 nextRivendellStartDate
             );
-            if (selectedEvent !== foundEvent) {
-                setSelectedEvent(foundEvent);
-                setTimeOfDay(TimeOfDay.Daytime);
-                updateTodayState(currentDate, TimeOfDay.Daytime);
-            }
+        }
+
+        if (selectedEvent !== nextSelectedEvent) {
+            setSelectedEvent(nextSelectedEvent);
+            setTimeOfDay(TimeOfDay.Daytime);
+            updateTodayState(adjustedDate, TimeOfDay.Daytime);
         }
 
         setCalendarRules(calendarRules);
@@ -368,6 +380,7 @@ export const SimulatedTolkienCalendars = (
                             <DatePicker
                                 date={currentDate}
                                 onDateChanged={onDateChanged}
+                                todayEnabled={!!calendarRules}
                                 label=""
                                 className="simulated-gregorian-date-picker"
                             />
@@ -377,6 +390,7 @@ export const SimulatedTolkienCalendars = (
                                 today={currentDate}
                                 shireStartDate={shireStartDate}
                                 onDateChanged={onDateChanged}
+                                todayEnabled={!!calendarRules}
                             />
                         )}
                     </th>
@@ -438,12 +452,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Elves_NewYear_sDayInT_A_3019DefaultExample: Story = {
-    name: "Elves' New Year's Day in T.A. 3019 (default example)",
+    name: "Elves' New Year's Day in T.A. 3019",
+    args: { calendarRules: 0, selectedEvent: ta3019_4_6_EventIndex },
 };
 
 export const _2020_21MoonPhaseSynchronizedSimulation: Story = {
-    name: "2020-21 moon phase synchronized simulation",
-    args: { calendarRules: 2, selectedEvent: -1 },
+    name: "2020-21 moon phase synchronized simulation (default example)",
 };
 
 export const _2017_18MoonPhaseSynchronizedSimulation: Story = {

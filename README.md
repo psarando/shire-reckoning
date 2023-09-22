@@ -1286,7 +1286,9 @@ re-synced Shire New Year's Day with December 20 in T.A. 3021.
 
 Since *The Tale of Years* (Appendix B) lists the Elves' New Year's Day on Astron 6 in T.A. 3019,
 then Rivendell New Year's Day (Yestarë) in T.A. 3019 was also Gregorian March 25
-([see it in action on the Middle-earth simulation page](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)).
+([see it in action on the Middle-earth simulation page](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)
+using the [Gregorian years with Second Age years](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#gregorian-years-with-second-age-years)
+synchronization setting).
 
 We may also be assured that the Elves' New Year's Day was precisely on Shire Astron 6 in T.A. 3019,
 and the Kings'/Stewards' Reckoning Súlimë 25 was on Shire Rethe 25 in T.A. 3019,
@@ -1376,7 +1378,9 @@ but the year 590 B.C.E. in the Gregorian calendar is right before a leap-year,
 so in the next 4 years (589 B.C.E. through 586 B.C.E.) Yestarë would fall on a March 22.
 One way to look at this would be to consider this Gregorian calendar as already a day off from the seasons in 590 B.C.E.,
 and its leap-day in 589 B.C.E. will re-sync it with the seasons and this Calendar of Imladris
-([see it in action on the Middle-earth simulation page](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)).
+([see it in action on the Middle-earth simulation page](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html)
+using the [Gregorian years with Second Age years](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#gregorian-years-with-second-age-years)
+synchronization setting).
 
 So for these reasons, in addition to those [given at the beginning of these Rivendell Reckoning notes](#why-march-22nd),
 I have settled on March 22 as the more seasonally appropriate date for the first Yestarë of this project's Calendar of Imladris.

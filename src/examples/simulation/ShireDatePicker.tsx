@@ -19,10 +19,11 @@ interface ShireDatePickerProps {
     today: Date;
     shireStartDate: Date;
     onDateChanged: (date: Date) => void;
+    todayEnabled?: boolean;
 }
 
 const ShireDatePicker = (props: ShireDatePickerProps) => {
-    const { today, shireStartDate, onDateChanged } = props;
+    const { today, shireStartDate, onDateChanged, todayEnabled = true } = props;
 
     const calendar = makeShireCalendarDates(
         today,
@@ -120,11 +121,16 @@ const ShireDatePicker = (props: ShireDatePickerProps) => {
                             onChange={onYearChanged}
                         />
                     </th>
-                    <th>
-                        <button className="today-button" onClick={resetDate}>
-                            <span className="today-button-txt">Today</span>
-                        </button>
-                    </th>
+                    {todayEnabled && (
+                        <th>
+                            <button
+                                className="today-button"
+                                onClick={resetDate}
+                            >
+                                <span className="today-button-txt">Today</span>
+                            </button>
+                        </th>
+                    )}
                 </tr>
             </tbody>
         </table>

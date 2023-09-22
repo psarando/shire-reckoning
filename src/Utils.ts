@@ -296,11 +296,23 @@ const fullYearDate = (fullYear: number, month: number, day: number): Date => {
 };
 
 /**
- * @param {Date} today
- * @return {Date} tomorrow - A new Date instance that is 1 day after the given `today`.
+ *
+ * @param today
+ * @returns yesterday - A new Date instance that is 1 day before the given `today`.
+ */
+const getPrevDate = (today: Date): Date => {
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
+    return yesterday;
+};
+
+/**
+ * @param today
+ * @returns tomorrow - A new Date instance that is 1 day after the given `today`.
  */
 const getNextDate = (today: Date): Date => {
-    let tomorrow = new Date(today);
+    const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
 
     return tomorrow;
@@ -360,6 +372,7 @@ export {
     datesMatch,
     fullYearDate,
     getNextDate,
+    getPrevDate,
     getFirstDate,
     getLastDate,
     getFirstDay,
