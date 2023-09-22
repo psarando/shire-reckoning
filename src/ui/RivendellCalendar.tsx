@@ -127,7 +127,7 @@ const RivendellMonth = ({
             />
         );
 
-        if ((date.weekDay + 1) % 6 === 0) {
+        if (date.weekDay === 5) {
             weeks.push(<tr key={weeks.length}>{week}</tr>);
             week = [];
         }
@@ -145,7 +145,7 @@ const RivendellMonth = ({
                 />
             );
 
-            if ((date.weekDay + 1) % 6 === 0) {
+            if (date.weekDay === 5) {
                 weeks.push(<tr key={weeks.length}>{week}</tr>);
                 week = [];
             }
@@ -236,7 +236,7 @@ const RivendellYear = ({ dates, today, language }: RivendellYearProps) => {
             />
         );
 
-        if ((date.weekDay + 1) % 6 === 0) {
+        if (date.weekDay === 5) {
             weeks.push(<tr key={weeks.length}>{week}</tr>);
             week = [];
         }

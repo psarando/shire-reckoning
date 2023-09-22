@@ -216,7 +216,7 @@ const ShireMonth = ({ monthView, today, dates, region }: ShireMonthProps) => {
             />
         );
 
-        if ((date.weekDay + 1) % 7 === 0) {
+        if (date.weekDay === 6) {
             weeks.push(<tr key={weeks.length}>{week}</tr>);
             week = [];
         }
@@ -244,7 +244,7 @@ const ShireMonth = ({ monthView, today, dates, region }: ShireMonthProps) => {
                 />
             );
 
-            if ((date.weekDay + 1) % 7 === 0) {
+            if (date.weekDay === 6) {
                 weeks.push(<tr key={weeks.length}>{week}</tr>);
                 week = [];
             }
@@ -377,7 +377,7 @@ const ShireYear = ({ today, dates, region }: ShireDateProps) => {
             />
         );
 
-        if ((date.weekDay + 1) % 7 === 0) {
+        if (date.weekDay === 6) {
             weeks.push(<tr key={weeks.length}>{week}</tr>);
             week = [];
         }
