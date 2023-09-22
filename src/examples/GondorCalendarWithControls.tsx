@@ -5,9 +5,6 @@
 import React from "react";
 
 import {
-    RECKONING_KINGS,
-    RECKONING_STEWARDS,
-    RECKONING_NEW,
     GondorMonths,
     GondorReckoningEnum,
     convertGondorianMonthIndex,
@@ -136,7 +133,7 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
     const firstDay = getFirstDay(calendar);
     const lastDay = getLastDay(calendar);
 
-    const startMonth = reckoning === RECKONING_NEW ? 3 : 0;
+    const startMonth = reckoning === GondorReckoningEnum.NEW ? 3 : 0;
     const months = [];
     for (let i = startMonth; i < GondorMonths.length + startMonth; i++) {
         const gondorMonth = GondorMonths[i % 12];
@@ -163,13 +160,15 @@ const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
                             value={reckoning}
                             onChange={onStartMonthChange}
                         >
-                            <option value={RECKONING_KINGS}>
+                            <option value={GondorReckoningEnum.KINGS}>
                                 Kings' Reckoning
                             </option>
-                            <option value={RECKONING_STEWARDS}>
+                            <option value={GondorReckoningEnum.STEWARDS}>
                                 Stewards' Reckoning
                             </option>
-                            <option value={RECKONING_NEW}>New Reckoning</option>
+                            <option value={GondorReckoningEnum.NEW}>
+                                New Reckoning
+                            </option>
                         </select>
                     </th>
                     <th className="gondor-calendar-controls month-picker-container">

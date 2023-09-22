@@ -24,6 +24,9 @@ enum RivendellRulesEnum {
     REFORMED = "reformed",
 }
 
+const { TRADITIONAL: TRADITIONAL_RULES, REFORMED: REFORMED_RULES } =
+    RivendellRulesEnum;
+
 /**
  * @property emoji - An icon representing this weekday.
  * @property english - The English translation of this weekday name.
@@ -474,9 +477,6 @@ const makeRivendellCalendarDates = (
         todayRivendell: todayRivendell || dates[0],
     };
 };
-
-const { TRADITIONAL: TRADITIONAL_RULES, REFORMED: REFORMED_RULES } =
-    RivendellRulesEnum;
 
 export {
     TRADITIONAL_RULES,

@@ -6,7 +6,6 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-    REGION_NAMES_SHIRE,
     ShireDate,
     ShireMonths,
     ShireRegionEnum,
@@ -144,7 +143,7 @@ const ICalendarGenerator = () => {
     const [calendar, setCalendar] = React.useState(() =>
         makeShireCalendarDates(today, startDate)
     );
-    const [region, setRegion] = React.useState(REGION_NAMES_SHIRE);
+    const [region, setRegion] = React.useState(ShireRegionEnum.SHIRE);
     const [btnTxt, setBtnTxt] = React.useState(COPY_TEXT);
 
     const copyTextArea = React.useRef<HTMLTextAreaElement>(null);

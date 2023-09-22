@@ -7,11 +7,8 @@ import React from "react";
 import {
     GondorCalendarYear,
     GondorMonths,
+    GondorLeapYearRuleEnum,
     GondorReckoningEnum,
-    RECKONING_KINGS,
-    RECKONING_STEWARDS,
-    RECKONING_NEW,
-    RECKONING_RULES_TRADITIONAL,
     makeGondorCalendarDates,
 } from "../../GondorReckoning";
 
@@ -48,16 +45,16 @@ const gondorReckoningForYear = (
 ) => {
     let year = calendar.year;
 
-    let gondorReckoning = RECKONING_KINGS;
+    let gondorReckoning = GondorReckoningEnum.KINGS;
     if (year > 3441) {
         year -= 3441;
 
         if (year > 2059) {
-            gondorReckoning = RECKONING_STEWARDS;
+            gondorReckoning = GondorReckoningEnum.STEWARDS;
 
             // For year 3019, New Reckoning doesn't start until 3/25 old style.
             if (year > 3019 || getNewStyleYear(startDate, today) >= 3019) {
-                gondorReckoning = RECKONING_NEW;
+                gondorReckoning = GondorReckoningEnum.NEW;
             }
         }
     }
@@ -94,7 +91,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
             today,
             startDate,
             reckoning,
-            RECKONING_RULES_TRADITIONAL
+            GondorLeapYearRuleEnum.TRADITIONAL
         )
     );
 
@@ -111,7 +108,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
             today,
             startDate,
             reckoning,
-            RECKONING_RULES_TRADITIONAL
+            GondorLeapYearRuleEnum.TRADITIONAL
         );
         setCalendar(nextCalendar);
         setMonthView(nextCalendar.todayGondor.month);
@@ -198,7 +195,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
         if (year > 2059) {
             reckoningDisplay = "Stewards'";
 
-            if (year > 3019 || reckoning === RECKONING_NEW) {
+            if (year > 3019 || reckoning === GondorReckoningEnum.NEW) {
                 reckoningDisplay = "New";
 
                 if (year > 3020) {
@@ -211,7 +208,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
 
     const caption = `${reckoningDisplay} Reckoning ${age} ${year}`;
 
-    const startMonth = reckoning === RECKONING_NEW ? 3 : 0;
+    const startMonth = reckoning === GondorReckoningEnum.NEW ? 3 : 0;
     const months = [];
     for (let i = startMonth; i < GondorMonths.length + startMonth; i++) {
         const gondorMonth = GondorMonths[i % 12];

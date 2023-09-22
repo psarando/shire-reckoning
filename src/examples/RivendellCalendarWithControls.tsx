@@ -5,8 +5,6 @@
 import React from "react";
 
 import {
-    TRADITIONAL_RULES,
-    REFORMED_RULES,
     RivendellMonths,
     RivendellRulesEnum,
     makeRivendellCalendarDates,
@@ -136,10 +134,10 @@ const RivendellCalendarWithControls = (
                             value={calendarRules}
                             onChange={onCalendarRulesChange}
                         >
-                            <option value={TRADITIONAL_RULES}>
+                            <option value={RivendellRulesEnum.TRADITIONAL}>
                                 Traditional Rules
                             </option>
-                            <option value={REFORMED_RULES}>
+                            <option value={RivendellRulesEnum.REFORMED}>
                                 Reformed Rules
                             </option>
                         </select>
