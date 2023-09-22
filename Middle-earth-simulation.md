@@ -75,7 +75,7 @@ by the live demonstration below.
     * Months and days are given according to Shire Reckoning,
       [except for a few dates](#dates-of-interest) before Bilbo's time,
       which are given according to the Stewards' or Kings' Reckoning.
-3. Adjusting the `Gregorian Date` will change the date displayed in each calendar,
+3. Adjusting the `Shire-reckoning` or `Gregorian Date` will change the date displayed in each calendar,
    and may update the selected event in the [`Dates of Interest`](#dates-of-interest) list, depending on the date or year of the event.
 4. Adjusting the `Time of Day` will adjust the date in the Gondor or Rivendell calendar,
    due to the way they [reckon the start or end of a day](#reckoning-the-start-or-end-of-a-day).

@@ -19,11 +19,17 @@ import {
     findEventIndex,
     findPreviousEventIndex,
 } from "./DatesOfInterest";
+import ShireDatePicker from "./ShireDatePicker";
 
 import { CalendarCellStyle, DatePicker } from "../Common";
 import "../examples.css";
 
 const blankEvent = <option key="blankEvent" value={-1}></option>;
+
+enum DatePickerStyle {
+    Gregorian = "gregorian-reckoning",
+    Shire = "shire-reckoning",
+}
 
 enum TimeOfDay {
     BeforeSunrise,
@@ -98,6 +104,10 @@ export const SimulatedTolkienCalendars = (
 
     const [gondorDate, setGondorDate] = React.useState(currentDate);
     const [rivendellDate, setRivendellDate] = React.useState(currentDate);
+
+    const [datePickerView, setDatePickerView] = React.useState(
+        DatePickerStyle.Shire
+    );
 
     const [timeOfDay, setTimeOfDay] = React.useState(TimeOfDay.Daytime);
 
@@ -336,12 +346,39 @@ export const SimulatedTolkienCalendars = (
                     </th>
                 </tr>
                 <tr>
-                    <th className="simulated-date-controls">
-                        <DatePicker
-                            date={currentDate}
-                            onDateChanged={onDateChanged}
-                            className="simulated-gregorian-date-picker"
-                        />
+                    <th className="simulated-date-controls simulated-date-picker">
+                        <select
+                            value={datePickerView}
+                            onChange={(
+                                event: React.ChangeEvent<HTMLSelectElement>
+                            ) =>
+                                setDatePickerView(
+                                    event.target.value as DatePickerStyle
+                                )
+                            }
+                        >
+                            <option value={DatePickerStyle.Gregorian}>
+                                Gregorian Date
+                            </option>
+                            <option value={DatePickerStyle.Shire}>
+                                Shire-reckoning
+                            </option>
+                        </select>
+                        {datePickerView === DatePickerStyle.Gregorian && (
+                            <DatePicker
+                                date={currentDate}
+                                onDateChanged={onDateChanged}
+                                label=""
+                                className="simulated-gregorian-date-picker"
+                            />
+                        )}
+                        {datePickerView === DatePickerStyle.Shire && (
+                            <ShireDatePicker
+                                today={currentDate}
+                                shireStartDate={shireStartDate}
+                                onDateChanged={onDateChanged}
+                            />
+                        )}
                     </th>
                     <th className="simulated-date-controls">
                         Time of Day:&nbsp;

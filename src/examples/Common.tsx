@@ -59,11 +59,16 @@ const parseDatePickerChangedDate = (
 interface DatePickerProps {
     date: Date;
     onDateChanged: (date: Date) => void;
+    label?: string;
     className?: string;
 }
 
 const DatePicker = (props: DatePickerProps) => {
-    const { date: currentDate, className = "gregorian-date-picker" } = props;
+    const {
+        date: currentDate,
+        label = "Gregorian Date:",
+        className = "gregorian-date-picker",
+    } = props;
 
     const resetDate = () => {
         props.onDateChanged(new Date());
@@ -105,7 +110,7 @@ const DatePicker = (props: DatePickerProps) => {
         <table className={className}>
             <tbody>
                 <tr>
-                    <th>Gregorian Date:</th>
+                    {label && <th>{label}</th>}
                     <th>
                         <DateMonthSelect
                             value={currentDate.getMonth()}

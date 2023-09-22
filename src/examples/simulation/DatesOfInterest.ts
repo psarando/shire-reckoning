@@ -3,7 +3,7 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import { makeShireCalendarDates } from "../../ShireReckoning";
-import { RECKONING_RULES_TRADITIONAL } from "../../GondorReckoning";
+import { GondorLeapYearRuleEnum } from "../../GondorReckoning";
 import { getRivendellNewYearDate } from "../../RivendellReckoning";
 import {
     GONDOR_DAYS_PER_1000_YEARS,
@@ -1293,6 +1293,51 @@ const DatesOfInterest: DateOfInterest[] = [
 ];
 
 /**
+ * Converts the given S.A. year to the gregorian date corresponding to an
+ * arbirary date in the middle of that year, or to a gregorian date
+ * corresponding to the specific S.R. month and day, if given.
+ *
+ * @param shireStartDate - Second Age start date.
+ * @param year           - Second Age year (convert S.R. year += 1600 + 3441)
+ * @param month          - Shire month.
+ * @param day            - Shire day.
+ * @returns The gregorian date corresponding to the given Shire date,
+ *          possibly an arbitrary date in the middle of the given year.
+ */
+const convertShireToGregorianDate = (
+    shireStartDate: Date,
+    year: number,
+    month?: number,
+    day?: number | string
+): Date => {
+    // Find a date somewhere in the middle of the current Shire calendar year.
+    let gregorian = new Date(shireStartDate);
+    let daysElapsed =
+        Math.floor(((year - 1) * GONDOR_DAYS_PER_1000_YEARS) / 1000) + 183;
+    gregorian.setDate(gregorian.getDate() + daysElapsed);
+
+    if (day) {
+        const calendar = makeShireCalendarDates(
+            gregorian,
+            shireStartDate,
+            GondorLeapYearRuleEnum.TRADITIONAL
+        );
+
+        // Find the Gregorian date for the specific Shire Reckoning date.
+        const shireDate = calendar.dates.find(
+            (date) => date.month === month && date.day === day
+        );
+
+        if (shireDate) {
+            gregorian = shireDate.gregorian;
+        }
+    }
+
+    // Return the found date, or the arbitrary date in the middle of the year.
+    return gregorian;
+};
+
+/**
  * @return {Date} The Gregorian Date corresponding to the given `DateOfInterest` and start dates.
  */
 const eventOfInterestToDate = (
@@ -1300,34 +1345,22 @@ const eventOfInterestToDate = (
     shireStartDate: Date,
     rivendellStartDate: Date
 ): Date => {
-    // Find a date somewhere in the middle of the current Shire calendar year.
-    let gregorian = new Date(shireStartDate);
-    let daysElapsed =
-        Math.floor(
-            ((eventOfInterest.year - 1) * GONDOR_DAYS_PER_1000_YEARS) / 1000
-        ) + 183;
-    gregorian.setDate(gregorian.getDate() + daysElapsed);
-
     if (eventOfInterest.day) {
-        // Find the Gregorian date for the specific Shire Reckoning date of the event.
-        let calendar = makeShireCalendarDates(
-            gregorian,
+        return convertShireToGregorianDate(
             shireStartDate,
-            RECKONING_RULES_TRADITIONAL
+            eventOfInterest.year,
+            eventOfInterest.month,
+            eventOfInterest.day
         );
-        let shireDate = calendar.dates.find(
-            (date) =>
-                date.month === eventOfInterest.month
-                && date.day === eventOfInterest.day
-        );
-
-        gregorian = shireDate?.gregorian || calendar.dates[0].gregorian;
-    } else {
-        // Find the Elves' New Year's Day for the current Shire calendar year.
-        gregorian = getRivendellNewYearDate(gregorian, rivendellStartDate);
     }
 
-    return gregorian;
+    // Find the Elves' New Year's Day for the current Shire calendar year.
+    const midYear = convertShireToGregorianDate(
+        shireStartDate,
+        eventOfInterest.year
+    );
+
+    return getRivendellNewYearDate(midYear, rivendellStartDate);
 };
 
 /**
@@ -1408,8 +1441,9 @@ export {
     DatesOfInterestThirdAge,
     DatesOfInterestSecondAge,
     DatesOfInterestFirstAge,
-    eventOfInterestToDate,
     adjustDateForCurrentEvent,
+    convertShireToGregorianDate,
+    eventOfInterestToDate,
     findEventIndex,
     findPreviousEventIndex,
 };

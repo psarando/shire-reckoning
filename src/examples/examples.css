@@ -24,3 +24,12 @@
     margin: auto;
     padding: 1rem;
 }
+.simulated-date-picker {
+    display: flex;
+}
+.simulated-shire-date-picker .date-time-input {
+    width: 5.5rem;
+}
+.simulated-shire-date-picker .simulated-shire-month-picker {
+    width: 10rem;
+}
