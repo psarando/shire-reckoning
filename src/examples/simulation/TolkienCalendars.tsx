@@ -5,7 +5,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { datesMatch } from "../../Utils";
+import { datesMatch, getNextDate } from "../../Utils";
 import "../../ui/tolkien-calendars.css";
 
 import ShireCalendar from "./ShireCalendar";
@@ -24,6 +24,12 @@ import { CalendarCellStyle, DatePicker } from "../Common";
 import "../examples.css";
 
 const blankEvent = <option key="blankEvent" value={-1}></option>;
+
+enum TimeOfDay {
+    BeforeSunrise,
+    Daytime,
+    AfterSunset,
+}
 
 interface SimulatedTolkienCalendarsProps {
     calendarRules?: number;
@@ -46,6 +52,9 @@ export const SimulatedTolkienCalendars = (
     const [calendarRules, setCalendarRules] = React.useState(
         props.calendarRules || 0 // Sync Gregorian years with Second Age years
     );
+
+    const [customSyncScheme, setCustomSyncScheme] =
+        React.useState<SecondAgeSyncScheme>();
 
     const startDates = SyncAges[calendarRules]?.startDates;
 
@@ -87,8 +96,28 @@ export const SimulatedTolkienCalendars = (
         return initialDate;
     });
 
-    const [customSyncScheme, setCustomSyncScheme] =
-        React.useState<SecondAgeSyncScheme>();
+    const [gondorDate, setGondorDate] = React.useState(currentDate);
+    const [rivendellDate, setRivendellDate] = React.useState(currentDate);
+
+    const [timeOfDay, setTimeOfDay] = React.useState(TimeOfDay.Daytime);
+
+    const updateTodayState = (currentDate: Date, nextTimeOfDay: TimeOfDay) => {
+        let gondorDate = currentDate;
+        let rivendellDate = currentDate;
+
+        if (nextTimeOfDay === TimeOfDay.BeforeSunrise) {
+            gondorDate = new Date(currentDate);
+            gondorDate.setDate(currentDate.getDate() - 1);
+        }
+
+        if (nextTimeOfDay === TimeOfDay.AfterSunset) {
+            rivendellDate = getNextDate(currentDate);
+        }
+
+        setGondorDate(gondorDate);
+        setRivendellDate(rivendellDate);
+        setCurrentDate(currentDate);
+    };
 
     const onCalendarRulesChange = (
         event: React.ChangeEvent<HTMLSelectElement>
@@ -111,8 +140,8 @@ export const SimulatedTolkienCalendars = (
                 nextShireStartDate,
                 nextRivendellStartDate
             );
-            if (!datesMatch(currentDate, adjustedDate)) {
-                setCurrentDate(adjustedDate);
+            if (currentDate !== adjustedDate) {
+                updateTodayState(adjustedDate, timeOfDay);
             }
         } else {
             const foundEvent = findEventIndex(
@@ -122,6 +151,8 @@ export const SimulatedTolkienCalendars = (
             );
             if (selectedEvent !== foundEvent) {
                 setSelectedEvent(foundEvent);
+                setTimeOfDay(TimeOfDay.Daytime);
+                updateTodayState(currentDate, TimeOfDay.Daytime);
             }
         }
 
@@ -136,35 +167,48 @@ export const SimulatedTolkienCalendars = (
     ) => {
         const selectedEvent = parseInt(event.target.value, 10);
 
-        setCurrentDate(
-            adjustDateForCurrentEvent(
-                currentDate,
-                selectedEvent,
-                shireStartDate,
-                rivendellStartDate
-            )
+        const adjustedDate = adjustDateForCurrentEvent(
+            currentDate,
+            selectedEvent,
+            shireStartDate,
+            rivendellStartDate
         );
+        if (currentDate !== adjustedDate) {
+            setTimeOfDay(TimeOfDay.Daytime);
+            updateTodayState(adjustedDate, TimeOfDay.Daytime);
+        }
 
         setSelectedEvent(selectedEvent);
     };
 
     const onDateChanged = (currentDate: Date) => {
-        setCurrentDate(currentDate);
+        setTimeOfDay(TimeOfDay.Daytime);
+        updateTodayState(currentDate, TimeOfDay.Daytime);
         setSelectedEvent(
             findEventIndex(currentDate, shireStartDate, rivendellStartDate)
         );
     };
 
+    const onTimeOfDayChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const nextTimeOfDay = parseInt(event.target.value) as TimeOfDay;
+
+        updateTodayState(currentDate, nextTimeOfDay);
+        setTimeOfDay(nextTimeOfDay);
+    };
+
     const onShireStartDateChange = (shireStartDate: Date) => {
         setCalendarRules(SyncAges.length);
-        setCurrentDate(
-            adjustDateForCurrentEvent(
-                currentDate,
-                selectedEvent,
-                shireStartDate,
-                rivendellStartDate
-            )
+
+        const adjustedDate = adjustDateForCurrentEvent(
+            currentDate,
+            selectedEvent,
+            shireStartDate,
+            rivendellStartDate
         );
+        if (currentDate !== adjustedDate) {
+            updateTodayState(adjustedDate, timeOfDay);
+        }
+
         const gondorStartDate = new Date(shireStartDate);
         setGondorStartDate(gondorStartDate);
         setShireStartDate(shireStartDate);
@@ -183,14 +227,17 @@ export const SimulatedTolkienCalendars = (
         const shireStartDate = new Date(gondorStartDate);
 
         setCalendarRules(SyncAges.length);
-        setCurrentDate(
-            adjustDateForCurrentEvent(
-                currentDate,
-                selectedEvent,
-                shireStartDate,
-                rivendellStartDate
-            )
+
+        const adjustedDate = adjustDateForCurrentEvent(
+            currentDate,
+            selectedEvent,
+            shireStartDate,
+            rivendellStartDate
         );
+        if (currentDate !== adjustedDate) {
+            updateTodayState(adjustedDate, timeOfDay);
+        }
+
         setGondorStartDate(gondorStartDate);
         setShireStartDate(shireStartDate);
 
@@ -206,14 +253,17 @@ export const SimulatedTolkienCalendars = (
 
     const onRivendellStartDateChange = (rivendellStartDate: Date) => {
         setCalendarRules(SyncAges.length);
-        setCurrentDate(
-            adjustDateForCurrentEvent(
-                currentDate,
-                selectedEvent,
-                shireStartDate,
-                rivendellStartDate
-            )
+
+        const adjustedDate = adjustDateForCurrentEvent(
+            currentDate,
+            selectedEvent,
+            shireStartDate,
+            rivendellStartDate
         );
+        if (currentDate !== adjustedDate) {
+            updateTodayState(adjustedDate, timeOfDay);
+        }
+
         setRivendellStartDate(rivendellStartDate);
 
         setCustomSyncScheme({
@@ -286,12 +336,24 @@ export const SimulatedTolkienCalendars = (
                     </th>
                 </tr>
                 <tr>
-                    <th className="simulated-date-controls" colSpan={2}>
+                    <th className="simulated-date-controls">
                         <DatePicker
                             date={currentDate}
                             onDateChanged={onDateChanged}
                             className="simulated-gregorian-date-picker"
                         />
+                    </th>
+                    <th className="simulated-date-controls">
+                        Time of Day:&nbsp;
+                        <select value={timeOfDay} onChange={onTimeOfDayChange}>
+                            <option value={TimeOfDay.BeforeSunrise}>
+                                Before Sunrise
+                            </option>
+                            <option value={TimeOfDay.Daytime}>Daytime</option>
+                            <option value={TimeOfDay.AfterSunset}>
+                                After Sunset
+                            </option>
+                        </select>
                     </th>
                 </tr>
                 <tr>
@@ -304,7 +366,7 @@ export const SimulatedTolkienCalendars = (
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar
-                            date={currentDate}
+                            date={gondorDate}
                             startDate={gondorStartDate}
                             onCalendarStartChange={onGondorStartDateChange}
                         />
@@ -313,7 +375,7 @@ export const SimulatedTolkienCalendars = (
                 <tr>
                     <td style={CalendarCellStyle} colSpan={2}>
                         <RivendellCalendar
-                            date={currentDate}
+                            date={rivendellDate}
                             startDate={rivendellStartDate}
                             onCalendarStartChange={onRivendellStartDateChange}
                         />

@@ -77,7 +77,13 @@ by the live demonstration below.
       which are given according to the Stewards' or Kings' Reckoning.
 3. Adjusting the `Gregorian Date` will change the date displayed in each calendar,
    and may update the selected event in the [`Dates of Interest`](#dates-of-interest) list, depending on the date or year of the event.
-4. Adjusting the `Start reckoning from` Gregorian dates in any of the calendars will update the
+4. Adjusting the `Time of Day` will adjust the date in the Gondor or Rivendell calendar,
+   due to the way they [reckon the start or end of a day](#reckoning-the-start-or-end-of-a-day).
+    * Adjusting the selected `Dates of Interest` or the Gregorian date will reset the `Time of Day` to `Daytime`,
+      to help avoid confusion about which Gondor or Rivendell date corresponds to the selected event or Gregorian date.
+    * Keep in mind that the Gregorian date labels in those calendars are meant to be the corresponding date during the daytime on those days.
+    * See the notes below for more details and an example of how the Gondor and Rivendell calendars [reckon the start or end of a day](#reckoning-the-start-or-end-of-a-day).
+5. Adjusting the `Start reckoning from` Gregorian dates in any of the calendars will update the
    [`Synchronize`](#synchronize-settings) setting to a `Custom Reckoning` setting.
     * The events of Middle-earth in the [`Dates of Interest`](#dates-of-interest) list are tied to this simulation's Shire Reckoning calendar,
       so adjusting the Shire Reckoning's starting Gregorian date will also adjust those events' corresponding Gregorian dates.
@@ -89,7 +95,7 @@ by the live demonstration below.
       this simulation's Rivendell Reckoning `Start reckoning from` Gregorian date can be adjusted without affecting the other calendars.
       As a result, the [`Dates of Interest`](#dates-of-interest) event "III 3019 Astron 6" may no longer correspond to Rivendell's New Year's Day,
       depending on the custom adjustments to the Shire and Rivendell `Start reckoning from` Gregorian dates.
-5. See my [Shire Reckoning notes](https://psarando.github.io/shire-reckoning/#shire-reckoning-notes)
+6. See my [Shire Reckoning notes](https://psarando.github.io/shire-reckoning/#shire-reckoning-notes)
    for more details about the names and layout of the days, weeks, and months of the Shire Calendar.
 
 # Caveats and Minutiae
@@ -263,8 +269,8 @@ and when compared to the dates of the Shire Calendar around the end of the Third
 
 #### Reckoning the start or end of a day
 
-Even when we know a date in all 3 calendars can be considered canon,
-those calendar dates only match up that way during the daylight hours of that day;
+Even when we know a date in all 3 calendars can be considered canon for that day,
+those calendar dates displayed in this simulation will only match up that way during the daylight hours of that day by default;
 because Tolkien stated in Appendix D that the Gondor calendars reckoned their dates from sunrise to sunrise,
 the Elves reckoned their dates from sunset to sunset,
 and it's implied that the Hobbits reckoned their dates from midnight to midnight (as we do in modern times),
@@ -280,9 +286,9 @@ For example, Appendix B tells us that the date the camp under Weathertop was att
 and Frodo was wounded by the Witch-king was S.R. 1418 (III 3018) Winterfilth 6.
 From the story we know that Strider and the hobbits arrived at Weathertop during the day, the attack happened at night,
 and Strider attempted to treat Frodo's wound with Kingsfoil just before sunrise.
-So we know when they reached Weathertop on that day that it was Narquelië 6 by the Stewards' Reckoning in Gondor
-and it was the last Enderë of the year in the Calendar of Imladris.
-Since the Elves reckon the next date after sunset, then when Frodo was wounded it was already considered Quellë 1.
+Selecting that event from the `Dates of Interest` will display Winterfilth 6 in the Shire Calendar, Narquelië 6 in the Stewards' Reckoning of Gondor, and the last Enderë of the year in the Calendar of Imladris,
+which is how these dates matched up during the daytime when they reached Weathertop on that day.
+Since the Elves reckon the next date after sunset, then when Frodo was wounded it was already considered the next day, the 1st day of Quellë, in the Calendar of Imladris.
 Since Strider came back with Kingsfoil after midnight but before sunrise,
 then it was already Winterfilth 7 by Shire Reckoning but it was still considered Narquelië 6 by the Stewards' Reckoning in Gondor.
 
