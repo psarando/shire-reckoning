@@ -94,18 +94,15 @@ export const SimulatedTolkienCalendars = (
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
         const calendarRules = parseInt(event.target.value, 10);
-        let nextRivendellStartDate = rivendellStartDate;
-        let nextGondorStartDate = gondorStartDate;
-        let nextShireStartDate = shireStartDate;
 
         const startDates =
             calendarRules < SyncAges.length
                 ? SyncAges[calendarRules].startDates
                 : customSyncScheme?.startDates || SyncAges[0].startDates;
 
-        nextRivendellStartDate = startDates.rivendell;
-        nextGondorStartDate = startDates.gondor;
-        nextShireStartDate = startDates.shire;
+        const nextRivendellStartDate = startDates.rivendell;
+        const nextGondorStartDate = startDates.gondor;
+        const nextShireStartDate = startDates.shire;
 
         if (selectedEvent >= 0) {
             const adjustedDate = adjustDateForCurrentEvent(
@@ -300,28 +297,25 @@ export const SimulatedTolkienCalendars = (
                 <tr>
                     <td style={CalendarCellStyle}>
                         <ShireCalendar
+                            date={currentDate}
                             startDate={shireStartDate}
                             onCalendarStartChange={onShireStartDateChange}
-                            date={currentDate}
-                            className="shire-calendar"
                         />
                     </td>
                     <td style={CalendarCellStyle}>
                         <GondorCalendar
+                            date={currentDate}
                             startDate={gondorStartDate}
                             onCalendarStartChange={onGondorStartDateChange}
-                            date={currentDate}
-                            className="shire-calendar gondor-calendar"
                         />
                     </td>
                 </tr>
                 <tr>
                     <td style={CalendarCellStyle} colSpan={2}>
                         <RivendellCalendar
+                            date={currentDate}
                             startDate={rivendellStartDate}
                             onCalendarStartChange={onRivendellStartDateChange}
-                            date={currentDate}
-                            className="shire-calendar rivendell-calendar"
                         />
                     </td>
                 </tr>

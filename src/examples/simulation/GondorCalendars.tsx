@@ -7,6 +7,7 @@ import React from "react";
 import {
     GondorCalendarYear,
     GondorMonths,
+    GondorReckoningEnum,
     RECKONING_KINGS,
     RECKONING_STEWARDS,
     RECKONING_NEW,
@@ -19,7 +20,6 @@ import {
     daysElapsedToNewReckoningYear,
     toDaysElapsed,
     datesMatch,
-    fullYearDate,
     getFirstDay,
     getLastDay,
 } from "../../Utils";
@@ -65,31 +65,26 @@ const gondorReckoningForYear = (
     return gondorReckoning;
 };
 
-const defaultStartDate = fullYearDate(0, 11, 23);
-
 interface GondorCalendarSimulatedProps {
-    className: string;
     date: Date;
     startDate: Date;
     onCalendarStartChange: (startDate: Date) => void;
 }
 
 const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
-    const { className, onCalendarStartChange } = props;
+    const {
+        date: nextDate,
+        startDate: nextStartDate,
+        onCalendarStartChange,
+    } = props;
 
     const [language, setLanguage] = React.useState(LanguageEnum.QUENYA);
     const [yearView, setYearView] = React.useState(false);
     const [monthViewLayout, setMonthViewLayout] = React.useState(
         MonthLayoutEnum.VERTICAL
     );
-
-    const nextDate = props.date || new Date();
     const [today, setToday] = React.useState(nextDate);
-    const [viewDate, setViewDate] = React.useState(today);
-
-    const nextStartDate = props.startDate || defaultStartDate;
     const [startDate, setStartDate] = React.useState(nextStartDate);
-
     const [reckoning, setReckoning] = React.useState(
         GondorCalendar.RECKONING_STEWARDS
     );
@@ -103,15 +98,33 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
         )
     );
 
+    const viewDate = calendar.todayGondor.gregorian;
     const thisMonth = calendar.todayGondor.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
+    const updateCalendarState = (
+        today: Date,
+        startDate: Date,
+        reckoning: GondorReckoningEnum
+    ) => {
+        const nextCalendar = makeGondorCalendarDates(
+            today,
+            startDate,
+            reckoning,
+            RECKONING_RULES_TRADITIONAL
+        );
+        setCalendar(nextCalendar);
+        setMonthView(nextCalendar.todayGondor.month);
+
+        return nextCalendar;
+    };
+
     let gondorReckoning = gondorReckoningForYear(calendar, startDate, viewDate);
 
-    const updateToday = !datesMatch(today, nextDate);
+    // Check object equality so views are updated anytime `Today` is clicked.
+    const updateToday = today !== nextDate;
     if (updateToday) {
         setToday(nextDate);
-        setViewDate(nextDate);
     }
 
     const updateStartDate = !datesMatch(startDate, nextStartDate);
@@ -120,30 +133,22 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
     }
 
     if (updateToday || updateStartDate) {
-        const nextCalendar = makeGondorCalendarDates(
+        const nextCalendar = updateCalendarState(
             nextDate,
             nextStartDate,
-            reckoning,
-            RECKONING_RULES_TRADITIONAL
+            reckoning
         );
-        setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayGondor.month);
-
-        gondorReckoning = gondorReckoningForYear(calendar, startDate, viewDate);
+        gondorReckoning = gondorReckoningForYear(
+            nextCalendar,
+            nextStartDate,
+            nextDate
+        );
     }
 
     const updateReckoning = reckoning !== gondorReckoning;
     if (updateReckoning) {
         setReckoning(gondorReckoning);
-
-        const nextCalendar = makeGondorCalendarDates(
-            nextDate,
-            nextStartDate,
-            gondorReckoning,
-            RECKONING_RULES_TRADITIONAL
-        );
-        setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayGondor.month);
+        updateCalendarState(nextDate, nextStartDate, gondorReckoning);
     }
 
     const onMonthViewChange = (
@@ -155,11 +160,10 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
         setYearView(yearView);
 
         if (!datesMatch(viewDate, nextViewDate)) {
-            let nextCalendar = makeGondorCalendarDates(
+            const nextCalendar = updateCalendarState(
                 nextViewDate,
                 startDate,
-                reckoning,
-                RECKONING_RULES_TRADITIONAL
+                reckoning
             );
 
             gondorReckoning = gondorReckoningForYear(
@@ -169,17 +173,8 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
             );
             if (reckoning !== gondorReckoning) {
                 setReckoning(gondorReckoning);
-                nextCalendar = makeGondorCalendarDates(
-                    nextViewDate,
-                    startDate,
-                    gondorReckoning,
-                    RECKONING_RULES_TRADITIONAL
-                );
+                updateCalendarState(nextViewDate, startDate, gondorReckoning);
             }
-
-            setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayGondor.month);
-            setViewDate(nextViewDate);
         }
     };
 
@@ -230,7 +225,7 @@ const GondorCalendarSimulated = (props: GondorCalendarSimulatedProps) => {
     const lastDay = getLastDay(calendar);
 
     return (
-        <table className={className}>
+        <table className="shire-calendar gondor-calendar">
             <caption className="shire-caption">{caption}</caption>
             <thead>
                 <tr>

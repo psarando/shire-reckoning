@@ -10,7 +10,7 @@ import {
     ShireRegionEnum,
 } from "../../ShireReckoning";
 import { GondorLeapYearRuleEnum } from "../../GondorReckoning";
-import { datesMatch, fullYearDate, getFirstDay, getLastDay } from "../../Utils";
+import { datesMatch, getFirstDay, getLastDay } from "../../Utils";
 
 import ShireCalendar from "../../ui/ShireCalendar";
 import { MonthLayoutEnum } from "../../ui/controls/MonthViewLayout";
@@ -23,28 +23,24 @@ import ShireRegionPicker from "../controls/ShireRegionPicker";
 import StartReckoningDatePicker from "./StartReckoningDatePicker";
 
 interface ShireCalendarSimulatedProps {
-    className: string;
     date: Date;
     startDate: Date;
     onCalendarStartChange: (startDate: Date) => void;
 }
 
-const defaultStartDate = fullYearDate(0, 11, 23);
-
 const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
-    const { className, onCalendarStartChange } = props;
+    const {
+        date: nextDate,
+        startDate: nextStartDate,
+        onCalendarStartChange,
+    } = props;
 
     const [yearView, setYearView] = React.useState(false);
     const [monthViewLayout, setMonthViewLayout] = React.useState(
         MonthLayoutEnum.VERTICAL
     );
     const [region, setRegion] = React.useState(ShireRegionEnum.SHIRE);
-
-    const nextDate = props.date || new Date();
     const [today, setToday] = React.useState(nextDate);
-    const [viewDate, setViewDate] = React.useState(today);
-
-    const nextStartDate = props.startDate || defaultStartDate;
     const [startDate, setStartDate] = React.useState(nextStartDate);
 
     const [calendar, setCalendar] = React.useState(() =>
@@ -55,13 +51,14 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
         )
     );
 
+    const viewDate = calendar.todayShire.gregorian;
     const thisMonth = calendar.todayShire.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
-    const updateToday = !datesMatch(today, nextDate);
+    // Check object equality so views are updated anytime `Today` is clicked.
+    const updateToday = today !== nextDate;
     if (updateToday) {
         setToday(nextDate);
-        setViewDate(nextDate);
     }
 
     const updateStartDate = !datesMatch(startDate, nextStartDate);
@@ -95,7 +92,6 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
             );
             setCalendar(nextCalendar);
             setMonthView(nextCalendar.todayShire.month);
-            setViewDate(nextViewDate);
         }
     };
 
@@ -148,7 +144,7 @@ const ShireCalendarSimulated = (props: ShireCalendarSimulatedProps) => {
     const lastDay = getLastDay(calendar);
 
     return (
-        <table className={className}>
+        <table className="shire-calendar">
             <caption className="shire-caption">{caption}</caption>
             <thead>
                 <tr>

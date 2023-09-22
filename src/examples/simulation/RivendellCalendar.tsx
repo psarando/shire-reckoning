@@ -9,7 +9,7 @@ import {
     RivendellRulesEnum,
     makeRivendellCalendarDates,
 } from "../../RivendellReckoning";
-import { datesMatch, fullYearDate, getFirstDay, getLastDay } from "../../Utils";
+import { datesMatch, getFirstDay, getLastDay } from "../../Utils";
 
 import RivendellCalendar from "../../ui/RivendellCalendar";
 import { LanguageEnum } from "../../ui/controls/LanguagePicker";
@@ -25,28 +25,25 @@ import "../examples.css";
 import StartReckoningDatePicker from "./StartReckoningDatePicker";
 
 interface RivendellCalendarSimulatedProps {
-    className: string;
     date: Date;
     startDate: Date;
     onCalendarStartChange: (startDate: Date) => void;
 }
 
-const defaultStartDate = fullYearDate(-589, 2, 23);
-
 const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
-    const { className, onCalendarStartChange } = props;
+    const {
+        date: nextDate,
+        startDate: nextStartDate,
+        onCalendarStartChange,
+    } = props;
 
     const [language, setLanguage] = React.useState(LanguageEnum.QUENYA);
     const [yearView, setYearView] = React.useState(false);
     const [monthViewLayout, setMonthViewLayout] = React.useState(
         MonthLayoutEnum.VERTICAL
     );
-
-    const nextStartDate = props.startDate || defaultStartDate;
     const [startDate, setStartDate] = React.useState(nextStartDate);
-    const nextDate = props.date || new Date();
     const [today, setToday] = React.useState(nextDate);
-    const [viewDate, setViewDate] = React.useState(today);
 
     const [calendar, setCalendar] = React.useState(() =>
         makeRivendellCalendarDates(
@@ -56,13 +53,14 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
         )
     );
 
+    const viewDate = calendar.todayRivendell.gregorian;
     const thisMonth = calendar.todayRivendell.month;
     const [monthView, setMonthView] = React.useState(thisMonth);
 
-    const updateToday = !datesMatch(today, nextDate);
+    // Check object equality so views are updated anytime `Today` is clicked.
+    const updateToday = today !== nextDate;
     if (updateToday) {
         setToday(nextDate);
-        setViewDate(nextDate);
     }
 
     const updateStartDate = !datesMatch(startDate, nextStartDate);
@@ -96,7 +94,6 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
             );
             setCalendar(nextCalendar);
             setMonthView(nextCalendar.todayRivendell.month);
-            setViewDate(nextViewDate);
         }
     };
 
@@ -128,7 +125,7 @@ const RivendellCalendarSimulated = (props: RivendellCalendarSimulatedProps) => {
     }
 
     return (
-        <table className={className}>
+        <table className="shire-calendar rivendell-calendar">
             <caption className="rivendell-caption">{caption}</caption>
             <thead>
                 <tr>
