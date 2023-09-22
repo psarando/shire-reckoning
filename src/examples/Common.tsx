@@ -23,22 +23,21 @@ const DateNumberInput = (props: any) => (
     <input type="number" className="date-time-input" step={1} {...props} />
 );
 
-const DateMonthSelect = (props: any) => (
-    <select className="date-time-input" {...props}>
-        <option value="0">Jan</option>
-        <option value="1">Feb</option>
-        <option value="2">Mar</option>
-        <option value="3">Apr</option>
-        <option value="4">May</option>
-        <option value="5">Jun</option>
-        <option value="6">Jul</option>
-        <option value="7">Aug</option>
-        <option value="8">Sep</option>
-        <option value="9">Oct</option>
-        <option value="10">Nov</option>
-        <option value="11">Dec</option>
-    </select>
-);
+const DateMonthSelect = ({ monthFormat = "short", ...props }: any) => {
+    const monthFormatter = new Intl.DateTimeFormat("en", {
+        month: monthFormat,
+    });
+
+    return (
+        <select className="gregorian-month-picker" {...props}>
+            {[...Array(12)].map((_, m) => (
+                <option key={m} value={m}>
+                    {monthFormatter.format(new Date(2000, m, 1))}
+                </option>
+            ))}
+        </select>
+    );
+};
 
 const parseDatePickerChangedDate = (
     year: number,
@@ -115,6 +114,7 @@ const DatePicker = (props: DatePickerProps) => {
                         <DateMonthSelect
                             value={currentDate.getMonth()}
                             onChange={onMonthChanged}
+                            monthFormat="long"
                         />
                     </th>
                     <th>
