@@ -15,18 +15,31 @@ import {
 import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
 
 import RivendellCalendar from "../ui/RivendellCalendar";
+import { LanguageEnum } from "../ui/controls/LanguagePicker";
 import "../ui/tolkien-calendars.css";
 
 import LanguagePicker from "./controls/LanguagePicker";
 import MonthViewPicker from "./controls/MonthViewPicker";
 import { RivendellStartDatePicker } from "./controls/StartDatePicker";
 
+interface RivendellCalendarWithControlsProps {
+    className: string;
+    yearView: boolean;
+    date: Date;
+    startDate: Date;
+    calendarRules: RivendellRulesEnum;
+    onCalendarStartChange: (startDate: Date) => void;
+    onCalendarRulesChange: React.ChangeEventHandler<HTMLSelectElement>;
+}
+
 const defaultStartDate = fullYearDate(1, 2, 22);
 
-const RivendellCalendarWithControls = (props) => {
+const RivendellCalendarWithControls = (
+    props: RivendellCalendarWithControlsProps
+) => {
     const { className, onCalendarStartChange, onCalendarRulesChange } = props;
 
-    const [language, setLanguage] = React.useState(LanguagePicker.QUENYA);
+    const [language, setLanguage] = React.useState(LanguageEnum.QUENYA);
 
     const nextYearView = !!props.yearView;
     const [propsYearView, setPropsYearView] = React.useState(nextYearView);
@@ -45,9 +58,9 @@ const RivendellCalendarWithControls = (props) => {
     const [calendar, setCalendar] = React.useState(() =>
         makeRivendellCalendarDates(today, startDate, calendarRules)
     );
-    const [monthView, setMonthView] = React.useState(
-        calendar.todayRivendell.month
-    );
+
+    const thisMonth = calendar.todayRivendell?.month || 0;
+    const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
     if (updateToday) {
@@ -72,7 +85,7 @@ const RivendellCalendarWithControls = (props) => {
             nextRules
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayRivendell.month);
+        setMonthView(nextCalendar.todayRivendell?.month || 0);
     }
 
     // If yearView from props changes, or is on, it should override this state.
@@ -81,7 +94,11 @@ const RivendellCalendarWithControls = (props) => {
         setYearView(nextYearView);
     }
 
-    const onMonthViewChange = (nextViewDate, monthView, yearView) => {
+    const onMonthViewChange = (
+        nextViewDate: Date,
+        monthView: number,
+        yearView: boolean
+    ) => {
         setMonthView(monthView);
         setYearView(yearView);
 
@@ -92,13 +109,13 @@ const RivendellCalendarWithControls = (props) => {
                 calendarRules
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayRivendell.month);
+            setMonthView(nextCalendar.todayRivendell?.month || 0);
             setViewDate(nextViewDate);
         }
     };
 
-    const onLanguageChange = (event) => {
-        setLanguage(event.target.value);
+    const onLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setLanguage(event.target.value as LanguageEnum);
     };
 
     const firstDay = getFirstDay(calendar);
@@ -137,7 +154,7 @@ const RivendellCalendarWithControls = (props) => {
                             monthLabel="Season"
                             firstDay={firstDay}
                             lastDay={lastDay}
-                            thisMonth={calendar.todayRivendell.month}
+                            thisMonth={thisMonth}
                             today={today}
                             viewDate={viewDate}
                             monthView={monthView}
@@ -155,7 +172,7 @@ const RivendellCalendarWithControls = (props) => {
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan="3" className="shire-calendar-wrapper-cell">
+                    <td colSpan={3} className="shire-calendar-wrapper-cell">
                         <RivendellCalendar
                             className="shire-calendar rivendell-calendar"
                             calendar={calendar}

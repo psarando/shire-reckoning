@@ -8,7 +8,15 @@ import { MonthLayoutEnum } from "../../ui/controls/MonthViewLayout";
 
 import "../../ui/tolkien-calendars.css";
 
-const MonthViewLayout = ({ layout, onMonthViewLayoutChange }) => {
+interface MonthViewLayoutProps {
+    layout: MonthLayoutEnum;
+    onMonthViewLayoutChange: React.ChangeEventHandler<HTMLSelectElement>;
+}
+
+const MonthViewLayout = ({
+    layout,
+    onMonthViewLayoutChange,
+}: MonthViewLayoutProps) => {
     return (
         <div>
             Month View:

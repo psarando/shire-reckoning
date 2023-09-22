@@ -32,11 +32,11 @@ export default {
 
     // Manually order stories for now...
     stories: [
-        "../src/examples/TolkienCalendars.js",
+        "../src/examples/TolkienCalendars.tsx",
 
         "../src/examples/simulation/TolkienCalendars.js",
 
-        "../src/examples/ICalendarGenerator.js",
+        "../src/examples/ICalendarGenerator.tsx",
 
         "../src/examples/simulation/history-perspective-table.js",
 

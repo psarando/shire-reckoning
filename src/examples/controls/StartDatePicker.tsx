@@ -6,8 +6,20 @@ import React from "react";
 
 import { datesMatch, fullYearDate } from "../../Utils";
 
-const StartDatePicker = (props) => {
-    const onDateChanged = (event) => {
+interface StartDatePickerItem {
+    label: string;
+    date: Date;
+}
+
+interface StartDatePickerProps {
+    onCalendarStartChange: (startDate: Date) => void;
+    selectedDate: Date;
+}
+
+const StartDatePicker = (
+    props: StartDatePickerProps & { startDates: StartDatePickerItem[] }
+) => {
+    const onDateChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const changedDate = event.target.value;
         props.onCalendarStartChange(new Date(changedDate));
     };
@@ -17,7 +29,7 @@ const StartDatePicker = (props) => {
     );
 
     const opts = props.startDates.map((startDate) => (
-        <option key={startDate.label} value={startDate.date}>
+        <option key={startDate.label} value={startDate.date.toISOString()}>
             {startDate.label}
         </option>
     ));
@@ -27,7 +39,7 @@ const StartDatePicker = (props) => {
             Start reckoning from
             <select
                 className="first-day-select"
-                value={selectedDate && selectedDate.date}
+                value={selectedDate && selectedDate.date.toISOString()}
                 onChange={onDateChanged}
             >
                 {opts}
@@ -36,7 +48,13 @@ const StartDatePicker = (props) => {
     );
 };
 
-const getStartDates = (monthLabel, year, month, startRange, endRange) => {
+const getStartDates = (
+    monthLabel: string,
+    year: number,
+    month: number,
+    startRange: number,
+    endRange: number
+) => {
     const startDates = [];
     for (let day = startRange; day <= endRange; day++) {
         const date = fullYearDate(year, month, day);
@@ -50,7 +68,7 @@ const getStartDates = (monthLabel, year, month, startRange, endRange) => {
     return startDates;
 };
 
-const ShireStartDatePicker = (props) => {
+const ShireStartDatePicker = (props: StartDatePickerProps) => {
     const { onCalendarStartChange, selectedDate } = props;
     const startDates = [
         ...getStartDates("December", 0, 11, 18, 25),
@@ -66,7 +84,7 @@ const ShireStartDatePicker = (props) => {
     );
 };
 
-const ICalendarStartDatePicker = (props) => {
+const ICalendarStartDatePicker = (props: StartDatePickerProps) => {
     const { onCalendarStartChange, selectedDate } = props;
     const startDates = getStartDates("December", 0, 11, 18, 25);
 
@@ -79,7 +97,7 @@ const ICalendarStartDatePicker = (props) => {
     );
 };
 
-const RivendellStartDatePicker = (props) => {
+const RivendellStartDatePicker = (props: StartDatePickerProps) => {
     const { onCalendarStartChange, selectedDate } = props;
     const startDates = [
         ...getStartDates("March", 1, 2, 17, 29),

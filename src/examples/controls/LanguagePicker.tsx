@@ -6,7 +6,15 @@ import React from "react";
 
 import { LanguageEnum } from "../../ui/controls/LanguagePicker";
 
-const LanguagePicker = ({ language, onLanguageChange }) => {
+interface LanguagePickerProps {
+    language: LanguageEnum;
+    onLanguageChange: React.ChangeEventHandler<HTMLSelectElement>;
+}
+
+const LanguagePicker = ({
+    language,
+    onLanguageChange,
+}: LanguagePickerProps) => {
     return (
         <div>
             Language:

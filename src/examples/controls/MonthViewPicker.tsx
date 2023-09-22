@@ -5,8 +5,30 @@
 import React from "react";
 import "../../ui/tolkien-calendars.css";
 
-const MonthViewPicker = (props) => {
-    const onMonthViewChange = (event) => {
+export interface MonthViewDisplayItem {
+    emoji: string;
+    name: string;
+}
+
+interface MonthViewPickerProps {
+    months: MonthViewDisplayItem[];
+    firstDay: Date;
+    lastDay: Date;
+    thisMonth: number;
+    today: Date;
+    viewDate: Date;
+    monthView: number;
+    yearView: boolean;
+    onMonthViewChange: (
+        viewDate: Date,
+        monthView: number,
+        yearView: boolean
+    ) => void;
+    monthLabel?: string;
+}
+
+const MonthViewPicker = (props: MonthViewPickerProps) => {
+    const onMonthViewChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const month = parseInt(event.target.value, 10);
 
         const viewDate = props.viewDate;

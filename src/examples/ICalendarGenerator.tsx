@@ -3,10 +3,13 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import {
     REGION_NAMES_SHIRE,
+    ShireDate,
     ShireMonths,
+    ShireRegionEnum,
     ShireWeekdays,
     makeShireCalendarDates,
 } from "../ShireReckoning";
@@ -28,7 +31,7 @@ const hasClipboardAPI = () => {
 /**
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText
  */
-const clipboardCopyText = (text) => {
+const clipboardCopyText = (text: string) => {
     if (hasClipboardAPI()) {
         return navigator.clipboard.writeText(text);
     }
@@ -36,15 +39,15 @@ const clipboardCopyText = (text) => {
     return null;
 };
 
-const formatMonthDay = (num) =>
+const formatMonthDay = (num: number) =>
     num.toLocaleString("en-US", { minimumIntegerDigits: 2 });
 
-const formatDate = (date) =>
+const formatDate = (date: Date) =>
     `${date.getFullYear()}${formatMonthDay(
         date.getMonth() + 1
     )}${formatMonthDay(date.getDate())}`;
 
-const formatICalendar = (calEvents) => {
+const formatICalendar = (calEvents: string) => {
     let calDesc = `A calendar of J.R.R. Tolkien's 'Shire Reckoning' dates corresponding to our
   Gregorian dates\\, according to http://shire-reckoning.com/calendar.html\\, which
   suggests that we "anchor the Shire calendar on the solstice of one particular
@@ -71,9 +74,10 @@ ${calEvents}
 END:VCALENDAR`;
 };
 
-const formatCalString = (str) => str.replace(/,/g, "\\,").replace(/\n/g, "\\n");
+const formatCalString = (str: string) =>
+    str.replace(/,/g, "\\,").replace(/\n/g, "\\n");
 
-const formatShireDate = (date, region) => {
+const formatShireDate = (date: ShireDate, region: ShireRegionEnum) => {
     let month = "";
     let weekday = "";
 
@@ -88,7 +92,7 @@ const formatShireDate = (date, region) => {
     return formatCalString(`${date.day}${month}${weekday}`);
 };
 
-const formatShireDateDescription = (date) => {
+const formatShireDateDescription = (date: ShireDate) => {
     switch (date.day) {
         case "1 Yule":
             return "Shire New Year's Eve!";
@@ -114,7 +118,13 @@ ${weekDayDescription}`
     }
 };
 
-const formatCalEvent = (date, sequence, summary, description, ruleExtra) =>
+const formatCalEvent = (
+    date: Date,
+    sequence: number,
+    summary: string,
+    description: string,
+    ruleExtra: string
+) =>
     `BEGIN:VEVENT
 DTSTART;VALUE=DATE:${formatDate(date)}
 DTEND;VALUE=DATE:${formatDate(getNextDate(date))}
@@ -128,7 +138,7 @@ SUMMARY:${summary}
 TRANSP:OPAQUE
 END:VEVENT`;
 
-const ICalendarGenerator = (props) => {
+const ICalendarGenerator = () => {
     const [today, setToday] = React.useState(new Date(1931, 11, 21));
     const [startDate, setStartDate] = React.useState(fullYearDate(0, 11, 21));
     const [calendar, setCalendar] = React.useState(() =>
@@ -137,9 +147,9 @@ const ICalendarGenerator = (props) => {
     const [region, setRegion] = React.useState(REGION_NAMES_SHIRE);
     const [btnTxt, setBtnTxt] = React.useState(COPY_TEXT);
 
-    const copyTextArea = React.useRef();
+    const copyTextArea = React.useRef<HTMLTextAreaElement>(null);
 
-    const onCalendarStartChange = (startDate) => {
+    const onCalendarStartChange = (startDate: Date) => {
         const today = new Date(calendar.today);
         today.setDate(startDate.getDate());
 
@@ -149,17 +159,19 @@ const ICalendarGenerator = (props) => {
         setBtnTxt(COPY_TEXT);
     };
 
-    const onRegionChange = (event) => {
-        setRegion(event.target.value);
+    const onRegionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setRegion(event.target.value as ShireRegionEnum);
         setBtnTxt(COPY_TEXT);
     };
 
-    const onCopyText = (e) => {
+    const onCopyText = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        clipboardCopyText(copyTextArea.current.value)?.then(() => {
-            setBtnTxt(COPIED_TEXT);
-        });
+        if (copyTextArea.current) {
+            clipboardCopyText(copyTextArea.current.value)?.then(() => {
+                setBtnTxt(COPIED_TEXT);
+            });
+        }
     };
 
     const gregorianNewYearsDay = new Date(today);
@@ -226,13 +238,13 @@ const ICalendarGenerator = (props) => {
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan="3" className="shire-calendar-wrapper-cell">
+                    <td colSpan={3} className="shire-calendar-wrapper-cell">
                         <textarea
                             ref={copyTextArea}
-                            rows="32"
-                            cols="80"
+                            rows={32}
+                            cols={80}
                             value={formatICalendar(calEvents)}
-                            readOnly="readonly"
+                            readOnly
                         />
                     </td>
                 </tr>
@@ -398,7 +410,7 @@ export default App;
     </>
 );
 
-export default {
+const meta = {
     title: "Shire Reckoning / Shire Calendar",
 
     parameters: {
@@ -407,9 +419,12 @@ export default {
 
     component: ICalendarGeneratorWithInstructions,
     excludeStories: ["ICalendarGenerator"],
-};
+} satisfies Meta<typeof ICalendarGeneratorWithInstructions>;
 
-export const IcalendarCreatorForImportingIntoYourCalendar = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const IcalendarCreatorForImportingIntoYourCalendar: Story = {
     name: "iCalendar creator for importing into your calendar",
 };
 

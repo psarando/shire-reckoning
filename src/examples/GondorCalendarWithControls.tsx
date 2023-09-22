@@ -9,6 +9,7 @@ import {
     RECKONING_STEWARDS,
     RECKONING_NEW,
     GondorMonths,
+    GondorReckoningEnum,
     convertGondorianMonthIndex,
     makeGondorCalendarDates,
 } from "../GondorReckoning";
@@ -16,6 +17,8 @@ import {
 import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
 
 import GondorCalendar, { defaultCaption } from "../ui/GondorCalendar";
+import { LanguageEnum } from "../ui/controls/LanguagePicker";
+import { MonthLayoutEnum } from "../ui/controls/MonthViewLayout";
 import "../ui/tolkien-calendars.css";
 
 import LanguagePicker from "./controls/LanguagePicker";
@@ -23,16 +26,26 @@ import MonthViewLayout from "./controls/MonthViewLayout";
 import MonthViewPicker from "./controls/MonthViewPicker";
 import { ShireStartDatePicker } from "./controls/StartDatePicker";
 
+interface GondorCalendarWithControlsProps {
+    className: string;
+    language?: LanguageEnum;
+    monthViewLayout?: MonthLayoutEnum;
+    reckoning?: GondorReckoningEnum;
+    date: Date;
+    startDate: Date;
+    onCalendarStartChange: (startDate: Date) => void;
+}
+
 const defaultStartDate = fullYearDate(0, 11, 21);
 
-const GondorCalendarWithControls = (props) => {
+const GondorCalendarWithControls = (props: GondorCalendarWithControlsProps) => {
     const { className, onCalendarStartChange } = props;
 
     const [language, setLanguage] = React.useState(
-        props.language || LanguagePicker.QUENYA
+        props.language || LanguageEnum.QUENYA
     );
     const [monthViewLayout, setMonthViewLayout] = React.useState(
-        props.monthViewLayout || MonthViewLayout.VERTICAL
+        props.monthViewLayout || MonthLayoutEnum.VERTICAL
     );
     const [yearView, setYearView] = React.useState(false);
 
@@ -44,15 +57,15 @@ const GondorCalendarWithControls = (props) => {
     const [startDate, setStartDate] = React.useState(nextStartDate);
 
     const [reckoning, setReckoning] = React.useState(
-        props.reckoning || GondorCalendar.RECKONING_STEWARDS
+        props.reckoning || GondorReckoningEnum.STEWARDS
     );
 
     const [calendar, setCalendar] = React.useState(() =>
         makeGondorCalendarDates(today, startDate, reckoning)
     );
-    const [monthView, setMonthView] = React.useState(
-        calendar.todayGondor.month
-    );
+
+    const thisMonth = calendar.todayGondor?.month || 0;
+    const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
     if (updateToday) {
@@ -72,10 +85,14 @@ const GondorCalendarWithControls = (props) => {
             reckoning
         );
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayGondor.month);
+        setMonthView(nextCalendar.todayGondor?.month || 0);
     }
 
-    const onMonthViewChange = (nextViewDate, monthView, yearView) => {
+    const onMonthViewChange = (
+        nextViewDate: Date,
+        monthView: number,
+        yearView: boolean
+    ) => {
         setMonthView(monthView);
         setYearView(yearView);
 
@@ -86,13 +103,15 @@ const GondorCalendarWithControls = (props) => {
                 reckoning
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayGondor.month);
+            setMonthView(nextCalendar.todayGondor?.month || 0);
             setViewDate(nextViewDate);
         }
     };
 
-    const onStartMonthChange = (event) => {
-        const nextReckoning = event.target.value;
+    const onStartMonthChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        const nextReckoning = event.target.value as GondorReckoningEnum;
         const convertedMonthView = convertGondorianMonthIndex(
             reckoning,
             nextReckoning,
@@ -106,12 +125,14 @@ const GondorCalendarWithControls = (props) => {
         );
     };
 
-    const onMonthViewLayoutChange = (event) => {
-        setMonthViewLayout(event.target.value);
+    const onMonthViewLayoutChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        setMonthViewLayout(event.target.value as MonthLayoutEnum);
     };
 
-    const onLanguageChange = (event) => {
-        setLanguage(event.target.value);
+    const onLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setLanguage(event.target.value as LanguageEnum);
     };
 
     const firstDay = getFirstDay(calendar);
@@ -158,7 +179,7 @@ const GondorCalendarWithControls = (props) => {
                             months={months}
                             firstDay={firstDay}
                             lastDay={lastDay}
-                            thisMonth={calendar.todayGondor.month}
+                            thisMonth={thisMonth}
                             today={today}
                             viewDate={viewDate}
                             monthView={monthView}
@@ -182,7 +203,7 @@ const GondorCalendarWithControls = (props) => {
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan="4" className="shire-calendar-wrapper-cell">
+                    <td colSpan={4} className="shire-calendar-wrapper-cell">
                         <GondorCalendar
                             className="shire-calendar gondor-calendar"
                             calendar={calendar}

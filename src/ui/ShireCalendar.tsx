@@ -33,7 +33,7 @@ interface ShireCalendarProps {
     className?: string;
     region?: ShireRegionEnum;
     monthView?: number;
-    monthViewLayout?: string;
+    monthViewLayout?: MonthLayoutEnum;
     startDay?: number;
     yearView?: boolean;
     date?: Date;

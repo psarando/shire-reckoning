@@ -4,10 +4,15 @@
  */
 import React from "react";
 
-import { ShireMonths, makeShireCalendarDates } from "../ShireReckoning";
+import {
+    ShireMonths,
+    ShireRegionEnum,
+    makeShireCalendarDates,
+} from "../ShireReckoning";
 import { fullYearDate, datesMatch, getFirstDay, getLastDay } from "../Utils";
 
 import ShireCalendar from "../ui/ShireCalendar";
+import { MonthLayoutEnum } from "../ui/controls/MonthViewLayout";
 import "../ui/tolkien-calendars.css";
 
 import MonthViewLayout from "./controls/MonthViewLayout";
@@ -15,13 +20,24 @@ import MonthViewPicker from "./controls/MonthViewPicker";
 import ShireRegionPicker from "./controls/ShireRegionPicker";
 import { ShireStartDatePicker } from "./controls/StartDatePicker";
 
+interface ShireCalendarWithControlsProps {
+    className: string;
+    region: ShireRegionEnum;
+    monthViewLayout: MonthLayoutEnum;
+    yearView: boolean;
+    date: Date;
+    startDate: Date;
+    onCalendarStartChange: (startDate: Date) => void;
+    onRegionChange: React.ChangeEventHandler<HTMLSelectElement>;
+}
+
 const defaultStartDate = fullYearDate(0, 11, 21);
 
-const ShireCalendarWithControls = (props) => {
+const ShireCalendarWithControls = (props: ShireCalendarWithControlsProps) => {
     const { className, region, onCalendarStartChange, onRegionChange } = props;
 
     const [monthViewLayout, setMonthViewLayout] = React.useState(
-        props.monthViewLayout || MonthViewLayout.VERTICAL
+        props.monthViewLayout || MonthLayoutEnum.VERTICAL
     );
 
     const nextYearView = !!props.yearView;
@@ -38,7 +54,9 @@ const ShireCalendarWithControls = (props) => {
     const [calendar, setCalendar] = React.useState(() =>
         makeShireCalendarDates(today, startDate)
     );
-    const [monthView, setMonthView] = React.useState(calendar.todayShire.month);
+
+    const thisMonth = calendar.todayShire?.month || 0;
+    const [monthView, setMonthView] = React.useState(thisMonth);
 
     const updateToday = !datesMatch(today, nextDate);
     if (updateToday) {
@@ -54,7 +72,7 @@ const ShireCalendarWithControls = (props) => {
     if (updateToday || updateStartDate) {
         const nextCalendar = makeShireCalendarDates(nextDate, nextStartDate);
         setCalendar(nextCalendar);
-        setMonthView(nextCalendar.todayShire.month);
+        setMonthView(nextCalendar.todayShire?.month || 0);
     }
 
     // If yearView from props changes, or is on, it should override this state.
@@ -63,7 +81,11 @@ const ShireCalendarWithControls = (props) => {
         setYearView(nextYearView);
     }
 
-    const onMonthViewChange = (nextViewDate, monthView, yearView) => {
+    const onMonthViewChange = (
+        nextViewDate: Date,
+        monthView: number,
+        yearView: boolean
+    ) => {
         setMonthView(monthView);
         setYearView(yearView);
 
@@ -73,13 +95,15 @@ const ShireCalendarWithControls = (props) => {
                 startDate
             );
             setCalendar(nextCalendar);
-            setMonthView(nextCalendar.todayShire.month);
+            setMonthView(nextCalendar.todayShire?.month || 0);
             setViewDate(nextViewDate);
         }
     };
 
-    const onMonthViewLayoutChange = (event) => {
-        setMonthViewLayout(event.target.value);
+    const onMonthViewLayoutChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        setMonthViewLayout(event.target.value as MonthLayoutEnum);
     };
 
     const firstDay = getFirstDay(calendar);
@@ -109,7 +133,7 @@ const ShireCalendarWithControls = (props) => {
                             months={months}
                             firstDay={firstDay}
                             lastDay={lastDay}
-                            thisMonth={calendar.todayShire.month}
+                            thisMonth={thisMonth}
                             today={today}
                             viewDate={viewDate}
                             monthView={monthView}
@@ -127,7 +151,7 @@ const ShireCalendarWithControls = (props) => {
             </thead>
             <tbody>
                 <tr>
-                    <td colSpan="3" className="shire-calendar-wrapper-cell">
+                    <td colSpan={3} className="shire-calendar-wrapper-cell">
                         <ShireCalendar
                             className="shire-calendar"
                             calendar={calendar}

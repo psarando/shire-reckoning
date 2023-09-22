@@ -3,8 +3,12 @@
  * Distributed under the Eclipse Public License (http://www.eclipse.org/legal/epl-v10.html).
  */
 import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { datesMatch, fullYearDate } from "../Utils";
+
+import { ShireRegionEnum } from "../ShireReckoning";
+import { RivendellRulesEnum } from "../RivendellReckoning";
 
 import ShireCalendar from "../ui/ShireCalendar";
 import GondorCalendar from "../ui/GondorCalendar";
@@ -19,18 +23,24 @@ import { Badges, CalendarCellStyle, DatePicker } from "./Common";
 import "./examples.css";
 
 /**
- * @typedef {Object} ShireCalendarSyncScheme
  * @property {string} label - Display label for this synchronization scheme.
  * @property {Date} startDate - The Gregorian Date of the first Shire New Year Date.
  */
+interface ShireCalendarSyncScheme {
+    label: string;
+    startDate: Date;
+}
+
+interface ShireCalendarCustomSyncScheme extends ShireCalendarSyncScheme {
+    gondorLeftStartDate: Date;
+    gondorRightStartDate: Date;
+}
 
 /**
  * Shire Calendar synchronization schemes.
  * @constant
- * @type {ShireCalendarSyncScheme[]}
  */
-const SyncShireCalendar = [
-    { label: "Custom Reckoning" },
+const SyncShireCalendar: ShireCalendarSyncScheme[] = [
     {
         label: "Mid-year's Day with the modern summer solstice.",
         startDate: fullYearDate(0, 11, 21),
@@ -50,20 +60,23 @@ const SyncShireCalendar = [
 ];
 
 /**
- * @typedef {Object} RivendellCalendarSyncScheme
  * @property {string} label - Display label for this synchronization scheme.
  * @property {string} subtitle - Extra display info for this synchronization scheme.
  * @property {Date} startDate - The Gregorian Date of the first Rivendell New Year Date.
  * @property {RivendellRulesEnum} calendarRules
  */
+interface RivendellCalendarSyncScheme {
+    label: string;
+    subtitle?: string;
+    startDate: Date;
+    calendarRules: RivendellRulesEnum;
+}
 
 /**
  * Rivendell Calendar synchronization schemes.
  * @constant
- * @type {RivendellCalendarSyncScheme[]}
  */
-const SyncRivendellCalendar = [
-    { label: "Custom Reckoning" },
+const SyncRivendellCalendar: RivendellCalendarSyncScheme[] = [
     {
         label: `Enderi with "Hobbit Day"`,
         subtitle: "modern September 22, as Tolkien could have intended",
@@ -96,27 +109,29 @@ const SyncRivendellCalendar = [
     },
 ];
 
-const findRivendellSyncIndex = (rivendellStartDate, rivendellCalendarRules) => {
+const findRivendellSyncIndex = (
+    rivendellStartDate: Date,
+    rivendellCalendarRules: RivendellRulesEnum
+) => {
     let rivendellSyncScheme = SyncRivendellCalendar.findIndex(
         (syncScheme) =>
             syncScheme.calendarRules === rivendellCalendarRules
-            && syncScheme.startDate
             && datesMatch(syncScheme.startDate, rivendellStartDate)
     );
 
     if (rivendellSyncScheme < 0) {
-        rivendellSyncScheme = 0;
+        rivendellSyncScheme = SyncRivendellCalendar.length;
     }
 
     return rivendellSyncScheme;
 };
 
 const adjustRivendellAprilSyncScheme = (
-    shireStartDate,
-    rivendellStartDate,
-    rivendellSyncScheme
+    shireStartDate: Date,
+    rivendellStartDate: Date,
+    rivendellSyncScheme: number
 ) => {
-    const rivendellAprilSyncScheme = SyncRivendellCalendar[3];
+    const rivendellAprilSyncScheme = SyncRivendellCalendar[2];
     rivendellAprilSyncScheme.startDate = new Date(shireStartDate);
     rivendellAprilSyncScheme.startDate.setDate(shireStartDate.getDate() + 94);
 
@@ -129,16 +144,23 @@ const adjustRivendellAprilSyncScheme = (
     return rivendellStartDate;
 };
 
-const TolkienCalendarsExample = (props) => {
+interface TolkienCalendarsExampleProps {
+    date?: Date;
+}
+
+const TolkienCalendarsExample = (props: TolkienCalendarsExampleProps) => {
     const [currentDate, setDate] = React.useState(props.date || new Date());
 
     const [shireAlign, setShireAlign] = React.useState(false);
     const [rivendellAlign, setRivendellAlign] = React.useState(false);
 
-    const [shireSyncScheme, setShireSyncScheme] = React.useState(1);
+    const [shireSyncScheme, setShireSyncScheme] = React.useState(0);
     const [shireStartDate, setShireStartDate] = React.useState(
-        SyncShireCalendar[shireSyncScheme].startDate
+        () => SyncShireCalendar[shireSyncScheme].startDate
     );
+    const [shireCustomSyncScheme, setShireCustomSyncScheme] =
+        React.useState<ShireCalendarCustomSyncScheme>();
+
     const [shireRegion, setShireRegion] = React.useState(
         ShireCalendar.REGION_NAMES_TOLKIEN
     );
@@ -150,54 +172,68 @@ const TolkienCalendarsExample = (props) => {
         new Date(shireStartDate)
     );
 
-    const [rivendellSyncScheme, setRivendellSyncScheme] = React.useState(1);
-    const rivendellSync = SyncRivendellCalendar[rivendellSyncScheme];
+    const [rivendellSyncScheme, setRivendellSyncScheme] = React.useState(0);
     const [rivendellStartDate, setRivendellStartDate] = React.useState(
-        rivendellSync.startDate
+        () => SyncRivendellCalendar[rivendellSyncScheme].startDate
     );
+    const [rivendellCustomSyncScheme, setRivendellCustomSyncScheme] =
+        React.useState<RivendellCalendarSyncScheme>();
     const [rivendellCalendarRules, setRivendellCalendarRules] = React.useState(
-        rivendellSync.calendarRules
+        () => SyncRivendellCalendar[rivendellSyncScheme].calendarRules
     );
 
-    const onDateChanged = (currentDate) => {
+    const onDateChanged = (currentDate: Date) => {
         setDate(currentDate);
     };
 
-    const alignChanged = (event) => {
+    const alignChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         const checked = event.target.checked;
 
         setShireAlign(event.target.value === "shire" && checked);
         setRivendellAlign(event.target.value === "rivendell" && checked);
     };
 
-    const onShireSyncChange = (event) => {
-        const shireSyncScheme = event.target.value;
+    const onShireSyncChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        let shireSyncScheme = parseInt(event.target.value, 10);
+        let shireStartDate;
 
-        if (shireSyncScheme > 0) {
-            const shireStartDate = SyncShireCalendar[shireSyncScheme].startDate;
-
-            if (parseInt(shireSyncScheme, 10) === 4) {
-                setShireRegion(ShireCalendar.REGION_NAMES_SHIRE);
+        if (
+            shireCustomSyncScheme
+            && shireSyncScheme === SyncShireCalendar.length
+        ) {
+            shireStartDate = shireCustomSyncScheme.startDate;
+            setGondorLeftStartDate(shireCustomSyncScheme.gondorLeftStartDate);
+            setGondorRightStartDate(shireCustomSyncScheme.gondorRightStartDate);
+        } else {
+            if (shireSyncScheme === SyncShireCalendar.length) {
+                shireSyncScheme = 0;
+            } else if (
+                shireSyncScheme === 3
+                && shireRegion === ShireRegionEnum.TOLKIEN
+            ) {
+                setShireRegion(ShireRegionEnum.SHIRE);
             }
+
+            shireStartDate = SyncShireCalendar[shireSyncScheme].startDate;
 
             setGondorLeftStartDate(new Date(shireStartDate));
             setGondorRightStartDate(new Date(shireStartDate));
-
-            setRivendellStartDate(
-                adjustRivendellAprilSyncScheme(
-                    shireStartDate,
-                    rivendellStartDate,
-                    rivendellSyncScheme
-                )
-            );
-
-            setShireStartDate(shireStartDate);
         }
+
+        setRivendellStartDate(
+            adjustRivendellAprilSyncScheme(
+                shireStartDate,
+                rivendellStartDate,
+                rivendellSyncScheme
+            )
+        );
+
+        setShireStartDate(shireStartDate);
 
         setShireSyncScheme(shireSyncScheme);
     };
 
-    const onShireStartDateChange = (shireStartDate) => {
+    const onShireStartDateChange = (shireStartDate: Date) => {
         adjustShireSyncScheme(
             shireStartDate,
             gondorLeftStartDate,
@@ -205,7 +241,7 @@ const TolkienCalendarsExample = (props) => {
         );
     };
 
-    const onGondorLeftStartDateChange = (gondorLeftStartDate) => {
+    const onGondorLeftStartDateChange = (gondorLeftStartDate: Date) => {
         adjustShireSyncScheme(
             shireStartDate,
             gondorLeftStartDate,
@@ -213,7 +249,7 @@ const TolkienCalendarsExample = (props) => {
         );
     };
 
-    const onGondorRightStartDateChange = (gondorRightStartDate) => {
+    const onGondorRightStartDateChange = (gondorRightStartDate: Date) => {
         adjustShireSyncScheme(
             shireStartDate,
             gondorLeftStartDate,
@@ -222,9 +258,9 @@ const TolkienCalendarsExample = (props) => {
     };
 
     const adjustShireSyncScheme = (
-        shireStartDate,
-        gondorLeftStartDate,
-        gondorRightStartDate
+        shireStartDate: Date,
+        gondorLeftStartDate: Date,
+        gondorRightStartDate: Date
     ) => {
         let shireSyncScheme = SyncShireCalendar.findIndex(
             (syncScheme) =>
@@ -237,7 +273,27 @@ const TolkienCalendarsExample = (props) => {
             || !datesMatch(shireStartDate, gondorLeftStartDate)
             || !datesMatch(shireStartDate, gondorRightStartDate)
         ) {
-            shireSyncScheme = 0;
+            shireSyncScheme = SyncShireCalendar.length;
+
+            if (
+                !shireCustomSyncScheme
+                || !datesMatch(shireCustomSyncScheme.startDate, shireStartDate)
+                || !datesMatch(
+                    shireCustomSyncScheme.gondorLeftStartDate,
+                    gondorLeftStartDate
+                )
+                || !datesMatch(
+                    shireCustomSyncScheme.gondorRightStartDate,
+                    gondorRightStartDate
+                )
+            ) {
+                setShireCustomSyncScheme({
+                    label: "Custom Reckoning",
+                    startDate: shireStartDate,
+                    gondorLeftStartDate,
+                    gondorRightStartDate,
+                });
+            }
         }
 
         setRivendellStartDate(
@@ -254,38 +310,80 @@ const TolkienCalendarsExample = (props) => {
         setShireSyncScheme(shireSyncScheme);
     };
 
-    const onShireRegionChange = (event) => {
-        setShireRegion(event.target.value);
+    const onShireRegionChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        setShireRegion(event.target.value as ShireRegionEnum);
     };
 
-    const onRivendellSyncChange = (event) => {
-        const rivendellSyncScheme = event.target.value;
+    const onRivendellSyncChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        let rivendellSyncScheme = parseInt(event.target.value, 10);
 
-        if (rivendellSyncScheme > 0) {
-            const syncScheme = SyncRivendellCalendar[rivendellSyncScheme];
-            setRivendellStartDate(syncScheme.startDate);
-            setRivendellCalendarRules(syncScheme.calendarRules);
-        }
+        const syncScheme =
+            rivendellSyncScheme < SyncRivendellCalendar.length
+                ? SyncRivendellCalendar[rivendellSyncScheme]
+                : rivendellCustomSyncScheme || SyncRivendellCalendar[0];
+
+        setRivendellStartDate(syncScheme.startDate);
+        setRivendellCalendarRules(syncScheme.calendarRules);
 
         setRivendellSyncScheme(rivendellSyncScheme);
     };
 
-    const onRivendellStartDateChange = (rivendellStartDate) => {
+    const onRivendellStartDateChange = (rivendellStartDate: Date) => {
         const rivendellSyncScheme = findRivendellSyncIndex(
             rivendellStartDate,
             rivendellCalendarRules
         );
+
+        if (rivendellSyncScheme === SyncRivendellCalendar.length) {
+            if (
+                !(
+                    rivendellCustomSyncScheme
+                    && datesMatch(
+                        rivendellCustomSyncScheme.startDate,
+                        rivendellStartDate
+                    )
+                )
+            ) {
+                setRivendellCustomSyncScheme({
+                    label: "Custom Reckoning",
+                    startDate: rivendellStartDate,
+                    calendarRules: rivendellCalendarRules,
+                });
+            }
+        }
 
         setRivendellStartDate(rivendellStartDate);
         setRivendellSyncScheme(rivendellSyncScheme);
     };
 
-    const onRivendellRulesChange = (event) => {
-        const rivendellCalendarRules = event.target.value;
+    const onRivendellRulesChange = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        const rivendellCalendarRules = event.target.value as RivendellRulesEnum;
         const rivendellSyncScheme = findRivendellSyncIndex(
             rivendellStartDate,
             rivendellCalendarRules
         );
+
+        if (rivendellSyncScheme === SyncRivendellCalendar.length) {
+            if (
+                !(
+                    rivendellCustomSyncScheme
+                    && rivendellCustomSyncScheme.calendarRules
+                        === rivendellCalendarRules
+                )
+            ) {
+                setRivendellCustomSyncScheme({
+                    label: "Custom Reckoning",
+                    startDate: rivendellStartDate,
+                    calendarRules: rivendellCalendarRules,
+                });
+            }
+        }
 
         setRivendellCalendarRules(rivendellCalendarRules);
         setRivendellSyncScheme(rivendellSyncScheme);
@@ -300,7 +398,12 @@ const TolkienCalendarsExample = (props) => {
         rivendellCellClassName = " align-rivendell-calendar";
     }
 
-    const shireSyncOptions = SyncShireCalendar.map((sync, i) => {
+    const shireSyncSchemes = [...SyncShireCalendar];
+    if (shireCustomSyncScheme) {
+        shireSyncSchemes.push(shireCustomSyncScheme);
+    }
+
+    const shireSyncOptions = shireSyncSchemes.map((sync, i) => {
         return (
             <option key={i} value={i}>
                 {sync.label}
@@ -308,7 +411,12 @@ const TolkienCalendarsExample = (props) => {
         );
     });
 
-    const rivendellSyncOptions = SyncRivendellCalendar.map((sync, i) => {
+    const rivendellSyncSchemes = [...SyncRivendellCalendar];
+    if (rivendellCustomSyncScheme) {
+        rivendellSyncSchemes.push(rivendellCustomSyncScheme);
+    }
+
+    const rivendellSyncOptions = rivendellSyncSchemes.map((sync, i) => {
         return (
             <option key={i} value={i}>
                 {sync.subtitle
@@ -322,7 +430,7 @@ const TolkienCalendarsExample = (props) => {
         <table>
             <tbody>
                 <tr>
-                    <td colSpan="2">
+                    <td colSpan={2}>
                         <DatePicker
                             date={currentDate}
                             onDateChanged={onDateChanged}
@@ -438,7 +546,9 @@ const srcStyle = {
     padding: 8,
 };
 
-const TolkienCalendarsWithInstructions = (props) => (
+const TolkienCalendarsWithInstructions = (
+    props: TolkienCalendarsExampleProps
+) => (
     <>
         <TolkienCalendarsExample {...props} />
         <br />
@@ -531,7 +641,7 @@ export default App;
     </>
 );
 
-export default {
+const meta = {
     title: "Shire Reckoning / All Tolkien Calendars",
 
     parameters: {
@@ -540,9 +650,12 @@ export default {
 
     component: TolkienCalendarsWithInstructions,
     excludeStories: ["TolkienCalendarsExample"],
-};
+} satisfies Meta<typeof TolkienCalendarsWithInstructions>;
 
-export const WithSynchronizationSettings = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const WithSynchronizationSettings: Story = {
     name: "with Synchronization settings",
 };
 
