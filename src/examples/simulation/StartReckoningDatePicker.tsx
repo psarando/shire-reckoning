@@ -29,6 +29,30 @@ const StartReckoningDatePicker = (props: StartDatePickerProps) => {
         onDateChanged(year, month, day);
     };
 
+    const onMonthInc = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const day = currentDate.getDate();
+
+        onDateChanged(
+            month === 11 ? year + 1 : year,
+            month === 11 ? 0 : month + 1,
+            day
+        );
+    };
+
+    const onMonthDec = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const day = currentDate.getDate();
+
+        onDateChanged(
+            month === 0 ? year - 1 : year,
+            month === 0 ? 11 : month - 1,
+            day
+        );
+    };
+
     const onDayChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
@@ -75,6 +99,10 @@ const StartReckoningDatePicker = (props: StartDatePickerProps) => {
                     }}
                     value={currentDate.getMonth()}
                     onChange={onMonthChanged}
+                    onArrowUp={onMonthDec}
+                    onArrowLeft={onMonthDec}
+                    onArrowDown={onMonthInc}
+                    onArrowRight={onMonthInc}
                 />
                 <DayInput
                     style={{ width: "4rem" }}
