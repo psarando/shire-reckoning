@@ -24,7 +24,12 @@ import {
 } from "./DatesOfInterest";
 import ShireDatePicker from "./ShireDatePicker";
 
-import { CalendarCellStyle, DatePicker, OutlinedSelect } from "../Common";
+import {
+    ArrowKeyNavSelect,
+    CalendarCellStyle,
+    DatePicker,
+    OutlinedSelect,
+} from "../Common";
 import theme from "../theme";
 import "../examples.css";
 
@@ -125,6 +130,14 @@ export const SimulatedTolkienCalendars = (
 
     const [timeOfDay, setTimeOfDay] = React.useState(TimeOfDay.Daytime);
 
+    const toggleDatePickerView = () => {
+        if (datePickerView === DatePickerStyle.Shire) {
+            setDatePickerView(DatePickerStyle.Gregorian);
+        } else {
+            setDatePickerView(DatePickerStyle.Shire);
+        }
+    };
+
     const updateTodayState = (currentDate: Date, nextTimeOfDay: TimeOfDay) => {
         let gondorDate = currentDate;
         let rivendellDate = currentDate;
@@ -142,11 +155,7 @@ export const SimulatedTolkienCalendars = (
         setCurrentDate(currentDate);
     };
 
-    const onCalendarRulesChange = (
-        event: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        const calendarRules = parseInt(event.target.value, 10);
-
+    const onCalendarRulesChange = (calendarRules: number) => {
         const startDates =
             calendarRules < SyncAges.length
                 ? SyncAges[calendarRules].startDates
@@ -192,11 +201,19 @@ export const SimulatedTolkienCalendars = (
         setShireStartDate(nextShireStartDate);
     };
 
-    const onDatesOfInterestChange = (
-        event: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        const selectedEvent = parseInt(event.target.value, 10);
+    const prevSyncScheme = () => {
+        if (calendarRules > 0) {
+            onCalendarRulesChange(calendarRules - 1);
+        }
+    };
 
+    const nextSyncScheme = () => {
+        if (calendarRules < SyncAges.length - 1) {
+            onCalendarRulesChange(calendarRules + 1);
+        }
+    };
+
+    const onDatesOfInterestChange = (selectedEvent: number) => {
         const adjustedDate = adjustDateForCurrentEvent(
             currentDate,
             selectedEvent,
@@ -211,6 +228,35 @@ export const SimulatedTolkienCalendars = (
         setSelectedEvent(selectedEvent);
     };
 
+    const prevEventOfInterest = () => {
+        if (selectedEvent === -1) {
+            const nextEvent = findPreviousEventIndex(
+                currentDate,
+                shireStartDate,
+                rivendellStartDate
+            );
+            if (nextEvent > 0) {
+                onDatesOfInterestChange(nextEvent - 1);
+            }
+        } else if (selectedEvent > 0) {
+            onDatesOfInterestChange(selectedEvent - 1);
+        }
+    };
+
+    const nextEventOfInterest = () => {
+        if (selectedEvent === -1) {
+            onDatesOfInterestChange(
+                findPreviousEventIndex(
+                    currentDate,
+                    shireStartDate,
+                    rivendellStartDate
+                )
+            );
+        } else if (selectedEvent < DatesOfInterest.length - 1) {
+            onDatesOfInterestChange(selectedEvent + 1);
+        }
+    };
+
     const onDateChanged = (currentDate: Date) => {
         setTimeOfDay(TimeOfDay.Daytime);
         updateTodayState(currentDate, TimeOfDay.Daytime);
@@ -219,7 +265,7 @@ export const SimulatedTolkienCalendars = (
         );
     };
 
-    const onTimeOfDayChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const onTimeOfDayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const nextTimeOfDay = parseInt(event.target.value) as TimeOfDay;
 
         updateTodayState(currentDate, nextTimeOfDay);
@@ -347,33 +393,53 @@ export const SimulatedTolkienCalendars = (
             <tbody>
                 <tr>
                     <th colSpan={3} className="simulated-date-controls">
-                        <OutlinedSelect
+                        <ArrowKeyNavSelect
                             label="Synchronize"
                             style={{ width: "33rem" }}
                             value={calendarRules}
-                            onChange={onCalendarRulesChange}
+                            onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                                onCalendarRulesChange(
+                                    parseInt(event.target.value, 10)
+                                )
+                            }
+                            onArrowUp={prevSyncScheme}
+                            onArrowLeft={prevSyncScheme}
+                            onArrowDown={nextSyncScheme}
+                            onArrowRight={nextSyncScheme}
                         >
                             {syncOptions}
-                        </OutlinedSelect>
+                        </ArrowKeyNavSelect>
                     </th>
                 </tr>
                 <tr>
                     <th colSpan={3} className="simulated-date-controls">
-                        <OutlinedSelect
+                        <ArrowKeyNavSelect
                             label="Dates of Interest"
                             style={{ width: "60rem", marginTop: ".33rem" }}
                             value={selectedEvent}
-                            onChange={onDatesOfInterestChange}
+                            onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                                onDatesOfInterestChange(
+                                    parseInt(event.target.value, 10)
+                                )
+                            }
+                            onArrowUp={prevEventOfInterest}
+                            onArrowLeft={prevEventOfInterest}
+                            onArrowDown={nextEventOfInterest}
+                            onArrowRight={nextEventOfInterest}
                         >
                             {eventOpts}
-                        </OutlinedSelect>
+                        </ArrowKeyNavSelect>
                     </th>
                 </tr>
                 <tr>
                     <th className="simulated-date-controls" colSpan={2}>
                         <Stack direction="row" mt={1}>
                             <Toolbar style={{ paddingRight: 0 }}>
-                                <OutlinedSelect
+                                <ArrowKeyNavSelect
                                     color="success"
                                     value={datePickerView}
                                     onChange={(
@@ -384,6 +450,10 @@ export const SimulatedTolkienCalendars = (
                                                 .value as DatePickerStyle
                                         )
                                     }
+                                    onArrowUp={toggleDatePickerView}
+                                    onArrowLeft={toggleDatePickerView}
+                                    onArrowDown={toggleDatePickerView}
+                                    onArrowRight={toggleDatePickerView}
                                 >
                                     <MenuItem value={DatePickerStyle.Gregorian}>
                                         <Typography variant="h6">
@@ -395,7 +465,7 @@ export const SimulatedTolkienCalendars = (
                                             Shire-reckoning
                                         </Typography>
                                     </MenuItem>
-                                </OutlinedSelect>
+                                </ArrowKeyNavSelect>
                             </Toolbar>
                             {datePickerView === DatePickerStyle.Gregorian && (
                                 <DatePicker
