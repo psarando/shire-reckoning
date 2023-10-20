@@ -33,6 +33,49 @@ const DateNumberInput = (props: any) => (
 
 const OutlinedSelect = (props: any) => <TextField select {...props} />;
 
+const ArrowKeyNavSelect = ({
+    onArrowUp,
+    onArrowDown,
+    onArrowRight,
+    onArrowLeft,
+    SelectProps,
+    ...props
+}: any) => {
+    const [open, setOpen] = React.useState(false);
+
+    return (
+        <OutlinedSelect
+            SelectProps={{
+                open,
+                onClose: () => setOpen(false),
+                onOpen: (event: any) => {
+                    if (event.key !== "ArrowUp" && event.key !== "ArrowDown") {
+                        setOpen(true);
+                    }
+                },
+                ...SelectProps,
+            }}
+            onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
+                if (event.key === "ArrowUp" && onArrowUp) {
+                    onArrowUp();
+                }
+                if (event.key === "ArrowDown" && onArrowDown) {
+                    onArrowDown();
+                }
+                if (event.key === "ArrowRight" && onArrowRight) {
+                    event.preventDefault();
+                    onArrowRight();
+                }
+                if (event.key === "ArrowLeft" && onArrowLeft) {
+                    event.preventDefault();
+                    onArrowLeft();
+                }
+            }}
+            {...props}
+        />
+    );
+};
+
 const DateMonthSelect = ({ monthFormat = "short", ...props }: any) => {
     const monthFormatter = new Intl.DateTimeFormat("en", {
         month: monthFormat,
@@ -41,7 +84,7 @@ const DateMonthSelect = ({ monthFormat = "short", ...props }: any) => {
     const style = monthFormat === "long" ? { width: "8.5rem" } : undefined;
 
     return (
-        <OutlinedSelect
+        <ArrowKeyNavSelect
             label="Month"
             className="gregorian-month-picker"
             style={style}
@@ -52,7 +95,7 @@ const DateMonthSelect = ({ monthFormat = "short", ...props }: any) => {
                     {monthFormatter.format(new Date(2000, m, 1))}
                 </MenuItem>
             ))}
-        </OutlinedSelect>
+        </ArrowKeyNavSelect>
     );
 };
 
@@ -108,6 +151,30 @@ const DatePicker = (props: DatePickerProps) => {
         onDateChanged(year, month, day);
     };
 
+    const onMonthInc = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const day = currentDate.getDate();
+
+        onDateChanged(
+            month === 11 ? year + 1 : year,
+            month === 11 ? 0 : month + 1,
+            day
+        );
+    };
+
+    const onMonthDec = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const day = currentDate.getDate();
+
+        onDateChanged(
+            month === 0 ? year - 1 : year,
+            month === 0 ? 11 : month - 1,
+            day
+        );
+    };
+
     const onDayChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
@@ -139,6 +206,10 @@ const DatePicker = (props: DatePickerProps) => {
                 value={currentDate.getMonth()}
                 onChange={onMonthChanged}
                 monthFormat="long"
+                onArrowUp={onMonthDec}
+                onArrowLeft={onMonthDec}
+                onArrowDown={onMonthInc}
+                onArrowRight={onMonthInc}
             />
             <DayInput value={currentDate.getDate()} onChange={onDayChanged} />
             <YearInput
@@ -242,5 +313,6 @@ export {
     DayInput,
     YearInput,
     OutlinedSelect,
+    ArrowKeyNavSelect,
     parseDatePickerChangedDate,
 };
