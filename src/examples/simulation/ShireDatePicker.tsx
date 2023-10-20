@@ -11,10 +11,11 @@ import {
     GondorLeapYearRuleEnum,
     isGondorLeapYear,
 } from "../../GondorReckoning";
+import { getNextDate, getPrevDate } from "../../Utils";
 
 import { convertShireToGregorianDate } from "./DatesOfInterest";
 
-import { DateNumberInput, OutlinedSelect } from "../Common";
+import { ArrowKeyNavSelect, DateNumberInput } from "../Common";
 import "../examples.css";
 
 interface ShireDatePickerProps {
@@ -36,18 +37,19 @@ const ShireDatePicker = (props: ShireDatePickerProps) => {
 
     const resetDate = () => onDateChanged(new Date());
 
-    const onMonthChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const month = parseInt(event.target.value, 10);
+    const onMonthChanged = (year: number, month: number) => {
         let day = todayShire.day;
 
         switch (day) {
-            case "1 Yule":
             case "2 Yule":
-            case "1 Lithe":
-            case "Midyear's Day":
             case "Overlithe":
             case "2 Lithe":
-                day = month < todayShire.month ? 30 : 1;
+                day = 1;
+                break;
+            case "1 Yule":
+            case "1 Lithe":
+            case "Midyear's Day":
+                day = 30;
                 break;
             default:
                 break;
@@ -58,9 +60,35 @@ const ShireDatePicker = (props: ShireDatePickerProps) => {
         );
     };
 
+    const onMonthInc = () => {
+        const month = todayShire.month;
+
+        onMonthChanged(
+            month === 11 ? year + 1 : year,
+            month === 11 ? 0 : month + 1
+        );
+    };
+
+    const onMonthDec = () => {
+        const month = todayShire.month;
+
+        onMonthChanged(
+            month === 0 ? year - 1 : year,
+            month === 0 ? 11 : month - 1
+        );
+    };
+
     const onDayChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const day = event.target.value;
         onDateChanged(new Date(day));
+    };
+
+    const onDayInc = () => {
+        onDateChanged(getNextDate(todayShire.gregorian));
+    };
+
+    const onDayDec = () => {
+        onDateChanged(getPrevDate(todayShire.gregorian));
     };
 
     const onYearChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,11 +113,17 @@ const ShireDatePicker = (props: ShireDatePickerProps) => {
             className="simulated-shire-date-picker"
             style={{ paddingLeft: 0 }}
         >
-            <OutlinedSelect
+            <ArrowKeyNavSelect
                 className="date-time-input simulated-shire-month-picker"
                 label="Month"
                 value={todayShire.month}
-                onChange={onMonthChanged}
+                onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+                    onMonthChanged(year, parseInt(event.target.value, 10))
+                }
+                onArrowUp={onMonthDec}
+                onArrowLeft={onMonthDec}
+                onArrowDown={onMonthInc}
+                onArrowRight={onMonthInc}
                 SelectProps={{
                     renderValue: (value: number) => ShireMonths[value].tolkien,
                 }}
@@ -102,12 +136,16 @@ const ShireDatePicker = (props: ShireDatePickerProps) => {
                         />
                     </MenuItem>
                 ))}
-            </OutlinedSelect>
-            <OutlinedSelect
+            </ArrowKeyNavSelect>
+            <ArrowKeyNavSelect
                 className="date-time-input"
                 label="Day"
                 value={todayShire.gregorian.toISOString()}
                 onChange={onDayChanged}
+                onArrowUp={onDayDec}
+                onArrowLeft={onDayDec}
+                onArrowDown={onDayInc}
+                onArrowRight={onDayInc}
             >
                 {calendar.dates
                     .filter((date) => date.month === todayShire.month)
@@ -119,7 +157,7 @@ const ShireDatePicker = (props: ShireDatePickerProps) => {
                             {date.day}
                         </MenuItem>
                     ))}
-            </OutlinedSelect>
+            </ArrowKeyNavSelect>
             <DateNumberInput
                 label="Year"
                 value={year - 1600 - 3441}
