@@ -753,9 +753,25 @@ The calendar of Gondor went through 3 variations throughout its history:
    The New Reckoning was introduced by Aragorn the King Elessar
    and started its reckoning from the day the One Ring was destroyed,
    T.A. 3019 'March' (Rethe/Súlimë) 25, which became its New Year's Day (Yestarë).
-   So the start of each month was shifted back by a few days to align the calendar with this new Yestarë.
-   It also removed the Stewards' Spring-day and Autumn-day and moved the Mid-year's Day (Loëndë) to autumn,
+
+   When Sam awoke by the Field of Cormallen after the destruction of the One Ring, he asked what day it was, and Gandalf replied:
+
+   > "The fourteenth of the New Year... or if you like, the eighth day of April in the Shire-reckoning. But in Gondor the New Year will always now begin upon the twenty-fifth of March when Sauron fell, and when you were brought out of the fire to the King..."
+   >
+   > -- J.R.R. Tolkien, *The Lord of the Rings*, "The Field of Cormallen"
+
+   One might assume then that Shire 'April' (Astron) 8 was equivalent to 'April' (Víressë) 14 in the New Reckoning, but what Gandalf was saying was that it was the 14th day of the year, and not the 14th day of that month in the New Reckoning.
+   This is the same as saying that February 1 in the Gregorian calendar is the 32nd day of the modern year.
+
+   So New Year's Eve (Mettarë) and New Year's Day (Yestarë) in the Stewards' Reckoning were moved from midwinter and aligned with Shire 'March' (Rethe) 24 and 25 for the New Reckoning,
+   and the start of each month was shifted back by a few days to align the calendar with this new Yestarë.
+
+   The New Reckoning also removed the Stewards' Spring-day and Autumn-day and moved the Mid-year's Day (Loëndë) to autumn,
    along with 2 Middle-days, which immediately followed its month of Yavannië.
+
+   In fact, Tolkien's statement in Appendix D that the New Reckoning's Yavannië 30 aligned with Shire 'September' (Halimath) 22
+   can only be the true if 'April' (Víressë) 1 in the New Reckoning aligned with Shire 'March' (Rethe) 26,
+   so it must have had a Yestarë outside of Víressë that aligned with Shire 'March' (Rethe) 25.
 
    > But in honour of Frodo *Yavannië* 30, which corresponded with former September 22, his birthday,
    > was made a festival, and the leap-year was provided for by doubling this feast, called *Cormarë* or Ringday.
