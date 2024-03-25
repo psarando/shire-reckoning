@@ -97,7 +97,7 @@ const SyncRivendellCalendar: RivendellCalendarSyncScheme[] = [
     },
     {
         label: `with Boris Shapiro's "7th Age" Reckoning`,
-        subtitle: "as used by Quenya101.com",
+        subtitle: "as detailed in http://www.elvish.org/gwaith/calendars.htm",
         startDate: fullYearDate(1, 2, 27),
         calendarRules: RivendellCalendar.TRADITIONAL_RULES,
     },

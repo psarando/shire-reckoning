@@ -379,8 +379,7 @@ for more info.
 
 #### Synchronize with Boris Shapiro's "7th Age" Reckoning
 This setting synchronizes the Rivendell Reckoning calendar with
-[Boris Shapiro's "7th Age" Reckoning](http://www.elvish.org/gwaith/calendars.htm),
-which is also the conversion scheme used by [Quenya101.com](https://Quenya101.com) for their calendar conversion requests.
+[Boris Shapiro's "7th Age" Reckoning](http://www.elvish.org/gwaith/calendars.htm).
 
 See the [Rivendell Reckoning Notes](#why-march-22nd) for more info.
 
