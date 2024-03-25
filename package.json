@@ -1,6 +1,6 @@
 {
   "name": "shire-reckoning",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "homepage": "https://psarando.github.io/shire-reckoning",
   "source": "src/lib.js",
   "main": "lib/TolkienCalendars.js",

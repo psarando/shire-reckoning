@@ -646,6 +646,10 @@ Note the 3 exceptions to the "Millennial Leap-year" rule as interpreted from Tol
 * Mardil the Steward added 2 days to the last year of the Kings' Reckoning in III 2059,
   which also makes it equivalent to a "Millennial Leap-year".
 
+The fact that when Steward Mardil needed to add 2 extra days they were added to a common year,
+and when Steward Hador needed to add 1 extra day it was added to a leap-year,
+suggests that they accomplished their additions by also converting those years into "Millennial Leap-years"
+(and probably by replacing Loëndë with 3 Enderi), as I have done with these simulations, and as described above.
 
 #### Notes on Tolkien's *Deficit* calculations
 
