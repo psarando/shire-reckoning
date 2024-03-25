@@ -763,14 +763,20 @@ The calendar of Gondor went through 3 variations throughout its history:
    One might assume then that Shire 'April' (Astron) 8 was equivalent to 'April' (Víressë) 14 in the New Reckoning, but what Gandalf was saying was that it was the 14th day of the year, and not the 14th day of that month in the New Reckoning.
    This is the same as saying that February 1 in the Gregorian calendar is the 32nd day of the modern year.
 
-   So New Year's Eve (Mettarë) and New Year's Day (Yestarë) in the Stewards' Reckoning were moved from midwinter and aligned with Shire 'March' (Rethe) 24 and 25 for the New Reckoning,
+   Although Tolkien did not explicitly detail it in Appendix D,
+   it works out that the New Year's Eve (Mettarë) and New Year's Day (Yestarë)
+   of the Kings' / Stewards' Reckoning were moved from midwinter
+   and aligned with Shire 'March' (Rethe) 24 and 25 for the New Reckoning,
    and the start of each month was shifted back by a few days to align the calendar with this new Yestarë.
 
-   The New Reckoning also removed the Stewards' Spring-day and Autumn-day and moved the Mid-year's Day (Loëndë) to autumn,
-   along with 2 Middle-days, which immediately followed its month of Yavannië.
+   The New Reckoning also removed the Stewards' Spring-day and Autumn-day,
+   and Tolkien did state that the Mid-year's Day (Loëndë) was moved to autumn,
+   along with 2 Middle-days (Enderi),
+   which immediately followed the month of Yavannië.
 
-   In fact, Tolkien's statement in Appendix D that the New Reckoning's Yavannië 30 aligned with Shire 'September' (Halimath) 22
-   can only be the true if 'April' (Víressë) 1 in the New Reckoning aligned with Shire 'March' (Rethe) 26,
+   In fact, Tolkien's statement in Appendix D,
+   that the New Reckoning's Yavannië 30 aligned with Shire 'September' (Halimath) 22,
+   only works out if Víressë 1 in the New Reckoning aligned with Shire 'March' (Rethe) 26,
    so it must have had a Yestarë outside of Víressë that aligned with Shire 'March' (Rethe) 25.
 
    > But in honour of Frodo *Yavannië* 30, which corresponded with former September 22, his birthday,
