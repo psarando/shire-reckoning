@@ -455,7 +455,7 @@ making *Mersday* and *Highday* like the weekend for the Shire.
 |---|-----|----|-------|-----------|
 |🌄|Afteryule|Frery|January|The month after the winter solstice (Midwinter), from æfter Gēola 'after Winter Solstice', and from frēorig 'freezing, frigid'.|
 |🌧|Solmath|Solmath|February|From Solmōnað, perhaps from the Old English word for mud, 'sol'.|
-|🌬|Rethe|Rethe|March|From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede.|
+|🌬|Rethe|Rethe|March|From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede. Or perhaps 'Storm-month' [according to Dr. Eleanor Parker's reading of Tolkien's notes in *Beowulf: A Translation and Commentary*](https://youtu.be/EDqeq_Iiba0?t=525).|
 |🌱|Astron|Chithing|April|From Ēastermōnað 'Easter-month', named after the Goddess Ēostre, and from cīþing 'growing thing' (cīþ 'young shoot, sprout').|
 |🌼|Thrimidge|Thrimidge|May|The month of plenty, when cows were given three milkings (þri-milce) daily.|
 |☀️|Forelithe|Lithe|June|The month before the summer solstice (Midsummer), when 'litha' (gentle or navigable) weather encouraged voyages. From ǣrra Līða 'before Litha'.|
@@ -1553,6 +1553,7 @@ which fall on (or very close to) the
   [ISBN-13 978-0-618-64267-0](https://en.wikipedia.org/wiki/Special:BookSources/?isbn=978-0-618-64267-0).
 * Martin, Darrell A. "J.R.R. Tolkien's Calendars or The Saga of Hador The Incompetent",
   *[Mythlore](http://www.mythsoc.org/mythlore.htm)* 54, Summer 1988, pp 52-59.
+* Parker, Eleanor. [*Tolkien and the Anglo-Saxon Calendar*](https://youtu.be/EDqeq_Iiba0), a [Tolkien 50th Anniversary Seminar Series](https://tolkien50.web.ox.ac.uk/event/tolkien-50th-anniversary-seminar-series) video recording, uploaded to YouTube on June 15, 2024.
 * Sarando, Paul. "Why We Should Observe the Elves' New Year on March 25",
   *[Beyond Bree](http://www.cep.unt.edu/bree.html)*, March 2018.
 * [Shire-reckoning.com](http://shire-reckoning.com/calendar.html)

@@ -187,7 +187,7 @@ Muddy Month.`,
 `Tolkien: March
 Shire: Rethe
 Bree: Rethe
-From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede.`,
+From Hrēðmōnað 'glory-month'. Month of the Goddess Hrēþ or Hretha, according to the Venerable Bede. 'Storm-month' according to Dr. Eleanor Parker.`,
         className: "rethe",
     },
     {
