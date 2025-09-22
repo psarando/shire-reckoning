@@ -254,7 +254,7 @@ Tolkien also described the following holidays specific to certain calendars:
   called the "[Gates of Summer](https://tolkiengateway.net/wiki/Gates_of_Summer)"
   which occurred at sunrise on the 1st day of summer (and the ceremonies started the evening before).
   Although modern western cultures consider the summer solstice to be the 1st day of summer,
-  I think the "Gates of Summer" holiday probably corresponded with the 1st day of "Summer" (Lairë / Laer) in the
+  I think the "Gates of Summer" holiday could have corresponded with the 1st day of "Summer" (Lairë / Laer) in the
   [Calendar of Imladris](https://psarando.github.io/shire-reckoning/#tolkien-calendars) (a.k.a. the Reckoning of Rivendell).
 * The only Dwarvish holiday that I know of is called [Durin's Day](https://tolkiengateway.net/wiki/Durin%27s_Day).
   In *The Hobbit*, Thorin says, "The first day of the dwarves' New Year...
@@ -354,7 +354,8 @@ Rivendell date conversion for today's date in modern times.
 See the [Rivendell Reckoning Notes](#rivendell-reckoning-notes) for more info.
 
 #### Synchronize Yestarë with modern March 25
-This setting synchronizes Yestarë with modern March 25, as Tolkien probably intended,
+This setting synchronizes Yestarë with modern March 25,
+[as Tolkien probably intended](#rivendell-reckoning-notes),
 but using my ["Reformed" rules](#reformed-rivendell-reckoning).
 
 This is the recommended setting for those interested in a Rivendell date conversion for a modern date in any year
@@ -628,8 +629,8 @@ allows the calendar to start reckoning from days up to Gregorian December 25,
 since it is demonstrated in [The Lord of the Rings: A Reader's Companion](#references)
 that Tolkien used the actual moon phases of 1941-1942 as a reference for the moon phases described in
 [The Lord of the Rings](#references),
-but these moon phases only align with the dates in the narrative if those Shire Calendar dates start reckoning their year
-from December 25 in 1940 and 1941.
+but these moon phases only align with the dates in the narrative
+if those Shire Calendar dates are reckoned with their New Year's Day on December 25 in 1940 and 1941.
 Note this annotation from [The Lord of the Rings: A Reader's Companion](#references)
 referring to its chart demonstrating this alignment:
 
@@ -722,7 +723,8 @@ The calendar of Gondor went through 3 variations throughout its history:
    and starting no later than S.A. 1000 under the reign of [Tar-Aldarion](https://tolkiengateway.net/wiki/Tar-Aldarion),
    since Appendix D implies that the first of the Kings' Reckoning
    "[millennial additions](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)"
-   to account for the *Deficit* was made on time in S.A. 1000.
+   to account for the *[Deficit](https://psarando.github.io/shire-reckoning/Kings_Reckoning_Rules_and_Deficit.html)*
+   was made on time in S.A. 1000.
    I wouldn't be surprised if Tar-Aldarion's father, [Tar-Meneldur](https://tolkiengateway.net/wiki/Tar-Meneldur),
    decreed that the "[millennial additions](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#millennial-leap-years)"
    be added to the rules of the Kings' Reckoning, since he was also known as Elentirmo ("Star-watcher")
@@ -784,7 +786,7 @@ The calendar of Gondor went through 3 variations throughout its history:
    > -- J.R.R. Tolkien, *The Lord of the Rings* Appendix D
 
    In other words, Yavannië 30 of the New Reckoning calendar falls on Frodo's birthday, Shire 'September' (Halimath) 22,
-   except in leap-years when Yavannië 30 falls on Halimath 21 due to the Shire Calendar's leap-day in summer (Overlithe).
+   except in leap-years when Yavannië 30 falls on Halimath 21 due to the Shire Calendar's leap-day in summer ([Overlithe](#middle-days-and-leap-days)).
    So the New Reckoning calendar adds its leap-day, Cormarë (Ringday), between Yavannië 30 and its Middle-days.
    This way Yavannië 30 is a festival in every year, but in leap-years Cormarë falls on Frodo's actual birthday,
    and his birthday celebrations are doubled!
@@ -1060,10 +1062,13 @@ So Shapiro concludes that if Shire Afteryule 9 was January 1, then Shire Astron 
 and if Rivendell New Year's Day was Shire Astron 6, then Rivendell New Year's Day was also March 29.
 
 Note that Shapiro begins reckoning the Calendar of Imladris from 1 A.D.
-because he claims that could be the start of 7th Age of Middle-earth.
-I know of no evidence that the Calendar of Imladris should re-start its reckoning at the start of each Age,
-but keep in mind that this project makes no claims about the Ages of Middle-earth in modern times.
-The Calendar of Imladris on this project's home page starts reckoning
+because he claims that could be the start of the 7th Age of Middle-earth.
+Although a note written by Tolkien, and recently published in
+[The Nature of Middle-earth](https://tolkiengateway.net/wiki/The_Nature_of_Middle-earth),
+does equate the modern year 1960 with the year 1960 of the 7th Age,
+I know of no evidence that the Calendar of Imladris should re-start its reckoning at the start of each Age.
+Also keep in mind that this project makes no claims about the Ages of Middle-earth in modern times,
+and the Calendar of Imladris on this project's home page starts reckoning
 on year 1 of the [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
 to make it easier to compare how the Calendar of Imladris relates to our modern Gregorian calendar.
 
@@ -1299,7 +1304,8 @@ Now note that the year 6460 in a Gregorian calendar is also a leap-year,
 so Astron 6 in T.A. 3019 would have corresponded to the Gregorian March 25
 (to see this for yourself,
 [set the Shire Calendar to start reckoning from December 20 and the Gregorian Date to March 25, 6460](https://psarando.github.io/shire-reckoning/#tolkien-calendars)).
-This also means the Shire Reckoning New Year's Day was another day behind in T.A. 3020,
+This also means the Shire Reckoning New Year's Day was another day behind in T.A. 3020
+(aligning with December 19 and followed by a common Gregorian year),
 which means Astron 6 corresponded to Gregorian March 25 again
 (the date the mallorn tree first flowered in the Party Field),
 until the Overlithe in that "Great Year of Plenty"
