@@ -434,7 +434,7 @@ and very close to a "traditionally appropriate" year.
 ### Venerable Bede's Reckoning
 
 This synchronization scheme is based on
-[Venerable Bede's calculation of 3952 B.C. as the year of the "creation" of the world](https://en.wikipedia.org/wiki/Bede#Works_on_historical_and_astronomical_chronology),
+[Venerable Bede's calculation of 3952 B.C. as the year of the "creation" of the world](https://en.wikipedia.org/wiki/Bede#Historical_and_astronomical_chronology),
 and aligns the first year of the Fourth Age with this year.
 Since Tolkien based the names of the Shire Calendar on the
 [Anglo-Saxon calendar](https://en.wikipedia.org/wiki/Germanic_calendar#Medieval)

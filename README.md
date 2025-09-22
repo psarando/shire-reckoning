@@ -157,7 +157,7 @@ So the default Shire Reckoning calendar is displayed according to the reasonable
 where Shire [Mid-year's Day](#middle-days-and-leap-days)
 is aligned as much as possible with the contemporary
 [summer solstice](https://en.wikipedia.org/wiki/Solstice)
-(which is [usually on June 21st](https://en.wikipedia.org/wiki/Summer_solstice#/media/File:Gregoriancalendarleap_solstice.svg)),
+(which is [usually on June 21st](https://commons.wikimedia.org/wiki/File:Gregoriancalendarleap_solstice.svg),
 and it follows the same leap-day rules of the Gregorian calendar.
 This allows it to stay in sync with the Gregorian calendar so that most Shire Reckoning dates
 will always fall on the same Gregorian date.
@@ -421,7 +421,7 @@ and a tooltip will display the description of that month or weekday name.
 These descriptions were compiled from
 [The Lord of the Rings: A Reader's Companion](#references),
 [Shire-reckoning.com](http://shire-reckoning.com/calendar.html),
-and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar).
+and the [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Early_Germanic_calendars).
 
 ### Shire Weekdays
 
@@ -521,7 +521,7 @@ This visualization reckons the start of the Shire Calendar year from Gregorian D
 in order to align Shire Mid-year's Day as much as possible with the contemporary
 [summer solstice](https://en.wikipedia.org/wiki/Solstice)
 (see [Shire-reckoning.com](http://shire-reckoning.com/calendar.html)),
-which is [usually on June 21st](https://en.wikipedia.org/wiki/Summer_solstice#/media/File:Gregoriancalendarleap_solstice.svg)
+which is [usually on June 21st](https://commons.wikimedia.org/wiki/File:Gregoriancalendarleap_solstice.svg)
 (in our lifetimes).
 
 The Shire Calendar on this [project's home page](https://psarando.github.io/shire-reckoning/#tolkien-calendars)
@@ -601,7 +601,7 @@ with the modern summer solstice.
 I'll also point out that some prefer to start reckoning the Shire Calendar year from Gregorian December 22,
 which will keep Mid-year’s Day in sync with June 22.
 I'm assuming that's because
-[the summer solstice usually fell on June 22nd during the first half of the 20th century](https://en.wikipedia.org/wiki/Summer_solstice#/media/File:Gregoriancalendarleap_solstice.svg),
+[the summer solstice usually fell on June 22nd during the first half of the 20th century](https://commons.wikimedia.org/wiki/File:Gregoriancalendarleap_solstice.svg),
 when Tolkien was writing this material,
 but June 21st is the more common date in the centuries around the year 2000.
 
@@ -1114,12 +1114,12 @@ Those familiar with the history of the Gregorian calendar in England might also 
 real-world parallels in a March 25 New Year's Day and in an April 6 New Year.
 March 25 in the classical Julian calendar
 [was the start of the legal year in England](https://en.wikipedia.org/wiki/Gregorian_calendar#Beginning_of_the_year)
-(also known as [Lady Day](https://en.wikipedia.org/wiki/Lady_Day#Non-religious_significance))
+(also known as [Lady Day](https://en.wikipedia.org/wiki/Lady_Day#Secular_significance))
 before the adoption of the Gregorian calendar in 1752 (now the most widely used calendar in modern times).
 The tax year in England was also based on this March 25 New Year's Day,
 and after the Gregorian calendar was adopted,
 the start of the tax year then converted to the Gregorian April 6;
-and [April 6 is still the start of the United Kingdom's tax year to this day](https://en.wikipedia.org/wiki/History_of_taxation_in_the_United_Kingdom#Why_the_United_Kingdom_income_tax_year_begins_on_6_April).
+and [April 6 is still the start of the United Kingdom's tax year to this day](https://en.wikipedia.org/wiki/History_of_taxation_in_the_United_Kingdom#Start_of_tax_year).
 
 Tom Shippey also touches on this parallel in his book
 [J.R.R. Tolkien: Author of the Century](https://tolkiengateway.net/wiki/J.R.R._Tolkien:_Author_of_the_Century):
@@ -1539,11 +1539,11 @@ usually falls on September 22nd (or early on the 23rd), and as mentioned earlier
 the 3 Enderi were most likely intended to occur around this equinox.
 
 Starting this calendar's year on Gregorian March 25 also means the other seasons of this calendar will align with
-[March 25th](https://en.wikipedia.org/wiki/Lady_Day#Non-religious_significance),
+[March 25th](https://en.wikipedia.org/wiki/Lady_Day#Secular_significance),
 [June 24th](https://en.wikipedia.org/wiki/Midsummer#United_Kingdom) (the middle of Lairë),
 and [December 24th](https://en.wikipedia.org/wiki/Christmas_Eve) (the middle of Hrívë),
 which fall on (or very close to) the
-[traditional quarter days of England](https://en.wikipedia.org/wiki/Quarter_days#In_England).
+[traditional quarter days of England](https://en.wikipedia.org/wiki/Quarter_days#England_and_Wales).
 
 ## References
 
@@ -1566,7 +1566,7 @@ which fall on (or very close to) the
   including an excellent chart of the "evolution and divergence of calendar systems in Middle Earth"
   (though I will point out the minor correction that Hador the Steward added an extra day to T.A. 2360, not 2160).
 * [Tolkien's Legendarium versus Astronomical Reality](http://rinsanity.weebly.com/tolkien.html)
-* [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Germanic_calendar)
+* [Wikipedia article on the pre-latin Germanic calendar](https://en.wikipedia.org/wiki/Early_Germanic_calendars)
 * [Wikipedia article on the Coligny calendar](https://en.wikipedia.org/wiki/Coligny_calendar):
   A possible inspiration behind the design of Tolkien's calendars in Appendix D,
   particularly the similarity of the Enderi to the *trinoxtion Samonii*.
