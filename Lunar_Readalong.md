@@ -52,27 +52,25 @@ as well as a
 
 ## 2020-21 Readalong with Illustrated Blog Posts
 
-I'm now in the process of repeating this Readalong for the
+I repeated this Readalong for the
 [2020-21 moon phases](https://psarando.github.io/shire-reckoning/examples/?path=/story/shire-reckoning-middle-earth-simulation--2020-21-moon-phase-synchronized-simulation)
 (which I think fit the story even better than the 2017-18 moon phases),
-so expect some of the [scheme and my notes](#lunar-readalong-grand-scheme)
-to be updated throughout.
-
-I'm also [publishing blog posts](https://shirereckoningproject.wordpress.com/)
-on some of the key dates when the moon is mentioned in the story,
+and also [published blog posts](https://shirereckoningproject.wordpress.com/)
+on some of the key dates when the moon was mentioned in the story,
 with [Stellarium](http://www.stellarium.org/)
 simulations of exactly what the moon should have looked like
 (using the moon phases of 1941-42).
 
 This is similar to what has already been done at
 [Shire-Reckoning.com's Moon Phases in The Lord of the Rings](http://shire-reckoning.com/moon.html),
-but my blog posts will include fuller quotes from *The Lord of the Rings*,
+but my blog posts include fuller quotes from *The Lord of the Rings*,
 and are hopefully better illustrated by the [Stellarium](http://www.stellarium.org/) simulations
-(not to mention my posts will be published on the corresponding real-world dates of the Readalong).
+(not to mention my posts were published on the corresponding real-world dates of the Readalong).
 
-So please follow along at
+Now that the Readalong is complete,
+I still occasionally post news about or relating to this project at
 [The Shire Reckoning Project's Lunar Read-along blog](https://shirereckoningproject.wordpress.com/),
-where you can also subscribe to be notified of every new post!
+so you can still subscribe to be notified of every new post.
 
 ## Future Readalongs
 
@@ -198,11 +196,11 @@ so the end of the story is listed as `1031 (III:311)`,
 which is page 1031 in the single-volume edition, or Volume III page 311 of the 3-volume edition.
 Hopefully using Roman numerals also for the [Book.Chapter](#bookchapter) notation isn't too confusing.
 
-Some entries are linked to a `Book.Chapter.Paragraph` number as provided by the
-[Digital Tolkien Project's Cite Tolkien system](https://cite.digitaltolkien.com/).
-This is still a work in progress, and not all entries have a
-[Digital Tolkien Project Citation](https://digitaltolkien.com/citation-systems/)
-link.
+These entries are also linked to a `Book.Chapter.Paragraph` number as provided by the
+[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/).
+This is still a work in progress,
+and the bulk of these links were added by an automated script,
+so there may be some mistakes.
 
 ## Read until
 
@@ -210,10 +208,9 @@ Since not everyone can use these page numbers,
 a snippet of the passage where I think the story ends on each date is also listed.
 
 These entries are also linked to a `Book.Chapter.Paragraph` number as provided by the
-[Digital Tolkien Project's Cite Tolkien system](https://cite.digitaltolkien.com/).
+[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/).
 This is still a work in progress,
-and the bulk of these links were added by an automated script.
-Not all links have been manually verified yet,
+and the bulk of these links were added by an automated script,
 so there may be some mistakes.
 
 Since [Shire dates are reckoned from midnight to midnight](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#reckoning-the-start-or-end-of-a-day)
