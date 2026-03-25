@@ -34,7 +34,7 @@ and these 1941-2 moon phases repeated on most of the same dates in 2017-18
 (with some falling [1 day earlier](https://en.wikipedia.org/wiki/Callippic_cycle)).
 
 So starting in the spring of 2017 (or really the previous fall) I led myself and my brother in a "Lunar Readalong",
-re-reading LOTR in "real-time" in 2017-18, according to the moon phases and approximately at the same time-of-year as described in the story,
+re-reading LOTR in "real-time" in 2017-18, according to the moon phases and at the same time-of-year as described in the story,
 with the help of *The Lord of the Rings* Appendix B, the *Reader's Companion*, and this project's
 [Middle-earth calendar simulations](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html).
 
@@ -189,10 +189,12 @@ I'm using the `Book.Chapter.Paragraph` number as provided by the
 where "Book 1, Chapter 1, Paragraph 1" is `1.01.001`,
 and "Book 6, Chapter 9, Paragraph 95" is `6.09.095`.
 
-This is still a work in progress,
-and the bulk of these links were added by an automated script.
-Most have been manually checked,
-but there still may be some mistakes or paragraph number adjustments needed.
+Each entry is also a
+[Cite Tolkien link](https://cite.digitaltolkien.com/).
+This should help anyone who doesn't have a copy of the books with the same page numbers used in the following columns,
+since the Digital Tolkien citation links provide some context around the linked paragraph,
+showing the beginning and ending of that paragraph,
+as well as the start and end of the surrounding paragraphs.
 
 ## Page Start
 
@@ -203,18 +205,16 @@ The *Reader's Companion* 3-volume page numbers are given as `Volume:Page`,
 so the end of the story is listed as `1031 (III:311)`,
 which is page 1031 in the single-volume edition, or Volume III page 311 of the 3-volume edition.
 
-These entries are also linked to a `Book.Chapter.Paragraph` number as provided by the
-[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/),
-the same as in the [Book.Chapter.Paragraph](#bookchapterparagraph) column.
+These entries are also linked to a [Book.Chapter.Paragraph](#bookchapterparagraph) number as provided by the
+[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/).
 
 ## Read until
 
 In order to be even more precise than page and paragraph numbers,
 a snippet of the passage where I think the story ends on each date is also listed.
 
-These entries are also linked to a `Book.Chapter.Paragraph` number as provided by the
-[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/),
-the same as in the [Book.Chapter.Paragraph](#bookchapterparagraph) column.
+These entries are also linked to a [Book.Chapter.Paragraph](#bookchapterparagraph) number as provided by the
+[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/).
 
 Since [Shire dates are reckoned from midnight to midnight](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#reckoning-the-start-or-end-of-a-day)
 (just like our modern dates),
