@@ -12,7 +12,7 @@ The Lord of the Rings Lunar Readalong
     * [Shire Month Emoji Links](#shire-month-emoji-links)
     * [Shire date](#shire-date)
     * [2020-21 Alignment](#2020-21-alignment)
-    * [Book.Chapter](#bookchapter)
+    * [Book.Chapter.Paragraph](#bookchapterparagraph)
     * [Page Start](#page-start)
     * [Read until](#read-until)
     * [Event Summary](#event-summary)
@@ -182,9 +182,17 @@ I'm including real-world 2019 dates for Chapter 1 that should be close to the sa
 and to what the moon phase should be in that part of the story.
 The real-world 2019 dates also let 6 months stand-in for the 17-year gap of the story.
 
-## Book.Chapter
+## Book.Chapter.Paragraph
 
-I'm using Book and Chapter notation where "Book 1, Chapter 1" is `I.1`, and "Book 6, Chapter 9" is `VI.9`.
+I'm using the `Book.Chapter.Paragraph` number as provided by the
+[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/),
+where "Book 1, Chapter 1, Paragraph 1" is `1.01.001`,
+and "Book 6, Chapter 9, Paragraph 95" is `6.09.095`.
+
+This is still a work in progress,
+and the bulk of these links were added by an automated script.
+Most have been manually checked,
+but there still may be some mistakes or paragraph number adjustments needed.
 
 ## Page Start
 
@@ -194,24 +202,19 @@ or for the previous standard 3-volume hardback editions (such as the 1965 public
 The *Reader's Companion* 3-volume page numbers are given as `Volume:Page`,
 so the end of the story is listed as `1031 (III:311)`,
 which is page 1031 in the single-volume edition, or Volume III page 311 of the 3-volume edition.
-Hopefully using Roman numerals also for the [Book.Chapter](#bookchapter) notation isn't too confusing.
 
 These entries are also linked to a `Book.Chapter.Paragraph` number as provided by the
-[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/).
-This is still a work in progress,
-and the bulk of these links were added by an automated script,
-so there may be some mistakes.
+[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/),
+the same as in the [Book.Chapter.Paragraph](#bookchapterparagraph) column.
 
 ## Read until
 
-Since not everyone can use these page numbers,
+In order to be even more precise than page and paragraph numbers,
 a snippet of the passage where I think the story ends on each date is also listed.
 
 These entries are also linked to a `Book.Chapter.Paragraph` number as provided by the
-[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/).
-This is still a work in progress,
-and the bulk of these links were added by an automated script,
-so there may be some mistakes.
+[Digital Tolkien Project Citation system](https://digitaltolkien.com/citation-systems/),
+the same as in the [Book.Chapter.Paragraph](#bookchapterparagraph) column.
 
 Since [Shire dates are reckoned from midnight to midnight](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#reckoning-the-start-or-end-of-a-day)
 (just like our modern dates),
@@ -244,7 +247,7 @@ along with various other notes for certain events.
 
 # Lunar Readalong Grand Scheme
 
-| | |Shire date|2020-21 Alignment|Book.Chapter|Page Start|Read until|Event Summary|Notes|
+| | |Shire date|2020-21 Alignment|Book. Chapter. Paragraph|Page Start|Read until|Event Summary|Notes|
 |-|-| -------- | ----- | ---------- | -------- | -------- | ----------- | --- |
 | |<a id="1401-09-16" href="#1401-09-16">🍇</a>|1401 Halimath 16<br/>(approximate)|  2019 September 12|[1.01.001](https://cite.digitaltolkien.com/LR/1.01.001/) - [1.01.040](https://cite.digitaltolkien.com/LR/1.01.040/)|[21 (I:29) [start of chapter]](https://cite.digitaltolkien.com/LR/1.01.001/)|[Before long the invitations began pouring out...](https://cite.digitaltolkien.com/LR/1.01.040/)|Preparations for Bilbo's 111th Birthday Party.|The 16th is the end of the 2nd full week of Halimath. The 2019 dates were only chosen to closely match the moon of S.R. 1401 Halimath 22, and to let 6 months stand-in for the 17-year gap of the story.|
 | |<a id="1401-09-21" href="#1401-09-21">🍇</a>|1401 Halimath 21|  2019 September 16|[1.01.040](https://cite.digitaltolkien.com/LR/1.01.040/) - [1.01.044](https://cite.digitaltolkien.com/LR/1.01.044/)|[26 (I:34)](https://cite.digitaltolkien.com/LR/1.01.040/)|[Thursday, September the 22nd...](https://cite.digitaltolkien.com/LR/1.01.044/)|Eve of Bilbo's 111th Birthday Party.|
@@ -424,7 +427,7 @@ along with various other notes for certain events.
 | | | | |[6.03.050](https://cite.digitaltolkien.com/LR/6.03.050/) - [6.04.024](https://cite.digitaltolkien.com/LR/6.04.024/)|[940 (III:217)](https://cite.digitaltolkien.com/LR/6.03.050/)|[951 (III:229) "...and borne far away out of the darkness and the fire."](https://cite.digitaltolkien.com/LR/6.04.024/)|"Frodo and Samwise reach the Sammath Naur. Gollum seizes the Ring and falls in the Cracks of Doom."|
 | | | | |[6.05.034](https://cite.digitaltolkien.com/LR/6.05.034/) - [6.05.056](https://cite.digitaltolkien.com/LR/6.05.056/)|[961 (III:239)](https://cite.digitaltolkien.com/LR/6.05.034/)|[963 (III:241) "The days that followed were golden..."](https://cite.digitaltolkien.com/LR/6.05.056/)|Tidings come to Minas Tirith of the "Downfall of Barad-dûr and passing of Sauron."|If you reckon the Shire Calendar's New Year's Day from December 25th in a non-leap-year (as Tolkien did when aligning the moon phases of 1941-42 to the story), then Rethe 25 would fall on March 20th in our calendar, and March 20th is also the usual date of the vernal equinox in our time.|
 |(🌓)|<a id="1419-03-30" href="#1419-03-30">🌬</a>|1419 Rethe 29/30<br/>(approximate)|  2021 March 20|[6.05.056](https://cite.digitaltolkien.com/LR/6.05.056/) - [6.05.074](https://cite.digitaltolkien.com/LR/6.05.074/)|[963 (III:241)](https://cite.digitaltolkien.com/LR/6.05.056/)|[965 (III:243) "All things were now made ready in the City..."](https://cite.digitaltolkien.com/LR/6.05.074/)|Faramir assumes his authority as Steward of Gondor, and Merry departs for the Field of Cormallen.|
-|[(🌔)](https://shirereckoningproject.wordpress.com/2021/03/27/3019-04-06-the-new-year-of-the-elves-when-celeborn-and-thranduil-met-in-mirkwood/)|<a id="1419-04-06" href="#1419-04-06">🌱</a>|1419 Astron 6|  2021 March 27|[B.TA.06](https://cite.digitaltolkien.com/LR/B.TA.06/) - [B.TA.07](https://cite.digitaltolkien.com/LR/B.TA.07/)|[1094 (III:375) "Three times Lórien had been assailed from Dol Guldur..."](https://cite.digitaltolkien.com/LR/B.TA.06/)|[...all the wide forest between was given to the Beornings and the Woodmen.](https://cite.digitaltolkien.com/LR/B.TA.07/)|[The New Year of the Elves, when Celeborn and Thranduil met in Mirkwood and redrew its borders.](https://shirereckoningproject.wordpress.com/2021/03/27/3019-04-06-the-new-year-of-the-elves-when-celeborn-and-thranduil-met-in-mirkwood/)|The full moon was the next night. Note: I have avoided including readings outside of the main story, but added this one mainly to include a link to the related blog post in this list.|
+|[(🌔)](https://shirereckoningproject.wordpress.com/2021/03/27/3019-04-06-the-new-year-of-the-elves-when-celeborn-and-thranduil-met-in-mirkwood/)|<a id="1419-04-06" href="#1419-04-06">🌱</a>|1419 Astron 6|  2021 March 27|Appx.[B.TA.06](https://cite.digitaltolkien.com/LR/B.TA.06/) - [B.TA.07](https://cite.digitaltolkien.com/LR/B.TA.07/)|[1094 (III:375) "Three times Lórien had been assailed from Dol Guldur..."](https://cite.digitaltolkien.com/LR/B.TA.06/)|[...all the wide forest between was given to the Beornings and the Woodmen.](https://cite.digitaltolkien.com/LR/B.TA.07/)|[The New Year of the Elves, when Celeborn and Thranduil met in Mirkwood and redrew its borders.](https://shirereckoningproject.wordpress.com/2021/03/27/3019-04-06-the-new-year-of-the-elves-when-celeborn-and-thranduil-met-in-mirkwood/)|The full moon was the next night. Note: I have avoided including readings outside of the main story, but added this one mainly to include a link to the related blog post in this list.|
 |[🌖](https://shirereckoningproject.wordpress.com/2021/03/29/3019-04-08-the-round-moon-over-the-field-of-cormallen-after-a-glad-day-in-fair-ithilien/)|<a id="1419-04-08" href="#1419-04-08">🌱</a>|1419 Astron 8|  2021 March 29|[6.04.025](https://cite.digitaltolkien.com/LR/6.04.025/) - [6.04.073](https://cite.digitaltolkien.com/LR/6.04.073/)|[951 (III:229)](https://cite.digitaltolkien.com/LR/6.04.025/)|[957 (III:235) "And in the morning they rose again..."](https://cite.digitaltolkien.com/LR/6.04.073/)|"The Ring-bearers are honoured on the Field of Cormallen."|The full moon was the night before, [so the moon on this night would still be very round](https://shirereckoningproject.wordpress.com/2021/03/29/3019-04-08-the-round-moon-over-the-field-of-cormallen-after-a-glad-day-in-fair-ithilien/).|
 | |<a id="1419-04-09" href="#1419-04-09">🌱</a>|1419 Astron 9|  2021 March 30|[6.04.073](https://cite.digitaltolkien.com/LR/6.04.073/) - [6.04.074](https://cite.digitaltolkien.com/LR/6.04.074/)|[957 (III:235)](https://cite.digitaltolkien.com/LR/6.04.073/)|['But I missed a lot, seemingly.'](https://cite.digitaltolkien.com/LR/6.04.074/)|They stay a couple of weeks in Ithilien.|
 | |<a id="1419-04-27" href="#1419-04-27">🌱</a>|1419 Astron 27|  2021 April 17|[6.04.074](https://cite.digitaltolkien.com/LR/6.04.074/) - [6.04.076](https://cite.digitaltolkien.com/LR/6.04.076/)| |[...and they sailed from Cair Andros down Anduin to Osgiliath;](https://cite.digitaltolkien.com/LR/6.04.076/)|The Captains of the West set sail "from Cair Andros down Anduin".|These next 3 events are quoted in the *Reader's Companion* from Tolkien's "latest and only complete" Time-Scheme for LOTR: [Marquette MSS 4/2/18](http://www.marquette.edu/library/archives/Mss/JRRT/JRRT-seriesa4.php), and quoted in William Cloud Hicklin's [The Chronology of *The Lord of the Rings*](https://muse.jhu.edu/issue/48264) (p.80).|
