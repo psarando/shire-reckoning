@@ -198,10 +198,23 @@ so the end of the story is listed as `1031 (III:311)`,
 which is page 1031 in the single-volume edition, or Volume III page 311 of the 3-volume edition.
 Hopefully using Roman numerals also for the [Book.Chapter](#bookchapter) notation isn't too confusing.
 
+Some entries are linked to a `Book.Chapter.Paragraph` number as provided by the
+[Digital Tolkien Project's Cite Tolkien system](https://cite.digitaltolkien.com/).
+This is still a work in progress, and not all entries have a
+[Digital Tolkien Project Citation](https://digitaltolkien.com/citation-systems/)
+link.
+
 ## Read until
 
 Since not everyone can use these page numbers,
 a snippet of the passage where I think the story ends on each date is also listed.
+
+These entries are also linked to a `Book.Chapter.Paragraph` number as provided by the
+[Digital Tolkien Project's Cite Tolkien system](https://cite.digitaltolkien.com/).
+This is still a work in progress,
+and the bulk of these links were added by an automated script.
+Not all links have been manually verified yet,
+so there may be some mistakes.
 
 Since [Shire dates are reckoned from midnight to midnight](https://psarando.github.io/shire-reckoning/Middle-earth-simulation.html#reckoning-the-start-or-end-of-a-day)
 (just like our modern dates),
