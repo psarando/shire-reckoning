@@ -2,10 +2,10 @@
     "extends": "@tsconfig/recommended/tsconfig.json",
     "compilerOptions": {
         "outDir": "./build/",
+        "rootDir": "./src",
         "sourceMap": true,
         "noImplicitReturns": true,
         "noImplicitAny": true,
-        "moduleResolution": "node",
         "allowJs": true,
         "jsx": "react"
     },

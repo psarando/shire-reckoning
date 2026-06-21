@@ -2,7 +2,9 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "declaration": true,
-        "declarationDir": "./lib"
+        "declarationDir": "./lib",
+        "module": "nodenext",
+        "moduleResolution": "nodenext"
     },
     "include": ["./src/lib.js"]
 }
